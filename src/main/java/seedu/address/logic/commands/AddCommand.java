@@ -1,10 +1,4 @@
-package seedu.address.logic.commands.people;
-
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -13,10 +7,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+
 /**
  * Adds a person to the address book.
  */
-public class PeopleAddCommand extends Command {
+public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
@@ -43,7 +41,7 @@ public class PeopleAddCommand extends Command {
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public PeopleAddCommand(Person person) {
+    public AddCommand(Person person) {
         requireNonNull(person);
         toAdd = person;
     }
@@ -63,7 +61,7 @@ public class PeopleAddCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PeopleAddCommand // instanceof handles nulls
-                && toAdd.equals(((PeopleAddCommand) other).toAdd));
+                || (other instanceof AddCommand // instanceof handles nulls
+                && toAdd.equals(((AddCommand) other).toAdd));
     }
 }
