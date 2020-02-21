@@ -23,14 +23,14 @@ AddressBook Level 3 (AB3) is for those who *prefer to use a desktop app for mana
 
 == About
 This user guide will help to ensure that you have all the information you need to utilise *Sharkie* to its fullest extent. *Sharkie* is a feature-filled expense tracker and all the information you need regarding his usage is available below. +
-+
+
 If you need help starting up Sharkie, you can head on to the QuickStart guide below to set it up. +
-+
+
 If you need help regarding what commands *Sharkie* has, our Features section below will guide you through *Sharkie’s* abilities. +
-+
-+
+
+
 Note the following symbols and formatting used in this document: +
-+
+
 [`add`]	A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application. +
 [IMPORTANT] This symbol indicates important information.
 
@@ -57,7 +57,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 [[Features]]
 == Features
-===Expenditure and income
+=== Expenditure and income
 *Sharkie* notes down what you have spent on for the month, and also notes down your income for the month to help you properly track your money flow!
 
 === Contacts
@@ -147,7 +147,8 @@ Examples:
 Sends a reminder to all the people who owe you money. +
 Expected Outcome:
 
-    Reminded Daniel to return $10.00! + Reminded Joel to return $30.75!
+    Reminded Daniel to return $10.00!
+    Reminded Joel to return $30.75!
 
 ==== Recording the money you owe: `owe` [coming in v2.0]
 
@@ -201,7 +202,10 @@ Examples:
 Returns a list of people with the name, Grace. +
 Expected Outcome:
 
-    Here is a list of your contacts with name Grace: + 1. Grace Lim + 2. Grace Pan + … 
+    Here is a list of your contacts with name Grace:
+    1. Grace Lim
+    2. Grace Pan
+    …
 
 ==== Editing a person : `edit`
 
@@ -261,14 +265,17 @@ Expected Outcome:
 * *Help* : `help`
 
 === People Commands
-* *Add [to edit]* `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]...` +
-e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-* *Find [to edit]* : `find KEYWORD [MORE_KEYWORDS]` +
-e.g. `find James Jake`
+* *Add* `people add n/<name> p/<phone number> e/<email address>` +
+e.g. `people add n/Joel p/91234567 e/joel@u.nus.edu`
+* *Remind* `people remind <index>` +
+e.g. `people remind 1`
+* *Remind all* `people remindall`
 * *Owe* : `people owe <index> $/<amount> [d/<date:dd/mm/yyyy>]` +
 e.g. `people owe 4 $/5.00 d/10/10/2020`
 * *Lend* : `people lend <index> $/<amount> [d/<date:dd/mm/yyyy>]` +
 e.g. `people lend 5 $/5.00 d/10/10/2020`
+* *Find* : `people find <keyword>` +
+e.g. `people find Grace`
 * *Delete* : `people delete <index>` +
 e.g. `people delete 3`
 * *Edit* : `people edit <index> [n/<name>] [p/<phone number>] [e/<email address>]` +
