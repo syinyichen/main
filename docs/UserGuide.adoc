@@ -45,12 +45,12 @@ This symbol indicates tips.
 ====
 //end::about[]
 
-//tag::quickstart[]
+//tag::quickStart[]
 == Quick Start
 
 .  Ensure you have Java `11` or above installed in your Computer.
-.  Download the latest `Sharkie.jar` link:https://github.com/AY1920S2-CS2103T-W12-3/main/releases[here].
-.  Copy the file to the folder you want to use as the home folder for Sharkie.
+.  Download the latest `Sharkie.jar` link:https://github.com/AY1920S2-CS2103T-W12-3/main/releases[here] *[Jar file to be updated]*.
+.  Copy the file to the folder you want to use as the home folder for *Sharkie*.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
 image::Ui.png[width="790"]
@@ -59,12 +59,13 @@ image::Ui.png[width="790"]
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* *`list`* : lists all contacts
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com` : adds a contact named `John Doe` to the Address Book.
-* **`delete`**`3` : deletes the 3rd contact shown in the current list
-* *`exit`* : exits the app
+* **`people add`**`n/John Doe p/98765432 e/johnd@example.com` : adds a contact named `John Doe` to the Address Book.
+* **`people delete`**`3` : deletes the 3rd contact shown in the current list.
+* **`wallet find`**`rice` : returns a list of expenses or income with keyword rice.
+* *`sharkie exit`* : exits the app.
 
 .  Refer to <<Commands>> for details of each command.
+//end::quickStart[]
 
 [[Features]]
 == Features
@@ -89,12 +90,13 @@ There is no need to save manually.
 _{explain how the user can enable/disable data encryption}_
 // end::dataencryption[]
 
-// tag::debts[]
+//tag::debts[]
 === Debts `[coming in v2.0]`
 
-*Sharkie* allows you to take note of the debts you owe your friends and the debts your friend owes you.
-*Sharkie* then allow you to remind your friends through email to return you the money they owe you!
-// end::debts[]
+*Sharkie* allows you to take note of the debts you owe your friends and the debts your friend owes you. +
+*Sharkie* then allow you to automatically remind your friends through email to return you the money they owe you! +
+*Sharkie* also allows you to set reminders for yourself to return your friend what you owe them!
+//end::debts[]
 
 [[Commands]]
 == Commands
@@ -133,7 +135,7 @@ Format: `wallet tag <index> t/<tag>`
 
 ****
 * Tags an existing expense specified by <index> of expense.
-* The index must be *positive*.
+* The index *must be a positive integer* 1, 2, 3, ...
 * The index must *exist* in the list of expenses.
 * Both the <tag> and the <index> must be stated.
 ****
@@ -148,6 +150,8 @@ Expected Outcome:
     1. Chicken Rice (food)
     …
 
+//end::wallettag[]
+
 //tag::walletedit[]
 ==== Editing an income or expense: `edit`
 
@@ -157,6 +161,7 @@ Format: `wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]`
 ****
 * Edits the details of the expense or income, specified by <index>.
 * <index> must be stated, and it must *exist* in the list of expenses or income.
+* The index *must be a positive integer* 1, 2, 3, ...
 * At least one of [n/<name>], [d/<date>], [$/<amount>], [t/<tag>] should be stated. Multiples are allowed as well.
 ****
 
@@ -168,6 +173,8 @@ Expected Outcome:
 
     Edited Item: Duck Rice Date: 10/10/2010 Amount: $4.00
 
+//end::walletedit[]
+
 //tag::walletfind[]
 ==== Finding an income or expense: `find`
 
@@ -176,18 +183,20 @@ Format: `wallet find <keyword>`
 
 ****
 * Finds the expenses and income with the stated <keyword>.
-* The keyword need not be in full. For example `wallet find ri` will display expenses or income with the keyword `rice` as well.
+* The keyword need to be in full. For example `wallet find ri` will not display expenses or income with the keyword `rice` as well. Only expenses or income with keyword `ri` will be displayed.
 ****
 
 Examples:
 
 * `wallet find rice`
-Returns a list of expenses and income containing the keyword. +
+Returns a list of expenses and income containing the keyword <rice> +
 Expected Outcome:
 
     1. Duck Rice Date: 10/10/2010 Amount: $4.00
     2. Chicken Rice Date: 10/11/2010 Amount: $2.50
-    ...
+    ...​
+
+//end::walletfind[]
 
 //tag::walletdelete[]
 ==== Deleting an income or expense: `delete`
@@ -197,7 +206,7 @@ Format: `wallet delete <index>`
 
 ****
 * Deletes the income or expense specified by <index>.
-* The index must be *positive*.
+* The index *must be a positive integer* 1, 2, 3, ...
 * The index must *exist*.
 ****
 
@@ -208,6 +217,8 @@ Removes the expenses relative to the index. +
 Expected Outcome:
 
     Removed Chicken Rice from your wallet
+
+//end::walletdelete[]
 
 === People Commands
 //tag::peopleadd[]
@@ -381,11 +392,14 @@ Expected Outcome:
 
 // end::delete[]
 
+//tag::faq[]
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+*A*: Install the app in the other computer and overwrite the empty data file *Sharkie* creates with the file that contains the data of your previous Address Book folder.
+//end::faq[]
 
+//tag::commandSummary[]
 == Command Summary
 
 === Global Commands
@@ -408,3 +422,4 @@ e.g. `people find Grace`
 e.g. `people delete 3`
 * *Edit* : `people edit <index> [n/<name>] [p/<phone number>] [e/<email address>]` +
 e.g. `people edit 1 e/johndoe@example.com` +
+//end::commandSummary[]

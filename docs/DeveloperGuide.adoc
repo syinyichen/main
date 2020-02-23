@@ -292,6 +292,7 @@ Refer to the guide <<DevOps#, here>>.
 * is reasonably comfortable using CLI apps
 
 *Value proposition*: records expenses/debts faster than a typical mouse/GUI driven app
+//end::productScope[]
 
 [appendix]
 //tag::userStories[]
@@ -363,9 +364,15 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 |`*` |rich student who always lends people money |take note of who owes me money |I can track them and ask them for it back
 
 |`*` |someone with few friends |keep track of who I paid for or who paid for me first |I know who are my friends, and the frequency I go out with them
+
+|`*` |tech-savvy loan shark |I want to conveniently record who owes me money |I can remind them to pay back through email
+
+|`*` |tech-savvy loan shark |I want a convenient way to calculate interest rate |I don't have to do it manually
+
 |=======================================================================
 
 _{More to be added}_
+//end::userStories[]
 
 //tag::useCases[]
 [appendix]
