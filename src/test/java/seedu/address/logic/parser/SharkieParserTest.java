@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliPrefix.GLOBAL_COMMAND_TYPE;
 import static seedu.address.logic.parser.CliPrefix.PEOPLE_COMMAND_TYPE;
-import static seedu.address.logic.parser.CliPrefix.SHARKIE_COMMAND_TYPE;
 import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -70,9 +70,9 @@ public class SharkieParserTest {
 
     @Test
     public void parseCommand_exit() throws Exception {
-        assertTrue(parser.parseCommand(SHARKIE_COMMAND_TYPE + " " + ExitCommand.COMMAND_WORD)
+        assertTrue(parser.parseCommand(GLOBAL_COMMAND_TYPE + " " + ExitCommand.COMMAND_WORD)
                 instanceof ExitCommand);
-        assertTrue(parser.parseCommand(SHARKIE_COMMAND_TYPE + " " + ExitCommand.COMMAND_WORD + " 3")
+        assertTrue(parser.parseCommand(GLOBAL_COMMAND_TYPE + " " + ExitCommand.COMMAND_WORD + " 3")
                 instanceof ExitCommand);
     }
 
@@ -87,9 +87,9 @@ public class SharkieParserTest {
 
     @Test
     public void parseCommand_help() throws Exception {
-        assertTrue(parser.parseCommand(SHARKIE_COMMAND_TYPE + " " + HelpCommand.COMMAND_WORD)
+        assertTrue(parser.parseCommand(GLOBAL_COMMAND_TYPE + " " + HelpCommand.COMMAND_WORD)
                 instanceof HelpCommand);
-        assertTrue(parser.parseCommand(SHARKIE_COMMAND_TYPE + " " + HelpCommand.COMMAND_WORD + " 3")
+        assertTrue(parser.parseCommand(GLOBAL_COMMAND_TYPE + " " + HelpCommand.COMMAND_WORD + " 3")
                 instanceof HelpCommand);
     }
 
