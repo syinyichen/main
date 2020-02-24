@@ -118,7 +118,7 @@ _{explain how the user can enable/disable data encryption}_
 //end::commandintro[]
 === Global Commands
 ==== Viewing help : `help`
-
+Views the user guide of Sharkie. +
 Format: `help`
 
 ==== Exiting the program : `exit`
