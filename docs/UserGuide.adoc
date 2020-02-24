@@ -17,10 +17,15 @@ endif::[]
 :repoURL: https://github.com/se-edu/addressbook-level3
 
 By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
-
+//tag::intro[]
 == Introduction
 
-AddressBook Level 3 (AB3) is for those who *prefer to use a desktop app for managing contacts*. More importantly, AB3 is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+Sharkie is an all-in-one desktop application for *personal finance tracking*. It manages your *incomes and expenses*, organises your *contacts* and keeps track of *debts* your friends owe you so that your loans always come with a money-back guarantee!
+
+Sharkie boasts a sleek, trendy Graphical User Interface (GUI) while being at its core a *Command Line Application* - this means that the faster you type, the faster you can get those pesky finances out of your head and into Sharkie's management system.
+
+Have we reeled you in? Dive into <<Quick Start>> to get on board with Sharkie. Enjoy!
+//end::intro[]
 
 //tag::about[]
 == About
@@ -81,7 +86,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 === Saving the data
 
-Address book data are saved in the hard disk automatically after any command that changes the data. +
+All data is saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
 // tag::dataencryption[]
@@ -97,6 +102,14 @@ _{explain how the user can enable/disable data encryption}_
 *Sharkie* then allow you to automatically remind your friends through email to return you the money they owe you! +
 *Sharkie* also allows you to set reminders for yourself to return your friend what you owe them!
 //end::debts[]
+
+//tag::expenditureSummary[]
+=== Expenditure Summary `[coming in v2.0]`
+*Sharkie* displays a customisable overview of your monthly spendings and income so that you know where all your money has gone to! +
+
+You can view statistics such as the proportion of your spending on different items and your monthly balance.
+
+//end::expenditureSummary[]
 
 [[Commands]]
 == Commands
@@ -127,6 +140,52 @@ Exits the program. +
 Format: `exit`
 
 === Wallet Commands
+//tag::walletexpense[]
+==== Adding an expense: `expense`
+
+Adds an expense to the wallet. +
+Format: `wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`
+
+****
+* Creates a new expense wiith the given arguments.
+* The description *cannot be empty*.
+* The amount *must be a valid number*.
+* If no date is given, it will default to today's date.
+****
+
+Examples:
+
+* `wallet expense n/Chicken Rice $/3.50 d/10/10/2010 t/food`
+Adds an expense named Chicken Rice, costing $3.50, on 10/10/2020, tagged as food. +
+Expected Outcome:
+
+    You spent $3.50 on Chicken Rice (food) on 10/10/2020 :)
+
+//end::walletexpense[]
+
+//tag::walletincome[]
+==== Adding an income: `income`
+
+Addns an income to the wallet. +
+Format: `wallet income n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`
+
+****
+* Creates a new income with the given arguments.
+* The description *cannot be empty*.
+* The amount *must be a valid number*.
+* If no date is given, it will default to today's date.
+****
+
+Examples:
+
+* `wallet income n/P6 Tuition $/3000 d/10/10/2010 t/job`
+Adds an income named P6 Tuition, for a sum of $3000, on 10/10/2020, tagged as job. +
+Expected Outcome:
+
+    You earned $3000 from P6 Tuition (job) on 10/10/2020 :D
+
+//end::walletincome[]
+
 //tag::wallettag[]
 ==== Tagging an expense: `tag`
 
@@ -405,6 +464,20 @@ Expected Outcome:
 === Global Commands
 * *Help* : `help`
 * *Exit* : `exit`
+
+=== Wallet Commands
+* *Expense* `wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]` +
+e.g. `wallet expense n/Chicken Rice $/3.50 d/10/10/2010 t/food`
+* *Income* `wallet income n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]` +
+e.g. `wallet income n/P6 Tuition $/3000 d/10/10/2010 t/job`
+* *Tag* `wallet tag <index> t/<tag>` +
+e.g. `tag 1 t/food`
+* *Edit* `wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]` +
+e.g. `wallet edit 1 n/Duck rice $/4.00`
+* *Find* `wallet find <keyword>` +
+e.g. `wallet find rice`
+* *Delete* `wallet delete <index>` +
+e.g. `wallet delete 1`
 
 === People Commands
 * *Add* `people add n/<name> p/<phone number> e/<email address>` +
