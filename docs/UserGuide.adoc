@@ -17,7 +17,7 @@ endif::[]
 :repoURL: https://github.com/se-edu/addressbook-level3
 
 By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
-
+//tag::intro[]
 == Introduction
 
 Sharkie is an all-in-one desktop application for *personal finance tracking*. It manages your *incomes and expenses*, organises your *contacts* and keeps track of *debts* your friends owe you so that your loans always come with a money-back guarantee!
@@ -25,6 +25,7 @@ Sharkie is an all-in-one desktop application for *personal finance tracking*. It
 Sharkie boasts a sleek, trendy Graphical User Interface (GUI) while being at its core a *Command Line Application* - this means that the faster you type, the faster you can get those pesky finances out of your head and into Sharkie's management system. 
 
 Have we reeled you in? Dive into <<Quick Start>> to get on board with Sharkie. Enjoy!
+//end::intro[]
 
 //tag::about[]
 == About
@@ -146,7 +147,7 @@ Adds an expense to the wallet. +
 Format: `wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`
 
 ****
-* Creates a new expense with the given arguments.
+* Creates a new expense wiith the given arguments.
 * The description *cannot be empty*.
 * The amount *must be a valid number*.
 * If no date is given, it will default to today's date.
