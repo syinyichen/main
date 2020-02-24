@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,6 +10,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.transaction.Amount;
+import seedu.address.model.transaction.Debt;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -20,11 +23,14 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final Amount DEFAULT_AMOUNT = new Amount(0);
+    public static final LocalDate DEFAULT_DATE = LocalDate.parse("2020-01-01");
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Debt userOwe;
     private Set<Tag> tags;
 
     public PersonBuilder() {
@@ -32,6 +38,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        userOwe = new Debt(DEFAULT_AMOUNT, DEFAULT_DATE);
         tags = new HashSet<>();
     }
 
@@ -43,6 +50,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
+        userOwe = personToCopy.getUserOwe();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -86,8 +94,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Debt} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withUserOwe(String debt) {
+        this.userOwe = new Debt(debt);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, phone, email, address, userOwe, tags);
     }
 
 }
