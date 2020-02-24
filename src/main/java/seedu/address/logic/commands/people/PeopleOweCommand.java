@@ -83,7 +83,8 @@ public class PeopleOweCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PeopleOweCommand // instanceof handles nulls
-                && targetIndex.equals(((PeopleOweCommand) other).targetIndex)); // state check
+                && targetIndex.equals(((PeopleOweCommand) other).targetIndex))
+                && debt.equals(((PeopleOweCommand) other).debt); // state check
     }
 
 

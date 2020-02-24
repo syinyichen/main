@@ -6,8 +6,7 @@ package seedu.address.model.transaction;
  */
 public class Amount implements Comparable<Amount> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Amount of money should only contain numbers and "
-            + "should be positive.";
+    public static final String MESSAGE_CONSTRAINTS = "Amount of money should only contain numbers.";
     public final double amount;
 
     /**
