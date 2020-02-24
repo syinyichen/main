@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliPrefix.PEOPLE_COMMAND_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Set;
@@ -61,6 +62,7 @@ public class PeopleOweCommand extends Command {
         Person personUserOwe = lastShownList.get(targetIndex.getZeroBased());
         Person addedDebtPerson = createPersonOwed(personUserOwe, debt);
         model.setPerson(personUserOwe, addedDebtPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_OWE_SUCCESS, personUserOwe.getName(), debt.getAmount()));
     }
 
