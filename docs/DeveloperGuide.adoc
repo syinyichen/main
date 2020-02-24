@@ -817,6 +817,45 @@ A contact detail that is not meant to be shared with others
 Author: Joel +
 Link to Product: https://web.moneylover.me
 
+=== Spendee
+
+[discrete]
+==== Pros / Good Features
+
+* **Wallet**
+** Can import .csv files to add data more quickly
+
+* **Transaction**
+** Attach images to transactions
+** Create custom tags for transactions
+** Add recurring transactions (monthly, weekly, etc)
+** Search for transactions by amount, date, description, category
+** Can also filter by multiple categories at once
+
+* **Budget**
+** Calculate recommended daily spending
+
+* **Statistics**
+** View statistics for custom date ranges
+
+* **NFR**
+** Cross-platform (syncs between devices)
+** Appealing, clean UI
+
+[discrete]
+==== Cons / Bad Features
+
+* **Debt**
+** Unable to tag debts to a specific contact (no underlying address book)
+
+* **NFR**
+** Requires network
+** GUI-reliant (slow input)
+** Certain features locked behind paywall, advertisements
+
+Author: Joel +
+Link to Product: https://app.spendee.com
+
 [appendix]
 == Instructions for Manual Testing
 
