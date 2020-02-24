@@ -767,6 +767,7 @@ Windows, Linux, Unix, OS-X
 [[private-contact-detail]] Private contact detail::
 A contact detail that is not meant to be shared with others
 
+//tag::productSurvey[]
 [appendix]
 == Product Survey
 
@@ -855,6 +856,7 @@ Link to Product: https://web.moneylover.me
 
 Author: Joel +
 Link to Product: https://app.spendee.com
+//end::productSurvey[]
 
 [appendix]
 == Instructions for Manual Testing
