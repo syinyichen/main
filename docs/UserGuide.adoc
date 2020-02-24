@@ -127,6 +127,52 @@ Exits the program. +
 Format: `exit`
 
 === Wallet Commands
+//tag::walletexpense[]
+==== Adding an expense: `expense`
+
+Adds an expense to the wallet. +
+Format: `wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`
+
+****
+* Creates a new expense with the given arguments.
+* The description *cannot be empty*.
+* The amount *must be a valid number*.
+* If no date is given, it will default to today's date.
+****
+
+Examples:
+
+* `wallet expense n/Chicken Rice $/3.50 d/10/10/2010 t/food`
+Adds an expense named Chicken Rice, costing $3.50, on 10/10/2020, tagged as food. +
+Expected Outcome:
+
+    You spent $3.50 on Chicken Rice (food) on 10/10/2020 :)
+
+//end::walletexpense[]
+
+//tag::walletincome[]
+==== Adding an income: `income`
+
+Addns an income to the wallet. +
+Format: `wallet income n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`
+
+****
+* Creates a new income with the given arguments.
+* The description *cannot be empty*.
+* The amount *must be a valid number*.
+* If no date is given, it will default to today's date.
+****
+
+Examples:
+
+* `wallet income n/P6 Tuition $/3000 d/10/10/2010 t/job`
+Adds an income named P6 Tuition, for a sum of $3000, on 10/10/2020, tagged as job. +
+Expected Outcome:
+
+    You earned $3000 from P6 Tuition (job) on 10/10/2020 :D
+
+//end::walletincome[]
+
 //tag::wallettag[]
 ==== Tagging an expense: `tag`
 
