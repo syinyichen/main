@@ -85,7 +85,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 === Saving the data
 
-Address book data are saved in the hard disk automatically after any command that changes the data. +
+All data is saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
 // tag::dataencryption[]
@@ -101,6 +101,14 @@ _{explain how the user can enable/disable data encryption}_
 *Sharkie* then allow you to automatically remind your friends through email to return you the money they owe you! +
 *Sharkie* also allows you to set reminders for yourself to return your friend what you owe them!
 //end::debts[]
+
+//tag::expenditureSummary[]
+=== Expenditure Summary `[coming in v2.0]`
+*Sharkie* displays a customisable overview of your monthly spendings and income so that you know where all your money has gone to! +
+
+You can view statistics such as the proportion of your spending on different items and your monthly balance.
+
+//end::expenditureSummary[]
 
 [[Commands]]
 == Commands
