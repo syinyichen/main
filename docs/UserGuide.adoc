@@ -22,7 +22,7 @@ By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
 
 Sharkie is an all-in-one desktop application for *personal finance tracking*. It manages your *incomes and expenses*, organises your *contacts* and keeps track of *debts* your friends owe you so that your loans always come with a money-back guarantee!
 
-Sharkie boasts a sleek, trendy Graphical User Interface (GUI) while being at its core a *Command Line Application* - this means that the faster you type, the faster you can get those pesky finances out of your head and into Sharkie's management system. 
+Sharkie boasts a sleek, trendy Graphical User Interface (GUI) while being at its core a *Command Line Application* - this means that the faster you type, the faster you can get those pesky finances out of your head and into Sharkie's management system.
 
 Have we reeled you in? Dive into <<Quick Start>> to get on board with Sharkie. Enjoy!
 //end::intro[]
@@ -464,6 +464,20 @@ Expected Outcome:
 === Global Commands
 * *Help* : `help`
 * *Exit* : `exit`
+
+=== Wallet Commands
+* *Expense* `wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]` +
+e.g. `wallet expense n/Chicken Rice $/3.50 d/10/10/2010 t/food`
+* *Income* `wallet income n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]` +
+e.g. `wallet income n/P6 Tuition $/3000 d/10/10/2010 t/job`
+* *Tag* `wallet tag <index> t/<tag>` +
+e.g. `tag 1 t/food`
+* *Edit* `wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]` +
+e.g. `wallet edit 1 n/Duck rice $/4.00`
+* *Find* `wallet find <keyword>` +
+e.g. `wallet find rice`
+* *Delete* `wallet delete <index>` +
+e.g. `wallet delete 1`
 
 === People Commands
 * *Add* `people add n/<name> p/<phone number> e/<email address>` +
