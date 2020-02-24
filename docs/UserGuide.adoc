@@ -20,7 +20,11 @@ By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
 
 == Introduction
 
-AddressBook Level 3 (AB3) is for those who *prefer to use a desktop app for managing contacts*. More importantly, AB3 is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+Sharkie is an all-in-one desktop application for *personal finance tracking*. It manages your *incomes and expenses*, organises your *contacts* and keeps track of *debts* your friends owe you so that your loans always come with a money-back guarantee!
+
+Sharkie boasts a sleek, trendy Graphical User Interface (GUI) while being at its core a *Command Line Application* - this means that the faster you type, the faster you can get those pesky finances out of your head and into Sharkie's management system. 
+
+Have we reeled you in? Dive into <<Quick Start>> to get on board with Sharkie. Enjoy!
 
 //tag::about[]
 == About
