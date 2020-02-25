@@ -15,7 +15,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -75,10 +74,9 @@ public class PeopleOweCommand extends Command {
         Name name = personUserOwe.getName();
         Phone phone = personUserOwe.getPhone();
         Email email = personUserOwe.getEmail();
-        Address updatedAddress = personUserOwe.getAddress();
         Debt updatedDebt = personUserOwe.getUserOwe().addDebt(debt);
         Set<Tag> tags = personUserOwe.getTags();
-        return new Person(name, phone, email, updatedAddress, updatedDebt, tags);
+        return new Person(name, phone, email, updatedDebt, tags);
     }
 
     @Override
