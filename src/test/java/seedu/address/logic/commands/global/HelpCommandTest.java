@@ -1,7 +1,7 @@
-package seedu.address.logic.commands.sharkie;
+package seedu.address.logic.commands.global;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.sharkie.HelpCommand.SHOWING_HELP_MESSAGE;
+import static seedu.address.logic.commands.global.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;
 
