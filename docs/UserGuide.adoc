@@ -131,7 +131,7 @@ You can view statistics such as the proportion of your spending on different ite
 //end::commandintro[]
 === Global Commands
 ==== Viewing help : `help`
-Views the user guide of Sharkie. +
+Views the user guide of *Sharkie*, which is the document you are currently reading. +
 Format: `help`
 
 ==== Exiting the program : `exit`
