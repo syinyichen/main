@@ -52,7 +52,7 @@ _{you can add/remove categories in the list above}_
 
 include::../UserGuide.adoc[tag=debts]
 
-include::../UserGuide.adoc[tag=quickstart]
+include::../UserGuide.adoc[tag=quickStart]
 
 include::../UserGuide.adoc[tag=wallettag]
 

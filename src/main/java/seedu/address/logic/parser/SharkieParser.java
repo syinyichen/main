@@ -2,14 +2,16 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliPrefix.GLOBAL_COMMAND_TYPE;
 import static seedu.address.logic.parser.CliPrefix.PEOPLE_COMMAND_TYPE;
-import static seedu.address.logic.parser.CliPrefix.SHARKIE_COMMAND_TYPE;
 import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.global.ExitCommand;
+import seedu.address.logic.commands.global.HelpCommand;
 import seedu.address.logic.commands.people.PeopleAddCommand;
 import seedu.address.logic.commands.people.PeopleClearCommand;
 import seedu.address.logic.commands.people.PeopleDeleteCommand;
@@ -17,8 +19,6 @@ import seedu.address.logic.commands.people.PeopleEditCommand;
 import seedu.address.logic.commands.people.PeopleFindCommand;
 import seedu.address.logic.commands.people.PeopleListCommand;
 import seedu.address.logic.commands.people.PeopleOweCommand;
-import seedu.address.logic.commands.sharkie.ExitCommand;
-import seedu.address.logic.commands.sharkie.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.people.PeopleAddCommandParser;
 import seedu.address.logic.parser.people.PeopleDeleteCommandParser;
@@ -35,7 +35,7 @@ public class SharkieParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT =
-            Pattern.compile("(?<commandType>\\S+) ?(?<commandWord>\\S+)?(?<arguments>.*)");
+            Pattern.compile("(?<commandType>\\S+ )?(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -54,13 +54,15 @@ public class SharkieParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        switch (commandType) {
+        if (commandType == GLOBAL_COMMAND_TYPE) {
+            return getGlobalCommand(commandWord, arguments);
+        }
+
+        switch (commandType.trim()) {
         case PEOPLE_COMMAND_TYPE:
             return getPeopleCommand(commandWord, arguments);
         case WALLET_COMMAND_TYPE:
             return getWalletCommand(commandWord, arguments);
-        case SHARKIE_COMMAND_TYPE:
-            return getSharkieCommand(commandWord, arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -111,7 +113,7 @@ public class SharkieParser {
         }
     }
 
-    private Command getSharkieCommand(String commandWord, String arguments) throws ParseException {
+    private Command getGlobalCommand(String commandWord, String arguments) throws ParseException {
         if (commandWord == null) {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

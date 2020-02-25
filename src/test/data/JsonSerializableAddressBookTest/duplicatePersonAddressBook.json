@@ -4,7 +4,6 @@
       "name": "Alice Pauline",
       "phone": "94351253",
       "email": "alice@example.com",
-      "address": "123, Jurong West Ave 6, #08-111",
       "userOwe": "$0.00,2020-01-01",
       "tagged": [
         "friends"
@@ -15,7 +14,6 @@
       "phone": "94351253",
       "email": "pauline@example.com",
       "userOwe": "0.00,2020-01-01",
-      "address": "4th street"
     }
   ]
 }
