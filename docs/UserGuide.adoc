@@ -279,6 +279,23 @@ Expected Outcome:
 
 //end::walletdelete[]
 
+//tag::walletbudget[]
+==== Setting a budget: `budget`
+Sets a budget for you. +
+Format: `wallet budget $/amount`
+
+****
+* Overwrites the current budget value stored.
+* The value of the budget must be a positive integer.
+****
+
+Examples:
+
+* `wallet budget $/1000` sets a budget of $1000. +
+Expected outcome:
+
+    Budget has been set at $1000!
+
 === People Commands
 //tag::peopleadd[]
 ==== Adding a person: `add`
