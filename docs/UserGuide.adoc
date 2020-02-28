@@ -5,6 +5,7 @@
 :toc-title:
 :toc-placement: preamble
 :sectnums:
+:icons: font
 :imagesDir: images
 :stylesDir: stylesheets
 :xrefstyle: full
@@ -13,14 +14,21 @@ ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level3
+:repoURL: https://github.com/AY1920S2-CS2103T-W12-3/main
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `AY1920S2-CS2103T-W12-3`      Since: `Feb 2020`      Licence: `MIT`
 
+//tag::intro[]
 == Introduction
 
-AddressBook Level 3 (AB3) is for those who *prefer to use a desktop app for managing contacts*. More importantly, AB3 is *optimized for those who prefer to work with a Command Line Interface* (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps. Interested? Jump to the <<Quick Start>> to get started. Enjoy!
+*Sharkie* is an all-in-one desktop application for *personal finance tracking*. It manages your *incomes and expenses*, organises your *contacts* and keeps track of *debts* your friends owe you, so that your loans always come with a money-back guarantee!
 
+*Sharkie* boasts a sleek, trendy Graphical User Interface (GUI) while being at its core a *Command Line Application* - this means that the faster you type, the faster you can get those pesky finances out of your head and into Sharkie's management system.
+
+Have we reeled you in? Dive into <<Quick Start>> to get on board with Sharkie. Enjoy!
+//end::intro[]
+
+//tag::about[]
 == About
 This user guide will help to ensure that you have all the information you need to utilise *Sharkie* to its fullest extent. *Sharkie* is a feature-filled expense tracker and all the information you need regarding his usage is available below. +
 
@@ -31,15 +39,23 @@ If you need help regarding what commands *Sharkie* has, our Features section bel
 
 Note the following symbols and formatting used in this document: +
 
-[`add`]	A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application. +
-[IMPORTANT] This symbol indicates important information.
+|===
+<|`command`
+|A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.
+|===
 
+====
+[TIP]
+This symbol indicates tips.
+====
+//end::about[]
 
+//tag::quickStart[]
 == Quick Start
 
 .  Ensure you have Java `11` or above installed in your Computer.
-.  Download the latest `addressbook.jar` link:{repoURL}/releases[here].
-.  Copy the file to the folder you want to use as the home folder for your Address Book.
+.  Download the latest `Sharkie.jar` link:https://github.com/AY1920S2-CS2103T-W12-3/main/releases[here] *[Jar file to be updated]*.
+.  Copy the file to the folder you want to use as the home folder for *Sharkie*.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
 image::Ui.png[width="790"]
@@ -48,24 +64,29 @@ image::Ui.png[width="790"]
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
 
-* *`list`* : lists all contacts
-* **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : adds a contact named `John Doe` to the Address Book.
-* **`delete`**`3` : deletes the 3rd contact shown in the current list
-* *`exit`* : exits the app
+* **`people add`**`n/John Doe p/98765432 e/johnd@example.com` : adds a contact named `John Doe` to the Address Book.
+* **`people delete`**`3` : deletes the 3rd contact shown in the current list.
+* **`wallet find`**`rice` : returns a list of expenses or income with keyword rice.
+* *`sharkie exit`* : exits the app.
 
-.  Refer to <<Features>> for details of each command.
+.  Refer to <<Commands>> for details of each command.
+//end::quickStart[]
 
 [[Features]]
 == Features
-=== Expenditure and income
+//tag::expenditureAndIncome[]
+=== Expenditure and income `[coming in v2.0]`
 *Sharkie* notes down what you have spent on for the month, and also notes down your income for the month to help you properly track your money flow!
+//end::expenditureAndIncome[]
 
+//tag::contacts[]
 === Contacts
 *Sharkie* notes down and remembers contacts that you have entered in an address book, for easy reference later on!
+//end::contacts[]
 
 === Saving the data
 
-Address book data are saved in the hard disk automatically after any command that changes the data. +
+All data is saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
 // tag::dataencryption[]
@@ -74,7 +95,24 @@ There is no need to save manually.
 _{explain how the user can enable/disable data encryption}_
 // end::dataencryption[]
 
+//tag::debts[]
+=== Debts `[coming in v2.0]`
+
+*Sharkie* allows you to take note of the debts you owe your friends and the debts your friend owes you. +
+*Sharkie* then allow you to automatically remind your friends through email to return you the money they owe you! +
+*Sharkie* also allows you to set reminders for yourself to return your friend what you owe them!
+//end::debts[]
+
+//tag::expenditureSummary[]
+=== Expenditure Summary `[coming in v2.0]`
+*Sharkie* displays a customisable overview of your monthly spendings and income so that you know where all your money has gone to! +
+You can view statistics such as the proportion of your spending on different items and your monthly balance.
+
+//end::expenditureSummary[]
+
+[[Commands]]
 == Commands
+//tag::commandintro[]
 *Sharkie* uses a simple syntax to function that will be explained here. *Sharkie* is filled with many different commands that can get complicated, so we have segregated it into two parts:
 `people` commands and `wallet` commands.
 
@@ -89,10 +127,10 @@ _{explain how the user can enable/disable data encryption}_
 `wallet expense n/<item> d/<date:dd/mm/yyyy> $/<price>`
 * Parameters can be in any order e.g. if the command specifies `n/<name> p/<phone number>`, `p/<phone number> n/<name>` is also acceptable.
 ====
-
+//end::commandintro[]
 === Global Commands
 ==== Viewing help : `help`
-
+Views the user guide of *Sharkie*, which is the document you are currently reading. +
 Format: `help`
 
 ==== Exiting the program : `exit`
@@ -101,8 +139,164 @@ Exits the program. +
 Format: `exit`
 
 === Wallet Commands
+//tag::walletexpense[]
+==== Adding an expense: `expense`
+
+Adds an expense to the wallet. +
+Format: `wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`
+
+****
+* Creates a new expense wiith the given arguments.
+* The description *cannot be empty*.
+* The amount *must be a valid number*.
+* If no date is given, it will default to today's date.
+****
+
+Examples:
+
+* `wallet expense n/Chicken Rice $/3.50 d/10/10/2010 t/food`
+Adds an expense named Chicken Rice, costing $3.50, on 10/10/2020, tagged as food. +
+Expected Outcome:
+
+    You spent $3.50 on Chicken Rice (food) on 10/10/2020 :)
+
+//end::walletexpense[]
+
+//tag::walletincome[]
+==== Adding an income: `income`
+
+Adds an income to the wallet. +
+Format: `wallet income n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`
+
+****
+* Creates a new income with the given arguments.
+* The description *cannot be empty*.
+* The amount *must be a valid number*.
+* If no date is given, it will default to today's date.
+****
+
+Examples:
+
+* `wallet income n/P6 Tuition $/3000 d/10/10/2010 t/job`
+Adds an income named P6 Tuition, for a sum of $3000, on 10/10/2020, tagged as job. +
+Expected Outcome:
+
+    You earned $3000 from P6 Tuition (job) on 10/10/2020 :D
+
+//end::walletincome[]
+
+//tag::wallettag[]
+==== Tagging an expense: `tag`
+
+Tag an expense with respective tag. +
+Format: `wallet tag <index> t/<tag>`
+
+****
+* Tags an existing expense specified by <index> of expense.
+* The index *must be a positive integer* 1, 2, 3, ...
+* The index must *exist* in the list of expenses.
+* Both the <tag> and the <index> must be stated.
+****
+
+Examples:
+
+* `tag 1 t/food`
+Returns the respective expense with its tag. +
+Expected Outcome:
+
+    Added (food) to expense 1:
+    1. Chicken Rice (food)
+    …
+
+//end::wallettag[]
+
+//tag::walletedit[]
+==== Editing an income or expense: `edit`
+
+Edits the details of an income or expense in your wallet. +
+Format: `wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]`
+
+****
+* Edits the details of the expense or income, specified by <index>.
+* <index> must be stated, and it must *exist* in the list of expenses or income.
+* The index *must be a positive integer* 1, 2, 3, ...
+* At least one of [n/<name>], [d/<date>], [$/<amount>], [t/<tag>] should be stated. Multiples are allowed as well.
+****
+
+Examples:
+
+* `wallet edit 1 n/Duck rice $/4.00`
+Returns the respective expense with the changes made. +
+Expected Outcome:
+
+    Edited Item: Duck Rice Date: 10/10/2010 Amount: $4.00
+
+//end::walletedit[]
+
+//tag::walletfind[]
+==== Finding an income or expense: `find`
+
+Finds an income or expense in your wallet by the keyword inputted. +
+Format: `wallet find <keyword>`
+
+****
+* Finds the expenses and income with the stated <keyword>.
+* The keyword need to be in full. For example `wallet find ri` will not display expenses or income with the keyword `rice` as well. Only expenses or income with keyword `ri` will be displayed.
+****
+
+Examples:
+
+* `wallet find rice`
+Returns a list of expenses and income containing the keyword <rice> +
+Expected Outcome:
+
+1. Duck Rice Date: 10/10/2010 Amount: $4.00
+2. Chicken Rice Date: 10/11/2010 Amount: $2.50
+...​
+
+//end::walletfind[]
+
+//tag::walletdelete[]
+==== Deleting an income or expense: `delete`
+
+Deletes an income or an expense from your wallet. +
+Format: `wallet delete <index>`
+
+****
+* Deletes the income or expense specified by <index>.
+* The index *must be a positive integer* 1, 2, 3, ...
+* The index must *exist*.
+****
+
+Examples:
+
+* `wallet delete 1`
+Removes the expenses relative to the index. +
+Expected Outcome:
+
+    Removed Chicken Rice from your wallet
+
+//end::walletdelete[]
+
+//tag::walletbudget[]
+==== Setting a budget: `budget`
+Sets a budget for you. +
+Format: `wallet budget $/amount`
+
+****
+* Overwrites the current budget value stored.
+* The value of the budget must be a positive integer.
+****
+
+Examples:
+
+* `wallet budget $/1000` Sets a budget of $1000. +
+Expected outcome:
+
+    Budget has been set at $1000!
 
 === People Commands
+//tag::peopleadd[]
 ==== Adding a person: `add`
 
 Adds a person to the address book +
@@ -116,7 +310,10 @@ Expected Outcome:
 
     New person added: Joel Phone: 91234567 Email: joel@u.nus.edu
 
-==== Sending reminder to a friend: `remind` [coming in v2.0]
+//end::peopleadd[]
+
+//tag::peopleremind[]
+==== Sending reminder to a friend: `remind` `[coming in v2.0]`
 
 Sends a reminder through email to a friend to return their debts to you. +
 Format: `people remind <index>`
@@ -135,10 +332,12 @@ Expected Outcome:
 
     Reminded Daniel to return $10.00!
 
-==== Sending reminder to all friend: `remindall` [coming in v2.0]
+//end::peopleremind[]
 
-Sends reminders through email to all the friends that have not yet paid up.
- +
+//tag::peopleremindall[]
+==== Sending reminder to all friend: `remindall` `[coming in v2.0]`
+
+Sends reminders through email to all the friends that have not yet paid up. +
 Format: `people remindall`
 
 Examples:
@@ -150,7 +349,10 @@ Expected Outcome:
     Reminded Daniel to return $10.00!
     Reminded Joel to return $30.75!
 
-==== Recording the money you owe: `owe` [coming in v2.0]
+//end::peopleremindall[]
+
+// tag::owe[]
+==== Recording the money you owe: `owe` `[coming in v2.0]`
 
 Records the amount of money that you owe a person. +
 Format: `people owe <index> $/<amount> [d/<date:dd/mm/yyyy>]`
@@ -170,8 +372,10 @@ Expected Outcome:
 
     Increased debt to Grace by $5.00!
 
+// end::owe[]
 
-==== Recording the money you lend: `lend` [coming in v2.0]
+// tag::lend[]
+==== Recording the money you lend: `lend` `[coming in v2.0]`
 
 Records the amount of money that you lend to a person. This will increase that person's debt. +
 Format: `people lend <index> $/<amount> [d/<date:dd/mm/yyyy>]`
@@ -191,9 +395,12 @@ Expected Outcome:
 
     Increased Syin Yi's debt by $5.00!
 
+// end::lend[]
+
+//tag::peoplefind[]
 ==== Finding a person: `find`
 
-Find a person in your contact list by his or her name. +
+Finds a person in your contact list by his or her name. +
 Format: `people find <keyword>`
 
 Examples:
@@ -207,6 +414,9 @@ Expected Outcome:
     2. Grace Pan
     …
 
+//end::peoplefind[]
+
+// tag::edit[]
 ==== Editing a person : `edit`
 
 Edits an existing person in the address book. +
@@ -225,6 +435,8 @@ Edits the email address of the 1st person to be `johndoe@example.com`. +
 Expected Outcome:
 
     Person: John Doe Phone: 91234568 Email: johndoe@example.com
+
+// end::edit[]
 
 // tag::delete[]
 ==== Deleting a person : `delete`
@@ -253,23 +465,44 @@ Expected Outcome:
 
     Removed Betsy from your list of contacts! :(
 
+// end::delete[]
 
+//tag::faq[]
 == FAQ
 
 *Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Address Book folder.
+*A*: Install the app in the other computer and overwrite the empty data file *Sharkie* creates with the file that contains the data of your previous Address Book folder.
+//end::faq[]
 
+//tag::commandSummary[]
 == Command Summary
 
 === Global Commands
 * *Help* : `help`
+* *Exit* : `exit`
+
+=== Wallet Commands
+* *Expense* : `wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]` +
+e.g. `wallet expense n/Chicken Rice $/3.50 d/10/10/2010 t/food`
+* *Income* : `wallet income n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]` +
+e.g. `wallet income n/P6 Tuition $/3000 d/10/10/2010 t/job`
+* *Tag* : `wallet tag <index> t/<tag>` +
+e.g. `tag 1 t/food`
+* *Edit* : `wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]` +
+e.g. `wallet edit 1 n/Duck rice $/4.00`
+* *Find* : `wallet find <keyword>` +
+e.g. `wallet find rice`
+* *Delete* : `wallet delete <index>` +
+e.g. `wallet delete 1`
+* *Budget* : `wallet budget $/<amount>` +
+e.g. `wallet budget $/1000`
 
 === People Commands
-* *Add* `people add n/<name> p/<phone number> e/<email address>` +
+* *Add* : `people add n/<name> p/<phone number> e/<email address>` +
 e.g. `people add n/Joel p/91234567 e/joel@u.nus.edu`
-* *Remind* `people remind <index>` +
+* *Remind* : `people remind <index>` +
 e.g. `people remind 1`
-* *Remind all* `people remindall`
+* *Remind all* : `people remindall`
 * *Owe* : `people owe <index> $/<amount> [d/<date:dd/mm/yyyy>]` +
 e.g. `people owe 4 $/5.00 d/10/10/2020`
 * *Lend* : `people lend <index> $/<amount> [d/<date:dd/mm/yyyy>]` +
@@ -280,3 +513,4 @@ e.g. `people find Grace`
 e.g. `people delete 3`
 * *Edit* : `people edit <index> [n/<name>] [p/<phone number>] [e/<email address>]` +
 e.g. `people edit 1 e/johndoe@example.com` +
+//end::commandSummary[]

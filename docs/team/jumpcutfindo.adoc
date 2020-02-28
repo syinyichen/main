@@ -1,0 +1,50 @@
+= Daniel Hoe - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== PROJECT: Sharkie
+
+---
+
+== Overview
+
+Sharkie is a desktop expense tracker application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+
+== Summary of contributions
+
+* *Major enhancement*: Adapted Sharkie from AB-3 such that *it can take in more prefixes as commands*
+** What it does: allows the user to use `people` and `wallet` as prefixes
+** Justification: This feature was implemented as the wallet and the contacts have similar commands but had to be differentiated.
+** Highlights: This enhancement affects existing commands and commands to be added in future.
+
+* *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
+
+* *Other contributions*:
+
+** Project management:
+*** Team lead of the project, ensured team is up to date and on the same page for the project.
+** Enhancements to existing features:
+** Documentation:
+
+** Community:
+*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W12-3/main/pull/41[#41]
+** Tools:
+*** Used Figma to design a mockup for the application
+
+_{you can add/remove categories in the list above}_
+
+== Contributions to the User Guide
+
+
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+== Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+---

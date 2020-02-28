@@ -1,4 +1,4 @@
-= AddressBook Level 3 - Developer Guide
+= Sharkie - Developer Guide
 :site-section: DeveloperGuide
 :toc:
 :toc-title:
@@ -12,9 +12,9 @@ ifdef::env-github[]
 :note-caption: :information_source:
 :warning-caption: :warning:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level3/tree/master
+:repoURL: https://github.com/AY1920S2-CS2103T-W12-3/main/tree/master
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `AY1920S2-CS2103T-W12-3`      Since: `Feb 2020`      Licence: `MIT`
 
 == Setting up
 
@@ -275,55 +275,319 @@ Refer to the guide <<Testing#, here>>.
 Refer to the guide <<DevOps#, here>>.
 
 [appendix]
+//tag::productScope[]
 == Product Scope
 
 *Target user profile*:
 
-* has a need to manage a significant number of contacts
+* has a need to record expenses and income
+* has a need to keep to a certain budget every month
+* has a need to record debts
+* want to be reminded of his/her own debts
+* wants to remind his/her friends to pay back their debts
+* has a lot of friends to keep track in address/debt book
 * prefer desktop apps over other types
 * can type fast
 * prefers typing over mouse input
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using <<CLI, CLI>> apps
 
-*Value proposition*: manage contacts faster than a typical mouse/GUI driven app
+*Value proposition*: records expenses/debts faster than a typical mouse/GUI driven app
+//end::productScope[]
 
 [appendix]
+//tag::userStories[]
 == User Stories
 
 Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
 
 [width="59%",cols="22%,<23%,<25%,<30%",options="header",]
 |=======================================================================
-|Priority |As a ... |I want to ... |So that I can...
-|`* * *` |new user |see usage instructions |refer to instructions when I forget how to use the App
+|Priority |As a/an ... |I want to ... |So that ...
+|`* * *` |university student that buys a lot of stuff |keep track of my spending |I do not overspend
 
-|`* * *` |user |add a new person |
+|`* * *` |student with fixed monthly allowance |track my spendings in a month |I will make sure I save money every month
 
-|`* * *` |user |delete a person |remove entries that I no longer need
+|`* * *` |person with bad mental calculation |auto deduct money I owe from money the person owes me |I don't need to do the math myself
 
 |`* * *` |user |find a person by name |locate details of persons without having to go through the entire list
 
+|`* * *` |computer science student |type instead of click |it is more convenient
+
+|`* * *` |student that always goes out with friends |split shared spendings |I make sure everyone pays back
+
+|`* * *` |poor university person who borrows money from many people |know who I owe money to |I can pay them back when I have money
+
+|`* * *` |person with a lot of friend's |keep track of who owes me what on which day |I can ask them to pay me back
+
+|`* * *` |calculative person |keep track of how much exactly my friends owe me |I can get all my money back
+
+|`* * *` |student who needs to pay bills |get reminded of when to pay them |I don't get my utilities cut/chased out of house etc.
+
+|`* * *` |student with tight budget |set a budget and be notified when nearing it |I won't overspend
+
+|`* * *` |thrifty student |set savings goals |I can have achievable, trackable savings
+
+|`* * *` |unmotivated person |get motivation to spend less/save more |I have the willpower to manage my finances
+
 |`* *` |user |hide <<private-contact-detail,private contact details>> by default |minimize chance of someone else seeing them by accident
 
-|`*` |user with many persons in the address book |sort persons by name |locate a person easily
+|`* *` |a student who lives far from school |keep track of how much i spend on transport |I know whether to get concession
+
+|`* *` |friend |have my friend track how much I owe them |do not have to keep track of it myself
+
+|`* *` |student who travel with friends |keep track of how much each person spent in the trip |there won't be any money issue during the trip
+
+|`* *` |student that always forget to pay my friend back |set a deadline and reminder |I will pay my friend back
+
+|`* *` |forgetful student |send people automated reminders when they owe me money |I won't lose any money
+
+|`* *` |a lazy person |I can ask for my money back from a few friends in a click |I can save time asking them one by one
+
+|`* *` |student who does not dare to request money from friends |send notifications to my friends |I can get my money back
+
+|`* *` |student with no control |know if I hit my budget |I will be guilty and thus try and control myself
+
+|`* *` |student who does part time job |track how much I earn in a month |I'm proud of myself
+
+|`* *` |student who prefers visual data |visualise my income/spendings in a graph/chart |it is easier to keep track of my expenditures
+
+|`* *` |student that needs to explain their spendings to their parents |show them the chart of my everyday spendings |It is convenient and more visual
+
+|`* *` |organised student |categorise my spendings |I know the proportions of my spendings
+
+|`* *` |student with a huge wardrobe |keep track of my expenditure on clothing |I can control my shopaholic tendencies
+
+|`* *` |student on diet |track how much I spend on food |I would control myself from spending too much on food
+
+|`*` |rich student |keep track of what I bought |I can show off to my friends
+
+|`*` |rich student who always lends people money |take note of who owes me money |I can track them and ask them for it back
+
+|`*` |someone with few friends |keep track of who I paid for or who paid for me first |I know who are my friends, and the frequency I go out with them
+
+|`*` |tech-savvy loan shark |I want to conveniently record who owes me money |I can remind them to pay back through email
+
+|`*` |tech-savvy loan shark |I want a convenient way to calculate interest rate |I don't have to do it manually
+
 |=======================================================================
 
 _{More to be added}_
+//end::userStories[]
 
+//tag::useCases[]
 [appendix]
 == Use Cases
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `user`, unless specified otherwise)
+=== Wallet Tab
+
+(For all use cases below, the *System* is the `Wallet` and the *Actor* is the `User`, unless specified otherwise)
 
 [discrete]
-=== Use case: Delete person
+==== Use case: Recording an expense
+
+<<MSS, *MSS*>>
+
+1.  User keys in an expense.
+2.  <<wallet, Wallet>> adds the expense.
++
+Use case ends.
+
+<<extensions, *Extensions*>>
+
+[none]
+* 1a. The expense keyed in is invalid.
++
+[none]
+** 1a1. Wallet shows an error message.
+** 1a2. User re-enters the expense.
++
+Steps 1a1-1a2 are repeated until the expense keyed in is correct.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Recording an income
 
 *MSS*
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User keys in an income.
+2. Wallet adds the income.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The income keyed in is invalid.
++
+[none]
+** 1a1. Wallet shows an error message.
+** 1a2. User re-enters the income.
++
+Steps 1a1-1a2 are repeated until the income keyed in is correct.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Setting budget
+
+*MSS*
+
+1. User keys in a budget.
+2. Wallet sets the amount keyed in as the budget of the month.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The amount keyed in is invalid.
++
+[none]
+** 1a1. Wallet shows an error message.
+** 1a2. User re-enters the budget.
++
+Steps 1a1-1a2 are repeated until the amount keyed in is correct.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Deleting an income/expense
+
+*MSS*
+
+1. User requests to delete a specific income/expense in the wallet.
+2. Wallet deletes the income/expense.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The index keyed in is invalid.
++
+[none]
+** 1a1. Wallet shows an error message.
+** 1a2. User re-enters the index.
++
+Steps 1a1-1a2 are repeated until the index keyed in is valid.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Editing an income/expense
+
+*MSS*
+
+1. User requests to edit a specific income/expense in the wallet.
+2. Wallet edits the income/expense.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The index keyed in is invalid.
++
+[none]
+** 1a1. Wallet shows an error message.
+** 1a2. User re-enters the index.
++
+Steps 1a1-1a2 are repeated until the index keyed in is valid.
++
+Use case resumes at step 2.
+
+[none]
+* 1a. The new income/expense keyed in is invalid.
++
+[none]
+** 1a1. Wallet shows an error message.
+** 1a2. User re-enters the new income/expense.
++
+Steps 1a1-1a2 are repeated until the new income/expense keyed in is valid.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Finding an income/expense
+
+*MSS*
+
+1. User keys in a keyword.
+2. Wallet lists out the incomes or expenses containing the keyword.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The keyword entered does not exist in the wallet.
++
+Use case ends.
+
+=== People Tab
+
+(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `User`, unless specified otherwise)
+
+[discrete]
+==== Use case: Adding a person
+
+*MSS*
+
+1. User requests to add a person into the <<address-book, address book>>.
+2. Address book adds the person into the list.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The person’s details keyed in is invalid.
++
+[none]
+** 1a1. Address book shows an error message.
+** 1a2. User re-enters the person’s details.
++
+Steps 1a1-1a2 are repeated until the details keyed in is correct.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Sending reminder to a friend
+
+*MSS*
+
+1. User requests to send a reminder to a friend.
+2. Address book sends a reminder to the friend.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The index keyed in is invalid.
++
+[none]
+** 1a1. Address book shows an error message.
+** 1a2. User re-enters the index.
++
+Steps 1a1-1a2 are repeated until the index keyed in is valid.
++
+Use case resumes at step 2.
+
+[none]
+* 1a. The friend does not owe the user money.
++
+Use case ends.
+
+[discrete]
+==== Use case: Sending reminders to all friends
+
+*MSS*
+
+1. User requests to send reminders to all friends.
+2. Address book lists out all the friends who owe the user money.
+3. Address book sends reminders to all the friends on the list obtained in step 2.
 +
 Use case ends.
 
@@ -334,49 +598,283 @@ Use case ends.
 +
 Use case ends.
 
-* 3a. The given index is invalid.
+[discrete]
+==== Use case: Recording the money the user owes
+
+*MSS*
+
+1. User enters the amount borrowed from a friend.
+2. Address book records the amount, which the user owes the friend.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The index keyed in is invalid.
 +
 [none]
-** 3a1. AddressBook shows an error message.
+** 1a1. Address book shows an error message.
+** 1a2. User re-enters the index.
++
+Steps 1a1-1a2 are repeated until the index keyed in is valid.
 +
 Use case resumes at step 2.
 
-_{More to be added}_
+[none]
+* 1a. The amount keyed in is invalid.
++
+[none]
+** 1a1. Address book shows an error message.
+** 1a2. User re-enters the amount.
++
+Steps 1a1-1a2 are repeated until the amount keyed in is correct.
++
+Use case resumes at step 2.
 
+[discrete]
+==== Use case: Recording the money the user lends
+
+*MSS*
+
+1. User enters the amount lent to a friend.
+2. Address book records the amount, which the user lends to the friend.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The index keyed in is invalid.
++
+[none]
+** 1a1. Address book shows an error message.
+** 1a2. User re-enters the index.
++
+Steps 1a1-1a2 are repeated until the index keyed in is valid.
++
+Use case resumes at step 2.
+
+[none]
+* 1a. The amount keyed in is invalid.
++
+[none]
+** 1a1. Address book shows an error message.
+** 1a2. User re-enters the amount.
++
+Steps 1a1-1a2 are repeated until the amount keyed in is correct.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Deleting a person
+
+*MSS*
+
+1. User requests to delete a specific person in the address book.
+2. Address book deletes the person.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The index keyed in is invalid.
++
+[none]
+** 1a1. Address book shows an error message.
+** 1a2. User re-enters the index.
++
+Steps 1a1-1a2 are repeated until the index keyed in is valid.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Editing a person
+
+*MSS*
+
+1. User requests to edit a specific person in the address book.
+2. Address book edits the person.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. The index keyed in is invalid.
++
+[none]
+** 1a1. Address book shows an error message.
+** 1a2. User re-enters the index.
++
+Steps 1a1-1a2 are repeated until the index keyed in is valid.
++
+Use case resumes at step 2.
+
+[none]
+* 1a. The new person’s details keyed in is invalid.
++
+[none]
+** 1a1. Address book shows an error message.
+** 1a2. User re-enters the details.
++
+Steps 1a1-1a2 are repeated until the details keyed in is valid.
++
+Use case resumes at step 2.
+
+[discrete]
+==== Use case: Finding a person
+
+*MSS*
+
+1. User keys in a keyword.
+2. Address book lists out the people, who contain the keyword in their names.
++
+Use case ends.
+
+*Extensions*
+
+[none]
+* 1a. None of the names in the address book contains the keyword.
++
+Use case ends.
+
+_{More to be added}_
+//end::useCases[]
+
+//tag::apendixd[]
 [appendix]
 == Non Functional Requirements
 
-.  Should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
-.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  Sharkie should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
+.  Sharkie should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+.  University students with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+.  Sharkie should be for a single user.
+.  Sharkie needs to be developed incrementally with high <<cohesion, cohesion>> and utilising CS2103T coding standards for maintainability.
+.  The data used by Sharkie should be stored locally and should be in a human editable file.
+.  The Sharkie JAR file size should be less than 100Mb.
+.  Users should be able to choose to encrypt their data for confidentiality.
 
-_{More to be added}_
 
 [appendix]
+//end::apendixd[]
 == Glossary
+
+[[address-book]] Address book::
+Sharkie's address book that holds information pertaining to friends / peers / acquaintances of the user that the user has entered
+
+[[CLI]] CLI::
+Command line interface
+
+[[cohesion]] Cohesion::
+A measure of how strongly-related and focused the responsibilities of a component are
+
+[[extensions]] Extensions::
+"Add-on"s to MSS that describe exceptional/alternative flow of events.
 
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, OS-X
 
+[[MSS]] MSS::
+Main Success Scenario, the most straightforward interaction for a given use case
+
 [[private-contact-detail]] Private contact detail::
 A contact detail that is not meant to be shared with others
 
+[[wallet]] Wallet::
+Sharkie's wallet, that holds information pertaining to the user's expenditure and income
+
+//tag::productSurvey[]
 [appendix]
 == Product Survey
 
-*Product Name*
+=== Money Lover
 
-Author: ...
+[discrete]
+==== Pros / Good Features
 
-Pros:
+* **Wallet**
+** Multiple wallets to further organise spending/income
 
-* ...
-* ...
+* **Transaction**
+** Attach images to transactions
+** Add location data to transactions
+** Add recurring transactions (monthly, weekly, etc)
+** Option to exclude certain expenses/incomes from statistics
+** Search for transactions by amount, date, description, category, location
 
-Cons:
+* **Debt**
+** Set reminders to self on when to pay back debts
 
-* ...
-* ...
+* **Budget**
+** Set custom date range for budget
+** Set budget for specific categories (e.g. food, clothes)
+** Calculate recommended daily spending
+
+* **Statistics**
+** View statistics for custom date ranges
+
+* **NFR**
+** Cross-platform (syncs between devices)
+** Appealing, clean UI
+
+[discrete]
+==== Cons / Bad Features
+
+* **Transaction**
+** Unable to create custom tags/categories for transactions
+
+* **Debt**
+** Unable to tag debts to a specific contact (no underlying address book)
+
+* **NFR**
+** Requires network
+** GUI-reliant (slow input)
+** Certain features locked behind paywall, advertisements
+
+Author: Joel +
+Link to Product: https://web.moneylover.me
+
+=== Spendee
+
+[discrete]
+==== Pros / Good Features
+
+* **Wallet**
+** Can import .csv files to add data more quickly
+
+* **Transaction**
+** Attach images to transactions
+** Create custom tags for transactions
+** Add recurring transactions (monthly, weekly, etc)
+** Search for transactions by amount, date, description, category
+** Can also filter by multiple categories at once
+
+* **Budget**
+** Calculate recommended daily spending
+
+* **Statistics**
+** View statistics for custom date ranges
+
+* **NFR**
+** Cross-platform (syncs between devices)
+** Appealing, clean UI
+
+[discrete]
+==== Cons / Bad Features
+
+* **Debt**
+** Unable to tag debts to a specific contact (no underlying address book)
+
+* **NFR**
+** Requires network
+** GUI-reliant (slow input)
+** Certain features locked behind paywall, advertisements
+
+Author: Joel +
+Link to Product: https://app.spendee.com
+//end::productSurvey[]
 
 [appendix]
 == Instructions for Manual Testing

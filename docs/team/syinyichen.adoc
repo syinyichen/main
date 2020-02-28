@@ -1,0 +1,56 @@
+= Chen Syin Yi - Project Portfolio
+:site-section: AboutUs
+:imagesDir: ../images
+:stylesDir: ../stylesheets
+
+== PROJECT: Sharkie
+
+---
+
+== Overview
+
+*Sharkie* is a desktop expense tracker application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+
+== Summary of contributions
+
+* *Other contributions*:
+
+** Project management:
+*** Finalized and tagged `v1.1`.
+** Documentation:
+*** Updated the product's website heading: (Pull request https://github.com[#44])
+*** Edited various parts of the User Guide: (Pull request https://github.com[#49])
+*** Updated the Use Cases Appendix in the Developer Guide: (Pull request https://github.com[#51])
+
+== Contributions to the User Guide
+
+
+|===
+|_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
+|===
+
+include::../UserGuide.adoc[tag=about]
+
+include::../UserGuide.adoc[tag=expenditureAndIncome]
+
+include::../UserGuide.adoc[tag=peopleadd]
+
+include::../UserGuide.adoc[tag=peopleremind]
+
+include::../UserGuide.adoc[tag=peopleremindall]
+
+include::../UserGuide.adoc[tag=peoplefind]
+
+== Contributions to the Developer Guide
+
+|===
+|_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
+|===
+
+include::../DeveloperGuide.adoc[tag=useCases]
+
+== PROJECT: PowerPointLabs
+
+---
+
+_{Optionally, you may include other projects in your portfolio.}_
