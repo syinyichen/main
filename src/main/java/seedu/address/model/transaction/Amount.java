@@ -31,7 +31,7 @@ public class Amount implements Comparable<Amount> {
     }
 
     /**
-     * Adds {@code ammountToAdd} to the current amount.
+     * Adds {@code amountToAdd} to the current amount.
      *
      * @return the total amount after adding.
      */

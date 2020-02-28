@@ -21,25 +21,44 @@ import seedu.address.model.person.Person;
  */
 public class TypicalPersons {
 
-    public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
+    public static final Person ALICE = new PersonBuilder()
+            .withName("Alice Pauline")
             .withEmail("alice@example.com")
-            .withPhone("94351253").withUserOwe("$0.00,2020-01-01")
-            .withTags("friends").build();
-    public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
+            .withPhone("94351253")
             .withUserOwe("$0.00,2020-01-01")
-            .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
-    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withUserOwe("$0.00,2020-01-01").build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withUserOwe("$0.00,2020-01-01")
             .withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withUserOwe("$0.00,2020-01-01").withEmail("werner@example.com").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withUserOwe("$0.00,2020-01-01").withEmail("lydia@example.com").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withUserOwe("$0.00,2020-01-01").withEmail("anna@example.com").build();
+    public static final Person BENSON = new PersonBuilder()
+            .withName("Benson Meier")
+            .withUserOwe("$0.00,2020-01-01")
+            .withEmail("johnd@example.com")
+            .withPhone("98765432")
+            .withTags("owesMoney", "friends").build();
+    public static final Person CARL = new PersonBuilder()
+            .withName("Carl Kurz")
+            .withPhone("95352563")
+            .withEmail("heinz@example.com")
+            .withUserOwe("$0.00,2020-01-01").build();
+    public static final Person DANIEL = new PersonBuilder()
+            .withName("Daniel Meier")
+            .withPhone("87652533")
+            .withEmail("cornelia@example.com")
+            .withUserOwe("$0.00,2020-01-01")
+            .withTags("friends").build();
+    public static final Person ELLE = new PersonBuilder()
+            .withName("Elle Meyer")
+            .withPhone("9482224")
+            .withUserOwe("$0.00,2020-01-01")
+            .withEmail("werner@example.com").build();
+    public static final Person FIONA = new PersonBuilder()
+            .withName("Fiona Kunz")
+            .withPhone("9482427")
+            .withUserOwe("$0.00,2020-01-01")
+            .withEmail("lydia@example.com").build();
+    public static final Person GEORGE = new PersonBuilder()
+            .withName("George Best")
+            .withPhone("9482442")
+            .withUserOwe("$0.00,2020-01-01")
+            .withEmail("anna@example.com").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")

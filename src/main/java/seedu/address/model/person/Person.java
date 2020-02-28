@@ -23,7 +23,6 @@ public class Person {
 
     // Data fields
     private final Debt userOwe;
-
     private final Set<Tag> tags = new HashSet<>();
 
     /**

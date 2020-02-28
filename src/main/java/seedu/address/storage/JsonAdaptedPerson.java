@@ -28,7 +28,6 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String userOwe;
-
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -101,7 +100,6 @@ class JsonAdaptedPerson {
                     Debt.class.getSimpleName()));
         }
         final Debt modelDebt = new Debt(userOwe);
-
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelDebt, modelTags);
     }
