@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.sharkie;
+package seedu.address.logic.commands.global;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;

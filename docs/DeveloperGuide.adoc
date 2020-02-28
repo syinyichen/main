@@ -12,9 +12,9 @@ ifdef::env-github[]
 :note-caption: :information_source:
 :warning-caption: :warning:
 endif::[]
-:repoURL: https://github.com/se-edu/addressbook-level3/tree/master
+:repoURL: https://github.com/AY1920S2-CS2103T-W12-3/main/tree/master
 
-By: `Team SE-EDU`      Since: `Jun 2016`      Licence: `MIT`
+By: `AY1920S2-CS2103T-W12-3`      Since: `Feb 2020`      Licence: `MIT`
 
 == Setting up
 
@@ -289,7 +289,7 @@ Refer to the guide <<DevOps#, here>>.
 * prefer desktop apps over other types
 * can type fast
 * prefers typing over mouse input
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using <<CLI, CLI>> apps
 
 *Value proposition*: records expenses/debts faster than a typical mouse/GUI driven app
 //end::productScope[]
@@ -385,14 +385,14 @@ _{More to be added}_
 [discrete]
 ==== Use case: Recording an expense
 
-*MSS*
+<<MSS, *MSS*>>
 
 1.  User keys in an expense.
-2.  Wallet adds the expense.
+2.  <<wallet, Wallet>> adds the expense.
 +
 Use case ends.
 
-*Extensions*
+<<extensions, *Extensions*>>
 
 [none]
 * 1a. The expense keyed in is invalid.
@@ -534,7 +534,7 @@ Use case ends.
 
 *MSS*
 
-1. User requests to add a person into the address book.
+1. User requests to add a person into the <<address-book, address book>>.
 2. Address book adds the person into the list.
 +
 Use case ends.
@@ -751,7 +751,7 @@ _{More to be added}_
 .  Sharkie should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 .  University students with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 .  Sharkie should be for a single user.
-.  Sharkie needs to be developed incrementally with high cohesion and utilising CS2103T coding standards for maintainability.
+.  Sharkie needs to be developed incrementally with high <<cohesion, cohesion>> and utilising CS2103T coding standards for maintainability.
 .  The data used by Sharkie should be stored locally and should be in a human editable file.
 .  The Sharkie JAR file size should be less than 100Mb.
 .  Users should be able to choose to encrypt their data for confidentiality.
@@ -761,11 +761,29 @@ _{More to be added}_
 //end::apendixd[]
 == Glossary
 
+[[address-book]] Address book::
+Sharkie's address book that holds information pertaining to friends / peers / acquaintances of the user that the user has entered
+
+[[CLI]] CLI::
+Command line interface
+
+[[cohesion]] Cohesion::
+A measure of how strongly-related and focused the responsibilities of a component are
+
+[[extensions]] Extensions::
+"Add-on"s to MSS that describe exceptional/alternative flow of events.
+
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, OS-X
 
+[[MSS]] MSS::
+Main Success Scenario, the most straightforward interaction for a given use case
+
 [[private-contact-detail]] Private contact detail::
 A contact detail that is not meant to be shared with others
+
+[[wallet]] Wallet::
+Sharkie's wallet, that holds information pertaining to the user's expenditure and income
 
 //tag::productSurvey[]
 [appendix]
