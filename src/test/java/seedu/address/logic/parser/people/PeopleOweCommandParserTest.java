@@ -3,13 +3,18 @@ package seedu.address.logic.parser.people;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_AMOUNT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEBT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.OWE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.OWE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -24,6 +29,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.people.PeopleOweCommand;
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Debt;
+import seedu.address.model.transaction.Description;
 
 public class PeopleOweCommandParserTest {
 
@@ -34,12 +40,25 @@ public class PeopleOweCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_NAME_AMY + " " + PREFIX_NAME + VALID_DESC_AMY + " "
+                        + PREFIX_AMOUNT + VALID_AMOUNT_AMY, MESSAGE_INVALID_FORMAT);
+
+        // no description specified
+        assertParseFailure(parser, "1 " + PREFIX_AMOUNT + VALID_AMOUNT_AMY, MESSAGE_INVALID_FORMAT);
 
         // no amount specified
-        assertParseFailure(parser, "1", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 " + PREFIX_NAME + VALID_DESC_AMY, MESSAGE_INVALID_FORMAT);
+
+        // no index and description specified
+        assertParseFailure(parser, PREFIX_AMOUNT + VALID_AMOUNT_AMY, MESSAGE_INVALID_FORMAT);
 
         // no index and amount specified
+        assertParseFailure(parser, PREFIX_NAME + VALID_DESC_AMY, MESSAGE_INVALID_FORMAT);
+
+        // no description and amount specified
+        assertParseFailure(parser, "1", MESSAGE_INVALID_FORMAT);
+
+        // no index, description and amount specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
 
@@ -60,10 +79,33 @@ public class PeopleOweCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_AMOUNT, Amount.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + VALID_AMOUNT_AMY + INVALID_DATE, MESSAGE_INVALID_FORMAT);
-        assertParseFailure(parser, "1" + INVALID_AMOUNT + VALID_DATE_AMY, Amount.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + INVALID_AMOUNT + INVALID_DATE, Amount.MESSAGE_CONSTRAINTS);
+        // valid description, invalid amount without the optional date
+        assertParseFailure(parser, "1 " + PREFIX_NAME + VALID_DESC_AMY + " " + INVALID_AMOUNT,
+                Amount.MESSAGE_CONSTRAINTS);
+        // valid description, valid amount with invalid date
+        assertParseFailure(parser,
+                "1 " + PREFIX_NAME + VALID_DESC_AMY + " " + PREFIX_AMOUNT + VALID_AMOUNT_AMY + INVALID_DATE,
+                MESSAGE_INVALID_FORMAT);
+        // valid description, invalid amount with valid date
+        assertParseFailure(parser, "1 " + PREFIX_NAME + VALID_DESC_AMY + INVALID_AMOUNT + VALID_DATE_AMY,
+                Amount.MESSAGE_CONSTRAINTS);
+        // valid description, invalid amount and invalid date
+        assertParseFailure(parser, "1 " + PREFIX_NAME + VALID_DESC_AMY + INVALID_AMOUNT + INVALID_DATE,
+                Amount.MESSAGE_CONSTRAINTS);
+
+        // invalid description, invalid amount without the optional date
+        assertParseFailure(parser, "1" + INVALID_DEBT_DESC + " " + INVALID_AMOUNT,
+                Description.MESSAGE_CONSTRAINTS);
+        // invalid description, valid amount with invalid date
+        assertParseFailure(parser,
+                "1" + INVALID_DEBT_DESC + " " + PREFIX_AMOUNT + VALID_AMOUNT_AMY + INVALID_DATE,
+                Description.MESSAGE_CONSTRAINTS);
+        // invalid description, invalid amount with valid date
+        assertParseFailure(parser, "1" + INVALID_DEBT_DESC + INVALID_AMOUNT + VALID_DATE_AMY,
+                Description.MESSAGE_CONSTRAINTS);
+        // invalid description, invalid amount and invalid date
+        assertParseFailure(parser, "1" + INVALID_DEBT_DESC + INVALID_AMOUNT + INVALID_DATE,
+                Description.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -71,7 +113,9 @@ public class PeopleOweCommandParserTest {
         Index targetIndex = INDEX_SECOND_PERSON;
         String userInput = targetIndex.getOneBased() + OWE_DESC_AMY;
 
-        Debt debt = new Debt(new Amount(Double.parseDouble(VALID_AMOUNT_AMY)), LocalDate.parse(VALID_DATE_AMY,
+        Debt debt = new Debt(new Description(VALID_DESC_AMY),
+                new Amount(Double.parseDouble(VALID_AMOUNT_AMY)),
+                LocalDate.parse(VALID_DATE_AMY,
                 DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         PeopleOweCommand expectedCommand = new PeopleOweCommand(targetIndex, debt);
 
@@ -83,7 +127,9 @@ public class PeopleOweCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + OWE_DESC_BOB;
 
-        Debt debt = new Debt(new Amount(Double.parseDouble(VALID_AMOUNT_BOB)), LocalDate.now());
+        Debt debt = new Debt(new Description(VALID_DESC_BOB),
+                new Amount(Double.parseDouble(VALID_AMOUNT_BOB)),
+                LocalDate.now());
         PeopleOweCommand expectedCommand = new PeopleOweCommand(targetIndex, debt);
 
         assertParseSuccess(parser, userInput, expectedCommand);

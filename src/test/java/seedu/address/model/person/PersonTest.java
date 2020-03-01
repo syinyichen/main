@@ -2,19 +2,14 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalDebts.MOVIE;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
@@ -91,8 +86,7 @@ public class PersonTest {
 
         // different debt -> returns false
         editedAlice = new PersonBuilder(ALICE)
-                .withUserOwe("$" + VALID_AMOUNT_BOB + "," + LocalDate.parse(VALID_DATE_AMY,
-                        DateTimeFormatter.ofPattern("dd/MM/yyyy"))).build();
+                .withDebts(MOVIE).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

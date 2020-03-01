@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Debt;
+import seedu.address.model.transaction.TransactionList;
 
 /**
  * Represents a Person in the address book.
@@ -22,19 +23,19 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Debt userOwe;
+    private final TransactionList<Debt> debts = new TransactionList<>();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email,
-                  Debt userOwe, Set<Tag> tags) {
+                  TransactionList<Debt> debts, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.userOwe = userOwe;
+        this.debts.setTransactions(debts);
         this.tags.addAll(tags);
     }
 
@@ -50,9 +51,8 @@ public class Person {
         return email;
     }
 
-
-    public Debt getUserOwe() {
-        return userOwe;
+    public TransactionList<Debt> getDebts() {
+        return debts;
     }
 
     /**
@@ -95,14 +95,14 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getUserOwe().equals(getUserOwe())
+                && otherPerson.getDebts().equals(getDebts())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, userOwe, tags);
+        return Objects.hash(name, phone, email, debts, tags);
     }
 
     @Override
@@ -114,7 +114,7 @@ public class Person {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" You owe: ")
-                .append(getUserOwe())
+                .append(Debt.getTotalDebt(getDebts()))
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

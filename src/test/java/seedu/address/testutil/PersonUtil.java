@@ -64,6 +64,7 @@ public class PersonUtil {
 
     public static String getDebtDescription(Debt debt) {
         StringBuilder sb = new StringBuilder();
+        sb.append(PREFIX_NAME + debt.getDescription().description + " ");
         sb.append(PREFIX_AMOUNT + String.valueOf(debt.getAmount().amount) + " ");
         sb.append(PREFIX_DATE + debt.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         return sb.toString();

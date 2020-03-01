@@ -7,6 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliPrefix.PEOPLE_COMMAND_TYPE;
 import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalDebts.TEXTBOOK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
@@ -28,7 +29,6 @@ import seedu.address.logic.commands.people.PeopleOweCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.transaction.Debt;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -100,11 +100,10 @@ public class SharkieParserTest {
 
     @Test
     public void parseCommand_owe() throws Exception {
-        String debt = "$4.00,2020-02-20";
         PeopleOweCommand command = (PeopleOweCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
                 + PeopleOweCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
-                + PersonUtil.getDebtDescription(new Debt(debt)));
-        assertEquals(new PeopleOweCommand(INDEX_FIRST_PERSON, new Debt(debt)), command);
+                + PersonUtil.getDebtDescription(TEXTBOOK));
+        assertEquals(new PeopleOweCommand(INDEX_FIRST_PERSON, TEXTBOOK), command);
     }
 
     @Test

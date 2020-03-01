@@ -4,9 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.people.PeopleOweCommand;
@@ -17,6 +19,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Debt;
+import seedu.address.model.transaction.Description;
 
 /**
  * Parses input arguments and creates a new PeopleOweCommand object
@@ -33,7 +36,13 @@ public class PeopleOweCommandParser implements Parser<PeopleOweCommand> {
     public PeopleOweCommand parse(String args) throws ParseException {
 
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_AMOUNT, PREFIX_DATE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_AMOUNT,
+                PREFIX_DATE);
+
+        if (!argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            System.out.println(args);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleOweCommand.MESSAGE_USAGE));
+        }
 
         if (!argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
             System.out.println(args);
@@ -42,11 +51,17 @@ public class PeopleOweCommandParser implements Parser<PeopleOweCommand> {
 
         Index index;
         LocalDate date;
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_NAME).get());
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
 
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            date = LocalDate.parse(argMultimap.getValue(PREFIX_DATE).get(),
-                    DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            try {
+                date = LocalDate.parse(argMultimap.getValue(PREFIX_DATE).get(),
+                        DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            } catch (DateTimeParseException e) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        PeopleOweCommand.MESSAGE_USAGE));
+            }
         } else {
             date = LocalDate.now();
         }
@@ -58,7 +73,7 @@ public class PeopleOweCommandParser implements Parser<PeopleOweCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleOweCommand.MESSAGE_USAGE), pe);
         }
 
-        Debt debt = new Debt(amount, date);
+        Debt debt = new Debt(description, amount, date);
         return new PeopleOweCommand(index, debt);
     }
 }

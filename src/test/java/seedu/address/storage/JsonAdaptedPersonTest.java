@@ -25,7 +25,10 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_USER_OWE = BENSON.getUserOwe().toString();
+    private static final List<JsonAdaptedDebt> VALID_USER_OWE =
+            BENSON.getDebts().asUnmodifiableObservableList().stream()
+            .map(JsonAdaptedDebt::new)
+            .collect(Collectors.toList());
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());

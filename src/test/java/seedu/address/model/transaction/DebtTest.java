@@ -3,40 +3,51 @@ package seedu.address.model.transaction;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalDebts.SUPPER;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.DebtBuilder;
 
 class DebtTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Debt(null, null));
+        assertThrows(NullPointerException.class, () -> new Debt(null, null, null));
     }
 
     @Test
     public void equals() {
-        Debt debt = new Debt("$4.00,2020-02-02");
-        Debt debtCopy = new Debt("$4.00,2020-02-02");
-        Debt debtDiffAmt = new Debt("$10.00,2020-02-02");
-        Debt debtDiffDate = new Debt("$4.00,2020-02-01");
+        Debt supperCopy = new DebtBuilder()
+                .withDescription("Supper")
+                .withAmount("10")
+                .withDate("2020-01-23").build();
+        Debt debtDiffAmt = new DebtBuilder()
+                .withDescription("Supper")
+                .withAmount("20")
+                .withDate("2020-01-23").build();
+        Debt debtDiffDate = new DebtBuilder()
+                .withDescription("Supper")
+                .withAmount("10")
+                .withDate("2020-01-12").build();
 
         // same values -> returns true
-        assertTrue(debt.equals(debtCopy));
+        assertTrue(SUPPER.equals(supperCopy));
 
         // same object -> returns true
-        assertTrue(debt.equals(debt));
+        assertTrue(SUPPER.equals(SUPPER));
 
         // null -> returns false
-        assertFalse(debt.equals(null));
+        assertFalse(SUPPER.equals(null));
 
         // different type -> returns false
-        assertFalse(debt.equals(5));
+        assertFalse(SUPPER.equals(5));
 
         // different amount -> returns false
-        assertFalse(debt.equals(debtDiffAmt));
+        assertFalse(SUPPER.equals(debtDiffAmt));
 
         // different date -> returns false
-        assertFalse(debt.equals(debtDiffDate));
+        assertFalse(SUPPER.equals(debtDiffDate));
 
     }
 }

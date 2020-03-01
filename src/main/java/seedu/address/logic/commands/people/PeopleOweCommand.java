@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliPrefix.PEOPLE_COMMAND_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -21,6 +22,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Debt;
+import seedu.address.model.transaction.TransactionList;
 
 /**
  * Records the amount of money the user owe to the person identified using its displayed index from the
@@ -32,6 +34,7 @@ public class PeopleOweCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Records the amount of money that you owe a"
             + " person. Parameters: <index> (must be a positive integer) "
+            + PREFIX_NAME + "<description> "
             + PREFIX_AMOUNT + "<amount> "
             + "[" + PREFIX_DATE + "<date:dd/mm/yyyy>]\n"
             + "Example: " + PEOPLE_COMMAND_TYPE + " "
@@ -39,7 +42,7 @@ public class PeopleOweCommand extends Command {
             + PREFIX_AMOUNT + "5.00 "
             + PREFIX_DATE + "10/10/2020";
 
-    public static final String MESSAGE_OWE_SUCCESS = "Increased debt to %1$s by %2$s.";
+    public static final String MESSAGE_OWE_SUCCESS = "Increased debt to %1$s by %2$s. You now owe %1$s %3$s.";
 
     private final Index targetIndex;
     private final Debt debt;
@@ -62,7 +65,8 @@ public class PeopleOweCommand extends Command {
         Person addedDebtPerson = createPersonOwed(personUserOwe, debt);
         model.setPerson(personUserOwe, addedDebtPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_OWE_SUCCESS, personUserOwe.getName(), debt.getAmount()));
+        return new CommandResult(String.format(MESSAGE_OWE_SUCCESS, personUserOwe.getName(),
+                debt.getAmount(), Debt.getTotalDebt(addedDebtPerson.getDebts())));
     }
 
     /**
@@ -74,7 +78,9 @@ public class PeopleOweCommand extends Command {
         Name name = personUserOwe.getName();
         Phone phone = personUserOwe.getPhone();
         Email email = personUserOwe.getEmail();
-        Debt updatedDebt = personUserOwe.getUserOwe().addDebt(debt);
+        TransactionList<Debt> updatedDebt = new TransactionList<>();
+        updatedDebt.setTransactions(personUserOwe.getDebts());
+        updatedDebt.add(debt);
         Set<Tag> tags = personUserOwe.getTags();
         return new Person(name, phone, email, updatedDebt, tags);
     }
