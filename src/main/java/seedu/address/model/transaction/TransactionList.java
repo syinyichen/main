@@ -24,6 +24,17 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
+     * Returns the total amount in a {@code transactionList}
+     */
+    public static <T extends Transaction> Amount getTotal(TransactionList<T> transactionList) {
+        double totalAmount = 0;
+        for (T transaction : transactionList) {
+            totalAmount += transaction.getAmount().amount;
+        }
+        return new Amount(totalAmount);
+    }
+
+    /**
      * Returns true if the list contains an equivalent transaction as the given argument.
      */
     public boolean contains(T toCheck) {

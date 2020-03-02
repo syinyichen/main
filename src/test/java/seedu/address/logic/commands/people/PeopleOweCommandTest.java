@@ -19,7 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.transaction.Debt;
+import seedu.address.model.transaction.TransactionList;
 import seedu.address.testutil.PersonBuilder;
 
 public class PeopleOweCommandTest {
@@ -35,7 +35,7 @@ public class PeopleOweCommandTest {
         PeopleOweCommand peopleOweCommand = new PeopleOweCommand(INDEX_FIRST_PERSON, TEXTBOOK);
 
         String expectedMessage = String.format(PeopleOweCommand.MESSAGE_OWE_SUCCESS,
-                addedDebtPerson.getName(), TEXTBOOK.getAmount(), Debt.getTotalDebt(addedDebtPerson.getDebts()));
+                addedDebtPerson.getName(), TEXTBOOK.getAmount(), TransactionList.getTotal(addedDebtPerson.getDebts()));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), addedDebtPerson);
@@ -54,7 +54,7 @@ public class PeopleOweCommandTest {
         PeopleOweCommand peopleOweCommand = new PeopleOweCommand(INDEX_FIRST_PERSON, TEXTBOOK);
 
         String expectedMessage = String.format(PeopleOweCommand.MESSAGE_OWE_SUCCESS,
-                addedDebtPerson.getName(), TEXTBOOK.getAmount(), Debt.getTotalDebt(addedDebtPerson.getDebts()));
+                addedDebtPerson.getName(), TEXTBOOK.getAmount(), TransactionList.getTotal(addedDebtPerson.getDebts()));
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), addedDebtPerson);

@@ -39,6 +39,7 @@ public class PeopleOweCommand extends Command {
             + "[" + PREFIX_DATE + "<date:dd/mm/yyyy>]\n"
             + "Example: " + PEOPLE_COMMAND_TYPE + " "
             + COMMAND_WORD + " 4 "
+            + PREFIX_NAME + " Supper "
             + PREFIX_AMOUNT + "5.00 "
             + PREFIX_DATE + "10/10/2020";
 
@@ -66,7 +67,7 @@ public class PeopleOweCommand extends Command {
         model.setPerson(personUserOwe, addedDebtPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_OWE_SUCCESS, personUserOwe.getName(),
-                debt.getAmount(), Debt.getTotalDebt(addedDebtPerson.getDebts())));
+                debt.getAmount(), TransactionList.getTotal(addedDebtPerson.getDebts())));
     }
 
     /**
