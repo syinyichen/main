@@ -114,7 +114,7 @@ public class Person {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" You owe: ")
-                .append(TransactionList.getTotal(getDebts()))
+                .append(getDebts().getTotal())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

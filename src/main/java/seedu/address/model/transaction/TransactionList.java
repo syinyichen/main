@@ -24,11 +24,11 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns the total amount in a {@code transactionList}
+     * Returns the total amount in a the transaction list.
      */
-    public static <T extends Transaction> Amount getTotal(TransactionList<T> transactionList) {
+    public Amount getTotal() {
         double totalAmount = 0;
-        for (T transaction : transactionList) {
+        for (T transaction : this) {
             totalAmount += transaction.getAmount().amount;
         }
         return new Amount(totalAmount);
