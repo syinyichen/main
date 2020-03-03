@@ -9,6 +9,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Debt;
+import seedu.address.model.transaction.Loan;
 import seedu.address.model.transaction.TransactionList;
 
 import java.util.Set;
@@ -43,9 +44,10 @@ public class PeopleAddCommandParser implements Parser<PeopleAddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         //add command does not allow adding debts straight away
         TransactionList<Debt> debts = new TransactionList<>();
+        TransactionList<Loan> loans = new TransactionList<>();
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, debts, tagList);
+        Person person = new Person(name, phone, email, debts, loans, tagList);
 
         return new PeopleAddCommand(person);
     }

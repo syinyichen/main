@@ -4,10 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDebts.SUPPER;
+import static seedu.address.testutil.TypicalLoans.BREAKFAST;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.DebtBuilder;
+import seedu.address.testutil.LoanBuilder;
 
 class DebtTest {
 
@@ -20,6 +22,14 @@ class DebtTest {
     public void equals() {
         Debt supperCopy = new DebtBuilder()
                 .withDescription("Supper")
+                .withAmount("10")
+                .withDate("2020-01-23").build();
+        Loan supperLoan = new LoanBuilder()
+                .withDescription("Supper")
+                .withAmount("10")
+                .withDate("2020-01-23").build();
+        Debt debtDiffDesc = new DebtBuilder()
+                .withDescription("Dinner")
                 .withAmount("10")
                 .withDate("2020-01-23").build();
         Debt debtDiffAmt = new DebtBuilder()
@@ -42,6 +52,12 @@ class DebtTest {
 
         // different type -> returns false
         assertFalse(SUPPER.equals(5));
+
+        // different type of transaction -> returns false
+        assertFalse(SUPPER.equals(supperLoan));
+
+        // different description -> returns false
+        assertFalse(SUPPER.equals(debtDiffDesc));
 
         // different amount -> returns false
         assertFalse(SUPPER.equals(debtDiffAmt));
