@@ -26,6 +26,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.transaction.Debt;
+import seedu.address.model.transaction.TransactionList;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -97,9 +99,9 @@ public class PeopleEditCommand extends Command {
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
+        TransactionList<Debt> updatedDebt = personToEdit.getDebts(); // edit command does not allow editing of debt
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedDebt, updatedTags);
     }
 
     @Override

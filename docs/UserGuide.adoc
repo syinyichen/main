@@ -352,10 +352,10 @@ Expected Outcome:
 //end::peopleremindall[]
 
 // tag::owe[]
-==== Recording the money you owe: `owe` `[coming in v2.0]`
+==== Recording the money you owe: `owe`
 
 Records the amount of money that you owe a person. +
-Format: `people owe <index> $/<amount> [d/<date:dd/mm/yyyy>]`
+Format: `people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
 
 ****
 * Records the amount of money specified in `<amount>` you owe to the person at the specified `<index>`.
@@ -366,11 +366,11 @@ Format: `people owe <index> $/<amount> [d/<date:dd/mm/yyyy>]`
 
 Examples:
 
-* `people owe 4 $/5.00 d/10/10/2020`
+* `people owe 4 n/food $/5.00 d/10/10/2020`
 Records that you owe the 4th person $5.00 on 10/10/2020. +
 Expected Outcome:
 
-    Increased debt to Grace by $5.00!
+    Increased debt to Grace by $5.00! You now owe Grace $4.
 
 // end::owe[]
 
