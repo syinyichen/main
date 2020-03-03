@@ -250,9 +250,9 @@ Examples:
 Returns a list of expenses and income containing the keyword <rice> +
 Expected Outcome:
 
-    1. Duck Rice Date: 10/10/2010 Amount: $4.00
-    2. Chicken Rice Date: 10/11/2010 Amount: $2.50
-    ...​
+1. Duck Rice Date: 10/10/2010 Amount: $4.00
+2. Chicken Rice Date: 10/11/2010 Amount: $2.50
+...​
 
 //end::walletfind[]
 
