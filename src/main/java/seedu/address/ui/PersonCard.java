@@ -15,6 +15,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Debt;
 import seedu.address.model.transaction.Description;
+import seedu.address.model.transaction.Loan;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -52,6 +53,14 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private TableColumn<Debt, LocalDate> debtDate;
     @FXML
+    private TableView<Loan> loans;
+    @FXML
+    private TableColumn<Loan, Description> loanDesc;
+    @FXML
+    private TableColumn<Loan, Amount> loanAmt;
+    @FXML
+    private TableColumn<Loan, LocalDate> loanDate;
+    @FXML
     private FlowPane tags;
 
     public PersonCard(Person person, int displayedIndex) {
@@ -65,6 +74,10 @@ public class PersonCard extends UiPart<Region> {
         debtAmt.setCellValueFactory(new PropertyValueFactory<Debt, Amount>("amount"));
         debtDate.setCellValueFactory(new PropertyValueFactory<Debt, LocalDate>("date"));
         debts.setItems(person.getDebts().asUnmodifiableObservableList());
+        loanDesc.setCellValueFactory(new PropertyValueFactory<Loan, Description>("description"));
+        loanAmt.setCellValueFactory(new PropertyValueFactory<Loan, Amount>("amount"));
+        loanDate.setCellValueFactory(new PropertyValueFactory<Loan, LocalDate>("date"));
+        loans.setItems(person.getLoans().asUnmodifiableObservableList());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

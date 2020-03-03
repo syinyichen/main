@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliPrefix.PEOPLE_COMMAND_TYPE;
 import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDebts.TEXTBOOK;
+import static seedu.address.testutil.TypicalLoans.DINNER;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
@@ -18,14 +19,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.global.ExitCommand;
 import seedu.address.logic.commands.global.HelpCommand;
-import seedu.address.logic.commands.people.PeopleAddCommand;
-import seedu.address.logic.commands.people.PeopleClearCommand;
-import seedu.address.logic.commands.people.PeopleDeleteCommand;
-import seedu.address.logic.commands.people.PeopleEditCommand;
+import seedu.address.logic.commands.people.*;
 import seedu.address.logic.commands.people.PeopleEditCommand.EditPersonDescriptor;
-import seedu.address.logic.commands.people.PeopleFindCommand;
-import seedu.address.logic.commands.people.PeopleListCommand;
-import seedu.address.logic.commands.people.PeopleOweCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -104,6 +99,14 @@ public class SharkieParserTest {
                 + PeopleOweCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
                 + PersonUtil.getDebtDescription(TEXTBOOK));
         assertEquals(new PeopleOweCommand(INDEX_FIRST_PERSON, TEXTBOOK), command);
+    }
+
+    @Test
+    public void parseCommand_lend() throws Exception {
+        PeopleLendCommand command = (PeopleLendCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
+                + PeopleLendCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                + PersonUtil.getLoanDescription(DINNER));
+        assertEquals(new PeopleLendCommand(INDEX_FIRST_PERSON, DINNER), command);
     }
 
     @Test
