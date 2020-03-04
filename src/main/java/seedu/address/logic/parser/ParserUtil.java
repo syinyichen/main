@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -122,10 +121,10 @@ public class ParserUtil {
         requireNonNull(date);
         String trimmedDate = date.trim();
 
-        if(!Date.isValidDate(trimmedDate)) {
+        if (!Date.isValidDate(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        return Date.parse(trimmedDate);
+        return Date.of(trimmedDate);
     }
 
     /**

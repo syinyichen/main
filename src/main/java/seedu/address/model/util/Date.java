@@ -1,12 +1,13 @@
 package seedu.address.model.util;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+
+/**
+ * Represents a Date in Sharkie.
+ * Guarantees: immutable; date is valid as declared in {@link #isValidDate(String)}
+ */
 
 public class Date {
 
@@ -15,10 +16,17 @@ public class Date {
 
     private LocalDate date;
 
+    /**
+     * Constructs a valid Date object.
+     * @param date A valid date.
+     */
     public Date(LocalDate date) {
         this.date = date;
     }
 
+    /**
+     * Returns true if a given String is a valid date format.
+     */
     public static boolean isValidDate(String test) {
         try {
             SimpleDateFormat format = new SimpleDateFormat(DATE_FORMAT);
@@ -33,7 +41,11 @@ public class Date {
         return true;
     }
 
-    public static Date parse(String date) {
+    /**
+     * Creates a new Date object on the given date String.
+     */
+
+    public static Date of(String date) {
         return new Date(LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT)));
     }
 

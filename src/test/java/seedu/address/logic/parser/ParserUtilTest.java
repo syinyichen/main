@@ -167,13 +167,13 @@ public class ParserUtilTest {
 
     @Test
     public void parseDate_validValueWithoutWhitespace_returnsDate() throws Exception {
-        Date date = Date.parse(VALID_DATE);
+        Date date = Date.of(VALID_DATE);
         assertEquals(date, ParserUtil.parseDate(VALID_DATE));
     }
 
     @Test
     public void parseDate_validValueWithWhitespace_returnsDate() throws Exception {
-        Date date = Date.parse(VALID_DATE);
+        Date date = Date.of(VALID_DATE);
         assertEquals(date, ParserUtil.parseDate(WHITESPACE + VALID_DATE + WHITESPACE));
     }
 
