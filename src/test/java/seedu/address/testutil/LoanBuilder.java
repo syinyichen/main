@@ -1,11 +1,14 @@
 package seedu.address.testutil;
 
+import java.time.LocalDate;
+
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Loan;
 
-import java.time.LocalDate;
-
+/**
+ * A utility class to help with building Loan objects.
+ */
 public class LoanBuilder {
 
     public static final String DEFAULT_DESCRIPTION = "Loan example";

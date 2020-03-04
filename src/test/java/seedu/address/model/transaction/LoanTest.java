@@ -1,13 +1,14 @@
 package seedu.address.model.transaction;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalLoans.BREAKFAST;
+
+import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.DebtBuilder;
 import seedu.address.testutil.LoanBuilder;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalLoans.BREAKFAST;
 
 public class LoanTest {
 

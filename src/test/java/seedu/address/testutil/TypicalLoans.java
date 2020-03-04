@@ -2,6 +2,9 @@ package seedu.address.testutil;
 
 import seedu.address.model.transaction.Loan;
 
+/**
+ * A utility class containing a list of {@code Loan} objects to be used in tests.
+ */
 public class TypicalLoans {
     public static final Loan BREAKFAST = new LoanBuilder()
             .withDescription("Breakfast")

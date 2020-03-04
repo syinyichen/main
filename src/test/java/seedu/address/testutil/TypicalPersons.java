@@ -14,11 +14,11 @@ import static seedu.address.testutil.TypicalDebts.MILKTEA;
 import static seedu.address.testutil.TypicalDebts.MOVIE;
 import static seedu.address.testutil.TypicalDebts.TAOBAO;
 import static seedu.address.testutil.TypicalDebts.TEXTBOOK;
-import static seedu.address.testutil.TypicalLoans.LUNCH;
-import static seedu.address.testutil.TypicalLoans.DINNER;
-import static seedu.address.testutil.TypicalLoans.SUPPER;
 import static seedu.address.testutil.TypicalLoans.DESSERT;
+import static seedu.address.testutil.TypicalLoans.DINNER;
+import static seedu.address.testutil.TypicalLoans.LUNCH;
 import static seedu.address.testutil.TypicalLoans.SHOPPING;
+import static seedu.address.testutil.TypicalLoans.SUPPER;
 import static seedu.address.testutil.TypicalLoans.TRAVEL;
 
 import java.util.ArrayList;
