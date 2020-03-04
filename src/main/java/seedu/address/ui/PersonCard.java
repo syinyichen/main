@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -61,10 +60,8 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
-        debtDesc.setCellValueFactory(new PropertyValueFactory<Debt, Description>("description"));
-        debtAmt.setCellValueFactory(new PropertyValueFactory<Debt, Amount>("amount"));
-        debtDate.setCellValueFactory(new PropertyValueFactory<Debt, LocalDate>("date"));
-        debts.setItems(person.getDebts().asUnmodifiableObservableList());
+        debts.setPlaceholder(
+                new TransactionTablePanel<Debt>(person.getDebts().asUnmodifiableObservableList()).getRoot());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
