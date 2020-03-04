@@ -48,7 +48,7 @@ class JsonAdaptedPerson {
         if (debts != null) {
             this.debts.addAll(debts);
         }
-        if (debts != null) {
+        if (loans != null) {
             this.loans.addAll(loans);
         }
         if (tagged != null) {

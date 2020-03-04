@@ -49,15 +49,15 @@ public class SharkieParserTest {
     @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + PeopleClearCommand.COMMAND_WORD)
-            instanceof PeopleClearCommand);
+                instanceof PeopleClearCommand);
         assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + PeopleClearCommand.COMMAND_WORD + " 3")
-            instanceof PeopleClearCommand);
+                instanceof PeopleClearCommand);
     }
 
     @Test
     public void parseCommand_delete() throws Exception {
         PeopleDeleteCommand command = (PeopleDeleteCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
-            + PeopleDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+                + PeopleDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new PeopleDeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
@@ -66,61 +66,61 @@ public class SharkieParserTest {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         PeopleEditCommand command = (PeopleEditCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
-            + PeopleEditCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
-            + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + PeopleEditCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new PeopleEditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD)
-            instanceof ExitCommand);
+                instanceof ExitCommand);
     }
 
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         PeopleFindCommand command = (PeopleFindCommand) parser.parseCommand(
-            PEOPLE_COMMAND_TYPE + " " + PeopleFindCommand.COMMAND_WORD + " "
-                + keywords.stream().collect(Collectors.joining(" ")));
+                PEOPLE_COMMAND_TYPE + " " + PeopleFindCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new PeopleFindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD)
-            instanceof HelpCommand);
+                instanceof HelpCommand);
     }
 
     @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + PeopleListCommand.COMMAND_WORD)
-            instanceof PeopleListCommand);
+                instanceof PeopleListCommand);
         assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + PeopleListCommand.COMMAND_WORD + " 3")
-            instanceof PeopleListCommand);
+                instanceof PeopleListCommand);
     }
 
     @Test
     public void parseCommand_owe() throws Exception {
         PeopleOweCommand command = (PeopleOweCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
-            + PeopleOweCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
-            + PersonUtil.getDebtDescription(TEXTBOOK));
+                + PeopleOweCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                + PersonUtil.getDebtDescription(TEXTBOOK));
         assertEquals(new PeopleOweCommand(INDEX_FIRST_PERSON, TEXTBOOK), command);
     }
 
     @Test
     public void parseCommand_lend() throws Exception {
         PeopleLendCommand command = (PeopleLendCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
-            + PeopleLendCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
-            + PersonUtil.getLoanDescription(DINNER));
+                + PeopleLendCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                + PersonUtil.getLoanDescription(DINNER));
         assertEquals(new PeopleLendCommand(INDEX_FIRST_PERSON, DINNER), command);
     }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class,
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-                -> parser.parseCommand(""));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), () ->
+                        parser.parseCommand(""));
     }
 
     @Test
@@ -130,24 +130,24 @@ public class SharkieParserTest {
 
     @Test
     public void parseCommand_globalCommands_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser
-            .parseCommand(ExitCommand.COMMAND_WORD + " 3"));
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser
-            .parseCommand(HelpCommand.COMMAND_WORD + " 3"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand(ExitCommand.COMMAND_WORD + " 3"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand(HelpCommand.COMMAND_WORD + " 3"));
     }
 
     @Test
     public void parseCommand_prefixOnly_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand(
-            PEOPLE_COMMAND_TYPE));
+                PEOPLE_COMMAND_TYPE));
 
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand(
-            WALLET_COMMAND_TYPE));
+                WALLET_COMMAND_TYPE));
     }
 
     @Test
     public void parseCommand_commandWithoutPrefix_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand(
-            PeopleListCommand.COMMAND_WORD));
+                PeopleListCommand.COMMAND_WORD));
     }
 }
