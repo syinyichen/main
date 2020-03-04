@@ -1,9 +1,9 @@
 package seedu.address.model.transaction;
 
-import seedu.address.model.tag.Tag;
-
 import java.time.LocalDate;
 import java.util.Objects;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a loan, money which the user lends.

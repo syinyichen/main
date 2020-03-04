@@ -12,9 +12,21 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.global.ExitCommand;
 import seedu.address.logic.commands.global.HelpCommand;
-import seedu.address.logic.commands.people.*;
+import seedu.address.logic.commands.people.PeopleAddCommand;
+import seedu.address.logic.commands.people.PeopleClearCommand;
+import seedu.address.logic.commands.people.PeopleDeleteCommand;
+import seedu.address.logic.commands.people.PeopleEditCommand;
+import seedu.address.logic.commands.people.PeopleFindCommand;
+import seedu.address.logic.commands.people.PeopleLendCommand;
+import seedu.address.logic.commands.people.PeopleListCommand;
+import seedu.address.logic.commands.people.PeopleOweCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.people.*;
+import seedu.address.logic.parser.people.PeopleAddCommandParser;
+import seedu.address.logic.parser.people.PeopleDeleteCommandParser;
+import seedu.address.logic.parser.people.PeopleEditCommandParser;
+import seedu.address.logic.parser.people.PeopleFindCommandParser;
+import seedu.address.logic.parser.people.PeopleLendCommandParser;
+import seedu.address.logic.parser.people.PeopleOweCommandParser;
 
 /**
  * Parses user input.
@@ -49,12 +61,12 @@ public class SharkieParser {
         }
 
         switch (commandType.trim()) {
-            case PEOPLE_COMMAND_TYPE:
-                return getPeopleCommand(commandWord, arguments);
-            case WALLET_COMMAND_TYPE:
-                return getWalletCommand(commandWord, arguments);
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        case PEOPLE_COMMAND_TYPE:
+            return getPeopleCommand(commandWord, arguments);
+        case WALLET_COMMAND_TYPE:
+            return getWalletCommand(commandWord, arguments);
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
 
     }
@@ -65,32 +77,32 @@ public class SharkieParser {
         }
 
         switch (commandWord) {
-            case PeopleAddCommand.COMMAND_WORD:
-                return new PeopleAddCommandParser().parse(arguments);
+        case PeopleAddCommand.COMMAND_WORD:
+            return new PeopleAddCommandParser().parse(arguments);
 
-            case PeopleEditCommand.COMMAND_WORD:
-                return new PeopleEditCommandParser().parse(arguments);
+        case PeopleEditCommand.COMMAND_WORD:
+            return new PeopleEditCommandParser().parse(arguments);
 
-            case PeopleDeleteCommand.COMMAND_WORD:
-                return new PeopleDeleteCommandParser().parse(arguments);
+        case PeopleDeleteCommand.COMMAND_WORD:
+            return new PeopleDeleteCommandParser().parse(arguments);
 
-            case PeopleClearCommand.COMMAND_WORD:
-                return new PeopleClearCommand();
+        case PeopleClearCommand.COMMAND_WORD:
+            return new PeopleClearCommand();
 
-            case PeopleFindCommand.COMMAND_WORD:
-                return new PeopleFindCommandParser().parse(arguments);
+        case PeopleFindCommand.COMMAND_WORD:
+            return new PeopleFindCommandParser().parse(arguments);
 
-            case PeopleListCommand.COMMAND_WORD:
-                return new PeopleListCommand();
+        case PeopleListCommand.COMMAND_WORD:
+            return new PeopleListCommand();
 
-            case PeopleOweCommand.COMMAND_WORD:
-                return new PeopleOweCommandParser().parse(arguments);
+        case PeopleOweCommand.COMMAND_WORD:
+            return new PeopleOweCommandParser().parse(arguments);
 
-            case PeopleLendCommand.COMMAND_WORD:
-                return new PeopleLendCommandParser().parse(arguments);
+        case PeopleLendCommand.COMMAND_WORD:
+            return new PeopleLendCommandParser().parse(arguments);
 
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
@@ -101,8 +113,8 @@ public class SharkieParser {
 
         switch (commandWord) {
 
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
@@ -111,14 +123,14 @@ public class SharkieParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
         switch (commandWord) {
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 }

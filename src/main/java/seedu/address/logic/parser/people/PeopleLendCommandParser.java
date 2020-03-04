@@ -18,8 +18,8 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.transaction.Amount;
-import seedu.address.model.transaction.Loan;
 import seedu.address.model.transaction.Description;
+import seedu.address.model.transaction.Loan;
 
 /**
  * Parses input arguments and creates a new PeopleLendCommand object
@@ -77,3 +77,4 @@ public class PeopleLendCommandParser implements Parser<PeopleLendCommand> {
         return new PeopleLendCommand(index, loan);
     }
 }
+

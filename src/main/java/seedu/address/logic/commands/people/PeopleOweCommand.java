@@ -95,6 +95,5 @@ public class PeopleOweCommand extends Command {
                 && targetIndex.equals(((PeopleOweCommand) other).targetIndex))
                 && debt.equals(((PeopleOweCommand) other).debt); // state check
     }
-
-
 }
+

@@ -81,5 +81,4 @@ public class JsonAdaptedLoan {
 
         return new Loan(modelDescription, modelAmount, modelDate);
     }
-
 }

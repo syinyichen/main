@@ -28,8 +28,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.people.PeopleLendCommand;
 import seedu.address.model.transaction.Amount;
-import seedu.address.model.transaction.Loan;
 import seedu.address.model.transaction.Description;
+import seedu.address.model.transaction.Loan;
 
 public class PeopleLendCommandParserTest {
 
