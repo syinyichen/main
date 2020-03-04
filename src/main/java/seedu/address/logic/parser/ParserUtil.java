@@ -120,11 +120,12 @@ public class ParserUtil {
      */
     public static Date parseDate(String date) throws ParseException {
         requireNonNull(date);
-        if(!Date.isValidDate(date)) {
+        String trimmedDate = date.trim();
+
+        if(!Date.isValidDate(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-
-        return Date.parse(date);
+        return Date.parse(trimmedDate);
     }
 
     /**
