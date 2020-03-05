@@ -17,8 +17,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Amount;
-import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Date;
+import seedu.address.model.transaction.Description;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
