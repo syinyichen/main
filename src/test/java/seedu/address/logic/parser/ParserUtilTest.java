@@ -3,9 +3,12 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.model.transaction.Date.DATE_PATTERN;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,7 +22,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Amount;
-import seedu.address.model.util.Date;
+import seedu.address.model.transaction.Date;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -30,6 +33,7 @@ public class ParserUtilTest {
     private static final String INVALID_DATE_1 = "11 May 2019";
     private static final String INVALID_DATE_2 = "11.11.2020";
     private static final String INVALID_DATE_3 = "30/02/2020";
+    private static final String INVALID_DATE_4 = "2/2/2020";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -163,17 +167,18 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE_1));
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE_2));
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE_3));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE_4));
     }
 
     @Test
     public void parseDate_validValueWithoutWhitespace_returnsDate() throws Exception {
-        Date date = Date.of(VALID_DATE);
+        Date date = new Date(LocalDate.parse(VALID_DATE, DateTimeFormatter.ofPattern(DATE_PATTERN)));
         assertEquals(date, ParserUtil.parseDate(VALID_DATE));
     }
 
     @Test
     public void parseDate_validValueWithWhitespace_returnsDate() throws Exception {
-        Date date = Date.of(VALID_DATE);
+        Date date = new Date(LocalDate.parse(VALID_DATE, DateTimeFormatter.ofPattern(DATE_PATTERN)));
         assertEquals(date, ParserUtil.parseDate(WHITESPACE + VALID_DATE + WHITESPACE));
     }
 

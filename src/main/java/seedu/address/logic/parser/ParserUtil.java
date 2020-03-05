@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.transaction.Date.DATE_PATTERN;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,7 +18,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Description;
-import seedu.address.model.util.Date;
+import seedu.address.model.transaction.Date;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -124,7 +127,7 @@ public class ParserUtil {
         if (!Date.isValidDate(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        return Date.of(trimmedDate);
+        return new Date(LocalDate.parse(trimmedDate, DateTimeFormatter.ofPattern(DATE_PATTERN)));
     }
 
     /**

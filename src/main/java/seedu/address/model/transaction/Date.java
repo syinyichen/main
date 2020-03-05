@@ -1,8 +1,9 @@
-package seedu.address.model.util;
+package seedu.address.model.transaction;
 
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a Date in Sharkie.
@@ -11,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Date {
 
+    public static final String DATE_PATTERN = "dd/MM/uuuu";
     public static final String DATE_FORMAT = "dd/MM/yyyy";
     public static final String MESSAGE_CONSTRAINTS = "Dates should be in form: " + DATE_FORMAT;
 
@@ -29,24 +31,15 @@ public class Date {
      */
     public static boolean isValidDate(String test) {
         try {
-            SimpleDateFormat format = new SimpleDateFormat(DATE_FORMAT);
-            format.setLenient(false);
-            format.parse(test);
-        } catch (java.text.ParseException e) {
+            LocalDate.parse(test, DateTimeFormatter.ofPattern(DATE_PATTERN).withResolverStyle(ResolverStyle.STRICT));
+        } catch (DateTimeParseException e) {
+            e.printStackTrace();
             return false;
         } catch (IllegalArgumentException e) {
             return false;
         }
 
         return true;
-    }
-
-    /**
-     * Creates a new Date object on the given date String.
-     */
-
-    public static Date of(String date) {
-        return new Date(LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT)));
     }
 
     public LocalDate getDate() {
@@ -60,6 +53,8 @@ public class Date {
 
     @Override
     public boolean equals(Object other) {
-        return date.toString().equals(((Date) other).toString());
+        return other == this
+                || (other instanceof Date
+                && date.toString().equals(((Date) other).toString()));
     }
 }
