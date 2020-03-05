@@ -488,8 +488,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_adding_a_person_add">5.3.1. Adding a person: <code>add</code></a></li>
 <li><a href="#_sending_reminder_to_a_friend_remind_coming_in_v2_0">5.3.2. Sending reminder to a friend: <code>remind</code> <code>[coming in v2.0]</code></a></li>
 <li><a href="#_sending_reminder_to_all_friend_remindall_coming_in_v2_0">5.3.3. Sending reminder to all friend: <code>remindall</code> <code>[coming in v2.0]</code></a></li>
+<<<<<<< HEAD
 <li><a href="#_recording_the_money_you_owe_owe_coming_in_v2_0">5.3.4. Recording the money you owe: <code>owe</code> <code>[coming in v2.0]</code></a></li>
 <li><a href="#_recording_the_money_you_lend_lend_coming_in_v2_0">5.3.5. Recording the money you lend: <code>lend</code> <code>[coming in v2.0]</code></a></li>
+=======
+<li><a href="#_recording_the_money_you_owe_owe">5.3.4. Recording the money you owe: <code>owe</code></a></li>
+<li><a href="#_recording_the_money_you_lend_lend">5.3.5. Recording the money you lend: <code>lend</code></a></li>
+>>>>>>> 967d7aed388fe4e3d5f19b3bc5580de3e6f9aeac
 <li><a href="#_finding_a_person_find">5.3.6. Finding a person: <code>find</code></a></li>
 <li><a href="#_editing_a_person_edit">5.3.7. Editing a person : <code>edit</code></a></li>
 <li><a href="#_deleting_a_person_delete">5.3.8. Deleting a person : <code>delete</code></a></li>
@@ -1113,10 +1118,17 @@ Reminded Joel to return $30.75!</pre>
 </div>
 </div>
 <div class="sect3 has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-355">
+<<<<<<< HEAD
 <h4 id="_recording_the_money_you_owe_owe_coming_in_v2_0">5.3.4. Recording the money you owe: <code>owe</code> <code>[coming in v2.0]</code></h4>
 <div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-357">
 <p>Records the amount of money that you owe a person.<br>
 Format: <code>people owe &lt;index&gt; $/&lt;amount&gt; [d/&lt;date:dd/mm/yyyy&gt;]</code></p>
+=======
+<h4 id="_recording_the_money_you_owe_owe">5.3.4. Recording the money you owe: <code>owe</code></h4>
+<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-357">
+<p>Records the amount of money that you owe a person.<br>
+Format: <code>people owe &lt;index&gt; n/&lt;description&gt; $/&lt;amount&gt; d/&lt;date:dd/mm/yyyy&gt;</code></p>
+>>>>>>> 967d7aed388fe4e3d5f19b3bc5580de3e6f9aeac
 </div>
 <div class="sidebarblock has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-360">
 <div class="content">
@@ -1144,12 +1156,20 @@ Format: <code>people owe &lt;index&gt; $/&lt;amount&gt; [d/&lt;date:dd/mm/yyyy&g
 <div class="ulist has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-369">
 <ul>
 <li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-369">
+<<<<<<< HEAD
 <p><code>people owe 4 $/5.00 d/10/10/2020</code>
+=======
+<p><code>people owe 4 n/food $/5.00 d/10/10/2020</code>
+>>>>>>> 967d7aed388fe4e3d5f19b3bc5580de3e6f9aeac
 Records that you owe the 4th person $5.00 on 10/10/2020.<br>
 Expected Outcome:</p>
 <div class="literalblock has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-373">
 <div class="content">
+<<<<<<< HEAD
 <pre>Increased debt to Grace by $5.00!</pre>
+=======
+<pre>Increased debt to Grace by $5.00! You now owe Grace $10.00.</pre>
+>>>>>>> 967d7aed388fe4e3d5f19b3bc5580de3e6f9aeac
 </div>
 </div>
 </li>
@@ -1157,10 +1177,17 @@ Expected Outcome:</p>
 </div>
 </div>
 <div class="sect3 has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-378">
+<<<<<<< HEAD
 <h4 id="_recording_the_money_you_lend_lend_coming_in_v2_0">5.3.5. Recording the money you lend: <code>lend</code> <code>[coming in v2.0]</code></h4>
 <div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-380">
 <p>Records the amount of money that you lend to a person. This will increase that person&#8217;s debt.<br>
 Format: <code>people lend &lt;index&gt; $/&lt;amount&gt; [d/&lt;date:dd/mm/yyyy&gt;]</code></p>
+=======
+<h4 id="_recording_the_money_you_lend_lend">5.3.5. Recording the money you lend: <code>lend</code></h4>
+<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-380">
+<p>Records the amount of money that you lend to a person. This will increase that person&#8217;s debt.<br>
+Format: <code>people lend &lt;index&gt; n/&lt;description&gt; $/&lt;amount&gt; d/&lt;date:dd/mm/yyyy&gt;</code></p>
+>>>>>>> 967d7aed388fe4e3d5f19b3bc5580de3e6f9aeac
 </div>
 <div class="sidebarblock has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-383">
 <div class="content">
@@ -1188,12 +1215,20 @@ Format: <code>people lend &lt;index&gt; $/&lt;amount&gt; [d/&lt;date:dd/mm/yyyy&
 <div class="ulist has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-392">
 <ul>
 <li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-392">
+<<<<<<< HEAD
 <p><code>people lend 5 $/5.00 d/10/10/2020</code>
+=======
+<p><code>people lend 5 n/dinner $/5.00 d/10/10/2020</code>
+>>>>>>> 967d7aed388fe4e3d5f19b3bc5580de3e6f9aeac
 Records that you lend the 5th person $5.00 on 10/10/2020.<br>
 Expected Outcome:</p>
 <div class="literalblock has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-396">
 <div class="content">
+<<<<<<< HEAD
 <pre>Increased Syin Yi's debt by $5.00!</pre>
+=======
+<pre>Increased loan to Syin Yi by $5.00. Syin Yi now owes you $8.00.</pre>
+>>>>>>> 967d7aed388fe4e3d5f19b3bc5580de3e6f9aeac
 </div>
 </div>
 </li>
@@ -1399,12 +1434,21 @@ e.g. <code>people remind 1</code></p>
 <p><strong>Remind all</strong> : <code>people remindall</code></p>
 </li>
 <li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-506">
+<<<<<<< HEAD
 <p><strong>Owe</strong> : <code>people owe &lt;index&gt; $/&lt;amount&gt; [d/&lt;date:dd/mm/yyyy&gt;]</code><br>
 e.g. <code>people owe 4 $/5.00 d/10/10/2020</code></p>
 </li>
 <li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-508">
 <p><strong>Lend</strong> : <code>people lend &lt;index&gt; $/&lt;amount&gt; [d/&lt;date:dd/mm/yyyy&gt;]</code><br>
 e.g. <code>people lend 5 $/5.00 d/10/10/2020</code></p>
+=======
+<p><strong>Owe</strong> : <code>people owe &lt;index&gt; n/&lt;description&gt; $/&lt;amount&gt; d/&lt;date:dd/mm/yyyy&gt;</code><br>
+e.g. <code>people owe 4 n/lunch $/5.00 d/10/10/2020</code></p>
+</li>
+<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-508">
+<p><strong>Lend</strong> : <code>people lend &lt;index&gt; n/&lt;description&gt; $/&lt;amount&gt; d/&lt;date:dd/mm/yyyy&gt;</code><br>
+e.g. <code>people lend 5 n/dinner $/5.00 d/10/10/2020</code></p>
+>>>>>>> 967d7aed388fe4e3d5f19b3bc5580de3e6f9aeac
 </li>
 <li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-510">
 <p><strong>Find</strong> : <code>people find &lt;keyword&gt;</code><br>
@@ -1426,8 +1470,16 @@ e.g. <code>people edit 1 e/johndoe@example.com</code><br></p>
 </div>
 <div id="footer">
 <div id="footer-text">
+<<<<<<< HEAD
 Last updated 2020-03-04 00:08:38 +0800
 </div>
 </div>
 </body>
 </html>
+=======
+Last updated 2020-03-04 11:23:18 +0800
+</div>
+</div>
+</body>
+</html>
+>>>>>>> 967d7aed388fe4e3d5f19b3bc5580de3e6f9aeac

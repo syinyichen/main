@@ -7,7 +7,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliPrefix.PEOPLE_COMMAND_TYPE;
 import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalDebts.TEXTBOOK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalLoans.DINNER;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +25,9 @@ import seedu.address.logic.commands.people.PeopleDeleteCommand;
 import seedu.address.logic.commands.people.PeopleEditCommand;
 import seedu.address.logic.commands.people.PeopleEditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.people.PeopleFindCommand;
+import seedu.address.logic.commands.people.PeopleLendCommand;
 import seedu.address.logic.commands.people.PeopleListCommand;
+import seedu.address.logic.commands.people.PeopleOweCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -97,9 +101,26 @@ public class SharkieParserTest {
     }
 
     @Test
+    public void parseCommand_owe() throws Exception {
+        PeopleOweCommand command = (PeopleOweCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
+                + PeopleOweCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                + PersonUtil.getDebtDescription(TEXTBOOK));
+        assertEquals(new PeopleOweCommand(INDEX_FIRST_PERSON, TEXTBOOK), command);
+    }
+
+    @Test
+    public void parseCommand_lend() throws Exception {
+        PeopleLendCommand command = (PeopleLendCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
+                + PeopleLendCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                + PersonUtil.getLoanDescription(DINNER));
+        assertEquals(new PeopleLendCommand(INDEX_FIRST_PERSON, DINNER), command);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-                -> parser.parseCommand(""));
+        assertThrows(ParseException.class,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), () ->
+                        parser.parseCommand(""));
     }
 
     @Test
@@ -109,10 +130,10 @@ public class SharkieParserTest {
 
     @Test
     public void parseCommand_globalCommands_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser
-                .parseCommand(ExitCommand.COMMAND_WORD + " 3"));
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser
-                .parseCommand(HelpCommand.COMMAND_WORD + " 3"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand(ExitCommand.COMMAND_WORD + " 3"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand(HelpCommand.COMMAND_WORD + " 3"));
     }
 
     @Test
