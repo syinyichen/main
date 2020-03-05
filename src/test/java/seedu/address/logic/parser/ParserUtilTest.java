@@ -43,8 +43,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, () ->
+                ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
     @Test
@@ -147,7 +147,6 @@ public class ParserUtilTest {
         Amount expectedAmount = new Amount(Double.parseDouble(VALID_AMOUNT));
         assertEquals(expectedAmount, ParserUtil.parseAmount(amountWithWhitespace));
     }
-
 
 
     @Test
