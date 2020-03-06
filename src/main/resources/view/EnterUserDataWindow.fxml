@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.*?>
+
+<fx:root title="User Data Missing!" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal"
+         xmlns:fx="http://javafx.com/fxml/1" alwaysOnTop="true">
+    <scene>
+        <Scene>
+            <VBox alignment="CENTER" prefHeight="300" prefWidth="400">
+                <VBox alignment="CENTER_LEFT">
+                    <Label fx:id="instructionMessage" text="instruction" textAlignment="LEFT"/>
+                    <padding>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
+                    </padding>
+                    <Label fx:id="errorMessage" text="" textAlignment="LEFT" textFill="red" wrapText="true"/>
+                    <padding>
+                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
+                    </padding>
+                </VBox>
+                <HBox alignment="CENTER">
+                    <children>
+                        <Label text="Name: "/>
+                        <TextField fx:id="userNameTextField" onAction="#handleUserData"
+                                   promptText="Enter your name here" prefWidth="250"/>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="5.0" right="10.0" top="5.0"/>
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <children>
+                        <Label text="Phone: "/>
+                        <TextField fx:id="userPhoneTextField" onAction="#handleUserData"
+                                   promptText="Enter your phone number here" prefWidth="250"/>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="5.0" right="10.0" top="5.0"/>
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <children>
+                        <Label text="Email: "/>
+                        <TextField fx:id="userEmailTextField" onAction="#handleUserData"
+                                   promptText="Enter your e-mail here" prefWidth="250"/>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="5.0" right="10.0" top="5.0"/>
+                    </padding>
+                </HBox>
+                <HBox alignment="CENTER">
+                    <children>
+                        <Button fx:id="submitButton" mnemonicParsing="false" onAction="#handleUserData"
+                                text="Submit"/>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="5.0" right="10.0" top="5.0"/>
+                    </padding>
+                </HBox>
+            </VBox>
+        </Scene>
+    </scene>
+</fx:root>

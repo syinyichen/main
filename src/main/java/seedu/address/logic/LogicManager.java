@@ -14,7 +14,12 @@ import seedu.address.logic.parser.SharkieParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.UserData;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.User;
 import seedu.address.storage.Storage;
 
 /**
@@ -49,6 +54,18 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
+    }
+
+    @Override
+    public void storeUserData(String name, String phone, String email) throws IllegalArgumentException, IOException {
+        if (!(Name.isValidName(name) && Phone.isValidPhone(phone) && Email.isValidEmail(email))) {
+            throw new IllegalArgumentException();
+        } else {
+            User user = new User(new Name(name), new Phone(phone), new Email(email));
+            UserData userData = new UserData(user);
+            model.setUserData(userData);
+            storage.saveUserData(userData);
+        }
     }
 
     @Override

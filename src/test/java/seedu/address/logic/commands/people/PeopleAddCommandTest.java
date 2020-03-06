@@ -20,6 +20,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.transaction.Expense;
@@ -113,6 +114,16 @@ public class PeopleAddCommandTest {
         }
 
         @Override
+        public Path getUserDataFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setUserDataFilePath(Path userDataFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -189,6 +200,11 @@ public class PeopleAddCommandTest {
 
         @Override
         public void setExpense(Expense target, Expense editedExpense) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setUserData(ReadOnlyUserData userData) {
             throw new AssertionError("This method should not be called.");
         }
     }

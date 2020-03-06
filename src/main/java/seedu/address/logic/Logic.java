@@ -1,5 +1,6 @@
 package seedu.address.logic;
 
+import java.io.IOException;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
@@ -23,6 +24,16 @@ public interface Logic {
      * @throws ParseException   If an error occurs during parsing.
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
+
+    /**
+     * Records and stores the user data.
+     *
+     * @param name The user's name.
+     * @param phone The user's phone number.
+     * @param email The user's email address.
+     * @throws IOException If error occurs when writing the user data into the file.
+     */
+    void storeUserData(String name, String phone, String email) throws IOException;
 
     /**
      * Returns the AddressBook.
