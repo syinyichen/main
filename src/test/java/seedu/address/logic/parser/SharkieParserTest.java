@@ -29,6 +29,7 @@ import seedu.address.logic.commands.people.PeopleLendCommand;
 import seedu.address.logic.commands.people.PeopleListCommand;
 import seedu.address.logic.commands.people.PeopleOweCommand;
 import seedu.address.logic.commands.people.PeopleRemindCommand;
+import seedu.address.logic.commands.people.PeopleRemindallCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -122,6 +123,14 @@ public class SharkieParserTest {
         PeopleRemindCommand command = (PeopleRemindCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
                 + PeopleRemindCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new PeopleRemindCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseCommand_remindall() throws Exception {
+        assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + PeopleRemindallCommand.COMMAND_WORD)
+                instanceof PeopleRemindallCommand);
+        assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + PeopleRemindallCommand.COMMAND_WORD + " 3")
+                instanceof PeopleRemindallCommand);
     }
 
     @Test

@@ -55,7 +55,7 @@ public class PeopleRemindCommand extends Command {
         Person personToBeReminded = lastShownList.get(targetIndex.getZeroBased());
 
         if (personToBeReminded.getLoans().getTotal().isZero()) {
-            throw new CommandException(String.format(Messages.MESSAGE_PERSON_WITH_ZERO_LOAN,
+            throw new CommandException(String.format("%1$s does not owe you money :(",
                     personToBeReminded.getName()));
         }
 

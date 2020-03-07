@@ -13,7 +13,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -37,7 +36,7 @@ public class PeopleRemindCommandTest {
 
         PeopleRemindCommand peopleRemindCommand = new PeopleRemindCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(Messages.MESSAGE_PERSON_WITH_ZERO_LOAN,
+        String expectedMessage = String.format("%1$s does not owe you money :(",
                 personUserReminds.getName());
 
         assertCommandFailure(peopleRemindCommand, model, expectedMessage);
