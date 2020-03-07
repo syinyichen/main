@@ -110,6 +110,17 @@ public interface Model {
     void setUserData(ReadOnlyUserData userData);
 
     /**
+     * Returns the UserData.
+     */
+    ReadOnlyUserData getUserData();
+
+    /**
+     * Return true if the user has not enter the user data.
+     * @return
+     */
+    boolean isUserDataNull();
+
+    /**
      * Returns true if the given {@code income} exists in the Wallet.
      */
     boolean hasIncome(Income income);

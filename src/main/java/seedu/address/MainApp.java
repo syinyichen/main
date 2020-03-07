@@ -21,6 +21,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.UserData;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
@@ -182,6 +183,8 @@ public class MainApp extends Application {
             if (!userDataOptional.isPresent()) {
                 logger.info("User data file not found. Kindly enter your data. Thank you. :)");
                 ui.openEnterUserDataWindow();
+            } else {
+                logic.setUserData((UserData) userDataOptional.get());
             }
         } catch (DataConversionException e) {
             logger.warning("User data file not in the correct format. Kindly re-enter your data. Thank you. :)");

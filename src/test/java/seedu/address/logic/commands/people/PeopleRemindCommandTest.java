@@ -1,0 +1,68 @@
+package seedu.address.logic.commands.people;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
+
+public class PeopleRemindCommandTest {
+
+    private Model model;
+    private Model expectedModel;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+    }
+
+    @Test
+    public void execute_personWithZeroDebt_failure() {
+        List<Person> lastShownList = model.getFilteredPersonList();
+        Person personUserReminds = lastShownList.get(INDEX_FIRST_PERSON.getZeroBased());
+
+        PeopleRemindCommand peopleRemindCommand = new PeopleRemindCommand(INDEX_FIRST_PERSON);
+
+        String expectedMessage = String.format(Messages.MESSAGE_PERSON_WITH_ZERO_LOAN,
+                personUserReminds.getName());
+
+        assertCommandFailure(peopleRemindCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void equals() {
+
+        final PeopleRemindCommand standardCommand = new PeopleRemindCommand(INDEX_SECOND_PERSON);
+
+        // same values -> returns true
+        PeopleRemindCommand commandWithSameValues = new PeopleRemindCommand(INDEX_SECOND_PERSON);
+        assertTrue(standardCommand.equals(commandWithSameValues));
+
+        // same object -> returns true
+        assertTrue(standardCommand.equals(standardCommand));
+
+        // null -> returns false
+        assertFalse(standardCommand.equals(null));
+
+        // different types -> returns false
+        assertFalse(standardCommand.equals(new PeopleClearCommand()));
+
+        // different index -> returns false
+        assertFalse(standardCommand.equals(new PeopleRemindCommand(INDEX_THIRD_PERSON)));
+    }
+
+}

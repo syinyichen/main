@@ -144,6 +144,16 @@ public class ModelManager implements Model {
         this.userData = new UserData(userData);
     }
 
+    @Override
+    public ReadOnlyUserData getUserData() {
+        return userData;
+    }
+
+    @Override
+    public boolean isUserDataNull() {
+        return this.userData == null;
+    }
+
     // =========== Wallet =====================================================================================
 
     @Override

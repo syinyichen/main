@@ -164,6 +164,16 @@ public class PeopleAddCommandTest {
         }
 
         @Override
+        public ReadOnlyUserData getUserData() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isUserDataNull() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasIncome(Income income) {
             throw new AssertionError("This method should not be called.");
         }
