@@ -37,7 +37,6 @@ public class Date {
         try {
             LocalDate.parse(test, DateTimeFormatter.ofPattern(DATE_PATTERN).withResolverStyle(ResolverStyle.STRICT));
         } catch (DateTimeParseException e) {
-            e.printStackTrace();
             return false;
         } catch (IllegalArgumentException e) {
             return false;

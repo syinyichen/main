@@ -128,36 +128,6 @@ public class Wallet implements ReadOnlyWallet {
         expenses.remove(key);
     }
 
-    /**
-     * Retrieves a list of expenses filtered by the {@code date} they were added.
-     */
-    public TransactionList<Expense> getExpensesOnDate(Date date) {
-        TransactionList<Expense> filteredExpenses = new TransactionList<Expense>();
-
-        for (Expense expense : expenses) {
-            if (expense.getDate().equals(date)) {
-                filteredExpenses.add(expense);
-            }
-        }
-
-        return filteredExpenses;
-    }
-
-    /**
-     * Retrieves a list of expenses filtered by the month they were added, using {@code date}.
-     */
-    public TransactionList<Expense> getExpensesInMonthOf(Date date) {
-        TransactionList<Expense> filteredExpenses = new TransactionList<Expense>();
-
-        for (Expense expense : expenses) {
-            if (expense.getDate().isSameMonthAndYearAs(date)) {
-                filteredExpenses.add(expense);
-            }
-        }
-
-        return filteredExpenses;
-    }
-
     // =========== Budget-related Operations =============================================================
 
     /**
@@ -173,7 +143,7 @@ public class Wallet implements ReadOnlyWallet {
      */
     public boolean hasExceededBudget() {
         Date currentDate = Date.getDefault();
-        TransactionList<Expense> filteredExpenses = getExpensesInMonthOf(currentDate);
+        TransactionList<Expense> filteredExpenses = expenses.getTransactionsInMonthOf(currentDate);
 
         return filteredExpenses.getTotal().compareTo(budget.getAmount()) > 0;
     }

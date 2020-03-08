@@ -90,6 +90,36 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
     }
 
     /**
+     * Retrieves a list of transactions filtered by the {@code date} they were added.
+     */
+    public TransactionList<T> getTransactionsOnDate(Date date) {
+        TransactionList<T> filteredTransactions = new TransactionList<T>();
+
+        for (T transaction : this) {
+            if (transaction.getDate().equals(date)) {
+                filteredTransactions.add(transaction);
+            }
+        }
+
+        return filteredTransactions;
+    }
+
+    /**
+     * Retrieves a list of expenses filtered by the month they were added, using {@code date}.
+     */
+    public TransactionList<T> getTransactionsInMonthOf(Date date) {
+        TransactionList<T> filteredTransactions = new TransactionList<T>();
+
+        for (T transaction : this) {
+            if (transaction.getDate().isSameMonthAndYearAs(date)) {
+                filteredTransactions.add(transaction);
+            }
+        }
+
+        return filteredTransactions;
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<T> asUnmodifiableObservableList() {
