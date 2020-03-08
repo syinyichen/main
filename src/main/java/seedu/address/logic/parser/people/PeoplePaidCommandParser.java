@@ -40,10 +40,11 @@ public class PeoplePaidCommandParser implements Parser<PeoplePaidCommand> {
                 Index loanIndex = ParserUtil.parseIndex(tokenizedIndex[1]);
                 return new PeoplePaidCommand(personIndex, loanIndex);
             } else {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeoplePaidCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        PeoplePaidCommand.MESSAGE_USAGE));
             }
         } catch (ParseException pe) {
+            System.out.println(pe.getMessage());
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeoplePaidCommand.MESSAGE_USAGE), pe);
         }

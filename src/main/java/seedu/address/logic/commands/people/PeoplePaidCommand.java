@@ -72,8 +72,6 @@ public class PeoplePaidCommand extends Command {
         if (targetLoanIndex == null) {
             removedLoanPerson = createPersonPaidAll(personPaid);
             amountPaid = personPaid.getLoans().getTotal();
-            model.setPerson(personPaid, removedLoanPerson);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         } else {
             List<Loan> loans = personPaid.getLoans().asUnmodifiableObservableList();
 
@@ -84,9 +82,10 @@ public class PeoplePaidCommand extends Command {
             Loan loanPaid = loans.get(targetLoanIndex.getZeroBased());
             removedLoanPerson = createPersonPaidByIndex(personPaid, loanPaid);
             amountPaid = loanPaid.getAmount();
-            model.setPerson(personPaid, removedLoanPerson);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         }
+
+        model.setPerson(personPaid, removedLoanPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_PAID_SUCCESS, personPaid.getName(),
                 amountPaid, removedLoanPerson.getLoans().getTotal()));
