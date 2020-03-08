@@ -3,7 +3,6 @@ package seedu.address.model.transaction;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
@@ -23,6 +22,7 @@ public class Date {
 
     /**
      * Constructs a valid Date object.
+     *
      * @param date A valid date.
      */
     public Date(LocalDate date) {

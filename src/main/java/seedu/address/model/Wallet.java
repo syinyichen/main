@@ -24,7 +24,8 @@ public class Wallet implements ReadOnlyWallet {
     private final TransactionList<Expense> expenses = new TransactionList<>();
     private Budget budget;
 
-    public Wallet() {}
+    public Wallet() {
+    }
 
     /**
      * Creates an Wallet using the Transactions in the {@code toBeCopied}
@@ -133,8 +134,8 @@ public class Wallet implements ReadOnlyWallet {
     public TransactionList<Expense> getExpensesOnDate(Date date) {
         TransactionList<Expense> filteredExpenses = new TransactionList<Expense>();
 
-        for(Expense expense : expenses) {
-            if(expense.getDate().equals(date)) {
+        for (Expense expense : expenses) {
+            if (expense.getDate().equals(date)) {
                 filteredExpenses.add(expense);
             }
         }
@@ -148,8 +149,8 @@ public class Wallet implements ReadOnlyWallet {
     public TransactionList<Expense> getExpensesInMonthOf(Date date) {
         TransactionList<Expense> filteredExpenses = new TransactionList<Expense>();
 
-        for(Expense expense : expenses) {
-            if(expense.getDate().isSameMonthAndYearAs(date)) {
+        for (Expense expense : expenses) {
+            if (expense.getDate().isSameMonthAndYearAs(date)) {
                 filteredExpenses.add(expense);
             }
         }
