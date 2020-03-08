@@ -22,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.transaction.Budget;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
 import seedu.address.testutil.PersonBuilder;
@@ -189,6 +190,11 @@ public class PeopleAddCommandTest {
 
         @Override
         public void setExpense(Expense target, Expense editedExpense) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setBudget(Budget budget) {
             throw new AssertionError("This method should not be called.");
         }
     }
