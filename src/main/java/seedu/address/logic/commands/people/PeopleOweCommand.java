@@ -80,12 +80,12 @@ public class PeopleOweCommand extends Command {
         Name name = personUserOwe.getName();
         Phone phone = personUserOwe.getPhone();
         Email email = personUserOwe.getEmail();
-        TransactionList<Debt> updatedDebt = new TransactionList<>();
-        updatedDebt.setTransactions(personUserOwe.getDebts());
-        updatedDebt.add(debt);
+        TransactionList<Debt> updatedDebts = new TransactionList<>();
+        updatedDebts.setTransactions(personUserOwe.getDebts());
+        updatedDebts.add(debt);
         TransactionList<Loan> loans = personUserOwe.getLoans();
         Set<Tag> tags = personUserOwe.getTags();
-        return new Person(name, phone, email, updatedDebt, loans, tags);
+        return new Person(name, phone, email, updatedDebts, loans, tags);
     }
 
     @Override
