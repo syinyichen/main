@@ -26,7 +26,7 @@ public class PeoplePaidCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_unfilteredList_paidAll_success() {
+    public void execute_unfilteredListPaidAll_success() {
         List<Person> lastShownList = model.getFilteredPersonList();
         Person paidAllPerson = lastShownList.get(INDEX_SECOND_PERSON.getZeroBased());
         Amount originalAmount = paidAllPerson.getLoans().getTotal();
@@ -44,7 +44,7 @@ public class PeoplePaidCommandTest {
     }
 
     @Test
-    public void execute_unfilteredList_paidByIndex_success() {
+    public void execute_unfilteredListPaidByIndex_success() {
         List<Person> lastShownList = model.getFilteredPersonList();
         Person paidPerson = lastShownList.get(INDEX_SECOND_PERSON.getZeroBased());
         Amount originalAmount = paidPerson.getLoans().getTotal();
