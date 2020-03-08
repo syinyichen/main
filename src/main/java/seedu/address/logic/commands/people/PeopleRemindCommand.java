@@ -65,12 +65,12 @@ public class PeopleRemindCommand extends Command {
 
         User user = model.getUserData().getUser();
         Reminder reminder = new Reminder(user, personToBeReminded);
-        logger.info("Sending reminder...");
+        logger.info("Sending reminder to " + personToBeReminded.getName() + "...");
 
         try {
             reminder.sendReminder();
         } catch (MessagingException e) {
-            throw new CommandException("Error occurs while sending email:\n" + e.getMessage()
+            throw new CommandException("Error occured while sending email:\n" + e.getMessage()
                     + "\nPlease make sure that you are connected to the internet.\n"
                     + "Please check that the receiver's email address is a valid email!");
         }

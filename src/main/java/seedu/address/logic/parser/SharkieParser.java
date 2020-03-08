@@ -20,8 +20,8 @@ import seedu.address.logic.commands.people.PeopleFindCommand;
 import seedu.address.logic.commands.people.PeopleLendCommand;
 import seedu.address.logic.commands.people.PeopleListCommand;
 import seedu.address.logic.commands.people.PeopleOweCommand;
+import seedu.address.logic.commands.people.PeopleRemindAllCommand;
 import seedu.address.logic.commands.people.PeopleRemindCommand;
-import seedu.address.logic.commands.people.PeopleRemindallCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.people.PeopleAddCommandParser;
 import seedu.address.logic.parser.people.PeopleDeleteCommandParser;
@@ -107,8 +107,8 @@ public class SharkieParser {
         case PeopleRemindCommand.COMMAND_WORD:
             return new PeopleRemindCommandParser().parse(arguments);
 
-        case PeopleRemindallCommand.COMMAND_WORD:
-            return new PeopleRemindallCommand();
+        case PeopleRemindAllCommand.COMMAND_WORD:
+            return new PeopleRemindAllCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -36,7 +36,7 @@ public class PeopleRemindAllCommandTest {
     @Test
     public void execute_emptyUserData_success() {
 
-        PeopleRemindallCommand peopleRemindallCommand = new PeopleRemindallCommand();
+        PeopleRemindAllCommand peopleRemindallCommand = new PeopleRemindAllCommand();
 
         assertCommandFailure(peopleRemindallCommand, model, Messages.MESSAGE_EMPTY_USER_DATA);
     }
@@ -55,7 +55,7 @@ public class PeopleRemindAllCommandTest {
         }
         expectedMessage += "Sharkie has sent copies of the reminders to your email!";
 
-        assertCommandSuccess(new PeopleRemindallCommand(), model, expectedMessage, expectedModel);
+        assertCommandSuccess(new PeopleRemindAllCommand(), model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -72,7 +72,7 @@ public class PeopleRemindAllCommandTest {
         }
         expectedMessage += "Sharkie has sent copies of the reminders to your email!";
 
-        assertCommandSuccess(new PeopleRemindallCommand(), model, expectedMessage, expectedModel);
+        assertCommandSuccess(new PeopleRemindAllCommand(), model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -89,6 +89,6 @@ public class PeopleRemindAllCommandTest {
 
         String expectedMessage = "No one owes you money :(";
 
-        assertCommandFailure(new PeopleRemindallCommand(), model, expectedMessage);
+        assertCommandFailure(new PeopleRemindAllCommand(), model, expectedMessage);
     }
 }

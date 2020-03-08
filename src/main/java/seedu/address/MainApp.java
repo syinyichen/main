@@ -172,7 +172,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Checks if the user data is stores.
+     * Checks if the user data is stored.
      * If user data is not stored, opens the window to record user data.
      */
     private void checkUserData() {

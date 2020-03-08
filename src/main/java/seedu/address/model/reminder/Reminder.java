@@ -25,8 +25,8 @@ public class Reminder {
     private Person receiver;
     private MimeMessage message;
 
-    private final String username = "noreply.loansharkie";
-    private final String password = "cs2103t-w12-3";
+    private final String emailUsername = "noreply.loansharkie";
+    private final String emailPassword = "cs2103t-w12-3";
 
     /**
      * Constructs a Reminder object.
@@ -50,7 +50,7 @@ public class Reminder {
 
         Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
+                return new PasswordAuthentication(emailUsername, emailPassword);
             }
         });
 

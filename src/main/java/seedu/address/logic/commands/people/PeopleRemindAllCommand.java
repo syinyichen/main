@@ -20,7 +20,7 @@ import seedu.address.model.reminder.Reminder;
 /**
  * Reminds everyone in the address book, who owe the user money.
  */
-public class PeopleRemindallCommand extends Command {
+public class PeopleRemindAllCommand extends Command {
 
     public static final String COMMAND_WORD = "remindall";
 
@@ -39,7 +39,7 @@ public class PeopleRemindallCommand extends Command {
         int numberOfPeopleReminded = 0;
         String feedbackToUser = "";
 
-        logger.info("Sending reminder...");
+        logger.info("Sending reminders...");
 
         try {
             for (Person person : lastShownList) {
@@ -52,7 +52,7 @@ public class PeopleRemindallCommand extends Command {
                 }
             }
         } catch (MessagingException e) {
-            throw new CommandException("Error occurs while sending email:\n" + e.getMessage()
+            throw new CommandException("Error occured while sending email:\n" + e.getMessage()
                     + "\nPlease make sure that you are connected to the internet.\n"
                     + "Please check that the receiver's email address is a valid email!");
         }
