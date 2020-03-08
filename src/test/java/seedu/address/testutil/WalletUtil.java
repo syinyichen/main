@@ -6,8 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.time.format.DateTimeFormatter;
-
 import seedu.address.logic.commands.wallet.WalletExpenseCommand;
 import seedu.address.logic.commands.wallet.WalletIncomeCommand;
 import seedu.address.model.transaction.Expense;
@@ -43,7 +41,7 @@ public class WalletUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + transaction.getDescription().description + " ");
         sb.append(PREFIX_AMOUNT + String.valueOf(transaction.getAmount().amount) + " ");
-        sb.append(PREFIX_DATE + transaction.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " ");
+        sb.append(PREFIX_DATE + transaction.getDate().getInputFormat() + " ");
         sb.append(PREFIX_TAG + transaction.getTag().tagName);
         return sb.toString();
     }

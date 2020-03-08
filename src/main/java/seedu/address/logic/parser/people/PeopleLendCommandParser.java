@@ -6,8 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
-import java.time.LocalDate;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.people.PeopleLendCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -56,7 +54,7 @@ public class PeopleLendCommandParser implements Parser<PeopleLendCommand> {
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         } else {
-            date = new Date(LocalDate.now());
+            date = Date.getDefault();
         }
 
         try {

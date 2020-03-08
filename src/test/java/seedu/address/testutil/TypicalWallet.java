@@ -19,7 +19,7 @@ import seedu.address.model.transaction.Income;
 public class TypicalWallet {
 
     public static final Income ALLOWANCE = new Income(new Description("Allowance from Parents"), new Amount(300),
-            LocalDate.of(2020, 1, 1), new Tag("Allowance"));
+            new Date(LocalDate.of(2020, 1, 1)), new Tag("Allowance"));
     public static final Income TA_JOB = new Income(new Description("CS2103 TA"), new Amount(3000),
             new Date(LocalDate.of(2020, 1, 1)), new Tag("Job"));
     public static final Expense DUCK_RICE = new Expense(new Description("Duck Rice"), new Amount(3.50),

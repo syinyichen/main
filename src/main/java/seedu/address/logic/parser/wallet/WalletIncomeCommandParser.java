@@ -6,8 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.time.LocalDate;
-
 import seedu.address.logic.commands.wallet.WalletIncomeCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -47,7 +45,7 @@ public class WalletIncomeCommandParser implements Parser<WalletIncomeCommand> {
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         } else {
-            date = new Date(LocalDate.now());
+            date = Date.getDefault();
         }
 
         Tag tag;
@@ -57,7 +55,7 @@ public class WalletIncomeCommandParser implements Parser<WalletIncomeCommand> {
             tag = new Tag("Misc");
         }
 
-        Income income = new Income(description, amount, date.getDate(), tag);
+        Income income = new Income(description, amount, date, tag);
 
         return new WalletIncomeCommand(income);
     }
