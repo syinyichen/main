@@ -8,6 +8,7 @@ import java.util.List;
 import seedu.address.model.Wallet;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Amount;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
@@ -20,11 +21,11 @@ public class TypicalWallet {
     public static final Income ALLOWANCE = new Income(new Description("Allowance from Parents"), new Amount(300),
             LocalDate.of(2020, 1, 1), new Tag("Allowance"));
     public static final Income TA_JOB = new Income(new Description("CS2103 TA"), new Amount(3000),
-            LocalDate.of(2020, 1, 1), new Tag("Job"));
+            new Date(LocalDate.of(2020, 1, 1)), new Tag("Job"));
     public static final Expense DUCK_RICE = new Expense(new Description("Duck Rice"), new Amount(3.50),
-            LocalDate.of(2020, 1, 2), new Tag("Food"));
+            new Date(LocalDate.of(2020, 1, 2)), new Tag("Food"));
     public static final Expense MRT_CONCESSION = new Expense(new Description("Monthly MRT Concession pass"),
-            new Amount(45), LocalDate.of(2020, 1, 3), new Tag("Transport"));
+            new Amount(45), new Date(LocalDate.of(2020, 1, 3)), new Tag("Transport"));
 
     private TypicalWallet() {} // prevents instantiation
 

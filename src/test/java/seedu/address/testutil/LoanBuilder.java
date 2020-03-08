@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.time.LocalDate;
 
 import seedu.address.model.transaction.Amount;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Loan;
 
@@ -17,12 +18,12 @@ public class LoanBuilder {
 
     private Description description;
     private Amount amount;
-    private LocalDate date;
+    private Date date;
 
     public LoanBuilder() {
         description = new Description(DEFAULT_DESCRIPTION);
         amount = new Amount(Double.parseDouble(DEFAULT_AMOUNT));
-        date = LocalDate.parse(DEFAULT_DATE);
+        date = new Date(LocalDate.parse(DEFAULT_DATE));
     }
 
     /**
@@ -54,7 +55,7 @@ public class LoanBuilder {
      * Sets the {@code LocalDate} of the {@code Loan} that we are building.
      */
     public LoanBuilder withDate(String date) {
-        this.date = LocalDate.parse(date);
+        this.date = new Date(LocalDate.parse(date));
         return this;
     }
 
