@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.people.PeopleOweCommand;
 import seedu.address.model.transaction.Amount;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Debt;
 import seedu.address.model.transaction.Description;
 
@@ -85,7 +86,7 @@ public class PeopleOweCommandParserTest {
         // valid description, valid amount with invalid date
         assertParseFailure(parser,
                 "1 " + PREFIX_NAME + VALID_DESC_AMY + " " + PREFIX_AMOUNT + VALID_AMOUNT_AMY + INVALID_DATE,
-                MESSAGE_INVALID_FORMAT);
+                Date.MESSAGE_CONSTRAINTS);
         // valid description, invalid amount with valid date
         assertParseFailure(parser, "1 " + PREFIX_NAME + VALID_DESC_AMY + INVALID_AMOUNT + VALID_DATE_AMY,
                 Amount.MESSAGE_CONSTRAINTS);
@@ -115,8 +116,8 @@ public class PeopleOweCommandParserTest {
 
         Debt debt = new Debt(new Description(VALID_DESC_AMY),
                 new Amount(Double.parseDouble(VALID_AMOUNT_AMY)),
-                LocalDate.parse(VALID_DATE_AMY,
-                DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                new Date(LocalDate.parse(VALID_DATE_AMY,
+                DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
         PeopleOweCommand expectedCommand = new PeopleOweCommand(targetIndex, debt);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -129,7 +130,7 @@ public class PeopleOweCommandParserTest {
 
         Debt debt = new Debt(new Description(VALID_DESC_BOB),
                 new Amount(Double.parseDouble(VALID_AMOUNT_BOB)),
-                LocalDate.now());
+                new Date(LocalDate.now()));
         PeopleOweCommand expectedCommand = new PeopleOweCommand(targetIndex, debt);
 
         assertParseSuccess(parser, userInput, expectedCommand);

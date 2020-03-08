@@ -1,6 +1,5 @@
 package seedu.address.model.transaction;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 import seedu.address.model.tag.Tag;
@@ -13,7 +12,7 @@ public class Income extends Transaction {
     /**
      * Every field must be present and not null.
      */
-    public Income(Description description, Amount amount, LocalDate date, Tag tag) {
+    public Income(Description description, Amount amount, Date date, Tag tag) {
         super(description, amount, date, tag);
     }
 

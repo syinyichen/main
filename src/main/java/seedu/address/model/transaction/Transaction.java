@@ -2,7 +2,6 @@ package seedu.address.model.transaction;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 import seedu.address.model.tag.Tag;
@@ -15,13 +14,13 @@ public abstract class Transaction {
     // Data fields
     protected final Description description;
     protected final Amount amount;
-    protected final LocalDate date;
+    protected final Date date;
     protected final Tag tag;
 
     /**
      * Every field must be present and not null.
      */
-    public Transaction(Description description, Amount amount, LocalDate date, Tag tag) {
+    public Transaction(Description description, Amount amount, Date date, Tag tag) {
         requireAllNonNull(description, amount, date, tag);
         this.description = description;
         this.amount = amount;
@@ -37,7 +36,7 @@ public abstract class Transaction {
         return amount;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 

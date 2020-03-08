@@ -5,12 +5,11 @@ import static seedu.address.storage.JsonAdaptedDebt.MISSING_FIELD_MESSAGE_FORMAT
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDebts.SUPPER;
 
-import java.time.LocalDate;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.transaction.Amount;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Description;
 
 class JsonAdaptedDebtTest {
@@ -63,7 +62,7 @@ class JsonAdaptedDebtTest {
     public void toModelType_nullDate_throwsIllegalValueException() {
         JsonAdaptedDebt debt =
                 new JsonAdaptedDebt(VALID_DESC, VALID_AMOUNT, null);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, LocalDate.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, debt::toModelType);
     }
 
