@@ -2,11 +2,6 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -14,6 +9,10 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -25,6 +24,8 @@ public class ModelManager implements Model {
     private final Wallet wallet;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    //private final FilteredList<Expense> filteredExpenses;
+    private final FilteredList<Expense> filteredExpenses;
 
     /**
      * Initializes a ModelManager with the given addressBook, wallet and userPrefs.
@@ -40,6 +41,7 @@ public class ModelManager implements Model {
         this.wallet = new Wallet(wallet);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredExpenses = new FilteredList<>(wallet.getExpenseList());
     }
 
     /**
@@ -168,6 +170,11 @@ public class ModelManager implements Model {
         wallet.setExpense(target, editedExpense);
     }
 
+    @Override
+    public ObservableList<Expense> getFilteredExpenseList() {
+        return filteredExpenses;
+    }
+
     // =========== Util Methods ===============================================================================
 
     /**
@@ -184,6 +191,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
