@@ -94,6 +94,10 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Returns the AddressBook
+     */
+    ReadOnlyWallet getWallet();
 
     /**
      * Returns true if the given {@code income} exists in the Wallet.

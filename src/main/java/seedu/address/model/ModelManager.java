@@ -129,6 +129,11 @@ public class ModelManager implements Model {
     // =========== Wallet =====================================================================================
 
     @Override
+    public ReadOnlyWallet getWallet() {
+        return wallet;
+    }
+
+    @Override
     public boolean hasIncome(Income income) {
         return wallet.hasIncome(income);
     }

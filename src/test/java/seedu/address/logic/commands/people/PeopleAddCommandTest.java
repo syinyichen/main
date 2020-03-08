@@ -5,15 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
-import org.junit.jupiter.api.Test;
-
 import javafx.collections.ObservableList;
+import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -21,10 +14,16 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.ReadOnlyWallet;
 import seedu.address.model.person.Person;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
 import seedu.address.testutil.PersonBuilder;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
 
 public class PeopleAddCommandTest {
 
@@ -152,6 +151,10 @@ public class PeopleAddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        public ReadOnlyWallet getWallet() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public boolean hasIncome(Income income) {
             throw new AssertionError("This method should not be called.");
@@ -189,6 +192,11 @@ public class PeopleAddCommandTest {
 
         @Override
         public void setExpense(Expense target, Expense editedExpense) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Expense> getFilteredExpenseList() {
             throw new AssertionError("This method should not be called.");
         }
     }
