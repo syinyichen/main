@@ -3,6 +3,7 @@ package seedu.address.model.transaction;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
@@ -54,6 +55,10 @@ public class Date {
      */
     public String getInputFormat() {
         return date.format(DateTimeFormatter.ofPattern(DATE_PATTERN));
+    }
+
+    public static Date getDefault() {
+        return new Date(LocalDate.now());
     }
 
     @Override

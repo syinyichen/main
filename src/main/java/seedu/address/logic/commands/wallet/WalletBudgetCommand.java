@@ -30,7 +30,7 @@ public class WalletBudgetCommand extends Command {
             + PREFIX_AMOUNT + "1000 "
             + PREFIX_DATE + "10/10/2020 \n";
 
-    public static final String MESSAGE_SUCCESS = "Budget has been set at %1$s for %2$s";
+    public static final String MESSAGE_SUCCESS = "Budget has been set at %1$s.";
 
     private final Budget budget;
 
@@ -41,6 +41,9 @@ public class WalletBudgetCommand extends Command {
 
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        return null;
+
+        model.setBudget(budget);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, budget.getAmount()));
     }
 }

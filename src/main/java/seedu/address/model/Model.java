@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.transaction.Budget;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
 
@@ -138,4 +139,9 @@ public interface Model {
      * {@code target} must exist in the Wallet.
      */
     void setExpense(Expense target, Expense editedExpense);
+
+    /**
+     * Sets the budget as {@code budget}.
+     */
+    void setBudget(Budget budget);
 }

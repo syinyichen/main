@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.transaction.Budget;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
 import seedu.address.model.transaction.Transaction;
@@ -20,6 +21,7 @@ public class Wallet implements ReadOnlyWallet {
 
     private final TransactionList<Income> incomes = new TransactionList<>();
     private final TransactionList<Expense> expenses = new TransactionList<>();
+    private Budget budget;
 
     public Wallet() {}
 
@@ -123,6 +125,13 @@ public class Wallet implements ReadOnlyWallet {
     public void removeExpense(Expense key) {
         expenses.remove(key);
     }
+
+    // =========== Budget-related Operations =============================================================
+    public void setBudget(Budget budget) {
+        requireNonNull(budget);
+        this.budget = budget;
+    }
+
     // =========== Util methods =============================================================
 
     @Override

@@ -22,7 +22,7 @@ public class WalletBudgetCommandParser implements Parser<WalletBudgetCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_AMOUNT)
                 || !argMultimap.getPreamble().isEmpty()) {
             System.out.println(args);
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleAddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, WalletBudgetCommand.MESSAGE_USAGE));
         }
 
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
@@ -31,7 +31,7 @@ public class WalletBudgetCommandParser implements Parser<WalletBudgetCommand> {
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         } else {
-            date = new Date(LocalDate.now());
+            date = Date.getDefault();
         }
 
         Budget budget = new Budget(amount, date);

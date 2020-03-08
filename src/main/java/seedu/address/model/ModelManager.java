@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.transaction.Budget;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
 
@@ -166,6 +167,12 @@ public class ModelManager implements Model {
     public void setExpense(Expense target, Expense editedExpense) {
         requireAllNonNull(target, editedExpense);
         wallet.setExpense(target, editedExpense);
+    }
+
+    @Override
+    public void setBudget(Budget budget) {
+        requireNonNull(budget);
+        wallet.setBudget(budget);
     }
 
     // =========== Util Methods ===============================================================================

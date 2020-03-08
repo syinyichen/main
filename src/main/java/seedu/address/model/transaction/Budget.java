@@ -8,4 +8,12 @@ public class Budget {
         this.budget = budget;
         this.date = date;
     }
+
+    public Amount getAmount() {
+        return budget;
+    }
+
+    public Date getDate() {
+        return date;
+    }
 }
