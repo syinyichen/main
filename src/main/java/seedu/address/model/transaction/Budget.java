@@ -22,4 +22,12 @@ public class Budget {
     public Date getDate() {
         return date;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || other instanceof Budget
+                && budget.equals(((Budget) other).getAmount())
+                && date.equals(((Budget) other).getDate());
+    }
 }

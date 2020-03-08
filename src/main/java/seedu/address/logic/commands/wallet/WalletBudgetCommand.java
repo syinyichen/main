@@ -46,4 +46,11 @@ public class WalletBudgetCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, budget.getAmount()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this ||
+                other instanceof WalletBudgetCommand
+                && budget.equals(((WalletBudgetCommand) other).budget);
+    }
 }
