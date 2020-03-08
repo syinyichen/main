@@ -6,7 +6,9 @@ import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Budget;
+import seedu.address.model.transaction.Date;
 
+import java.time.LocalDate;
 import java.util.stream.Stream;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -24,9 +26,17 @@ public class WalletBudgetCommandParser implements Parser<WalletBudgetCommand> {
         }
 
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
+        Date date;
 
-        return new WalletBudgetCommand(null);
+        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        } else {
+            date = new Date(LocalDate.now());
+        }
 
+        Budget budget = new Budget(amount, date);
+
+        return new WalletBudgetCommand(budget);
     }
 
     /**
