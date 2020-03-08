@@ -167,6 +167,16 @@ public class Wallet implements ReadOnlyWallet {
         this.budget = budget;
     }
 
+    /**
+     * Returns true if the total expenses for the current month has exceeded the budget.
+     */
+    public boolean hasExceededBudget() {
+        Date currentDate = Date.getDefault();
+        TransactionList<Expense> filteredExpenses = getExpensesInMonthOf(currentDate);
+
+        return filteredExpenses.getTotal().compareTo(budget.getAmount()) > 0;
+    }
+
     // =========== Util methods =============================================================
 
     @Override
