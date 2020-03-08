@@ -35,13 +35,13 @@ public class EnterUserDataWindow extends UiPart<Stage> {
     @FXML
     private Label errorMessage;
 
-    @javafx.fxml.FXML
+    @FXML
     private TextField userNameTextField;
 
-    @javafx.fxml.FXML
+    @FXML
     private TextField userPhoneTextField;
 
-    @javafx.fxml.FXML
+    @FXML
     private TextField userEmailTextField;
 
     @FXML

@@ -33,7 +33,7 @@ public class PeopleRemindCommandTest {
     }
 
     @Test
-    public void execute_emptyUserData_success() {
+    public void execute_emptyUserData_failure() {
 
         PeopleRemindCommand peopleRemindCommand = new PeopleRemindCommand(INDEX_SECOND_PERSON);
 

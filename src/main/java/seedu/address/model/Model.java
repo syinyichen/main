@@ -115,7 +115,7 @@ public interface Model {
     ReadOnlyUserData getUserData();
 
     /**
-     * Return true if the user has not enter the user data.
+     * Returns true if the user has not enter the user data.
      * @return
      */
     boolean isUserDataNull();

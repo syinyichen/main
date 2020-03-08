@@ -2,6 +2,7 @@ package seedu.address.logic.commands.people;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.people.PeopleRemindAllCommand.MESSAGE_REMINDALL_SUCCESS_EMAIL;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.CARL;
@@ -34,7 +35,7 @@ public class PeopleRemindAllCommandTest {
     }
 
     @Test
-    public void execute_emptyUserData_success() {
+    public void execute_emptyUserData_failure() {
 
         PeopleRemindAllCommand peopleRemindallCommand = new PeopleRemindAllCommand();
 
@@ -49,11 +50,11 @@ public class PeopleRemindAllCommandTest {
         String expectedMessage = "";
         for (Person p: lastShownList) {
             if (!p.getLoans().getTotal().isZero()) {
-                expectedMessage += "Reminded " + p.getName().toString() + " to return "
-                        + p.getLoans().getTotal().toString() + "!\n";
+                expectedMessage += String.format(PeopleRemindAllCommand.MESSAGE_REMINDALL_SUCCESS,
+                        p.getName(), p.getLoans().getTotal());
             }
         }
-        expectedMessage += "Sharkie has sent copies of the reminders to your email!";
+        expectedMessage += MESSAGE_REMINDALL_SUCCESS_EMAIL;
 
         assertCommandSuccess(new PeopleRemindAllCommand(), model, expectedMessage, expectedModel);
     }
@@ -66,11 +67,11 @@ public class PeopleRemindAllCommandTest {
         String expectedMessage = "";
         for (Person p: lastShownList) {
             if (!p.getLoans().getTotal().isZero()) {
-                expectedMessage += "Reminded " + p.getName().toString() + " to return "
-                        + p.getLoans().getTotal().toString() + "!\n";
+                expectedMessage += String.format(PeopleRemindAllCommand.MESSAGE_REMINDALL_SUCCESS,
+                        p.getName(), p.getLoans().getTotal());
             }
         }
-        expectedMessage += "Sharkie has sent copies of the reminders to your email!";
+        expectedMessage += MESSAGE_REMINDALL_SUCCESS_EMAIL;
 
         assertCommandSuccess(new PeopleRemindAllCommand(), model, expectedMessage, expectedModel);
     }

@@ -119,14 +119,14 @@ public class SharkieParserTest {
     }
 
     @Test
-    public void parseCommand_remind() throws Exception {
+    public void parsePeopleCommand_remind() throws Exception {
         PeopleRemindCommand command = (PeopleRemindCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
                 + PeopleRemindCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new PeopleRemindCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
-    public void parseCommand_remindall() throws Exception {
+    public void parsePeopleCommand_remindAll() throws Exception {
         assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + PeopleRemindAllCommand.COMMAND_WORD)
                 instanceof PeopleRemindAllCommand);
         assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + PeopleRemindAllCommand.COMMAND_WORD + " 3")

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.people;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_EMAIL_ERROR;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -24,6 +25,12 @@ public class PeopleRemindAllCommand extends Command {
 
     public static final String COMMAND_WORD = "remindall";
 
+    public static final String MESSAGE_REMINDALL_SUCCESS = "Reminded %1$s to return %2$s!\n";
+    public static final String MESSAGE_REMINDALL_SUCCESS_EMAIL = "Sharkie has "
+            + "sent copies of the reminders to your email!";
+
+    public static final String MESSAGE_HAS_ZERO_LOAN = "No one owes you money :(";
+
     private static final Logger logger = LogsCenter.getLogger(PeopleRemindCommand.class);
 
     @Override
@@ -46,20 +53,18 @@ public class PeopleRemindAllCommand extends Command {
                 if (!person.getLoans().getTotal().isZero()) {
                     Reminder reminder = new Reminder(user, person);
                     reminder.sendReminder();
-                    feedbackToUser += "Reminded " + person.getName().toString() + " to return "
-                            + person.getLoans().getTotal().toString() + "!\n";
+                    feedbackToUser += String.format(MESSAGE_REMINDALL_SUCCESS, person.getName(),
+                            person.getLoans().getTotal());
                     numberOfPeopleReminded++;
                 }
             }
         } catch (MessagingException e) {
-            throw new CommandException("Error occured while sending email:\n" + e.getMessage()
-                    + "\nPlease make sure that you are connected to the internet.\n"
-                    + "Please check that the receiver's email address is a valid email!");
+            throw new CommandException(String.format(MESSAGE_EMAIL_ERROR, e.getMessage()));
         }
-        feedbackToUser += "Sharkie has sent copies of the reminders to your email!";
+        feedbackToUser += MESSAGE_REMINDALL_SUCCESS_EMAIL;
 
         if (numberOfPeopleReminded == 0) {
-            throw new CommandException("No one owes you money :(");
+            throw new CommandException(MESSAGE_HAS_ZERO_LOAN);
         }
 
         return new CommandResult(feedbackToUser);

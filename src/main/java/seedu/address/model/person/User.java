@@ -71,7 +71,7 @@ public class User {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(" User: ")
+        builder.append("User: ")
                 .append(getName())
                 .append(" Phone: ")
                 .append(getPhone())

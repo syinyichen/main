@@ -123,7 +123,7 @@ public class Reminder {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(" Sender: ")
+        builder.append("Sender: ")
                 .append(getSender())
                 .append(" Receiver: ")
                 .append(getReceiver());

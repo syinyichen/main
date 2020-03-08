@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.people;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_EMAIL_ERROR;
 import static seedu.address.logic.parser.CliPrefix.PEOPLE_COMMAND_TYPE;
 
 import java.util.List;
@@ -30,6 +31,8 @@ public class PeopleRemindCommand extends Command {
     public static final String MESSAGE_REMIND_SUCCESS = "Reminded %1$s to return %2$s!\n"
             + "Sharkie has sent a copy of the reminder to your email!";
 
+    public static final String MESSAGE_HAS_ZERO_LOAN = "%1$s does not owe you money :(";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Reminds a person to return you "
             + "his or her unpaid debt.\nParameters: <index> (must be a positive integer)\n"
             + "Example: " + PEOPLE_COMMAND_TYPE + " "
@@ -55,7 +58,7 @@ public class PeopleRemindCommand extends Command {
         Person personToBeReminded = lastShownList.get(targetIndex.getZeroBased());
 
         if (personToBeReminded.getLoans().getTotal().isZero()) {
-            throw new CommandException(String.format("%1$s does not owe you money :(",
+            throw new CommandException(String.format(MESSAGE_HAS_ZERO_LOAN,
                     personToBeReminded.getName()));
         }
 
@@ -70,9 +73,7 @@ public class PeopleRemindCommand extends Command {
         try {
             reminder.sendReminder();
         } catch (MessagingException e) {
-            throw new CommandException("Error occured while sending email:\n" + e.getMessage()
-                    + "\nPlease make sure that you are connected to the internet.\n"
-                    + "Please check that the receiver's email address is a valid email!");
+            throw new CommandException(String.format(MESSAGE_EMAIL_ERROR, e.getMessage()));
         }
 
         return new CommandResult(String.format(MESSAGE_REMIND_SUCCESS, personToBeReminded.getName(),
