@@ -4,14 +4,15 @@ import java.time.LocalDate;
 
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Date;
-import seedu.address.model.transaction.Debt;
 import seedu.address.model.transaction.Description;
+import seedu.address.model.transaction.Loan;
 
 /**
- * A utility class to help with building Debt objects.
+ * A utility class to help with building Loan objects.
  */
-public class DebtBuilder {
-    public static final String DEFAULT_DESCRIPTION = "Debt example";
+public class LoanBuilder {
+
+    public static final String DEFAULT_DESCRIPTION = "Loan example";
     public static final String DEFAULT_AMOUNT = "0";
     public static final String DEFAULT_DATE = "2020-01-01";
 
@@ -19,47 +20,47 @@ public class DebtBuilder {
     private Amount amount;
     private Date date;
 
-    public DebtBuilder() {
+    public LoanBuilder() {
         description = new Description(DEFAULT_DESCRIPTION);
         amount = new Amount(Double.parseDouble(DEFAULT_AMOUNT));
         date = new Date(LocalDate.parse(DEFAULT_DATE));
     }
 
     /**
-     * Initializes the DebtBuilder with the data of {@code debtToCopy}.
+     * Initializes the LoanBuilder with the data of {@code loanToCopy}.
      */
-    public DebtBuilder(Debt debtToCopy) {
-        description = debtToCopy.getDescription();
-        amount = debtToCopy.getAmount();
-        date = debtToCopy.getDate();
+    public LoanBuilder(Loan loanToCopy) {
+        description = loanToCopy.getDescription();
+        amount = loanToCopy.getAmount();
+        date = loanToCopy.getDate();
     }
 
     /**
-     * Sets the {@code Description} of the {@code Debt} that we are building.
+     * Sets the {@code Description} of the {@code Loan} that we are building.
      */
-    public DebtBuilder withDescription(String description) {
+    public LoanBuilder withDescription(String description) {
         this.description = new Description(description);
         return this;
     }
 
     /**
-     * Sets the {@code Amount} of the {@code Debt} that we are building.
+     * Sets the {@code Amount} of the {@code Loan} that we are building.
      */
-    public DebtBuilder withAmount(String amount) {
+    public LoanBuilder withAmount(String amount) {
         this.amount = new Amount(Double.parseDouble(amount));
         return this;
     }
 
     /**
-     * Sets the {@code LocalDate} of the {@code Debt} that we are building.
+     * Sets the {@code LocalDate} of the {@code Loan} that we are building.
      */
-    public DebtBuilder withDate(String date) {
+    public LoanBuilder withDate(String date) {
         this.date = new Date(LocalDate.parse(date));
         return this;
     }
 
-    public Debt build() {
-        return new Debt(description, amount, date);
+    public Loan build() {
+        return new Loan(description, amount, date);
     }
 
 }

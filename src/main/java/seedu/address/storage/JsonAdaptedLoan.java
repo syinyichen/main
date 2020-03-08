@@ -9,47 +9,47 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Date;
-import seedu.address.model.transaction.Debt;
 import seedu.address.model.transaction.Description;
+import seedu.address.model.transaction.Loan;
 
 /**
- * Jackson-friendly version of {@link Debt}
+ * Jackson-friendly version of {@link Loan}
  */
-public class JsonAdaptedDebt {
+public class JsonAdaptedLoan {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Debt's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Loan's %s field is missing!";
 
     private final String description;
     private final String amount;
     private final String date;
 
     /**
-     * Constructs a {@code JsonAdaptedDebt} with the given debt details.
+     * Constructs a {@code JsonAdaptedLoan} with the given loan details.
      */
     @JsonCreator
-    public JsonAdaptedDebt(@JsonProperty("description") String description,
-                             @JsonProperty("amount") String amount,
-                             @JsonProperty("date") String date) {
+    public JsonAdaptedLoan(@JsonProperty("description") String description,
+                           @JsonProperty("amount") String amount,
+                           @JsonProperty("date") String date) {
         this.description = description;
         this.amount = amount;
         this.date = date;
     }
 
     /**
-     * Converts a given {@code Debt} into this class for Jackson use.
+     * Converts a given {@code Loan} into this class for Jackson use.
      */
-    public JsonAdaptedDebt(Debt debt) {
-        description = debt.getDescription().description;
-        amount = String.valueOf(debt.getAmount().amount);
-        date = debt.getDate().toString();
+    public JsonAdaptedLoan(Loan loan) {
+        description = loan.getDescription().description;
+        amount = String.valueOf(loan.getAmount().amount);
+        date = loan.getDate().toString();
     }
 
     /**
-     * Converts this Jackson-friendly adapted debt object into the model's {@code Debt} object.
+     * Converts this Jackson-friendly adapted debt object into the model's {@code Loan} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted debt.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted loan.
      */
-    public Debt toModelType() throws IllegalValueException {
+    public Loan toModelType() throws IllegalValueException {
 
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -80,7 +80,6 @@ public class JsonAdaptedDebt {
             throw new IllegalValueException(e.getMessage());
         }
 
-        return new Debt(modelDescription, modelAmount, modelDate);
+        return new Loan(modelDescription, modelAmount, modelDate);
     }
-
 }

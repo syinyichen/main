@@ -3,22 +3,20 @@ package seedu.address.model.transaction;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Debt, money which the user owes another person..
- * Guarantees: immutable.
+ * Represents a loan, money which the user lends.
  */
-public class Debt extends Transaction {
-
+public class Loan extends Transaction {
     /**
-     * Constructs a Debt object.
+     * Constructs a Loans object.
      */
-    public Debt(Description description, Amount amount, Date date) {
-        super(description, amount, date, new Tag("Debt"));
+    public Loan(Description description, Amount amount, Date date) {
+        super(description, amount, date, new Tag("Loan"));
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(" Debt description: ")
+        builder.append(" Loan description: ")
                 .append(getDescription())
                 .append(" Amount: ")
                 .append(getAmount())
@@ -26,5 +24,4 @@ public class Debt extends Transaction {
                 .append(getDate());
         return builder.toString();
     }
-
 }

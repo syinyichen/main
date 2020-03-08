@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDebts.TEXTBOOK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalLoans.DINNER;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,6 +25,7 @@ import seedu.address.logic.commands.people.PeopleDeleteCommand;
 import seedu.address.logic.commands.people.PeopleEditCommand;
 import seedu.address.logic.commands.people.PeopleEditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.people.PeopleFindCommand;
+import seedu.address.logic.commands.people.PeopleLendCommand;
 import seedu.address.logic.commands.people.PeopleListCommand;
 import seedu.address.logic.commands.people.PeopleOweCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -38,7 +40,7 @@ public class SharkieParserTest {
     private final SharkieParser parser = new SharkieParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parsePeopleCommand_add() throws Exception {
         Person person = new PersonBuilder().build();
         PeopleAddCommand command = (PeopleAddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new PeopleAddCommand(person), command);
@@ -53,14 +55,14 @@ public class SharkieParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parsePeopleCommand_delete() throws Exception {
         PeopleDeleteCommand command = (PeopleDeleteCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
                 + PeopleDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new PeopleDeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
+    public void parsePeopleCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         PeopleEditCommand command = (PeopleEditCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
@@ -70,13 +72,13 @@ public class SharkieParserTest {
     }
 
     @Test
-    public void parseCommand_exit() throws Exception {
+    public void parseGlobalCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD)
                 instanceof ExitCommand);
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parsePeopleCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         PeopleFindCommand command = (PeopleFindCommand) parser.parseCommand(
                 PEOPLE_COMMAND_TYPE + " " + PeopleFindCommand.COMMAND_WORD + " "
@@ -85,13 +87,13 @@ public class SharkieParserTest {
     }
 
     @Test
-    public void parseCommand_help() throws Exception {
+    public void parseGlobalCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD)
                 instanceof HelpCommand);
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
+    public void parsePeopleCommand_list() throws Exception {
         assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + PeopleListCommand.COMMAND_WORD)
                 instanceof PeopleListCommand);
         assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + PeopleListCommand.COMMAND_WORD + " 3")
@@ -99,7 +101,7 @@ public class SharkieParserTest {
     }
 
     @Test
-    public void parseCommand_owe() throws Exception {
+    public void parsePeopleCommand_owe() throws Exception {
         PeopleOweCommand command = (PeopleOweCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
                 + PeopleOweCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
                 + PersonUtil.getDebtDescription(TEXTBOOK));
@@ -107,9 +109,18 @@ public class SharkieParserTest {
     }
 
     @Test
+    public void parsePeopleCommand_lend() throws Exception {
+        PeopleLendCommand command = (PeopleLendCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
+                + PeopleLendCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                + PersonUtil.getLoanDescription(DINNER));
+        assertEquals(new PeopleLendCommand(INDEX_FIRST_PERSON, DINNER), command);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+        assertThrows(ParseException.class,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), () ->
+                        parser.parseCommand(""));
     }
 
     @Test
@@ -119,10 +130,10 @@ public class SharkieParserTest {
 
     @Test
     public void parseCommand_globalCommands_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser
-                .parseCommand(ExitCommand.COMMAND_WORD + " 3"));
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser
-                .parseCommand(HelpCommand.COMMAND_WORD + " 3"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand(ExitCommand.COMMAND_WORD + " 3"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+                parser.parseCommand(HelpCommand.COMMAND_WORD + " 3"));
     }
 
     @Test
@@ -139,4 +150,17 @@ public class SharkieParserTest {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand(
                 PeopleListCommand.COMMAND_WORD));
     }
+
+    @Test
+    public void parsePeopleCommand_nullCommandWord_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand(
+                PEOPLE_COMMAND_TYPE));
+    }
+
+    @Test
+    public void parsePeopleCommand_unknownCommandWord_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand(
+                PEOPLE_COMMAND_TYPE + " unknown command word"));
+    }
+
 }

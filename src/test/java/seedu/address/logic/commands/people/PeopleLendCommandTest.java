@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalDebts.MILKTEA;
-import static seedu.address.testutil.TypicalDebts.TEXTBOOK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalLoans.SHOPPING;
+import static seedu.address.testutil.TypicalLoans.TRAVEL;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.List;
@@ -24,25 +24,25 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
-public class PeopleOweCommandTest {
+public class PeopleLendCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_unfilteredList_success() {
         List<Person> lastShownList = model.getFilteredPersonList();
-        Person personUserOwe = lastShownList.get(INDEX_FIRST_PERSON.getZeroBased());
-        Person addedDebtPerson = new PersonBuilder(personUserOwe).withDebts(TEXTBOOK).build();
+        Person personUserLends = lastShownList.get(INDEX_FIRST_PERSON.getZeroBased());
+        Person addedLoanPerson = new PersonBuilder(personUserLends).withLoans(SHOPPING).build();
 
-        PeopleOweCommand peopleOweCommand = new PeopleOweCommand(INDEX_FIRST_PERSON, TEXTBOOK);
+        PeopleLendCommand peopleLendCommand = new PeopleLendCommand(INDEX_FIRST_PERSON, SHOPPING);
 
-        String expectedMessage = String.format(PeopleOweCommand.MESSAGE_OWE_SUCCESS,
-                addedDebtPerson.getName(), TEXTBOOK.getAmount(), addedDebtPerson.getDebts().getTotal());
+        String expectedMessage = String.format(PeopleLendCommand.MESSAGE_LEND_SUCCESS,
+                addedLoanPerson.getName(), SHOPPING.getAmount(), addedLoanPerson.getLoans().getTotal());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), addedDebtPerson);
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), addedLoanPerson);
 
-        assertCommandSuccess(peopleOweCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(peopleLendCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -50,25 +50,25 @@ public class PeopleOweCommandTest {
 
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person personUserOwe = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person addedDebtPerson = new PersonBuilder(personUserOwe).withDebts(TEXTBOOK).build();
+        Person personUserLends = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person addedLoanPerson = new PersonBuilder(personUserLends).withLoans(SHOPPING).build();
 
-        PeopleOweCommand peopleOweCommand = new PeopleOweCommand(INDEX_FIRST_PERSON, TEXTBOOK);
+        PeopleLendCommand peopleLendCommand = new PeopleLendCommand(INDEX_FIRST_PERSON, SHOPPING);
 
-        String expectedMessage = String.format(PeopleOweCommand.MESSAGE_OWE_SUCCESS,
-                addedDebtPerson.getName(), TEXTBOOK.getAmount(), addedDebtPerson.getDebts().getTotal());
+        String expectedMessage = String.format(PeopleLendCommand.MESSAGE_LEND_SUCCESS,
+                addedLoanPerson.getName(), SHOPPING.getAmount(), addedLoanPerson.getLoans().getTotal());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), addedDebtPerson);
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), addedLoanPerson);
 
-        assertCommandSuccess(peopleOweCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(peopleLendCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        PeopleOweCommand peopleOweCommand = new PeopleOweCommand(outOfBoundIndex, TEXTBOOK);
-        assertCommandFailure(peopleOweCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        PeopleLendCommand peopleLendCommand = new PeopleLendCommand(outOfBoundIndex, SHOPPING);
+        assertCommandFailure(peopleLendCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     /**
@@ -82,18 +82,18 @@ public class PeopleOweCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        PeopleOweCommand peopleOweCommand = new PeopleOweCommand(outOfBoundIndex, TEXTBOOK);
+        PeopleLendCommand peopleLendCommand = new PeopleLendCommand(outOfBoundIndex, SHOPPING);
 
-        assertCommandFailure(peopleOweCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(peopleLendCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
 
-        final PeopleOweCommand standardCommand = new PeopleOweCommand(INDEX_FIRST_PERSON, TEXTBOOK);
+        final PeopleLendCommand standardCommand = new PeopleLendCommand(INDEX_FIRST_PERSON, SHOPPING);
 
         // same values -> returns true
-        PeopleOweCommand commandWithSameValues = new PeopleOweCommand(INDEX_FIRST_PERSON, TEXTBOOK);
+        PeopleLendCommand commandWithSameValues = new PeopleLendCommand(INDEX_FIRST_PERSON, SHOPPING);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -106,10 +106,11 @@ public class PeopleOweCommandTest {
         assertFalse(standardCommand.equals(new PeopleClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new PeopleOweCommand(INDEX_SECOND_PERSON, TEXTBOOK)));
+        assertFalse(standardCommand.equals(new PeopleLendCommand(INDEX_SECOND_PERSON, SHOPPING)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new PeopleOweCommand(INDEX_FIRST_PERSON, MILKTEA)));
+        assertFalse(standardCommand.equals(new PeopleLendCommand(INDEX_FIRST_PERSON, TRAVEL)));
     }
 
 }
+

@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import java.time.LocalDate;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.people.PeopleOweCommand;
+import seedu.address.logic.commands.people.PeopleLendCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -17,22 +17,22 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Date;
-import seedu.address.model.transaction.Debt;
 import seedu.address.model.transaction.Description;
+import seedu.address.model.transaction.Loan;
 
 /**
- * Parses input arguments and creates a new PeopleOweCommand object
+ * Parses input arguments and creates a new PeopleLendCommand object
  */
-public class PeopleOweCommandParser implements Parser<PeopleOweCommand> {
+public class PeopleLendCommandParser implements Parser<PeopleLendCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the PeopleOweCommand
-     * and returns a PeopleOweCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the PeopleLendCommand
+     * and returns a PeopleLendCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
-    public PeopleOweCommand parse(String args) throws ParseException {
+    public PeopleLendCommand parse(String args) throws ParseException {
 
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_AMOUNT,
@@ -40,12 +40,12 @@ public class PeopleOweCommandParser implements Parser<PeopleOweCommand> {
 
         if (!argMultimap.getValue(PREFIX_NAME).isPresent()) {
             System.out.println(args);
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleOweCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleLendCommand.MESSAGE_USAGE));
         }
 
         if (!argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
             System.out.println(args);
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleOweCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleLendCommand.MESSAGE_USAGE));
         }
 
         Index index;
@@ -63,10 +63,11 @@ public class PeopleOweCommandParser implements Parser<PeopleOweCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleOweCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleLendCommand.MESSAGE_USAGE), pe);
         }
 
-        Debt debt = new Debt(description, amount, date);
-        return new PeopleOweCommand(index, debt);
+        Loan loan = new Loan(description, amount, date);
+        return new PeopleLendCommand(index, loan);
     }
 }
+
