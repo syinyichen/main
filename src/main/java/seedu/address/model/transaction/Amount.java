@@ -40,6 +40,12 @@ public class Amount implements Comparable<Amount> {
         return new Amount(totalAmount);
     }
 
+    /**
+     * Returns true if the amount is zero.
+     */
+    public boolean isZero() {
+        return this.amount == 0;
+    }
 
     @Override
     public String toString() {
