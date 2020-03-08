@@ -57,6 +57,17 @@ public class Date {
         return date.format(DateTimeFormatter.ofPattern(DATE_PATTERN));
     }
 
+    /**
+     * Returns true if the given {@code date} has the same month as this date.
+     */
+    public boolean isSameMonthAndYearAs(Date otherDate) {
+        return date.getDayOfMonth() == otherDate.getDate().getDayOfMonth()
+                && date.getYear() == otherDate.getDate().getYear();
+    }
+
+    /**
+     * Returns a default date object which is set to the current time.
+     */
     public static Date getDefault() {
         return new Date(LocalDate.now());
     }

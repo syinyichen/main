@@ -8,6 +8,7 @@ import java.util.Objects;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.transaction.Budget;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
 import seedu.address.model.transaction.Transaction;
@@ -126,7 +127,41 @@ public class Wallet implements ReadOnlyWallet {
         expenses.remove(key);
     }
 
+    /**
+     * Retrieves a list of expenses filtered by the {@code date} they were added.
+     */
+    public TransactionList<Expense> getExpensesOnDate(Date date) {
+        TransactionList<Expense> filteredExpenses = new TransactionList<Expense>();
+
+        for(Expense expense : expenses) {
+            if(expense.getDate().equals(date)) {
+                filteredExpenses.add(expense);
+            }
+        }
+
+        return filteredExpenses;
+    }
+
+    /**
+     * Retrieves a list of expenses filtered by the month they were added, using {@code date}.
+     */
+    public TransactionList<Expense> getExpensesInMonthOf(Date date) {
+        TransactionList<Expense> filteredExpenses = new TransactionList<Expense>();
+
+        for(Expense expense : expenses) {
+            if(expense.getDate().isSameMonthAndYearAs(date)) {
+                filteredExpenses.add(expense);
+            }
+        }
+
+        return filteredExpenses;
+    }
+
     // =========== Budget-related Operations =============================================================
+
+    /**
+     * Replaces the current budget in the Wallet with {@code budget}.
+     */
     public void setBudget(Budget budget) {
         requireNonNull(budget);
         this.budget = budget;
