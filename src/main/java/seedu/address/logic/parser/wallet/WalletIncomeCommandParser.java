@@ -52,7 +52,7 @@ public class WalletIncomeCommandParser implements Parser<WalletIncomeCommand> {
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
         } else {
-            tag = new Tag("Misc");
+            tag = Tag.getDefault();
         }
 
         Income income = new Income(description, amount, date, tag);

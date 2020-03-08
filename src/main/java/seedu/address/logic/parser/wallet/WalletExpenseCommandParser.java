@@ -52,7 +52,7 @@ public class WalletExpenseCommandParser implements Parser<WalletExpenseCommand> 
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
         } else {
-            tag = new Tag("Misc");
+            tag = Tag.getDefault();
         }
 
         Expense expense = new Expense(description, amount, date, tag);
