@@ -1,7 +1,5 @@
 package seedu.address.model.transaction;
 
-import java.time.LocalDate;
-
 import seedu.address.model.tag.Tag;
 
 /**
@@ -13,7 +11,7 @@ public class Debt extends Transaction {
     /**
      * Constructs a Debt object.
      */
-    public Debt(Description description, Amount amount, LocalDate date) {
+    public Debt(Description description, Amount amount, Date date) {
         super(description, amount, date, new Tag("Debt"));
     }
 

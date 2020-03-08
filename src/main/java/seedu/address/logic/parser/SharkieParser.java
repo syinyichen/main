@@ -119,9 +119,6 @@ public class SharkieParser {
     }
 
     private Command getGlobalCommand(String commandWord, String arguments) throws ParseException {
-        if (commandWord == null) {
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-        }
         switch (commandWord) {
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

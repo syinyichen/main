@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 import seedu.address.logic.commands.people.PeopleAddCommand;
@@ -65,7 +64,7 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + debt.getDescription().description + " ");
         sb.append(PREFIX_AMOUNT + String.valueOf(debt.getAmount().amount) + " ");
-        sb.append(PREFIX_DATE + debt.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        sb.append(PREFIX_DATE + debt.getDate().getInputFormat());
         return sb.toString();
     }
 
@@ -73,7 +72,7 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + loan.getDescription().description + " ");
         sb.append(PREFIX_AMOUNT + String.valueOf(loan.getAmount().amount) + " ");
-        sb.append(PREFIX_DATE + loan.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        sb.append(PREFIX_DATE + loan.getDate().getInputFormat());
         return sb.toString();
     }
 }

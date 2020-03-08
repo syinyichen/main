@@ -7,8 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.people.PeopleLendCommand;
@@ -18,6 +16,7 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.transaction.Amount;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Loan;
 
@@ -50,20 +49,14 @@ public class PeopleLendCommandParser implements Parser<PeopleLendCommand> {
         }
 
         Index index;
-        LocalDate date;
+        Date date;
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_NAME).get());
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
 
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            try {
-                date = LocalDate.parse(argMultimap.getValue(PREFIX_DATE).get(),
-                        DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            } catch (DateTimeParseException e) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        PeopleLendCommand.MESSAGE_USAGE));
-            }
+            date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         } else {
-            date = LocalDate.now();
+            date = new Date(LocalDate.now());
         }
 
         try {

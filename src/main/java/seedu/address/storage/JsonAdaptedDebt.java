@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.transaction.Amount;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Debt;
 import seedu.address.model.transaction.Description;
 
@@ -70,11 +71,11 @@ public class JsonAdaptedDebt {
 
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    LocalDate.class.getSimpleName()));
+                    Date.class.getSimpleName()));
         }
-        final LocalDate modelDate;
+        final Date modelDate;
         try {
-            modelDate = LocalDate.parse(date);
+            modelDate = new Date(LocalDate.parse(date));
         } catch (DateTimeParseException e) {
             throw new IllegalValueException(e.getMessage());
         }

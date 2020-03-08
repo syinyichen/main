@@ -1,5 +1,7 @@
 package seedu.address.model.transaction;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -23,6 +25,7 @@ public class Date {
      * @param date A valid date.
      */
     public Date(LocalDate date) {
+        requireNonNull(date);
         this.date = date;
     }
 
@@ -44,6 +47,13 @@ public class Date {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    /**
+     * Returns the String of the date in "dd/MM/yyyy" format.
+     */
+    public String getInputFormat() {
+        return date.format(DateTimeFormatter.ofPattern(DATE_PATTERN));
     }
 
     @Override
