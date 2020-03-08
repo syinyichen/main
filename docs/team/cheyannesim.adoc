@@ -12,9 +12,19 @@
 Sharkie is a desktop expense tracker application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 == Summary of contributions
+
+* *Major enhancements*: added *owe command*
+** What it does: allows the user to keep track of what they owe to other people in the addressbook.
+** Justification: This is one of the main feature of Sharkie.
+** Highlights: The implementation was quite challenging as it required an in-depth analysis of design alternatives. For instance, how to store the Transactions,
+since a Transaction has association to Description, Amount, Date and Tag, and Date itself have different formats to consider. I have implemented the logic, model,
+storage and ui for this command.
+
+* *Other contributions*:
 ** Documentation:
 *** Updated my part of my User Guide: (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pull/43[#43])
-
+** Community:
+*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W12-3/main/pull/95[#95], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/87[#87]
 
 ////
 * *Major enhancement*: added *the ability to undo/redo previous commands*
@@ -57,6 +67,7 @@ _{you can add/remove categories in the list above}_
 include::../UserGuide.adoc[tag=contacts]
 include::../UserGuide.adoc[tag=commandintro]
 include::../UserGuide.adoc[tag=owe]
+include::../UserGuide.adoc[tag=return]
 include::../UserGuide.adoc[tag=lend]
 include::../UserGuide.adoc[tag=edit]
 include::../UserGuide.adoc[tag=delete]
