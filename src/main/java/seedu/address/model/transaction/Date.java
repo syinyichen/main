@@ -71,6 +71,18 @@ public class Date {
                 && date.getYear() == otherDate.getDate().getYear();
     }
 
+    public int getMonth() {
+        return date.getMonthValue();
+    }
+
+    public int getYear() {
+        return date.getYear();
+    }
+
+    public String getMonthString() {
+        return date.getMonth().toString();
+    }
+
     @Override
     public String toString() {
         return date.toString();

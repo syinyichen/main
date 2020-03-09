@@ -175,6 +175,12 @@ public class ModelManager implements Model {
         wallet.setBudget(budget);
     }
 
+    @Override
+    public void setDefaultBudget(Budget budget) {
+        requireNonNull(budget);
+        wallet.setDefaultBudget(budget);
+    }
+
     // =========== Util Methods ===============================================================================
 
     /**

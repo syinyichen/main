@@ -29,7 +29,8 @@ public class WalletBudgetCommand extends Command {
             + PREFIX_AMOUNT + "1000 "
             + PREFIX_DATE + "10/10/2020 \n";
 
-    public static final String MESSAGE_SUCCESS = "Budget has been set at %1$s.";
+    public static final String MESSAGE_SUCCESS_DEFAULT = "Default budget has been set at %1$s.";
+    public static final String MESSAGE_SUCCESS = "Budget has been set at %1$s for %2$s %3$s.";
 
     private final Budget budget;
 
@@ -42,15 +43,22 @@ public class WalletBudgetCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        model.setBudget(budget);
+        if (budget.isDefault()) {
+            model.setDefaultBudget(budget);
+            return new CommandResult(String.format(MESSAGE_SUCCESS_DEFAULT, budget.getAmount()));
+        } else {
+            model.setBudget(budget);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, budget.getAmount(),
+                    budget.getDate().getMonthString(),
+                    budget.getDate().getYear()));
+        }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, budget.getAmount()));
     }
 
     @Override
     public boolean equals(Object other) {
-        return other == this ||
-                other instanceof WalletBudgetCommand
+        return other == this
+                || other instanceof WalletBudgetCommand
                 && budget.equals(((WalletBudgetCommand) other).budget);
     }
 }

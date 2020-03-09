@@ -8,7 +8,7 @@ import java.util.Objects;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.transaction.Budget;
-import seedu.address.model.transaction.Date;
+import seedu.address.model.transaction.BudgetList;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
 import seedu.address.model.transaction.Transaction;
@@ -22,7 +22,8 @@ public class Wallet implements ReadOnlyWallet {
 
     private final TransactionList<Income> incomes = new TransactionList<>();
     private final TransactionList<Expense> expenses = new TransactionList<>();
-    private Budget budget;
+    private Budget defaultBudget;
+    private BudgetList budgetList = new BudgetList();
 
     public Wallet() {
     }
@@ -131,21 +132,22 @@ public class Wallet implements ReadOnlyWallet {
     // =========== Budget-related Operations =============================================================
 
     /**
-     * Replaces the current budget in the Wallet with {@code budget}.
+     * Replaces the budget in the Wallet with {@code budget}. If a budget was previously set, it overrides that
+     * budget and sets this new value.
      */
     public void setBudget(Budget budget) {
         requireNonNull(budget);
-        this.budget = budget;
+        if (budgetList.hasBudget(budget)) {
+            budgetList.setBudget(budget);
+        }
     }
 
     /**
-     * Returns true if the total expenses for the current month has exceeded the budget.
+     * Replaces the default budget in the Wallet with {@code budget}.
      */
-    public boolean hasExceededBudget() {
-        Date currentDate = Date.getDefault();
-        TransactionList<Expense> filteredExpenses = expenses.getTransactionsInMonthOf(currentDate);
-
-        return filteredExpenses.getTotal().compareTo(budget.getAmount()) > 0;
+    public void setDefaultBudget(Budget budget) {
+        requireNonNull(budget);
+        defaultBudget = budget;
     }
 
     // =========== Util methods =============================================================

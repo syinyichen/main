@@ -141,7 +141,12 @@ public interface Model {
     void setExpense(Expense target, Expense editedExpense);
 
     /**
-     * Sets the budget as {@code budget}.
+     * Sets a budget as {@code budget}.
      */
     void setBudget(Budget budget);
+
+    /**
+     * Sets the default budget as {@code budget}.
+     */
+    void setDefaultBudget(Budget budget);
 }

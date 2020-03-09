@@ -8,11 +8,20 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class Budget {
     private Amount budget;
     private Date date;
+    private boolean isDefault = false;
 
     public Budget(Amount budget, Date date) {
         requireAllNonNull(budget, date);
         this.budget = budget;
         this.date = date;
+    }
+
+    public void setDefault(boolean value) {
+        isDefault = value;
+    }
+
+    public boolean isDefault() {
+        return isDefault;
     }
 
     public Amount getAmount() {

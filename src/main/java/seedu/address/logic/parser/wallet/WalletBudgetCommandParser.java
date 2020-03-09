@@ -45,14 +45,16 @@ public class WalletBudgetCommandParser implements Parser<WalletBudgetCommand> {
 
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
         Date date;
+        Budget budget;
 
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+            budget = new Budget(amount, date);
         } else {
             date = Date.getDefault();
+            budget = new Budget(amount, date);
+            budget.setDefault(true);
         }
-
-        Budget budget = new Budget(amount, date);
 
         return new WalletBudgetCommand(budget);
     }
