@@ -401,7 +401,7 @@ Expected Outcome:
 ==== Recording the money your friend paid back: `received`
 
 Records that you have received the money from your friend, who you lent to. +
-Format: `people paid <person's index> [<loan's index>]`
+Format: `people paid <person's index> [i/<loan's index>]`
 
 ****
 * The <person's index> refers to the index number shown before a displayed person.
@@ -415,7 +415,7 @@ All loans will be marked as `received` for the indicated person if the loan's in
 
 Examples:
 
-* `people paid 2 1`
+* `people paid 2 i/1`
 Records that you have received the money for the first loan from the second person in the address book. +
 Expected Outcome:
 
@@ -533,7 +533,7 @@ e.g. `people remind 1`
 e.g. `people owe 4 n/lunch $/5.00 d/10/10/2020`
 * *Lend* : `people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]` +
 e.g. `people lend 5 n/dinner $/5.00 d/10/10/2020`
-* *Received* : `people received <person's index> [<loan's index>]` +
+* *Received* : `people received <person's index> [i/<loan's index>]` +
 e.g. `people paid 1 2`
 * *Find* : `people find <keyword>` +
 e.g. `people find Grace`

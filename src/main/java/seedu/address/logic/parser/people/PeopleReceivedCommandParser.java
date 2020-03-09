@@ -2,9 +2,12 @@ package seedu.address.logic.parser.people;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRANSACTION_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.people.PeopleReceivedCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -24,26 +27,25 @@ public class PeopleReceivedCommandParser implements Parser<PeopleReceivedCommand
     public PeopleReceivedCommand parse(String args) throws ParseException {
 
         requireNonNull(args);
-        String[] tokenizedIndex = args.trim().split(" ");
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TRANSACTION_INDEX);
 
-        if (tokenizedIndex.length < 1 || tokenizedIndex.length > 2) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleReceivedCommand.MESSAGE_USAGE));
-        }
+        Index personIndex;
+        Index loanIndex;
 
         try {
-            Index personIndex = ParserUtil.parseIndex(tokenizedIndex[0]);
-            if (tokenizedIndex.length == 1) {
-                return new PeopleReceivedCommand(personIndex);
+            personIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+
+            if (argMultimap.getValue(PREFIX_TRANSACTION_INDEX).isPresent()) {
+                loanIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TRANSACTION_INDEX).get());
             } else {
-                Index loanIndex = ParserUtil.parseIndex(tokenizedIndex[1]);
-                return new PeopleReceivedCommand(personIndex, loanIndex);
+                loanIndex = null;
             }
         } catch (ParseException pe) {
-            System.out.println(pe.getMessage());
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleReceivedCommand.MESSAGE_USAGE), pe);
         }
+
+        return new PeopleReceivedCommand(personIndex, loanIndex);
     }
 }
 

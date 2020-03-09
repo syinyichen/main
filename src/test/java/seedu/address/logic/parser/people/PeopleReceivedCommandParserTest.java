@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.people;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRANSACTION_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -42,13 +43,20 @@ public class PeopleReceivedCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid person index
         assertParseFailure(parser, "1 some string", MESSAGE_INVALID_FORMAT);
+        // valid person index invalid loan index
+        assertParseFailure(parser, INDEX_FIRST_PERSON + " " + PREFIX_TRANSACTION_INDEX
+                + "i1as", MESSAGE_INVALID_FORMAT);
+        // invalid person index invalid loan index
+        assertParseFailure(parser, "some string " + PREFIX_TRANSACTION_INDEX
+                + "i1as", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetPersonIndex = INDEX_SECOND_PERSON;
         Index targetLoanIndex = INDEX_FIRST_PERSON;
-        String userInput = targetPersonIndex.getOneBased() + " " + targetLoanIndex.getOneBased();
+        String userInput = targetPersonIndex.getOneBased() + " " + PREFIX_TRANSACTION_INDEX
+                + targetLoanIndex.getOneBased();
 
         PeopleReceivedCommand expectedCommand = new PeopleReceivedCommand(targetPersonIndex, targetLoanIndex);
 

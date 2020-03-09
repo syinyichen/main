@@ -2,6 +2,7 @@ package seedu.address.logic.commands.people;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliPrefix.PEOPLE_COMMAND_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRANSACTION_INDEX;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -24,26 +25,24 @@ import seedu.address.model.transaction.Loan;
 import seedu.address.model.transaction.TransactionList;
 
 /**
- * Records that the person, who owe the user money has paid the user back.
+ * Records that the user has received the amount money lent to a person,
+ * specified by an index in the address book.
  */
 public class PeopleReceivedCommand extends Command {
 
     public static final String COMMAND_WORD = "received";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Records that the person has paid you back.\n"
-            + "Parameters: <person's index> (must be a positive integer) "
-            + "[<loans's index> (must be a positive integer)]\n"
+            + "Parameters: <person's index> (must be a positive integer) [" + PREFIX_TRANSACTION_INDEX
+            + "<loans's index> (must be a positive integer)]\n"
             + "Example: " + PEOPLE_COMMAND_TYPE + " "
             + COMMAND_WORD + " 4 1";
 
-    public static final String MESSAGE_PAID_SUCCESS = "Removed loan to %1$s by %2$s. %1$s now owes you %3$s.";
+    public static final String MESSAGE_RECEIVED_SUCCESS = "Removed loan to %1$s by %2$s. %1$s now owes you %3$s.";
+    public static final String MESSAGE_NO_LOAN = "%1$s does not owe you money :(";
 
     private final Index targetPersonIndex;
-    private Index targetLoanIndex;
-
-    public PeopleReceivedCommand(Index targetIndex) {
-        this.targetPersonIndex = targetIndex;
-    }
+    private final Index targetLoanIndex;
 
     public PeopleReceivedCommand(Index targetIndex, Index targetLoanIndex) {
         this.targetPersonIndex = targetIndex;
@@ -59,42 +58,42 @@ public class PeopleReceivedCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personPaid = lastShownList.get(targetPersonIndex.getZeroBased());
+        Person personUserReceivedFrom = lastShownList.get(targetPersonIndex.getZeroBased());
 
-        if (personPaid.getLoans().getTotal().isZero()) {
-            throw new CommandException(String.format("%1$s does not owe you money :(",
-                    personPaid.getName()));
+        if (personUserReceivedFrom.getLoans().getTotal().isZero()) {
+            throw new CommandException(String.format(MESSAGE_NO_LOAN,
+                    personUserReceivedFrom.getName()));
         }
 
         Amount amountPaid;
-        Person removedLoanPerson;
+        Person reducedLoanPerson;
 
         if (targetLoanIndex == null) {
-            removedLoanPerson = createPersonPaidAll(personPaid);
-            amountPaid = personPaid.getLoans().getTotal();
+            reducedLoanPerson = createPersonReceivedAll(personUserReceivedFrom);
+            amountPaid = personUserReceivedFrom.getLoans().getTotal();
         } else {
-            List<Loan> loans = personPaid.getLoans().asUnmodifiableObservableList();
+            List<Loan> loans = personUserReceivedFrom.getLoans().asUnmodifiableObservableList();
 
             if (targetLoanIndex.getZeroBased() >= loans.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_LOAN_DISPLAYED_INDEX);
             }
 
             Loan loanPaid = loans.get(targetLoanIndex.getZeroBased());
-            removedLoanPerson = createPersonPaidByIndex(personPaid, loanPaid);
+            reducedLoanPerson = createPersonReceivedByIndex(personUserReceivedFrom, loanPaid);
             amountPaid = loanPaid.getAmount();
         }
 
-        model.setPerson(personPaid, removedLoanPerson);
+        model.setPerson(personUserReceivedFrom, reducedLoanPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_PAID_SUCCESS, personPaid.getName(),
-                amountPaid, removedLoanPerson.getLoans().getTotal()));
+        return new CommandResult(String.format(MESSAGE_RECEIVED_SUCCESS, personUserReceivedFrom.getName(),
+                amountPaid, reducedLoanPerson.getLoans().getTotal()));
     }
 
     /**
      * Creates and returns a {@code Person} after removing all the loans.
      */
-    private static Person createPersonPaidAll(Person personPaid) {
+    private static Person createPersonReceivedAll(Person personPaid) {
         assert personPaid != null;
 
         Name name = personPaid.getName();
@@ -109,7 +108,7 @@ public class PeopleReceivedCommand extends Command {
     /**
      * Creates and returns a {@code Person} after removing the loan specified by an index.
      */
-    private static Person createPersonPaidByIndex(Person personPaid, Loan loanPaid) {
+    private static Person createPersonReceivedByIndex(Person personPaid, Loan loanPaid) {
         assert personPaid != null;
         assert loanPaid != null;
 
