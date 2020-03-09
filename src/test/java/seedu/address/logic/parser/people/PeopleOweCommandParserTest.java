@@ -130,7 +130,7 @@ public class PeopleOweCommandParserTest {
 
         Debt debt = new Debt(new Description(VALID_DESC_BOB),
                 new Amount(Double.parseDouble(VALID_AMOUNT_BOB)),
-                new Date(LocalDate.now()));
+                Date.getDefault());
         PeopleOweCommand expectedCommand = new PeopleOweCommand(targetIndex, debt);
 
         assertParseSuccess(parser, userInput, expectedCommand);
