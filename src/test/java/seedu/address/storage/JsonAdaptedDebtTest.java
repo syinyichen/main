@@ -15,6 +15,7 @@ import seedu.address.model.transaction.Description;
 class JsonAdaptedDebtTest {
     private static final String INVALID_DESC = "";
     private static final String INVALID_AMOUNT = "5a";
+    public static final String  INVALID_DATE = "20 May 2020";
 
     private static final String VALID_DESC = SUPPER.getDescription().toString();
     private static final String VALID_AMOUNT = String.valueOf(SUPPER.getAmount().amount);
@@ -55,6 +56,14 @@ class JsonAdaptedDebtTest {
         JsonAdaptedDebt debt =
                 new JsonAdaptedDebt(VALID_DESC, null, VALID_DATE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Amount.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, debt::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidDate_throwsIllegalValueException() {
+        JsonAdaptedDebt debt =
+                new JsonAdaptedDebt(VALID_DESC, VALID_AMOUNT, INVALID_DATE);
+        String expectedMessage = Date.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, debt::toModelType);
     }
 
