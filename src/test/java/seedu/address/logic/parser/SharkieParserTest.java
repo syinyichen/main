@@ -123,14 +123,14 @@ public class SharkieParserTest {
     }
 
     @Test
-    public void parseCommand_expense() throws Exception {
+    public void parseWalletCommand_expense() throws Exception {
         WalletExpenseCommand command =
                 (WalletExpenseCommand) parser.parseCommand(WalletUtil.getExpenseCommand(DUCK_RICE));
         assertEquals(new WalletExpenseCommand(DUCK_RICE), command);
     }
 
     @Test
-    public void parseCommand_income() throws Exception {
+    public void parseWalletCommand_income() throws Exception {
         WalletIncomeCommand command =
                 (WalletIncomeCommand) parser.parseCommand(WalletUtil.getIncomeCommand(ALLOWANCE));
         assertEquals(new WalletIncomeCommand(ALLOWANCE), command);
