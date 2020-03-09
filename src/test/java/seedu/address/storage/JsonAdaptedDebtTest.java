@@ -15,7 +15,7 @@ import seedu.address.model.transaction.Description;
 class JsonAdaptedDebtTest {
     private static final String INVALID_DESC = "";
     private static final String INVALID_AMOUNT = "5a";
-    public static final String  INVALID_DATE = "20 May 2020";
+    private static final String INVALID_DATE = "20 May 2020";
 
     private static final String VALID_DESC = SUPPER.getDescription().toString();
     private static final String VALID_AMOUNT = String.valueOf(SUPPER.getAmount().amount);
