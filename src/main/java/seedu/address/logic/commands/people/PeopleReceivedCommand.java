@@ -36,7 +36,7 @@ public class PeopleReceivedCommand extends Command {
             + "Parameters: <person's index> (must be a positive integer) [" + PREFIX_TRANSACTION_INDEX
             + "<loans's index> (must be a positive integer)]\n"
             + "Example: " + PEOPLE_COMMAND_TYPE + " "
-            + COMMAND_WORD + " 4 1";
+            + COMMAND_WORD + " 4 i/1";
 
     public static final String MESSAGE_RECEIVED_SUCCESS = "Removed loan to %1$s by %2$s. %1$s now owes you %3$s.";
     public static final String MESSAGE_NO_LOAN = "%1$s does not owe you money :(";
@@ -128,6 +128,7 @@ public class PeopleReceivedCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof PeopleReceivedCommand // instanceof handles nulls
                 && targetPersonIndex.equals(((PeopleReceivedCommand) other).targetPersonIndex))
-                && targetLoanIndex.equals(((PeopleReceivedCommand) other).targetLoanIndex);
+                && (targetLoanIndex == ((PeopleReceivedCommand) other).targetLoanIndex
+                || targetLoanIndex.equals(((PeopleReceivedCommand) other).targetLoanIndex));
     }
 }

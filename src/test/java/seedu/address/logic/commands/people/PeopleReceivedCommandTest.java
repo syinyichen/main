@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
@@ -32,67 +33,126 @@ public class PeopleReceivedCommandTest {
     public void execute_unfilteredListReceivedAll_success() {
         List<Person> lastShownList = model.getFilteredPersonList();
         Person receivedAllPerson = lastShownList.get(INDEX_SECOND_PERSON.getZeroBased());
-        Amount originalAmount = receivedAllPerson.getLoans().getTotal();
+        Amount totalLoan = receivedAllPerson.getLoans().getTotal();
         Person removedLoanPerson = new PersonBuilder(receivedAllPerson).withLoans().build();
 
-        PeopleReceivedCommand peoplePaidCommand = new PeopleReceivedCommand(INDEX_SECOND_PERSON, null);
+        PeopleReceivedCommand peopleReceivedCommand = new PeopleReceivedCommand(INDEX_SECOND_PERSON, null);
 
         String expectedMessage = String.format(PeopleReceivedCommand.MESSAGE_RECEIVED_SUCCESS,
-                removedLoanPerson.getName(), originalAmount, removedLoanPerson.getLoans().getTotal());
+                removedLoanPerson.getName(), totalLoan, removedLoanPerson.getLoans().getTotal());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(1), removedLoanPerson);
 
-        assertCommandSuccess(peoplePaidCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(peopleReceivedCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_filteredListReceivedAll_success() {
+
+        showPersonAtIndex(model, INDEX_SECOND_PERSON);
+
+        Person receivedAllPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Amount totalLoan = receivedAllPerson.getLoans().getTotal();
+        Person removedLoanPerson = new PersonBuilder(receivedAllPerson).withLoans().build();
+
+        PeopleReceivedCommand peopleReceivedCommand = new PeopleReceivedCommand(INDEX_FIRST_PERSON, null);
+
+        String expectedMessage = String.format(PeopleReceivedCommand.MESSAGE_RECEIVED_SUCCESS,
+                removedLoanPerson.getName(), totalLoan, removedLoanPerson.getLoans().getTotal());
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), removedLoanPerson);
+
+        assertCommandSuccess(peopleReceivedCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_unfilteredListReceivedByIndex_success() {
+
         List<Person> lastShownList = model.getFilteredPersonList();
-        Person receivedPerson = lastShownList.get(INDEX_SECOND_PERSON.getZeroBased());
+        Person personUserLend = lastShownList.get(INDEX_THIRD_PERSON.getZeroBased());
 
-        List<Loan> loans = receivedPerson.getLoans().asUnmodifiableObservableList();
-        Loan[] modifiedLoans = new Loan[loans.size() - 1];
+        List<Loan> loans = personUserLend.getLoans().asUnmodifiableObservableList();
+        Amount loanReduced = loans.get(0).getAmount();
+        Loan[] reducedLoans = new Loan[loans.size() - 1];
 
-        for (int i = 0; i < modifiedLoans.length; i++) {
-            modifiedLoans[i] = loans.get(i + 1);
+        for (int i = 0; i < reducedLoans.length; i++) {
+            reducedLoans[i] = loans.get(i + 1);
         }
 
-        Person removedLoanPerson = new PersonBuilder(receivedPerson).withLoans(modifiedLoans).build();
+        Person reducedLoanPerson = new PersonBuilder(personUserLend).withLoans(reducedLoans).build();
 
-        PeopleReceivedCommand peoplePaidCommand = new PeopleReceivedCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON);
+        PeopleReceivedCommand peopleReceivedCommand = new PeopleReceivedCommand(INDEX_THIRD_PERSON, INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(PeopleReceivedCommand.MESSAGE_RECEIVED_SUCCESS,
-                removedLoanPerson.getName(), loans.get(0).getAmount(), removedLoanPerson.getLoans().getTotal());
+                reducedLoanPerson.getName(), loanReduced, reducedLoanPerson.getLoans().getTotal());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(1), removedLoanPerson);
+        expectedModel.setPerson(model.getFilteredPersonList().get(2), reducedLoanPerson);
 
-        assertCommandSuccess(peoplePaidCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(peopleReceivedCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredListReceivedAll_failure() {
+    public void execute_filteredListReceivedByIndex_success() {
+
+        showPersonAtIndex(model, INDEX_THIRD_PERSON);
+
+        Person personUserLend = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        List<Loan> loans = personUserLend.getLoans().asUnmodifiableObservableList();
+        Amount loanReduced = loans.get(0).getAmount();
+        Loan[] reducedLoans = new Loan[loans.size() - 1];
+
+        for (int i = 0; i < reducedLoans.length; i++) {
+            reducedLoans[i] = loans.get(i + 1);
+        }
+
+        Person reducedLoanPerson = new PersonBuilder(personUserLend).withLoans(reducedLoans).build();
+
+        PeopleReceivedCommand peopleReceivedCommand = new PeopleReceivedCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON);
+
+        String expectedMessage = String.format(PeopleReceivedCommand.MESSAGE_RECEIVED_SUCCESS,
+                reducedLoanPerson.getName(), loanReduced, reducedLoanPerson.getLoans().getTotal());
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), reducedLoanPerson);
+
+        assertCommandSuccess(peopleReceivedCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         PeopleReceivedCommand peopleReceivedCommand = new PeopleReceivedCommand(outOfBoundIndex, null);
         assertCommandFailure(peopleReceivedCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredListReceivedByIndex_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        PeopleReceivedCommand peopleReceivedCommand = new PeopleReceivedCommand(outOfBoundIndex, INDEX_FIRST_PERSON);
-        assertCommandFailure(peopleReceivedCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    public void execute_invalidLoanIndexUnfilteredList_failure() {
+        List<Person> lastShownList = model.getFilteredPersonList();
+        Person personUserLend = lastShownList.get(INDEX_SECOND_PERSON.getZeroBased());
+        Index outOfBoundIndex =
+                Index.fromOneBased(personUserLend.getLoans().asUnmodifiableObservableList().size() + 1);
+        PeopleReceivedCommand peopleReceivedCommand = new PeopleReceivedCommand(INDEX_SECOND_PERSON, outOfBoundIndex);
+        assertCommandFailure(peopleReceivedCommand, model, Messages.MESSAGE_INVALID_LOAN_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_invalidLoanIndexUnfilteredListReceivedByIndex_failure() {
+    public void execute_noLoan_failure() {
         List<Person> lastShownList = model.getFilteredPersonList();
-        Person receivedPerson = lastShownList.get(INDEX_SECOND_PERSON.getZeroBased());
-        Index outOfBoundIndex = Index.fromOneBased(receivedPerson.getLoans()
-                .asUnmodifiableObservableList().size() + 1);
-        PeopleReceivedCommand peopleReceivedCommand = new PeopleReceivedCommand(INDEX_SECOND_PERSON, outOfBoundIndex);
-        assertCommandFailure(peopleReceivedCommand, model, Messages.MESSAGE_INVALID_LOAN_DISPLAYED_INDEX);
+        Person receivedAllPerson = lastShownList.get(INDEX_FIRST_PERSON.getZeroBased());
+        Person removedLoanPerson = new PersonBuilder(receivedAllPerson).withLoans().build();
+
+        PeopleReceivedCommand peopleReceivedCommand = new PeopleReceivedCommand(INDEX_FIRST_PERSON, null);
+
+        String expectedMessage = String.format(PeopleReceivedCommand.MESSAGE_NO_LOAN, removedLoanPerson.getName());
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), removedLoanPerson);
+
+        assertCommandFailure(peopleReceivedCommand, model, expectedMessage);
     }
 
     @Test
@@ -101,13 +161,24 @@ public class PeopleReceivedCommandTest {
         final PeopleReceivedCommand standardCommand =
                 new PeopleReceivedCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON);
 
+        final PeopleReceivedCommand receiveAllCommand =
+                new PeopleReceivedCommand(INDEX_SECOND_PERSON, null);
+
         // same values -> returns true
         PeopleReceivedCommand commandWithSameValues =
                 new PeopleReceivedCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
+        // same values with null Loan index
+        PeopleReceivedCommand receiveAllCommandWithSameValue =
+                new PeopleReceivedCommand(INDEX_SECOND_PERSON, null);
+        assertTrue(receiveAllCommand.equals(receiveAllCommandWithSameValue));
+
         // same object -> returns true
         assertTrue(standardCommand.equals(standardCommand));
+
+        // same object -> returns true
+        assertTrue(receiveAllCommand.equals(receiveAllCommand));
 
         // null -> returns false
         assertFalse(standardCommand.equals(null));

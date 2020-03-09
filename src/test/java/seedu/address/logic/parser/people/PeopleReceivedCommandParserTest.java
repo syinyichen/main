@@ -1,7 +1,8 @@
 package seedu.address.logic.parser.people;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TRANSACTION_INDEX;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TRANSACTION_INDEX;
+import static seedu.address.logic.commands.CommandTestUtil.RECEIVED_DESC_AMY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -16,47 +17,52 @@ public class PeopleReceivedCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleReceivedCommand.MESSAGE_USAGE);
+
     private PeopleReceivedCommandParser parser = new PeopleReceivedCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
-        // no index specified
+        // nothing specified
         assertParseFailure(parser, " ", MESSAGE_INVALID_FORMAT);
+
+        // no person's index specified
+        assertParseFailure(parser, "i/1", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + RECEIVED_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + RECEIVED_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
-        assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 some random string" + RECEIVED_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "1 p/ string" + RECEIVED_DESC_AMY , MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid person index
-        assertParseFailure(parser, "1 some string", MESSAGE_INVALID_FORMAT);
-        // valid person index invalid loan index
-        assertParseFailure(parser, INDEX_FIRST_PERSON + " " + PREFIX_TRANSACTION_INDEX
-                + "i1as", MESSAGE_INVALID_FORMAT);
-        // invalid person index invalid loan index
-        assertParseFailure(parser, "some string " + PREFIX_TRANSACTION_INDEX
-                + "i1as", MESSAGE_INVALID_FORMAT);
+        // invalid loan index
+        assertParseFailure(parser, "1" + INVALID_TRANSACTION_INDEX, MESSAGE_INVALID_FORMAT);
+    }
+
+    @Test
+    public void parse_noLoanIndexSpecified_success() {
+        Index targetPersonIndex = INDEX_SECOND_PERSON;
+        String userInput = String.valueOf(targetPersonIndex.getOneBased());
+        PeopleReceivedCommand expectedCommand = new PeopleReceivedCommand(targetPersonIndex, null);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetPersonIndex = INDEX_SECOND_PERSON;
         Index targetLoanIndex = INDEX_FIRST_PERSON;
-        String userInput = targetPersonIndex.getOneBased() + " " + PREFIX_TRANSACTION_INDEX
-                + targetLoanIndex.getOneBased();
+        String userInput = targetPersonIndex.getOneBased() + " " + RECEIVED_DESC_AMY;
 
         PeopleReceivedCommand expectedCommand = new PeopleReceivedCommand(targetPersonIndex, targetLoanIndex);
 
