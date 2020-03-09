@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.transaction.Budget;
 import seedu.address.model.transaction.BudgetList;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
 import seedu.address.model.transaction.Transaction;
@@ -22,7 +23,6 @@ public class Wallet implements ReadOnlyWallet {
 
     private final TransactionList<Income> incomes = new TransactionList<>();
     private final TransactionList<Expense> expenses = new TransactionList<>();
-    private Budget defaultBudget;
     private BudgetList budgetList = new BudgetList();
 
     public Wallet() {
@@ -147,7 +147,20 @@ public class Wallet implements ReadOnlyWallet {
      */
     public void setDefaultBudget(Budget budget) {
         requireNonNull(budget);
-        defaultBudget = budget;
+        budgetList.setDefaultBudget(budget);
+    }
+
+    public boolean hasExceededBudget() {
+        TransactionList<Expense> filteredExpenseList = expenses.getTransactionsInMonthOf(Date.getDefault());
+
+        Budget budgetToCompare;
+        if(budgetList.hasBudgetOfDate(Date.getDefault())) {
+            budgetToCompare = budgetList.getBudgetOfDate(Date.getDefault());
+        } else {
+            budgetToCompare = budgetList.getDefaultBudget();
+        }
+
+        return filteredExpenseList.getTotal().amount > budgetToCompare.getAmount().amount;
     }
 
     // =========== Util methods =============================================================

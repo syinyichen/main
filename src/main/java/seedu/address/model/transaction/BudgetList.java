@@ -1,5 +1,6 @@
 package seedu.address.model.transaction;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -11,14 +12,16 @@ import java.util.List;
  */
 public class BudgetList {
     private List<Budget> budgetList;
+    private Budget defaultBudget;
 
     public BudgetList() {
         budgetList = new ArrayList<Budget>();
+        defaultBudget = new Budget(new Amount(0.0), Date.getDefault());
     }
 
     /**
-     * Compares the given budget object with the budgets that have been previously set in the list, using only their
-     * dates. If a budget with the same month and year is in the list, the method returns true.
+     * Compares {@code budget} with the budgets that have been previously set in the list, using only their
+     * dates. Returns true if a budget with the same month and year is in the list.
      */
     public boolean hasBudget(Budget budget) {
         for (Budget b : budgetList) {
@@ -30,27 +33,42 @@ public class BudgetList {
     }
 
     /**
+     * Compares {@code date} with the dates of the Budgets in the list of Budgets. Returns true if the budget exists.
+     */
+    public boolean hasBudgetOfDate(Date date) {
+        for (Budget b : budgetList) {
+            if (date.equals(b.getDate())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public Budget getBudgetOfDate(Date date) {
+        for (Budget b : budgetList) {
+            if (date.equals(b.getDate())) {
+                return b;
+            }
+        }
+
+        return defaultBudget;
+    }
+
+    public void setDefaultBudget(Budget budget) {
+        this.defaultBudget = budget;
+    }
+
+    public Budget getDefaultBudget() {
+        return defaultBudget;
+    }
+
+    /**
      * Sets the budget in the list to {@code budget}. If it doesn't exist, add the budget into the list instead, and
      * sort.
      */
     public void setBudget(Budget budget) {
         budgetList.removeIf(b -> b.getDate().equals(budget.getDate()));
         budgetList.add(budget);
-        sortList();
-    }
-
-
-    /**
-     * Sorts the list according to the date of the Budget.
-     */
-    public void sortList() {
-        budgetList.sort(new Comparator<>() {
-            @Override
-            public int compare(Budget b1, Budget b2) {
-                return Integer.compare(
-                        b1.getDate().getMonth() + b1.getDate().getYear(),
-                        b2.getDate().getMonth() + b2.getDate().getYear());
-            }
-        });
     }
 }
