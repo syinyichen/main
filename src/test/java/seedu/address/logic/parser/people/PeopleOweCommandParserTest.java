@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_AMOUNT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TRANSACTION_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.OWE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.OWE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT_AMY;
