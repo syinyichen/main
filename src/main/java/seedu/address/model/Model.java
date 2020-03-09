@@ -149,4 +149,6 @@ public interface Model {
      * Sets the default budget as {@code budget}.
      */
     void setDefaultBudget(Budget budget);
+
+    boolean hasExceededBudget();
 }

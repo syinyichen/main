@@ -181,6 +181,11 @@ public class ModelManager implements Model {
         wallet.setDefaultBudget(budget);
     }
 
+    @Override
+    public boolean hasExceededBudget() {
+        return wallet.hasExceededBudget();
+    }
+
     // =========== Util Methods ===============================================================================
 
     /**

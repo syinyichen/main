@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
+import java.util.logging.Logger;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
