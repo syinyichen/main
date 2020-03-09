@@ -12,6 +12,8 @@ import static seedu.address.testutil.TypicalDebts.TEXTBOOK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalLoans.DINNER;
+import static seedu.address.testutil.TypicalWallet.ALLOWANCE;
+import static seedu.address.testutil.TypicalWallet.DUCK_RICE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,12 +33,16 @@ import seedu.address.logic.commands.people.PeopleLendCommand;
 import seedu.address.logic.commands.people.PeopleListCommand;
 import seedu.address.logic.commands.people.PeopleOweCommand;
 import seedu.address.logic.commands.people.PeopleReceivedCommand;
+import seedu.address.logic.commands.wallet.WalletExpenseCommand;
+import seedu.address.logic.commands.wallet.WalletIncomeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.WalletUtil;
+
 
 public class SharkieParserTest {
 
@@ -120,11 +126,25 @@ public class SharkieParserTest {
     }
 
     @Test
-    public void parsePeopleCommand_paid() throws Exception {
+    public void parsePeopleCommand_received() throws Exception {
         PeopleReceivedCommand command = (PeopleReceivedCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
                 + PeopleReceivedCommand.COMMAND_WORD + " " + INDEX_SECOND_PERSON.getOneBased() + " "
                 + PREFIX_TRANSACTION_INDEX + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new PeopleReceivedCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parseWalletCommand_expense() throws Exception {
+        WalletExpenseCommand command =
+                (WalletExpenseCommand) parser.parseCommand(WalletUtil.getExpenseCommand(DUCK_RICE));
+        assertEquals(new WalletExpenseCommand(DUCK_RICE), command);
+    }
+
+    @Test
+    public void parseWalletCommand_income() throws Exception {
+        WalletIncomeCommand command =
+                (WalletIncomeCommand) parser.parseCommand(WalletUtil.getIncomeCommand(ALLOWANCE));
+        assertEquals(new WalletIncomeCommand(ALLOWANCE), command);
     }
 
     @Test
