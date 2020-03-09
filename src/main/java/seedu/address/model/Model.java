@@ -5,6 +5,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
+import seedu.address.model.transaction.Transaction;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -144,7 +145,7 @@ public interface Model {
     void setExpense(Expense target, Expense editedExpense);
 
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the filtered Transaction list
      */
-    ObservableList<Expense> getFilteredExpenseList();
+    ObservableList<Transaction> getFilteredTransactionList();
 }

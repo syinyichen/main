@@ -9,6 +9,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
+import seedu.address.model.transaction.Transaction;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -24,8 +25,11 @@ public class ModelManager implements Model {
     private final Wallet wallet;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    //private final FilteredList<Expense> filteredExpenses;
+
+    //wallet
     private final FilteredList<Expense> filteredExpenses;
+    private final FilteredList<Income> filteredIncomes;
+    private final FilteredList<Transaction> filteredTransactions;
 
     /**
      * Initializes a ModelManager with the given addressBook, wallet and userPrefs.
@@ -41,7 +45,11 @@ public class ModelManager implements Model {
         this.wallet = new Wallet(wallet);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredExpenses = new FilteredList<>(wallet.getExpenseList());
+
+        //wallet
+        filteredExpenses = new FilteredList<Expense>(wallet.getExpenseList());
+        filteredIncomes = new FilteredList<Income>(wallet.getIncomeList());
+        filteredTransactions = new FilteredList<Transaction>(wallet.getTransactionList());
     }
 
     /**
@@ -145,7 +153,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteIncome(Income target) {
-        wallet.removeIncome(target);
+        wallet.deleteIncome(target);
     }
 
     @Override
@@ -166,7 +174,7 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteExpense(Expense target) {
-        wallet.removeExpense(target);
+        wallet.deleteExpense(target);
     }
 
     @Override
@@ -176,8 +184,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Expense> getFilteredExpenseList() {
-        return filteredExpenses;
+    public ObservableList<Transaction> getFilteredTransactionList() {
+        return filteredTransactions;
     }
 
     // =========== Util Methods ===============================================================================
