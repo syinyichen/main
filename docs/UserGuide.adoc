@@ -397,6 +397,7 @@ Records that you return the 4th person the 1st debt. +
 Expected Outcome:
 
     Reduced debt to Grace by $5.00. You now owe Grace $5.00.
+
 // end::return[]
 
 // tag::lend[]
