@@ -71,13 +71,6 @@ public class Date {
                 && date.getYear() == otherDate.getDate().getYear();
     }
 
-    /**
-     * Returns a default date object which is set to the current time.
-     */
-    public static Date getDefault() {
-        return new Date(LocalDate.now());
-    }
-
     @Override
     public String toString() {
         return date.toString();
