@@ -378,7 +378,7 @@ Expected Outcome:
 ==== Recording the money you return: `return`
 
 Records that a debt that you owe a person has been returned. +
-Format: `people return <person's index> [<debt's index>]`
+Format: `people return <person's index> [i/<debt's index>]`
 ****
 * Records that the debt at the specified <debt's index> has been returned to the person specified at <person's index>.
 * The person's index refers to the index number shown in the displayed person list.
@@ -392,7 +392,7 @@ Sharkie will record all debts as returned if the debt's index is not specified.
 
 Examples:
 
-* `people return 4 1`
+* `people return 4 i/1`
 Records that you return the 4th person the 1st debt. +
 Expected Outcome:
 

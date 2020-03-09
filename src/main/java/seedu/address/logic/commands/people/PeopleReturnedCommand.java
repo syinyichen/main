@@ -27,12 +27,12 @@ import seedu.address.model.transaction.TransactionList;
  * Records that a debt that the user owe, identified using its displayed index in the Debts table, has been
  * returned to the person identified using its displayed index from the address book.
  */
-public class PeopleReturnCommand extends Command {
-    public static final String COMMAND_WORD = "return";
+public class PeopleReturnedCommand extends Command {
+    public static final String COMMAND_WORD = "returned";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Records that you have returned a debt that"
             + " you owed. Parameters: <person's index> (must be a positive integer) "
-            + " [<debt's index> (must be a positive integer)]\n"
+            + " i/[<debt's index> (must be a positive integer)]\n"
             + "Example: " + PEOPLE_COMMAND_TYPE + " "
             + COMMAND_WORD + " 4 1";
 
@@ -41,13 +41,9 @@ public class PeopleReturnCommand extends Command {
     public static final String MESSAGE_NO_DEBT = "You don't owe %1$s any money :)";
 
     private final Index targetPersonIndex;
-    private Index targetDebtIndex;
+    private final Index targetDebtIndex;
 
-    public PeopleReturnCommand(Index targetPersonIndex) {
-        this.targetPersonIndex = targetPersonIndex;
-    }
-
-    public PeopleReturnCommand(Index targetPersonIndex, Index targetDebtIndex) {
+    public PeopleReturnedCommand(Index targetPersonIndex, Index targetDebtIndex) {
         this.targetPersonIndex = targetPersonIndex;
         this.targetDebtIndex = targetDebtIndex;
     }
@@ -127,8 +123,8 @@ public class PeopleReturnCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PeopleReturnCommand // instanceof handles nulls
-                && targetPersonIndex.equals(((PeopleReturnCommand) other).targetPersonIndex))
-                && targetDebtIndex.equals(((PeopleReturnCommand) other).targetDebtIndex); // state check
+                || (other instanceof PeopleReturnedCommand // instanceof handles nulls
+                && targetPersonIndex.equals(((PeopleReturnedCommand) other).targetPersonIndex))
+                && targetDebtIndex.equals(((PeopleReturnedCommand) other).targetDebtIndex); // state check
     }
 }
