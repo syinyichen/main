@@ -33,20 +33,14 @@ public class PeopleReturnedCommandParser implements Parser<PeopleReturnedCommand
 
         try {
             personIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+            if (argMultimap.getValue(PREFIX_TRANSACTION_INDEX).isPresent()) {
+                debtIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TRANSACTION_INDEX).get());
+            } else {
+                debtIndex = null;
+            }
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleReturnedCommand.MESSAGE_USAGE), pe);
-        }
-
-        if (argMultimap.getValue(PREFIX_TRANSACTION_INDEX).isPresent()) {
-            try {
-                debtIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TRANSACTION_INDEX).get());
-            } catch (ParseException pe) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        PeopleReturnedCommand.MESSAGE_USAGE), pe);
-            }
-        } else {
-            debtIndex = null;
         }
 
         return new PeopleReturnedCommand(personIndex, debtIndex);

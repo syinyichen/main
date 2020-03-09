@@ -46,7 +46,7 @@ public class PeopleReturnedCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid person index
+        // invalid debt index
         assertParseFailure(parser, "1" + INVALID_TRANSACTION_INDEX, MESSAGE_INVALID_FORMAT);
     }
 
