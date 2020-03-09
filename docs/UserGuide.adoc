@@ -241,7 +241,7 @@ Format: `wallet find <keyword>`
 
 ****
 * Finds the expenses and income with the stated <keyword>.
-* The keyword need to be in full. For example `wallet find ri` will not display expenses or income with the keyword `rice` as well. Only expenses or income with keyword `ri` will be displayed.
+* The keyword need not be in full. For example `wallet find ri` will also display expenses or income with the keyword `rice` as well.
 ****
 
 Examples:
