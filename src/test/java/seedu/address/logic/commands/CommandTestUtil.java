@@ -9,6 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.people.PeopleEditCommand;
@@ -19,10 +24,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.transaction.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.transaction.Transaction;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Contains helper methods for testing commands.
@@ -151,7 +152,8 @@ public class CommandTestUtil {
 
         Transaction transaction = model.getFilteredTransactionList().get(targetIndex.getZeroBased());
         final String[] splitDescription = transaction.getDescription().description.split("\\s+");
-        model.updateFilteredTransactionList(new DescriptionContainsKeywordsPredicate(Arrays.asList(splitDescription[0])));
+        model.updateFilteredTransactionList(new DescriptionContainsKeywordsPredicate(
+                Arrays.asList(splitDescription[0])));
 
         assertEquals(1, model.getFilteredTransactionList().size());
     }

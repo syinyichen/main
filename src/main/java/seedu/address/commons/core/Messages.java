@@ -12,5 +12,6 @@ public class Messages {
 
     public static final String MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX = "The expense index provided is invalid";
 
-    public static final String MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX = "The transaction index provided is invalid" ;
+    public static final String MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX = "The transaction index provided is "
+            + "invalid";
 }

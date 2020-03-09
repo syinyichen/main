@@ -112,5 +112,4 @@ public class PeopleAddCommandTest {
             return new AddressBook();
         }
     }
-
 }

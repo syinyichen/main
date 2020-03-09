@@ -2,6 +2,9 @@ package seedu.address.logic.commands.wallet;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -10,8 +13,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.transaction.Transaction;
 
-import java.util.List;
-
+/**
+ * Deletes a transaction identified using it's displayed index from the wallet.
+ */
 public class WalletDeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
@@ -33,7 +37,7 @@ public class WalletDeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Transaction>lastShownList = model.getFilteredTransactionList();
+        List<Transaction> lastShownList = model.getFilteredTransactionList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX);

@@ -1,15 +1,16 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+import java.util.Objects;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
 import seedu.address.model.transaction.Transaction;
 import seedu.address.model.transaction.TransactionList;
-
-import java.util.List;
-import java.util.Objects;
 
 
 /**
@@ -20,7 +21,8 @@ public class Wallet implements ReadOnlyWallet {
     private final TransactionList<Income> incomes = new TransactionList<>();
     private final TransactionList<Expense> expenses = new TransactionList<>();
 
-    public Wallet() {}
+    public Wallet() {
+    }
 
     /**
      * Creates an Wallet using the Transactions in the {@code toBeCopied}

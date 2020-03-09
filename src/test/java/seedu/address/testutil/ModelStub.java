@@ -1,5 +1,8 @@
 package seedu.address.testutil;
 
+import java.nio.file.Path;
+import java.util.function.Predicate;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
@@ -10,9 +13,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
 import seedu.address.model.transaction.Transaction;
-
-import java.nio.file.Path;
-import java.util.function.Predicate;
 
 /**
  * A default model stub that have all of the methods failing.
@@ -50,7 +50,8 @@ public class ModelStub implements Model {
 
     @Override
     public void addPerson(Person person) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
@@ -60,17 +61,20 @@ public class ModelStub implements Model {
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
     public boolean hasPerson(Person person) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
     public void deletePerson(Person target) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
@@ -95,17 +99,20 @@ public class ModelStub implements Model {
 
     @Override
     public boolean hasIncome(Income income) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
     public void addIncome(Income income) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
     public void deleteIncome(Income target) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
@@ -115,17 +122,20 @@ public class ModelStub implements Model {
 
     @Override
     public boolean hasExpense(Expense expense) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
     public void addExpense(Expense expense) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
     public void deleteExpense(Expense target) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
@@ -135,7 +145,8 @@ public class ModelStub implements Model {
 
     @Override
     public void deleteTransaction(Transaction target) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
 

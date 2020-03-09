@@ -9,7 +9,9 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TRANSACTION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TRANSACTION;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalWallet.getTypicalWallet;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
@@ -23,10 +25,12 @@ public class WalletDeleteCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
 
-        Transaction transactionToDelete = model.getFilteredTransactionList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
+        Transaction transactionToDelete =
+                model.getFilteredTransactionList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
         WalletDeleteCommand walletDeleteCommand = new WalletDeleteCommand(INDEX_FIRST_TRANSACTION);
 
-        String expectedMessage = String.format(WalletDeleteCommand.MESSAGE_DELETE_TRANSACTION_SUCCESS, transactionToDelete);
+        String expectedMessage = String.format(WalletDeleteCommand.MESSAGE_DELETE_TRANSACTION_SUCCESS,
+                transactionToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getWallet(), new UserPrefs());
         expectedModel.deleteTransaction(transactionToDelete);
@@ -46,10 +50,12 @@ public class WalletDeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showTransactionAtIndex(model, INDEX_FIRST_TRANSACTION);
 
-        Transaction transactionToDelete = model.getFilteredTransactionList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
+        Transaction transactionToDelete =
+                model.getFilteredTransactionList().get(INDEX_FIRST_TRANSACTION.getZeroBased());
         WalletDeleteCommand walletDeleteCommand = new WalletDeleteCommand(INDEX_FIRST_TRANSACTION);
 
-        String expectedMessage = String.format(WalletDeleteCommand.MESSAGE_DELETE_TRANSACTION_SUCCESS, transactionToDelete);
+        String expectedMessage = String.format(WalletDeleteCommand.MESSAGE_DELETE_TRANSACTION_SUCCESS,
+                transactionToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getWallet(), new UserPrefs());
         expectedModel.deleteTransaction(transactionToDelete);
