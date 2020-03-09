@@ -64,8 +64,7 @@ public class ModelManager implements Model {
         this(new AddressBook(), new Wallet(), new UserPrefs());
     }
 
-    // =========== UserPrefs
-    // ==================================================================================
+    // =========== UserPrefs ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -136,8 +135,7 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    // =========== Wallet
-    // =====================================================================================
+    // =========== Wallet =====================================================================================
 
     @Override
     public ReadOnlyWallet getWallet() {
@@ -199,8 +197,7 @@ public class ModelManager implements Model {
     }
 
 
-    // =========== Util Methods Person
-    // ========================================================================
+    // =========== Util Methods Person ========================================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the
@@ -235,8 +232,7 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons) && wallet.equals(other.wallet);
     }
 
-    // =========== Util Methods Wallet
-    // ========================================================================
+    // =========== Util Methods Wallet ========================================================================
 
     @Override
     public ObservableList<Expense> getFilteredExpenseList() {
