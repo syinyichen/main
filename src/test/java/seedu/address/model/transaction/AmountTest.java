@@ -38,4 +38,15 @@ public class AmountTest {
         assertTrue(new Amount(0).compareTo(new Amount(0.00)) == 0); // 0 equals 0
     }
 
+    @Test
+    public void add_addsAmountCorrectly() {
+        Amount twoFifty = new Amount(2.5);
+        Amount tenDollars = new Amount(10);
+        Amount thousandFive = new Amount(1500);
+        assertTrue(new Amount(12.5).equals(twoFifty.add(tenDollars)));
+        assertTrue(new Amount(1510).equals(tenDollars.add(thousandFive)));
+        assertTrue(new Amount(1502.5).equals(thousandFive.add(twoFifty)));
+        assertTrue(new Amount(5).equals(twoFifty.add(twoFifty)));
+    }
+
 }

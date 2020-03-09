@@ -14,6 +14,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Amount;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Debt;
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Loan;
@@ -29,30 +30,30 @@ public class SampleDataUtil {
         return new Person[]{
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     getDebtList(new Debt(new Description("Supper"), new Amount(5),
-                            LocalDate.parse("2020-02-03"))),
+                            new Date(LocalDate.parse("2020-02-03")))),
                     getLoanList(new Loan(new Description("Breakfast"), new Amount(3),
-                            LocalDate.parse("2018-08-08"))),
+                            new Date(LocalDate.parse("2018-08-08")))),
                     getTagSet("friends")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                     getDebtList(new Debt(new Description("Shopping"), new Amount(102),
-                            LocalDate.parse("2020-01-01"))),
+                            new Date(LocalDate.parse("2020-01-01")))),
                     getLoanList(new Loan(new Description("Lunch"), new Amount(12),
-                                    LocalDate.parse("2019-09-09")),
+                                    new Date(LocalDate.parse("2019-09-09"))),
                             new Loan(new Description("Movie"), new Amount(10),
-                                    LocalDate.parse("2020-02-02"))),
+                                    new Date(LocalDate.parse("2020-02-02")))),
                     getTagSet("colleagues", "friends")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                     getDebtList(new Debt(new Description("Gift for someone"), new Amount(10),
-                            LocalDate.parse("2019-12-12")),
+                            new Date(LocalDate.parse("2019-12-12"))),
                             new Debt(new Description("Movie"), new Amount(13),
-                            LocalDate.parse("2019-12-10"))),
+                            new Date(LocalDate.parse("2019-12-10")))),
                     getLoanList(new Loan(new Description("Shopping"), new Amount(150),
-                            LocalDate.parse("2018-08-18"))),
+                            new Date(LocalDate.parse("2018-08-18")))),
                     getTagSet("neighbours")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                     getDebtList(),
                     getLoanList(new Loan(new Description("Supper"), new Amount(8),
-                            LocalDate.parse("2020-02-24"))),
+                            new Date(LocalDate.parse("2020-02-24")))),
                     getTagSet("family")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                     getDebtList(), getLoanList(), getTagSet("classmates")),

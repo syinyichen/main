@@ -74,7 +74,7 @@ public class SharkieParserTest {
     }
 
     @Test
-    public void parseCommand_exit() throws Exception {
+    public void parseGlobalCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD)
                 instanceof ExitCommand);
     }
@@ -89,7 +89,7 @@ public class SharkieParserTest {
     }
 
     @Test
-    public void parseCommand_help() throws Exception {
+    public void parseGlobalCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD)
                 instanceof HelpCommand);
     }
@@ -160,4 +160,17 @@ public class SharkieParserTest {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand(
                 PeopleListCommand.COMMAND_WORD));
     }
+
+    @Test
+    public void parsePeopleCommand_nullCommandWord_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand(
+                PEOPLE_COMMAND_TYPE));
+    }
+
+    @Test
+    public void parsePeopleCommand_unknownCommandWord_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand(
+                PEOPLE_COMMAND_TYPE + " unknown command word"));
+    }
+
 }
