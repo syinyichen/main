@@ -20,7 +20,8 @@ import seedu.address.logic.commands.people.PeopleFindCommand;
 import seedu.address.logic.commands.people.PeopleLendCommand;
 import seedu.address.logic.commands.people.PeopleListCommand;
 import seedu.address.logic.commands.people.PeopleOweCommand;
-import seedu.address.logic.commands.wallet.WalletBudgetCommand;
+import seedu.address.logic.commands.wallet.WalletExpenseCommand;
+import seedu.address.logic.commands.wallet.WalletIncomeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.people.PeopleAddCommandParser;
 import seedu.address.logic.parser.people.PeopleDeleteCommandParser;
@@ -28,7 +29,8 @@ import seedu.address.logic.parser.people.PeopleEditCommandParser;
 import seedu.address.logic.parser.people.PeopleFindCommandParser;
 import seedu.address.logic.parser.people.PeopleLendCommandParser;
 import seedu.address.logic.parser.people.PeopleOweCommandParser;
-import seedu.address.logic.parser.wallet.WalletBudgetCommandParser;
+import seedu.address.logic.parser.wallet.WalletExpenseCommandParser;
+import seedu.address.logic.parser.wallet.WalletIncomeCommandParser;
 
 /**
  * Parses user input.
@@ -116,6 +118,12 @@ public class SharkieParser {
         switch (commandWord) {
         case WalletBudgetCommand.COMMAND_WORD:
             return new WalletBudgetCommandParser().parse(arguments);
+        case WalletExpenseCommand.COMMAND_WORD:
+            return new WalletExpenseCommandParser().parse(arguments);
+
+        case WalletIncomeCommand.COMMAND_WORD:
+            return new WalletIncomeCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
