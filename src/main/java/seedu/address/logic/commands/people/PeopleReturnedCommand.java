@@ -36,8 +36,8 @@ public class PeopleReturnedCommand extends Command {
             + "Example: " + PEOPLE_COMMAND_TYPE + " "
             + COMMAND_WORD + " 4 1";
 
-    public static final String MESSAGE_RETURN_SUCCESS = "Reduced debt to %1$s by %2$s. You now owe %1$s " +
-            "%3$s.";
+    public static final String MESSAGE_RETURNED_SUCCESS = "Reduced debt to %1$s by %2$s. You now owe %1$s "
+            + "%3$s.";
     public static final String MESSAGE_NO_DEBT = "You don't owe %1$s any money :)";
 
     private final Index targetPersonIndex;
@@ -84,7 +84,7 @@ public class PeopleReturnedCommand extends Command {
         model.setPerson(personUserOwe, personReducedDebt);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_RETURN_SUCCESS, personUserOwe.getName(),
+        return new CommandResult(String.format(MESSAGE_RETURNED_SUCCESS, personUserOwe.getName(),
                 amountReturned, personReducedDebt.getDebts().getTotal()));
     }
 
@@ -125,6 +125,7 @@ public class PeopleReturnedCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof PeopleReturnedCommand // instanceof handles nulls
                 && targetPersonIndex.equals(((PeopleReturnedCommand) other).targetPersonIndex))
-                && targetDebtIndex.equals(((PeopleReturnedCommand) other).targetDebtIndex); // state check
+                && (targetDebtIndex == ((PeopleReturnedCommand) other).targetDebtIndex
+                || targetDebtIndex.equals(((PeopleReturnedCommand) other).targetDebtIndex)); // state check
     }
 }

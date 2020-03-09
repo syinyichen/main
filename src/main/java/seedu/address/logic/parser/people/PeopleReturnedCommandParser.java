@@ -39,7 +39,12 @@ public class PeopleReturnedCommandParser implements Parser<PeopleReturnedCommand
         }
 
         if (argMultimap.getValue(PREFIX_TRANSACTION_INDEX).isPresent()) {
-            debtIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TRANSACTION_INDEX).get());
+            try {
+                debtIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_TRANSACTION_INDEX).get());
+            } catch (ParseException pe) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        PeopleReturnedCommand.MESSAGE_USAGE), pe);
+            }
         } else {
             debtIndex = null;
         }

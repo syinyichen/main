@@ -28,6 +28,7 @@ import seedu.address.logic.commands.people.PeopleFindCommand;
 import seedu.address.logic.commands.people.PeopleLendCommand;
 import seedu.address.logic.commands.people.PeopleListCommand;
 import seedu.address.logic.commands.people.PeopleOweCommand;
+import seedu.address.logic.commands.people.PeopleReturnedCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -106,6 +107,14 @@ public class SharkieParserTest {
                 + PeopleOweCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
                 + PersonUtil.getDebtDescription(TEXTBOOK));
         assertEquals(new PeopleOweCommand(INDEX_FIRST_PERSON, TEXTBOOK), command);
+    }
+
+    @Test
+    public void parsePeopleCommand_returned() throws Exception {
+        PeopleReturnedCommand command = (PeopleReturnedCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
+                + PeopleReturnedCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                + CliSyntax.PREFIX_TRANSACTION_INDEX + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new PeopleReturnedCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON), command);
     }
 
     @Test
