@@ -145,7 +145,30 @@ public interface Model {
     void setExpense(Expense target, Expense editedExpense);
 
     /**
+     * Deletes the given transaction.
+     * The transaction must exist in the Wallet.
+     */
+    public void deleteTransaction(Transaction transactionToDelete);
+
+    /**
+     * Returns an unmodifiable view of the filtered Expense list
+     */
+    ObservableList<Expense> getFilteredExpenseList();
+
+    /**
+     * Returns an unmodifiable view of the filtered Income list
+     */
+    ObservableList<Income> getFilteredIncomeList();
+
+    /**
      * Returns an unmodifiable view of the filtered Transaction list
      */
     ObservableList<Transaction> getFilteredTransactionList();
+
+    /**
+     * Updates the filter of the filtered transaction list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTransactionList(Predicate<Transaction> predicate);
 }

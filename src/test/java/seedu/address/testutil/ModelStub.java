@@ -1,16 +1,18 @@
 package seedu.address.testutil;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.ReadOnlyWallet;
 import seedu.address.model.person.Person;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
+import seedu.address.model.transaction.Transaction;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
 
 /**
  * A default model stub that have all of the methods failing.
@@ -87,6 +89,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public ReadOnlyWallet getWallet() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean hasIncome(Income income) {
         throw new AssertionError("This method should not be called.");
     }
@@ -123,6 +130,32 @@ public class ModelStub implements Model {
 
     @Override
     public void setExpense(Expense target, Expense editedExpense) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteTransaction(Transaction target) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+
+    @Override
+    public ObservableList<Transaction> getFilteredTransactionList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateFilteredTransactionList(Predicate<Transaction> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Expense> getFilteredExpenseList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Income> getFilteredIncomeList() {
         throw new AssertionError("This method should not be called.");
     }
 }

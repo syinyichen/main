@@ -184,11 +184,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Transaction> getFilteredTransactionList() {
-        return filteredTransactions;
+    public void deleteTransaction(Transaction transactionToDelete) {
+        if (transactionToDelete instanceof Expense) {
+            deleteExpense((Expense) transactionToDelete);
+        } else if (transactionToDelete instanceof Income) {
+            deleteIncome((Income) transactionToDelete);
+        } else {
+            assert transactionToDelete instanceof Income || transactionToDelete instanceof Expense
+                    : "transactionToDelete should be either an Expense class or Income class";
+        }
     }
 
-    // =========== Util Methods ===============================================================================
+
+    // =========== Util Methods Person ========================================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the
@@ -221,5 +229,28 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook) && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons) && wallet.equals(other.wallet);
+    }
+
+    // =========== Util Methods Wallet ========================================================================
+
+    @Override
+    public ObservableList<Expense> getFilteredExpenseList() {
+        return filteredExpenses;
+    }
+
+    @Override
+    public ObservableList<Income> getFilteredIncomeList() {
+        return filteredIncomes;
+    }
+
+    @Override
+    public ObservableList<Transaction> getFilteredTransactionList() {
+        return filteredTransactions;
+    }
+
+    @Override
+    public void updateFilteredTransactionList(Predicate<Transaction> predicate) {
+        requireNonNull(predicate);
+        filteredTransactions.setPredicate(predicate);
     }
 }

@@ -8,7 +8,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.transaction.Expense;
+import seedu.address.model.transaction.Transaction;
 
 import java.util.List;
 
@@ -33,17 +33,16 @@ public class WalletDeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Expense>lastShownList = model.getFilteredExpenseList();
+        List<Transaction>lastShownList = model.getFilteredTransactionList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX);
         }
 
-        Expense expenseToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Transaction transactionToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteTransaction(transactionToDelete);
 
-        model.deleteExpense(expenseToDelete);
-
-        return new CommandResult(String.format(MESSAGE_DELETE_TRANSACTION_SUCCESS, expenseToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_TRANSACTION_SUCCESS, transactionToDelete));
     }
 
     @Override
