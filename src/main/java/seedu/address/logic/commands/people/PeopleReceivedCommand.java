@@ -26,9 +26,9 @@ import seedu.address.model.transaction.TransactionList;
 /**
  * Records that the person, who owe the user money has paid the user back.
  */
-public class PeoplePaidCommand extends Command {
+public class PeopleReceivedCommand extends Command {
 
-    public static final String COMMAND_WORD = "paid";
+    public static final String COMMAND_WORD = "received";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Records that the person has paid you back.\n"
             + "Parameters: <person's index> (must be a positive integer) "
@@ -41,11 +41,11 @@ public class PeoplePaidCommand extends Command {
     private final Index targetPersonIndex;
     private Index targetLoanIndex;
 
-    public PeoplePaidCommand(Index targetIndex) {
+    public PeopleReceivedCommand(Index targetIndex) {
         this.targetPersonIndex = targetIndex;
     }
 
-    public PeoplePaidCommand(Index targetIndex, Index targetLoanIndex) {
+    public PeopleReceivedCommand(Index targetIndex, Index targetLoanIndex) {
         this.targetPersonIndex = targetIndex;
         this.targetLoanIndex = targetLoanIndex;
     }
@@ -127,8 +127,8 @@ public class PeoplePaidCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PeoplePaidCommand // instanceof handles nulls
-                && targetPersonIndex.equals(((PeoplePaidCommand) other).targetPersonIndex))
-                && targetLoanIndex.equals(((PeoplePaidCommand) other).targetLoanIndex);
+                || (other instanceof PeopleReceivedCommand // instanceof handles nulls
+                && targetPersonIndex.equals(((PeopleReceivedCommand) other).targetPersonIndex))
+                && targetLoanIndex.equals(((PeopleReceivedCommand) other).targetLoanIndex);
     }
 }

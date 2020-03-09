@@ -315,11 +315,11 @@ Expected Outcome:
 //tag::peopleremind[]
 ==== Sending reminder to a friend: `remind` `[coming in v2.0]`
 
-Sends a reminder through email to a friend to return their debts to you. +
+Reminds a friend, through a email to return the loans to you. +
 Format: `people remind <index>`
 
 ****
-* Reminds the person at the specified `<index>` return their debts to you.
+* Reminds the person at the specified `<index>` return the loans to you.
 * The index refers to the index number shown in the displayed person list.
 * The index *must be a positive integer* 1, 2, 3, ...
 ****
@@ -377,7 +377,7 @@ Expected Outcome:
 // tag::lend[]
 ==== Recording the money you lend: `lend`
 
-Records the amount of money that you lend to a person. This will increase that person's debt. +
+Records the amount of money that you lend to a person. This will increase that person's loan. +
 Format: `people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
 
 ****
@@ -398,25 +398,25 @@ Expected Outcome:
 // end::lend[]
 
 // tag::paid[]
-==== Recording the money your friend paid back: `paid`
+==== Recording the money your friend paid back: `received`
 
-Records that your friend, who owed you money has paid you back. +
-Format: `people paid <person's index> [<debt's index>]`
+Records that you have received the money from your friend, who you lent to. +
+Format: `people paid <person's index> [<loan's index>]`
 
 ****
 * The <person's index> refers to the index number shown before a displayed person.
-* The <debt's index> refers to the index number shown before the debt under the specified person.
+* The <loan's index> refers to the index number shown before a loan under the specified person.
 * Both indexes *must be a positive integer* 1, 2, 3, ...
 ****
 
 [TIP]
-The debt's index is optional.
-All debts will be removed from the indicated person if the debt's index is not specified.
+The loan's index is optional.
+All loans will be marked as `received` for the indicated person if the loan's index is not specified.
 
 Examples:
 
 * `people paid 2 1`
-Records that the 2nd person has paid the first debt in the list. +
+Records that you have received the money for the first loan from the second person in the address book. +
 Expected Outcome:
 
     Removed loan to Joel by $10.00. Joel now owes you $2.00.
@@ -533,7 +533,7 @@ e.g. `people remind 1`
 e.g. `people owe 4 n/lunch $/5.00 d/10/10/2020`
 * *Lend* : `people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]` +
 e.g. `people lend 5 n/dinner $/5.00 d/10/10/2020`
-* *Paid* : `people paid <person's index> [<debt's index>]` +
+* *Received* : `people received <person's index> [<loan's index>]` +
 e.g. `people paid 1 2`
 * *Find* : `people find <keyword>` +
 e.g. `people find Grace`

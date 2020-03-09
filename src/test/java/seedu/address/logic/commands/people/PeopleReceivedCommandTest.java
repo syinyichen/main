@@ -21,7 +21,7 @@ import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Loan;
 import seedu.address.testutil.PersonBuilder;
 
-public class PeoplePaidCommandTest {
+public class PeopleReceivedCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -32,9 +32,9 @@ public class PeoplePaidCommandTest {
         Amount originalAmount = paidAllPerson.getLoans().getTotal();
         Person removedLoanPerson = new PersonBuilder(paidAllPerson).withLoans().build();
 
-        PeoplePaidCommand peoplePaidCommand = new PeoplePaidCommand(INDEX_SECOND_PERSON);
+        PeopleReceivedCommand peoplePaidCommand = new PeopleReceivedCommand(INDEX_SECOND_PERSON);
 
-        String expectedMessage = String.format(PeoplePaidCommand.MESSAGE_PAID_SUCCESS,
+        String expectedMessage = String.format(PeopleReceivedCommand.MESSAGE_PAID_SUCCESS,
                 removedLoanPerson.getName(), originalAmount, removedLoanPerson.getLoans().getTotal());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -58,9 +58,9 @@ public class PeoplePaidCommandTest {
 
         Person removedLoanPerson = new PersonBuilder(paidPerson).withLoans(modifiedLoans).build();
 
-        PeoplePaidCommand peoplePaidCommand = new PeoplePaidCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON);
+        PeopleReceivedCommand peoplePaidCommand = new PeopleReceivedCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(PeoplePaidCommand.MESSAGE_PAID_SUCCESS,
+        String expectedMessage = String.format(PeopleReceivedCommand.MESSAGE_PAID_SUCCESS,
                 removedLoanPerson.getName(), originalAmount, removedLoanPerson.getLoans().getTotal());
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
@@ -72,10 +72,12 @@ public class PeoplePaidCommandTest {
     @Test
     public void equals() {
 
-        final PeoplePaidCommand standardCommand = new PeoplePaidCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON);
+        final PeopleReceivedCommand standardCommand =
+                new PeopleReceivedCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON);
 
         // same values -> returns true
-        PeoplePaidCommand commandWithSameValues = new PeoplePaidCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON);
+        PeopleReceivedCommand commandWithSameValues =
+                new PeopleReceivedCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -88,13 +90,13 @@ public class PeoplePaidCommandTest {
         assertFalse(standardCommand.equals(new PeopleClearCommand()));
 
         // different person index -> returns false
-        assertFalse(standardCommand.equals(new PeoplePaidCommand(INDEX_THIRD_PERSON, INDEX_FIRST_PERSON)));
+        assertFalse(standardCommand.equals(new PeopleReceivedCommand(INDEX_THIRD_PERSON, INDEX_FIRST_PERSON)));
 
         // different loan index -> returns false
-        assertFalse(standardCommand.equals(new PeoplePaidCommand(INDEX_SECOND_PERSON, INDEX_SECOND_PERSON)));
+        assertFalse(standardCommand.equals(new PeopleReceivedCommand(INDEX_SECOND_PERSON, INDEX_SECOND_PERSON)));
 
         // no loan index -> returns false
-        assertFalse(standardCommand.equals(new PeoplePaidCommand(INDEX_THIRD_PERSON)));
+        assertFalse(standardCommand.equals(new PeopleReceivedCommand(INDEX_THIRD_PERSON)));
     }
 
 }

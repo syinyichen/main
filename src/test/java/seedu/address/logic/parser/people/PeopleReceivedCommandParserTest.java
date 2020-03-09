@@ -9,13 +9,13 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.people.PeoplePaidCommand;
+import seedu.address.logic.commands.people.PeopleReceivedCommand;
 
-public class PeoplePaidCommandParserTest {
+public class PeopleReceivedCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeoplePaidCommand.MESSAGE_USAGE);
-    private PeoplePaidCommandParser parser = new PeoplePaidCommandParser();
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleReceivedCommand.MESSAGE_USAGE);
+    private PeopleReceivedCommandParser parser = new PeopleReceivedCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -50,7 +50,7 @@ public class PeoplePaidCommandParserTest {
         Index targetLoanIndex = INDEX_FIRST_PERSON;
         String userInput = targetPersonIndex.getOneBased() + " " + targetLoanIndex.getOneBased();
 
-        PeoplePaidCommand expectedCommand = new PeoplePaidCommand(targetPersonIndex, targetLoanIndex);
+        PeopleReceivedCommand expectedCommand = new PeopleReceivedCommand(targetPersonIndex, targetLoanIndex);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

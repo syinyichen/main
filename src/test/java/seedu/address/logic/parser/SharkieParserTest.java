@@ -29,7 +29,7 @@ import seedu.address.logic.commands.people.PeopleFindCommand;
 import seedu.address.logic.commands.people.PeopleLendCommand;
 import seedu.address.logic.commands.people.PeopleListCommand;
 import seedu.address.logic.commands.people.PeopleOweCommand;
-import seedu.address.logic.commands.people.PeoplePaidCommand;
+import seedu.address.logic.commands.people.PeopleReceivedCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -120,10 +120,10 @@ public class SharkieParserTest {
 
     @Test
     public void parsePeopleCommand_paid() throws Exception {
-        PeoplePaidCommand command = (PeoplePaidCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
-                + PeoplePaidCommand.COMMAND_WORD + " " + INDEX_SECOND_PERSON.getOneBased() + " "
+        PeopleReceivedCommand command = (PeopleReceivedCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
+                + PeopleReceivedCommand.COMMAND_WORD + " " + INDEX_SECOND_PERSON.getOneBased() + " "
                 + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new PeoplePaidCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON), command);
+        assertEquals(new PeopleReceivedCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON), command);
     }
 
     @Test
