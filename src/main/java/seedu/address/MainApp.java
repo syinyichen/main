@@ -180,11 +180,11 @@ public class MainApp extends Application {
 
         try {
             userDataOptional = storage.readUserData();
-            if (!userDataOptional.isPresent()) {
+            if (userDataOptional.isPresent()) {
+                logic.setUserData((UserData) userDataOptional.get());
+            } else {
                 logger.info("User data file not found. Kindly enter your data. Thank you. :)");
                 ui.openEnterUserDataWindow();
-            } else {
-                logic.setUserData((UserData) userDataOptional.get());
             }
         } catch (DataConversionException e) {
             logger.warning("User data file not in the correct format. Kindly re-enter your data. Thank you. :)");

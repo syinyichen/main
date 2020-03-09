@@ -1,5 +1,7 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.model.person.User;
 
 /**
@@ -13,11 +15,31 @@ public class UserData implements ReadOnlyUserData {
         this.user = user;
     }
 
+    public UserData() {
+        this.user = new User();
+    }
+
     /**
      * Creates an UserData using the data in the {@code toBeCopied}
      */
     public UserData(ReadOnlyUserData toBeCopied) {
-        this(toBeCopied.getUser());
+        this();
+        resetData(toBeCopied);
+    }
+
+    /**
+     * Resets the existing data of this {@code UserData} with {@code newUserData}.
+     */
+    public void resetData(ReadOnlyUserData newUserData) {
+        requireNonNull(newUserData);
+
+        this.user.setUser(newUserData.getUser());
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return user.getName() == null && user.getPhone() == null
+                && user.getEmail() == null;
     }
 
     @Override

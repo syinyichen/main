@@ -23,6 +23,13 @@ public class User {
         this.email = email;
     }
 
+    /**
+     * Represents an empty user data.
+     */
+    public User() {
+
+    }
+
     public Name getName() {
         return name;
     }

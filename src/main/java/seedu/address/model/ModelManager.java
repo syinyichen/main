@@ -21,7 +21,7 @@ import seedu.address.model.transaction.Income;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private UserData userData;
+    private final UserData userData;
     private final AddressBook addressBook;
     private final Wallet wallet;
     private final UserPrefs userPrefs;
@@ -41,6 +41,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.wallet = new Wallet(wallet);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.userData = new UserData();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
@@ -141,7 +142,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setUserData(ReadOnlyUserData userData) {
-        this.userData = new UserData(userData);
+        this.userData.resetData(userData);
     }
 
     @Override
@@ -151,7 +152,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean isUserDataNull() {
-        return this.userData == null;
+        return this.userData.isEmpty();
     }
 
     // =========== Wallet =====================================================================================

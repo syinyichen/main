@@ -12,4 +12,9 @@ public interface ReadOnlyUserData {
      */
     User getUser();
 
+    /**
+     * Returns true if the user data is empty.
+     */
+    boolean isEmpty();
+
 }
