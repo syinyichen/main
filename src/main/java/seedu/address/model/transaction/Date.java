@@ -45,6 +45,13 @@ public class Date {
         return true;
     }
 
+    /**
+     * Returns a default date set to today's date.
+     */
+    public static Date getDefault() {
+        return new Date(LocalDate.now());
+    }
+
     public LocalDate getDate() {
         return date;
     }
