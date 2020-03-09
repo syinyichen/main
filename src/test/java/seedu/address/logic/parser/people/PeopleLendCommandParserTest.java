@@ -133,7 +133,7 @@ public class PeopleLendCommandParserTest {
 
         Loan loan = new Loan(new Description(VALID_DESC_BOB),
                 new Amount(Double.parseDouble(VALID_AMOUNT_BOB)),
-                new Date(LocalDate.now()));
+                Date.getDefault());
         PeopleLendCommand expectedCommand = new PeopleLendCommand(targetIndex, loan);
 
         assertParseSuccess(parser, userInput, expectedCommand);

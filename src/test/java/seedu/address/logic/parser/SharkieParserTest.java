@@ -10,6 +10,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDebts.TEXTBOOK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalLoans.DINNER;
+import static seedu.address.testutil.TypicalWallet.ALLOWANCE;
+import static seedu.address.testutil.TypicalWallet.DUCK_RICE;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,12 +31,15 @@ import seedu.address.logic.commands.people.PeopleLendCommand;
 import seedu.address.logic.commands.people.PeopleListCommand;
 import seedu.address.logic.commands.people.PeopleOweCommand;
 import seedu.address.logic.commands.people.PeopleReturnedCommand;
+import seedu.address.logic.commands.wallet.WalletExpenseCommand;
+import seedu.address.logic.commands.wallet.WalletIncomeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.WalletUtil;
 
 public class SharkieParserTest {
 
@@ -123,6 +128,20 @@ public class SharkieParserTest {
                 + PeopleLendCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
                 + PersonUtil.getLoanDescription(DINNER));
         assertEquals(new PeopleLendCommand(INDEX_FIRST_PERSON, DINNER), command);
+    }
+
+    @Test
+    public void parseWalletCommand_expense() throws Exception {
+        WalletExpenseCommand command =
+                (WalletExpenseCommand) parser.parseCommand(WalletUtil.getExpenseCommand(DUCK_RICE));
+        assertEquals(new WalletExpenseCommand(DUCK_RICE), command);
+    }
+
+    @Test
+    public void parseWalletCommand_income() throws Exception {
+        WalletIncomeCommand command =
+                (WalletIncomeCommand) parser.parseCommand(WalletUtil.getIncomeCommand(ALLOWANCE));
+        assertEquals(new WalletIncomeCommand(ALLOWANCE), command);
     }
 
     @Test
