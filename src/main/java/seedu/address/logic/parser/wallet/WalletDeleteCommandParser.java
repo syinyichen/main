@@ -8,7 +8,11 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class WalletDeleteCommandParser implements Parser<WalletDeleteCommand>  {
+/**
+ * Parses input arguments and creates a new DeleteCommand object
+ */
+public class WalletDeleteCommandParser implements Parser<WalletDeleteCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns a DeleteCommand object for execution.
@@ -24,4 +28,5 @@ public class WalletDeleteCommandParser implements Parser<WalletDeleteCommand>  {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, WalletDeleteCommand.MESSAGE_USAGE), pe);
         }
     }
+
 }
