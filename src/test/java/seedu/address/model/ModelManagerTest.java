@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalWallet.ALLOWANCE;
 import static seedu.address.testutil.TypicalWallet.DUCK_RICE;
 import static seedu.address.testutil.TypicalWallet.TA_JOB;
 import static seedu.address.testutil.TypicalWallet.getTypicalWallet;
@@ -191,6 +192,22 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void deleteTransaction_targetExpenseInList_deletesExpense() {
+        modelManager.addExpense(DUCK_RICE);
+        modelManager.deleteTransaction(DUCK_RICE);
+        ModelManager expectedModelManager = new ModelManager();
+        assertEquals(expectedModelManager, modelManager);
+    }
+
+    @Test
+    public void deleteTransaction_targetIncomeInList_deletesIncome() {
+        modelManager.addIncome(ALLOWANCE);
+        modelManager.deleteTransaction(ALLOWANCE);
+        ModelManager expectedModelManager = new ModelManager();
+        assertEquals(expectedModelManager, modelManager);
+    }
+
+    @Test
     public void setExpense_nullTargetExpense_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setExpense(null, DUCK_RICE));
     }
@@ -221,6 +238,11 @@ public class ModelManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
 
+    @Test
+    public void getFilteredTransactionList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTransactionList().remove(0));
+    }
+    
     @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
