@@ -196,7 +196,6 @@ public class ModelManager implements Model {
         }
     }
 
-
     // =========== Util Methods Person ========================================================================
 
     /**
