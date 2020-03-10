@@ -118,7 +118,7 @@ public class TypicalWallet {
         for (Expense expense : getTypicalExpenses()) {
             wallet.addExpense(expense);
         }
-        for(Budget budget : getTypicalBudgets()) {
+        for (Budget budget : getTypicalBudgets()) {
             wallet.setBudget(budget);
         }
 

@@ -1,5 +1,7 @@
 package seedu.address.model.transaction;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,7 @@ import java.util.List;
  * Supports a limited set of list operations.
  */
 public class BudgetList {
-    private List<Budget> budgetList;
+    final List<Budget> budgetList;
     private Budget defaultBudget;
 
     public BudgetList() {
@@ -22,6 +24,7 @@ public class BudgetList {
      * default budget is returned.
      */
     public Budget getBudget(Date date) {
+        requireNonNull(date);
         for (Budget b : budgetList) {
             if (b.getDate().isSameMonthAndYearAs(date)) {
                 return b;
@@ -32,6 +35,7 @@ public class BudgetList {
     }
 
     public void setDefaultBudget(Budget budget) {
+        requireNonNull(budget);
         this.defaultBudget = budget;
     }
 
@@ -44,6 +48,7 @@ public class BudgetList {
      * dates. Returns true if a budget with the same month and year is in the list.
      */
     public boolean hasBudget(Budget budget) {
+        requireNonNull(budget);
         for (Budget b : budgetList) {
             if (b.getDate().isSameMonthAndYearAs(budget.getDate())) {
                 return true;
@@ -56,6 +61,7 @@ public class BudgetList {
      * Compares {@code date} with the dates of the Budgets in the list of Budgets. Returns true if the budget exists.
      */
     public boolean hasBudgetOfDate(Date date) {
+        requireNonNull(date);
         for (Budget b : budgetList) {
             if (b.getDate().isSameMonthAndYearAs(date)) {
                 return true;
@@ -70,6 +76,7 @@ public class BudgetList {
      * sort.
      */
     public void setBudget(Budget budget) {
+        requireNonNull(budget);
         budgetList.removeIf(b -> b.getDate().equals(budget.getDate()));
         budgetList.add(budget);
     }

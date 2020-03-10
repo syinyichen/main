@@ -4,7 +4,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalWallet.DUCK_RICE;
 import static seedu.address.testutil.TypicalWallet.VALID_AMOUNT_DUCK;
-import static seedu.address.testutil.TypicalWallet.VALID_DEFAULT_BUDGET_AMOUNT_ZERO;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

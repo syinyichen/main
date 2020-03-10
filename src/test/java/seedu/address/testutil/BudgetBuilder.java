@@ -6,6 +6,9 @@ import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Budget;
 import seedu.address.model.transaction.Date;
 
+/**
+ * A utility class to help with building Budget objects.
+ */
 public class BudgetBuilder {
     public static final double DEFAULT_AMOUNT = 0;
 
@@ -19,6 +22,18 @@ public class BudgetBuilder {
         isDefault = false;
     }
 
+    /**
+     * Initializes the BudgetBuilder with the data of {@code budgetToCopy}.
+     */
+    public BudgetBuilder(Budget budgetToCopy) {
+        this.amount = budgetToCopy.getAmount();
+        this.date = budgetToCopy.getDate();
+        isDefault = budgetToCopy.isDefault();
+    }
+
+    /**
+     * Sets the {@code amount} of the {@code Budget} that we are building.
+     */
     public BudgetBuilder withAmount(String amount) {
         try {
             this.amount = ParserUtil.parseAmount(amount);
@@ -28,6 +43,9 @@ public class BudgetBuilder {
         }
     }
 
+    /**
+     * Sets the {@code date} of the {@code Budget} that we are building.
+     */
     public BudgetBuilder withDate(String date) {
         try {
             this.date = ParserUtil.parseDate(date);
@@ -37,14 +55,20 @@ public class BudgetBuilder {
         }
     }
 
+    /**
+     * Sets the type (default or normal) of the {@code Budget} that we are building.
+     */
     public BudgetBuilder setAsDefault() {
         this.isDefault = true;
         return this;
     }
 
+    /**
+     * Returns a {@code Budget} object.
+     */
     public Budget buildBudget() {
         Budget newBudget = new Budget(amount, date);
-        if(isDefault) {
+        if (isDefault) {
             newBudget.setAsDefault();
         }
         return newBudget;

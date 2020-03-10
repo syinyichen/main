@@ -14,7 +14,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.model.Wallet;
 import seedu.address.model.transaction.Budget;
 import seedu.address.testutil.ModelStub;
 
@@ -77,7 +76,8 @@ public class WalletBudgetCommandTest {
 
     private class ModelStubAcceptingBudgetSet extends ModelStub {
         final List<Budget> budgetList = new ArrayList<Budget>();
-        Budget defaultBudget = Budget.getDefault();
+        private Budget defaultBudget = Budget.getDefault();
+
         @Override
         public void setBudget(Budget budget) {
             budgetList.add(budget);

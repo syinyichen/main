@@ -5,11 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalWallet.AMOUNT_DUCK;
 import static seedu.address.testutil.TypicalWallet.DUCK_RICE;
 import static seedu.address.testutil.TypicalWallet.MRT_CONCESSION;
 import static seedu.address.testutil.TypicalWallet.VALID_AMOUNT_DUCK;
-import static seedu.address.testutil.TypicalWallet.VALID_DEFAULT_BUDGET_AMOUNT_ZERO;
 
 import java.util.ArrayList;
 import java.util.Arrays;
