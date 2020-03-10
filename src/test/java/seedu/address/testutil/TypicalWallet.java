@@ -42,7 +42,10 @@ public class TypicalWallet {
     public static final String VALID_DEFAULT_BUDGET_AMOUNT_ZERO = "0";
 
     public static final String VALID_BUDGET_AMOUNT_JAN_2010 = "300";
-    public static final String VALID_BUDGET_DATE_JAN_2010 = "04/04/2010";
+    public static final String VALID_BUDGET_DATE_JAN_2010 = "04/01/2010";
+
+    public static final String VALID_BUDGET_AMOUNT_APRIL_2020 = "200";
+    public static final String VALID_BUDGET_DATE_APRIL_2020 = "04/04/2020";
 
     public static final String DESC_ALLOWANCE = " " + PREFIX_NAME + VALID_DESC_ALLOWANCE;
     public static final String AMOUNT_ALLOWANCE = " " + PREFIX_AMOUNT + VALID_AMOUNT_ALLOWANCE;
@@ -90,10 +93,15 @@ public class TypicalWallet {
         .buildExpense();
     public static final Budget DEFAULT_BUDGET = new BudgetBuilder()
         .withAmount(VALID_DEFAULT_BUDGET_AMOUNT_ZERO)
+        .setAsDefault()
         .buildBudget();
     public static final Budget BUDGET_JAN_2010 = new BudgetBuilder()
         .withAmount(VALID_BUDGET_AMOUNT_JAN_2010)
         .withDate(VALID_BUDGET_DATE_JAN_2010)
+        .buildBudget();
+    public static final Budget BUDGET_APRIL_2020 = new BudgetBuilder()
+        .withAmount(VALID_BUDGET_AMOUNT_APRIL_2020)
+        .withDate(VALID_BUDGET_DATE_APRIL_2020)
         .buildBudget();
 
     private TypicalWallet() {

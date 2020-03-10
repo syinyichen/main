@@ -53,7 +53,7 @@ public class WalletBudgetCommandParser implements Parser<WalletBudgetCommand> {
         } else {
             date = Date.getDefault();
             budget = new Budget(amount, date);
-            budget.setDefault(true);
+            budget.setAsDefault();
         }
 
         return new WalletBudgetCommand(budget);

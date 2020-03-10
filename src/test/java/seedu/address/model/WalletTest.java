@@ -69,6 +69,26 @@ public class WalletTest {
     }
 
     @Test
+    public void setBudget_nullBudget_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> wallet.setBudget(null));
+    }
+
+    @Test
+    public void setDefaultBudget_nullBudget_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> wallet.setDefaultBudget(null));
+    }
+
+    @Test
+    public void hasExceededBudget_nullDate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> wallet.hasExceededBudget(null));
+    }
+
+    @Test
+    public void getBudget_nullDate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> wallet.getBudget(null));
+    }
+
+    @Test
     public void getIncomeList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> wallet.getIncomeList().remove(0));
     }

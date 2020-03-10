@@ -19,8 +19,8 @@ public class Budget {
         this.date = date;
     }
 
-    public void setDefault(boolean value) {
-        isDefault = value;
+    public void setAsDefault() {
+        isDefault = true;
     }
 
     public boolean isDefault() {

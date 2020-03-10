@@ -11,10 +11,12 @@ public class BudgetBuilder {
 
     private Amount amount;
     private Date date;
+    private boolean isDefault;
 
     public BudgetBuilder() {
         this.amount = new Amount(DEFAULT_AMOUNT);
         this.date = Date.getDefault();
+        isDefault = false;
     }
 
     public BudgetBuilder withAmount(String amount) {
@@ -35,7 +37,16 @@ public class BudgetBuilder {
         }
     }
 
+    public BudgetBuilder setAsDefault() {
+        this.isDefault = true;
+        return this;
+    }
+
     public Budget buildBudget() {
-        return new Budget(amount, date);
+        Budget newBudget = new Budget(amount, date);
+        if(isDefault) {
+            newBudget.setAsDefault();
+        }
+        return newBudget;
     }
 }
