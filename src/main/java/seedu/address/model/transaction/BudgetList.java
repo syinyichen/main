@@ -25,7 +25,7 @@ public class BudgetList {
      */
     public boolean hasBudget(Budget budget) {
         for (Budget b : budgetList) {
-            if (b.getDate().equals(budget.getDate())) {
+            if (b.getDate().isSameMonthAndYearAs(budget.getDate())) {
                 return true;
             }
         }
@@ -36,18 +36,20 @@ public class BudgetList {
      * Compares {@code date} with the dates of the Budgets in the list of Budgets. Returns true if the budget exists.
      */
     public boolean hasBudgetOfDate(Date date) {
+        System.out.println("Checking for budget of date " + date + " budget list has " + budgetList.size());
         for (Budget b : budgetList) {
-            if (date.equals(b.getDate())) {
+            if (b.getDate().isSameMonthAndYearAs(date)) {
                 return true;
             }
         }
 
+        System.out.println("Budget not found");
         return false;
     }
 
-    public Budget getBudgetOfDate(Date date) {
+    public Budget getBudget(Date date) {
         for (Budget b : budgetList) {
-            if (date.equals(b.getDate())) {
+            if (b.getDate().isSameMonthAndYearAs(date)) {
                 return b;
             }
         }

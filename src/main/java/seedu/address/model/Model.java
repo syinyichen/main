@@ -6,7 +6,9 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Budget;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
 
@@ -140,6 +142,8 @@ public interface Model {
      */
     void setExpense(Expense target, Expense editedExpense);
 
+    Amount getTotalExpenditureInMonth(Date date);
+
     /**
      * Sets a budget as {@code budget}.
      */
@@ -150,5 +154,7 @@ public interface Model {
      */
     void setDefaultBudget(Budget budget);
 
-    boolean hasExceededBudget();
+    boolean hasExceededBudget(Date date);
+
+    Budget getBudget(Date date);
 }

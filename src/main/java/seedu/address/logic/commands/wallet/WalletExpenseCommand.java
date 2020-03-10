@@ -11,6 +11,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.transaction.Budget;
 import seedu.address.model.transaction.Expense;
 
 /**
@@ -49,7 +50,17 @@ public class WalletExpenseCommand extends Command {
         requireNonNull(model);
 
         model.addExpense(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+
+        String budgetString = "\n";
+        if(model.hasExceededBudget(toAdd.getDate())) {
+            budgetString += String.format(Budget.BUDGET_EXCEEDED, model.getTotalExpenditureInMonth(toAdd.getDate()),
+                    model.getBudget(toAdd.getDate()));
+        } else {
+            budgetString += String.format(Budget.BUDGET_OK, model.getTotalExpenditureInMonth(toAdd.getDate()),
+                    model.getBudget(toAdd.getDate()));
+        }
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS + budgetString, toAdd));
     }
 
     @Override

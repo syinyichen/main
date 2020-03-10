@@ -12,7 +12,9 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Budget;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
 
@@ -170,6 +172,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Amount getTotalExpenditureInMonth(Date date) {
+        return wallet.getTotalExpenditureInMonth(date);
+    }
+
+    @Override
     public void setBudget(Budget budget) {
         requireNonNull(budget);
         wallet.setBudget(budget);
@@ -182,8 +189,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasExceededBudget() {
-        return wallet.hasExceededBudget();
+    public boolean hasExceededBudget(Date date) {
+        return wallet.hasExceededBudget(date);
+    }
+
+    @Override
+    public Budget getBudget(Date date) {
+        return wallet.getBudget(date);
     }
 
     // =========== Util Methods ===============================================================================

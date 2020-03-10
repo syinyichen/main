@@ -107,7 +107,7 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
     /**
      * Retrieves a list of expenses filtered by the month they were added, using {@code date}.
      */
-    public TransactionList<T> getTransactionsInMonthOf(Date date) {
+    public TransactionList<T> getTransactionsInMonth(Date date) {
         TransactionList<T> filteredTransactions = new TransactionList<T>();
 
         for (T transaction : this) {

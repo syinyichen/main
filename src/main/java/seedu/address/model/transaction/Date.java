@@ -67,8 +67,8 @@ public class Date {
      * Returns true if the given {@code date} has the same month as this date.
      */
     public boolean isSameMonthAndYearAs(Date otherDate) {
-        return date.getDayOfMonth() == otherDate.getDate().getDayOfMonth()
-                && date.getYear() == otherDate.getDate().getYear();
+        return getMonth() == otherDate.getMonth()
+                && getYear() == otherDate.getYear();
     }
 
     public int getMonth() {

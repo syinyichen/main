@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Budget;
 import seedu.address.model.transaction.BudgetList;
 import seedu.address.model.transaction.Date;
@@ -129,6 +130,13 @@ public class Wallet implements ReadOnlyWallet {
         expenses.remove(key);
     }
 
+    public Amount getTotalExpenditureInMonth(Date date) {
+        requireNonNull(date);
+        TransactionList<Expense> filteredExpenseList = expenses.getTransactionsInMonth(date);
+
+        return filteredExpenseList.getTotal();
+    }
+
     // =========== Budget-related Operations =============================================================
 
     /**
@@ -137,9 +145,7 @@ public class Wallet implements ReadOnlyWallet {
      */
     public void setBudget(Budget budget) {
         requireNonNull(budget);
-        if (budgetList.hasBudget(budget)) {
-            budgetList.setBudget(budget);
-        }
+        budgetList.setBudget(budget);
     }
 
     /**
@@ -150,17 +156,23 @@ public class Wallet implements ReadOnlyWallet {
         budgetList.setDefaultBudget(budget);
     }
 
-    public boolean hasExceededBudget() {
-        TransactionList<Expense> filteredExpenseList = expenses.getTransactionsInMonthOf(Date.getDefault());
+    public boolean hasExceededBudget(Date date) {
+        requireNonNull(date);
+        TransactionList<Expense> filteredExpenseList = expenses.getTransactionsInMonth(date);
 
         Budget budgetToCompare;
-        if(budgetList.hasBudgetOfDate(Date.getDefault())) {
-            budgetToCompare = budgetList.getBudgetOfDate(Date.getDefault());
+        if(budgetList.hasBudgetOfDate(date)) {
+            budgetToCompare = budgetList.getBudget(date);
         } else {
             budgetToCompare = budgetList.getDefaultBudget();
         }
 
         return filteredExpenseList.getTotal().amount > budgetToCompare.getAmount().amount;
+    }
+
+    public Budget getBudget(Date date) {
+        requireNonNull(date);
+        return budgetList.getBudget(date);
     }
 
     // =========== Util methods =============================================================
