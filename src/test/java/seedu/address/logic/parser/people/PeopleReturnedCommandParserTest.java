@@ -61,10 +61,10 @@ public class PeopleReturnedCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetPersonIndex = INDEX_SECOND_PERSON;
-        Index targetLoanIndex = INDEX_FIRST_PERSON;
+        Index targetDebtIndex = INDEX_FIRST_PERSON;
         String userInput = targetPersonIndex.getOneBased() + " " + RETURNED_DESC_AMY;
 
-        PeopleReturnedCommand expectedCommand = new PeopleReturnedCommand(targetPersonIndex, targetLoanIndex);
+        PeopleReturnedCommand expectedCommand = new PeopleReturnedCommand(targetPersonIndex, targetDebtIndex);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
