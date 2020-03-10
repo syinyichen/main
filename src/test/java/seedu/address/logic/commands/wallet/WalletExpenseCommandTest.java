@@ -5,8 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalWallet.AMOUNT_DUCK;
 import static seedu.address.testutil.TypicalWallet.DUCK_RICE;
 import static seedu.address.testutil.TypicalWallet.MRT_CONCESSION;
+import static seedu.address.testutil.TypicalWallet.VALID_AMOUNT_DUCK;
+import static seedu.address.testutil.TypicalWallet.VALID_DEFAULT_BUDGET_AMOUNT_ZERO;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +17,9 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.model.transaction.Amount;
+import seedu.address.model.transaction.Budget;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Expense;
 import seedu.address.testutil.ModelStub;
 
@@ -30,7 +36,9 @@ public class WalletExpenseCommandTest {
 
         CommandResult commandResult = new WalletExpenseCommand(DUCK_RICE).execute(modelStub);
 
-        assertEquals(String.format(WalletExpenseCommand.MESSAGE_SUCCESS, DUCK_RICE), commandResult.getFeedbackToUser());
+        assertEquals(String.format(WalletExpenseCommand.MESSAGE_SUCCESS, DUCK_RICE, "$" + VALID_AMOUNT_DUCK,
+                "$0.00"),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(DUCK_RICE), modelStub.expensesAdded);
     }
 
@@ -66,6 +74,20 @@ public class WalletExpenseCommandTest {
         public void addExpense(Expense expense) {
             requireNonNull(expense);
             expensesAdded.add(expense);
+        }
+
+        @Override
+        public Amount getTotalExpenditureInMonth(Date date) {
+            double amount = 0.0;
+            for (Expense e : expensesAdded) {
+                amount += e.getAmount().amount;
+            }
+            return new Amount(amount);
+        }
+
+        @Override
+        public Budget getBudget(Date date) {
+            return Budget.getDefault();
         }
     }
 

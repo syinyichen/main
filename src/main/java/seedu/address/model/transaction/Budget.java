@@ -35,6 +35,10 @@ public class Budget {
         return date;
     }
 
+    public static Budget getDefault() {
+        return new Budget(new Amount(0.0), Date.getDefault());
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this

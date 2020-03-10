@@ -51,6 +51,8 @@ public class WalletExpenseCommand extends Command {
 
         model.addExpense(toAdd);
 
+        System.out.println(String.format(MESSAGE_SUCCESS, toAdd,
+                model.getTotalExpenditureInMonth(toAdd.getDate()), model.getBudget(toAdd.getDate())));
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd,
                 model.getTotalExpenditureInMonth(toAdd.getDate()), model.getBudget(toAdd.getDate())));
     }
