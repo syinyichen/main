@@ -33,7 +33,7 @@ public class WalletExpenseCommand extends Command {
             + PREFIX_DATE + "10/10/2010 "
             + PREFIX_TAG + "Food";
 
-    public static final String MESSAGE_SUCCESS = "New expense added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New expense added: %1$s\nYour expenditure this month is: %2$s/%3$s";
 
     private final Expense toAdd;
 
@@ -51,16 +51,8 @@ public class WalletExpenseCommand extends Command {
 
         model.addExpense(toAdd);
 
-        String budgetString = "\n";
-        if(model.hasExceededBudget(toAdd.getDate())) {
-            budgetString += String.format(Budget.BUDGET_EXCEEDED, model.getTotalExpenditureInMonth(toAdd.getDate()),
-                    model.getBudget(toAdd.getDate()));
-        } else {
-            budgetString += String.format(Budget.BUDGET_OK, model.getTotalExpenditureInMonth(toAdd.getDate()),
-                    model.getBudget(toAdd.getDate()));
-        }
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS + budgetString, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd,
+                model.getTotalExpenditureInMonth(toAdd.getDate()), model.getBudget(toAdd.getDate())));
     }
 
     @Override

@@ -16,9 +16,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
-import seedu.address.model.transaction.Budget;
-import seedu.address.model.transaction.Expense;
-import seedu.address.model.transaction.Income;
 import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.PersonBuilder;
 

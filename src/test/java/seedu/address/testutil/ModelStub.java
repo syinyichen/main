@@ -9,6 +9,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.transaction.Amount;
+import seedu.address.model.transaction.Budget;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
 
@@ -123,6 +126,30 @@ public class ModelStub implements Model {
 
     @Override
     public void setExpense(Expense target, Expense editedExpense) {
+        throw new AssertionError("This method should not be called.");
+    }
+    @Override
+    public Amount getTotalExpenditureInMonth(Date date) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setBudget(Budget budget) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setDefaultBudget(Budget budget) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasExceededBudget(Date date) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Budget getBudget(Date date) {
         throw new AssertionError("This method should not be called.");
     }
 }

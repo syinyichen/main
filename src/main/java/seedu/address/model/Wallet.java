@@ -156,12 +156,15 @@ public class Wallet implements ReadOnlyWallet {
         budgetList.setDefaultBudget(budget);
     }
 
+    /**
+     * Checks if the budget has been exceeded on a given {@code date}.
+     */
     public boolean hasExceededBudget(Date date) {
         requireNonNull(date);
         TransactionList<Expense> filteredExpenseList = expenses.getTransactionsInMonth(date);
 
         Budget budgetToCompare;
-        if(budgetList.hasBudgetOfDate(date)) {
+        if (budgetList.hasBudgetOfDate(date)) {
             budgetToCompare = budgetList.getBudget(date);
         } else {
             budgetToCompare = budgetList.getDefaultBudget();
@@ -170,6 +173,9 @@ public class Wallet implements ReadOnlyWallet {
         return filteredExpenseList.getTotal().amount > budgetToCompare.getAmount().amount;
     }
 
+    /**
+     * Returns the budget of the given {@code date}.
+     */
     public Budget getBudget(Date date) {
         requireNonNull(date);
         return budgetList.getBudget(date);

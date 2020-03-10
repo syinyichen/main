@@ -1,8 +1,6 @@
 package seedu.address.model.transaction;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -17,6 +15,28 @@ public class BudgetList {
     public BudgetList() {
         budgetList = new ArrayList<Budget>();
         defaultBudget = new Budget(new Amount(0.0), Date.getDefault());
+    }
+
+    /**
+     * Returns a budget of the month of the selected {@code date}. If the individual budget doesn't exist, the
+     * default budget is returned.
+     */
+    public Budget getBudget(Date date) {
+        for (Budget b : budgetList) {
+            if (b.getDate().isSameMonthAndYearAs(date)) {
+                return b;
+            }
+        }
+
+        return defaultBudget;
+    }
+
+    public void setDefaultBudget(Budget budget) {
+        this.defaultBudget = budget;
+    }
+
+    public Budget getDefaultBudget() {
+        return defaultBudget;
     }
 
     /**
@@ -36,33 +56,13 @@ public class BudgetList {
      * Compares {@code date} with the dates of the Budgets in the list of Budgets. Returns true if the budget exists.
      */
     public boolean hasBudgetOfDate(Date date) {
-        System.out.println("Checking for budget of date " + date + " budget list has " + budgetList.size());
         for (Budget b : budgetList) {
             if (b.getDate().isSameMonthAndYearAs(date)) {
                 return true;
             }
         }
 
-        System.out.println("Budget not found");
         return false;
-    }
-
-    public Budget getBudget(Date date) {
-        for (Budget b : budgetList) {
-            if (b.getDate().isSameMonthAndYearAs(date)) {
-                return b;
-            }
-        }
-
-        return defaultBudget;
-    }
-
-    public void setDefaultBudget(Budget budget) {
-        this.defaultBudget = budget;
-    }
-
-    public Budget getDefaultBudget() {
-        return defaultBudget;
     }
 
     /**

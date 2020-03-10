@@ -6,12 +6,12 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  * Represents a Budget for the wallet.
  */
 public class Budget {
+    public static final String BUDGET_OK = "Your current expenditure is: %1$s / %2$s";
+    public static final String BUDGET_EXCEEDED = "You have exceeded your budget by: %1$s / %2$s";
+
     private Amount budget;
     private Date date;
     private boolean isDefault = false;
-
-    public static final String BUDGET_EXCEEDED = "You have exceeded your budget by: %1$s / %2$s";
-    public static final String BUDGET_OK = "Your current expenditure is: %1$s / %2$s";
 
     public Budget(Amount budget, Date date) {
         requireAllNonNull(budget, date);
