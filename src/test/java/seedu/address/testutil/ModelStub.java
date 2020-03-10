@@ -50,8 +50,7 @@ public class ModelStub implements Model {
 
     @Override
     public void addPerson(Person person) {
-        throw new AssertionError(
-                "This method should not be called.");
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override

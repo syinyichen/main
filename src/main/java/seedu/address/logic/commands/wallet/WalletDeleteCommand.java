@@ -25,7 +25,7 @@ public class WalletDeleteCommand extends Command {
             + "Example: " + WALLET_COMMAND_TYPE + " "
             + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_TRANSACTION_SUCCESS = "Deleted Income/Expense: %1$s";
+    public static final String MESSAGE_DELETE_TRANSACTION_SUCCESS = "Deleted Transaction: %1$s";
 
     private final Index targetIndex;
 
