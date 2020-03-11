@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -34,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private EnterUserDataWindow enterUserDataWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -63,6 +65,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        enterUserDataWindow = new EnterUserDataWindow(this::storeUserData);
     }
 
     public Stage getPrimaryStage() {
@@ -145,6 +148,29 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Handles the event when the edit user data button in the menu is clicked.
+     */
+    @FXML
+    public void handleEditUserData() {
+        openUserDataWindow();
+        enterUserDataWindow.getRoot().setTitle("Edit User Data");
+        enterUserDataWindow.instructionMessage.setText("Edit your details: ");
+    }
+
+    /**
+     * Opens the window to enter user data or focuses on it if it's already opened.
+     */
+    public void openUserDataWindow() {
+        if (!enterUserDataWindow.isShowing()) {
+            enterUserDataWindow.show();
+        } else {
+            enterUserDataWindow.focus();
+        }
+    }
+
+
+
     void show() {
         primaryStage.show();
     }
@@ -159,6 +185,7 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+        enterUserDataWindow.hide();
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -190,5 +217,15 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Executes the command and returns the result.
+     *
+     * @see seedu.address.logic.Logic#storeUserData(String, String, String)
+     */
+    private void storeUserData(String name, String phone, String email)
+            throws IllegalArgumentException, IOException {
+        logic.storeUserData(name, phone, email);
     }
 }

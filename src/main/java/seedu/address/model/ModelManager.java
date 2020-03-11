@@ -21,6 +21,7 @@ import seedu.address.model.transaction.Income;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private final UserData userData;
     private final AddressBook addressBook;
     private final Wallet wallet;
     private final UserPrefs userPrefs;
@@ -29,16 +30,18 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook, wallet and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyWallet wallet, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyWallet wallet,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, wallet, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + ", wallet: " + wallet + " and user prefs "
-                + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + ", wallet: "
+                + wallet + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.wallet = new Wallet(wallet);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.userData = new UserData();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
@@ -88,6 +91,17 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
+    @Override
+    public Path getUserDataFilePath() {
+        return userPrefs.getUserDataFilePath();
+    }
+
+    @Override
+    public void setUserDataFilePath(Path userDataFilePath) {
+        requireNonNull(userDataFilePath);
+        userPrefs.setUserDataFilePath(userDataFilePath);
+    }
+
     // =========== AddressBook ================================================================================
 
     @Override
@@ -122,6 +136,23 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    // =========== User Data ================================================================================
+
+    @Override
+    public void setUserData(ReadOnlyUserData userData) {
+        this.userData.resetData(userData);
+    }
+
+    @Override
+    public ReadOnlyUserData getUserData() {
+        return userData;
+    }
+
+    @Override
+    public boolean isUserDataNull() {
+        return this.userData.isEmpty();
     }
 
     // =========== Wallet =====================================================================================
