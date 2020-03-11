@@ -63,24 +63,8 @@ public class PeopleReturnedCommand extends Command {
             throw new CommandException(String.format(MESSAGE_NO_DEBT, personUserOwes.getName()));
         }
 
-        Amount amountReturned;
-        Person personReducedDebt;
-
-        if (targetDebtIndex == null) {
-            personReducedDebt = createPersonReturnedAll(personUserOwes);
-            amountReturned = personUserOwes.getDebts().getTotal();
-
-        } else {
-            List<Debt> debts = personUserOwes.getDebts().asUnmodifiableObservableList();
-
-            if (targetDebtIndex.getZeroBased() >= debts.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_DEBT_DISPLAYED_INDEX);
-            }
-
-            Debt debtReturned = debts.get(targetDebtIndex.getZeroBased());
-            personReducedDebt = createPersonReturnedByIndex(personUserOwes, debtReturned);
-            amountReturned = debtReturned.getAmount();
-        }
+        Person personReducedDebt = createPersonReturned(personUserOwes, targetDebtIndex);
+        Amount amountReturned = getAmountReturned(personUserOwes, targetDebtIndex);
         model.setPerson(personUserOwes, personReducedDebt);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
@@ -89,34 +73,46 @@ public class PeopleReturnedCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} after returning all the debts.
+     * Returns the {@code Amount} that the user has returned {@code personUserOwes}.
      */
-    private static Person createPersonReturnedAll(Person personUserOwes) {
-        assert personUserOwes != null;
-
-        Name name = personUserOwes.getName();
-        Phone phone = personUserOwes.getPhone();
-        Email email = personUserOwes.getEmail();
-        TransactionList<Debt> updatedDebts = new TransactionList<>();
-        TransactionList<Loan> loans = personUserOwes.getLoans();
-        Set<Tag> tags = personUserOwes.getTags();
-        return new Person(name, phone, email, updatedDebts, loans, tags);
+    public static Amount getAmountReturned(Person personUserOwes, Index targetDebtIndex) {
+        Amount amountReturned;
+        if (targetDebtIndex == null) {
+            amountReturned = personUserOwes.getDebts().getTotal();
+        } else {
+            List<Debt> debts = personUserOwes.getDebts().asUnmodifiableObservableList();
+            assert targetDebtIndex.getZeroBased() < debts.size();
+            amountReturned = debts.get(targetDebtIndex.getZeroBased()).getAmount();
+        }
+        return amountReturned;
     }
 
     /**
-     * Creates and returns a {@code Person} after returning {@code debtReturned}.
+     * Creates and returns a {@code Person} after returning the debt(s).
      */
-    private static Person createPersonReturnedByIndex(Person personUserOwes, Debt debtReturned) {
+    private static Person createPersonReturned(Person personUserOwes, Index targetDebtIndex)
+            throws CommandException {
         assert personUserOwes != null;
 
         Name name = personUserOwes.getName();
         Phone phone = personUserOwes.getPhone();
         Email email = personUserOwes.getEmail();
         TransactionList<Debt> updatedDebts = new TransactionList<>();
-        updatedDebts.setTransactions(personUserOwes.getDebts());
-        updatedDebts.remove(debtReturned);
         TransactionList<Loan> loans = personUserOwes.getLoans();
         Set<Tag> tags = personUserOwes.getTags();
+
+        if (targetDebtIndex != null) {
+            List<Debt> debts = personUserOwes.getDebts().asUnmodifiableObservableList();
+
+            if (targetDebtIndex.getZeroBased() >= debts.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_DEBT_DISPLAYED_INDEX);
+            }
+
+            Debt debtReturned = debts.get(targetDebtIndex.getZeroBased());
+            updatedDebts.setTransactions(personUserOwes.getDebts());
+            updatedDebts.remove(debtReturned);
+        }
+
         return new Person(name, phone, email, updatedDebts, loans, tags);
     }
 
