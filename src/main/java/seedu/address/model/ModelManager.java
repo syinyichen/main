@@ -188,11 +188,10 @@ public class ModelManager implements Model {
     public void deleteTransaction(Transaction transactionToDelete) {
         if (transactionToDelete instanceof Expense) {
             deleteExpense((Expense) transactionToDelete);
-        } else if (transactionToDelete instanceof Income) {
-            deleteIncome((Income) transactionToDelete);
         } else {
-            assert transactionToDelete instanceof Income || transactionToDelete instanceof Expense
+            assert transactionToDelete instanceof Income
                     : "transactionToDelete should be either an Expense class or Income class";
+            deleteIncome((Income) transactionToDelete);
         }
     }
 

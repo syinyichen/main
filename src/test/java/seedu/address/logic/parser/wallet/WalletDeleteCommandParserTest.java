@@ -1,13 +1,11 @@
 package seedu.address.logic.parser.wallet;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TRANSACTION;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.address.logic.commands.wallet.WalletDeleteCommand;
 
 /**
@@ -22,7 +20,7 @@ public class WalletDeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new WalletDeleteCommand(INDEX_FIRST_TRANSACTION));
+        assertParseSuccess(parser, "1", new WalletDeleteCommand(INDEX_FIRST_PERSON));
     }
 
     @Test

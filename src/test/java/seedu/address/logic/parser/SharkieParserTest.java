@@ -18,7 +18,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.address.logic.commands.global.ExitCommand;
 import seedu.address.logic.commands.global.HelpCommand;
 import seedu.address.logic.commands.people.PeopleAddCommand;
@@ -30,6 +29,7 @@ import seedu.address.logic.commands.people.PeopleFindCommand;
 import seedu.address.logic.commands.people.PeopleLendCommand;
 import seedu.address.logic.commands.people.PeopleListCommand;
 import seedu.address.logic.commands.people.PeopleOweCommand;
+import seedu.address.logic.commands.wallet.WalletDeleteCommand;
 import seedu.address.logic.commands.wallet.WalletExpenseCommand;
 import seedu.address.logic.commands.wallet.WalletIncomeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -134,6 +134,13 @@ public class SharkieParserTest {
         WalletIncomeCommand command =
                 (WalletIncomeCommand) parser.parseCommand(WalletUtil.getIncomeCommand(ALLOWANCE));
         assertEquals(new WalletIncomeCommand(ALLOWANCE), command);
+    }
+
+    @Test
+    public void parseWalletCommand_delete() throws Exception {
+        WalletDeleteCommand command = (WalletDeleteCommand) parser.parseCommand(WALLET_COMMAND_TYPE + " "
+                + WalletDeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new WalletDeleteCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
