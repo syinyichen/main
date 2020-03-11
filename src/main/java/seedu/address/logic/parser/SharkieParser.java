@@ -21,6 +21,8 @@ import seedu.address.logic.commands.people.PeopleLendCommand;
 import seedu.address.logic.commands.people.PeopleListCommand;
 import seedu.address.logic.commands.people.PeopleOweCommand;
 import seedu.address.logic.commands.people.PeopleReceivedCommand;
+import seedu.address.logic.commands.people.PeopleRemindAllCommand;
+import seedu.address.logic.commands.people.PeopleRemindCommand;
 import seedu.address.logic.commands.wallet.WalletExpenseCommand;
 import seedu.address.logic.commands.wallet.WalletIncomeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -31,6 +33,7 @@ import seedu.address.logic.parser.people.PeopleFindCommandParser;
 import seedu.address.logic.parser.people.PeopleLendCommandParser;
 import seedu.address.logic.parser.people.PeopleOweCommandParser;
 import seedu.address.logic.parser.people.PeopleReceivedCommandParser;
+import seedu.address.logic.parser.people.PeopleRemindCommandParser;
 import seedu.address.logic.parser.wallet.WalletExpenseCommandParser;
 import seedu.address.logic.parser.wallet.WalletIncomeCommandParser;
 
@@ -109,6 +112,12 @@ public class SharkieParser {
 
         case PeopleReceivedCommand.COMMAND_WORD:
             return new PeopleReceivedCommandParser().parse(arguments);
+
+        case PeopleRemindCommand.COMMAND_WORD:
+            return new PeopleRemindCommandParser().parse(arguments);
+
+        case PeopleRemindAllCommand.COMMAND_WORD:
+            return new PeopleRemindAllCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

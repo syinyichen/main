@@ -25,3 +25,5 @@ src/test/data/sandbox/
 .settings
 .project
 bin
+
+/lib/*.jar

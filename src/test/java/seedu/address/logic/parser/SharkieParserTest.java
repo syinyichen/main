@@ -33,6 +33,8 @@ import seedu.address.logic.commands.people.PeopleLendCommand;
 import seedu.address.logic.commands.people.PeopleListCommand;
 import seedu.address.logic.commands.people.PeopleOweCommand;
 import seedu.address.logic.commands.people.PeopleReceivedCommand;
+import seedu.address.logic.commands.people.PeopleRemindAllCommand;
+import seedu.address.logic.commands.people.PeopleRemindCommand;
 import seedu.address.logic.commands.wallet.WalletExpenseCommand;
 import seedu.address.logic.commands.wallet.WalletIncomeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -131,6 +133,21 @@ public class SharkieParserTest {
                 + PeopleReceivedCommand.COMMAND_WORD + " " + INDEX_SECOND_PERSON.getOneBased() + " "
                 + PREFIX_TRANSACTION_INDEX + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new PeopleReceivedCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parsePeopleCommand_remind() throws Exception {
+        PeopleRemindCommand command = (PeopleRemindCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
+                + PeopleRemindCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new PeopleRemindCommand(INDEX_FIRST_PERSON), command);
+    }
+
+    @Test
+    public void parsePeopleCommand_remindAll() throws Exception {
+        assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + PeopleRemindAllCommand.COMMAND_WORD)
+                instanceof PeopleRemindAllCommand);
+        assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + PeopleRemindAllCommand.COMMAND_WORD + " 3")
+                instanceof PeopleRemindAllCommand);
     }
 
     @Test

@@ -25,9 +25,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonUserDataStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -45,8 +47,10 @@ public class LogicManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonUserDataStorage userDataStorage =
+                new JsonUserDataStorage(temporaryFolder.resolve("userData.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, userDataStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -73,9 +77,11 @@ public class LogicManagerTest {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonUserDataStorage userDataStorage =
+                new JsonUserDataIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionUserData.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(addressBookStorage, userDataStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -92,6 +98,23 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void storeUserData_invalidUserInput_throwsIllegalArgumentException() {
+        String invalidUserName = " ";
+        String invalidUserPhone = "dff";
+        String invalidUserEmail = "21d";
+        String validUserName = "john";
+        String validUserPhone = "98765432";
+        String validUserEmail = "abcdefg@gmail.com";
+
+        //invalid name
+        assertIllegalArgumentException(invalidUserName, validUserPhone, validUserEmail, IllegalArgumentException.class);
+        //invalid phone
+        assertIllegalArgumentException(validUserName, invalidUserPhone, validUserEmail, IllegalArgumentException.class);
+        //invalid email
+        assertIllegalArgumentException(validUserName, validUserPhone, invalidUserEmail, IllegalArgumentException.class);
     }
 
     /**
@@ -153,6 +176,17 @@ public class LogicManagerTest {
     }
 
     /**
+     * Checks the argument and confirms that a IllegalArgumentException
+     * is thrown and that the result message is correct.
+     *
+     * @see #assertCommandFailure(String, Class, String, Model)
+     */
+    private void assertIllegalArgumentException(String name, String phone, String email,
+                                                Class<? extends Throwable> expectedException) {
+        assertThrows(expectedException, () -> logic.storeUserData(name, phone, email));
+    }
+
+    /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
     private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
@@ -162,6 +196,20 @@ public class LogicManagerTest {
 
         @Override
         public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+    /**
+     * A stub class to throw an {@code IOException} when the save method of {@code UserData} is called.
+     */
+    private static class JsonUserDataIoExceptionThrowingStub extends JsonUserDataStorage {
+        private JsonUserDataIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void saveUserData(ReadOnlyUserData userData, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }
