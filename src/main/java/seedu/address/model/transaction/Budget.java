@@ -3,6 +3,7 @@ package seedu.address.model.transaction;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.time.Month;
 import java.time.Year;
 
@@ -20,8 +21,8 @@ public class Budget {
 
     public Budget(Amount budget) {
         this.budget = budget;
-        this.month = Month.of(1);
-        this.year = Year.of(1);
+        this.month = Budget.getDefault().getMonth();
+        this.year = Budget.getDefault().getYear();
         isDefault = true;
     }
 
@@ -30,6 +31,10 @@ public class Budget {
         this.budget = budget;
         this.month = month;
         this.year = year;
+    }
+
+    public void setAsDefault() {
+        isDefault = true;
     }
 
     public boolean isDefault() {
@@ -49,9 +54,12 @@ public class Budget {
     }
 
     public static Budget getDefault() {
-        return new Budget(new Amount(0), Month.of(1), Year.of(1));
+        return new Budget(new Amount(0), LocalDate.now().getMonth(), Year.of(LocalDate.now().getYear()));
     }
 
+    /**
+     * Checks if the date of the {@code other Budget} is equal to the date of this Budget object.
+     */
     public boolean dateEquals(Budget other) {
         requireNonNull(other);
 

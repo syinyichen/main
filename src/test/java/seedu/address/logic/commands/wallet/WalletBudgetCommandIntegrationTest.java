@@ -38,7 +38,7 @@ public class WalletBudgetCommandIntegrationTest {
         assertCommandSuccess(new WalletBudgetCommand(BUDGET_JAN_2010), model,
                 String.format(WalletBudgetCommand.MESSAGE_SUCCESS,
                         BUDGET_JAN_2010.getAmount(),
-                        BUDGET_JAN_2010.getDate().getMonthString(),
-                        BUDGET_JAN_2010.getDate().getYear()), expectedModel);
+                        BUDGET_JAN_2010.getMonth(),
+                        BUDGET_JAN_2010.getYear()), expectedModel);
     }
 }

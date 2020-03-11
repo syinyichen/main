@@ -1,5 +1,9 @@
 package seedu.address.testutil;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
+
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.transaction.Amount;
@@ -13,12 +17,14 @@ public class BudgetBuilder {
     public static final double DEFAULT_AMOUNT = 0;
 
     private Amount amount;
-    private Date date;
+    private Month month;
+    private Year year;
     private boolean isDefault;
 
     public BudgetBuilder() {
         this.amount = new Amount(DEFAULT_AMOUNT);
-        this.date = Date.getDefault();
+        this.month = LocalDate.now().getMonth();
+        this.year = Year.of(LocalDate.now().getYear());
         isDefault = false;
     }
 
@@ -27,7 +33,8 @@ public class BudgetBuilder {
      */
     public BudgetBuilder(Budget budgetToCopy) {
         this.amount = budgetToCopy.getAmount();
-        this.date = budgetToCopy.getDate();
+        this.month = budgetToCopy.getMonth();
+        this.year = budgetToCopy.getYear();
         isDefault = budgetToCopy.isDefault();
     }
 
@@ -44,11 +51,23 @@ public class BudgetBuilder {
     }
 
     /**
-     * Sets the {@code date} of the {@code Budget} that we are building.
+     * Sets the {@code month} of the {@code Budget} that we are building.
      */
-    public BudgetBuilder withDate(String date) {
+    public BudgetBuilder withMonth(String month) {
         try {
-            this.date = ParserUtil.parseDate(date);
+            this.month = ParserUtil.parseMonth(month);
+            return this;
+        } catch (ParseException e) {
+            return this;
+        }
+    }
+
+    /**
+     * Sets the {@code year} of the {@code Budget} that we are building.
+     */
+    public BudgetBuilder withYear(String year) {
+        try {
+            this.year = ParserUtil.parseYear(year);
             return this;
         } catch (ParseException e) {
             return this;
@@ -67,7 +86,7 @@ public class BudgetBuilder {
      * Returns a {@code Budget} object.
      */
     public Budget buildBudget() {
-        Budget newBudget = new Budget(amount, date);
+        Budget newBudget = new Budget(amount, month, year);
         if (isDefault) {
             newBudget.setAsDefault();
         }

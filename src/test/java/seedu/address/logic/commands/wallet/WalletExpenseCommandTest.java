@@ -9,8 +9,11 @@ import static seedu.address.testutil.TypicalWallet.DUCK_RICE;
 import static seedu.address.testutil.TypicalWallet.MRT_CONCESSION;
 import static seedu.address.testutil.TypicalWallet.VALID_AMOUNT_DUCK;
 
+import java.time.Month;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,10 +37,13 @@ public class WalletExpenseCommandTest {
 
         CommandResult commandResult = new WalletExpenseCommand(DUCK_RICE).execute(modelStub);
 
-        assertEquals(String.format(WalletExpenseCommand.MESSAGE_SUCCESS, DUCK_RICE, "$" + VALID_AMOUNT_DUCK,
+        assertEquals(String.format(WalletExpenseCommand.MESSAGE_SUCCESS,
+                DUCK_RICE,
+                DUCK_RICE.getDate().getMonth() + " " + DUCK_RICE.getDate().getYear(),
+                "$" + VALID_AMOUNT_DUCK,
                 "$0.00"),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(DUCK_RICE), modelStub.expensesAdded);
+        assertEquals(Collections.singletonList(DUCK_RICE), modelStub.expensesAdded);
     }
 
     @Test
@@ -46,7 +52,7 @@ public class WalletExpenseCommandTest {
         WalletExpenseCommand mrtCommand = new WalletExpenseCommand(MRT_CONCESSION);
 
         // same object -> returns true
-        assertTrue(duckCommand.equals(duckCommand));
+        assertEquals(duckCommand, duckCommand);
 
         // same values -> returns true
         WalletExpenseCommand duckCommandCopy = new WalletExpenseCommand(DUCK_RICE);
@@ -84,7 +90,7 @@ public class WalletExpenseCommandTest {
         }
 
         @Override
-        public Budget getBudget(Date date) {
+        public Budget getBudget(Month month, Year year) {
             return Budget.getDefault();
         }
     }

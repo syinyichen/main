@@ -5,23 +5,20 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.Month;
 import java.time.Year;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.transaction.exceptions.BudgetNotFoundException;
-import seedu.address.model.transaction.exceptions.TransactionNotFoundException;
 
 /**
  * A list of Budgets to record individual months' budgets.
- *
+ * <p>
  * Supports a limited set of list operations.
  */
 public class BudgetList<T extends Budget> implements Iterable<T> {
 
-    private final ObservableList<T> internalList = FXCollections.observableArrayList();
+    final ObservableList<T> internalList = FXCollections.observableArrayList();
     private final ObservableList<T> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
@@ -62,10 +59,10 @@ public class BudgetList<T extends Budget> implements Iterable<T> {
     }
 
     /**
-     * Returns a budget of the month of the selected {@code date}. If the individual budget doesn't exist, the
-     * default budget is returned.
+     * Returns a budget of the {@code month} and {@code year}. If the individual budget doesn't exist, the default
+     * budget is returned.
      */
-    public T getOn(Month month, Year year) {
+    public T get(Month month, Year year) {
         requireAllNonNull(month, year);
 
         for (T b : internalList) {

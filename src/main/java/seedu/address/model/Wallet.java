@@ -30,6 +30,7 @@ public class Wallet implements ReadOnlyWallet {
     private BudgetList<Budget> budgetList = new BudgetList<>();
 
     public Wallet() {
+        setDefaultBudget(Budget.getDefault());
     }
 
     /**
@@ -149,8 +150,8 @@ public class Wallet implements ReadOnlyWallet {
     public void setBudget(Budget budget) {
         requireNonNull(budget);
 
-        if(budgetList.containsBudgetOf(budget.getMonth(), budget.getYear())) {
-            Budget existingBudget = budgetList.getOn(budget.getMonth(), budget.getYear());
+        if (budgetList.containsBudgetOf(budget.getMonth(), budget.getYear())) {
+            Budget existingBudget = budgetList.get(budget.getMonth(), budget.getYear());
             budgetList.setBudget(existingBudget, budget);
         } else {
             budgetList.add(budget);
@@ -174,7 +175,7 @@ public class Wallet implements ReadOnlyWallet {
 
         Budget budgetToCompare;
         if (budgetList.containsBudgetOf(month, year)) {
-            budgetToCompare = budgetList.getOn(month, year);
+            budgetToCompare = budgetList.get(month, year);
         } else {
             budgetToCompare = budgetList.getDefaultBudget();
         }
@@ -183,7 +184,7 @@ public class Wallet implements ReadOnlyWallet {
     }
 
     public Budget getBudget(Month month, Year year) {
-        return budgetList.getOn(month, year);
+        return budgetList.get(month, year);
     }
 
     // =========== Util methods =============================================================

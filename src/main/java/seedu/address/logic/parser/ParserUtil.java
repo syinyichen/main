@@ -132,6 +132,12 @@ public class ParserUtil {
         return new Date(LocalDate.parse(trimmedDate, DateTimeFormatter.ofPattern(DATE_PATTERN)));
     }
 
+    /**
+     * Parses a {@code String month} into a {@code Month}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code month} is invalid.
+     */
     public static Month parseMonth(String month) throws ParseException {
         requireNonNull(month);
         String trimmedMonth = month.trim();
@@ -148,6 +154,12 @@ public class ParserUtil {
         return Month.of(Integer.parseInt(trimmedMonth));
     }
 
+    /**
+     * Parses a {@code String year} into a {@code Year}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code year} is invalid.
+     */
     public static Year parseYear(String year) throws ParseException {
         requireNonNull(year);
         String trimmedYear = year.trim();

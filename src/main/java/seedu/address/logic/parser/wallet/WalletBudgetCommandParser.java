@@ -2,7 +2,6 @@ package seedu.address.logic.parser.wallet;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
@@ -10,7 +9,6 @@ import java.time.Month;
 import java.time.Year;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.people.PeopleOweCommand;
 import seedu.address.logic.commands.wallet.WalletBudgetCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -20,7 +18,6 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Budget;
-import seedu.address.model.transaction.Date;
 
 /**
  * Parses user input and creates a new WalletBudgetCommand object

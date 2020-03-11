@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
 import java.nio.file.Path;
+import java.time.Month;
+import java.time.Year;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -144,12 +146,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public boolean hasExceededBudget(Date date) {
+    public boolean hasExceededBudget(Month month, Year year) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public Budget getBudget(Date date) {
+    public Budget getBudget(Month month, Year year) {
         throw new AssertionError("This method should not be called.");
     }
 }

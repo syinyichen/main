@@ -40,7 +40,7 @@ public class WalletBudgetCommandTest {
 
         CommandResult commandResult = new WalletBudgetCommand(BUDGET_JAN_2010).execute(modelStub);
         assertEquals(String.format(WalletBudgetCommand.MESSAGE_SUCCESS, BUDGET_JAN_2010.getAmount(),
-                BUDGET_JAN_2010.getDate().getMonthString(), BUDGET_JAN_2010.getDate().getYear()),
+                BUDGET_JAN_2010.getMonth(), BUDGET_JAN_2010.getYear()),
                 commandResult.getFeedbackToUser());
     }
 

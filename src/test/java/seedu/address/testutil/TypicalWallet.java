@@ -33,6 +33,9 @@ public class TypicalWallet {
     public static final String VALID_AMOUNT_DUCK = "3.50";
     public static final String VALID_DATE_DUCK = "02/01/2020";
     public static final String VALID_TAG_DUCK = "Food";
+    public static final String VALID_MONTH_DUCK = "01";
+    public static final String VALID_YEAR_DUCK = "2020";
+
 
     public static final String VALID_DESC_MRT = "Monthly MRT Concession Pass";
     public static final String VALID_AMOUNT_MRT = "45";
@@ -42,10 +45,12 @@ public class TypicalWallet {
     public static final String VALID_DEFAULT_BUDGET_AMOUNT_ZERO = "0";
 
     public static final String VALID_BUDGET_AMOUNT_JAN_2010 = "300";
-    public static final String VALID_BUDGET_DATE_JAN_2010 = "04/01/2010";
+    public static final String VALID_BUDGET_MONTH_JAN_2010 = "01";
+    public static final String VALID_BUDGET_YEAR_JAN_2010 = "2010";
 
-    public static final String VALID_BUDGET_AMOUNT_APRIL_2020 = "200";
-    public static final String VALID_BUDGET_DATE_APRIL_2020 = "04/04/2020";
+    public static final String VALID_BUDGET_AMOUNT_APR_2020 = "200";
+    public static final String VALID_BUDGET_MONTH_APR_2020 = "04";
+    public static final String VALID_BUDGET_YEAR_APR_2020 = "2020";
 
     public static final String DESC_ALLOWANCE = " " + PREFIX_NAME + VALID_DESC_ALLOWANCE;
     public static final String AMOUNT_ALLOWANCE = " " + PREFIX_AMOUNT + VALID_AMOUNT_ALLOWANCE;
@@ -97,11 +102,13 @@ public class TypicalWallet {
         .buildBudget();
     public static final Budget BUDGET_JAN_2010 = new BudgetBuilder()
         .withAmount(VALID_BUDGET_AMOUNT_JAN_2010)
-        .withDate(VALID_BUDGET_DATE_JAN_2010)
+        .withMonth(VALID_BUDGET_MONTH_JAN_2010)
+        .withYear(VALID_BUDGET_YEAR_JAN_2010)
         .buildBudget();
     public static final Budget BUDGET_APRIL_2020 = new BudgetBuilder()
-        .withAmount(VALID_BUDGET_AMOUNT_APRIL_2020)
-        .withDate(VALID_BUDGET_DATE_APRIL_2020)
+        .withAmount(VALID_BUDGET_AMOUNT_APR_2020)
+        .withMonth(VALID_BUDGET_MONTH_APR_2020)
+        .withYear(VALID_BUDGET_YEAR_APR_2020)
         .buildBudget();
 
     private TypicalWallet() {

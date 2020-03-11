@@ -9,6 +9,8 @@ import static seedu.address.testutil.TypicalWallet.DUCK_RICE;
 import static seedu.address.testutil.TypicalWallet.MRT_CONCESSION;
 import static seedu.address.testutil.TypicalWallet.TA_JOB;
 import static seedu.address.testutil.TypicalWallet.VALID_DATE_DUCK;
+import static seedu.address.testutil.TypicalWallet.VALID_MONTH_DUCK;
+import static seedu.address.testutil.TypicalWallet.VALID_YEAR_DUCK;
 import static seedu.address.testutil.TypicalWallet.getTypicalWallet;
 
 import java.util.Collections;
@@ -86,12 +88,12 @@ public class WalletTest {
 
     @Test
     public void hasExceededBudget_nullDate_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> wallet.hasExceededBudget(null));
+        assertThrows(NullPointerException.class, () -> wallet.hasExceededBudget(null, null));
     }
 
     @Test
     public void getBudget_nullDate_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> wallet.getBudget(null));
+        assertThrows(NullPointerException.class, () -> wallet.getBudget(null, null));
     }
 
     @Test
@@ -105,7 +107,8 @@ public class WalletTest {
         Budget defaultBudget = new BudgetBuilder().withAmount("35").setAsDefault().buildBudget();
         typicalWalletOnlyDefaultBudget.setDefaultBudget(defaultBudget);
 
-        assertTrue(typicalWalletOnlyDefaultBudget.hasExceededBudget(DUCK_RICE.getDate()));
+        assertTrue(typicalWalletOnlyDefaultBudget.hasExceededBudget(DUCK_RICE.getDate().getMonth(),
+                DUCK_RICE.getDate().getYear()));
 
         // only budget for the selected month, budget not exceeded -> returns true
         Wallet typicalWalletOnlySelectedMonthBudget = new Wallet();
@@ -113,19 +116,26 @@ public class WalletTest {
         typicalWalletOnlySelectedMonthBudget.addExpense(MRT_CONCESSION); // both are in Jan 2010
         typicalWalletOnlySelectedMonthBudget.setBudget(BUDGET_JAN_2010);
 
-        assertTrue(typicalWalletOnlySelectedMonthBudget.hasExceededBudget(DUCK_RICE.getDate()));
+        assertTrue(typicalWalletOnlySelectedMonthBudget.hasExceededBudget(DUCK_RICE.getDate().getMonth(),
+                DUCK_RICE.getDate().getYear()));
 
         // both budgets (default and selected month), budget not exceeded -> returns true
         Wallet typicalWalletWithBothBudgets = new Wallet();
         Budget defaultBudgetWillNotExceed = new BudgetBuilder().withAmount("1000").setAsDefault().buildBudget();
-        Budget monthBudget = new BudgetBuilder().withAmount("35").withDate(VALID_DATE_DUCK).buildBudget();
+        Budget monthBudget =
+                new BudgetBuilder()
+                        .withAmount("35")
+                        .withMonth(VALID_MONTH_DUCK)
+                        .withYear(VALID_YEAR_DUCK)
+                        .buildBudget();
 
         typicalWalletWithBothBudgets.addExpense(DUCK_RICE);
         typicalWalletWithBothBudgets.addExpense(MRT_CONCESSION);
         typicalWalletWithBothBudgets.setDefaultBudget(defaultBudgetWillNotExceed);
         typicalWalletWithBothBudgets.setBudget(monthBudget);
 
-        assertTrue(typicalWalletWithBothBudgets.hasExceededBudget(DUCK_RICE.getDate()));
+        assertTrue(typicalWalletWithBothBudgets.hasExceededBudget(DUCK_RICE.getDate().getMonth(),
+                DUCK_RICE.getDate().getYear()));
     }
 
     @Test
@@ -139,29 +149,40 @@ public class WalletTest {
         Budget defaultBudget = new BudgetBuilder().withAmount("100").setAsDefault().buildBudget();
         typicalWalletOnlyDefaultBudget.setDefaultBudget(defaultBudget);
 
-        assertFalse(typicalWalletOnlyDefaultBudget.hasExceededBudget(DUCK_RICE.getDate()));
+        assertFalse(typicalWalletOnlyDefaultBudget.hasExceededBudget(DUCK_RICE.getDate().getMonth(),
+                DUCK_RICE.getDate().getYear()));
 
         // only budget for the selected month, budget not exceeded -> returns false
         Wallet typicalWalletOnlySelectedMonthBudget = new Wallet();
-        Budget selectedMonthBudget = new BudgetBuilder().withAmount("100").withDate(VALID_DATE_DUCK).buildBudget();
+        Budget selectedMonthBudget = new BudgetBuilder()
+                .withAmount("100")
+                .withMonth(VALID_MONTH_DUCK)
+                .withYear(VALID_YEAR_DUCK)
+                .buildBudget();
 
         typicalWalletOnlySelectedMonthBudget.addExpense(DUCK_RICE);
         typicalWalletOnlySelectedMonthBudget.addExpense(MRT_CONCESSION); // both are in Jan 2010
         typicalWalletOnlySelectedMonthBudget.setBudget(selectedMonthBudget);
 
-        assertFalse(typicalWalletOnlySelectedMonthBudget.hasExceededBudget(DUCK_RICE.getDate()));
+        assertFalse(typicalWalletOnlySelectedMonthBudget.hasExceededBudget(DUCK_RICE.getDate().getMonth(),
+                DUCK_RICE.getDate().getYear()));
 
         // both budgets (default and selected month), budget not exceeded -> returns false
         Wallet typicalWalletWithBothBudgets = new Wallet();
         Budget defaultBudgetWillNotExceed = new BudgetBuilder().withAmount("35").setAsDefault().buildBudget();
-        Budget monthBudget = new BudgetBuilder().withAmount("1000").withDate(VALID_DATE_DUCK).buildBudget();
+        Budget monthBudget = new BudgetBuilder()
+                .withAmount("1000")
+                .withMonth(VALID_MONTH_DUCK)
+                .withYear(VALID_YEAR_DUCK)
+                .buildBudget();
 
         typicalWalletWithBothBudgets.addExpense(DUCK_RICE);
         typicalWalletWithBothBudgets.addExpense(MRT_CONCESSION);
         typicalWalletWithBothBudgets.setDefaultBudget(defaultBudgetWillNotExceed);
         typicalWalletWithBothBudgets.setBudget(monthBudget);
 
-        assertFalse(typicalWalletWithBothBudgets.hasExceededBudget(DUCK_RICE.getDate()));
+        assertFalse(typicalWalletWithBothBudgets.hasExceededBudget(DUCK_RICE.getDate().getMonth(),
+                DUCK_RICE.getDate().getYear()));
     }
 
     @Test
