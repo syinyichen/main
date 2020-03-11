@@ -30,7 +30,7 @@ public class ModelManager implements Model {
     //wallet
     private final FilteredList<Expense> filteredExpenses;
     private final FilteredList<Income> filteredIncomes;
-    private final FilteredList<Transaction> filteredTransactions;
+    private FilteredList<Transaction> filteredTransactions;
 
     /**
      * Initializes a ModelManager with the given addressBook, wallet and userPrefs.
@@ -51,6 +51,7 @@ public class ModelManager implements Model {
         filteredExpenses = new FilteredList<Expense>(this.wallet.getExpenseList());
         filteredIncomes = new FilteredList<Income>(this.wallet.getIncomeList());
         filteredTransactions = new FilteredList<Transaction>(this.wallet.getTransactionList());
+
     }
 
     /**
@@ -150,6 +151,7 @@ public class ModelManager implements Model {
     @Override
     public void addIncome(Income income) {
         wallet.addIncome(income);
+        filteredTransactions = new FilteredList<Transaction>(this.wallet.getTransactionList());
     }
 
     @Override
@@ -161,6 +163,7 @@ public class ModelManager implements Model {
     public void setIncome(Income target, Income editedIncome) {
         requireAllNonNull(target, editedIncome);
         wallet.setIncome(target, editedIncome);
+        filteredTransactions = new FilteredList<Transaction>(this.wallet.getTransactionList());
     }
 
     @Override
@@ -171,6 +174,7 @@ public class ModelManager implements Model {
     @Override
     public void addExpense(Expense expense) {
         wallet.addExpense(expense);
+        filteredTransactions = new FilteredList<Transaction>(this.wallet.getTransactionList());
     }
 
     @Override
@@ -182,6 +186,7 @@ public class ModelManager implements Model {
     public void setExpense(Expense target, Expense editedExpense) {
         requireAllNonNull(target, editedExpense);
         wallet.setExpense(target, editedExpense);
+        filteredTransactions = new FilteredList<Transaction>(this.wallet.getTransactionList());
     }
 
     @Override
@@ -193,6 +198,9 @@ public class ModelManager implements Model {
                     : "transactionToDelete should be either an Expense class or Income class";
             deleteIncome((Income) transactionToDelete);
         }
+
+        //update transaction list
+        filteredTransactions = new FilteredList<Transaction>(this.wallet.getTransactionList());
     }
 
     // =========== Util Methods Person ========================================================================

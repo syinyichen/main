@@ -55,4 +55,5 @@ public class WalletDeleteCommand extends Command {
                 || (other instanceof WalletDeleteCommand // instanceof handles nulls
                 && targetIndex.equals(((WalletDeleteCommand) other).targetIndex)); // state check
     }
+
 }
