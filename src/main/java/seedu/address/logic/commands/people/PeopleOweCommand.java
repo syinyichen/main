@@ -63,28 +63,28 @@ public class PeopleOweCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personUserOwe = lastShownList.get(targetIndex.getZeroBased());
-        Person addedDebtPerson = createPersonOwed(personUserOwe, debt);
-        model.setPerson(personUserOwe, addedDebtPerson);
+        Person personUserOwes = lastShownList.get(targetIndex.getZeroBased());
+        Person addedDebtPerson = createPersonOwed(personUserOwes, debt);
+        model.setPerson(personUserOwes, addedDebtPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_OWE_SUCCESS, personUserOwe.getName(),
+        return new CommandResult(String.format(MESSAGE_OWE_SUCCESS, personUserOwes.getName(),
                 debt.getAmount(), addedDebtPerson.getDebts().getTotal()));
     }
 
     /**
      * Creates and returns a {@code Person} after adding {@code debt} the user owes to the person.
      */
-    private static Person createPersonOwed(Person personUserOwe, Debt debt) {
-        assert personUserOwe != null;
+    private static Person createPersonOwed(Person personUserOwes, Debt debt) {
+        assert personUserOwes != null;
 
-        Name name = personUserOwe.getName();
-        Phone phone = personUserOwe.getPhone();
-        Email email = personUserOwe.getEmail();
+        Name name = personUserOwes.getName();
+        Phone phone = personUserOwes.getPhone();
+        Email email = personUserOwes.getEmail();
         TransactionList<Debt> updatedDebts = new TransactionList<>();
-        updatedDebts.setTransactions(personUserOwe.getDebts());
+        updatedDebts.setTransactions(personUserOwes.getDebts());
         updatedDebts.add(debt);
-        TransactionList<Loan> loans = personUserOwe.getLoans();
-        Set<Tag> tags = personUserOwe.getTags();
+        TransactionList<Loan> loans = personUserOwes.getLoans();
+        Set<Tag> tags = personUserOwes.getTags();
         return new Person(name, phone, email, updatedDebts, loans, tags);
     }
 

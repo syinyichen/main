@@ -57,66 +57,66 @@ public class PeopleReturnedCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personUserOwe = lastShownList.get(targetPersonIndex.getZeroBased());
+        Person personUserOwes = lastShownList.get(targetPersonIndex.getZeroBased());
 
-        if (personUserOwe.getDebts().getTotal().isZero()) {
-            throw new CommandException(String.format(MESSAGE_NO_DEBT, personUserOwe.getName()));
+        if (personUserOwes.getDebts().getTotal().isZero()) {
+            throw new CommandException(String.format(MESSAGE_NO_DEBT, personUserOwes.getName()));
         }
 
         Amount amountReturned;
         Person personReducedDebt;
 
         if (targetDebtIndex == null) {
-            personReducedDebt = createPersonReturnedAll(personUserOwe);
-            amountReturned = personUserOwe.getDebts().getTotal();
+            personReducedDebt = createPersonReturnedAll(personUserOwes);
+            amountReturned = personUserOwes.getDebts().getTotal();
 
         } else {
-            List<Debt> debts = personUserOwe.getDebts().asUnmodifiableObservableList();
+            List<Debt> debts = personUserOwes.getDebts().asUnmodifiableObservableList();
 
             if (targetDebtIndex.getZeroBased() >= debts.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_DEBT_DISPLAYED_INDEX);
             }
 
             Debt debtReturned = debts.get(targetDebtIndex.getZeroBased());
-            personReducedDebt = createPersonReturnedByIndex(personUserOwe, debtReturned);
+            personReducedDebt = createPersonReturnedByIndex(personUserOwes, debtReturned);
             amountReturned = debtReturned.getAmount();
         }
-        model.setPerson(personUserOwe, personReducedDebt);
+        model.setPerson(personUserOwes, personReducedDebt);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_RETURNED_SUCCESS, personUserOwe.getName(),
+        return new CommandResult(String.format(MESSAGE_RETURNED_SUCCESS, personUserOwes.getName(),
                 amountReturned, personReducedDebt.getDebts().getTotal()));
     }
 
     /**
      * Creates and returns a {@code Person} after returning all the debts.
      */
-    private static Person createPersonReturnedAll(Person personUserOwe) {
-        assert personUserOwe != null;
+    private static Person createPersonReturnedAll(Person personUserOwes) {
+        assert personUserOwes != null;
 
-        Name name = personUserOwe.getName();
-        Phone phone = personUserOwe.getPhone();
-        Email email = personUserOwe.getEmail();
+        Name name = personUserOwes.getName();
+        Phone phone = personUserOwes.getPhone();
+        Email email = personUserOwes.getEmail();
         TransactionList<Debt> updatedDebts = new TransactionList<>();
-        TransactionList<Loan> loans = personUserOwe.getLoans();
-        Set<Tag> tags = personUserOwe.getTags();
+        TransactionList<Loan> loans = personUserOwes.getLoans();
+        Set<Tag> tags = personUserOwes.getTags();
         return new Person(name, phone, email, updatedDebts, loans, tags);
     }
 
     /**
      * Creates and returns a {@code Person} after returning {@code debtReturned}.
      */
-    private static Person createPersonReturnedByIndex(Person personUserOwe, Debt debtReturned) {
-        assert personUserOwe != null;
+    private static Person createPersonReturnedByIndex(Person personUserOwes, Debt debtReturned) {
+        assert personUserOwes != null;
 
-        Name name = personUserOwe.getName();
-        Phone phone = personUserOwe.getPhone();
-        Email email = personUserOwe.getEmail();
+        Name name = personUserOwes.getName();
+        Phone phone = personUserOwes.getPhone();
+        Email email = personUserOwes.getEmail();
         TransactionList<Debt> updatedDebts = new TransactionList<>();
-        updatedDebts.setTransactions(personUserOwe.getDebts());
+        updatedDebts.setTransactions(personUserOwes.getDebts());
         updatedDebts.remove(debtReturned);
-        TransactionList<Loan> loans = personUserOwe.getLoans();
-        Set<Tag> tags = personUserOwe.getTags();
+        TransactionList<Loan> loans = personUserOwes.getLoans();
+        Set<Tag> tags = personUserOwes.getTags();
         return new Person(name, phone, email, updatedDebts, loans, tags);
     }
 
