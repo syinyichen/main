@@ -49,6 +49,16 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
+     * Returns the user prefs' user data file path.
+     */
+    Path getUserDataFilePath();
+
+    /**
+     * Sets the user prefs' user data file path.
+     */
+    void setUserDataFilePath(Path userDataFilePath);
+
+    /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
@@ -94,6 +104,21 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Replaces user data with new {@code userData}.
+     */
+    void setUserData(ReadOnlyUserData userData);
+
+    /**
+     * Returns the UserData.
+     */
+    ReadOnlyUserData getUserData();
+
+    /**
+     * Returns true if the user has not enter the user data.
+     * @return
+     */
+    boolean isUserDataNull();
 
     /**
      * Returns true if the given {@code income} exists in the Wallet.
