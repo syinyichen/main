@@ -32,8 +32,8 @@ public class WalletExpenseCommand extends Command {
             + PREFIX_DATE + "10/10/2010 "
             + PREFIX_TAG + "Food";
 
-    public static final String MESSAGE_SUCCESS = "New expense added: %1$s\nYour expenditure for %2$s is: " +
-            "%3$s/%4$s";
+    public static final String MESSAGE_SUCCESS = "New expense added: %1$s\nYour expenditure for %2$s is: "
+            + "%3$s/%4$s";
 
     private final Expense toAdd;
 

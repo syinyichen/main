@@ -2,12 +2,8 @@ package seedu.address.logic.commands.wallet;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalWallet.AMOUNT_DUCK;
 import static seedu.address.testutil.TypicalWallet.DUCK_RICE;
 import static seedu.address.testutil.TypicalWallet.VALID_AMOUNT_DUCK;
-import static seedu.address.testutil.TypicalWallet.VALID_MONTH_DUCK;
-
-import java.time.Month;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

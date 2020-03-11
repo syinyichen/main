@@ -8,7 +8,6 @@ import static seedu.address.testutil.TypicalWallet.BUDGET_JAN_2010;
 import static seedu.address.testutil.TypicalWallet.DUCK_RICE;
 import static seedu.address.testutil.TypicalWallet.MRT_CONCESSION;
 import static seedu.address.testutil.TypicalWallet.TA_JOB;
-import static seedu.address.testutil.TypicalWallet.VALID_DATE_DUCK;
 import static seedu.address.testutil.TypicalWallet.VALID_MONTH_DUCK;
 import static seedu.address.testutil.TypicalWallet.VALID_YEAR_DUCK;
 import static seedu.address.testutil.TypicalWallet.getTypicalWallet;

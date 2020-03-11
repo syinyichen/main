@@ -7,11 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalWallet.BUDGET_APRIL_2020;
 import static seedu.address.testutil.TypicalWallet.BUDGET_JAN_2010;
-import static seedu.address.testutil.TypicalWallet.VALID_BUDGET_MONTH_JAN_2010;
-import static seedu.address.testutil.TypicalWallet.VALID_BUDGET_YEAR_JAN_2010;
 
-import java.time.Month;
-import java.time.Year;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;

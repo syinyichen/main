@@ -12,7 +12,6 @@ import static seedu.address.testutil.TypicalWallet.VALID_AMOUNT_DUCK;
 import java.time.Month;
 import java.time.Year;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;

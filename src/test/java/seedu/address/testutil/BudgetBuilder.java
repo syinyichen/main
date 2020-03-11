@@ -8,7 +8,6 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Budget;
-import seedu.address.model.transaction.Date;
 
 /**
  * A utility class to help with building Budget objects.
