@@ -3,7 +3,11 @@ package seedu.address.logic.parser.wallet;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
+import java.time.Month;
+import java.time.Year;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.people.PeopleOweCommand;
@@ -30,30 +34,24 @@ public class WalletBudgetCommandParser implements Parser<WalletBudgetCommand> {
      * @throws ParseException if the user input does not conform to the expected format
      */
     public WalletBudgetCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_AMOUNT, PREFIX_DATE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_AMOUNT, PREFIX_MONTH, PREFIX_YEAR);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_AMOUNT)
                 || !argMultimap.getPreamble().isEmpty()) {
-            System.out.println(args);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, WalletBudgetCommand.MESSAGE_USAGE));
         }
 
-        if (!argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
-            System.out.println(args);
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleOweCommand.MESSAGE_USAGE));
-        }
-
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
-        Date date;
+        Month month;
+        Year year;
         Budget budget;
 
-        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-            budget = new Budget(amount, date);
+        if (arePrefixesPresent(argMultimap, PREFIX_MONTH, PREFIX_YEAR)) {
+            month = ParserUtil.parseMonth(argMultimap.getValue(PREFIX_MONTH).get());
+            year = ParserUtil.parseYear(argMultimap.getValue(PREFIX_YEAR).get());
+            budget = new Budget(amount, month, year);
         } else {
-            date = Date.getDefault();
-            budget = new Budget(amount, date);
-            budget.setAsDefault();
+            budget = new Budget(amount);
         }
 
         return new WalletBudgetCommand(budget);

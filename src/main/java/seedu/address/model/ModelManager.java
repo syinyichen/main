@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.Month;
+import java.time.Year;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -189,13 +191,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasExceededBudget(Date date) {
-        return wallet.hasExceededBudget(date);
+    public boolean hasExceededBudget(Month month, Year year) {
+        return wallet.hasExceededBudget(month, year);
     }
 
     @Override
-    public Budget getBudget(Date date) {
-        return wallet.getBudget(date);
+    public Budget getBudget(Month month, Year year) {
+        return wallet.getBudget(month, year);
     }
 
     // =========== Util Methods ===============================================================================

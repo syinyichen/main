@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -23,11 +25,13 @@ public class WalletBudgetCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a budget for the user. "
             + "Parameters: "
             + PREFIX_AMOUNT + "<amount> "
-            + "[" + PREFIX_DATE + "<date:dd/mm/yyyy>]\n"
+            + "[" + PREFIX_MONTH + "<month: 1 - 12>] "
+            + "[" + PREFIX_YEAR + "<year>]\n"
             + "Example: " + WALLET_COMMAND_TYPE + " "
             + COMMAND_WORD + " "
             + PREFIX_AMOUNT + "1000 "
-            + PREFIX_DATE + "10/10/2020 \n";
+            + PREFIX_MONTH + "10 "
+            + PREFIX_YEAR + "2020\n";
 
     public static final String MESSAGE_SUCCESS_DEFAULT = "Default budget has been set at %1$s.";
     public static final String MESSAGE_SUCCESS = "Budget has been set at %1$s for %2$s %3$s.";
@@ -49,8 +53,8 @@ public class WalletBudgetCommand extends Command {
         } else {
             model.setBudget(budget);
             return new CommandResult(String.format(MESSAGE_SUCCESS, budget.getAmount(),
-                    budget.getDate().getMonthString(),
-                    budget.getDate().getYear()));
+                    budget.getMonth(),
+                    budget.getYear()));
         }
 
     }

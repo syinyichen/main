@@ -1,6 +1,10 @@
 package seedu.address.model.transaction;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.time.Month;
+import java.time.Year;
 
 /**
  * Represents a Budget for the wallet.
@@ -10,17 +14,22 @@ public class Budget {
     public static final String BUDGET_EXCEEDED = "You have exceeded your budget by: %1$s / %2$s";
 
     private Amount budget;
-    private Date date;
+    private Month month;
+    private Year year;
     private boolean isDefault = false;
 
-    public Budget(Amount budget, Date date) {
-        requireAllNonNull(budget, date);
+    public Budget(Amount budget) {
         this.budget = budget;
-        this.date = date;
+        this.month = Month.of(1);
+        this.year = Year.of(1);
+        isDefault = true;
     }
 
-    public void setAsDefault() {
-        isDefault = true;
+    public Budget(Amount budget, Month month, Year year) {
+        requireAllNonNull(budget, month, year);
+        this.budget = budget;
+        this.month = month;
+        this.year = year;
     }
 
     public boolean isDefault() {
@@ -31,12 +40,23 @@ public class Budget {
         return budget;
     }
 
-    public Date getDate() {
-        return date;
+    public Month getMonth() {
+        return month;
+    }
+
+    public Year getYear() {
+        return year;
     }
 
     public static Budget getDefault() {
-        return new Budget(new Amount(0.0), Date.getDefault());
+        return new Budget(new Amount(0), Month.of(1), Year.of(1));
+    }
+
+    public boolean dateEquals(Budget other) {
+        requireNonNull(other);
+
+        return month.equals(other.getMonth())
+                && year.equals(other.getYear());
     }
 
     @Override
@@ -44,7 +64,8 @@ public class Budget {
         return other == this
                 || other instanceof Budget
                 && budget.equals(((Budget) other).getAmount())
-                && date.equals(((Budget) other).getDate());
+                && month.equals(((Budget) other).getMonth())
+                && year.equals(((Budget) other).getYear());
     }
 
     @Override

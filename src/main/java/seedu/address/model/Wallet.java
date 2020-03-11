@@ -1,7 +1,10 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.Month;
+import java.time.Year;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +27,7 @@ public class Wallet implements ReadOnlyWallet {
 
     private final TransactionList<Income> incomes = new TransactionList<>();
     private final TransactionList<Expense> expenses = new TransactionList<>();
-    private BudgetList budgetList = new BudgetList();
+    private BudgetList<Budget> budgetList = new BudgetList<>();
 
     public Wallet() {
     }
@@ -132,7 +135,7 @@ public class Wallet implements ReadOnlyWallet {
 
     public Amount getTotalExpenditureInMonth(Date date) {
         requireNonNull(date);
-        TransactionList<Expense> filteredExpenseList = expenses.getTransactionsInMonth(date);
+        TransactionList<Expense> filteredExpenseList = expenses.getTransactionsInMonth(date.getMonth(), date.getYear());
 
         return filteredExpenseList.getTotal();
     }
@@ -145,7 +148,13 @@ public class Wallet implements ReadOnlyWallet {
      */
     public void setBudget(Budget budget) {
         requireNonNull(budget);
-        budgetList.setBudget(budget);
+
+        if(budgetList.containsBudgetOf(budget.getMonth(), budget.getYear())) {
+            Budget existingBudget = budgetList.getOn(budget.getMonth(), budget.getYear());
+            budgetList.setBudget(existingBudget, budget);
+        } else {
+            budgetList.add(budget);
+        }
     }
 
     /**
@@ -157,15 +166,15 @@ public class Wallet implements ReadOnlyWallet {
     }
 
     /**
-     * Checks if the budget has been exceeded on a given {@code date}.
+     * Checks if the budget has been exceeded in the month and year selected.
      */
-    public boolean hasExceededBudget(Date date) {
-        requireNonNull(date);
-        TransactionList<Expense> filteredExpenseList = expenses.getTransactionsInMonth(date);
+    public boolean hasExceededBudget(Month month, Year year) {
+        requireAllNonNull(month, year);
+        TransactionList<Expense> filteredExpenseList = expenses.getTransactionsInMonth(month, year);
 
         Budget budgetToCompare;
-        if (budgetList.hasBudgetOfDate(date)) {
-            budgetToCompare = budgetList.getBudget(date);
+        if (budgetList.containsBudgetOf(month, year)) {
+            budgetToCompare = budgetList.getOn(month, year);
         } else {
             budgetToCompare = budgetList.getDefaultBudget();
         }
@@ -173,12 +182,8 @@ public class Wallet implements ReadOnlyWallet {
         return filteredExpenseList.getTotal().amount > budgetToCompare.getAmount().amount;
     }
 
-    /**
-     * Returns the budget of the given {@code date}.
-     */
-    public Budget getBudget(Date date) {
-        requireNonNull(date);
-        return budgetList.getBudget(date);
+    public Budget getBudget(Month month, Year year) {
+        return budgetList.getOn(month, year);
     }
 
     // =========== Util methods =============================================================

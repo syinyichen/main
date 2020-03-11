@@ -3,6 +3,8 @@ package seedu.address.model.transaction;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.Month;
+import java.time.Year;
 import java.util.Iterator;
 import java.util.List;
 
@@ -107,11 +109,11 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
     /**
      * Retrieves a list of expenses filtered by the month they were added, using {@code date}.
      */
-    public TransactionList<T> getTransactionsInMonth(Date date) {
+    public TransactionList<T> getTransactionsInMonth(Month month, Year year) {
         TransactionList<T> filteredTransactions = new TransactionList<T>();
 
         for (T transaction : this) {
-            if (transaction.getDate().isSameMonthAndYearAs(date)) {
+            if (transaction.getDate().getMonth().equals(month) && transaction.getDate().getYear().equals(year)) {
                 filteredTransactions.add(transaction);
             }
         }

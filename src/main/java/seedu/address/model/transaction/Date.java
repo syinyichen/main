@@ -3,6 +3,8 @@ package seedu.address.model.transaction;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
@@ -17,6 +19,9 @@ public class Date {
     public static final String DATE_PATTERN = "dd/MM/uuuu";
     public static final String DATE_FORMAT = "dd/MM/yyyy";
     public static final String MESSAGE_CONSTRAINTS = "Dates should be in form: " + DATE_FORMAT;
+
+    public static final String MONTH_MESSAGE_CONSTRAINTS = "Month should be an integer (between 1 to 12)";
+    public static final String YEAR_MESSAGE_CONSTRAINTS = "Year should be an integer";
 
     private LocalDate date;
 
@@ -63,20 +68,13 @@ public class Date {
         return date.format(DateTimeFormatter.ofPattern(DATE_PATTERN));
     }
 
-    /**
-     * Returns true if the given {@code date} has the same month as this date.
-     */
-    public boolean isSameMonthAndYearAs(Date otherDate) {
-        return getMonth() == otherDate.getMonth()
-                && getYear() == otherDate.getYear();
+
+    public Month getMonth() {
+        return date.getMonth();
     }
 
-    public int getMonth() {
-        return date.getMonthValue();
-    }
-
-    public int getYear() {
-        return date.getYear();
+    public Year getYear() {
+        return Year.of(date.getYear());
     }
 
     public String getMonthString() {

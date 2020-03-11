@@ -1,6 +1,8 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.Month;
+import java.time.Year;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -154,7 +156,7 @@ public interface Model {
      */
     void setDefaultBudget(Budget budget);
 
-    boolean hasExceededBudget(Date date);
+    boolean hasExceededBudget(Month month, Year year);
 
-    Budget getBudget(Date date);
+    Budget getBudget(Month month, Year year);
 }
