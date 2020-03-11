@@ -58,68 +58,64 @@ public class PeopleReceivedCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personUserReceivedFrom = lastShownList.get(targetPersonIndex.getZeroBased());
+        Person personUserLends = lastShownList.get(targetPersonIndex.getZeroBased());
 
-        if (personUserReceivedFrom.getLoans().getTotal().isZero()) {
-            throw new CommandException(String.format(MESSAGE_NO_LOAN,
-                    personUserReceivedFrom.getName()));
+        if (personUserLends.getLoans().getTotal().isZero()) {
+            throw new CommandException(String.format(MESSAGE_NO_LOAN, personUserLends.getName()));
         }
 
-        Amount amountPaid;
-        Person reducedLoanPerson;
+        Person personReducedLoan = createPersonReceived(personUserLends, targetLoanIndex);
+        Amount amountReceived = getAmountReceived(personUserLends, targetLoanIndex);
+        model.setPerson(personUserLends, personReducedLoan);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        return new CommandResult(String.format(MESSAGE_RECEIVED_SUCCESS, personUserLends.getName(),
+                amountReceived, personReducedLoan.getLoans().getTotal()));
+    }
+
+    /**
+     * Returns the {@code Amount} that the user has received from {@code personUserLends}.
+     */
+    public static Amount getAmountReceived(Person personUserLends, Index targetLoanIndex) {
+
+        Amount amountReceived;
 
         if (targetLoanIndex == null) {
-            reducedLoanPerson = createPersonReceivedAll(personUserReceivedFrom);
-            amountPaid = personUserReceivedFrom.getLoans().getTotal();
+            amountReceived = personUserLends.getLoans().getTotal();
         } else {
-            List<Loan> loans = personUserReceivedFrom.getLoans().asUnmodifiableObservableList();
+            List<Loan> loans = personUserLends.getLoans().asUnmodifiableObservableList();
+            assert targetLoanIndex.getZeroBased() < loans.size();
+            amountReceived = loans.get(targetLoanIndex.getZeroBased()).getAmount();
+        }
+        return amountReceived;
+    }
+
+    /**
+     * Creates and returns a {@code Person} after reducing the loans.
+     */
+    private static Person createPersonReceived(Person personUserLends, Index targetLoanIndex)
+            throws CommandException {
+        assert personUserLends != null;
+
+        Name name = personUserLends.getName();
+        Phone phone = personUserLends.getPhone();
+        Email email = personUserLends.getEmail();
+        TransactionList<Debt> debts = personUserLends.getDebts();
+        TransactionList<Loan> updatedLoans = new TransactionList<>();
+        Set<Tag> tags = personUserLends.getTags();
+
+        if (targetLoanIndex != null) {
+            List<Loan> loans = personUserLends.getLoans().asUnmodifiableObservableList();
 
             if (targetLoanIndex.getZeroBased() >= loans.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_LOAN_DISPLAYED_INDEX);
             }
 
-            Loan loanPaid = loans.get(targetLoanIndex.getZeroBased());
-            reducedLoanPerson = createPersonReceivedByIndex(personUserReceivedFrom, loanPaid);
-            amountPaid = loanPaid.getAmount();
+            Loan loanReceived = loans.get(targetLoanIndex.getZeroBased());
+            updatedLoans.setTransactions(personUserLends.getLoans());
+            updatedLoans.remove(loanReceived);
         }
 
-        model.setPerson(personUserReceivedFrom, reducedLoanPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
-        return new CommandResult(String.format(MESSAGE_RECEIVED_SUCCESS, personUserReceivedFrom.getName(),
-                amountPaid, reducedLoanPerson.getLoans().getTotal()));
-    }
-
-    /**
-     * Creates and returns a {@code Person} after removing all the loans.
-     */
-    private static Person createPersonReceivedAll(Person personPaid) {
-        assert personPaid != null;
-
-        Name name = personPaid.getName();
-        Phone phone = personPaid.getPhone();
-        Email email = personPaid.getEmail();
-        TransactionList<Debt> debts = personPaid.getDebts();
-        TransactionList<Loan> clearedLoans = new TransactionList<>();
-        Set<Tag> tags = personPaid.getTags();
-        return new Person(name, phone, email, debts, clearedLoans, tags);
-    }
-
-    /**
-     * Creates and returns a {@code Person} after removing the loan specified by an index.
-     */
-    private static Person createPersonReceivedByIndex(Person personPaid, Loan loanPaid) {
-        assert personPaid != null;
-        assert loanPaid != null;
-
-        Name name = personPaid.getName();
-        Phone phone = personPaid.getPhone();
-        Email email = personPaid.getEmail();
-        TransactionList<Debt> debts = personPaid.getDebts();
-        TransactionList<Loan> updatedLoans = new TransactionList<>();
-        updatedLoans.setTransactions(personPaid.getLoans());
-        updatedLoans.remove(loanPaid);
-        Set<Tag> tags = personPaid.getTags();
         return new Person(name, phone, email, debts, updatedLoans, tags);
     }
 
