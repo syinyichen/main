@@ -72,19 +72,13 @@ public class WalletEditCommand extends Command {
         Transaction editedTransaction = createEditedTransaction(transactionToEdit, editTransactionDescriptor);
 
         if (transactionToEdit instanceof Income) {
-            if (((Income) transactionToEdit).isSameIncome((Income) editedTransaction)) {
-                throw new CommandException(MESSAGE_NOT_EDITED);
-            } else {
-                model.setIncome((Income) transactionToEdit, (Income) editedTransaction);
-                model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_TRANSACTIONS);
-            }
+
+            model.setIncome((Income) transactionToEdit, (Income) editedTransaction);
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_TRANSACTIONS);
         } else {
-            if (((Expense) transactionToEdit).isSameExpense((Expense) editedTransaction)) {
-                throw new CommandException(MESSAGE_NOT_EDITED);
-            } else {
-                model.setExpense((Expense) transactionToEdit, (Expense) editedTransaction);
-                model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_TRANSACTIONS);
-            }
+
+            model.setExpense((Expense) transactionToEdit, (Expense) editedTransaction);
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_TRANSACTIONS);
         }
 
         return new CommandResult(String.format(MESSAGE_EDIT_TRANSACTION_SUCCESS, editedTransaction));
@@ -102,7 +96,7 @@ public class WalletEditCommand extends Command {
                 editTransactionDescriptor.getDescription().orElse(transactionToEdit.getDescription());
         Amount updatedAmount = editTransactionDescriptor.getAmount().orElse(transactionToEdit.getAmount());
         Date updatedDate = editTransactionDescriptor.getDate().orElse(transactionToEdit.getDate());
-        Tag updatedTag = editTransactionDescriptor.getTags().orElse(transactionToEdit.getTag());
+        Tag updatedTag = editTransactionDescriptor.getTag().orElse(transactionToEdit.getTag());
 
         if (transactionToEdit instanceof Expense) {
             return new Expense(updatedDescription, updatedAmount, updatedDate, updatedTag);
@@ -150,7 +144,7 @@ public class WalletEditCommand extends Command {
             setDescription(toCopy.description);
             setAmount(toCopy.amount);
             setDate(toCopy.date);
-            setTags(toCopy.tag);
+            setTag(toCopy.tag);
         }
 
         /**
@@ -188,7 +182,7 @@ public class WalletEditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Tag tag) {
+        public void setTag(Tag tag) {
             this.tag = tag;
         }
 
@@ -197,7 +191,7 @@ public class WalletEditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Tag> getTags() {
+        public Optional<Tag> getTag() {
             return Optional.ofNullable(tag);
         }
 
@@ -219,7 +213,7 @@ public class WalletEditCommand extends Command {
             return getDescription().equals(e.getDescription())
                     && getAmount().equals(e.getAmount())
                     && getDate().equals(e.getDate())
-                    && getTags().equals(e.getTags());
+                    && getTag().equals(e.getTag());
         }
     }
 }
