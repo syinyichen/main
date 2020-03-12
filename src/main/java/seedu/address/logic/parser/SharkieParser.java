@@ -36,9 +36,9 @@ import seedu.address.logic.parser.people.PeopleLendCommandParser;
 import seedu.address.logic.parser.people.PeopleOweCommandParser;
 import seedu.address.logic.parser.people.PeopleRemindCommandParser;
 
+import seedu.address.logic.parser.wallet.WalletBudgetCommandParser;
 import seedu.address.logic.parser.wallet.WalletExpenseCommandParser;
 import seedu.address.logic.parser.wallet.WalletIncomeCommandParser;
-import seedu.address.logic.parser.wallet.WalletBudgetCommandParser;
 
 /**
  * Parses user input.
