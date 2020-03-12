@@ -17,6 +17,21 @@ public class Expense extends Transaction {
     }
 
     /**
+     * Returns true if both Income shares same information.
+     */
+    public boolean isSameExpense(Expense otherExpense) {
+        if (otherExpense == this) {
+            return true;
+        }
+
+        return otherExpense != null
+                && otherExpense.getDescription().equals(getDescription())
+                && otherExpense.getAmount().equals(getAmount())
+                && otherExpense.getDate().equals(getDate())
+                && otherExpense.getTag().equals(getTag());
+    }
+
+    /**
      * Returns true if both Expenses have the same data fields.
      */
     @Override

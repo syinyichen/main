@@ -17,6 +17,21 @@ public class Income extends Transaction {
     }
 
     /**
+     * Returns true if both Income shares same information.
+     */
+    public boolean isSameIncome(Income otherIncome) {
+        if (otherIncome == this) {
+            return true;
+        }
+
+        return otherIncome != null
+                && otherIncome.getDescription().equals(getDescription())
+                && otherIncome.getAmount().equals(getAmount())
+                && otherIncome.getDate().equals(getDate())
+                && otherIncome.getTag().equals(getTag());
+    }
+
+    /**
      * Returns true if both Incomes have the same data fields.
      */
     @Override
