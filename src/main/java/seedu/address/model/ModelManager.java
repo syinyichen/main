@@ -254,6 +254,10 @@ public class ModelManager implements Model {
     }
 
     // =========== Util Methods ===============================================================================
+
+    /**
+     * Deletes {@code transactionToDelete} from the transaction list.
+     */
     public void deleteTransaction(Transaction transactionToDelete) {
         if (transactionToDelete instanceof Expense) {
             deleteExpense((Expense) transactionToDelete);

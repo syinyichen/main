@@ -128,7 +128,6 @@ public class ModelStub implements Model {
     }
 
 
-
     @Override
     public boolean hasIncome(Income income) {
         throw new AssertionError(
@@ -174,6 +173,7 @@ public class ModelStub implements Model {
     public void setExpense(Expense target, Expense editedExpense) {
         throw new AssertionError("This method should not be called.");
     }
+
     @Override
     public Amount getTotalExpenditureInMonth(Date date) {
         throw new AssertionError("This method should not be called.");
@@ -181,6 +181,8 @@ public class ModelStub implements Model {
 
     @Override
     public void setBudget(Budget budget) {
+        throw new AssertionError("This method should not be called.");
+    }
 
     @Override
     public void deleteTransaction(Transaction target) {
@@ -198,7 +200,7 @@ public class ModelStub implements Model {
     public void setDefaultBudget(Budget budget) {
         throw new AssertionError("This method should not be called.");
     }
-    
+
     public void updateFilteredTransactionList(Predicate<Transaction> predicate) {
         throw new AssertionError("This method should not be called.");
     }
@@ -208,6 +210,7 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
 
     }
+
     public ObservableList<Expense> getFilteredExpenseList() {
         throw new AssertionError("This method should not be called.");
     }
@@ -216,6 +219,7 @@ public class ModelStub implements Model {
     public Budget getBudget(Month month, Year year) {
         throw new AssertionError("This method should not be called.");
     }
+
     public ObservableList<Income> getFilteredIncomeList() {
         throw new AssertionError("This method should not be called.");
     }
