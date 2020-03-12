@@ -48,6 +48,11 @@ public class UiManager implements Ui {
         }
     }
 
+    @Override
+    public void openEnterUserDataWindow() {
+        this.mainWindow.openUserDataWindow();
+    }
+
     private Image getImage(String imagePath) {
         return new Image(MainApp.class.getResourceAsStream(imagePath));
     }

@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalUser.getTypicalUserData;
 
 import java.nio.file.Path;
 
@@ -13,6 +14,8 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserData;
+import seedu.address.model.UserData;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -25,8 +28,9 @@ public class StorageManagerTest {
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonUserDataStorage userDataStorage = new JsonUserDataStorage(getTempFilePath("ud"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(addressBookStorage, userDataStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -61,8 +65,26 @@ public class StorageManagerTest {
     }
 
     @Test
+    public void userDataReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonUserDataStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonUserDataStorageTest} class.
+         */
+        UserData original = getTypicalUserData();
+        storageManager.saveUserData(original);
+        ReadOnlyUserData retrieved = storageManager.readUserData().get();
+        assertEquals(original, new UserData(retrieved));
+    }
+
+    @Test
     public void getAddressBookFilePath() {
         assertNotNull(storageManager.getAddressBookFilePath());
+    }
+
+    @Test
+    public void getUserDataFilePath() {
+        assertNotNull(storageManager.getUserDataFilePath());
     }
 
 }
