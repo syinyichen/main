@@ -315,11 +315,11 @@ Expected Outcome:
 //tag::peopleremind[]
 ==== Sending reminder to a friend: `remind`
 
-Sends a reminder through email to a friend to return their debts to you. +
+Reminds a friend, through a email to return the loans to you. +
 Format: `people remind <index>`
 
 ****
-* Reminds the person at the specified `<index>` return their debts to you.
+* Reminds the person at the specified `<index>` return the loans to you.
 * The index refers to the index number shown in the displayed person list.
 * The index *must be a positive integer* 1, 2, 3, ...
 ****
@@ -366,7 +366,7 @@ Expected Outcome:
 ==== Recording the money you owe: `owe`
 
 Records the amount of money that you owe a person. +
-Format: `people owe <index> n/<description> $/<amount> d/<date:dd/mm/yyyy>`
+Format: `people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
 
 ****
 * Records the amount of money specified in `<amount>` you owe to the person at the specified `<index>`.
@@ -388,8 +388,8 @@ Expected Outcome:
 // tag::lend[]
 ==== Recording the money you lend: `lend`
 
-Records the amount of money that you lend to a person. This will increase that person's debt. +
-Format: `people lend <index> n/<description> $/<amount> d/<date:dd/mm/yyyy>`
+Records the amount of money that you lend to a person. This will increase that person's loan. +
+Format: `people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
 
 ****
 * Records the amount of money specified in `<price>` you owe to the person at the specified `<index>`.
@@ -407,6 +407,32 @@ Expected Outcome:
     Increased loan to Syin Yi by $5.00. Syin Yi now owes you $8.00.
 
 // end::lend[]
+
+// tag::paid[]
+==== Recording the money your friend paid back: `received`
+
+Records that you have received the money from your friend, who you lent to. +
+Format: `people paid <person's index> [i/<loan's index>]`
+
+****
+* The <person's index> refers to the index number shown before a displayed person.
+* The <loan's index> refers to the index number shown before a loan under the specified person.
+* Both indexes *must be a positive integer* 1, 2, 3, ...
+****
+
+[TIP]
+The loan's index is optional.
+All loans will be marked as `received` for the indicated person if the loan's index is not specified.
+
+Examples:
+
+* `people paid 2 i/1`
+Records that you have received the money for the first loan from the second person in the address book. +
+Expected Outcome:
+
+    Removed loan to Joel by $10.00. Joel now owes you $2.00.
+
+// end::paid[]
 
 //tag::peoplefind[]
 ==== Finding a person: `find`
@@ -514,10 +540,12 @@ e.g. `people add n/Joel p/91234567 e/joel@u.nus.edu`
 * *Remind* : `people remind <index>` +
 e.g. `people remind 1`
 * *Remind all* : `people remindall`
-* *Owe* : `people owe <index> n/<description> $/<amount> d/<date:dd/mm/yyyy>` +
+* *Owe* : `people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]` +
 e.g. `people owe 4 n/lunch $/5.00 d/10/10/2020`
-* *Lend* : `people lend <index> n/<description> $/<amount> d/<date:dd/mm/yyyy>` +
+* *Lend* : `people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]` +
 e.g. `people lend 5 n/dinner $/5.00 d/10/10/2020`
+* *Received* : `people received <person's index> [i/<loan's index>]` +
+e.g. `people paid 1 2`
 * *Find* : `people find <keyword>` +
 e.g. `people find Grace`
 * *Delete* : `people delete <index>` +
