@@ -51,7 +51,7 @@ public class TypicalPersons {
             .withName("Carl Kurz")
             .withPhone("95352563")
             .withEmail("heinz@example.com")
-            .withDebts(MILKTEA)
+            .withDebts(MILKTEA, IPHONE)
             .withLoans(DINNER).build();
     public static final Person DANIEL = new PersonBuilder()
             .withName("Daniel Meier")
