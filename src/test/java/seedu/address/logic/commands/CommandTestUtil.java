@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRANSACTION_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -41,6 +41,7 @@ public class CommandTestUtil {
     public static final String VALID_AMOUNT_AMY = "5";
     public static final String VALID_AMOUNT_BOB = "10";
     public static final String VALID_DATE_AMY = "02/02/2020";
+    public static final String VALID_TRANSACTION_INDEX_AMY = "1";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_DATE = "20/02/2020";
@@ -60,6 +61,8 @@ public class CommandTestUtil {
             + PREFIX_AMOUNT + VALID_AMOUNT_BOB;
     public static final String LEND_DESC_AMY = " " + PREFIX_NAME + VALID_DESC_AMY + " "
             + PREFIX_AMOUNT + VALID_AMOUNT_AMY + " " + PREFIX_DATE + VALID_DATE_AMY;
+    public static final String RECEIVED_DESC_AMY =
+            " " + PREFIX_TRANSACTION_INDEX + VALID_TRANSACTION_INDEX_AMY;
     public static final String LEND_DESC_BOB = " " + PREFIX_NAME + VALID_DESC_BOB + " "
             + PREFIX_AMOUNT + VALID_AMOUNT_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
@@ -76,6 +79,10 @@ public class CommandTestUtil {
     public static final String INVALID_TRANSACTION_DESC = " " + PREFIX_NAME + ""; // description cannot be empty
     public static final String INVALID_AMOUNT_DESC = " " + PREFIX_AMOUNT + "9ab"; // only numbers allowed in amount
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "20 May 2020"; // date in wrong format
+    public static final String INVALID_AMOUNT = " " + PREFIX_AMOUNT + "9ab"; // only numbers allowed in amount
+    public static final String INVALID_DATE = " " + PREFIX_DATE + "20 May 2020"; // date in wrong format
+    public static final String INVALID_TRANSACTION_INDEX =
+            " " + PREFIX_TRANSACTION_INDEX + "-5"; // negative index
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_MONTH_DESC = " " + PREFIX_MONTH + "args"; // only numbers allowed
     public static final String INVALID_YEAR_DESC = " " + PREFIX_YEAR + "interstellar"; // only numbers allowed
