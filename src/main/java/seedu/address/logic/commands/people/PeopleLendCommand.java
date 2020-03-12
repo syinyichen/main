@@ -33,7 +33,7 @@ public class PeopleLendCommand extends Command {
     public static final String COMMAND_WORD = "lend";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Records the amount of money that you lend to a"
-            + " person. Parameters: <index> (must be a positive integer) "
+            + " person.\nParameters: <index> (must be a positive integer) "
             + PREFIX_NAME + "<description> "
             + PREFIX_AMOUNT + "<amount> "
             + "[" + PREFIX_DATE + "<date:dd/mm/yyyy>]\n"

@@ -316,7 +316,7 @@ Expected Outcome:
 //end::peopleadd[]
 
 //tag::peopleremind[]
-==== Sending reminder to a friend: `remind` `[coming in v2.0]`
+==== Sending reminder to a friend: `remind`
 
 Sends a reminder through email to a friend to return their debts to you. +
 Format: `people remind <index>`
@@ -327,6 +327,10 @@ Format: `people remind <index>`
 * The index *must be a positive integer* 1, 2, 3, ...
 ****
 
+[TIP]
+To use this command, you must include your details in Sharkie. +
+You can enter or edit your details at `Edit` > `Edit user's data`.
+
 Examples:
 
 * `people remind 1`
@@ -334,14 +338,19 @@ Sends a reminder to the 1st person in your contact list. +
 Expected Outcome:
 
     Reminded Daniel to return $10.00!
+    Sharkie has sent a copy of the reminder to your email!
 
 //end::peopleremind[]
 
 //tag::peopleremindall[]
-==== Sending reminder to all friend: `remindall` `[coming in v2.0]`
+==== Sending reminder to all friend: `remindall`
 
 Sends reminders through email to all the friends that have not yet paid up. +
 Format: `people remindall`
+
+[TIP]
+To use this command, you must include your details in Sharkie. +
+You can enter or edit your details at `Edit` > `Edit user's data`.
 
 Examples:
 
@@ -351,6 +360,8 @@ Expected Outcome:
 
     Reminded Daniel to return $10.00!
     Reminded Joel to return $30.75!
+    ...
+    Sharkie has sent copies of the reminders to your email!
 
 //end::peopleremindall[]
 

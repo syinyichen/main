@@ -12,4 +12,9 @@ public interface Ui {
      */
     void start(Stage primaryStage);
 
+    /**
+     * Opens the window to enter user data.
+     */
+    void openEnterUserDataWindow();
+
 }

@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.transaction.Amount;
@@ -21,6 +22,7 @@ import seedu.address.model.transaction.Income;
  * A default model stub that have all of the methods failing.
  */
 public class ModelStub implements Model {
+
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         throw new AssertionError("This method should not be called.");
@@ -48,6 +50,16 @@ public class ModelStub implements Model {
 
     @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Path getUserDataFilePath() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setUserDataFilePath(Path userDataFilePath) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -88,6 +100,21 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setUserData(ReadOnlyUserData userData) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ReadOnlyUserData getUserData() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean isUserDataNull() {
         throw new AssertionError("This method should not be called.");
     }
 
