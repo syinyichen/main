@@ -30,12 +30,9 @@ import seedu.address.logic.commands.people.PeopleFindCommand;
 import seedu.address.logic.commands.people.PeopleLendCommand;
 import seedu.address.logic.commands.people.PeopleListCommand;
 import seedu.address.logic.commands.people.PeopleOweCommand;
-<<<<<<< HEAD
-import seedu.address.logic.commands.wallet.WalletDeleteCommand;
-=======
 import seedu.address.logic.commands.people.PeopleRemindAllCommand;
 import seedu.address.logic.commands.people.PeopleRemindCommand;
->>>>>>> master
+import seedu.address.logic.commands.wallet.WalletDeleteCommand;
 import seedu.address.logic.commands.wallet.WalletExpenseCommand;
 import seedu.address.logic.commands.wallet.WalletIncomeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -45,7 +42,6 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.WalletUtil;
-
 
 public class SharkieParserTest {
 

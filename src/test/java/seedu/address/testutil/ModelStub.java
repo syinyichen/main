@@ -104,9 +104,10 @@ public class ModelStub implements Model {
     }
 
     @Override
-<<<<<<< HEAD
     public ReadOnlyWallet getWallet() {
-=======
+        throw new AssertionError("This method should not be called.");
+    }
+
     public void setUserData(ReadOnlyUserData userData) {
         throw new AssertionError("This method should not be called.");
     }
@@ -121,11 +122,7 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
-    @Override
-    public boolean hasIncome(Income income) {
->>>>>>> master
-        throw new AssertionError("This method should not be called.");
-    }
+
 
     @Override
     public boolean hasIncome(Income income) {

@@ -44,7 +44,7 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + ", wallet: " + wallet + " and user "
                 + "prefs " + userPrefs);
-        
+
         this.addressBook = new AddressBook(addressBook);
         this.wallet = new Wallet(wallet);
         this.userPrefs = new UserPrefs(userPrefs);
