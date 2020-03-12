@@ -34,7 +34,7 @@
 *** Updated the User Guide to include more commands, updated Quick Start, and Updated ContactUs: https://github.com/AY1920S2-CS2103T-W12-3/main/pull/52[#52]
 *** Did cosmetic tweaks to existing contents of the User Guide and Quick Start: https://github.com/AY1920S2-CS2103T-W12-3/main/pull/54[#54]
 ** Community:
-*** PRs reviewed (with non-trivial review comments) *[To be updated]*: https://github.com[#12], https://github.com[#32], https://github.com[#19], https://github.com[#42]
+*** PRs reviewed (with non-trivial review comments) : https://github.com/AY1920S2-CS2103T-W12-3/main/pull/71[#71], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/95[#95]
 *** Contributed to forum discussions (examples:  https://github.com/nus-cs2103-AY1920S2/forum/issues/25[25])
 *** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[To be updated])
 *** Some parts of the history feature I added was adopted by several other class mates (https://github.com[To be updated])

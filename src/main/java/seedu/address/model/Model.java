@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
+import seedu.address.model.transaction.Transaction;
 
 /**
  * The API of the Model component.
@@ -105,6 +106,11 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
+     * Returns the AddressBook
+     */
+    ReadOnlyWallet getWallet();
+
+    /**
      * Replaces user data with new {@code userData}.
      */
     void setUserData(ReadOnlyUserData userData);
@@ -163,4 +169,32 @@ public interface Model {
      * {@code target} must exist in the Wallet.
      */
     void setExpense(Expense target, Expense editedExpense);
+
+    /**
+     * Deletes the given transaction.
+     * The transaction must exist in the Wallet.
+     */
+    public void deleteTransaction(Transaction transactionToDelete);
+
+    /**
+     * Returns an unmodifiable view of the filtered Expense list
+     */
+    ObservableList<Expense> getFilteredExpenseList();
+
+    /**
+     * Returns an unmodifiable view of the filtered Income list
+     */
+    ObservableList<Income> getFilteredIncomeList();
+
+    /**
+     * Returns an unmodifiable view of the filtered Transaction list
+     */
+    ObservableList<Transaction> getFilteredTransactionList();
+
+    /**
+     * Updates the filter of the filtered transaction list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTransactionList(Predicate<Transaction> predicate);
 }

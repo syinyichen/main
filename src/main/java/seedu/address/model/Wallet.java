@@ -21,7 +21,8 @@ public class Wallet implements ReadOnlyWallet {
     private final TransactionList<Income> incomes = new TransactionList<>();
     private final TransactionList<Expense> expenses = new TransactionList<>();
 
-    public Wallet() {}
+    public Wallet() {
+    }
 
     /**
      * Creates an Wallet using the Transactions in the {@code toBeCopied}
@@ -86,7 +87,7 @@ public class Wallet implements ReadOnlyWallet {
      * Removes {@code key} from this {@code Wallet}.
      * {@code key} must exist in the wallet.
      */
-    public void removeIncome(Income key) {
+    public void deleteIncome(Income key) {
         incomes.remove(key);
     }
 
@@ -120,7 +121,7 @@ public class Wallet implements ReadOnlyWallet {
      * Removes {@code key} from this {@code Wallet}.
      * {@code key} must exist in the wallet.
      */
-    public void removeExpense(Expense key) {
+    public void deleteExpense(Expense key) {
         expenses.remove(key);
     }
     // =========== Util methods =============================================================

@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
+import seedu.address.model.transaction.Transaction;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,6 +28,11 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
+    //wallet
+    private final FilteredList<Expense> filteredExpenses;
+    private final FilteredList<Income> filteredIncomes;
+    private FilteredList<Transaction> filteredTransactions;
+
     /**
      * Initializes a ModelManager with the given addressBook, wallet and userPrefs.
      */
@@ -35,14 +41,21 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(addressBook, wallet, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + ", wallet: "
-                + wallet + " and user prefs " + userPrefs);
+
+        logger.fine("Initializing with address book: " + addressBook + ", wallet: " + wallet + " and user "
+                + "prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.wallet = new Wallet(wallet);
         this.userPrefs = new UserPrefs(userPrefs);
         this.userData = new UserData();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+
+        //wallet
+        filteredExpenses = new FilteredList<Expense>(this.wallet.getExpenseList());
+        filteredIncomes = new FilteredList<Income>(this.wallet.getIncomeList());
+        filteredTransactions = new FilteredList<Transaction>(this.wallet.getTransactionList());
+
     }
 
     /**
@@ -158,6 +171,11 @@ public class ModelManager implements Model {
     // =========== Wallet =====================================================================================
 
     @Override
+    public ReadOnlyWallet getWallet() {
+        return wallet;
+    }
+
+    @Override
     public boolean hasIncome(Income income) {
         return wallet.hasIncome(income);
     }
@@ -165,17 +183,19 @@ public class ModelManager implements Model {
     @Override
     public void addIncome(Income income) {
         wallet.addIncome(income);
+        filteredTransactions = new FilteredList<Transaction>(this.wallet.getTransactionList());
     }
 
     @Override
     public void deleteIncome(Income target) {
-        wallet.removeIncome(target);
+        wallet.deleteIncome(target);
     }
 
     @Override
     public void setIncome(Income target, Income editedIncome) {
         requireAllNonNull(target, editedIncome);
         wallet.setIncome(target, editedIncome);
+        filteredTransactions = new FilteredList<Transaction>(this.wallet.getTransactionList());
     }
 
     @Override
@@ -186,20 +206,36 @@ public class ModelManager implements Model {
     @Override
     public void addExpense(Expense expense) {
         wallet.addExpense(expense);
+        filteredTransactions = new FilteredList<Transaction>(this.wallet.getTransactionList());
     }
 
     @Override
     public void deleteExpense(Expense target) {
-        wallet.removeExpense(target);
+        wallet.deleteExpense(target);
     }
 
     @Override
     public void setExpense(Expense target, Expense editedExpense) {
         requireAllNonNull(target, editedExpense);
         wallet.setExpense(target, editedExpense);
+        filteredTransactions = new FilteredList<Transaction>(this.wallet.getTransactionList());
     }
 
-    // =========== Util Methods ===============================================================================
+    @Override
+    public void deleteTransaction(Transaction transactionToDelete) {
+        if (transactionToDelete instanceof Expense) {
+            deleteExpense((Expense) transactionToDelete);
+        } else {
+            assert transactionToDelete instanceof Income
+                    : "transactionToDelete should be either an Expense class or Income class";
+            deleteIncome((Income) transactionToDelete);
+        }
+
+        //update transaction list
+        filteredTransactions = new FilteredList<Transaction>(this.wallet.getTransactionList());
+    }
+
+    // =========== Util Methods Person ========================================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the
@@ -215,6 +251,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -231,5 +268,28 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook) && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons) && wallet.equals(other.wallet);
+    }
+
+    // =========== Util Methods Wallet ========================================================================
+
+    @Override
+    public ObservableList<Expense> getFilteredExpenseList() {
+        return filteredExpenses;
+    }
+
+    @Override
+    public ObservableList<Income> getFilteredIncomeList() {
+        return filteredIncomes;
+    }
+
+    @Override
+    public ObservableList<Transaction> getFilteredTransactionList() {
+        return filteredTransactions;
+    }
+
+    @Override
+    public void updateFilteredTransactionList(Predicate<Transaction> predicate) {
+        requireNonNull(predicate);
+        filteredTransactions.setPredicate(predicate);
     }
 }
