@@ -24,6 +24,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.transaction.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.transaction.Transaction;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -60,6 +62,8 @@ public class CommandTestUtil {
             + PREFIX_AMOUNT + VALID_AMOUNT_AMY + " " + PREFIX_DATE + VALID_DATE_AMY;
     public static final String OWE_DESC_BOB = " " + PREFIX_NAME + VALID_DESC_BOB + " "
             + PREFIX_AMOUNT + VALID_AMOUNT_BOB;
+    public static final String RETURNED_DESC_AMY =
+            " " + PREFIX_TRANSACTION_INDEX + VALID_TRANSACTION_INDEX_AMY;
     public static final String LEND_DESC_AMY = " " + PREFIX_NAME + VALID_DESC_AMY + " "
             + PREFIX_AMOUNT + VALID_AMOUNT_AMY + " " + PREFIX_DATE + VALID_DATE_AMY;
     public static final String RECEIVED_DESC_AMY =
@@ -162,4 +166,18 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the transaction at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showTransactionAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTransactionList().size());
+
+        Transaction transaction = model.getFilteredTransactionList().get(targetIndex.getZeroBased());
+        final String[] splitDescription = transaction.getDescription().description.split("\\s+");
+        model.updateFilteredTransactionList(new DescriptionContainsKeywordsPredicate(
+                Arrays.asList(splitDescription[0])));
+
+        assertEquals(1, model.getFilteredTransactionList().size());
+    }
 }

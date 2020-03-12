@@ -11,12 +11,14 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.ReadOnlyWallet;
 import seedu.address.model.person.Person;
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Budget;
 import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
+import seedu.address.model.transaction.Transaction;
 
 /**
  * A default model stub that have all of the methods failing.
@@ -75,17 +77,20 @@ public class ModelStub implements Model {
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
     public boolean hasPerson(Person person) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
     public void deletePerson(Person target) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
@@ -104,6 +109,10 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public ReadOnlyWallet getWallet() {
+        throw new AssertionError("This method should not be called.");
+    }
+
     public void setUserData(ReadOnlyUserData userData) {
         throw new AssertionError("This method should not be called.");
     }
@@ -118,19 +127,24 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+
+
     @Override
     public boolean hasIncome(Income income) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
     public void addIncome(Income income) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
     public void deleteIncome(Income target) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
@@ -140,17 +154,20 @@ public class ModelStub implements Model {
 
     @Override
     public boolean hasExpense(Expense expense) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
     public void addExpense(Expense expense) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
     public void deleteExpense(Expense target) {
-        throw new AssertionError("This method should not be called.");
+        throw new AssertionError(
+                "This method should not be called.");
     }
 
     @Override
@@ -164,6 +181,16 @@ public class ModelStub implements Model {
 
     @Override
     public void setBudget(Budget budget) {
+
+    @Override
+    public void deleteTransaction(Transaction target) {
+        throw new AssertionError(
+                "This method should not be called.");
+    }
+
+
+    @Override
+    public ObservableList<Transaction> getFilteredTransactionList() {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -171,14 +198,25 @@ public class ModelStub implements Model {
     public void setDefaultBudget(Budget budget) {
         throw new AssertionError("This method should not be called.");
     }
+    
+    public void updateFilteredTransactionList(Predicate<Transaction> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
 
     @Override
     public boolean hasExceededBudget(Month month, Year year) {
+        throw new AssertionError("This method should not be called.");
+
+    }
+    public ObservableList<Expense> getFilteredExpenseList() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public Budget getBudget(Month month, Year year) {
+        throw new AssertionError("This method should not be called.");
+    }
+    public ObservableList<Income> getFilteredIncomeList() {
         throw new AssertionError("This method should not be called.");
     }
 }

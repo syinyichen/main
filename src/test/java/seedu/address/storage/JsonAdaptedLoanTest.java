@@ -15,6 +15,7 @@ import seedu.address.model.transaction.Description;
 class JsonAdaptedLoanTest {
     private static final String INVALID_DESC = "";
     private static final String INVALID_AMOUNT = "5a";
+    private static final String INVALID_DATE = "20 May 2020";
 
     private static final String VALID_DESC = BREAKFAST.getDescription().toString();
     private static final String VALID_AMOUNT = String.valueOf(BREAKFAST.getAmount().amount);
@@ -38,7 +39,8 @@ class JsonAdaptedLoanTest {
     public void toModelType_nullDesc_throwsIllegalValueException() {
         JsonAdaptedLoan loan =
                 new JsonAdaptedLoan(null, VALID_AMOUNT, VALID_DATE);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
+        String expectedMessage =
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, loan::toModelType);
     }
 
@@ -55,6 +57,14 @@ class JsonAdaptedLoanTest {
         JsonAdaptedLoan loan =
                 new JsonAdaptedLoan(VALID_DESC, null, VALID_DATE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Amount.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, loan::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidDate_throwsIllegalValueException() {
+        JsonAdaptedLoan loan =
+                new JsonAdaptedLoan(VALID_DESC, VALID_AMOUNT, INVALID_DATE);
+        String expectedMessage = Date.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, loan::toModelType);
     }
 
