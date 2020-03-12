@@ -38,6 +38,10 @@
         "description" : "Milk Tea",
         "amount" : "3",
         "date" : "2020-02-21"
+      }, {
+        "description" : "iPhone 13",
+        "amount" : "1000",
+        "date" : "2022-10-03"
       }],
       "loans" : [ {
         "description" : "Dinner",

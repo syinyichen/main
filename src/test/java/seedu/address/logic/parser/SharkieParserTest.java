@@ -35,6 +35,7 @@ import seedu.address.logic.commands.people.PeopleOweCommand;
 import seedu.address.logic.commands.people.PeopleReceivedCommand;
 import seedu.address.logic.commands.people.PeopleRemindAllCommand;
 import seedu.address.logic.commands.people.PeopleRemindCommand;
+import seedu.address.logic.commands.people.PeopleReturnedCommand;
 import seedu.address.logic.commands.wallet.WalletExpenseCommand;
 import seedu.address.logic.commands.wallet.WalletIncomeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -44,7 +45,6 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.WalletUtil;
-
 
 public class SharkieParserTest {
 
@@ -117,6 +117,14 @@ public class SharkieParserTest {
                 + PeopleOweCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
                 + PersonUtil.getDebtDescription(TEXTBOOK));
         assertEquals(new PeopleOweCommand(INDEX_FIRST_PERSON, TEXTBOOK), command);
+    }
+
+    @Test
+    public void parsePeopleCommand_returned() throws Exception {
+        PeopleReturnedCommand command = (PeopleReturnedCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
+                + PeopleReturnedCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
+                + CliSyntax.PREFIX_TRANSACTION_INDEX + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new PeopleReturnedCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON), command);
     }
 
     @Test

@@ -96,7 +96,7 @@ _{explain how the user can enable/disable data encryption}_
 // end::dataencryption[]
 
 //tag::debts[]
-=== Debts `[coming in v2.0]`
+=== Debts
 
 *Sharkie* allows you to take note of the debts you owe your friends and the debts your friend owes you. +
 *Sharkie* then allow you to automatically remind your friends through email to return you the money they owe you! +
@@ -384,6 +384,32 @@ Expected Outcome:
     Increased debt to Grace by $5.00! You now owe Grace $10.00.
 
 // end::owe[]
+
+// tag::return[]
+==== Recording the money you return: `return`
+
+Records that a debt that you owe a person has been returned. +
+Format: `people return <person's index> [i/<debt's index>]`
+****
+* Records that the debt at the specified <debt's index> has been returned to the person specified at <person's index>.
+* The person's index refers to the index number shown in the displayed person list.
+* The debt's index refers to the index number shown in the 'Debts' table of the person specified.
+* Both indexes *must be positive integers* 1, 2, 3, ...
+****
+
+[TIP]
+The debt's index is optional.
+Sharkie will record all debts as returned if the debt's index is not specified.
+
+Examples:
+
+* `people return 4 i/1`
+Records that you return the 4th person the 1st debt. +
+Expected Outcome:
+
+    Reduced debt to Grace by $5.00. You now owe Grace $5.00.
+
+// end::return[]
 
 // tag::lend[]
 ==== Recording the money you lend: `lend`

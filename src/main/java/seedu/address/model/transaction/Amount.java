@@ -47,7 +47,6 @@ public class Amount implements Comparable<Amount> {
         return this.amount == 0;
     }
 
-
     @Override
     public String toString() {
         return String.format("$%.2f", amount);

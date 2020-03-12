@@ -54,6 +54,8 @@ public class CommandTestUtil {
             + PREFIX_AMOUNT + VALID_AMOUNT_AMY + " " + PREFIX_DATE + VALID_DATE_AMY;
     public static final String OWE_DESC_BOB = " " + PREFIX_NAME + VALID_DESC_BOB + " "
             + PREFIX_AMOUNT + VALID_AMOUNT_BOB;
+    public static final String RETURNED_DESC_AMY =
+            " " + PREFIX_TRANSACTION_INDEX + VALID_TRANSACTION_INDEX_AMY;
     public static final String LEND_DESC_AMY = " " + PREFIX_NAME + VALID_DESC_AMY + " "
             + PREFIX_AMOUNT + VALID_AMOUNT_AMY + " " + PREFIX_DATE + VALID_DATE_AMY;
     public static final String RECEIVED_DESC_AMY =

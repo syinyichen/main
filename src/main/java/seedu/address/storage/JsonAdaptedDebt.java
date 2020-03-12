@@ -77,7 +77,7 @@ public class JsonAdaptedDebt {
         try {
             modelDate = new Date(LocalDate.parse(date));
         } catch (DateTimeParseException e) {
-            throw new IllegalValueException(e.getMessage());
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
 
         return new Debt(modelDescription, modelAmount, modelDate);
