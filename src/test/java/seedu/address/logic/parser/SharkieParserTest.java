@@ -6,9 +6,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliPrefix.PEOPLE_COMMAND_TYPE;
 import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TRANSACTION_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDebts.TEXTBOOK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalLoans.DINNER;
 import static seedu.address.testutil.TypicalWallet.ALLOWANCE;
 import static seedu.address.testutil.TypicalWallet.DUCK_RICE;
@@ -30,6 +32,7 @@ import seedu.address.logic.commands.people.PeopleFindCommand;
 import seedu.address.logic.commands.people.PeopleLendCommand;
 import seedu.address.logic.commands.people.PeopleListCommand;
 import seedu.address.logic.commands.people.PeopleOweCommand;
+import seedu.address.logic.commands.people.PeopleReceivedCommand;
 import seedu.address.logic.commands.people.PeopleRemindAllCommand;
 import seedu.address.logic.commands.people.PeopleRemindCommand;
 import seedu.address.logic.commands.people.PeopleReturnedCommand;
@@ -55,7 +58,7 @@ public class SharkieParserTest {
     }
 
     @Test
-    public void parseCommand_clear() throws Exception {
+    public void parsePeopleCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + PeopleClearCommand.COMMAND_WORD)
                 instanceof PeopleClearCommand);
         assertTrue(parser.parseCommand(PEOPLE_COMMAND_TYPE + " " + PeopleClearCommand.COMMAND_WORD + " 3")
@@ -130,6 +133,14 @@ public class SharkieParserTest {
                 + PeopleLendCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased() + " "
                 + PersonUtil.getLoanDescription(DINNER));
         assertEquals(new PeopleLendCommand(INDEX_FIRST_PERSON, DINNER), command);
+    }
+
+    @Test
+    public void parsePeopleCommand_received() throws Exception {
+        PeopleReceivedCommand command = (PeopleReceivedCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
+                + PeopleReceivedCommand.COMMAND_WORD + " " + INDEX_SECOND_PERSON.getOneBased() + " "
+                + PREFIX_TRANSACTION_INDEX + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new PeopleReceivedCommand(INDEX_SECOND_PERSON, INDEX_FIRST_PERSON), command);
     }
 
     @Test

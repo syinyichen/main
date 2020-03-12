@@ -17,7 +17,13 @@
 
 ** Added People's command, `lend`
 *** What it does: Allows the user to record the amount of money lent to other people in the address book.
-*** Credits: Implemented based on http://github.com/cheyannesim[Cheyanne]'s `people owe` command.
+** Added People's command, `received`
+*** What it does: Allows the user to record that a person, which the user lent has returned the amount of money.
+** Added user data storage
+*** What it does: Stores user data, such as name, phone and e-mail address.
+*** Justification: This is an essential feature, as the user details are required during the use of `remind` and `remindall` commands.
+** Added People's command, `remind` and `remindall`
+*** What it does: Allows the user to record that a person, which the user lent has returned the amount of money.
 
 * *Other contributions*:
 
@@ -28,6 +34,8 @@
 *** Edited the product's website navigation bar: (Pull request https://github.com[#81])
 *** Edited various parts of the User Guide: (Pull request https://github.com[#49])
 *** Updated the Use Cases Appendix in the Developer Guide: (Pull request https://github.com[#51])
+** Community:
+*** PRs reviewed (with non-trivial review comments): https://github.com[#92], https://github.com[#100]
 
 == Contributions to the User Guide
 
