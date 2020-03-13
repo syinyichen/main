@@ -40,8 +40,8 @@ public class WalletDeleteCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTransactionList().size() + 1);
-        WalletDeleteCommand walletDeleteCommand = new WalletDeleteCommand(outOfBoundIndex);
+        Index outOfBoundsIndex = Index.fromOneBased(model.getFilteredTransactionList().size() + 1);
+        WalletDeleteCommand walletDeleteCommand = new WalletDeleteCommand(outOfBoundsIndex);
 
         assertCommandFailure(walletDeleteCommand, model, Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX);
     }
