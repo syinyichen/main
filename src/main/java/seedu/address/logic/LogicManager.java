@@ -14,12 +14,14 @@ import seedu.address.logic.parser.SharkieParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyWallet;
 import seedu.address.model.UserData;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.User;
+import seedu.address.model.transaction.Transaction;
 import seedu.address.storage.Storage;
 
 /**
@@ -49,6 +51,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveWallet(model.getWallet());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -96,5 +99,20 @@ public class LogicManager implements Logic {
     @Override
     public void setUserData(UserData userData) {
         model.setUserData(userData);
+    }
+
+    @Override
+    public ReadOnlyWallet getWallet() {
+        return model.getWallet();
+    }
+
+    @Override
+    public ObservableList<Transaction> getFilteredTransactionList() {
+        return model.getFilteredTransactionList();
+    }
+
+    @Override
+    public Path getWalletFilePath() {
+        return model.getWalletFilePath();
     }
 }

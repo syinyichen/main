@@ -21,8 +21,10 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.ReadOnlyWallet;
 import seedu.address.model.UserData;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.Wallet;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
@@ -82,24 +84,43 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialAddressBookData;
+        ReadOnlyAddressBook initialAddressBookData = getStoredAddressBook(storage);
+        ReadOnlyWallet initialWalletData = getStoredWallet(storage);
 
+        return new ModelManager(initialAddressBookData, initialWalletData, userPrefs);
+    }
+
+    private ReadOnlyAddressBook getStoredAddressBook(Storage storage) {
         try {
-            addressBookOptional = storage.readAddressBook();
+            Optional<ReadOnlyAddressBook> addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
-            initialAddressBookData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            return addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialAddressBookData = new AddressBook();
+            return new AddressBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialAddressBookData = new AddressBook();
+            return new AddressBook();
         }
+    }
 
-        return new ModelManager(initialAddressBookData, userPrefs);
+    private ReadOnlyWallet getStoredWallet(Storage storage) {
+        try {
+            Optional<ReadOnlyWallet> walletOptional = storage.readWallet();
+            if (!walletOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample Wallet");
+            }
+            // TODO: Actually make a sample wallet?
+            return walletOptional.orElseGet(() -> new Wallet());
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty Wallet");
+            return new Wallet();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty Wallet");
+            return new Wallet();
+        }
     }
 
     private void initLogging(Config config) {
