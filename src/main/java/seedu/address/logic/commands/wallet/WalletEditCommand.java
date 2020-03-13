@@ -74,13 +74,12 @@ public class WalletEditCommand extends Command {
         if (transactionToEdit instanceof Income) {
 
             model.setIncome((Income) transactionToEdit, (Income) editedTransaction);
-            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_TRANSACTIONS);
         } else {
 
             model.setExpense((Expense) transactionToEdit, (Expense) editedTransaction);
-            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_TRANSACTIONS);
         }
 
+        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_TRANSACTIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_TRANSACTION_SUCCESS, editedTransaction));
     }
 

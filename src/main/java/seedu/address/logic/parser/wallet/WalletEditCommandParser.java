@@ -12,10 +12,11 @@ import seedu.address.logic.commands.wallet.WalletEditCommand;
 import seedu.address.logic.commands.wallet.WalletEditCommand.EditTransactionDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class WalletEditCommandParser {
+public class WalletEditCommandParser implements Parser<WalletEditCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
