@@ -1,12 +1,13 @@
 package seedu.address.storage;
 
-import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Date;
@@ -46,7 +47,7 @@ public abstract class JsonAdaptedTransaction {
     public JsonAdaptedTransaction(Transaction transaction) {
         description = transaction.getDescription().toString();
         amount = String.valueOf(transaction.getAmount().amount);
-        date = transaction.getDate().toString();
+        date = transaction.getDate().getInputFormat();
         tag = transaction.getTag().tagName;
     }
 
@@ -87,8 +88,10 @@ public abstract class JsonAdaptedTransaction {
         }
         final Date modelDate;
         try {
-            modelDate = new Date(LocalDate.parse(date));
+            modelDate = ParserUtil.parseDate(date);
         } catch (DateTimeParseException e) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
+        } catch (ParseException e) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
 
