@@ -8,6 +8,9 @@ import javafx.scene.layout.Region;
 import seedu.address.model.transaction.Income;
 import seedu.address.model.transaction.Transaction;
 
+/**
+ * An UI component that displays information of a {@code Transaction}.
+ */
 public class WalletCard extends UiPart<Region> {
     private static final String FXML = "WalletListCard.fxml";
 

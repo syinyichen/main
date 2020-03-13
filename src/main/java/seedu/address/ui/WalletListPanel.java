@@ -10,6 +10,9 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.transaction.Transaction;
 
+/**
+ * Panel containing the list of transactions.
+ */
 public class WalletListPanel extends UiPart<Region> {
     private static final String FXML = "WalletListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(WalletListPanel.class);
