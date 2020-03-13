@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -34,10 +33,10 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private WalletListPanel walletListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private EnterUserDataWindow enterUserDataWindow;
-    private WalletTransactions walletTransactions;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -116,9 +115,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-
-        walletTransactions = new WalletTransactions(logic.getFilteredTransactionList());
-        transactionListPanelPlaceholder.getChildren().add((Node) walletTransactions.getRoot());
+        walletListPanel = new WalletListPanel(logic.getFilteredTransactionList());
+        transactionListPanelPlaceholder.getChildren().add(walletListPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -131,6 +129,11 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    private void updateWalletList() {
+        walletListPanel = new WalletListPanel(logic.getFilteredTransactionList());
+        transactionListPanelPlaceholder.getChildren().add(walletListPanel.getRoot());
     }
 
     /**
@@ -201,6 +204,10 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
+    public WalletListPanel getWalletListPanel() {
+        return walletListPanel;
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -211,6 +218,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            updateWalletList();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

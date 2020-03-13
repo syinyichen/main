@@ -192,6 +192,17 @@ public class Wallet implements ReadOnlyWallet {
     @Override
     public ObservableList<Transaction> getTransactionList() {
         ObservableList<Transaction> transactions = FXCollections.observableArrayList();
+
+        /*
+        Description description = new Description("ha");
+        Amount amount = new Amount(33);
+        Date date = Date.getDefault();
+        Tag tag = new Tag("Food");
+
+        Expense expense = new Expense(description, amount, date, tag);
+        transactions.add(expense);
+        */
+
         transactions.addAll(getIncomeList());
         transactions.addAll(getExpenseList());
         return FXCollections.unmodifiableObservableList(transactions);

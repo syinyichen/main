@@ -20,7 +20,7 @@
             <RowConstraints />
          </rowConstraints>
          <children>
-            <VBox alignment="CENTER_LEFT" minHeight="105.0" GridPane.columnIndex="0">
+            <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="338.0" GridPane.columnIndex="0">
                <padding>
                   <Insets bottom="5" left="15" right="5" top="5" />
                </padding>

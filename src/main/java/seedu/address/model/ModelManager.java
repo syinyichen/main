@@ -20,6 +20,7 @@ import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
 import seedu.address.model.transaction.Transaction;
+import seedu.address.ui.WalletListPanel;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -320,6 +321,8 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Transaction> getFilteredTransactionList() {
+        WalletListPanel walletListPanel = new WalletListPanel(filteredTransactions);
+        logger.info("HELP");
         return filteredTransactions;
     }
 
