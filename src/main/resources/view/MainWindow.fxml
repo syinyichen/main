@@ -6,7 +6,10 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
@@ -46,14 +49,30 @@
                         <Insets bottom="5" left="10" right="10" top="5" />
                     </padding>
                 </StackPane>
-            <StackPane fx:id="tabDisplayPlaceHolder" prefHeight="150.0" prefWidth="200.0" />
-
-                <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                    <padding>
-                        <Insets bottom="10" left="10" right="10" top="10" />
-                    </padding>
-                    <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                </VBox>
+            <TabPane styleClass="pane-with-border" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="People">
+                  <content>
+                    <AnchorPane>
+                           <children>
+                  
+                                                                <VBox fx:id="personList" maxWidth="1.7976931348623157E308" prefWidth="340.0" styleClass="pane-with-border" AnchorPane.leftAnchor="0.8000000000000114" AnchorPane.rightAnchor="0.8000000000000114">
+                                      <padding>
+                                          <Insets bottom="10" left="10" right="10" top="10" />
+                                      </padding>
+                                      <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                                  </VBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Wallet">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
 
                 <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
             </VBox>
