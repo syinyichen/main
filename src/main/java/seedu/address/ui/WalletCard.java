@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.transaction.Income;
 import seedu.address.model.transaction.Transaction;
 
 public class WalletCard extends UiPart<Region> {
@@ -33,6 +34,8 @@ public class WalletCard extends UiPart<Region> {
     @FXML
     private Label tag;
     @FXML
+    private Label incomeOrExpense;
+    @FXML
     private FlowPane tags;
 
     public WalletCard(Transaction transaction, int displayedIndex) {
@@ -43,6 +46,12 @@ public class WalletCard extends UiPart<Region> {
         amount.setText("" + transaction.getAmount().amount);
         date.setText(transaction.getDate().toString());
         tag.setText(transaction.getTag().tagName);
+
+        if (transaction instanceof Income) {
+            incomeOrExpense.setText("Income: + $");
+        } else {
+            incomeOrExpense.setText("Expense: - $");
+        }
     }
 
     @Override
