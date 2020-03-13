@@ -9,7 +9,9 @@ import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Transaction;
 
-
+/**
+ * A utility class to help with building EditTransactionDescriptor objects.
+ */
 public class EditTransactionDescriptorBuilder {
     private EditTransactionDescriptor descriptor;
 
