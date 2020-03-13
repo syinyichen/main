@@ -17,7 +17,7 @@ import seedu.address.model.transaction.Income;
 /**
  * An Immutable Wallet that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "wallet")
 class JsonSerializableWallet {
 
     private final List<JsonAdaptedExpense> expenses = new ArrayList<>();

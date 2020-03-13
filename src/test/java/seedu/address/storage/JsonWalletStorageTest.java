@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyWallet;
 import seedu.address.model.Wallet;
 
@@ -41,6 +42,21 @@ public class JsonWalletStorageTest {
     @Test
     public void read_missingFile_emptyResult() throws Exception {
         assertFalse(readWallet("NonExistentFile.json").isPresent());
+    }
+
+    @Test
+    public void read_notJsonFormat_exceptionThrown() {
+        assertThrows(DataConversionException.class, () -> readWallet("notJsonFormatWallet.json"));
+    }
+
+    @Test
+    public void readWallet_invalidPersonWallet_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readWallet("invalidTransactionWallet.json"));
+    }
+
+    @Test
+    public void readWallet_invalidAndValidPersonWallet_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readWallet("invalidAndValidTransactionWallet.json"));
     }
 
     @Test

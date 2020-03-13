@@ -110,9 +110,8 @@ public class MainApp extends Application {
         try {
             Optional<ReadOnlyWallet> walletOptional = storage.readWallet();
             if (!walletOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample Wallet");
+                logger.info("Data file not found. Will be starting with an empty Wallet");
             }
-            // TODO: Actually make a sample wallet?
             return walletOptional.orElseGet(() -> new Wallet());
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Wallet");
