@@ -25,6 +25,9 @@ import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
 import seedu.address.model.transaction.Transaction;
 
+/**
+ * Edits the details of an existing income/expense in the address book.
+ */
 public class WalletEditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 

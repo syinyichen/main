@@ -16,6 +16,9 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new EditCommand object
+ */
 public class WalletEditCommandParser implements Parser<WalletEditCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -40,9 +43,11 @@ public class WalletEditCommandParser implements Parser<WalletEditCommand> {
         EditTransactionDescriptor editTransactionDescriptor = new EditTransactionDescriptor();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editTransactionDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_NAME).get()));
+            editTransactionDescriptor.setDescription(
+                    ParserUtil.parseDescription(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
+
             editTransactionDescriptor.setAmount(ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get()));
         }
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
@@ -51,8 +56,6 @@ public class WalletEditCommandParser implements Parser<WalletEditCommand> {
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             editTransactionDescriptor.setTag(ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()));
         }
-
-        //parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editTransactionDescriptor.isAnyFieldEdited()) {
             throw new ParseException(WalletEditCommand.MESSAGE_NOT_EDITED);
