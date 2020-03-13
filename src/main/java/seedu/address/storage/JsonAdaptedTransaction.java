@@ -63,7 +63,6 @@ public abstract class JsonAdaptedTransaction {
      */
     public TransactionDescriptor toDescriptor() throws IllegalValueException {
 
-        System.out.println(description + amount + date + tag);
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
