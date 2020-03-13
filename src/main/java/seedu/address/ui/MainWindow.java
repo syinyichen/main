@@ -37,6 +37,8 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private EnterUserDataWindow enterUserDataWindow;
 
+    private TabPane tabPane; //tab thingy
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
