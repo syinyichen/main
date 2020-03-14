@@ -51,6 +51,11 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
+     * Returns an unmodifiable view of the filtered list of transactions
+     */
+    ObservableList<Transaction> getFilteredTransactionList();
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
@@ -59,11 +64,6 @@ public interface Logic {
      * Returns the Wallet.
      */
     ReadOnlyWallet getWallet();
-
-    /**
-     * Returns an unmodifiable view of the filtered list of transactions
-     */
-    ObservableList<Transaction> getFilteredTransactionList();
 
     /**
      * Returns the user prefs' wallet file path.

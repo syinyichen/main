@@ -82,6 +82,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Transaction> getFilteredTransactionList() {
+        return model.getFilteredTransactionList();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
@@ -104,11 +109,6 @@ public class LogicManager implements Logic {
     @Override
     public ReadOnlyWallet getWallet() {
         return model.getWallet();
-    }
-
-    @Override
-    public ObservableList<Transaction> getFilteredTransactionList() {
-        return model.getFilteredTransactionList();
     }
 
     @Override
