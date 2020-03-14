@@ -192,6 +192,12 @@ public interface Model {
     ObservableList<Income> getFilteredIncomeList();
 
     /**
+     * Replaces the given transaction {@code target} with {@code editedTransaction}.
+     * {@code target} must exist in the Wallet.
+     */
+    void setTransaction(Transaction target, Transaction editedTransaction);
+
+    /**
      * Returns an unmodifiable view of the filtered Transaction list
      */
     ObservableList<Transaction> getFilteredTransactionList();

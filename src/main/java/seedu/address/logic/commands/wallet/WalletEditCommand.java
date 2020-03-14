@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.wallet;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
@@ -42,7 +43,9 @@ public class WalletEditCommand extends Command {
             + "Example: " + WALLET_COMMAND_TYPE + " "
             + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Duck Rice "
-            + PREFIX_AMOUNT + "3.80";
+            + PREFIX_AMOUNT + "3.80"
+            + PREFIX_DATE + "11/11/2020"
+            + PREFIX_TAG + "food";
 
     public static final String MESSAGE_EDIT_TRANSACTION_SUCCESS = "Edited Transaction: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -55,8 +58,7 @@ public class WalletEditCommand extends Command {
      * @param editTransactionDescriptor details to edit the transaction with
      */
     public WalletEditCommand(Index index, EditTransactionDescriptor editTransactionDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editTransactionDescriptor);
+        requireAllNonNull(index, editTransactionDescriptor);
 
         this.index = index;
         this.editTransactionDescriptor = new EditTransactionDescriptor(editTransactionDescriptor);
@@ -74,13 +76,7 @@ public class WalletEditCommand extends Command {
         Transaction transactionToEdit = lastShownList.get(index.getZeroBased());
         Transaction editedTransaction = createEditedTransaction(transactionToEdit, editTransactionDescriptor);
 
-        if (transactionToEdit instanceof Income) {
-
-            model.setIncome((Income) transactionToEdit, (Income) editedTransaction);
-        } else {
-
-            model.setExpense((Expense) transactionToEdit, (Expense) editedTransaction);
-        }
+        model.setTransaction(transactionToEdit, editedTransaction);
 
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_TRANSACTIONS);
         return new CommandResult(String.format(MESSAGE_EDIT_TRANSACTION_SUCCESS, editedTransaction));
