@@ -24,8 +24,8 @@ public class WalletFindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         WalletFindCommand expectedWalletFindCommand =
-                new WalletFindCommand(new DescriptionContainsKeywordsPredicate(Arrays.asList("Chicken Rice", "Duck "
-                        + "Rice")));
+                new WalletFindCommand(new DescriptionContainsKeywordsPredicate(Arrays.asList("Chicken",
+                        "Duck")));
         assertParseSuccess(parser, "Chicken Duck", expectedWalletFindCommand);
 
         // multiple whitespaces between keywords

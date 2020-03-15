@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_TRANSACTIONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalWallet.ALLOWANCE;
 import static seedu.address.testutil.TypicalWallet.DUCK_RICE;
 import static seedu.address.testutil.TypicalWallet.MRT_CONCESSION;
+import static seedu.address.testutil.TypicalWallet.TA_JOB;
 import static seedu.address.testutil.TypicalWallet.getTypicalWallet;
 
 import java.util.Arrays;
@@ -65,11 +65,11 @@ public class WalletFindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleTransactionsFound() {
         String expectedMessage = String.format(MESSAGE_TRANSACTIONS_LISTED_OVERVIEW, 3);
-        DescriptionContainsKeywordsPredicate predicate = preparePredicate("Rice MRT Allowance");
+        DescriptionContainsKeywordsPredicate predicate = preparePredicate("TA MRT RICE");
         WalletFindCommand command = new WalletFindCommand(predicate);
         expectedModel.updateFilteredTransactionList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(DUCK_RICE, ALLOWANCE, MRT_CONCESSION), model.getFilteredTransactionList());
+        assertEquals(Arrays.asList(TA_JOB, DUCK_RICE, MRT_CONCESSION), model.getFilteredTransactionList());
     }
 
     /**
