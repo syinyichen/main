@@ -8,6 +8,10 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.transaction.DescriptionContainsKeywordsPredicate;
 
+/**
+ * Finds and lists all transactions in wallet book whose name contains any of the argument keywords.
+ * Keyword matching is case insensitive.
+ */
 public class WalletFindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
@@ -28,7 +32,8 @@ public class WalletFindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredTransactionList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_TRANSACTIONS_LISTED_OVERVIEW, model.getFilteredTransactionList().size()));
+                String.format(Messages.MESSAGE_TRANSACTIONS_LISTED_OVERVIEW,
+                        model.getFilteredTransactionList().size()));
     }
 
     private void requireNonNull(Model model) {

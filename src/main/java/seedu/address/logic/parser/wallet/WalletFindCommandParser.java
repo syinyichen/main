@@ -9,6 +9,9 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.transaction.DescriptionContainsKeywordsPredicate;
 
+/**
+ * Parses input arguments and creates a new FindCommand object
+ */
 public class WalletFindCommandParser implements Parser<WalletFindCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand

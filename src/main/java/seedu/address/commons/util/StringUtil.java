@@ -14,7 +14,7 @@ public class StringUtil {
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
-     * Ignores case, but a full word match is required.
+     * Ignores case, and a full word match is not required.
      * <br>examples:<pre>
      *       containsWordIgnoreCase("ABc def", "abc") == true
      *       containsWordIgnoreCase("ABc def", "DEF") == true
@@ -39,6 +39,13 @@ public class StringUtil {
                 .anyMatch(x -> equalsSubWordIgnoreCase(preppedWord, x));
     }
 
+    /**
+     * Returns true if the {@code descriptionString} contains {@code keywordString}.
+     *
+     * @param keywordString cannot be null
+     * @param descriptionString cannot be null
+     * @return boolean value stating if {@code keywordString} can be found in {@code descriptionString}
+     */
     public static boolean equalsSubWordIgnoreCase(String keywordString, String descriptionString) {
         String keywordStringLowerCase = keywordString.toLowerCase();
         String descriptionStringLowerCase = descriptionString.toLowerCase();
