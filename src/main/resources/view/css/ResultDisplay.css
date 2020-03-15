@@ -30,3 +30,19 @@
 .text-area:focused .scroll-bar:vertical .track-background {
 	-fx-background-color: white;
 }
+
+.error {
+	-fx-border-color: #ff0000 !important;
+	-fx-text-fill: #ff0000 !important;
+}
+
+.pass {
+	-fx-border-color: #009900 !important;
+	-fx-text-fill: #009900 !important;
+	
+}
+
+.neutral {
+	-fx-border-color: rgb(175, 175, 175) !important;
+	-fx-text-fill: black !important;
+}

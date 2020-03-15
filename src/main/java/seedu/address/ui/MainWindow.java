@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -215,24 +216,30 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+            resultDisplay.resetStyles();
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
+
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            resultDisplay.setStyleToIndicatePass();
 
             updateWalletList();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+                resultDisplay.setStyleToIndicateNeutral();
             }
 
             if (commandResult.isExit()) {
                 handleExit();
+                resultDisplay.setStyleToIndicateNeutral();
             }
 
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            resultDisplay.setStyleToIndicateFailure();
             throw e;
         }
     }
