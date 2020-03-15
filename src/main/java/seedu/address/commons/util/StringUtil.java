@@ -36,7 +36,15 @@ public class StringUtil {
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedWord::equalsIgnoreCase);
+                .anyMatch(x -> equalsSubWordIgnoreCase(preppedWord, x));
+    }
+
+    public static boolean equalsSubWordIgnoreCase(String keywordString, String descriptionString) {
+        String keywordStringLowerCase = keywordString.toLowerCase();
+        String descriptionStringLowerCase = descriptionString.toLowerCase();
+        boolean isContains = descriptionStringLowerCase.contains(keywordStringLowerCase);
+
+        return isContains;
     }
 
     /**
