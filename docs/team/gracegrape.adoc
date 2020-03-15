@@ -3,7 +3,7 @@
 :imagesDir: ../images
 :stylesDir: ../stylesheets
 
-== PROJECT: AddressBook - Level 3
+== PROJECT: Sharkie
 
 ---
 
@@ -13,13 +13,28 @@
 
 == Summary of contributions *[To be updated]*
 
-* *Major enhancement*: added *the ability to undo/redo previous commands*
-** What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-** Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-** Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
-
-* *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+* *Major enhancement*:
+. added *the ability to list out all transactions in the wallet and the UI for it*
+*** What it does: allows the user to list out all transactions, which includes expenses and income. I also created the UI to allow the list to be seen.
+*** Justification: This feature improves the product significantly because it allows the user to view all their transactions in their wallet.
+*** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to the UI, including the need to add a tab view to view the Wallet and Address Book separately.
+*** Credits: SceneBuilder
+. added *the ability to edit the transactions in the wallet*
+*** What it does: allows the user to edit the transactions already in the wallet, which includes expenses and income.
+*** Justification: This feature improves the product significantly because it allows the user to edit the information they already keyed in, in case of any mistakes made or updates needed for the expenses and income.
+*** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives.
+*** Credits: Address Book (Level 3)
+. added *the ability to delete the transactions in the wallet*
+*** What it does: allows the user to delete the transactions already in the wallet, which includes expenses and income.
+*** Justification: This feature improves the product significantly because it allows the user to delete the information they already keyed in, in case of any mistakes made.
+*** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives.
+*** Credits: Address Book (Level 3)
+. added *the ability to find transactions in the wallet*
+*** What it does: allows the user to find transactions already in the wallet, which includes expenses and income.
+*** Justification: This feature improves the product significantly because it allows the user to find the information they already keyed in, according to the description of the transactions.
+*** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives.
+*** Credits: Address Book (Level 3)
+* *Minor enhancement*: -
 
 * *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
 
@@ -34,7 +49,7 @@
 *** Updated the User Guide to include more commands, updated Quick Start, and Updated ContactUs: https://github.com/AY1920S2-CS2103T-W12-3/main/pull/52[#52]
 *** Did cosmetic tweaks to existing contents of the User Guide and Quick Start: https://github.com/AY1920S2-CS2103T-W12-3/main/pull/54[#54]
 ** Community:
-*** PRs reviewed (with non-trivial review comments) : https://github.com/AY1920S2-CS2103T-W12-3/main/pull/71[#71], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/95[#95]
+*** PRs reviewed (with non-trivial review comments) : https://github.com/AY1920S2-CS2103T-W12-3/main/pull/71[#71], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/95[#95], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/101[#101]
 *** Contributed to forum discussions (examples:  https://github.com/nus-cs2103-AY1920S2/forum/issues/25[25])
 *** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[To be updated])
 *** Some parts of the history feature I added was adopted by several other class mates (https://github.com[To be updated])
@@ -54,7 +69,7 @@ include::../UserGuide.adoc[tag=debts]
 
 include::../UserGuide.adoc[tag=quickStart]
 
-include::../UserGuide.adoc[tag=wallettag]
+include::../UserGuide.adoc[tag=walletList]
 
 include::../UserGuide.adoc[tag=walletedit]
 
