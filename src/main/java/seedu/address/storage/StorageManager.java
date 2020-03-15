@@ -10,10 +10,11 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.ReadOnlyWallet;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of AddressBook and Wallet data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -21,14 +22,15 @@ public class StorageManager implements Storage {
     private AddressBookStorage addressBookStorage;
     private UserDataStorage userDataStorage;
     private UserPrefsStorage userPrefsStorage;
-
+    private WalletStorage walletStorage;
 
     public StorageManager(AddressBookStorage addressBookStorage, UserDataStorage userDataStorage,
-                          UserPrefsStorage userPrefsStorage) {
+            UserPrefsStorage userPrefsStorage, WalletStorage walletStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userDataStorage = userDataStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.walletStorage = walletStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -47,7 +49,6 @@ public class StorageManager implements Storage {
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
-
 
     // ================ AddressBook methods ==============================
 
@@ -105,6 +106,35 @@ public class StorageManager implements Storage {
     public void saveUserData(ReadOnlyUserData userData, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         userDataStorage.saveUserData(userData, filePath);
+    }
+
+    // ================ Wallet methods ==============================
+
+    @Override
+    public Path getWalletFilePath() {
+        return walletStorage.getWalletFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyWallet> readWallet() throws DataConversionException, IOException {
+        return readWallet(getWalletFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyWallet> readWallet(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return walletStorage.readWallet(filePath);
+    }
+
+    @Override
+    public void saveWallet(ReadOnlyWallet wallet) throws IOException {
+        saveWallet(wallet, getWalletFilePath());
+    }
+
+    @Override
+    public void saveWallet(ReadOnlyWallet wallet, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        walletStorage.saveWallet(wallet, filePath);
     }
 
 }

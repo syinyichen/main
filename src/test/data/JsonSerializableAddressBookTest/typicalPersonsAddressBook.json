@@ -18,12 +18,12 @@
       "debts" : [ {
         "description" : "Textbook",
         "amount" : "100",
-        "date" : "2019-08-10"
+        "date" : "10/08/2019"
       }],
       "loans" : [ {
         "description" : "Lunch",
         "amount" : "12",
-        "date" : "2019-09-09"
+        "date" : "09/09/2019"
       }],
       "tagged": [
         "owesMoney",
@@ -37,16 +37,16 @@
       "debts" : [ {
         "description" : "Milk Tea",
         "amount" : "3",
-        "date" : "2020-02-21"
+        "date" : "21/02/2020"
       }, {
         "description" : "iPhone 13",
         "amount" : "1000",
-        "date" : "2022-10-03"
+        "date" : "03/10/2022"
       }],
       "loans" : [ {
         "description" : "Dinner",
         "amount" : "22",
-        "date" : "2020-02-02"
+        "date" : "02/02/2020"
       }],
       "tagged": []
     },
@@ -57,12 +57,12 @@
       "debts" : [ {
         "description" : "Movie",
         "amount" : "13",
-        "date" : "2019-12-26"
+        "date" : "26/12/2019"
       }],
       "loans" : [ {
         "description" : "Supper",
         "amount" : "8",
-        "date" : "2018-08-18"
+        "date" : "18/08/2018"
       }],
       "tagged": [
         "friends"
@@ -75,12 +75,12 @@
       "debts" : [ {
         "description" : "iPhone 13",
         "amount" : "1000",
-        "date" : "2022-10-03"
+        "date" : "03/10/2022"
       }],
       "loans" : [ {
         "description" : "Dessert",
         "amount" : "6",
-        "date" : "2019-09-19"
+        "date" : "19/09/2019"
       }],
       "tagged": []
     },
@@ -91,12 +91,12 @@
       "debts" : [ {
         "description" : "TaoBao",
         "amount" : "11",
-        "date" : "2019-11-11"
+        "date" : "11/11/2019"
       }],
       "loans" : [ {
         "description" : "Shopping",
         "amount" : "50",
-        "date" : "2020-02-20"
+        "date" : "20/02/2020"
       }],
       "tagged": []
     },
@@ -107,12 +107,12 @@
       "debts" : [ {
         "description" : "McGriddle",
         "amount" : "5.40",
-        "date" : "2020-02-19"
+        "date" : "19/02/2020"
       }],
       "loans" : [ {
         "description" : "Travel",
         "amount" : "120",
-        "date" : "2022-02-22"
+        "date" : "22/02/2022"
       }],
       "tagged": []
     }

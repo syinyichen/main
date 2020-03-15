@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedLoan.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalLoans.BREAKFAST;
+import static seedu.address.testutil.TypicalWallet.INVALID_AMOUNT;
+import static seedu.address.testutil.TypicalWallet.INVALID_DATE;
+import static seedu.address.testutil.TypicalWallet.INVALID_DESC;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,9 +16,6 @@ import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Description;
 
 class JsonAdaptedLoanTest {
-    private static final String INVALID_DESC = "";
-    private static final String INVALID_AMOUNT = "5a";
-    private static final String INVALID_DATE = "20 May 2020";
 
     private static final String VALID_DESC = BREAKFAST.getDescription().toString();
     private static final String VALID_AMOUNT = String.valueOf(BREAKFAST.getAmount().amount);

@@ -9,6 +9,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyWallet;
 import seedu.address.model.UserData;
 import seedu.address.model.person.Person;
 import seedu.address.model.transaction.Transaction;
@@ -58,6 +59,16 @@ public interface Logic {
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
+
+    /**
+     * Returns the Wallet.
+     */
+    ReadOnlyWallet getWallet();
+
+    /**
+     * Returns the user prefs' wallet file path.
+     */
+    Path getWalletFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

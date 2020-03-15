@@ -7,8 +7,7 @@ import static seedu.address.testutil.TypicalLoans.BREAKFAST;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.DebtBuilder;
-import seedu.address.testutil.LoanBuilder;
+import seedu.address.testutil.TransactionBuilder;
 
 public class LoanTest {
 
@@ -19,26 +18,31 @@ public class LoanTest {
 
     @Test
     public void equals() {
-        Loan breakfastCopy = new LoanBuilder()
+        Loan breakfastCopy = new TransactionBuilder()
                 .withDescription("Breakfast")
                 .withAmount("5")
-                .withDate("2018-08-08").build();
-        Debt breakfastDebt = new DebtBuilder()
+                .withDate("08/08/2018")
+                .buildLoan();
+        Debt breakfastDebt = new TransactionBuilder()
                 .withDescription("Breakfast")
                 .withAmount("5")
-                .withDate("2018-08-08").build();
-        Loan loanDiffDesc = new LoanBuilder()
+                .withDate("08/08/2018")
+                .buildDebt();
+        Loan loanDiffDesc = new TransactionBuilder()
                 .withDescription("Lunch")
                 .withAmount("5")
-                .withDate("2018-08-08").build();
-        Loan loanDiffAmt = new LoanBuilder()
+                .withDate("08/08/2018")
+                .buildLoan();
+        Loan loanDiffAmt = new TransactionBuilder()
                 .withDescription("Breakfast")
                 .withAmount("10")
-                .withDate("2018-08-08").build();
-        Loan loanDiffDate = new LoanBuilder()
+                .withDate("08/08/2018")
+                .buildLoan();
+        Loan loanDiffDate = new TransactionBuilder()
                 .withDescription("Breakfast")
                 .withAmount("5")
-                .withDate("2020-01-12").build();
+                .withDate("12/01/2020")
+                .buildLoan();
 
         // same values -> returns true
         assertTrue(BREAKFAST.equals(breakfastCopy));

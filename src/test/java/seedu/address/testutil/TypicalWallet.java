@@ -19,6 +19,11 @@ import seedu.address.model.transaction.Income;
  * in tests.
  */
 public class TypicalWallet {
+    public static final String INVALID_DESC = "";
+    public static final String INVALID_AMOUNT = "50$";
+    public static final String INVALID_DATE = "20 May 2020";
+    public static final String INVALID_TAG = "t@g";
+
     public static final String VALID_DESC_ALLOWANCE = "Allowance from Parents";
     public static final String VALID_AMOUNT_ALLOWANCE = "300";
     public static final String VALID_DATE_ALLOWANCE = "01/01/2010";
