@@ -7,9 +7,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" prefHeight="32.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane HBox.hgrow="ALWAYS">
          <columnConstraints>
@@ -19,41 +20,51 @@
             <RowConstraints />
          </rowConstraints>
          <children>
-            <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="338.0" GridPane.columnIndex="0">
-               <padding>
-                  <Insets bottom="5" left="15" right="5" top="5" />
-               </padding>
+            <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" spacing="5">
+                  <HBox alignment="CENTER_LEFT" spacing="5" HBox.hgrow="NEVER">
                      <children>
-                        <Label fx:id="id" styleClass="cell_big_label">
+                        <Label fx:id="id" styleClass="cell_big_label" text="id: ">
                            <minWidth>
                               <Region fx:constant="USE_PREF_SIZE" />
                            </minWidth>
+                           <font>
+                              <Font name="Consolas" size="14.0" />
+                           </font>
                         </Label>
-                        <Label fx:id="description" styleClass="cell_big_label" text="\$first" />
+                        <Label fx:id="description" styleClass="cell_big_label" text="description">
+                           <font>
+                              <Font name="Consolas" size="14.0" />
+                           </font></Label>
                      </children>
                   </HBox>
-                  <HBox>
+                  <HBox alignment="CENTER" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label fx:id="incomeOrExpense" text="Amount: " />
-                        <Label fx:id="amount" text="\$phone" />
+                        <Line endX="100.0" startX="-100.0" stroke="#999999" strokeType="INSIDE" strokeWidth="2.0" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
-                  <HBox>
+                  <HBox alignment="CENTER_RIGHT">
                      <children>
-                        <Label fx:id="incomeOrExpense1" text="Date: " />
-                        <Label fx:id="date" text="\$email" />
+                        <Label fx:id="amount" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="amount">
+                           <font>
+                              <Font name="Consolas" size="14.0" />
+                           </font></Label>
                      </children>
+                     <padding>
+                        <Insets left="4.0" right="4.0" />
+                     </padding>
                   </HBox>
-                  <HBox>
+                  <HBox alignment="CENTER_RIGHT">
                      <children>
-                        <Label fx:id="incomeOrExpense2" text="Tag: " />
-                        <Label fx:id="tag" text="\$email" />
+                        <Label fx:id="tag" alignment="CENTER_RIGHT" text="tag">
+                           <font>
+                              <Font name="Consolas" size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </HBox>
                </children>
-            </VBox>
+            </HBox>
          </children>
       </GridPane>
    </children>

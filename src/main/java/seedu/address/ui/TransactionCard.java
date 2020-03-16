@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
 import seedu.address.model.transaction.Transaction;
 
@@ -13,6 +14,9 @@ import seedu.address.model.transaction.Transaction;
  */
 public class TransactionCard extends UiPart<Region> {
     private static final String FXML = "TransactionCard.fxml";
+
+    private static final String INCOME_CLASS = "positive";
+    private static final String EXPENSE_CLASS = "negative";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -33,28 +37,28 @@ public class TransactionCard extends UiPart<Region> {
     @FXML
     private Label amount;
     @FXML
-    private Label date;
-    @FXML
     private Label tag;
-    @FXML
-    private Label incomeOrExpense;
     @FXML
     private FlowPane tags;
 
     public TransactionCard(Transaction transaction, int displayedIndex) {
         super(FXML);
         this.transaction = transaction;
+
         id.setText(displayedIndex + ". ");
         description.setText(transaction.getDescription().description);
-        amount.setText("" + transaction.getAmount().amount);
-        date.setText(transaction.getDate().toString());
+
+        if (transaction instanceof Expense) {
+            amount.setText("-$" + String.format("%.2f", transaction.getAmount().amount));
+            amount.getStyleClass().add(EXPENSE_CLASS);
+        } else {
+            amount.setText("+$" + String.format("%.2f", transaction.getAmount().amount));
+            amount.getStyleClass().add(INCOME_CLASS);
+        }
+
         tag.setText(transaction.getTag().tagName);
 
-        if (transaction instanceof Income) {
-            incomeOrExpense.setText("Income: + $");
-        } else {
-            incomeOrExpense.setText("Expense: - $");
-        }
+
     }
 
     @Override

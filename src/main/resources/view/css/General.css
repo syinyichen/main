@@ -4,11 +4,10 @@
 
 /* General elements styling */
 
-
 /* Scroll bar styling */
 .scroll-bar:horizontal .track-background, 
 .scroll-bar:vertical .track-background {
-	-fx-background-color: white;
+	-fx-background-color: transparent;
 }
 
 .scroll-bar:horizontal .track, 
