@@ -31,6 +31,7 @@ import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserDataStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.JsonWalletStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
 
@@ -50,7 +51,10 @@ public class LogicManagerTest {
         JsonUserDataStorage userDataStorage =
                 new JsonUserDataStorage(temporaryFolder.resolve("userData.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userDataStorage, userPrefsStorage);
+        JsonWalletStorage walletStorage = new JsonWalletStorage(temporaryFolder.resolve("wallet.json"));
+
+        StorageManager storage = new StorageManager(addressBookStorage, userDataStorage,
+                userPrefsStorage, walletStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -81,7 +85,10 @@ public class LogicManagerTest {
                 new JsonUserDataIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionUserData.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userDataStorage, userPrefsStorage);
+        JsonWalletStorage walletStorage =
+                new JsonWalletStorage(temporaryFolder.resolve("ioExceptionWallet.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userDataStorage,
+                userPrefsStorage, walletStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

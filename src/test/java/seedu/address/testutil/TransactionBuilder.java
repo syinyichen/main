@@ -5,9 +5,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Date;
+import seedu.address.model.transaction.Debt;
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
+import seedu.address.model.transaction.Loan;
 import seedu.address.model.transaction.Transaction;
 
 /**
@@ -99,4 +101,17 @@ public class TransactionBuilder {
         return new Income(description, amount, date, tag);
     }
 
+    /**
+     * Returns a new Debt object with the builder's fields (except tag).
+     */
+    public Debt buildDebt() {
+        return new Debt(description, amount, date);
+    }
+
+    /**
+     * Returns a new Loan object with the builder's fields (except tag).
+     */
+    public Loan buildLoan() {
+        return new Loan(description, amount, date);
+    }
 }

@@ -7,8 +7,7 @@ import static seedu.address.testutil.TypicalDebts.SUPPER;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.DebtBuilder;
-import seedu.address.testutil.LoanBuilder;
+import seedu.address.testutil.TransactionBuilder;
 
 class DebtTest {
 
@@ -19,26 +18,31 @@ class DebtTest {
 
     @Test
     public void equals() {
-        Debt supperCopy = new DebtBuilder()
+        Debt supperCopy = new TransactionBuilder()
                 .withDescription("Supper")
                 .withAmount("10")
-                .withDate("2020-01-23").build();
-        Loan supperLoan = new LoanBuilder()
+                .withDate("23/01/2020")
+                .buildDebt();
+        Loan supperLoan = new TransactionBuilder()
                 .withDescription("Supper")
                 .withAmount("10")
-                .withDate("2020-01-23").build();
-        Debt debtDiffDesc = new DebtBuilder()
+                .withDate("23/01/2020")
+                .buildLoan();
+        Debt debtDiffDesc = new TransactionBuilder()
                 .withDescription("Dinner")
                 .withAmount("10")
-                .withDate("2020-01-23").build();
-        Debt debtDiffAmt = new DebtBuilder()
+                .withDate("23/01/2020")
+                .buildDebt();
+        Debt debtDiffAmt = new TransactionBuilder()
                 .withDescription("Supper")
                 .withAmount("20")
-                .withDate("2020-01-23").build();
-        Debt debtDiffDate = new DebtBuilder()
+                .withDate("23/01/2020")
+                .buildDebt();
+        Debt debtDiffDate = new TransactionBuilder()
                 .withDescription("Supper")
                 .withAmount("10")
-                .withDate("2020-01-12").build();
+                .withDate("12/01/2020")
+                .buildDebt();
 
         // same values -> returns true
         assertTrue(SUPPER.equals(supperCopy));
