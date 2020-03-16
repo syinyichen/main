@@ -1,8 +1,5 @@
 package seedu.address.ui;
 
-import java.util.stream.Collectors;
-
-import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
@@ -13,6 +10,9 @@ import javafx.scene.layout.Region;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Transaction;
 
+/**
+ * A UI component that displays information of a group of {@code Transaction}.
+ */
 public class TransactionGroupCard extends UiPart<Region> {
 
     private static final int LIST_CELL_HEIGHT = 32;
@@ -23,6 +23,10 @@ public class TransactionGroupCard extends UiPart<Region> {
     private static final String POSITIVE_CLASS = "positive";
     private static final String NEGATIVE_CLASS = "negative";
 
+    public final FilteredList<Transaction> transactionsList;
+
+    private final ObservableList<Transaction> originalTransactionList;
+
     @FXML
     private Label transactionGroupLabel;
 
@@ -32,11 +36,12 @@ public class TransactionGroupCard extends UiPart<Region> {
     @FXML
     private ListView<Transaction> transactionItemsList;
 
-    public final FilteredList<Transaction> transactionsList;
 
-    public TransactionGroupCard(FilteredList<Transaction> transactionsList) {
+    public TransactionGroupCard(ObservableList<Transaction> originalTransactionList,
+                                FilteredList<Transaction> transactionsList) {
         super(FXML);
         this.transactionsList = transactionsList;
+        this.originalTransactionList = originalTransactionList;
 
         transactionGroupLabel.setText(transactionsList.get(0).getDate().toString());
 
@@ -49,7 +54,7 @@ public class TransactionGroupCard extends UiPart<Region> {
 
     private void setGroupExpenditure() {
         double groupValue = transactionsList.stream().mapToDouble(t -> {
-            if(t instanceof Expense) {
+            if (t instanceof Expense) {
                 return -t.getAmount().amount;
             } else {
                 return t.getAmount().amount;
@@ -77,7 +82,8 @@ public class TransactionGroupCard extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TransactionCard(transaction, getIndex() + 1).getRoot());
+                int index = originalTransactionList.indexOf(transaction) + 1;
+                setGraphic(new TransactionCard(transaction, index).getRoot());
             }
         }
     }

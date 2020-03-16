@@ -6,11 +6,10 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.transaction.Expense;
-import seedu.address.model.transaction.Income;
 import seedu.address.model.transaction.Transaction;
 
 /**
- * An UI component that displays information of a {@code Transaction}.
+ * A UI component that displays information of a {@code Transaction}.
  */
 public class TransactionCard extends UiPart<Region> {
     private static final String FXML = "TransactionCard.fxml";

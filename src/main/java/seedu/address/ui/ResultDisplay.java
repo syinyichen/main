@@ -24,11 +24,17 @@ public class ResultDisplay extends UiPart<Region> {
         super(FXML);
     }
 
+    /**
+     * Sets the text of the ResultDisplay to the feedback produced by executing the command entered.
+     */
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
         resultDisplay.setText(feedbackToUser);
     }
 
+    /**
+     * Sets the style of the ResultDisplay to the pass style.
+     */
     public void setStyleToIndicatePass() {
         ObservableList<String> styleClass = resultDisplay.getStyleClass();
         if (styleClass.contains(PASS_STYLE_CLASS)) {
@@ -37,6 +43,9 @@ public class ResultDisplay extends UiPart<Region> {
         styleClass.add(PASS_STYLE_CLASS);
     }
 
+    /**
+     * Sets the style of the ResultDisplay to the failure style.
+     */
     public void setStyleToIndicateFailure() {
         ObservableList<String> styleClass = resultDisplay.getStyleClass();
         if (styleClass.contains(ERROR_STYLE_CLASS)) {
@@ -45,6 +54,9 @@ public class ResultDisplay extends UiPart<Region> {
         styleClass.add(ERROR_STYLE_CLASS);
     }
 
+    /**
+     * Sets the style of the ResultDisplay to the neutral style.
+     */
     public void setStyleToIndicateNeutral() {
         ObservableList<String> styleClass = resultDisplay.getStyleClass();
         if (styleClass.contains(NEUTRAL_STYLE_CLASS)) {
@@ -53,6 +65,9 @@ public class ResultDisplay extends UiPart<Region> {
         styleClass.add(NEUTRAL_STYLE_CLASS);
     }
 
+    /**
+     * Resets the styles of the ResultDisplay.
+     */
     public void resetStyles() {
         ObservableList<String> styleClass = resultDisplay.getStyleClass();
         styleClass.remove(NEUTRAL_STYLE_CLASS);

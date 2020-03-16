@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -28,12 +27,25 @@ public class WalletTransactionsPanel extends UiPart<Region> {
     @FXML
     private ListView<FilteredList<Transaction>> transactionGroupsListView;
 
+    private final ObservableList<Transaction> transactionList;
+
     public WalletTransactionsPanel(ObservableList<Transaction> transactionList) {
         super(FXML);
+        this.transactionList = transactionList;
 
+        ObservableList<FilteredList<Transaction>> filteredGroupedList = FXCollections.observableArrayList();
+        populateGroupedList(filteredGroupedList);
+
+        transactionGroupsListView.setItems(filteredGroupedList);
+        transactionGroupsListView.setCellFactory(listView -> new TransactionGroupCell());
+    }
+
+    /**
+     * Filters the items in the transaction list into {@code FilteredList<Transaction>}, and populates the given
+     * {@code ObservableList}.
+     */
+    private void populateGroupedList(ObservableList<FilteredList<Transaction>> filteredGroupedList) {
         List<Date> dateList = new ArrayList<Date>();
-        ObservableList<FilteredList<Transaction>> filteredTransactionsList = FXCollections.observableArrayList();
-
         for (Transaction t : transactionList) {
             if (!dateList.contains(t.getDate())) {
                 dateList.add(t.getDate());
@@ -42,13 +54,13 @@ public class WalletTransactionsPanel extends UiPart<Region> {
 
         for (Date d : dateList) {
             FilteredList<Transaction> tempList = transactionList.filtered(t -> t.getDate().equals(d));
-            filteredTransactionsList.add(tempList);
+            filteredGroupedList.add(tempList);
         }
-
-        transactionGroupsListView.setItems(filteredTransactionsList);
-        transactionGroupsListView.setCellFactory(listView -> new TransactionGroupCell());
     }
 
+    /**
+     * Custom {@code ListCell} that displays a group of {@code Transaction} using {@code TransactionCard}.
+     */
     class TransactionGroupCell extends ListCell<FilteredList<Transaction>> {
         @Override
         protected void updateItem(FilteredList<Transaction> groupItems, boolean empty) {
@@ -58,7 +70,7 @@ public class WalletTransactionsPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TransactionGroupCard(groupItems).getRoot());
+                setGraphic(new TransactionGroupCard(transactionList, groupItems).getRoot());
             }
         }
     }
