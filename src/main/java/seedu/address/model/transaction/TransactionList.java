@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.Month;
 import java.time.Year;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -50,6 +51,7 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
     public void add(T toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
+        sortTransactionsByDate();
     }
 
     /**
@@ -65,6 +67,7 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
         }
 
         internalList.set(index, editedTransaction);
+        sortTransactionsByDate();
     }
 
     /**
@@ -76,11 +79,14 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
         if (!internalList.remove(toRemove)) {
             throw new TransactionNotFoundException();
         }
+        sortTransactionsByDate();
     }
+
 
     public void setTransactions(TransactionList<T> replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        sortTransactionsByDate();
     }
 
     /**
@@ -89,21 +95,7 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
     public void setTransactions(List<T> transactions) {
         requireAllNonNull(transactions);
         internalList.setAll(transactions);
-    }
-
-    /**
-     * Retrieves a list of transactions filtered by the {@code date} they were added.
-     */
-    public TransactionList<T> getTransactionsOnDate(Date date) {
-        TransactionList<T> filteredTransactions = new TransactionList<T>();
-
-        for (T transaction : this) {
-            if (transaction.getDate().equals(date)) {
-                filteredTransactions.add(transaction);
-            }
-        }
-
-        return filteredTransactions;
+        sortTransactionsByDate();
     }
 
     /**
@@ -119,6 +111,17 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
         }
 
         return filteredTransactions;
+    }
+
+    public void sortTransactionsByDate() {
+        internalList.sort(new Comparator<T>() {
+            @Override
+            public int compare(T o1, T o2) {
+                return -Integer.compare(o1.getDate().getDate().getDayOfYear(), o2.getDate().getDate().getDayOfYear())
+                        + Integer.compare(o1.getDate().getMonth().getValue(), o2.getDate().getMonth().getValue())
+                        + Integer.compare(o1.getDate().getYear().getValue(), o2.getDate().getYear().getValue());
+            }
+        });
     }
 
     /**

@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+import java.util.Objects;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
@@ -7,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Transaction;
 
@@ -27,6 +31,8 @@ public class TransactionGroupCard extends UiPart<Region> {
 
     private final ObservableList<Transaction> originalTransactionList;
 
+    private int startIndex;
+
     @FXML
     private Label transactionGroupLabel;
 
@@ -36,14 +42,16 @@ public class TransactionGroupCard extends UiPart<Region> {
     @FXML
     private ListView<Transaction> transactionItemsList;
 
-
     public TransactionGroupCard(ObservableList<Transaction> originalTransactionList,
-                                FilteredList<Transaction> transactionsList) {
+                                FilteredList<Transaction> transactionsList, int startIndex) {
         super(FXML);
-        this.transactionsList = transactionsList;
         this.originalTransactionList = originalTransactionList;
+        this.transactionsList = transactionsList;
+        this.startIndex = startIndex;
 
-        transactionGroupLabel.setText(transactionsList.get(0).getDate().toString());
+        Date groupDate = transactionsList.get(0).getDate();
+        transactionGroupLabel.setText(String.format("%s %s %s", groupDate.getDate().getDayOfMonth(),
+                groupDate.getMonth(), groupDate.getYear()));
 
         setGroupExpenditure();
 
@@ -82,7 +90,7 @@ public class TransactionGroupCard extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                int index = originalTransactionList.indexOf(transaction) + 1;
+                int index = getIndex() + startIndex + 1;
                 setGraphic(new TransactionCard(transaction, index).getRoot());
             }
         }

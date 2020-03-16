@@ -1,6 +1,8 @@
 package seedu.address.ui;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -45,13 +47,13 @@ public class WalletTransactionsPanel extends UiPart<Region> {
      * {@code ObservableList}.
      */
     private void populateGroupedList(ObservableList<FilteredList<Transaction>> filteredGroupedList) {
+
         List<Date> dateList = new ArrayList<Date>();
         for (Transaction t : transactionList) {
             if (!dateList.contains(t.getDate())) {
                 dateList.add(t.getDate());
             }
         }
-
         for (Date d : dateList) {
             FilteredList<Transaction> tempList = transactionList.filtered(t -> t.getDate().equals(d));
             filteredGroupedList.add(tempList);
@@ -70,7 +72,8 @@ public class WalletTransactionsPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TransactionGroupCard(transactionList, groupItems).getRoot());
+                int startIndex = transactionList.indexOf(groupItems.get(0));
+                setGraphic(new TransactionGroupCard(transactionList, groupItems, startIndex).getRoot());
             }
         }
     }

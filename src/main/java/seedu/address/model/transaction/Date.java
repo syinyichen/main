@@ -14,7 +14,7 @@ import java.time.format.ResolverStyle;
  * Guarantees: immutable; date is valid as declared in {@link #isValidDate(String)}
  */
 
-public class Date {
+public class Date{
 
     public static final String DATE_PATTERN = "dd/MM/uuuu";
     public static final String DATE_FORMAT = "dd/MM/yyyy";
