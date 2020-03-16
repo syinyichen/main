@@ -68,10 +68,20 @@
 
 .tab .tab-label {
 	-fx-background: none;
+	-fx-text-fill: #999999;
+}
+
+.tab:hover {
+	-fx-cursor: hand;
+}
+
+.tab:hover .tab-label {
+	-fx-text-fill: #757575;
 }
 
 .tab:selected .tab-label {
 	-fx-underline: true;
+	-fx-text-fill: black;
 }
 
 .tab:selected .focus-indicator {
