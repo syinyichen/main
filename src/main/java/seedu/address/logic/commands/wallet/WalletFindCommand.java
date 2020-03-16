@@ -15,8 +15,8 @@ import seedu.address.model.transaction.DescriptionContainsKeywordsPredicate;
 public class WalletFindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all transactions whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all transactions with description containing "
+            + "any of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + WALLET_COMMAND_TYPE + " "
             + COMMAND_WORD + " rice water chicken";
