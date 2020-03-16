@@ -73,7 +73,7 @@ public class WalletFindCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code DescriptionContainsKeywordsPredicate}.
      */
     private DescriptionContainsKeywordsPredicate preparePredicate(String userInput) {
         return new DescriptionContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
