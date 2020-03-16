@@ -48,7 +48,7 @@ public class WalletFindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different transaction -> returns false
+        // different predicate -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
