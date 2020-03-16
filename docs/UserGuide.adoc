@@ -185,30 +185,28 @@ Expected Outcome:
 
 //end::walletincome[]
 
-//tag::wallettag[]
-==== Tagging an expense: `tag`
+//tag::walletList[]
+==== Listing all transactions: `list`
 
 Tag an expense with respective tag. +
-Format: `wallet tag <index> t/<tag>`
+Format: `wallet list`
 
 ****
-* Tags an existing expense specified by <index> of expense.
-* The index *must be a positive integer* 1, 2, 3, ...
-* The index must *exist* in the list of expenses.
-* Both the <tag> and the <index> must be stated.
+* List all transactions in your wallet, which includes expenses and incomes.
 ****
 
 Examples:
 
-* `tag 1 t/food`
-Returns the respective expense with its tag. +
+* `wallet list`
+Returns the list of transactions. +
 Expected Outcome:
 
-    Added (food) to expense 1:
+    Listed all transactions:
     1. Chicken Rice (food)
+    2. Duck Rice
     …
 
-//end::wallettag[]
+//end::walletList[]
 
 //tag::walletedit[]
 ==== Editing an income or expense: `edit`
@@ -250,9 +248,10 @@ Examples:
 Returns a list of expenses and income containing the keyword <rice> +
 Expected Outcome:
 
-1. Duck Rice Date: 10/10/2010 Amount: $4.00
-2. Chicken Rice Date: 10/11/2010 Amount: $2.50
-...​
+    Listed all transactions containing <rice>:
+    1. Duck Rice Date: 10/10/2010 Amount: $4.00
+    2. Chicken Rice Date: 10/11/2010 Amount: $2.50
+    ...​
 
 //end::walletfind[]
 
