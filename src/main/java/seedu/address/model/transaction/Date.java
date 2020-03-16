@@ -68,7 +68,6 @@ public class Date {
         return date.format(DateTimeFormatter.ofPattern(DATE_PATTERN));
     }
 
-
     public Month getMonth() {
         return date.getMonth();
     }

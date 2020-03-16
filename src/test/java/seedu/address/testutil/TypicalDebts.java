@@ -11,34 +11,41 @@ import seedu.address.model.transaction.Debt;
  */
 public class TypicalDebts {
 
-    public static final Debt SUPPER = new DebtBuilder()
+    public static final Debt SUPPER = new TransactionBuilder()
             .withDescription("Supper")
             .withAmount("10")
-            .withDate("2020-01-23").build();
-    public static final Debt TEXTBOOK = new DebtBuilder()
+            .withDate("23/01/2020")
+            .buildDebt();
+    public static final Debt TEXTBOOK = new TransactionBuilder()
             .withDescription("Textbook")
             .withAmount("100")
-            .withDate("2019-08-10").build();
-    public static final Debt MILKTEA = new DebtBuilder()
+            .withDate("10/08/2019")
+            .buildDebt();
+    public static final Debt MILKTEA = new TransactionBuilder()
             .withDescription("Milk Tea")
             .withAmount("3")
-            .withDate("2020-02-21").build();
-    public static final Debt MOVIE = new DebtBuilder()
+            .withDate("21/02/2020")
+            .buildDebt();
+    public static final Debt MOVIE = new TransactionBuilder()
             .withDescription("Movie")
             .withAmount("13")
-            .withDate("2019-12-26").build();
-    public static final Debt IPHONE = new DebtBuilder()
+            .withDate("26/12/2019")
+            .buildDebt();
+    public static final Debt IPHONE = new TransactionBuilder()
             .withDescription("iPhone 13")
             .withAmount("1000")
-            .withDate("2022-10-03").build();
-    public static final Debt TAOBAO = new DebtBuilder()
+            .withDate("03/10/2022")
+            .buildDebt();
+    public static final Debt TAOBAO = new TransactionBuilder()
             .withDescription("TaoBao")
             .withAmount("11")
-            .withDate("2019-11-11").build();
-    public static final Debt MCGRIDDLE = new DebtBuilder()
+            .withDate("11/11/2019")
+            .buildDebt();
+    public static final Debt MCGRIDDLE = new TransactionBuilder()
             .withDescription("McGriddle")
             .withAmount("5.40")
-            .withDate("2020-02-19").build();
+            .withDate("19/02/2020")
+            .buildDebt();
 
     private TypicalDebts() {
     } // prevents instantiation

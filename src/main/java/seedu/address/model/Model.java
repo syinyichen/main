@@ -71,6 +71,16 @@ public interface Model {
     void setUserDataFilePath(Path userDataFilePath);
 
     /**
+     * Returns the user prefs' wallet file path.
+     */
+    Path getWalletFilePath();
+
+    /**
+     * Sets the user prefs' wallet file path.
+     */
+    void setWalletFilePath(Path walletFilePath);
+
+    /**
      * Replaces address book data with the data in {@code addressBook}.
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
