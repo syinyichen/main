@@ -70,9 +70,9 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         email.setText(person.getEmail().value);
         debts.setPlaceholder(
-                new TransactionTablePanel<Debt>(person.getDebts().asUnmodifiableObservableList()).getRoot());
+                new PersonTablePanel<Debt>(person.getDebts().asUnmodifiableObservableList()).getRoot());
         loans.setPlaceholder(
-                new TransactionTablePanel<Loan>(person.getLoans().asUnmodifiableObservableList()).getRoot());
+                new PersonTablePanel<Loan>(person.getLoans().asUnmodifiableObservableList()).getRoot());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

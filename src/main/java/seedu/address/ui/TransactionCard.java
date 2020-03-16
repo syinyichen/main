@@ -11,8 +11,8 @@ import seedu.address.model.transaction.Transaction;
 /**
  * An UI component that displays information of a {@code Transaction}.
  */
-public class WalletCard extends UiPart<Region> {
-    private static final String FXML = "WalletListCard.fxml";
+public class TransactionCard extends UiPart<Region> {
+    private static final String FXML = "TransactionCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -41,7 +41,7 @@ public class WalletCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    public WalletCard(Transaction transaction, int displayedIndex) {
+    public TransactionCard(Transaction transaction, int displayedIndex) {
         super(FXML);
         this.transaction = transaction;
         id.setText(displayedIndex + ". ");
@@ -65,12 +65,12 @@ public class WalletCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof WalletCard)) {
+        if (!(other instanceof TransactionCard)) {
             return false;
         }
 
         // state check
-        WalletCard card = (WalletCard) other;
+        TransactionCard card = (TransactionCard) other;
         return id.getText().equals(card.id.getText())
                 && transaction.equals(card.transaction);
     }

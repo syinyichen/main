@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -34,7 +33,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
-    private WalletListPanel walletListPanel;
+    private WalletTransactionsPanel walletTransactionsPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private EnterUserDataWindow enterUserDataWindow;
@@ -116,8 +115,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        walletListPanel = new WalletListPanel(logic.getFilteredTransactionList());
-        transactionListPanelPlaceholder.getChildren().add(walletListPanel.getRoot());
+        walletTransactionsPanel = new WalletTransactionsPanel(logic.getFilteredTransactionList());
+        transactionListPanelPlaceholder.getChildren().add(walletTransactionsPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -133,8 +132,8 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void updateWalletList() {
-        walletListPanel = new WalletListPanel(logic.getFilteredTransactionList());
-        transactionListPanelPlaceholder.getChildren().add(walletListPanel.getRoot());
+        walletTransactionsPanel = new WalletTransactionsPanel(logic.getFilteredTransactionList());
+        transactionListPanelPlaceholder.getChildren().add(walletTransactionsPanel.getRoot());
     }
 
     /**
@@ -205,8 +204,8 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
-    public WalletListPanel getWalletListPanel() {
-        return walletListPanel;
+    public WalletTransactionsPanel getWalletTransactionsPanel() {
+        return walletTransactionsPanel;
     }
 
     /**

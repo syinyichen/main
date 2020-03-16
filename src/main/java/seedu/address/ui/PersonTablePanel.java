@@ -18,11 +18,11 @@ import seedu.address.model.transaction.Transaction;
 /**
  * Panel containing the table of transactions.
  */
-public class TransactionTablePanel<T extends Transaction> extends UiPart<Region> {
+public class PersonTablePanel<T extends Transaction> extends UiPart<Region> {
 
-    private static final String FXML = "TransactionTablePanel.fxml";
+    private static final String FXML = "PersonTablePanel.fxml";
 
-    private final Logger logger = LogsCenter.getLogger(TransactionTablePanel.class);
+    private final Logger logger = LogsCenter.getLogger(PersonTablePanel.class);
 
     @FXML
     private TableView<T> transactionTableView;
@@ -35,7 +35,7 @@ public class TransactionTablePanel<T extends Transaction> extends UiPart<Region>
     @FXML
     private TableColumn<T, LocalDate> dateTableColumn;
 
-    public TransactionTablePanel(ObservableList<T> transactionList) {
+    public PersonTablePanel(ObservableList<T> transactionList) {
         super(FXML);
         indexTableColumn.setCellValueFactory(data -> {
             T transaction = data.getValue();
