@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.TransactionBuilder;
 
 public class DescriptionContainsKeywordsPredicateTest {
@@ -17,14 +18,17 @@ public class DescriptionContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        DescriptionContainsKeywordsPredicate firstPredicate = new DescriptionContainsKeywordsPredicate(firstPredicateKeywordList);
-        DescriptionContainsKeywordsPredicate secondPredicate = new DescriptionContainsKeywordsPredicate(secondPredicateKeywordList);
+        DescriptionContainsKeywordsPredicate firstPredicate =
+                new DescriptionContainsKeywordsPredicate(firstPredicateKeywordList);
+        DescriptionContainsKeywordsPredicate secondPredicate =
+                new DescriptionContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        DescriptionContainsKeywordsPredicate firstPredicateCopy = new DescriptionContainsKeywordsPredicate(firstPredicateKeywordList);
+        DescriptionContainsKeywordsPredicate firstPredicateCopy =
+                new DescriptionContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -40,7 +44,8 @@ public class DescriptionContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywordsExpenses_returnsTrue() {
         // One keyword
-        DescriptionContainsKeywordsPredicate predicate = new DescriptionContainsKeywordsPredicate(Collections.singletonList("Chicken"));
+        DescriptionContainsKeywordsPredicate predicate =
+                new DescriptionContainsKeywordsPredicate(Collections.singletonList("Chicken"));
         assertTrue(predicate.test(new TransactionBuilder().withDescription("Chicken Rice").buildExpense()));
 
         // Multiple keywords
@@ -59,7 +64,8 @@ public class DescriptionContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywordsIncome_returnsTrue() {
         // One keyword
-        DescriptionContainsKeywordsPredicate predicate = new DescriptionContainsKeywordsPredicate(Collections.singletonList("Allowance"));
+        DescriptionContainsKeywordsPredicate predicate =
+                new DescriptionContainsKeywordsPredicate(Collections.singletonList("Allowance"));
         assertTrue(predicate.test(new TransactionBuilder().withDescription("Allowance from my mother").buildIncome()));
 
         // Multiple keywords
@@ -78,7 +84,8 @@ public class DescriptionContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsSubKeywordsExpenses_returnsTrue() {
         // One keyword
-        DescriptionContainsKeywordsPredicate predicate = new DescriptionContainsKeywordsPredicate(Collections.singletonList("Chic"));
+        DescriptionContainsKeywordsPredicate predicate =
+                new DescriptionContainsKeywordsPredicate(Collections.singletonList("Chic"));
         assertTrue(predicate.test(new TransactionBuilder().withDescription("Chicken Rice").buildExpense()));
 
         // Multiple keywords
@@ -97,7 +104,8 @@ public class DescriptionContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsSubKeywordsIncome_returnsTrue() {
         // One keyword
-        DescriptionContainsKeywordsPredicate predicate = new DescriptionContainsKeywordsPredicate(Collections.singletonList("All"));
+        DescriptionContainsKeywordsPredicate predicate =
+                new DescriptionContainsKeywordsPredicate(Collections.singletonList("All"));
         assertTrue(predicate.test(new TransactionBuilder().withDescription("Allowance from my mother").buildIncome()));
 
         // Multiple keywords
@@ -116,7 +124,8 @@ public class DescriptionContainsKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywordsExpense_returnsFalse() {
         // Zero keywords
-        DescriptionContainsKeywordsPredicate predicate = new DescriptionContainsKeywordsPredicate(Collections.emptyList());
+        DescriptionContainsKeywordsPredicate predicate =
+                new DescriptionContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new TransactionBuilder().withDescription("Rice").buildExpense()));
 
         // Non-matching keyword
@@ -132,7 +141,8 @@ public class DescriptionContainsKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywordsIncome_returnsFalse() {
         // Zero keywords
-        DescriptionContainsKeywordsPredicate predicate = new DescriptionContainsKeywordsPredicate(Collections.emptyList());
+        DescriptionContainsKeywordsPredicate predicate =
+                new DescriptionContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new TransactionBuilder().withDescription("Rice").buildIncome()));
 
         // Non-matching keyword
