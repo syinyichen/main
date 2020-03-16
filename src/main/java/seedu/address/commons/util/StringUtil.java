@@ -34,18 +34,15 @@ public class StringUtil {
         String preppedSentence = sentence;
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
-//        return Arrays.stream(wordsInPreppedSentence)
-//                .anyMatch(x -> equalsSubWordIgnoreCase(preppedWord, x));
-        return sentence.toLowerCase().contains(preppedWord.toLowerCase());
-        //return equalsSubWordIgnoreCase(sentence, preppedWord);
+        return equalsSubWordIgnoreCase(preppedWord, preppedSentence);
     }
 
     /**
      * Returns true if the {@code descriptionString} contains {@code keywordString}.
      *
-     * @param keywordString cannot be null
-     * @param descriptionString cannot be null
-     * @return boolean value stating if {@code keywordString} can be found in {@code descriptionString}
+            * @param keywordString cannot be null
+            * @param descriptionString cannot be null
+            * @return boolean value stating if {@code keywordString} can be found in {@code descriptionString}
      */
     public static boolean equalsSubWordIgnoreCase(String keywordString, String descriptionString) {
         String keywordStringLowerCase = keywordString.toLowerCase();
