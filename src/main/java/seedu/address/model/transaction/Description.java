@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Transaction's Description in the Wallet.
  * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
-public class Description {
+public class Description implements Comparable<Description> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Descriptions should not be blank";
@@ -42,6 +42,11 @@ public class Description {
     @Override
     public String toString() {
         return description;
+    }
+
+    @Override
+    public int compareTo(Description other) {
+        return this.description.compareTo(other.description);
     }
 
 }

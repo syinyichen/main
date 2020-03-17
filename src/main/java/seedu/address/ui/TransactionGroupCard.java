@@ -1,8 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-import java.util.Objects;
-
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
@@ -27,12 +24,6 @@ public class TransactionGroupCard extends UiPart<Region> {
     private static final String POSITIVE_CLASS = "positive";
     private static final String NEGATIVE_CLASS = "negative";
 
-    public final FilteredList<Transaction> transactionsList;
-
-    private final ObservableList<Transaction> originalTransactionList;
-
-    private int startIndex;
-
     @FXML
     private Label transactionGroupLabel;
 
@@ -42,26 +33,36 @@ public class TransactionGroupCard extends UiPart<Region> {
     @FXML
     private ListView<Transaction> transactionItemsList;
 
-    public TransactionGroupCard(ObservableList<Transaction> originalTransactionList,
-                                FilteredList<Transaction> transactionsList, int startIndex) {
+    public final FilteredList<Transaction> groupTransactionsList;
+
+    private ObservableList<Transaction> sortedGroupTransactionsList;
+
+    private int startIndex;
+
+    public TransactionGroupCard(FilteredList<Transaction> groupTransactionsList, int startIndex) {
         super(FXML);
-        this.originalTransactionList = originalTransactionList;
-        this.transactionsList = transactionsList;
+        this.groupTransactionsList = groupTransactionsList;
         this.startIndex = startIndex;
+        this.sortedGroupTransactionsList =
+                groupTransactionsList.sorted((t1, t2) -> t1.getDescription().compareTo(t2.getDescription()));
 
-        Date groupDate = transactionsList.get(0).getDate();
-        transactionGroupLabel.setText(String.format("%s %s %s", groupDate.getDate().getDayOfMonth(),
-                groupDate.getMonth(), groupDate.getYear()));
 
+        setGroupLabel();
         setGroupExpenditure();
 
-        transactionItemsList.setItems(transactionsList);
+        transactionItemsList.setItems(sortedGroupTransactionsList);
         transactionItemsList.setCellFactory(listView -> new TransactionListViewCell());
-        transactionItemsList.setPrefHeight(transactionsList.size() * LIST_CELL_HEIGHT + LIST_OFFSET);
+        transactionItemsList.setPrefHeight(groupTransactionsList.size() * LIST_CELL_HEIGHT + LIST_OFFSET);
+    }
+
+    private void setGroupLabel() {
+        Date groupDate = groupTransactionsList.get(0).getDate();
+        transactionGroupLabel.setText(String.format("%s %s %s", groupDate.getDate().getDayOfMonth(),
+                groupDate.getMonth(), groupDate.getYear()));
     }
 
     private void setGroupExpenditure() {
-        double groupValue = transactionsList.stream().mapToDouble(t -> {
+        double groupValue = groupTransactionsList.stream().mapToDouble(t -> {
             if (t instanceof Expense) {
                 return -t.getAmount().amount;
             } else {

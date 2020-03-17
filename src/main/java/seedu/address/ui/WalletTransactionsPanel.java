@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -25,39 +26,60 @@ public class WalletTransactionsPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(WalletTransactionsPanel.class);
 
     @FXML
+    private Label transactionCountLabel;
+
+    @FXML
     private ListView<FilteredList<Transaction>> transactionGroupsListView;
 
-    private final SortedList<Transaction> sortedTransactionList;
+    private ObservableList<Transaction> walletTransactionList;
+
+    private SortedList<Transaction> sortedTransactionList;
+
+    private ObservableList<FilteredList<Transaction>> filteredGroupedList = FXCollections.observableArrayList();
 
     public WalletTransactionsPanel(ObservableList<Transaction> transactionList) {
         super(FXML);
 
-        this.sortedTransactionList = transactionList.sorted(new Comparator<Transaction>() {
+        this.walletTransactionList = transactionList;
+
+        update(transactionList);
+    }
+
+    public void update(ObservableList<Transaction> newTransactionList) {
+        this.walletTransactionList = newTransactionList;
+
+        this.sortedTransactionList = walletTransactionList.sorted(new Comparator<Transaction>() {
             @Override
             public int compare(Transaction o1, Transaction o2) {
                 return -o1.getDate().compareTo(o2.getDate());
             }
         });
 
-        for (Transaction t : this.sortedTransactionList) {
+        for (Transaction t : sortedTransactionList) {
             System.out.println(t);
         }
 
-        ObservableList<FilteredList<Transaction>> filteredGroupedList = FXCollections.observableArrayList();
-        populateGroupedList(filteredGroupedList);
+        populateGroupedList();
+        updateTransactionCount();
+    }
 
-        transactionGroupsListView.setItems(filteredGroupedList);
-        transactionGroupsListView.setCellFactory(listView -> new TransactionGroupCell());
+    private void updateTransactionCount() {
+        transactionCountLabel.setText(String.format("%d transactions", sortedTransactionList.size()));
     }
 
     /**
      * Filters the items in the transaction list into {@code FilteredList<Transaction>}, and populates the given
      * {@code ObservableList}.
      */
-    private void populateGroupedList(ObservableList<FilteredList<Transaction>> filteredGroupedList) {
+    private void populateGroupedList() {
         if (sortedTransactionList.isEmpty()) {
+            filteredGroupedList = FXCollections.observableArrayList();
+            transactionGroupsListView.setItems(filteredGroupedList);
             return;
         }
+
+        filteredGroupedList = FXCollections.observableArrayList();
+
         int i = 0;
         while (i < sortedTransactionList.size()) {
             Date currDate = sortedTransactionList.get(i).getDate();
@@ -66,6 +88,9 @@ public class WalletTransactionsPanel extends UiPart<Region> {
 
             i += tempList.size();
         }
+
+        transactionGroupsListView.setItems(filteredGroupedList);
+        transactionGroupsListView.setCellFactory(listView -> new TransactionGroupCell());
     }
 
     /**
@@ -81,7 +106,7 @@ public class WalletTransactionsPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 int startIndex = sortedTransactionList.indexOf(groupItems.get(0));
-                setGraphic(new TransactionGroupCard(sortedTransactionList, groupItems, startIndex).getRoot());
+                setGraphic(new TransactionGroupCard(groupItems, startIndex).getRoot());
             }
         }
     }

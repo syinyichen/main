@@ -131,11 +131,6 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
-    private void updateWalletList() {
-        walletTransactionsPanel = new WalletTransactionsPanel(logic.getFilteredTransactionList());
-        transactionListPanelPlaceholder.getChildren().add(walletTransactionsPanel.getRoot());
-    }
-
     /**
      * Sets the default size based on {@code guiSettings}.
      */
@@ -181,8 +176,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-
-
     void show() {
         primaryStage.show();
     }
@@ -222,7 +215,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             resultDisplay.setStyleToIndicatePass();
 
-            updateWalletList();
+            walletTransactionsPanel.update(logic.getFilteredTransactionList());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
