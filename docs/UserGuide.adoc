@@ -388,10 +388,10 @@ Expected Outcome:
 // end::owe[]
 
 // tag::return[]
-==== Recording the money you return: `return`
+==== Recording the money you return: `returned`
 
 Records that a debt that you owe a person has been returned. +
-Format: `people return <person's index> [i/<debt's index>]`
+Format: `people returned <person's index> [i/<debt's index>]`
 ****
 * Records that the debt at the specified <debt's index> has been returned to the person specified at <person's index>.
 * The person's index refers to the index number shown in the displayed person list.
@@ -405,7 +405,7 @@ Sharkie will record all debts as returned if the debt's index is not specified.
 
 Examples:
 
-* `people return 4 i/1`
+* `people returned 4 i/1`
 Records that you return the 4th person the 1st debt. +
 Expected Outcome:
 
@@ -416,7 +416,7 @@ Expected Outcome:
 // tag::lend[]
 ==== Recording the money you lend: `lend`
 
-Records the amount of money that you lend to a person. This will increase that person's loan. +
+Records the amount of money that you lent to a person. This will increase that person's loan. +
 Format: `people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
 
 ****
@@ -462,6 +462,25 @@ Expected Outcome:
 
 // end::paid[]
 
+//tag::peoplelist[]
+==== Listing all contacts: `list`
+
+Lists everyone in the contact book. +
+Format: `people list`
+
+Examples:
+
+* `people list`
+Returns the list of everyone in the contact book. +
+Expected Outcome:
+
+    Listed all persons.
+    1. Alex Yeoh
+    2. Bernice Yu
+    …
+
+//end::peoplelist[]
+
 //tag::peoplefind[]
 ==== Finding a person: `find`
 
@@ -499,7 +518,7 @@ Examples:
 Edits the email address of the 1st person to be `johndoe@example.com`. +
 Expected Outcome:
 
-    Person: John Doe Phone: 91234568 Email: johndoe@example.com
+    Edited Person: John Doe Phone: 91234568 Email: johndoe@example.com You owe: $0.00 You lent: $0.00 Tags:
 
 // end::edit[]
 
@@ -521,14 +540,14 @@ Examples:
 Deletes the 2nd person in the address book. +
 Expected Outcome:
 
-    Removed Joel from your list of contacts! :(
+    Deleted Person: Joel Phone: 91234567 Email: something@email.com You owe: $0.00 You lent: $0.00 Tags:
 
 * `people find Betsy` +
 `people delete 1` +
 Deletes the 1st person in the results of the `find` command. +
 Expected Outcome:
 
-    Removed Betsy from your list of contacts! :(
+    Deleted Person: Betsy Phone: 91234567 Email: something@email.com You owe: $0.00 You lent: $0.00 Tags:
 
 // end::delete[]
 
@@ -570,10 +589,13 @@ e.g. `people remind 1`
 * *Remind all* : `people remindall`
 * *Owe* : `people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]` +
 e.g. `people owe 4 n/lunch $/5.00 d/10/10/2020`
+* *Returned*: `people returned <person's index> [i/<debt's index>]` +
+e.g. `people returned 4 i/1`
 * *Lend* : `people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]` +
 e.g. `people lend 5 n/dinner $/5.00 d/10/10/2020`
 * *Received* : `people received <person's index> [i/<loan's index>]` +
 e.g. `people paid 1 2`
+* *List* : `people list`
 * *Find* : `people find <keyword>` +
 e.g. `people find Grace`
 * *Delete* : `people delete <index>` +
