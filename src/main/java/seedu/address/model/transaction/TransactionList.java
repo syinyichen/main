@@ -51,6 +51,7 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
     public void add(T toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
+        sort();
     }
 
     /**
@@ -66,6 +67,7 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
         }
 
         internalList.set(index, editedTransaction);
+        sort();
     }
 
     /**
@@ -77,12 +79,14 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
         if (!internalList.remove(toRemove)) {
             throw new TransactionNotFoundException();
         }
+        sort();
     }
 
 
     public void setTransactions(TransactionList<T> replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        sort();
     }
 
     /**
@@ -91,6 +95,7 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
     public void setTransactions(List<T> transactions) {
         requireAllNonNull(transactions);
         internalList.setAll(transactions);
+        sort();
     }
 
     /**
@@ -106,6 +111,15 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
         }
 
         return filteredTransactions;
+    }
+
+    public void sort() {
+        FXCollections.sort(internalList, new Comparator<Transaction>() {
+            @Override
+            public int compare(Transaction o1, Transaction o2) {
+                return -o1.getDate().compareTo(o2.getDate());
+            }
+        });
     }
 
     /**

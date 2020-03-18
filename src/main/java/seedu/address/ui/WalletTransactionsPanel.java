@@ -33,8 +33,6 @@ public class WalletTransactionsPanel extends UiPart<Region> {
 
     private ObservableList<Transaction> walletTransactionList;
 
-    private SortedList<Transaction> sortedTransactionList;
-
     private ObservableList<FilteredList<Transaction>> filteredGroupedList = FXCollections.observableArrayList();
 
     public WalletTransactionsPanel(ObservableList<Transaction> transactionList) {
@@ -48,14 +46,7 @@ public class WalletTransactionsPanel extends UiPart<Region> {
     public void update(ObservableList<Transaction> newTransactionList) {
         this.walletTransactionList = newTransactionList;
 
-        this.sortedTransactionList = walletTransactionList.sorted(new Comparator<Transaction>() {
-            @Override
-            public int compare(Transaction o1, Transaction o2) {
-                return -o1.getDate().compareTo(o2.getDate());
-            }
-        });
-
-        for (Transaction t : sortedTransactionList) {
+        for(Transaction t : newTransactionList) {
             System.out.println(t);
         }
 
@@ -64,7 +55,7 @@ public class WalletTransactionsPanel extends UiPart<Region> {
     }
 
     private void updateTransactionCount() {
-        transactionCountLabel.setText(String.format("%d transactions", sortedTransactionList.size()));
+        transactionCountLabel.setText(String.format("%d transactions", walletTransactionList.size()));
     }
 
     /**
@@ -72,7 +63,7 @@ public class WalletTransactionsPanel extends UiPart<Region> {
      * {@code ObservableList}.
      */
     private void populateGroupedList() {
-        if (sortedTransactionList.isEmpty()) {
+        if (walletTransactionList.isEmpty()) {
             filteredGroupedList = FXCollections.observableArrayList();
             transactionGroupsListView.setItems(filteredGroupedList);
             return;
@@ -81,9 +72,9 @@ public class WalletTransactionsPanel extends UiPart<Region> {
         filteredGroupedList = FXCollections.observableArrayList();
 
         int i = 0;
-        while (i < sortedTransactionList.size()) {
-            Date currDate = sortedTransactionList.get(i).getDate();
-            FilteredList<Transaction> tempList = sortedTransactionList.filtered(t -> t.getDate().equals(currDate));
+        while (i < walletTransactionList.size()) {
+            Date currDate = walletTransactionList.get(i).getDate();
+            FilteredList<Transaction> tempList = walletTransactionList.filtered(t -> t.getDate().equals(currDate));
             filteredGroupedList.add(tempList);
 
             i += tempList.size();
@@ -105,7 +96,7 @@ public class WalletTransactionsPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                int startIndex = sortedTransactionList.indexOf(groupItems.get(0));
+                int startIndex = walletTransactionList.indexOf(groupItems.get(0));
                 setGraphic(new TransactionGroupCard(groupItems, startIndex).getRoot());
             }
         }
