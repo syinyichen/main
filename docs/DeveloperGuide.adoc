@@ -383,12 +383,12 @@ _{More to be added}_
 (For all use cases below, the *System* is the `Wallet` and the *Actor* is the `User`, unless specified otherwise)
 
 [discrete]
-==== Use case: Recording an expense
+==== Use case: UC1 - Recording an expense
 
 <<MSS, *MSS*>>
 
 1.  User keys in an expense.
-2.  <<wallet, Wallet>> adds the expense.
+2.  <<wallet, Wallet>> adds the expense and displays the expense in the list of expenses.
 +
 Use case ends.
 
@@ -406,12 +406,12 @@ Steps 1a1-1a2 are repeated until the expense keyed in is correct.
 Use case resumes at step 2.
 
 [discrete]
-==== Use case: Recording an income
+==== Use case: UC2 - Recording an income
 
 *MSS*
 
 1. User keys in an income.
-2. Wallet adds the income.
+2. Wallet adds the income and displays the income in the list of incomes.
 +
 Use case ends.
 
@@ -429,25 +429,25 @@ Steps 1a1-1a2 are repeated until the income keyed in is correct.
 Use case resumes at step 2.
 
 [discrete]
-==== Use case: Setting budget
+==== Use case: UC3 - Setting budget
 
 *MSS*
 
 1. User keys in a budget.
-2. Wallet sets the amount keyed in as the budget of the month.
+2. Wallet sets the amount keyed in as the budget of the month indicated.
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 1a. The amount keyed in is invalid.
+* 1a. The amount or date keyed in is invalid.
 +
 [none]
 ** 1a1. Wallet shows an error message.
 ** 1a2. User re-enters the budget.
 +
-Steps 1a1-1a2 are repeated until the amount keyed in is correct.
+Steps 1a1-1a2 are repeated until the amount and date keyed in is correct.
 +
 Use case resumes at step 2.
 
@@ -459,12 +459,14 @@ Use case resumes at step 2.
 Use case ends.
 
 [discrete]
-==== Use case: Deleting an income/expense
+==== Use case: UC4 - Deleting a <<transaction, *transaction*>>
+
+*Preconditions:* The transaction that the user wants to delete exists.
 
 *MSS*
 
-1. User requests to delete a specific income/expense in the wallet.
-2. Wallet deletes the income/expense.
+1. User requests to delete a specific transaction in the wallet.
+2. Wallet deletes the transaction and shows the success message.
 +
 Use case ends.
 
@@ -482,12 +484,14 @@ Steps 1a1-1a2 are repeated until the index keyed in is valid.
 Use case resumes at step 2.
 
 [discrete]
-==== Use case: Editing an income/expense
+==== Use case: UC5 - Editing a transaction
+
+*Preconditions:* The transaction that the user wants to edit exists.
 
 *MSS*
 
-1. User requests to edit a specific income/expense in the wallet.
-2. Wallet edits the income/expense.
+1. User requests to edit a specific transaction in the wallet.
+2. Wallet edits the transaction and shows the edited transaction.
 +
 Use case ends.
 
@@ -498,30 +502,30 @@ Use case ends.
 +
 [none]
 ** 1a1. Wallet shows an error message.
-** 1a2. User re-enters the index.
+** 1a2. User re-enters the command.
 +
 Steps 1a1-1a2 are repeated until the index keyed in is valid.
 +
 Use case resumes at step 2.
 
 [none]
-* 1a. The new income/expense keyed in is invalid.
+* 1b. The user did not indicate the field to edit.
 +
 [none]
-** 1a1. Wallet shows an error message.
-** 1a2. User re-enters the new income/expense.
+** 1b1. Wallet shows an error message.
+** 1b2. User re-enters the edit command.
 +
-Steps 1a1-1a2 are repeated until the new income/expense keyed in is valid.
+Steps 1a1-1a2 are repeated until the edit command keyed in is valid.
 +
 Use case resumes at step 2.
 
 [discrete]
-==== Use case: Finding an income/expense
+==== Use case: UC6 - Finding a transaction
 
 *MSS*
 
 1. User keys in a keyword.
-2. Wallet lists out the incomes or expenses containing the keyword.
+2. Wallet lists out the transactions that contain the keyword.
 +
 Use case ends.
 
@@ -529,6 +533,16 @@ Use case ends.
 
 [none]
 * 1a. The keyword entered does not exist in the wallet.
++
+Use case ends.
+
+[discrete]
+==== Use case: UC7 - Listing all transactions
+
+*MSS*
+
+1. User enters the list command.
+2. Wallet lists out all the transactions.
 +
 Use case ends.
 
@@ -788,6 +802,9 @@ Main Success Scenario, the most straightforward interaction for a given use case
 
 [[private-contact-detail]] Private contact detail::
 A contact detail that is not meant to be shared with others
+
+[[transaction]] Transaction::
+Income and expense
 
 [[wallet]] Wallet::
 Sharkie's wallet, that holds information pertaining to the user's expenditure and income
