@@ -46,10 +46,6 @@ public class WalletTransactionsPanel extends UiPart<Region> {
     public void update(ObservableList<Transaction> newTransactionList) {
         this.walletTransactionList = newTransactionList;
 
-        for(Transaction t : newTransactionList) {
-            System.out.println(t);
-        }
-
         populateGroupedList();
         updateTransactionCount();
     }

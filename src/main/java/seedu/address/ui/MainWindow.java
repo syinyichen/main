@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private WalletTransactionsPanel walletTransactionsPanel;
+    private WalletStatisticsPanel walletStatisticsPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private EnterUserDataWindow enterUserDataWindow;
@@ -48,7 +49,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane transactionListPanelPlaceholder;
+    private StackPane walletTransactionsPanelPlaceholder;
+
+    @FXML
+    private StackPane walletStatisticsPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -116,7 +120,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         walletTransactionsPanel = new WalletTransactionsPanel(logic.getFilteredTransactionList());
-        transactionListPanelPlaceholder.getChildren().add(walletTransactionsPanel.getRoot());
+        walletTransactionsPanelPlaceholder.getChildren().add(walletTransactionsPanel.getRoot());
+
+        walletStatisticsPanel = new WalletStatisticsPanel(logic.getFilteredTransactionList());
+        walletStatisticsPanelPlaceholder.getChildren().add(walletStatisticsPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -216,6 +223,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setStyleToIndicatePass();
 
             walletTransactionsPanel.update(logic.getFilteredTransactionList());
+            walletStatisticsPanel.update(logic.getFilteredTransactionList());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
