@@ -32,6 +32,11 @@
                               <Font name="Consolas" size="14.0" />
                            </font>
                         </Label>
+                        <Label fx:id="tag" alignment="CENTER_RIGHT" text="tag">
+                           <font>
+                              <Font name="Consolas" size="14.0" />
+                           </font>
+                        </Label>
                         <Label fx:id="description" styleClass="cell_big_label" text="description">
                            <font>
                               <Font name="Consolas" size="14.0" />
@@ -54,15 +59,7 @@
                         <Insets left="4.0" right="4.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER_RIGHT">
-                     <children>
-                        <Label fx:id="tag" alignment="CENTER_RIGHT" text="tag">
-                           <font>
-                              <Font name="Consolas" size="14.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" />
                </children>
             </HBox>
          </children>

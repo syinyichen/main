@@ -122,7 +122,7 @@ public class MainWindow extends UiPart<Stage> {
         walletTransactionsPanel = new WalletTransactionsPanel(logic.getFilteredTransactionList());
         walletTransactionsPanelPlaceholder.getChildren().add(walletTransactionsPanel.getRoot());
 
-        walletStatisticsPanel = new WalletStatisticsPanel(logic.getFilteredTransactionList());
+        walletStatisticsPanel = new WalletStatisticsPanel(logic.getWallet(), logic.getFilteredTransactionList());
         walletStatisticsPanelPlaceholder.getChildren().add(walletStatisticsPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
@@ -223,7 +223,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setStyleToIndicatePass();
 
             walletTransactionsPanel.update(logic.getFilteredTransactionList());
-            walletStatisticsPanel.update(logic.getFilteredTransactionList());
+            walletStatisticsPanel.update(logic.getWallet(), logic.getFilteredTransactionList());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

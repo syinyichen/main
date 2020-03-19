@@ -55,9 +55,7 @@ public class TransactionCard extends UiPart<Region> {
             amount.getStyleClass().add(INCOME_CLASS);
         }
 
-        tag.setText(transaction.getTag().tagName);
-
-
+        tag.setText(transaction.getTag().toString());
     }
 
     @Override

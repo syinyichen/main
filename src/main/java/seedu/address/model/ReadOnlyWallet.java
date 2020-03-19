@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.transaction.BudgetList;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
 import seedu.address.model.transaction.Transaction;
@@ -25,4 +26,5 @@ public interface ReadOnlyWallet {
      */
     ObservableList<Expense> getExpenseList();
 
+    BudgetList getBudgetList();
 }

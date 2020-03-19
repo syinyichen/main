@@ -187,6 +187,10 @@ public class Wallet implements ReadOnlyWallet {
         return budgetList.get(month, year);
     }
 
+    public BudgetList<Budget> getBudgetList() {
+        return budgetList;
+    }
+
     // =========== Util methods =============================================================
 
     @Override
