@@ -68,7 +68,7 @@ image::LogicClassDiagram.png[]
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `people delete 1`.
 
 .Component interactions for `people delete 1` command
-image::ArchitectureSequenceDiagramPeopleDelete.png[]
+image::ArchitectureSequenceDiagram.png[]
 
 The sections below give more details of each component.
 
