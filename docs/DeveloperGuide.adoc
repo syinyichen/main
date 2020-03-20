@@ -134,6 +134,7 @@ As a more OOP model, we can store a `Tag` list in `Address Book`, which `Person`
  +
 image:BetterModelClassDiagram.png[]
 
+//tag::storage[]
 [[Design-Storage]]
 === Storage component
 
@@ -145,7 +146,10 @@ image::StorageClassDiagram.png[]
 The `Storage` component,
 
 * can save `UserPref` objects in json format and read it back.
+* can save UserData in json format and read it back.
 * can save the Address Book data in json format and read it back.
+* can save the Wallet data in json format and read it back.
+//end::storage[]
 
 [[Design-Commons]]
 === Common classes
