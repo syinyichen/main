@@ -22,6 +22,7 @@ Refer to the guide <<SettingUp#, here>>.
 
 == Design
 
+//tag::architecture[]
 [[Design-Architecture]]
 === Architecture
 
@@ -64,12 +65,14 @@ image::LogicClassDiagram.png[]
 [discrete]
 ==== How the architecture components interact with each other
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `people delete 1`.
 
-.Component interactions for `delete 1` command
+.Component interactions for `people delete 1` command
 image::ArchitectureSequenceDiagram.png[]
 
 The sections below give more details of each component.
+
+//end::architecture[]
 
 [[Design-Ui]]
 === UI component
