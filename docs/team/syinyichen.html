@@ -553,8 +553,9 @@ the people in the address book.</p>
 <p>Edited various parts of the User Guide: (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#49</a>)</p>
 </li>
 <li>
-<p>Updated Appendix C - Use Cases in the Developer Guide:
-(Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#51</a>)</p>
+<p>Added use cases and updated the Design and Implementation part of the Developer Guide:
+(Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#51</a>,
+<a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#132</a>, <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#134</a>)</p>
 </li>
 </ul>
 </div>
@@ -804,6 +805,177 @@ Expected Outcome:</p>
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="Design-Model">Model component</h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelClassDiagram.png" alt="ModelClassDiagram" width="700">
+</div>
+<div class="title">Figure 1. Structure of the Model Component</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>The <em>Model</em> package consists of two main packages: <em>Person</em> and <em>Transaction</em>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The diagram below shows how the <em>Person</em> package is implemented:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelPersonDiagram.png" alt="ModelPersonDiagram" width="500">
+</div>
+<div class="title">Figure 2. In-depth Structure of Person in the Model Component</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The diagram below shows how the <em>Transaction</em> package is implemented:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelTransactionDiagram.png" alt="ModelTransactionDiagram" width="500">
+</div>
+<div class="title">Figure 3. In-depth Structure of Transaction in the Model Component</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Model</code>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
+</li>
+<li>
+<p>stores the Address Book data.</p>
+</li>
+<li>
+<p>stores the Wallet data.</p>
+</li>
+<li>
+<p>stores the User data.</p>
+</li>
+<li>
+<p>exposes an unmodifiable <code>ObservableList&lt;Person&gt;</code> and an unmodifiable <code>ObservableList&lt;Transaction&gt;</code> that can be
+'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when the data in the
+respective lists change.</p>
+</li>
+<li>
+<p>does not depend on any of the other three components.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_received_command">Received Command</h3>
+<div class="paragraph">
+<p>The <code>received</code> command is implemented in the class, <code>PeopleReceivedCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p>This command can be accessed from <code>Logic#execute()</code>. It deletes the <code>Loan</code>(s) of the indicated <code>Person</code>
+(the <code>Person</code> with the specified index in the Address Book).</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram illustrates what happens when the user executes a <code>received</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ReceivedActivityDiagram.png" alt="ReceivedActivityDiagram" width="600">
+</div>
+<div class="title">Figure 4. Activity diagram of the execution of <code>received</code> command</div>
+</div>
+<div class="sect3">
+<h4 id="_implementation_of_received_command">Implementation of <code>received</code> command</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In <code>PeopleReceivedCommand</code> class, the list of <code>Persons</code> is obtained from the <code>Model</code> via
+<code>Model#getFilteredPersonList()</code> and the indicated person is extracted from the list.</p>
+</li>
+<li>
+<p>The list of <code>Loans</code> of the <code>Person</code> is extracted and modified based on the command entered by the user.</p>
+</li>
+<li>
+<p>A new <code>Person</code> with the modified list of <code>Loans</code> is created.</p>
+</li>
+<li>
+<p>This new <code>Person</code> replace the initial <code>Person</code> at the indicated index via <code>Model#setPerson()</code> and the <code>filteredPersons</code>
+in the <code>Model</code> is updated.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram summarizes what happens during the execution of a <code>received</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ReceivedSequenceDiagram.png" alt="ReceivedSequenceDiagram">
+</div>
+<div class="title">Figure 5. Sequence diagram of the <code>received</code> command</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The lifeline for <code>PeopleReceivedCommand</code> should end at the destroy marker (X) but due to a limitation of PlantUML,
+the lifeline reaches the end of diagram.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_design_considerations">Design Considerations</h4>
+<div class="sect4">
+<h5 id="_aspect_deletion_of_loan_from_the_indicated_person">Aspect: Deletion of <code>Loan</code> from the indicated person.</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Creates a new <code>Person</code> with the modified list of <code>Loans</code> and
+use <code>Model#setPerson()</code> to replace the indicated <code>Person</code> with the new <code>Person</code> created.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Preserve the immutable property of <code>Person</code>.</p>
+</li>
+<li>
+<p>Cons: Have to copy over all the attribute values, such as <code>Name</code>, <code>Phone</code> and more.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Modify the list of <code>Loans</code> in the indicated <code>Person</code> directly.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier and can save time from copying the information from one <code>Person</code> to another.</p>
+</li>
+<li>
+<p>Cons: <code>Person</code> loses the immutable property.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1451,7 +1623,7 @@ until the details keyed in by the user is valid.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-03-21 15:13:04 +0800
+Last updated 2020-03-21 22:25:55 +0800
 </div>
 </div>
 </body>
