@@ -13,10 +13,13 @@ Sharkie is a desktop expense tracker application. The user interacts with it usi
 
 == Summary of contributions
 
-* *Major enhancement*: implemented the model layer for Wallet, Income, Expense.
+* *Major enhancement*: implemented the model layer for Wallet.
 ** What it does: creates the in-memory objects that are required for monetary tracking.
 // ** Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
 // ** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+
+* *Major enhancement*: implemented the storage layer for Wallet.
+** What it does: allows saving of monetary-related data.
 ** Credits: adapted from existing AddressBook code.
 
 // * *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
@@ -33,7 +36,14 @@ Sharkie is a desktop expense tracker application. The user interacts with it usi
 // ** Documentation:
 // *** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
 // ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W12-3/main/pull/40[#40]
+*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W12-3/main/pull/40[#40],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/71[#71],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/92[#92],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/101[#101],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/102[#102],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/104[#104],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/117[#117]
+
 // *** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
 // *** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
 // *** Some parts of the history feature I added was adopted by several other class mates (https://github.com[1], https://github.com[2])
@@ -65,3 +75,5 @@ include::../UserGuide.adoc[tag=expenditureSummary]
 |===
 
 include::../DeveloperGuide.adoc[tag=productSurvey]
+
+include::../DeveloperGuide.adoc[tag=storage]

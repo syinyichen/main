@@ -60,6 +60,7 @@ public class PersonUtil {
         return sb.toString();
     }
 
+    // @@author cheyannesim
     public static String getDebtDescription(Debt debt) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + debt.getDescription().description + " ");
@@ -67,6 +68,7 @@ public class PersonUtil {
         sb.append(PREFIX_DATE + debt.getDate().getInputFormat());
         return sb.toString();
     }
+    // @@author
 
     public static String getLoanDescription(Loan loan) {
         StringBuilder sb = new StringBuilder();

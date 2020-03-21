@@ -1,3 +1,4 @@
+// @@author cheyannesim
 package seedu.address.model.transaction;
 
 import seedu.address.model.tag.Tag;
