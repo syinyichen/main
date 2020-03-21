@@ -364,6 +364,7 @@ Expected Outcome:
 
 //end::peopleremindall[]
 
+// @@author cheyannesim
 // tag::owe[]
 ==== Recording the money you owe: `owe`
 
@@ -386,6 +387,7 @@ Expected Outcome:
     Increased debt to Grace by $5.00! You now owe Grace $10.00.
 
 // end::owe[]
+// @@author
 
 // tag::return[]
 ==== Recording the money you return: `returned`
