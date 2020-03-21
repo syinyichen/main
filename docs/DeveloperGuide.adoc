@@ -148,6 +148,7 @@ respective lists change.
 * does not depend on any of the other three components.
 
 
+//tag::storage[]
 [[Design-Storage]]
 === Storage component
 
@@ -156,10 +157,15 @@ image::StorageClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/storage/Storage.java[`Storage.java`]
 
+The Storage converts Model objects to saveable data and vice versa. It comprises four main parts: `UserPrefsStorage`, `UserDataStorage`, `AddressBookStorage` and `WalletStorage`. Each of these interfaces have a JSON-based implementation that convert their specific data to and from JSON.
+
 The `Storage` component,
 
-* can save `UserPref` objects in json format and read it back.
-* can save the Address Book data in json format and read it back.
+* can save `UserPref` objects in JSON format and read it back.
+* can save UserData in JSON format and read it back.
+* can save the Address Book data in JSON format and read it back.
+* can save the Wallet data in JSON format and read it back.
+//end::storage[]
 
 [[Design-Commons]]
 === Common classes
