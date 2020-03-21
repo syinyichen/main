@@ -75,7 +75,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 [[Features]]
 == Features
 //tag::expenditureAndIncome[]
-=== Expenditure and income `[coming in v2.0]`
+=== Expenditure and income
 *Sharkie* notes down what you have spent on for the month, and also notes down your income for the month to help you properly track your money flow!
 //end::expenditureAndIncome[]
 
@@ -317,7 +317,7 @@ Expected Outcome:
 //tag::peopleremind[]
 ==== Sending reminder to a friend: `remind`
 
-Reminds a friend, through a email to return the loans to you. +
+Reminds a friend, through an email to return the loans to you. +
 Format: `people remind <index>`
 
 ****

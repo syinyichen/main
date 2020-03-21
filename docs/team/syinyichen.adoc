@@ -9,33 +9,45 @@
 
 == Overview
 
-*Sharkie* is a desktop expense tracker application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+*Sharkie* is a desktop expense tracker application. The user interacts with it using a CLI,
+and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 == Summary of contributions
 
 * *Major enhancement*:
 
-** Added People's command, `lend`
+** Added `*lend*` *command* (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#87])
 *** What it does: Allows the user to record the amount of money lent to other people in the address book.
-** Added People's command, `received`
+*** Justification: This is one of the key features of Sharkie, which records the flow of money between the user and
+the people in the address book.
+** Added `*received*` *command* (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#98])
 *** What it does: Allows the user to record that a person, which the user lent has returned the amount of money.
-** Added user data storage
+*** Justification: This is an essential update, which allows the user to remove the loans recorded by the
+`lend` command.
+** Added *user data storage* (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#95])
 *** What it does: Stores user data, such as name, phone and e-mail address.
-*** Justification: This is an essential feature, as the user details are required during the use of `remind` and `remindall` commands.
-** Added People's command, `remind` and `remindall`
-*** What it does: Allows the user to record that a person, which the user lent has returned the amount of money.
+*** Justification: The storage of user data is important, as the user details are required to use the `remind`
+and `remindall` commands.
+** Added `*remind*` and `*remindall*` *command* (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#95])
+*** What it does: Allows the user to send reminders to the people, who has yet return the amount of money they lent via email.
+*** Justification: This is one of the main features of Sharkie, which allows the interaction between the user and
+the people in the address book.
+*** Credits: _javax.mail_ is used in the implementation of this feature.
 
 * *Other contributions*:
 
 ** Project management:
-*** Finalized and tagged `v1.1`. (Pull request https://github.com[#80], https://github.com[#82], https://github.com[#83])
+*** Finalized and tagged `v1.1` and `v1.2`.
 ** Documentation:
-*** Updated the product's website heading: (Pull request https://github.com[#44])
-*** Edited the product's website navigation bar: (Pull request https://github.com[#81])
-*** Edited various parts of the User Guide: (Pull request https://github.com[#49])
-*** Updated the Use Cases Appendix in the Developer Guide: (Pull request https://github.com[#51])
+*** Updated the product website's heading and navigation bar: (Pull request
+https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#44], https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#81])
+*** Edited various parts of the User Guide: (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#49])
+*** Included the use cases into the Developer Guide:
+(Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#51])
 ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com[#92], https://github.com[#100]
+*** PRs reviewed (with non-trivial review comments): (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#92],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#100], https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#104],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#115])
 
 == Contributions to the User Guide
 
