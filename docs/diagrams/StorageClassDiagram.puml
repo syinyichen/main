@@ -18,28 +18,25 @@ Class JsonWalletStorage
 Class JsonUserDataStorage
 
 StorageManager .left.|> Storage
-StorageManager o-right-> UserPrefsStorage
-StorageManager o--> AddressBookStorage
-StorageManager o-up-> WalletStorage
+StorageManager o-up-> UserPrefsStorage
+StorageManager o-down-> AddressBookStorage
+StorageManager o-right-> WalletStorage
 StorageManager o-up-> UserDataStorage
 UserDataStorage -right[hidden]- WalletStorage
 
-JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBook
+JsonUserPrefsStorage .right.|> UserPrefsStorage
+
+JsonAddressBookStorage .up.|> AddressBookStorage
+JsonAddressBookStorage .right.> JsonSerializableAddressBook
 JsonSerializableAddressBook .right.> JsonAdaptedPerson
 JsonAdaptedPerson .right.> JsonAdaptedTag
 
 JsonWalletStorage .left.|> WalletStorage
 JsonWalletStorage .right.> JsonSerializableWallet
-JsonSerializableWallet .right.> JsonAdaptedTransaction
-JsonAdaptedTransaction .down...> JsonAdaptedTag
-JsonAdaptedTransaction .down..> TransactionDescriptor
-JsonAdaptedLoan .down.|> JsonAdaptedTransaction
-JsonAdaptedDebt .up.|> JsonAdaptedTransaction
-JsonAdaptedExpense .left.|> JsonAdaptedTransaction
-JsonAdaptedIncome .down.|> JsonAdaptedTransaction
+JsonSerializableWallet .down.> JsonAdaptedTransaction
+JsonAdaptedTransaction .down.> JsonAdaptedTag
+JsonAdaptedXYZ .right.|> JsonAdaptedTransaction
 
-JsonUserDataStorage .down.|> UserDataStorage
+JsonUserDataStorage .left.|> UserDataStorage
 JsonUserDataStorage .right.> JsonAdaptedUser
 @enduml
