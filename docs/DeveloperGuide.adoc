@@ -177,6 +177,50 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+// tag::received_implementation[]
+=== Received Command
+
+The `received` command is implemented in the class, `PeopleReceivedCommand`.
+
+This command can be accessed from `Logic#execute()`. It deletes the `Loan`(s) of the indicated `Person`
+(the `Person` with the specified index in the Address Book).
+
+The following activity diagram illustrates what happens when the user executes a `received` command:
+
+.Activity diagram of the execution of `received` command
+image::ReceivedActivityDiagram.png[width=600]
+
+==== Implementation of `received` command
+
+. In `PeopleReceivedCommand` class, the list of `Persons` is obtained from the `Model` via
+`Model#getFilteredPersonList()` and the indicated person is extracted from the list.
+. The list of `Loans` of the `Person` is extracted and modified based on the command entered by the user.
+. A new `Person` with the modified list of `Loans` is created.
+. This new `Person` replace the initial `Person` at the indicated index via `Model#setPerson()` and the `filteredPersons`
+in the `Model` is updated.
+
+The following sequence diagram summarizes what happens during the execution of a `received` command:
+
+.Sequence diagram of the `received` command
+image::ReceivedSequenceDiagram.png[]
+
+NOTE: The lifeline for `PeopleReceivedCommand` should end at the destroy marker (X) but due to a limitation of PlantUML,
+the lifeline reaches the end of diagram.
+
+==== Design Considerations
+
+===== Aspect: Deletion of `Loan` from the indicated person.
+
+* **Alternative 1 (current choice):** Creates a new `Person` with the modified list of `Loans` and
+use `Model#setPerson()` to replace the indicated `Person` with the new `Person` created.
+** Pros: Preserve the immutable property of `Person`.
+** Cons: Have to copy over all the attribute values, such as `Name`, `Phone` and more.
+* **Alternative 2:** Modify the list of `Loans` in the indicated `Person` directly.
+** Pros: Easier and can save time from copying the information from one `Person` to another.
+** Cons: `Person` loses the immutable property.
+
+// end::received_implementation[]
+
 // tag::undoredo[]
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
