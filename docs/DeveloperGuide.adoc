@@ -114,6 +114,7 @@ image::DeleteSequenceDiagram.png[]
 
 NOTE: The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
+//tag::model-design[]
 [[Design-Model]]
 === Model component
 
@@ -146,7 +147,7 @@ The `Model`,
 'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when the data in the
 respective lists change.
 * does not depend on any of the other three components.
-
+//end::model-design[]
 
 //tag::storage[]
 [[Design-Storage]]
