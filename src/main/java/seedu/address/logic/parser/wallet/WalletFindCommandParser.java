@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.wallet;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
@@ -8,7 +9,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.wallet.WalletEditCommand;
 import seedu.address.logic.commands.wallet.WalletFindCommand;
+import seedu.address.logic.commands.wallet.WalletFindCommand.FindTransactionDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -43,33 +47,32 @@ public class WalletFindCommandParser implements Parser<WalletFindCommand> {
         return new WalletFindCommand(new DescriptionContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
          */
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_AMOUNT, PREFIX_DATE,
-                PREFIX_TAG);
+        requireNonNull(args);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_AMOUNT, PREFIX_DATE, PREFIX_TAG);
 
-        if (!argMultimap.getValue(PREFIX_NAME).isPresent() && !argMultimap.getValue(PREFIX_AMOUNT).isPresent()
-                && !argMultimap.getValue(PREFIX_DATE).isPresent() && !argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, WalletFindCommand.MESSAGE_USAGE));
-        }
+        FindTransactionDescriptor findTransactionDescriptor = new FindTransactionDescriptor();
 
-        Description description;
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_NAME).get());
+            findTransactionDescriptor.setDescription(
+                    ParserUtil.parseDescription(argMultimap.getValue(PREFIX_NAME).get()));
         }
 
-        Amount amount;
         if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
-            amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
+            findTransactionDescriptor.setAmount(ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get()));
         }
-
-        Date date;
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+            findTransactionDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            findTransactionDescriptor.setTag(ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()));
         }
 
-        Tag tag;
-        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
+        if (!findTransactionDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(WalletFindCommand.NO_PARAMETER_INPUTTED);
         }
+
+        return new WalletFindCommand(findTransactionDescriptor);
 
 
     }

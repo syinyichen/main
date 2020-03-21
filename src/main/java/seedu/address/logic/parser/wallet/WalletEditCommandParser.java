@@ -46,8 +46,8 @@ public class WalletEditCommandParser implements Parser<WalletEditCommand> {
             editTransactionDescriptor.setDescription(
                     ParserUtil.parseDescription(argMultimap.getValue(PREFIX_NAME).get()));
         }
-        if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
 
+        if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
             editTransactionDescriptor.setAmount(ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get()));
         }
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
