@@ -36,7 +36,7 @@ Sharkie is a desktop expense tracker application. The user interacts with it usi
 // ** Documentation:
 // *** Did cosmetic tweaks to existing contents of the User Guide: https://github.com[#14]
 // ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W12-3/main/pull/40[#40], 
+*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W12-3/main/pull/40[#40],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/71[#71],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/92[#92],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/101[#101],
