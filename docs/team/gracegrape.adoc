@@ -9,30 +9,37 @@
 
 == Overview
 
-*Sharkie* is a desktop expense tracker application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+*Sharkie* is a desktop expense tracker application.
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 == Summary of contributions *[To be updated]*
 
 * *Major enhancement*:
 . added *the ability to list out all transactions in the wallet and the UI for it*
-*** What it does: allows the user to list out all transactions, which includes expenses and income. I also created the UI to allow the list to be seen.
+*** What it does: allows the user to list out all transactions, which includes expenses and income.
+I also created the UI to allow the list to be seen.
 *** Justification: This feature improves the product significantly because it allows the user to view all their transactions in their wallet.
-*** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to the UI, including the need to add a tab view to view the Wallet and Address Book separately.
+*** Highlights: This enhancement affects existing commands and commands to be added in future.
+It required an in-depth analysis of design alternatives.
+The implementation too was challenging as it required changes to the UI, including the need to add a tab view to view the Wallet and Address Book separately.
 *** Credits: SceneBuilder
 . added *the ability to edit the transactions in the wallet*
 *** What it does: allows the user to edit the transactions already in the wallet, which includes expenses and income.
 *** Justification: This feature improves the product significantly because it allows the user to edit the information they already keyed in, in case of any mistakes made or updates needed for the expenses and income.
-*** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives.
+*** Highlights: This enhancement affects existing commands and commands to be added in future.
+It required an in-depth analysis of design alternatives.
 *** Credits: Address Book (Level 3)
 . added *the ability to delete the transactions in the wallet*
 *** What it does: allows the user to delete the transactions already in the wallet, which includes expenses and income.
 *** Justification: This feature improves the product significantly because it allows the user to delete the information they already keyed in, in case of any mistakes made.
-*** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives.
+*** Highlights: This enhancement affects existing commands and commands to be added in future.
+It required an in-depth analysis of design alternatives.
 *** Credits: Address Book (Level 3)
 . added *the ability to find transactions in the wallet*
 *** What it does: allows the user to find transactions already in the wallet, which includes expenses and income.
 *** Justification: This feature improves the product significantly because it allows the user to find the information they already keyed in, according to the description of the transactions.
-*** Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives.
+*** Highlights: This enhancement affects existing commands and commands to be added in future.
+It required an in-depth analysis of design alternatives.
 *** Credits: Address Book (Level 3)
 * *Minor enhancement*: -
 
@@ -41,9 +48,14 @@
 * *Other contributions*:
 
 ** Project management *[To be updated]*:
-*** Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+*** Set deliverable and deadlines for the group.
 ** Enhancements to existing features:
-*** *[To be updated]* (Pull requests https://github.com[#33], https://github.com[#34])
+*** *[To be updated]* (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pull/52[#52],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/54[#54], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/61[#61],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/66[#66], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/102[#102], ,
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/110[110], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/115[#115], ,
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/117[#117], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/121[#121],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/122[#122], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/127[#127])
 *** Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests https://github.com[#36], https://github.com[#38])
 ** Documentation:
 *** Updated the User Guide to include more commands, updated Quick Start, and Updated ContactUs: https://github.com/AY1920S2-CS2103T-W12-3/main/pull/52[#52]
@@ -59,7 +71,6 @@
 _{you can add/remove categories in the list above}_
 
 == Contributions to the User Guide
-
 
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
@@ -87,6 +98,7 @@ include::../DeveloperGuide.adoc[tag=productScope]
 
 include::../DeveloperGuide.adoc[tag=userStories]
 
+include::../DeveloperGuide.adoc[tag=walletEdit_implementation]
 
 == PROJECT: PowerPointLabs
 
