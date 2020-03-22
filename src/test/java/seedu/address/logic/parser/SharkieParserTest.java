@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.parser.CliPrefix.PEOPLE_COMMAND_TYPE;
 import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRANSACTION_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDebts.TEXTBOOK;
@@ -94,7 +95,7 @@ public class SharkieParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         PeopleFindCommand command = (PeopleFindCommand) parser.parseCommand(
                 PEOPLE_COMMAND_TYPE + " " + PeopleFindCommand.COMMAND_WORD + " "
-                        + keywords.stream().collect(Collectors.joining(" ")));
+                        + " " + PREFIX_NAME + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new PeopleFindCommand(new PeopleNamePredicate(keywords)), command);
     }
 
