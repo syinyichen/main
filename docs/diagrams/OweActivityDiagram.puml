@@ -1,0 +1,23 @@
+@startuml
+title Activity: Recording a debt
+start
+:User enters the owe command;
+:Parser parses the arguments;
+
+if () then ([name, amount or index is not specified or is invalid])
+else ([else])
+    if () then ([date is specified])
+        :Set the date to the specified date;
+    else ([else])
+        :Set the date to Today's date;
+    endif
+    :Parser returns a PeopleOweCommand;
+    :Logic executes the command;
+    if () then ([index of person is out of bound])
+    else ([else])
+        :Model adds debt to the person;
+        :Model updates the address book;
+    endif
+endif
+stop
+@enduml

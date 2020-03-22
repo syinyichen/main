@@ -177,8 +177,55 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 //tag::owe
-=== Keeping track of debts
-==== Implementation
+=== Owe Command
+
+The `owe` command is implemented in the class `PeopleOweCommand`.
+
+This command can be accessed from  `Logic#execute()`. It records a `debt` of an indicated `Amount` to the
+`Person` specified by the index.
+
+The following activity diagram illustrates what happens when the user enters an `owe` command:
+
+.Activity diagram of the recording a debt
+image::OweActivityDiagram.png[width=500]
+
+==== Implementation of `owe` command
+
+. When entering the debt command, the user will specify the `Person` using the index of the `Person` in the list shown in the GUI.
+. The user should also specify the debt `Description`, `Amount` and optionally, the `Date`.
+. The `PeopleOweCommandParser` will create a `Debt` object based on the details provided, and return the resulting `PeopleOweCommand`.
+. When the `LogicManager` is executing the `PeopleOweCommand`, it will extract the indicated person from the list of
+`Persons` obtained from the `Model` via `Model#getFilteredPersonList()`
+. A new `Person` with the added `Debt` is created.
+. This new `Person` replace the initial `Person` at the indicated index via `Model#setPerson()` for immutability.
+. The `filteredPersons` in the `Model` is then updated.
+. `CommandResult` is returned.
+
+The following sequence diagram summarizes what happens during the execution of a `owe` command:
+
+image::OweSequenceDiagram.png[]
+.Sequence diagram of the `owe` command
+image::GetPeopleOweCommandSequenceDiagram.png[width=500]
+
+NOTE: The lifeline for `PeopleOweCommand` should end at the destroy marker (X) but due to a limitation of PlantUML,
+the lifeline reaches the end of diagram.
+
+==== Design Considerations
+
+===== Aspect: Keeping track of `Debt` of a `Person`.
+
+* **Alternative 1 (current choice):** Each `Person` has a list of `Debt` objects, each `Debt` object
+has `Description`, `Amount` and `Date`.
+** Pros: Able to record more information about a `Debt`.
+** Cons: `Sharkie` only allows the return of a `Debt` all at once, i.e., the user cannot return a `Debt` partially.
+* **Alternative 2:** Each `Person` has one `Debt` object.
+** Pros: Easier to store the `Debt` object, only have to keep track of the total debt `Amount` and the `Date` of the
+debt. The user can return any `Amount` to the `Person`, and `Sharkie` will just deduct the total `Amount` of debt
+accordingly.
+** Cons: Storing the `Date` is problematic, as it questions whether the `Date` of the first borrowing or latest borrowing
+should be stored. Furthermore, there is no breakdown of `Debt` details if the user wants to recall why he owed a `Person`
+money.
+
 //end::owe
 
 // tag::received_implementation[]
