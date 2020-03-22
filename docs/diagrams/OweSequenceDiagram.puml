@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as Logic LOGIC_COLOR
+participant ":PeopleOweCommand" as peopleOweCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "debt:Debt" as debt MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+participant "personUserOwes:Person" as personUserOwes MODEL_COLOR
+participant "addedDebtPerson:Person" as addedDebtPerson MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":UniquePersonList" as UniquePersonList MODEL_COLOR
+end box
+
+[-> Logic : execute()
+activate Logic
+
+ref over Logic, peopleOweCommand, debt : get PeopleOweCommand
+
+Logic-> peopleOweCommand : execute()
+activate peopleOweCommand
+
+[-[hidden]> peopleOweCommand : a very long long text
+
+peopleOweCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> peopleOweCommand : lastShownList
+
+peopleOweCommand -> personUserOwes : lastShownList.get(index)
+activate personUserOwes
+
+personUserOwes --> peopleOweCommand : personUserOwes
+deactivate personUserOwes
+
+peopleOweCommand -> peopleOweCommand : createPersonOwed(\npersonUserOwes, debt)
+activate peopleOweCommand
+
+create addedDebtPerson
+peopleOweCommand -> addedDebtPerson : Person()
+activate addedDebtPerson
+
+addedDebtPerson --> peopleOweCommand : addedDebtPerson
+deactivate addedDebtPerson
+
+peopleOweCommand --> peopleOweCommand : addedDebtPerson
+deactivate peopleOweCommand
+
+peopleOweCommand -> Model : setPerson(\npersonUserOwes, \naddedDebtPerson)
+
+Model -> AddressBook : setPerson(personUserOwes, addedDebtPerson)
+activate AddressBook
+
+AddressBook -> UniquePersonList : setPerson(\npersonUserOwes, \naddedDebtPerson)
+activate UniquePersonList
+
+UniquePersonList --> AddressBook
+deactivate UniquePersonList
+
+AddressBook --> Model
+deactivate AddressBook
+
+Model --> peopleOweCommand
+
+peopleOweCommand -> Model : updateFilteredPersonList()
+
+Model --> peopleOweCommand
+deactivate Model
+
+peopleOweCommand --> Logic : result
+deactivate peopleOweCommand
+[<--Logic : result
+deactivate Logic
+destroy peopleOweCommand
+
+@enduml
