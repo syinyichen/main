@@ -25,9 +25,13 @@ activate EditTransactorDescriptor
 EditTransactorDescriptor --> WalletEditCommandParser : editTransactionDescriptor
 deactivate EditTransactorDescriptor
 activate WalletEditCommand
+[-[hidden]> WalletEditCommand :
+destroy EditTransactorDescriptor
 
 WalletEditCommandParser -> WalletEditCommand : WalletEditCommand(1, editTransactionDescriptor)
 deactivate WalletEditCommandParser
+[-[hidden]> WalletEditCommand :
+destroy WalletEditCommandParser
 
 WalletEditCommand -> Model : getFilteredTransactionsList()
 activate Model

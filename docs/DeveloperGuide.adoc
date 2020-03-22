@@ -235,11 +235,15 @@ image::WalletEditActivityDiagram.png[width=600]
 
 ==== Implementation of `wallet edit` command
 
+. `WalletEditCommandParser` is executed first to create an `EditTransactorDescriptor` to hold the values to be edited.
+. `WalletEditCommandParser` then passes the `editTransactorDescriptor` to create a `WalletEditCommand`.
 . In `WalletEditCommand` class, the list of `transactions` is obtained from the `Model` via
 `Model#getFilteredTransactionsList()` and the indicated transaction is extracted from the list, as either a form of
 income or expense.
-. The `transaction` selected is extracted and modified based on the command entered by the user.
-. A new `transaction` modified from the `transaction` selected is created.
+. The `transaction` selected is extracted and modified based on the command entered by the user, which are stored in
+`editTransactorDescriptor`
+. A new `transaction` modified from the `transaction` selected is created with `createEditedTransaction` method in
+`WalletEditCOmmand`
 . This new `transaction` replace the initial `transaction` at the indicated index via `Model#setTransaction()` and
 the `filteredTransactions` in the `Model` is updated.
 
@@ -248,7 +252,7 @@ The following sequence diagram summarizes what happens during the execution of a
 .Sequence diagram of the `wallet edit` command
 image::WalletEditSequenceDiagram.png[]
 
-NOTE: The lifeline for `WalletEditCommand` should end at the destroy marker (X) but due to a limitation of PlantUML,
+NOTE: The lifeline for `WalletEditCommand`, `WalletEditCommandParser` and `EditTransactorDescriptor` should end at the destroy marker (X) but due to a limitation of PlantUML,
 the lifeline reaches the end of diagram.
 
 ==== Design Considerations
