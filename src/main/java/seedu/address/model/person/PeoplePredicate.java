@@ -3,6 +3,9 @@ package seedu.address.model.person;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Person} matches any of the keywords given.
+ */
 public abstract class PeoplePredicate implements Predicate<Person> {
 
     protected final List<String> keywords;

@@ -58,6 +58,21 @@ public class PeopleNamePredicateTest {
     }
 
     @Test
+    public void test_nameContainsPartialKeywords_returnsTrue() {
+        // One partial keyword
+        PeopleNamePredicate predicate = new PeopleNamePredicate(Collections.singletonList("Ali"));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice").build()));
+
+        // Multiple partial keyword
+        predicate = new PeopleNamePredicate(Arrays.asList("Ali", "Bo"));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+
+        // Only one matching partial keyword
+        predicate = new PeopleNamePredicate(Arrays.asList("Ali", "Bo"));
+        assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
+    }
+
+    @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         PeopleNamePredicate predicate = new PeopleNamePredicate(Collections.emptyList());
