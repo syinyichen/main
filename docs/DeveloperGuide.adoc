@@ -278,7 +278,7 @@ use `Model#setPerson()` to replace the indicated `Person` with the new `Person` 
 The `edit` command is implemented in the class, `WalletEditCommand`.
 
 This command can be accessed from `Logic#execute()`. It edits the `transactions`(s), which include both `income`(s) and
-`expense`(s) of the indicated `transaction` (the `transaction` with the specified index in the Address Book).
+`expense`(s) of the indicated `transaction` (the `transaction` with the specified index in the Wallet).
 
 The following activity diagram illustrates what happens when the user executes a `wallet edit` command:
 
@@ -309,15 +309,15 @@ the lifeline reaches the end of diagram.
 
 ==== Design Considerations
 
-===== Aspect: Deletion of `Loan` from the indicated person.
+===== Aspect: Choosing which `transaction` to edit from the list of transactions.
 
-* **Alternative 1 (current choice):** Creates a new `Person` with the modified list of `Loans` and
-use `Model#setPerson()` to replace the indicated `Person` with the new `Person` created.
-** Pros: Preserve the immutable property of `Person`.
-** Cons: Have to copy over all the attribute values, such as `Name`, `Phone` and more.
-* **Alternative 2:** Modify the list of `Loans` in the indicated `Person` directly.
-** Pros: Easier and can save time from copying the information from one `Person` to another.
-** Cons: `Person` loses the immutable property.
+* **Alternative 1 (current choice):** Get the index from the list displayed, and not original index displayed by
+`wallet list command`.
+** Pros: Easy to see which `transaction` is to be edited.
+** Cons: Have to keep updating the filtered list.
+* **Alternative 2:** Always edit based on original list, shown by `wallet list command`.
+** Pros: Index is always consistent.
+** Cons: Harder to remember which index represents which transaction.
 
 // end::walletEdit_implementation[]
 
