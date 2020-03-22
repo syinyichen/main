@@ -40,7 +40,7 @@ import seedu.address.logic.commands.wallet.WalletDeleteCommand;
 import seedu.address.logic.commands.wallet.WalletExpenseCommand;
 import seedu.address.logic.commands.wallet.WalletIncomeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PeopleNamePredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -95,7 +95,7 @@ public class SharkieParserTest {
         PeopleFindCommand command = (PeopleFindCommand) parser.parseCommand(
                 PEOPLE_COMMAND_TYPE + " " + PeopleFindCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new PeopleFindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new PeopleFindCommand(new PeopleNamePredicate(keywords)), command);
     }
 
     @Test
