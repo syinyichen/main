@@ -17,6 +17,10 @@ Class Loan
 Class Amount
 Class Date
 Class Description
+Class Budget
+Class BudgetList
+Class Month
+Class Year
 }
 
 Package Tag {
@@ -26,14 +30,19 @@ Class Tag
 Class HiddenWallet #FFFFFF
 Class HiddenPerson #FFFFFF
 HiddenWallet --> "1" TransactionList
+HiddenWallet --> "1" BudgetList
 HiddenPerson --> "*" Debt
 HiddenPerson --> "*" Loan
+BudgetList o--> "*" Budget
 TransactionList o--> "*" Expense
 TransactionList o--> "*" Income
 Expense .up.|> Transaction
 Income .up.|> Transaction
 Debt .up.|> Transaction
 Loan .up.|> Transaction
+Budget *--> Amount
+Budget *--> Month
+Budget *--> Year
 Expense *--> Amount
 Expense *--> Description
 Expense *--> "0..1" Date

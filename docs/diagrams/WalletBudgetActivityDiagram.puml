@@ -1,0 +1,22 @@
+@startuml
+title Activity: Entering a budget
+start
+:User enters the wallet budget command;
+:Parser parses the arguments;
+
+if () then ([amount is not specified])
+else ([else])
+    if () then ([month and year is specified])
+        :Sets the budget to the specified amount,
+        month and year;
+    else ([else])
+        :Sets the budget to the specified amount,
+        and sets it as the default budget;
+    endif
+    :Parser returns a WalletBudgetCommand;
+    :Logic executes the command;
+    :Model adds budget to BudgetList;
+    :Model updates the wallet;
+endif
+stop
+@enduml

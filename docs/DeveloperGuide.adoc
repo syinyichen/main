@@ -321,6 +321,43 @@ the lifeline reaches the end of diagram.
 
 // end::walletEdit_implementation[]
 
+// tag::walletBudget_implementation[]
+=== Wallet Budget Command
+The `budget` command is implemented in the class, `WalletBudgetCommand`.
+
+This command can be accessed from `Logic#execute()`. It adds a budget using the parameters as specified by the user.
+
+The following activity diagram illustrates what happens when a user executes the `wallet budget` command:
+
+.Activity diagram of the execution of `wallet budget` command
+image::WalletBudgetActivityDiagram.png[width=600]
+
+==== Implementation of `wallet budget` command
+
+. In `WalletBudgetCommand` class, the `Budget` produced by `WalletBudgetCommandParser` is examined to determine if it is a default budget, or if it is a normal budget.
+.. If the `Budget` is a default budget, the `BudgetList` is updated in the `Model` via `Model#setDefaultBudget()`. This sets the default budget as the one given.
+.. If the `Budget` is not a default budget, the `BudgetList` is updated in the `Model` via `Model#setBudget()`. This adds the budget given to a list of budgets with their `Month` and `Year` specified.
+. The list of `Budget` in the `Wallet` is modified based the arguments input by the user.
+. If a `Budget` with the same arguments given already exists, it will be overwritten by the one given.
+
+The following sequence diagram summarizes what happens during the execution of a `wallet budget` command:
+
+.Sequence diagram of the `wallet budget` command
+image::WalletBudgetSequenceDiagram.png[]
+
+==== Design Considerations
+
+===== Aspect: Selection of `Budget` to set: default or specific month / year
+
+* **Alternative 1 (current choice):** If the month and year of the budget is specified, the specific `Budget` will be set. Otherwise, the default `Budget` will be set.
+** Pros: Easy to differentiate during command processing whether we want a default `Budget` or a specific one.
+** Cons: All `Budget` except default `Budget` all contain a redundant `isDefault` boolean
+* **Alternative 2:** Allow the user to specify if they want a default `Budget` set, or a specific `Budget` instead.
+** Pros: Clearer way to distinguish between default `Budget` and specific `Budget`
+** Cons: Requires more prefixes / suffixes to be added to `Parser` in order to parse extra arguments.
+
+// end::walletBudget_implementation[]
+
 // tag::undoredo[]
 === [Proposed] Undo/Redo feature
 ==== Proposed Implementation
