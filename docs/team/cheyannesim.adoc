@@ -81,6 +81,7 @@ include::../UserGuide.adoc[tag=delete]
 |===
 
 include::../DeveloperGuide.adoc[tag=architecture]
+include::../DeveloperGuide.adoc[tag=owe]
 include::../DeveloperGuide.adoc[tag=apendixd]
 
 ////
