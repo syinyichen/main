@@ -226,7 +226,7 @@ use `Model#setPerson()` to replace the indicated `Person` with the new `Person` 
 The `edit` command is implemented in the class, `WalletEditCommand`.
 
 This command can be accessed from `Logic#execute()`. It edits the `transactions`(s), which include both `income`(s) and
-`expense`(s) of the indicated `transaction` (the `transaction` with the specified index in the Address Book).
+`expense`(s) of the indicated `transaction` (the `transaction` with the specified index in the Wallet).
 
 The following activity diagram illustrates what happens when the user executes a `wallet edit` command:
 
