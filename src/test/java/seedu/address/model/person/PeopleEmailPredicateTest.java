@@ -17,14 +17,14 @@ public class PeopleEmailPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("test");
         List<String> secondPredicateKeywordList = Arrays.asList("alex", "bernice");
 
-        PeoplePhonePredicate firstPredicate = new PeoplePhonePredicate(firstPredicateKeywordList);
-        PeoplePhonePredicate secondPredicate = new PeoplePhonePredicate(secondPredicateKeywordList);
+        PeopleEmailPredicate firstPredicate = new PeopleEmailPredicate(firstPredicateKeywordList);
+        PeopleEmailPredicate secondPredicate = new PeopleEmailPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        PeopleNamePredicate firstPredicateCopy = new PeopleNamePredicate(firstPredicateKeywordList);
+        PeopleEmailPredicate firstPredicateCopy = new PeopleEmailPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false

@@ -24,7 +24,7 @@ public class PeoplePhonePredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        PeopleNamePredicate firstPredicateCopy = new PeopleNamePredicate(firstPredicateKeywordList);
+        PeoplePhonePredicate firstPredicateCopy = new PeoplePhonePredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false

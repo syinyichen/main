@@ -24,7 +24,7 @@ public class PeopleTagPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        PeopleNamePredicate firstPredicateCopy = new PeopleNamePredicate(firstPredicateKeywordList);
+        PeopleTagPredicate firstPredicateCopy = new PeopleTagPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -38,7 +38,7 @@ public class PeopleTagPredicateTest {
     }
 
     @Test
-    public void test_phoneContainsKeywords_returnsTrue() {
+    public void test_tagContainsKeywords_returnsTrue() {
         // One keyword
         PeopleTagPredicate predicate = new PeopleTagPredicate(Collections.singletonList("friend"));
         assertTrue(predicate.test(new PersonBuilder().withTags("friend").build()));
@@ -53,7 +53,7 @@ public class PeopleTagPredicateTest {
     }
 
     @Test
-    public void test_phoneContainsPartialKeywords_returnsTrue() {
+    public void test_tagContainsPartialKeywords_returnsTrue() {
         // One partial keyword
         PeopleTagPredicate predicate = new PeopleTagPredicate(Collections.singletonList("fri"));
         assertTrue(predicate.test(new PersonBuilder().withTags("friend").build()));
@@ -68,7 +68,7 @@ public class PeopleTagPredicateTest {
     }
 
     @Test
-    public void test_phoneDoesNotContainKeywords_returnsFalse() {
+    public void test_tagDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         PeopleTagPredicate predicate = new PeopleTagPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withTags("friend").build()));
