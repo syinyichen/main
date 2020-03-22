@@ -46,38 +46,38 @@ public class TypicalPersons {
             .withPhone("98765432")
             .withDebts(TEXTBOOK)
             .withLoans(LUNCH)
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends", "Debt", "Loan").build();
     public static final Person CARL = new PersonBuilder()
             .withName("Carl Kurz")
             .withPhone("95352563")
             .withEmail("heinz@example.com")
             .withDebts(MILKTEA, IPHONE)
-            .withLoans(DINNER).build();
+            .withLoans(DINNER).withTags("Debt", "Loan").build();
     public static final Person DANIEL = new PersonBuilder()
             .withName("Daniel Meier")
             .withPhone("87652533")
             .withEmail("cornelia@example.com")
             .withDebts(MOVIE)
             .withLoans(SUPPER)
-            .withTags("friends").build();
+            .withTags("friends", "Debt", "Loan").build();
     public static final Person ELLE = new PersonBuilder()
             .withName("Elle Meyer")
             .withPhone("9482224")
             .withEmail("werner@example.com")
             .withDebts(IPHONE)
-            .withLoans(DESSERT).build();
+            .withLoans(DESSERT).withTags("Debt", "Loan").build();
     public static final Person FIONA = new PersonBuilder()
             .withName("Fiona Kunz")
             .withPhone("9482427")
             .withEmail("lydia@example.com")
             .withDebts(TAOBAO)
-            .withLoans(SHOPPING).build();
+            .withLoans(SHOPPING).withTags("Debt", "Loan").build();
     public static final Person GEORGE = new PersonBuilder()
             .withName("George Best")
             .withPhone("9482442")
             .withEmail("anna@example.com")
             .withDebts(MCGRIDDLE)
-            .withLoans(TRAVEL).build();
+            .withLoans(TRAVEL).withTags("Debt", "Loan").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
