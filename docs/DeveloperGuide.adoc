@@ -81,7 +81,6 @@ The sections below give more details of each component.
 image::UiClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
-
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
@@ -101,18 +100,18 @@ image::LogicClassDiagram.png[]
 *API* :
 link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
-.  `Logic` uses the `AddressBookParser` class to parse the user command.
+.  `Logic` uses the `SharkieParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
 .  The command execution can affect the `Model` (e.g. adding a person).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("people delete 1")` API call.
 
 .Interactions Inside the Logic Component for the `delete 1` Command
 image::DeleteSequenceDiagram.png[]
 
-NOTE: The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+NOTE: The lifeline for `WalletDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 //tag::model-design[]
 [[Design-Model]]
@@ -220,6 +219,55 @@ use `Model#setPerson()` to replace the indicated `Person` with the new `Person` 
 ** Cons: `Person` loses the immutable property.
 
 // end::received_implementation[]
+
+// tag::walletEdit_implementation[]
+=== Wallet Edit Command
+
+The `edit` command is implemented in the class, `WalletEditCommand`.
+
+This command can be accessed from `Logic#execute()`. It edits the `transactions`(s), which include both `income`(s) and
+`expense`(s) of the indicated `transaction` (the `transaction` with the specified index in the Address Book).
+
+The following activity diagram illustrates what happens when the user executes a `wallet edit` command:
+
+.Activity diagram of the execution of `wallet edit` command
+image::WalletEditActivityDiagram.png[width=600]
+
+==== Implementation of `wallet edit` command
+
+. `WalletEditCommandParser` is executed first to create an `EditTransactorDescriptor` to hold the values to be edited.
+. `WalletEditCommandParser` then passes the `editTransactorDescriptor` to create a `WalletEditCommand`.
+. In `WalletEditCommand` class, the list of `transactions` is obtained from the `Model` via
+`Model#getFilteredTransactionsList()` and the indicated transaction is extracted from the list, as either a form of
+income or expense.
+. The `transaction` selected is extracted and modified based on the command entered by the user, which are stored in
+`editTransactorDescriptor`
+. A new `transaction` modified from the `transaction` selected is created with `createEditedTransaction` method in
+`WalletEditCOmmand`
+. This new `transaction` replace the initial `transaction` at the indicated index via `Model#setTransaction()` and
+the `filteredTransactions` in the `Model` is updated.
+
+The following sequence diagram summarizes what happens during the execution of a `wallet edit` command:
+
+.Sequence diagram of the `wallet edit` command
+image::WalletEditSequenceDiagram.png[]
+
+NOTE: The lifeline for `WalletEditCommand`, `WalletEditCommandParser` and `EditTransactorDescriptor` should end at the destroy marker (X) but due to a limitation of PlantUML,
+the lifeline reaches the end of diagram.
+
+==== Design Considerations
+
+===== Aspect: Deletion of `Loan` from the indicated person.
+
+* **Alternative 1 (current choice):** Creates a new `Person` with the modified list of `Loans` and
+use `Model#setPerson()` to replace the indicated `Person` with the new `Person` created.
+** Pros: Preserve the immutable property of `Person`.
+** Cons: Have to copy over all the attribute values, such as `Name`, `Phone` and more.
+* **Alternative 2:** Modify the list of `Loans` in the indicated `Person` directly.
+** Pros: Easier and can save time from copying the information from one `Person` to another.
+** Cons: `Person` loses the immutable property.
+
+// end::walletEdit_implementation[]
 
 // tag::undoredo[]
 === [Proposed] Undo/Redo feature
