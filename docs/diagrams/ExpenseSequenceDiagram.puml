@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as Logic LOGIC_COLOR
+participant ":WalletExpenseCommand" as walletExpenseCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "expense:Expense" as expense MODEL_COLOR
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":Wallet" as Wallet MODEL_COLOR
+participant ":TransactionList" as TransactionList MODEL_COLOR
+end box
+
+[-> Logic : execute()
+activate Logic
+
+ref over Logic, walletExpenseCommand, expense : get WalletExpenseCommand
+
+Logic-> walletExpenseCommand : execute()
+activate walletExpenseCommand
+
+[-[hidden]> walletExpenseCommand : a very long long text
+
+walletExpenseCommand -> ModelManager : addExpense(expense)
+activate ModelManager
+
+ModelManager -> Wallet : addExpense(expense)
+activate Wallet
+
+Wallet -> TransactionList : addTransaction(expense)
+activate TransactionList
+
+TransactionList --> Wallet
+deactivate TransactionList
+
+Wallet --> ModelManager
+deactivate Wallet
+
+ModelManager --> walletExpenseCommand
+deactivate ModelManager
+
+walletExpenseCommand --> Logic : result
+deactivate walletExpenseCommand
+[<--Logic : result
+deactivate Logic
+destroy walletExpenseCommand
+
+@enduml
