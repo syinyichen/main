@@ -13,7 +13,7 @@ box Model MODEL_COLOR_T1
 participant "debt:Debt" as debt MODEL_COLOR
 end box
 
-Logic -> PeopleOweCommandParser : parser()
+Logic -> PeopleOweCommandParser : parse("1 n/Dinner $/10")
 activate PeopleOweCommandParser
 
 create debt
