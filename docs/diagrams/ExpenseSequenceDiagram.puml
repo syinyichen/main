@@ -85,8 +85,10 @@ deactivate CommandResult
 
 WalletExpenseCommand --> Logic : result
 deactivate WalletExpenseCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+WalletExpenseCommand -[hidden]-> Logic
+destroy WalletExpenseCommand
 [<--Logic : result
 deactivate Logic
-destroy WalletExpenseCommand
 
 @enduml

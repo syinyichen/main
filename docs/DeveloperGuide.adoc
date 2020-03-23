@@ -272,6 +272,53 @@ use `Model#setPerson()` to replace the indicated `Person` with the new `Person` 
 
 // end::received_implementation[]
 
+//tag::transactions[]
+=== Transactions
+
+The `Transaction` forms the basis for Sharkie's monetary-related features. It contains a `Description`, `Amount`, `Date` and `Tag`.
+
+There are currently four classes that inherit from this abstract class, namely `Expense`, `Income`, `Debt` and `Loan`.
+
+.Class diagram of Transaction
+image::TransactionClassDiagram.png[width=500]
+
+`Expense` and `Income` can be created using the `WalletExpenseCommand` and the `WalletIncomeCommand`.
+
+These commands can be accessed from  `Logic#execute()`. It records an `expense` of an indicated `Description`, `Amount`, `Date` and `Tag`.
+
+As the two commands are similar, it is sufficient to trace the `WalletExpenseCommand`. The following activity diagram illustrates what happens when the user enters an `expense` command:
+
+.Activity diagram of recording an expense
+image::ExpenseActivityDiagram.png[width=500]
+
+==== Implementation of `expense` command
+
+. When entering the expense command, the user will specify the `Description`, `Amount` and optionally, the `Date` and `Tag`.
+. The `WalletExpenseCommandParser` will create an `Expense` object based on the details provided, and return the resulting `WalletExpenseCommand`.
+. The `LogicManager` then executes the command and adds the previously created `Expense` object to the Wallet model.
+. `CommandResult` is returned.
+
+The following sequence diagram summarizes what happens during the execution of an `expense` command:
+
+.Sequence diagram of the `expense` command
+image::ExpenseSequenceDiagram.png[]
+
+==== Design Considerations
+
+===== Aspect: Storing the Amount of a Transaction.
+
+* **Alternative 1 (current implementation):** Amounts are stored in dollars as `double`.
+** Pros: Easier to implement.
+** Cons: Floats are inexact. Floating point errors may cause rounding errors or unexpected bugs (e.g. checking if an amount is equal to zero).
+* **Alternative 2 (future implementation):** Amounts are stored in cents as `long`.
+** Pros: Arithmetic involving amounts will be exact.
+** Cons: Conversion is needed between cents and dollars. All Sharkie programmers have to be aware of the necessary conversion else bugs may occur.
+* **Alternative 3:** Amounts are stored as the inbuilt `BigDecimal` class.
+** Pros: Arithmetic involving amounts will be exact.
+** Cons: `BigDecimal` is slower in performance and if many calculations are performed, runtime is considerably slower.
+
+//end::transactions[]
+
 // tag::walletEdit_implementation[]
 === Wallet Edit Command
 

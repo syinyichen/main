@@ -77,3 +77,5 @@ include::../UserGuide.adoc[tag=expenditureSummary]
 include::../DeveloperGuide.adoc[tag=productSurvey]
 
 include::../DeveloperGuide.adoc[tag=storage]
+
+include::../DeveloperGuide.adoc[tag=transactions]
