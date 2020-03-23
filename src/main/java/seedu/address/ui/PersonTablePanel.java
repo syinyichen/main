@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -12,6 +11,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.transaction.Amount;
+import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Description;
 import seedu.address.model.transaction.Transaction;
 
@@ -33,7 +33,7 @@ public class PersonTablePanel<T extends Transaction> extends UiPart<Region> {
     @FXML
     private TableColumn<T, Amount> amountTableColumn;
     @FXML
-    private TableColumn<T, LocalDate> dateTableColumn;
+    private TableColumn<T, String> dateTableColumn;
 
     public PersonTablePanel(ObservableList<T> transactionList) {
         super(FXML);
@@ -42,10 +42,26 @@ public class PersonTablePanel<T extends Transaction> extends UiPart<Region> {
             int index = transactionTableView.getItems().indexOf(transaction) + 1;
             return new SimpleStringProperty(Integer.toString(index));
         });
+
         descriptionTableColumn.setCellValueFactory(new PropertyValueFactory<T, Description>("description"));
         amountTableColumn.setCellValueFactory(new PropertyValueFactory<T, Amount>("amount"));
-        dateTableColumn.setCellValueFactory(new PropertyValueFactory<T, LocalDate>("date"));
+        dateTableColumn.setCellValueFactory(data -> {
+            T transaction = data.getValue();
+            Date transactionDate = transaction.getDate();
+            return new SimpleStringProperty(
+                    String.format("%s %s %s",
+                            transactionDate.getLocalDate().getDayOfMonth(),
+                            transactionDate.getMonth().toString().substring(0, 3),
+                            transactionDate.getYear()));
+        });
         transactionTableView.setItems(transactionList);
+
+        setProperties();
     }
 
+    private void setProperties() {
+        indexTableColumn.setStyle("-fx-alignment: CENTER;");
+        amountTableColumn.setStyle("-fx-alignment: CENTER;");
+        dateTableColumn.setStyle("-fx-alignment: CENTER;");
+    }
 }

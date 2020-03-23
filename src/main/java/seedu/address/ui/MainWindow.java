@@ -222,9 +222,6 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             resultDisplay.setStyleToIndicatePass();
 
-            walletTransactionsPanel.update(logic.getFilteredTransactionList());
-            walletStatisticsPanel.update(logic.getWallet(), logic.getFilteredTransactionList());
-
             if (commandResult.isShowHelp()) {
                 handleHelp();
                 resultDisplay.setStyleToIndicateNeutral();
@@ -235,6 +232,8 @@ public class MainWindow extends UiPart<Stage> {
                 resultDisplay.setStyleToIndicateNeutral();
             }
 
+            updateWalletPanel(commandText);
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
@@ -243,6 +242,12 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
+    private void updateWalletPanel(String commandText) {
+        walletTransactionsPanel.update(logic.getFilteredTransactionList());
+        walletStatisticsPanel.update(logic.getWallet(), logic.getFilteredTransactionList());
+    }
+
 
     /**
      * Executes the command and returns the result.

@@ -23,6 +23,9 @@ public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
 
+    private static final String TAG_STYLE_CLASS = "tag";
+    private static final double TAGS_PANE_HORIZONTAL_GAP = 4.0;
+
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -60,7 +63,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private TableColumn<Loan, LocalDate> loanDate;
     @FXML
-    private FlowPane tags;
+    private FlowPane tagsPane;
 
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
@@ -75,7 +78,24 @@ public class PersonCard extends UiPart<Region> {
                 new PersonTablePanel<Loan>(person.getLoans().asUnmodifiableObservableList()).getRoot());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label tagLabel = new Label(tag.tagName);
+                    tagLabel.getStyleClass().add(TAG_STYLE_CLASS);
+                    tagsPane.getChildren().add(tagLabel);
+                });
+
+        setProperties();
+    }
+
+    private void setProperties() {
+        tagsPane.setHgap(TAGS_PANE_HORIZONTAL_GAP);
+
+        TableColumn<Debt, String> debtTitle = new TableColumn<>("Debts");
+        debts.getColumns().add(debtTitle);
+
+        TableColumn<Loan, String> loanTitle = new TableColumn<>("Loans");
+        loans.getColumns().add(loanTitle);
+
     }
 
     @Override

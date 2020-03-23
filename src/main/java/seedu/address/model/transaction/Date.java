@@ -14,7 +14,7 @@ import java.time.format.ResolverStyle;
  * Guarantees: immutable; date is valid as declared in {@link #isValidDate(String)}
  */
 
-public class Date implements Comparable<Date>{
+public class Date implements Comparable<Date> {
 
     public static final String DATE_PATTERN = "dd/MM/uuuu";
     public static final String DATE_FORMAT = "dd/MM/yyyy";
@@ -57,7 +57,7 @@ public class Date implements Comparable<Date>{
         return new Date(LocalDate.now());
     }
 
-    public LocalDate getDate() {
+    public LocalDate getLocalDate() {
         return date;
     }
 
@@ -76,10 +76,6 @@ public class Date implements Comparable<Date>{
         return Year.of(date.getYear());
     }
 
-    public String getMonthString() {
-        return date.getMonth().toString();
-    }
-
     @Override
     public String toString() {
         return date.toString();
@@ -94,6 +90,6 @@ public class Date implements Comparable<Date>{
 
     @Override
     public int compareTo(Date other) {
-        return getDate().compareTo(other.getDate());
+        return getLocalDate().compareTo(other.getLocalDate());
     }
 }

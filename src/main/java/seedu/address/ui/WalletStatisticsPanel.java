@@ -17,14 +17,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.ReadOnlyWallet;
-import seedu.address.model.Wallet;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Budget;
 import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Transaction;
 
-
+/**
+ * Ui panel containing the statistics of the Wallet.
+ */
 public class WalletStatisticsPanel extends UiPart<Region> {
 
     private static final String FXML = "WalletStatisticsPanel.fxml";
@@ -59,6 +60,9 @@ public class WalletStatisticsPanel extends UiPart<Region> {
         update(wallet, transactionList);
     }
 
+    /**
+     * Updates the statistics displayed with the modified {@code wallet} and {@code transactionList}.
+     */
     public void update(ReadOnlyWallet wallet, ObservableList<Transaction> transactionList) {
         this.wallet = wallet;
         this.walletTransactionList = transactionList;
@@ -69,12 +73,18 @@ public class WalletStatisticsPanel extends UiPart<Region> {
         updateBudgetRemaining();
     }
 
-    public void setCurrentMonthYear() {
+    /**
+     * Updates the current month / year label to the current date.
+     */
+    private void setCurrentMonthYear() {
         Date currDate = Date.getDefault();
         currentMonthYearLabel.setText(String.format("%s %s", currDate.getMonth(), currDate.getYear()));
     }
 
-    public void populatePieChart() {
+    /**
+     * Populates the pie chart with the data provided.
+     */
+    private void populatePieChart() {
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
 
         Date currDate = Date.getDefault();
@@ -114,7 +124,10 @@ public class WalletStatisticsPanel extends UiPart<Region> {
         }
     }
 
-    public void updateBudgetRemaining() {
+    /**
+     * Updates the budget remaining after deducting the month's total expenditure.
+     */
+    private void updateBudgetRemaining() {
         Date currDate = Date.getDefault();
         Month currMonth = currDate.getMonth();
         Year currYear = currDate.getYear();
@@ -142,7 +155,7 @@ public class WalletStatisticsPanel extends UiPart<Region> {
         }
     }
 
-    public void resetStyles() {
+    private void resetStyles() {
         ObservableList<String> styleClass = budgetRemainingLabel.getStyleClass();
         styleClass.remove(OVER_BUDGET_CLASS);
         styleClass.remove(UNDER_BUDGET_CLASS);

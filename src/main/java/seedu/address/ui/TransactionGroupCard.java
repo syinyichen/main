@@ -57,7 +57,7 @@ public class TransactionGroupCard extends UiPart<Region> {
 
     private void setGroupLabel() {
         Date groupDate = groupTransactionsList.get(0).getDate();
-        transactionGroupLabel.setText(String.format("%s %s %s", groupDate.getDate().getDayOfMonth(),
+        transactionGroupLabel.setText(String.format("%s %s %s", groupDate.getLocalDate().getDayOfMonth(),
                 groupDate.getMonth(), groupDate.getYear()));
     }
 

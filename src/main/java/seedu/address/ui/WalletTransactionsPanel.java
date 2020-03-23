@@ -1,12 +1,10 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -43,6 +41,9 @@ public class WalletTransactionsPanel extends UiPart<Region> {
         update(transactionList);
     }
 
+    /**
+     * Updates the transaction list UI component with the given {@code newTransactionList}.
+     */
     public void update(ObservableList<Transaction> newTransactionList) {
         this.walletTransactionList = newTransactionList;
 
