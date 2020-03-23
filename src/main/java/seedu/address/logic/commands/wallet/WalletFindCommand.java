@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Description;
-import seedu.address.model.transaction.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.transaction.TransactionContainsKeywordsPredicate;
 
 /**
  * Finds and lists all transactions in wallet book whose name contains any of the argument keywords.
@@ -30,9 +30,9 @@ public class WalletFindCommand extends Command {
 
     public static final String NO_PARAMETER_INPUTTED = "At least one field to find must be provided.";
 
-    private final DescriptionContainsKeywordsPredicate predicate;
+    private final TransactionContainsKeywordsPredicate predicate;
 
-    public WalletFindCommand(DescriptionContainsKeywordsPredicate predicate) {
+    public WalletFindCommand(TransactionContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

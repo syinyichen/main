@@ -1,16 +1,11 @@
 package seedu.address.logic.parser.wallet;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
-
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.wallet.WalletEditCommand;
 import seedu.address.logic.commands.wallet.WalletFindCommand;
 import seedu.address.logic.commands.wallet.WalletFindCommand.FindTransactionDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -18,11 +13,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.transaction.Amount;
-import seedu.address.model.transaction.Date;
-import seedu.address.model.transaction.Description;
-import seedu.address.model.transaction.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.transaction.TransactionContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -72,7 +63,7 @@ public class WalletFindCommandParser implements Parser<WalletFindCommand> {
             throw new ParseException(WalletFindCommand.NO_PARAMETER_INPUTTED);
         }
 
-        return new WalletFindCommand(findTransactionDescriptor);
+        return new WalletFindCommand(new TransactionContainsKeywordsPredicate(findTransactionDescriptor));
 
 
     }
