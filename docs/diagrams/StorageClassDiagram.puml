@@ -4,20 +4,45 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
+package Storage <<Rectangle>>{
 Interface Storage <<Interface>>
-Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
-Interface WalletStorage <<Interface>>
-Interface UserDataStorage <<Interface>>
-Interface JsonAdaptedTransaction <<Interface>>
-
 Class StorageManager
-Class JsonUserPrefsStorage
-Class JsonAddressBookStorage
-Class JsonWalletStorage
-Class JsonUserDataStorage
 
-StorageManager .left.|> Storage
+Package UserPrefs {
+Interface UserPrefsStorage <<Interface>>
+Class JsonUserPrefsStorage
+}
+
+Package UserData {
+Interface UserDataStorage <<Interface>>
+Class JsonUserDataStorage
+Class JsonAdaptedUser
+}
+
+Package AddressBook {
+Interface AddressBookStorage <<Interface>>
+Class JsonAddressBookStorage
+Class JsonSerializableAddressBook
+Class JsonAdaptedPerson
+}
+
+Package Wallet {
+Interface WalletStorage <<Interface>>
+Class JsonWalletStorage
+Class JsonSerializableWallet
+Interface JsonAdaptedTransaction <<Interface>>
+Class JsonAdaptedXYZ
+}
+
+Package Tag {
+Class JsonAdaptedTag
+}
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Storage
+
+StorageManager .up.|> Storage
 StorageManager o-up-> UserPrefsStorage
 StorageManager o-down-> AddressBookStorage
 StorageManager o-right-> WalletStorage
