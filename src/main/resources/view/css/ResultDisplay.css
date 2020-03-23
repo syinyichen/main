@@ -26,7 +26,7 @@
     -fx-highlight-fill: #7ecfff;
 }
 
-.text-area:focused .scroll-bar:horizontal .track-background, 
+.text-area:focused .scroll-bar:horizontal .track-background,
 .text-area:focused .scroll-bar:vertical .track-background {
 	-fx-background-color: white;
 }

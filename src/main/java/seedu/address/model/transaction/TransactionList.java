@@ -115,6 +115,9 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
         return filteredTransactions;
     }
 
+    /**
+     * Sorts the {@code internalList} by date.
+     */
     public void sort() {
         FXCollections.sort(internalList, new Comparator<Transaction>() {
             @Override

@@ -24,6 +24,8 @@ public class TransactionGroupCard extends UiPart<Region> {
     private static final String POSITIVE_CLASS = "positive";
     private static final String NEGATIVE_CLASS = "negative";
 
+    public final FilteredList<Transaction> groupTransactionsList;
+
     @FXML
     private Label transactionGroupLabel;
 
@@ -33,7 +35,6 @@ public class TransactionGroupCard extends UiPart<Region> {
     @FXML
     private ListView<Transaction> transactionItemsList;
 
-    public final FilteredList<Transaction> groupTransactionsList;
 
     private ObservableList<Transaction> sortedGroupTransactionsList;
 

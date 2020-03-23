@@ -14,11 +14,10 @@
 	-fx-background-color: transparent;
 }
 
-.list-view .list-cell:last-child .separator *.line { 
+.list-view .list-cell:last-child .separator *.line {
 	-fx-border-style: none;
 	-fx-border-width: none;
 }
-
 
 .list-view .label {
 	-fx-text-fill: black;
