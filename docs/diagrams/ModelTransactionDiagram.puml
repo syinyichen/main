@@ -1,0 +1,59 @@
+@startuml
+!include style.puml
+skinparam padding 2
+skinparam minClassWidth 80
+skinparam arrowFontSize 10
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Transaction {
+Class TransactionList
+Interface Transaction <<Interface>>
+Class Expense
+Class Income
+Class Debt
+Class Loan
+Class Amount
+Class Date
+Class Description
+}
+
+Package Tag {
+Class Tag
+}
+
+Class HiddenWallet #FFFFFF
+Class HiddenPerson #FFFFFF
+HiddenWallet --> "1" TransactionList
+HiddenPerson --> "*" Debt
+HiddenPerson --> "*" Loan
+TransactionList o--> "*" Expense
+TransactionList o--> "*" Income
+Expense .up.|> Transaction
+Income .up.|> Transaction
+Debt .up.|> Transaction
+Loan .up.|> Transaction
+Expense *--> Amount
+Expense *--> Description
+Expense *--> "0..1" Date
+Expense *--> "*" Tag
+Income *--> Amount
+Income *--> Description
+Income *--> "0..1" Date
+Income *--> "*" Tag
+Debt *--> Amount
+Debt *--> Description
+Debt *--> "0..1" Date
+Debt *--> "*" Tag
+Loan *--> Amount
+Loan *--> Description
+Loan *--> "0..1" Date
+Loan *--> "*" Tag
+
+Amount -[hidden]down-> Date
+Description -[hidden]down-> Date
+Amount -[hidden]right-> Description
+Date -[hidden]down-> Tag
+
+@enduml

@@ -140,6 +140,7 @@ public class ParserUtilTest {
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
     }
 
+    // @@author cheyannesim
     @Test
     public void parseAmount_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseAmount(null));
@@ -167,6 +168,7 @@ public class ParserUtilTest {
     public void parseDate_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDate(null));
     }
+    // @@author
 
     @Test
     public void parseDate_invalidValue_throwsParseException() {

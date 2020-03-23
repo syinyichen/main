@@ -70,6 +70,7 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
+    // @@author cheyannesim
     /**
      * Returns a list of debts containing the {@code debts} given.
      */
@@ -80,6 +81,7 @@ public class SampleDataUtil {
         debtList.setTransactions(list);
         return debtList;
     }
+    // @@author
 
     /**
      * Returns a list of loans containing the {@code loanss} given.

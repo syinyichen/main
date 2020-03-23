@@ -1,0 +1,24 @@
+@startuml
+title Activity: Recording an expense
+start
+:User enters the expense command;
+:Parser parses the arguments;
+
+if () then ([description or amount is not specified or is invalid])
+else ([else])
+    if () then ([date is specified])
+        :Set the date to the specified date;
+    else ([else])
+        :Set the date to Today's date;
+    endif
+    if () then ([tag is specified])
+        :Set the tag to the specified tag;
+    else ([else])
+        :Set the date to a default tag (Misc);
+    endif
+    :Parser returns a WalletExpenseCommand;
+    :Logic executes the command;
+    :Model adds a new expense to the Wallet;
+endif
+stop
+@enduml

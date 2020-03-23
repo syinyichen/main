@@ -112,6 +112,7 @@ public class SharkieParserTest {
                 instanceof PeopleListCommand);
     }
 
+    // @@author cheyannesim
     @Test
     public void parsePeopleCommand_owe() throws Exception {
         PeopleOweCommand command = (PeopleOweCommand) parser.parseCommand(PEOPLE_COMMAND_TYPE + " "
@@ -119,6 +120,7 @@ public class SharkieParserTest {
                 + PersonUtil.getDebtDescription(TEXTBOOK));
         assertEquals(new PeopleOweCommand(INDEX_FIRST_PERSON, TEXTBOOK), command);
     }
+    // @@author
 
     @Test
     public void parsePeopleCommand_returned() throws Exception {

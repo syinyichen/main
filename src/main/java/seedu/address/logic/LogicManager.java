@@ -33,12 +33,12 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final SharkieParser addressBookParser;
+    private final SharkieParser sharkieParser;
 
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new SharkieParser();
+        sharkieParser = new SharkieParser();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = sharkieParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {

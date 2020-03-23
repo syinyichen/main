@@ -1,0 +1,12 @@
+@startuml
+start
+:User executes wallet edit command;
+
+if () then ([User did not input valid field to edit the transaction with or
+did not enter a valid index])
+else ([else])
+        :System creates a new transaction corresponding to index, with edited values;
+        :System replaces the original transaction with edited transaction;
+endif
+stop
+@enduml

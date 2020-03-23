@@ -22,13 +22,14 @@ Refer to the guide <<SettingUp#, here>>.
 
 == Design
 
+//tag::architecture[]
 [[Design-Architecture]]
 === Architecture
 
 .Architecture Diagram
 image::ArchitectureDiagram.png[]
 
-The *_Architecture Diagram_* given above explains the high-level design of the App. Given below is a quick overview of each component.
+The *_Architecture Diagram_* given above explains the high-level design of Sharkie. Given below is a quick overview of each component.
 
 [TIP]
 The `.puml` files used to create diagrams in this document can be found in the link:{repoURL}/docs/diagrams/[diagrams] folder.
@@ -59,17 +60,19 @@ Each of the four components
 For example, the `Logic` component (see the class diagram given below) defines it's API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class.
 
 .Class Diagram of the Logic Component
-image::LogicClassDiagram.png[]
+image::LogicClassDiagram.png[width=1000]
 
 [discrete]
 ==== How the architecture components interact with each other
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `people delete 1`.
 
-.Component interactions for `delete 1` command
-image::ArchitectureSequenceDiagram.png[]
+.Component interactions for `people delete 1` command
+image::ArchitectureSequenceDiagram.png[width=600]
 
 The sections below give more details of each component.
+
+//end::architecture[]
 
 [[Design-Ui]]
 === UI component
@@ -78,7 +81,6 @@ The sections below give more details of each component.
 image::UiClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
-
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
@@ -98,24 +100,39 @@ image::LogicClassDiagram.png[]
 *API* :
 link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
-.  `Logic` uses the `AddressBookParser` class to parse the user command.
+.  `Logic` uses the `SharkieParser` class to parse the user command.
 .  This results in a `Command` object which is executed by the `LogicManager`.
 .  The command execution can affect the `Model` (e.g. adding a person).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("people delete 1")` API call.
 
 .Interactions Inside the Logic Component for the `delete 1` Command
 image::DeleteSequenceDiagram.png[]
 
-NOTE: The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+NOTE: The lifeline for `WalletDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
+//tag::model-design[]
 [[Design-Model]]
 === Model component
 
 .Structure of the Model Component
-image::ModelClassDiagram.png[]
+image::ModelClassDiagram.png[width=700]
+
+====
+The _Model_ package consists of two main packages: _Person_ and _Transaction_.
+
+* The diagram below shows how the _Person_ package is implemented:
+
+.In-depth Structure of Person in the Model Component
+image::ModelPersonDiagram.png[width=500, left=10]
+
+* The diagram below shows how the _Transaction_ package is implemented:
+
+.In-depth Structure of Transaction in the Model Component
+image::ModelTransactionDiagram.png[width=500, left=10]
+====
 
 *API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
 
@@ -123,14 +140,15 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
 * stores the Address Book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the Wallet data.
+* stores the User data.
+* exposes an unmodifiable `ObservableList<Person>` and an unmodifiable `ObservableList<Transaction>` that can be
+'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when the data in the
+respective lists change.
 * does not depend on any of the other three components.
+//end::model-design[]
 
-[NOTE]
-As a more OOP model, we can store a `Tag` list in `Address Book`, which `Person` can reference. This would allow `Address Book` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object. An example of how such a model may look like is given below. +
- +
-image:BetterModelClassDiagram.png[]
-
+//tag::storage[]
 [[Design-Storage]]
 === Storage component
 
@@ -139,10 +157,15 @@ image::StorageClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/storage/Storage.java[`Storage.java`]
 
+The Storage converts Model objects to saveable data and vice versa. It comprises four main parts: `UserPrefsStorage`, `UserDataStorage`, `AddressBookStorage` and `WalletStorage`. Each of these interfaces have a JSON-based implementation that convert their specific data to and from JSON.
+
 The `Storage` component,
 
-* can save `UserPref` objects in json format and read it back.
-* can save the Address Book data in json format and read it back.
+* can save `UserPref` objects in JSON format and read it back.
+* can save UserData in JSON format and read it back.
+* can save the Address Book data in JSON format and read it back.
+* can save the Wallet data in JSON format and read it back.
+//end::storage[]
 
 [[Design-Commons]]
 === Common classes
@@ -152,6 +175,198 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 == Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
+
+//tag::owe[]
+=== Owe Command
+
+The `owe` command is implemented in the class `PeopleOweCommand`.
+
+This command can be accessed from  `Logic#execute()`. It records a `debt` of an indicated `Amount` to the
+`Person` specified by the index.
+
+The following activity diagram illustrates what happens when the user enters an `owe` command:
+
+.Activity diagram of the recording a debt
+image::OweActivityDiagram.png[width=500]
+
+==== Implementation of `owe` command
+
+. When entering the debt command, the user will specify the `Person` using the index of the `Person` in the list shown in the GUI.
+. The user should also specify the debt `Description`, `Amount` and optionally, the `Date`.
+. The `PeopleOweCommandParser` will create a `Debt` object based on the details provided, and return the resulting `PeopleOweCommand`.
+. When the `LogicManager` is executing the `PeopleOweCommand`, it will extract the indicated person from the list of
+`Persons` obtained from the `Model` via `Model#getFilteredPersonList()`
+. A new `Person` with the added `Debt` is created.
+. This new `Person` replace the initial `Person` at the indicated index via `Model#setPerson()` for immutability.
+. The `filteredPersons` in the `Model` is then updated.
+. `CommandResult` is returned.
+
+The following sequence diagram summarizes what happens during the execution of a `owe` command:
+
+image::OweSequenceDiagram.png[]
+.Sequence diagram of the `owe` command
+image::GetPeopleOweCommandSequenceDiagram.png[width=500]
+
+NOTE: The lifeline for `PeopleOweCommand` should end at the destroy marker (X) but due to a limitation of PlantUML,
+the lifeline reaches the end of diagram.
+
+==== Design Considerations
+
+===== Aspect: Keeping track of `Debt` of a `Person`.
+
+* **Alternative 1 (current choice):** Each `Person` has a list of `Debt` objects, each `Debt` object
+has `Description`, `Amount` and `Date`.
+** Pros: Able to record more information about a `Debt`.
+** Cons: `Sharkie` only allows the return of a `Debt` all at once, i.e., the user cannot return a `Debt` partially.
+* **Alternative 2:** Each `Person` has one `Debt` object.
+** Pros: Easier to store the `Debt` object, only have to keep track of the total debt `Amount` and the `Date` of the
+debt. The user can return any `Amount` to the `Person`, and `Sharkie` will just deduct the total `Amount` of debt
+accordingly.
+** Cons: Storing the `Date` is problematic, as it questions whether the `Date` of the first borrowing or latest borrowing
+should be stored. Furthermore, there is no breakdown of `Debt` details if the user wants to recall why he owed a `Person`
+money.
+
+//end::owe[]
+
+// tag::received_implementation[]
+=== Received Command
+
+The `received` command is implemented in the class, `PeopleReceivedCommand`.
+
+This command can be accessed from `Logic#execute()`. It deletes the `Loan`(s) of the indicated `Person`
+(the `Person` with the specified index in the Address Book).
+
+The following activity diagram illustrates what happens when the user executes a `received` command:
+
+.Activity diagram of the execution of `received` command
+image::ReceivedActivityDiagram.png[width=600]
+
+==== Implementation of `received` command
+
+. In `PeopleReceivedCommand` class, the list of `Persons` is obtained from the `Model` via
+`Model#getFilteredPersonList()` and the indicated person is extracted from the list.
+. The list of `Loans` of the `Person` is extracted and modified based on the command entered by the user.
+. A new `Person` with the modified list of `Loans` is created.
+. This new `Person` replace the initial `Person` at the indicated index via `Model#setPerson()` and the `filteredPersons`
+in the `Model` is updated.
+
+The following sequence diagram summarizes what happens during the execution of a `received` command:
+
+.Sequence diagram of the `received` command
+image::ReceivedSequenceDiagram.png[]
+
+NOTE: The lifeline for `PeopleReceivedCommand` should end at the destroy marker (X) but due to a limitation of PlantUML,
+the lifeline reaches the end of diagram.
+
+==== Design Considerations
+
+===== Aspect: Deletion of `Loan` from the indicated person.
+
+* **Alternative 1 (current choice):** Creates a new `Person` with the modified list of `Loans` and
+use `Model#setPerson()` to replace the indicated `Person` with the new `Person` created.
+** Pros: Preserve the immutable property of `Person`.
+** Cons: Have to copy over all the attribute values, such as `Name`, `Phone` and more.
+* **Alternative 2:** Modify the list of `Loans` in the indicated `Person` directly.
+** Pros: Easier and can save time from copying the information from one `Person` to another.
+** Cons: `Person` loses the immutable property.
+
+// end::received_implementation[]
+
+//tag::transactions[]
+=== Transactions
+
+The `Transaction` forms the basis for Sharkie's monetary-related features. It contains a `Description`, `Amount`, `Date` and `Tag`.
+
+There are currently four classes that inherit from this abstract class, namely `Expense`, `Income`, `Debt` and `Loan`.
+
+.Class diagram of Transaction
+image::TransactionClassDiagram.png[width=500]
+
+`Expense` and `Income` can be created using the `WalletExpenseCommand` and the `WalletIncomeCommand`.
+
+These commands can be accessed from  `Logic#execute()`. It records an `expense` of an indicated `Description`, `Amount`, `Date` and `Tag`.
+
+As the two commands are similar, it is sufficient to trace the `WalletExpenseCommand`. The following activity diagram illustrates what happens when the user enters an `expense` command:
+
+.Activity diagram of recording an expense
+image::ExpenseActivityDiagram.png[width=500]
+
+==== Implementation of `expense` command
+
+. When entering the expense command, the user will specify the `Description`, `Amount` and optionally, the `Date` and `Tag`.
+. The `WalletExpenseCommandParser` will create an `Expense` object based on the details provided, and return the resulting `WalletExpenseCommand`.
+. The `LogicManager` then executes the command and adds the previously created `Expense` object to the Wallet model.
+. `CommandResult` is returned.
+
+The following sequence diagram summarizes what happens during the execution of an `expense` command:
+
+.Sequence diagram of the `expense` command
+image::ExpenseSequenceDiagram.png[]
+
+==== Design Considerations
+
+===== Aspect: Storing the Amount of a Transaction.
+
+* **Alternative 1 (current implementation):** Amounts are stored in dollars as `double`.
+** Pros: Easier to implement.
+** Cons: Floats are inexact. Floating point errors may cause rounding errors or unexpected bugs (e.g. checking if an amount is equal to zero).
+* **Alternative 2 (future implementation):** Amounts are stored in cents as `long`.
+** Pros: Arithmetic involving amounts will be exact.
+** Cons: Conversion is needed between cents and dollars. All Sharkie programmers have to be aware of the necessary conversion else bugs may occur.
+* **Alternative 3:** Amounts are stored as the inbuilt `BigDecimal` class.
+** Pros: Arithmetic involving amounts will be exact.
+** Cons: `BigDecimal` is slower in performance and if many calculations are performed, runtime is considerably slower.
+
+//end::transactions[]
+
+// tag::walletEdit_implementation[]
+=== Wallet Edit Command
+
+The `edit` command is implemented in the class, `WalletEditCommand`.
+
+This command can be accessed from `Logic#execute()`. It edits the `transactions`(s), which include both `income`(s) and
+`expense`(s) of the indicated `transaction` (the `transaction` with the specified index in the Wallet).
+
+The following activity diagram illustrates what happens when the user executes a `wallet edit` command:
+
+.Activity diagram of the execution of `wallet edit` command
+image::WalletEditActivityDiagram.png[width=600]
+
+==== Implementation of `wallet edit` command
+
+. `WalletEditCommandParser` is executed first to create an `EditTransactorDescriptor` to hold the values to be edited.
+. `WalletEditCommandParser` then passes the `editTransactorDescriptor` to create a `WalletEditCommand`.
+. In `WalletEditCommand` class, the list of `transactions` is obtained from the `Model` via
+`Model#getFilteredTransactionsList()` and the indicated transaction is extracted from the list, as either a form of
+income or expense.
+. The `transaction` selected is extracted and modified based on the command entered by the user, which are stored in
+`editTransactorDescriptor`
+. A new `transaction` modified from the `transaction` selected is created with `createEditedTransaction` method in
+`WalletEditCOmmand`
+. This new `transaction` replace the initial `transaction` at the indicated index via `Model#setTransaction()` and
+the `filteredTransactions` in the `Model` is updated.
+
+The following sequence diagram summarizes what happens during the execution of a `wallet edit` command:
+
+.Sequence diagram of the `wallet edit` command
+image::WalletEditSequenceDiagram.png[]
+
+NOTE: The lifeline for `WalletEditCommand`, `WalletEditCommandParser` and `EditTransactorDescriptor` should end at the destroy marker (X) but due to a limitation of PlantUML,
+the lifeline reaches the end of diagram.
+
+==== Design Considerations
+
+===== Aspect: Choosing which `transaction` to edit from the list of transactions.
+
+* **Alternative 1 (current choice):** Get the index from the list displayed, and not original index displayed by
+`wallet list command`.
+** Pros: Easy to see which `transaction` is to be edited.
+** Cons: Have to keep updating the filtered list.
+* **Alternative 2:** Always edit based on original list, shown by `wallet list command`.
+** Pros: Index is always consistent.
+** Cons: Harder to remember which index represents which transaction.
+
+// end::walletEdit_implementation[]
 
 // tag::undoredo[]
 === [Proposed] Undo/Redo feature
@@ -387,21 +602,22 @@ _{More to be added}_
 
 <<MSS, *MSS*>>
 
-1.  User keys in an expense.
+1.  User requests to add an expense into the wallet.
 2.  <<wallet, Wallet>> adds the expense and displays the expense in the list of expenses.
 +
 Use case ends.
 
 <<extensions, *Extensions*>>
 
+[[wallet-invalid-amount]]
 [none]
-* 1a. The expense keyed in is invalid.
+* 1a. The amount keyed in by the user is invalid.
 +
 [none]
 ** 1a1. Wallet shows an error message.
 ** 1a2. User re-enters the expense.
 +
-Steps 1a1-1a2 are repeated until the expense keyed in is correct.
+Steps 1a1-1a2 are repeated until the amount keyed in by the user is correct.
 +
 Use case resumes at step 2.
 
@@ -410,7 +626,7 @@ Use case resumes at step 2.
 
 *MSS*
 
-1. User keys in an income.
+1. User requests to add an income into the wallet.
 2. Wallet adds the income and displays the income in the list of incomes.
 +
 Use case ends.
@@ -418,13 +634,10 @@ Use case ends.
 *Extensions*
 
 [none]
-* 1a. The income keyed in is invalid.
+* 1a. The amount keyed in by the user is invalid.
 +
-[none]
-** 1a1. Wallet shows an error message.
-** 1a2. User re-enters the income.
-+
-Steps 1a1-1a2 are repeated until the income keyed in is correct.
+<<wallet-invalid-amount, Steps 1a1-1a2>> of [.underline]#recording an expense (UC1)# are repeated
+until the amount keyed in by the user is valid.
 +
 Use case resumes at step 2.
 
@@ -433,7 +646,7 @@ Use case resumes at step 2.
 
 *MSS*
 
-1. User keys in a budget.
+1. User requests to set a budget.
 2. Wallet sets the amount keyed in as the budget of the month indicated.
 +
 Use case ends.
@@ -441,39 +654,37 @@ Use case ends.
 *Extensions*
 
 [none]
-* 1a. The amount or date keyed in is invalid.
+* 1a. The amount keyed in by the user is invalid.
 +
-[none]
-** 1a1. Wallet shows an error message.
-** 1a2. User re-enters the budget.
-+
-Steps 1a1-1a2 are repeated until the amount and date keyed in is correct.
+<<wallet-invalid-amount, Steps 1a1-1a2>> of [.underline]#recording an expense (UC1)# are repeated
+until the amount keyed in by the user is valid.
 +
 Use case resumes at step 2.
 
-* 1b. The amount keyed in has no date attached to it.
+* 1b. The amount keyed in by the user has no date attached to it.
 +
 [none]
-** 1b1. Wallet automatically assigns the budget entered as the default budget.
+** 1b1. Wallet automatically assigns the budget entered as the default budget of each month.
 +
 Use case ends.
 
 [discrete]
 ==== Use case: UC4 - Deleting a <<transaction, *transaction*>>
 
-*Preconditions:* The transaction that the user wants to delete exists.
+*Preconditions:* The transaction that the user wants to delete exists in the wallet.
 
 *MSS*
 
 1. User requests to delete a specific transaction in the wallet.
-2. Wallet deletes the transaction and shows the success message.
+2. Wallet deletes the transaction and displays the list of remaining transactions.
 +
 Use case ends.
 
 *Extensions*
 
+[[wallet-invalid-index]]
 [none]
-* 1a. The index keyed in is invalid.
+* 1a. The transaction's index keyed in by the user is invalid.
 +
 [none]
 ** 1a1. Wallet shows an error message.
@@ -486,25 +697,22 @@ Use case resumes at step 2.
 [discrete]
 ==== Use case: UC5 - Editing a transaction
 
-*Preconditions:* The transaction that the user wants to edit exists.
+*Preconditions:* The transaction that the user wants to edit exists in the wallet.
 
 *MSS*
 
 1. User requests to edit a specific transaction in the wallet.
-2. Wallet edits the transaction and shows the edited transaction.
+2. Wallet edits the transaction and shows the list with the edited transaction.
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 1a. The index keyed in is invalid.
+* 1a. The transaction's index keyed in by the is invalid.
 +
-[none]
-** 1a1. Wallet shows an error message.
-** 1a2. User re-enters the command.
-+
-Steps 1a1-1a2 are repeated until the index keyed in is valid.
+<<wallet-invalid-index, Steps 1a1-1a2>> of [.underline]#deleting an transaction (UC4)# are repeated
+until the index keyed in by the user is valid.
 +
 Use case resumes at step 2.
 
@@ -515,7 +723,7 @@ Use case resumes at step 2.
 ** 1b1. Wallet shows an error message.
 ** 1b2. User re-enters the edit command.
 +
-Steps 1a1-1a2 are repeated until the edit command keyed in is valid.
+Steps 1b1-1b2 are repeated until the edit command keyed in is valid.
 +
 Use case resumes at step 2.
 
@@ -532,7 +740,10 @@ Use case ends.
 *Extensions*
 
 [none]
-* 1a. The keyword entered does not exist in the wallet.
+* 1a. The keyword entered by the user does not exist in the wallet.
++
+[none]
+** 1a1. Wallet shows an empty list.
 +
 Use case ends.
 
@@ -548,22 +759,23 @@ Use case ends.
 
 === People Tab
 
-(For all use cases below, the *System* is the `AddressBook` and the *Actor* is the `User`, unless specified otherwise)
+(For all use cases below, the *System* is the `Address Book` and the *Actor* is the `User`, unless specified otherwise)
 
 [discrete]
-==== Use case: Adding a person
+==== Use case: UC8 - Adding a person
 
 *MSS*
 
 1. User requests to add a person into the <<address-book, address book>>.
-2. Address book adds the person into the list.
+2. Address book adds the person and displays the person in the list of people.
 +
 Use case ends.
 
 *Extensions*
 
+[[people-invalid-detail]]
 [none]
-* 1a. The person’s details keyed in is invalid.
+* 1a. The person’s details keyed in by the user is invalid.
 +
 [none]
 ** 1a1. Address book shows an error message.
@@ -574,7 +786,7 @@ Steps 1a1-1a2 are repeated until the details keyed in is correct.
 Use case resumes at step 2.
 
 [discrete]
-==== Use case: Sending reminder to a friend
+==== Use case: UC9 - Sending reminder to a friend
 
 *MSS*
 
@@ -585,8 +797,9 @@ Use case ends.
 
 *Extensions*
 
+[[people-invalid-index]]
 [none]
-* 1a. The index keyed in is invalid.
+* 1a. The person's index keyed in by the user is invalid.
 +
 [none]
 ** 1a1. Address book shows an error message.
@@ -597,30 +810,14 @@ Steps 1a1-1a2 are repeated until the index keyed in is valid.
 Use case resumes at step 2.
 
 [none]
-* 1a. The friend does not owe the user money.
+* 1b. Address book shows that the friend does not owe the user money.
 +
 Use case ends.
 
 [discrete]
-==== Use case: Sending reminders to all friends
+==== Use case: UC10 - Recording the money the user owes
 
-*MSS*
-
-1. User requests to send reminders to all friends.
-2. Address book lists out all the friends who owe the user money.
-3. Address book sends reminders to all the friends on the list obtained in step 2.
-+
-Use case ends.
-
-*Extensions*
-
-[none]
-* 2a. The list is empty.
-+
-Use case ends.
-
-[discrete]
-==== Use case: Recording the money the user owes
+*Preconditions:* The friend, who user owes exists in the address book.
 
 *MSS*
 
@@ -632,29 +829,29 @@ Use case ends.
 *Extensions*
 
 [none]
-* 1a. The index keyed in is invalid.
+* 1a. The person's index keyed in by the user is invalid.
 +
-[none]
-** 1a1. Address book shows an error message.
-** 1a2. User re-enters the index.
-+
-Steps 1a1-1a2 are repeated until the index keyed in is valid.
+<<people-invalid-index, Steps 1a1-1a2>> of [.underline]#sending reminder to a friend (UC9)# are repeated
+until index keyed in by the user is valid.
 +
 Use case resumes at step 2.
 
+[[people-invalid-amount]]
 [none]
-* 1a. The amount keyed in is invalid.
+* 1b. The amount keyed in by the user is invalid.
 +
 [none]
-** 1a1. Address book shows an error message.
-** 1a2. User re-enters the amount.
+** 1b1. Address book shows an error message.
+** 1b2. User re-enters the amount.
 +
-Steps 1a1-1a2 are repeated until the amount keyed in is correct.
+Steps 1b1-1b2 are repeated until the amount keyed in is correct.
 +
 Use case resumes at step 2.
 
 [discrete]
-==== Use case: Recording the money the user lends
+==== Use case: UC11 - Recording the money the user lends
+
+*Preconditions:* The friend, who user lends exists in the address book.
 
 *MSS*
 
@@ -666,86 +863,75 @@ Use case ends.
 *Extensions*
 
 [none]
-* 1a. The index keyed in is invalid.
+* 1a. The person's index keyed in by the user is invalid.
 +
-[none]
-** 1a1. Address book shows an error message.
-** 1a2. User re-enters the index.
-+
-Steps 1a1-1a2 are repeated until the index keyed in is valid.
+<<people-invalid-index, Steps 1a1-1a2>> of [.underline]#sending reminder to a friend (UC9)# are repeated
+until the index keyed in by the user is valid.
 +
 Use case resumes at step 2.
 
 [none]
-* 1a. The amount keyed in is invalid.
+* 1b. The amount keyed in by the user is invalid.
 +
-[none]
-** 1a1. Address book shows an error message.
-** 1a2. User re-enters the amount.
-+
-Steps 1a1-1a2 are repeated until the amount keyed in is correct.
+<<people-invalid-amount, Steps 1b1-1b2>> of [.underline]#recording the money the user owes (UC10)# are repeated
+until the amount keyed in by the user is valid.
 +
 Use case resumes at step 2.
 
 [discrete]
-==== Use case: Deleting a person
+==== Use case: UC12 - Deleting a person
+
+*Preconditions:* The person, who user wants to delete exists in the address book.
 
 *MSS*
 
 1. User requests to delete a specific person in the address book.
-2. Address book deletes the person.
+2. Address book deletes the person and shows the list of the remaining people.
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 1a. The index keyed in is invalid.
+* 1a. The person's index keyed in by the user is invalid.
 +
-[none]
-** 1a1. Address book shows an error message.
-** 1a2. User re-enters the index.
-+
-Steps 1a1-1a2 are repeated until the index keyed in is valid.
+<<people-invalid-index, Steps 1a1-1a2>> of [.underline]#sending reminder to a friend (UC9)# are repeated
+until the index keyed in by the user is valid.
 +
 Use case resumes at step 2.
 
 [discrete]
-==== Use case: Editing a person
+==== Use case: UC13 - Editing a person
+
+*Preconditions:* The person, who user wants to edit exists in the address book.
 
 *MSS*
 
 1. User requests to edit a specific person in the address book.
-2. Address book edits the person.
+2. Address book updates the indicated person's detail and show the list of people with the edited person.
 +
 Use case ends.
 
 *Extensions*
 
 [none]
-* 1a. The index keyed in is invalid.
+* 1a. The person's index keyed in by the user is invalid.
 +
-[none]
-** 1a1. Address book shows an error message.
-** 1a2. User re-enters the index.
-+
-Steps 1a1-1a2 are repeated until the index keyed in is valid.
+<<people-invalid-index, Steps 1a1-1a2>> of [.underline]#sending reminder to a friend (UC9)# are repeated
+until the index keyed in by the user is valid.
 +
 Use case resumes at step 2.
 
 [none]
-* 1a. The new person’s details keyed in is invalid.
+* 1b. The person's new details keyed in by the user is invalid.
 +
-[none]
-** 1a1. Address book shows an error message.
-** 1a2. User re-enters the details.
-+
-Steps 1a1-1a2 are repeated until the details keyed in is valid.
+<<people-invalid-detail, Steps 1a1-1a2>> of [.underline]#adding a person (UC8)# are repeated
+until the details keyed in by the user is valid.
 +
 Use case resumes at step 2.
 
 [discrete]
-==== Use case: Finding a person
+==== Use case: UC14 - Finding a person
 
 *MSS*
 
@@ -757,11 +943,13 @@ Use case ends.
 *Extensions*
 
 [none]
-* 1a. None of the names in the address book contains the keyword.
+* 1a. The keyword entered by the user does not exist in the address book.
++
+[none]
+** 1a1. Address book shows an empty list.
 +
 Use case ends.
 
-_{More to be added}_
 //end::useCases[]
 
 //tag::apendixd[]

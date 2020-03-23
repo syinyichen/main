@@ -85,10 +85,12 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
+        // @@author cheyannesim
         // different debt -> returns false
         editedAlice = new PersonBuilder(ALICE)
                 .withDebts(MOVIE).build();
         assertFalse(ALICE.equals(editedAlice));
+        // @@author
 
         // different loan -> returns false
         editedAlice = new PersonBuilder(ALICE)
