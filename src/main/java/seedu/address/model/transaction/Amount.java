@@ -30,6 +30,7 @@ public class Amount implements Comparable<Amount> {
         }
     }
 
+    // @@author cheyannesim
     /**
      * Adds {@code amountToAdd} to the current amount.
      *
@@ -39,6 +40,7 @@ public class Amount implements Comparable<Amount> {
         double totalAmount = amountToAdd.amount + this.amount;
         return new Amount(totalAmount);
     }
+    // @@author
 
     /**
      * Returns true if the amount is zero.

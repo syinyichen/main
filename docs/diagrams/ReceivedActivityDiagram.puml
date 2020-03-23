@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes received command;
+
+if () then ([User did not lend the indicated Person money])
+else ([else])
+    if () then ([User asked to edit specific Loan of the Person])
+        :System removes the specified Loan from the Person;
+    else ([else])
+        :System removes all Loans from the Person;
+    endif
+    :System updates the Address Book with the modified Person;
+endif
+stop
+@enduml

@@ -28,6 +28,7 @@ import seedu.address.logic.commands.wallet.WalletBudgetCommand;
 import seedu.address.logic.commands.wallet.WalletDeleteCommand;
 import seedu.address.logic.commands.wallet.WalletEditCommand;
 import seedu.address.logic.commands.wallet.WalletExpenseCommand;
+import seedu.address.logic.commands.wallet.WalletFindCommand;
 import seedu.address.logic.commands.wallet.WalletIncomeCommand;
 import seedu.address.logic.commands.wallet.WalletListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -44,6 +45,7 @@ import seedu.address.logic.parser.wallet.WalletBudgetCommandParser;
 import seedu.address.logic.parser.wallet.WalletDeleteCommandParser;
 import seedu.address.logic.parser.wallet.WalletEditCommandParser;
 import seedu.address.logic.parser.wallet.WalletExpenseCommandParser;
+import seedu.address.logic.parser.wallet.WalletFindCommandParser;
 import seedu.address.logic.parser.wallet.WalletIncomeCommandParser;
 
 /**
@@ -158,6 +160,9 @@ public class SharkieParser {
 
         case WalletEditCommand.COMMAND_WORD:
             return new WalletEditCommandParser().parse(arguments);
+
+        case WalletFindCommand.COMMAND_WORD:
+            return new WalletFindCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

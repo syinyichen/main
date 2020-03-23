@@ -6,10 +6,17 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
 Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyWallet <<Interface>>
+Interface ReadOnlyUserData <<Interface>>
+Interface ReadOnlyUserPrefs <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
 Class AddressBook
+Class Wallet
+Class UserData
 Class ReadOnlyAddressBook
+Class ReadOnlyWallet
+Class ReadOnlyUserData
 Class Model
 Class ModelManager
 Class UserPrefs
@@ -17,15 +24,22 @@ Class ReadOnlyUserPrefs
 
 Package Person {
 Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
 Class UniquePersonList
+
+Package User {
+Class User
+}
 }
 
-Package Tag {
-Class Tag
+Package Transaction {
+Class TransactionList
+Interface Transaction <<Interface>>
+Class Expense
+Class Income
+Class Debt
+Class Loan
+Class Budget
+Class BudgetList
 }
 }
 
@@ -33,24 +47,37 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
 AddressBook .up.|> ReadOnlyAddressBook
+Wallet .up.|> ReadOnlyWallet
+UserData .up.|> ReadOnlyUserData
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
+ModelManager o--> "1" UserData
 ModelManager o--> "1" AddressBook
-ModelManager o-left-> "1" UserPrefs
+ModelManager o--> "1" Wallet
+ModelManager o--> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+UserData *--> "1" User
+
+Wallet *--> "1" TransactionList
+Wallet *--> "1" BudgetList
+BudgetList o--> "*" Budget
+TransactionList o--> "*" Expense
+TransactionList o--> "*" Income
+Expense .up.|> Transaction
+Income .up.|> Transaction
+Debt .up.|> Transaction
+Loan .up.|> Transaction
 
 ModelManager -->"1" Person : filtered list
+
+UserPrefs -[hidden]right-> Wallet
+Wallet -[hidden]right-> AddressBook
+AddressBook -[hidden]right-> UserData
+Person -[hidden]right-> UniquePersonList
+UniquePersonList -[hidden]right-> User
 @enduml

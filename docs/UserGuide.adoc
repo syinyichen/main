@@ -75,7 +75,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 [[Features]]
 == Features
 //tag::expenditureAndIncome[]
-=== Expenditure and income `[coming in v2.0]`
+=== Expenditure and income
 *Sharkie* notes down what you have spent on for the month, and also notes down your income for the month to help you properly track your money flow!
 //end::expenditureAndIncome[]
 
@@ -185,30 +185,28 @@ Expected Outcome:
 
 //end::walletincome[]
 
-//tag::wallettag[]
-==== Tagging an expense: `tag`
+//tag::walletList[]
+==== Listing all transactions: `list`
 
 Tag an expense with respective tag. +
-Format: `wallet tag <index> t/<tag>`
+Format: `wallet list`
 
 ****
-* Tags an existing expense specified by <index> of expense.
-* The index *must be a positive integer* 1, 2, 3, ...
-* The index must *exist* in the list of expenses.
-* Both the <tag> and the <index> must be stated.
+* List all transactions in your wallet, which includes expenses and incomes.
 ****
 
 Examples:
 
-* `tag 1 t/food`
-Returns the respective expense with its tag. +
+* `wallet list`
+Returns the list of transactions. +
 Expected Outcome:
 
-    Added (food) to expense 1:
+    Listed all transactions:
     1. Chicken Rice (food)
+    2. Duck Rice
     …
 
-//end::wallettag[]
+//end::walletList[]
 
 //tag::walletedit[]
 ==== Editing an income or expense: `edit`
@@ -250,9 +248,10 @@ Examples:
 Returns a list of expenses and income containing the keyword <rice> +
 Expected Outcome:
 
-1. Duck Rice Date: 10/10/2010 Amount: $4.00
-2. Chicken Rice Date: 10/11/2010 Amount: $2.50
-...​
+    Listed all transactions containing <rice>:
+    1. Duck Rice Date: 10/10/2010 Amount: $4.00
+    2. Chicken Rice Date: 10/11/2010 Amount: $2.50
+    ...​
 
 //end::walletfind[]
 
@@ -318,7 +317,7 @@ Expected Outcome:
 //tag::peopleremind[]
 ==== Sending reminder to a friend: `remind`
 
-Reminds a friend, through a email to return the loans to you. +
+Reminds a friend, through an email to return the loans to you. +
 Format: `people remind <index>`
 
 ****
@@ -365,6 +364,7 @@ Expected Outcome:
 
 //end::peopleremindall[]
 
+// @@author cheyannesim
 // tag::owe[]
 ==== Recording the money you owe: `owe`
 
@@ -387,12 +387,13 @@ Expected Outcome:
     Increased debt to Grace by $5.00! You now owe Grace $10.00.
 
 // end::owe[]
+// @@author
 
 // tag::return[]
-==== Recording the money you return: `return`
+==== Recording the money you return: `returned`
 
 Records that a debt that you owe a person has been returned. +
-Format: `people return <person's index> [i/<debt's index>]`
+Format: `people returned <person's index> [i/<debt's index>]`
 ****
 * Records that the debt at the specified <debt's index> has been returned to the person specified at <person's index>.
 * The person's index refers to the index number shown in the displayed person list.
@@ -406,7 +407,7 @@ Sharkie will record all debts as returned if the debt's index is not specified.
 
 Examples:
 
-* `people return 4 i/1`
+* `people returned 4 i/1`
 Records that you return the 4th person the 1st debt. +
 Expected Outcome:
 
@@ -417,7 +418,7 @@ Expected Outcome:
 // tag::lend[]
 ==== Recording the money you lend: `lend`
 
-Records the amount of money that you lend to a person. This will increase that person's loan. +
+Records the amount of money that you lent to a person. This will increase that person's loan. +
 Format: `people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
 
 ****
@@ -463,6 +464,25 @@ Expected Outcome:
 
 // end::paid[]
 
+//tag::peoplelist[]
+==== Listing all contacts: `list`
+
+Lists everyone in the contact book. +
+Format: `people list`
+
+Examples:
+
+* `people list`
+Returns the list of everyone in the contact book. +
+Expected Outcome:
+
+    Listed all persons.
+    1. Alex Yeoh
+    2. Bernice Yu
+    …
+
+//end::peoplelist[]
+
 //tag::peoplefind[]
 ==== Finding a person: `find`
 
@@ -500,7 +520,7 @@ Examples:
 Edits the email address of the 1st person to be `johndoe@example.com`. +
 Expected Outcome:
 
-    Person: John Doe Phone: 91234568 Email: johndoe@example.com
+    Edited Person: John Doe Phone: 91234568 Email: johndoe@example.com You owe: $0.00 You lent: $0.00 Tags:
 
 // end::edit[]
 
@@ -522,14 +542,14 @@ Examples:
 Deletes the 2nd person in the address book. +
 Expected Outcome:
 
-    Removed Joel from your list of contacts! :(
+    Deleted Person: Joel Phone: 91234567 Email: something@email.com You owe: $0.00 You lent: $0.00 Tags:
 
 * `people find Betsy` +
 `people delete 1` +
 Deletes the 1st person in the results of the `find` command. +
 Expected Outcome:
 
-    Removed Betsy from your list of contacts! :(
+    Deleted Person: Betsy Phone: 91234567 Email: something@email.com You owe: $0.00 You lent: $0.00 Tags:
 
 // end::delete[]
 
@@ -571,10 +591,13 @@ e.g. `people remind 1`
 * *Remind all* : `people remindall`
 * *Owe* : `people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]` +
 e.g. `people owe 4 n/lunch $/5.00 d/10/10/2020`
+* *Returned*: `people returned <person's index> [i/<debt's index>]` +
+e.g. `people returned 4 i/1`
 * *Lend* : `people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]` +
 e.g. `people lend 5 n/dinner $/5.00 d/10/10/2020`
 * *Received* : `people received <person's index> [i/<loan's index>]` +
 e.g. `people paid 1 2`
+* *List* : `people list`
 * *Find* : `people find <keyword>` +
 e.g. `people find Grace`
 * *Delete* : `people delete <index>` +

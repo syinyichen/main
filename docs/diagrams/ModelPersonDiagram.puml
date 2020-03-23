@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Person {
+Class Person
+Class Email
+Class Name
+Class Phone
+Class UniquePersonList
+
+Package User {
+Class User
+}
+}
+
+Package Transaction {
+Class Debt
+Class Loan
+}
+
+Package Tag {
+Class Tag
+}
+
+Class AB #FFFFFF
+Class MM #FFFFFF
+Class UD #FFFFFF
+AB --> "1" UniquePersonList
+MM --> "1" Person  : filtered list
+UD -right-> "1" User
+
+UniquePersonList o--> "*" Person
+Person *--> Name
+Person *--> Phone
+Person *--> Email
+Person *--> "*" Debt
+Person *--> "*" Loan
+Person *--> "*" Tag
+
+User *--> Name
+User *--> Phone
+User *--> Email
+
+Name -[hidden]right-> Phone
+Phone -[hidden]right-> Email
+
+@enduml

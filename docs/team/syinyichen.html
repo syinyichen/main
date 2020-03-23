@@ -441,38 +441,85 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Chen Syin Yi - Project Portfolio</h1>
 </div>
 <div id="content">
-<div class="sect1 has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-6">
+<div class="sect1">
 <h2 id="_project_sharkie">PROJECT: Sharkie</h2>
 <div class="sectionbody">
 <hr>
 </div>
 </div>
-<div class="sect1 has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-10">
+<div class="sect1">
 <h2 id="_overview">Overview</h2>
 <div class="sectionbody">
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-12">
-<p><strong>Sharkie</strong> is a desktop expense tracker application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.</p>
+<div class="paragraph">
+<p><strong>Sharkie</strong> is a desktop expense tracker application. The user interacts with it using a CLI,
+and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.</p>
 </div>
 </div>
 </div>
-<div class="sect1 has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-14">
+<div class="sect1">
 <h2 id="_summary_of_contributions">Summary of contributions</h2>
 <div class="sectionbody">
-<div class="ulist has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-16">
+<div class="ulist">
 <ul>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-16">
+<li>
 <p><strong>Major enhancement</strong>:</p>
-<div class="ulist has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-18">
+<div class="ulist">
 <ul>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-18">
-<p>Added People&#8217;s command, <code>lend</code></p>
-<div class="ulist has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-19">
+<li>
+<p>Added <code><strong>lend</strong></code> <strong>command</strong> (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#87</a>)</p>
+<div class="ulist">
 <ul>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-19">
+<li>
 <p>What it does: Allows the user to record the amount of money lent to other people in the address book.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-20">
-<p>Credits: Implemented based on <a href="http://github.com/cheyannesim">Cheyanne</a>'s <code>people owe</code> command.</p>
+<li>
+<p>Justification: This is one of the key features of Sharkie, which records the flow of money between the user and
+the people in the address book.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Added <code><strong>received</strong></code> <strong>command</strong> (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#98</a>)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Allows the user to record that a person, which the user lent has returned the amount of money.</p>
+</li>
+<li>
+<p>Justification: This is an essential update, which allows the user to remove the loans recorded by the
+<code>lend</code> command.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Added <strong>user data storage</strong> (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#95</a>)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Stores user data, such as name, phone and e-mail address.</p>
+</li>
+<li>
+<p>Justification: The storage of user data is important, as the user details are required to use the <code>remind</code>
+and <code>remindall</code> commands.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Added <code><strong>remind</strong></code> and <code><strong>remindall</strong></code> <strong>command</strong> (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#95</a>)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: Allows the user to send reminders to the people, who has yet return the amount of money they lent via email.</p>
+</li>
+<li>
+<p>Justification: This is one of the main features of Sharkie, which allows the interaction between the user and
+the people in the address book.</p>
+</li>
+<li>
+<p>Credits: <em>javax.mail</em> is used in the implementation of this feature.</p>
 </li>
 </ul>
 </div>
@@ -480,35 +527,47 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-22">
+<li>
 <p><strong>Other contributions</strong>:</p>
-<div class="ulist has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-24">
+<div class="ulist">
 <ul>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-24">
+<li>
 <p>Project management:</p>
-<div class="ulist has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-25">
+<div class="ulist">
 <ul>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-25">
-<p>Finalized and tagged <code>v1.1</code>. (Pull request <a href="https://github.com">#80</a>, <a href="https://github.com">#82</a>, <a href="https://github.com">#83</a>)</p>
+<li>
+<p>Finalized and tagged <code>v1.1</code> and <code>v1.2</code>.</p>
 </li>
 </ul>
 </div>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-26">
+<li>
 <p>Documentation:</p>
-<div class="ulist has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-27">
+<div class="ulist">
 <ul>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-27">
-<p>Updated the product&#8217;s website heading: (Pull request <a href="https://github.com">#44</a>)</p>
+<li>
+<p>Updated the product website&#8217;s heading and navigation bar: (Pull request
+<a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#44</a>, <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#81</a>)</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-28">
-<p>Edited the product&#8217;s website navigation bar: (Pull request <a href="https://github.com">#81</a>)</p>
+<li>
+<p>Edited various parts of the User Guide: (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#49</a>)</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-29">
-<p>Edited various parts of the User Guide: (Pull request <a href="https://github.com">#49</a>)</p>
+<li>
+<p>Added use cases and updated the Design and Implementation part of the Developer Guide:
+(Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#51</a>,
+<a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#132</a>, <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#134</a>)</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-30">
-<p>Updated the Use Cases Appendix in the Developer Guide: (Pull request <a href="https://github.com">#51</a>)</p>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with non-trivial review comments): (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#92</a>,
+<a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#100</a>, <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#104</a>,
+<a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#115</a>)</p>
 </li>
 </ul>
 </div>
@@ -520,10 +579,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </div>
-<div class="sect1 has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-32">
+<div class="sect1">
 <h2 id="_contributions_to_the_user_guide">Contributions to the User Guide</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-35">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -535,22 +594,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 </div>
-<div class="sect1 has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-32">
+<div class="sect1">
 <h2 id="_about">About</h2>
 <div class="sectionbody">
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-33">
+<div class="paragraph">
 <p>This user guide will help to ensure that you have all the information you need to utilise <strong>Sharkie</strong> to its fullest extent. <strong>Sharkie</strong> is a feature-filled expense tracker and all the information you need regarding his usage is available below.<br></p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-35">
+<div class="paragraph">
 <p>If you need help starting up Sharkie, you can head on to the QuickStart guide below to set it up.<br></p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-37">
+<div class="paragraph">
 <p>If you need help regarding what commands <strong>Sharkie</strong> has, our Features section below will guide you through <strong>Sharkie’s</strong> abilities.<br></p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-40">
+<div class="paragraph">
 <p>Note the following symbols and formatting used in this document:<br></p>
 </div>
-<table class="tableblock frame-all grid-all stretch has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-42">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -563,9 +622,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div class="exampleblock has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-47">
+<div class="exampleblock">
 <div class="content">
-<div class="admonitionblock tip has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-49">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
@@ -579,27 +638,27 @@ This symbol indicates tips.
 </div>
 </div>
 </div>
-<div class="sect2 has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-78">
-<h3 id="_expenditure_and_income_coming_in_v2_0">Expenditure and income <code>[coming in v2.0]</code></h3>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-41">
+<div class="sect2">
+<h3 id="_expenditure_and_income">Expenditure and income</h3>
+<div class="paragraph">
 <p><strong>Sharkie</strong> notes down what you have spent on for the month, and also notes down your income for the month to help you properly track your money flow!</p>
 </div>
-<div class="sect3 has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-300">
+<div class="sect3">
 <h4 id="_adding_a_person_add">Adding a person: <code>add</code></h4>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-302">
+<div class="paragraph">
 <p>Adds a person to the address book<br>
 Format: <code>people add n/&lt;name&gt; p/&lt;phone number&gt; e/&lt;email address&gt;</code></p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-305">
+<div class="paragraph">
 <p>Examples:</p>
 </div>
-<div class="ulist has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-307">
+<div class="ulist">
 <ul>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-307">
+<li>
 <p><code>people add n/Joel p/91234567 e/joel@u.nus.edu</code>
 Adds a person named Joel into your contact, along with his phone number and e-mail address<br>
 Expected Outcome:</p>
-<div class="literalblock has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-311">
+<div class="literalblock">
 <div class="content">
 <pre>New person added: Joel Phone: 91234567 Email: joel@u.nus.edu</pre>
 </div>
@@ -608,88 +667,117 @@ Expected Outcome:</p>
 </ul>
 </div>
 </div>
-<div class="sect3 has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-316">
-<h4 id="_sending_reminder_to_a_friend_remind_coming_in_v2_0">Sending reminder to a friend: <code>remind</code> <code>[coming in v2.0]</code></h4>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-318">
-<p>Sends a reminder through email to a friend to return their debts to you.<br>
+<div class="sect3">
+<h4 id="_sending_reminder_to_a_friend_remind">Sending reminder to a friend: <code>remind</code></h4>
+<div class="paragraph">
+<p>Reminds a friend, through an email to return the loans to you.<br>
 Format: <code>people remind &lt;index&gt;</code></p>
 </div>
-<div class="sidebarblock has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-321">
+<div class="sidebarblock">
 <div class="content">
-<div class="ulist has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-322">
+<div class="ulist">
 <ul>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-322">
-<p>Reminds the person at the specified <code>&lt;index&gt;</code> return their debts to you.</p>
+<li>
+<p>Reminds the person at the specified <code>&lt;index&gt;</code> return the loans to you.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-323">
+<li>
 <p>The index refers to the index number shown in the displayed person list.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-324">
+<li>
 <p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-327">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+To use this command, you must include your details in Sharkie.<br>
+You can enter or edit your details at <code>Edit</code> &gt; <code>Edit user&#8217;s data</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
 <p>Examples:</p>
 </div>
-<div class="ulist has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-329">
+<div class="ulist">
 <ul>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-329">
+<li>
 <p><code>people remind 1</code>
 Sends a reminder to the 1st person in your contact list.<br>
 Expected Outcome:</p>
-<div class="literalblock has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-333">
+<div class="literalblock">
 <div class="content">
-<pre>Reminded Daniel to return $10.00!</pre>
+<pre>Reminded Daniel to return $10.00!
+Sharkie has sent a copy of the reminder to your email!</pre>
 </div>
 </div>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect3 has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-338">
-<h4 id="_sending_reminder_to_all_friend_remindall_coming_in_v2_0">Sending reminder to all friend: <code>remindall</code> <code>[coming in v2.0]</code></h4>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-340">
+<div class="sect3">
+<h4 id="_sending_reminder_to_all_friend_remindall">Sending reminder to all friend: <code>remindall</code></h4>
+<div class="paragraph">
 <p>Sends reminders through email to all the friends that have not yet paid up.<br>
 Format: <code>people remindall</code></p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-343">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Tip</div>
+</td>
+<td class="content">
+To use this command, you must include your details in Sharkie.<br>
+You can enter or edit your details at <code>Edit</code> &gt; <code>Edit user&#8217;s data</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
 <p>Examples:</p>
 </div>
-<div class="ulist has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-345">
+<div class="ulist">
 <ul>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-345">
+<li>
 <p><code>people remindall</code>
 Sends a reminder to all the people who owe you money.<br>
 Expected Outcome:</p>
-<div class="literalblock has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-349">
+<div class="literalblock">
 <div class="content">
 <pre>Reminded Daniel to return $10.00!
-Reminded Joel to return $30.75!</pre>
+Reminded Joel to return $30.75!
+...
+Sharkie has sent copies of the reminders to your email!</pre>
 </div>
 </div>
 </li>
 </ul>
 </div>
 </div>
-<div class="sect3 has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-401">
+<div class="sect3">
 <h4 id="_finding_a_person_find">Finding a person: <code>find</code></h4>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-403">
+<div class="paragraph">
 <p>Finds a person in your contact list by his or her name.<br>
 Format: <code>people find &lt;keyword&gt;</code></p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-406">
+<div class="paragraph">
 <p>Examples:</p>
 </div>
-<div class="ulist has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-408">
+<div class="ulist">
 <ul>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-408">
+<li>
 <p><code>people find Grace</code>
 Returns a list of people with the name, Grace.<br>
 Expected Outcome:</p>
-<div class="literalblock has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/UserGuide.adoc-412">
+<div class="literalblock">
 <div class="content">
 <pre>Here is a list of your contacts with name Grace:
 1. Grace Lim
@@ -704,10 +792,10 @@ Expected Outcome:</p>
 </div>
 </div>
 </div>
-<div class="sect1 has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-51">
+<div class="sect1">
 <h2 id="_contributions_to_the_developer_guide">Contributions to the Developer Guide</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-53">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 100%;">
 </colgroup>
@@ -717,51 +805,222 @@ Expected Outcome:</p>
 </tr>
 </tbody>
 </table>
+<div class="sect2">
+<h3 id="Design-Model">Model component</h3>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelClassDiagram.png" alt="ModelClassDiagram" width="700">
+</div>
+<div class="title">Figure 1. Structure of the Model Component</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>The <em>Model</em> package consists of two main packages: <em>Person</em> and <em>Transaction</em>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The diagram below shows how the <em>Person</em> package is implemented:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelPersonDiagram.png" alt="ModelPersonDiagram" width="500">
+</div>
+<div class="title">Figure 2. In-depth Structure of Person in the Model Component</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The diagram below shows how the <em>Transaction</em> package is implemented:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ModelTransactionDiagram.png" alt="ModelTransactionDiagram" width="500">
+</div>
+<div class="title">Figure 3. In-depth Structure of Transaction in the Model Component</div>
 </div>
 </div>
-<div class="sect1 has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-379">
+</div>
+<div class="paragraph">
+<p><strong>API</strong> : <a href="{repoURL}/src/main/java/seedu/address/model/Model.java"><code>Model.java</code></a></p>
+</div>
+<div class="paragraph">
+<p>The <code>Model</code>,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>stores a <code>UserPref</code> object that represents the user&#8217;s preferences.</p>
+</li>
+<li>
+<p>stores the Address Book data.</p>
+</li>
+<li>
+<p>stores the Wallet data.</p>
+</li>
+<li>
+<p>stores the User data.</p>
+</li>
+<li>
+<p>exposes an unmodifiable <code>ObservableList&lt;Person&gt;</code> and an unmodifiable <code>ObservableList&lt;Transaction&gt;</code> that can be
+'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when the data in the
+respective lists change.</p>
+</li>
+<li>
+<p>does not depend on any of the other three components.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_received_command">Received Command</h3>
+<div class="paragraph">
+<p>The <code>received</code> command is implemented in the class, <code>PeopleReceivedCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p>This command can be accessed from <code>Logic#execute()</code>. It deletes the <code>Loan</code>(s) of the indicated <code>Person</code>
+(the <code>Person</code> with the specified index in the Address Book).</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram illustrates what happens when the user executes a <code>received</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ReceivedActivityDiagram.png" alt="ReceivedActivityDiagram" width="600">
+</div>
+<div class="title">Figure 4. Activity diagram of the execution of <code>received</code> command</div>
+</div>
+<div class="sect3">
+<h4 id="_implementation_of_received_command">Implementation of <code>received</code> command</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In <code>PeopleReceivedCommand</code> class, the list of <code>Persons</code> is obtained from the <code>Model</code> via
+<code>Model#getFilteredPersonList()</code> and the indicated person is extracted from the list.</p>
+</li>
+<li>
+<p>The list of <code>Loans</code> of the <code>Person</code> is extracted and modified based on the command entered by the user.</p>
+</li>
+<li>
+<p>A new <code>Person</code> with the modified list of <code>Loans</code> is created.</p>
+</li>
+<li>
+<p>This new <code>Person</code> replace the initial <code>Person</code> at the indicated index via <code>Model#setPerson()</code> and the <code>filteredPersons</code>
+in the <code>Model</code> is updated.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram summarizes what happens during the execution of a <code>received</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ReceivedSequenceDiagram.png" alt="ReceivedSequenceDiagram">
+</div>
+<div class="title">Figure 5. Sequence diagram of the <code>received</code> command</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The lifeline for <code>PeopleReceivedCommand</code> should end at the destroy marker (X) but due to a limitation of PlantUML,
+the lifeline reaches the end of diagram.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_design_considerations">Design Considerations</h4>
+<div class="sect4">
+<h5 id="_aspect_deletion_of_loan_from_the_indicated_person">Aspect: Deletion of <code>Loan</code> from the indicated person.</h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Creates a new <code>Person</code> with the modified list of <code>Loans</code> and
+use <code>Model#setPerson()</code> to replace the indicated <code>Person</code> with the new <code>Person</code> created.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Preserve the immutable property of <code>Person</code>.</p>
+</li>
+<li>
+<p>Cons: Have to copy over all the attribute values, such as <code>Name</code>, <code>Phone</code> and more.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Modify the list of <code>Loans</code> in the indicated <code>Person</code> directly.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easier and can save time from copying the information from one <code>Person</code> to another.</p>
+</li>
+<li>
+<p>Cons: <code>Person</code> loses the immutable property.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_use_cases">Appendix A: Use Cases</h2>
 <div class="sectionbody">
-<div class="sect2 has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-381">
+<div class="sect2">
 <h3 id="_wallet_tab">Wallet Tab</h3>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-383">
+<div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is the <code>Wallet</code> and the <strong>Actor</strong> is the <code>User</code>, unless specified otherwise)</p>
 </div>
-<h4 id="_use_case_recording_an_expense" class="discrete has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-386">Use case: Recording an expense</h4>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-388">
+<h4 id="_use_case_uc1_recording_an_expense" class="discrete">Use case: UC1 - Recording an expense</h4>
+<div class="paragraph">
 <p><a href="#MSS"><strong>MSS</strong></a></p>
 </div>
-<div class="olist arabic has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-390">
+<div class="olist arabic">
 <ol class="arabic">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-390">
-<p>User keys in an expense.</p>
+<li>
+<p>User requests to add an expense into the wallet.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-391">
-<p><a href="#wallet">Wallet</a> adds the expense.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-393">
+<li>
+<p><a href="#wallet">Wallet</a> adds the expense and displays the expense in the list of expenses.</p>
+<div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-395">
+<div class="paragraph">
 <p><a href="#extensions"><strong>Extensions</strong></a></p>
 </div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-398">
+<div id="wallet-invalid-amount" class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-398">
-<p>1a. The expense keyed in is invalid.</p>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-401">
+<li>
+<p>1a. The amount keyed in by the user is invalid.</p>
+<div class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-401">
+<li>
 <p>1a1. Wallet shows an error message.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-402">
+<li>
 <p>1a2. User re-enters the expense.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-404">
-<p>Steps 1a1-1a2 are repeated until the expense keyed in is correct.</p>
+<div class="paragraph">
+<p>Steps 1a1-1a2 are repeated until the amount keyed in by the user is correct.</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-406">
+<div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
 </li>
@@ -770,127 +1029,125 @@ Expected Outcome:</p>
 </li>
 </ul>
 </div>
-<h4 id="_use_case_recording_an_income" class="discrete has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-409">Use case: Recording an income</h4>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-411">
+<h4 id="_use_case_uc2_recording_an_income" class="discrete">Use case: UC2 - Recording an income</h4>
+<div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
-<div class="olist arabic has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-413">
+<div class="olist arabic">
 <ol class="arabic">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-413">
-<p>User keys in an income.</p>
+<li>
+<p>User requests to add an income into the wallet.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-414">
-<p>Wallet adds the income.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-416">
+<li>
+<p>Wallet adds the income and displays the income in the list of incomes.</p>
+<div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-418">
+<div class="paragraph">
 <p><strong>Extensions</strong></p>
 </div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-421">
+<div class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-421">
-<p>1a. The income keyed in is invalid.</p>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-424">
-<ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-424">
-<p>1a1. Wallet shows an error message.</p>
-</li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-425">
-<p>1a2. User re-enters the income.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-427">
-<p>Steps 1a1-1a2 are repeated until the income keyed in is correct.</p>
+<li>
+<p>1a. The amount keyed in by the user is invalid.</p>
+<div class="paragraph">
+<p><a href="#wallet-invalid-amount">Steps 1a1-1a2</a> of <span class="underline">recording an expense (UC1)</span> are repeated
+until the amount keyed in by the user is valid.</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-429">
+<div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
 </li>
 </ul>
 </div>
-</li>
-</ul>
-</div>
-<h4 id="_use_case_setting_budget" class="discrete has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-432">Use case: Setting budget</h4>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-434">
+<h4 id="_use_case_uc3_setting_budget" class="discrete">Use case: UC3 - Setting budget</h4>
+<div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
-<div class="olist arabic has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-436">
+<div class="olist arabic">
 <ol class="arabic">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-436">
-<p>User keys in a budget.</p>
+<li>
+<p>User requests to set a budget.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-437">
-<p>Wallet sets the amount keyed in as the budget of the month.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-439">
+<li>
+<p>Wallet sets the amount keyed in as the budget of the month indicated.</p>
+<div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-441">
+<div class="paragraph">
 <p><strong>Extensions</strong></p>
 </div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-444">
+<div class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-444">
-<p>1a. The amount keyed in is invalid.</p>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-447">
-<ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-447">
-<p>1a1. Wallet shows an error message.</p>
-</li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-448">
-<p>1a2. User re-enters the budget.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-450">
-<p>Steps 1a1-1a2 are repeated until the amount keyed in is correct.</p>
+<li>
+<p>1a. The amount keyed in by the user is invalid.</p>
+<div class="paragraph">
+<p><a href="#wallet-invalid-amount">Steps 1a1-1a2</a> of <span class="underline">recording an expense (UC1)</span> are repeated
+until the amount keyed in by the user is valid.</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-452">
+<div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
 </li>
+<li>
+<p>1b. The amount keyed in by the user has no date attached to it.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. Wallet automatically assigns the budget entered as the default budget of each month.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
 </ul>
 </div>
 </li>
 </ul>
 </div>
-<h4 id="_use_case_deleting_an_incomeexpense" class="discrete has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-455">Use case: Deleting an income/expense</h4>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-457">
+<h4 id="_use_case_uc4_deleting_a_transaction" class="discrete">Use case: UC4 - Deleting a <a href="#transaction"><strong>transaction</strong></a></h4>
+<div class="paragraph">
+<p><strong>Preconditions:</strong> The transaction that the user wants to delete exists in the wallet.</p>
+</div>
+<div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
-<div class="olist arabic has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-459">
+<div class="olist arabic">
 <ol class="arabic">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-459">
-<p>User requests to delete a specific income/expense in the wallet.</p>
+<li>
+<p>User requests to delete a specific transaction in the wallet.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-460">
-<p>Wallet deletes the income/expense.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-462">
+<li>
+<p>Wallet deletes the transaction and displays the list of remaining transactions.</p>
+<div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-464">
+<div class="paragraph">
 <p><strong>Extensions</strong></p>
 </div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-467">
+<div id="wallet-invalid-index" class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-467">
-<p>1a. The index keyed in is invalid.</p>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-470">
+<li>
+<p>1a. The transaction&#8217;s index keyed in by the user is invalid.</p>
+<div class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-470">
+<li>
 <p>1a1. Wallet shows an error message.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-471">
+<li>
 <p>1a2. User re-enters the index.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-473">
+<div class="paragraph">
 <p>Steps 1a1-1a2 are repeated until the index keyed in is valid.</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-475">
+<div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
 </li>
@@ -899,41 +1156,58 @@ Expected Outcome:</p>
 </li>
 </ul>
 </div>
-<h4 id="_use_case_editing_an_incomeexpense" class="discrete has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-478">Use case: Editing an income/expense</h4>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-480">
+<h4 id="_use_case_uc5_editing_a_transaction" class="discrete">Use case: UC5 - Editing a transaction</h4>
+<div class="paragraph">
+<p><strong>Preconditions:</strong> The transaction that the user wants to edit exists in the wallet.</p>
+</div>
+<div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
-<div class="olist arabic has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-482">
+<div class="olist arabic">
 <ol class="arabic">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-482">
-<p>User requests to edit a specific income/expense in the wallet.</p>
+<li>
+<p>User requests to edit a specific transaction in the wallet.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-483">
-<p>Wallet edits the income/expense.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-485">
+<li>
+<p>Wallet edits the transaction and shows the list with the edited transaction.</p>
+<div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-487">
+<div class="paragraph">
 <p><strong>Extensions</strong></p>
 </div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-490">
+<div class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-490">
-<p>1a. The index keyed in is invalid.</p>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-493">
-<ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-493">
-<p>1a1. Wallet shows an error message.</p>
-</li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-494">
-<p>1a2. User re-enters the index.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-496">
-<p>Steps 1a1-1a2 are repeated until the index keyed in is valid.</p>
+<li>
+<p>1a. The transaction&#8217;s index keyed in by the is invalid.</p>
+<div class="paragraph">
+<p><a href="#wallet-invalid-index">Steps 1a1-1a2</a> of <span class="underline">deleting an transaction (UC4)</span> are repeated
+until the index keyed in by the user is valid.</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-498">
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b. The user did not indicate the field to edit.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. Wallet shows an error message.</p>
+</li>
+<li>
+<p>1b2. User re-enters the edit command.</p>
+<div class="paragraph">
+<p>Steps 1b1-1b2 are repeated until the edit command keyed in is valid.</p>
+</div>
+<div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
 </li>
@@ -942,100 +1216,101 @@ Expected Outcome:</p>
 </li>
 </ul>
 </div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-501">
-<ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-501">
-<p>1a. The new income/expense keyed in is invalid.</p>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-504">
-<ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-504">
-<p>1a1. Wallet shows an error message.</p>
-</li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-505">
-<p>1a2. User re-enters the new income/expense.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-507">
-<p>Steps 1a1-1a2 are repeated until the new income/expense keyed in is valid.</p>
-</div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-509">
-<p>Use case resumes at step 2.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<h4 id="_use_case_finding_an_incomeexpense" class="discrete has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-512">Use case: Finding an income/expense</h4>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-514">
+<h4 id="_use_case_uc6_finding_a_transaction" class="discrete">Use case: UC6 - Finding a transaction</h4>
+<div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
-<div class="olist arabic has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-516">
+<div class="olist arabic">
 <ol class="arabic">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-516">
+<li>
 <p>User keys in a keyword.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-517">
-<p>Wallet lists out the incomes or expenses containing the keyword.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-519">
+<li>
+<p>Wallet lists out the transactions that contain the keyword.</p>
+<div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-521">
+<div class="paragraph">
 <p><strong>Extensions</strong></p>
 </div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-524">
+<div class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-524">
-<p>1a. The keyword entered does not exist in the wallet.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-526">
+<li>
+<p>1a. The keyword entered by the user does not exist in the wallet.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. Wallet shows an empty list.</p>
+<div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
 </ul>
 </div>
+</li>
+</ul>
 </div>
-<div class="sect2 has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-528">
-<h3 id="_people_tab">People Tab</h3>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-530">
-<p>(For all use cases below, the <strong>System</strong> is the <code>AddressBook</code> and the <strong>Actor</strong> is the <code>User</code>, unless specified otherwise)</p>
-</div>
-<h4 id="_use_case_adding_a_person" class="discrete has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-533">Use case: Adding a person</h4>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-535">
+<h4 id="_use_case_uc7_listing_all_transactions" class="discrete">Use case: UC7 - Listing all transactions</h4>
+<div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
-<div class="olist arabic has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-537">
+<div class="olist arabic">
 <ol class="arabic">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-537">
+<li>
+<p>User enters the list command.</p>
+</li>
+<li>
+<p>Wallet lists out all the transactions.</p>
+<div class="paragraph">
+<p>Use case ends.</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_people_tab">People Tab</h3>
+<div class="paragraph">
+<p>(For all use cases below, the <strong>System</strong> is the <code>Address Book</code> and the <strong>Actor</strong> is the <code>User</code>, unless specified otherwise)</p>
+</div>
+<h4 id="_use_case_uc8_adding_a_person" class="discrete">Use case: UC8 - Adding a person</h4>
+<div class="paragraph">
+<p><strong>MSS</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
 <p>User requests to add a person into the <a href="#address-book">address book</a>.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-538">
-<p>Address book adds the person into the list.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-540">
+<li>
+<p>Address book adds the person and displays the person in the list of people.</p>
+<div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-542">
+<div class="paragraph">
 <p><strong>Extensions</strong></p>
 </div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-545">
+<div id="people-invalid-detail" class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-545">
-<p>1a. The person’s details keyed in is invalid.</p>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-548">
+<li>
+<p>1a. The person’s details keyed in by the user is invalid.</p>
+<div class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-548">
+<li>
 <p>1a1. Address book shows an error message.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-549">
+<li>
 <p>1a2. User re-enters the person’s details.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-551">
+<div class="paragraph">
 <p>Steps 1a1-1a2 are repeated until the details keyed in is correct.</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-553">
+<div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
 </li>
@@ -1044,41 +1319,41 @@ Expected Outcome:</p>
 </li>
 </ul>
 </div>
-<h4 id="_use_case_sending_reminder_to_a_friend" class="discrete has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-556">Use case: Sending reminder to a friend</h4>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-558">
+<h4 id="_use_case_uc9_sending_reminder_to_a_friend" class="discrete">Use case: UC9 - Sending reminder to a friend</h4>
+<div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
-<div class="olist arabic has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-560">
+<div class="olist arabic">
 <ol class="arabic">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-560">
+<li>
 <p>User requests to send a reminder to a friend.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-561">
+<li>
 <p>Address book sends a reminder to the friend.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-563">
+<div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-565">
+<div class="paragraph">
 <p><strong>Extensions</strong></p>
 </div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-568">
+<div id="people-invalid-index" class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-568">
-<p>1a. The index keyed in is invalid.</p>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-571">
+<li>
+<p>1a. The person&#8217;s index keyed in by the user is invalid.</p>
+<div class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-571">
+<li>
 <p>1a1. Address book shows an error message.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-572">
+<li>
 <p>1a2. User re-enters the index.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-574">
+<div class="paragraph">
 <p>Steps 1a1-1a2 are repeated until the index keyed in is valid.</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-576">
+<div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
 </li>
@@ -1087,84 +1362,68 @@ Expected Outcome:</p>
 </li>
 </ul>
 </div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-579">
+<div class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-579">
-<p>1a. The friend does not owe the user money.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-581">
+<li>
+<p>1b. Address book shows that the friend does not owe the user money.</p>
+<div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
 </ul>
 </div>
-<h4 id="_use_case_sending_reminders_to_all_friends" class="discrete has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-584">Use case: Sending reminders to all friends</h4>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-586">
+<h4 id="_use_case_uc10_recording_the_money_the_user_owes" class="discrete">Use case: UC10 - Recording the money the user owes</h4>
+<div class="paragraph">
+<p><strong>Preconditions:</strong> The friend, who user owes exists in the address book.</p>
+</div>
+<div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
-<div class="olist arabic has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-588">
+<div class="olist arabic">
 <ol class="arabic">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-588">
-<p>User requests to send reminders to all friends.</p>
-</li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-589">
-<p>Address book lists out all the friends who owe the user money.</p>
-</li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-590">
-<p>Address book sends reminders to all the friends on the list obtained in step 2.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-592">
-<p>Use case ends.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-594">
-<p><strong>Extensions</strong></p>
-</div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-597">
-<ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-597">
-<p>2a. The list is empty.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-599">
-<p>Use case ends.</p>
-</div>
-</li>
-</ul>
-</div>
-<h4 id="_use_case_recording_the_money_the_user_owes" class="discrete has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-602">Use case: Recording the money the user owes</h4>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-604">
-<p><strong>MSS</strong></p>
-</div>
-<div class="olist arabic has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-606">
-<ol class="arabic">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-606">
+<li>
 <p>User enters the amount borrowed from a friend.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-607">
+<li>
 <p>Address book records the amount, which the user owes the friend.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-609">
+<div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-611">
+<div class="paragraph">
 <p><strong>Extensions</strong></p>
 </div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-614">
+<div class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-614">
-<p>1a. The index keyed in is invalid.</p>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-617">
-<ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-617">
-<p>1a1. Address book shows an error message.</p>
-</li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-618">
-<p>1a2. User re-enters the index.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-620">
-<p>Steps 1a1-1a2 are repeated until the index keyed in is valid.</p>
+<li>
+<p>1a. The person&#8217;s index keyed in by the user is invalid.</p>
+<div class="paragraph">
+<p><a href="#people-invalid-index">Steps 1a1-1a2</a> of <span class="underline">sending reminder to a friend (UC9)</span> are repeated
+until index keyed in by the user is valid.</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-622">
+<div class="paragraph">
+<p>Use case resumes at step 2.</p>
+</div>
+</li>
+</ul>
+</div>
+<div id="people-invalid-amount" class="ulist none">
+<ul class="none">
+<li>
+<p>1b. The amount keyed in by the user is invalid.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1b1. Address book shows an error message.</p>
+</li>
+<li>
+<p>1b2. User re-enters the amount.</p>
+<div class="paragraph">
+<p>Steps 1b1-1b2 are repeated until the amount keyed in is correct.</p>
+</div>
+<div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
 </li>
@@ -1173,245 +1432,190 @@ Expected Outcome:</p>
 </li>
 </ul>
 </div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-625">
-<ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-625">
-<p>1a. The amount keyed in is invalid.</p>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-628">
-<ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-628">
-<p>1a1. Address book shows an error message.</p>
-</li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-629">
-<p>1a2. User re-enters the amount.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-631">
-<p>Steps 1a1-1a2 are repeated until the amount keyed in is correct.</p>
+<h4 id="_use_case_uc11_recording_the_money_the_user_lends" class="discrete">Use case: UC11 - Recording the money the user lends</h4>
+<div class="paragraph">
+<p><strong>Preconditions:</strong> The friend, who user lends exists in the address book.</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-633">
-<p>Use case resumes at step 2.</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<h4 id="_use_case_recording_the_money_the_user_lends" class="discrete has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-636">Use case: Recording the money the user lends</h4>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-638">
+<div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
-<div class="olist arabic has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-640">
+<div class="olist arabic">
 <ol class="arabic">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-640">
+<li>
 <p>User enters the amount lent to a friend.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-641">
+<li>
 <p>Address book records the amount, which the user lends to the friend.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-643">
+<div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-645">
+<div class="paragraph">
 <p><strong>Extensions</strong></p>
 </div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-648">
+<div class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-648">
-<p>1a. The index keyed in is invalid.</p>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-651">
-<ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-651">
-<p>1a1. Address book shows an error message.</p>
-</li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-652">
-<p>1a2. User re-enters the index.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-654">
-<p>Steps 1a1-1a2 are repeated until the index keyed in is valid.</p>
+<li>
+<p>1a. The person&#8217;s index keyed in by the user is invalid.</p>
+<div class="paragraph">
+<p><a href="#people-invalid-index">Steps 1a1-1a2</a> of <span class="underline">sending reminder to a friend (UC9)</span> are repeated
+until the index keyed in by the user is valid.</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-656">
+<div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
 </li>
 </ul>
 </div>
-</li>
-</ul>
-</div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-659">
+<div class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-659">
-<p>1a. The amount keyed in is invalid.</p>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-662">
-<ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-662">
-<p>1a1. Address book shows an error message.</p>
-</li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-663">
-<p>1a2. User re-enters the amount.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-665">
-<p>Steps 1a1-1a2 are repeated until the amount keyed in is correct.</p>
+<li>
+<p>1b. The amount keyed in by the user is invalid.</p>
+<div class="paragraph">
+<p><a href="#people-invalid-amount">Steps 1b1-1b2</a> of <span class="underline">recording the money the user owes (UC10)</span> are repeated
+until the amount keyed in by the user is valid.</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-667">
+<div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
 </li>
 </ul>
 </div>
-</li>
-</ul>
+<h4 id="_use_case_uc12_deleting_a_person" class="discrete">Use case: UC12 - Deleting a person</h4>
+<div class="paragraph">
+<p><strong>Preconditions:</strong> The person, who user wants to delete exists in the address book.</p>
 </div>
-<h4 id="_use_case_deleting_a_person" class="discrete has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-670">Use case: Deleting a person</h4>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-672">
+<div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
-<div class="olist arabic has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-674">
+<div class="olist arabic">
 <ol class="arabic">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-674">
+<li>
 <p>User requests to delete a specific person in the address book.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-675">
-<p>Address book deletes the person.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-677">
+<li>
+<p>Address book deletes the person and shows the list of the remaining people.</p>
+<div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-679">
+<div class="paragraph">
 <p><strong>Extensions</strong></p>
 </div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-682">
+<div class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-682">
-<p>1a. The index keyed in is invalid.</p>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-685">
-<ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-685">
-<p>1a1. Address book shows an error message.</p>
-</li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-686">
-<p>1a2. User re-enters the index.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-688">
-<p>Steps 1a1-1a2 are repeated until the index keyed in is valid.</p>
+<li>
+<p>1a. The person&#8217;s index keyed in by the user is invalid.</p>
+<div class="paragraph">
+<p><a href="#people-invalid-index">Steps 1a1-1a2</a> of <span class="underline">sending reminder to a friend (UC9)</span> are repeated
+until the index keyed in by the user is valid.</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-690">
+<div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
 </li>
 </ul>
 </div>
-</li>
-</ul>
+<h4 id="_use_case_uc13_editing_a_person" class="discrete">Use case: UC13 - Editing a person</h4>
+<div class="paragraph">
+<p><strong>Preconditions:</strong> The person, who user wants to edit exists in the address book.</p>
 </div>
-<h4 id="_use_case_editing_a_person" class="discrete has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-693">Use case: Editing a person</h4>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-695">
+<div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
-<div class="olist arabic has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-697">
+<div class="olist arabic">
 <ol class="arabic">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-697">
+<li>
 <p>User requests to edit a specific person in the address book.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-698">
-<p>Address book edits the person.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-700">
+<li>
+<p>Address book updates the indicated person&#8217;s detail and show the list of people with the edited person.</p>
+<div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-702">
+<div class="paragraph">
 <p><strong>Extensions</strong></p>
 </div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-705">
+<div class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-705">
-<p>1a. The index keyed in is invalid.</p>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-708">
-<ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-708">
-<p>1a1. Address book shows an error message.</p>
-</li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-709">
-<p>1a2. User re-enters the index.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-711">
-<p>Steps 1a1-1a2 are repeated until the index keyed in is valid.</p>
+<li>
+<p>1a. The person&#8217;s index keyed in by the user is invalid.</p>
+<div class="paragraph">
+<p><a href="#people-invalid-index">Steps 1a1-1a2</a> of <span class="underline">sending reminder to a friend (UC9)</span> are repeated
+until the index keyed in by the user is valid.</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-713">
+<div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
 </li>
 </ul>
 </div>
-</li>
-</ul>
-</div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-716">
+<div class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-716">
-<p>1a. The new person’s details keyed in is invalid.</p>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-719">
-<ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-719">
-<p>1a1. Address book shows an error message.</p>
-</li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-720">
-<p>1a2. User re-enters the details.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-722">
-<p>Steps 1a1-1a2 are repeated until the details keyed in is valid.</p>
+<li>
+<p>1b. The person&#8217;s new details keyed in by the user is invalid.</p>
+<div class="paragraph">
+<p><a href="#people-invalid-detail">Steps 1a1-1a2</a> of <span class="underline">adding a person (UC8)</span> are repeated
+until the details keyed in by the user is valid.</p>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-724">
+<div class="paragraph">
 <p>Use case resumes at step 2.</p>
 </div>
 </li>
 </ul>
 </div>
-</li>
-</ul>
-</div>
-<h4 id="_use_case_finding_a_person" class="discrete has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-727">Use case: Finding a person</h4>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-729">
+<h4 id="_use_case_uc14_finding_a_person" class="discrete">Use case: UC14 - Finding a person</h4>
+<div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
-<div class="olist arabic has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-731">
+<div class="olist arabic">
 <ol class="arabic">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-731">
+<li>
 <p>User keys in a keyword.</p>
 </li>
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-732">
+<li>
 <p>Address book lists out the people, who contain the keyword in their names.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-734">
+<div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
 </ol>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-736">
+<div class="paragraph">
 <p><strong>Extensions</strong></p>
 </div>
-<div class="ulist none has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-739">
+<div class="ulist none">
 <ul class="none">
-<li class="has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-739">
-<p>1a. None of the names in the address book contains the keyword.</p>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/DeveloperGuide.adoc-741">
+<li>
+<p>1a. The keyword entered by the user does not exist in the address book.</p>
+<div class="ulist none">
+<ul class="none">
+<li>
+<p>1a1. Address book shows an empty list.</p>
+<div class="paragraph">
 <p>Use case ends.</p>
 </div>
 </li>
 </ul>
 </div>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-57">
-<p><em>{More to be added}</em></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 </div>
-<div class="sect1 has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-59">
+<div class="sect1">
 <h2 id="_project_powerpointlabs">PROJECT: PowerPointLabs</h2>
 <div class="sectionbody">
 <hr>
-<div class="paragraph has-source-line data-line-C:/Users/syiny/Desktop/Study/CS2103T/tP/main/docs/team/syinyichen.adoc-63">
+<div class="paragraph">
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
@@ -1419,7 +1623,7 @@ Expected Outcome:</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-03-04 00:38:29 +0800
+Last updated 2020-03-21 22:25:55 +0800
 </div>
 </div>
 </body>

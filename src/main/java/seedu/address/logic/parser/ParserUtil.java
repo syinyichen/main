@@ -88,6 +88,7 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    // @@author cheyannesim
     /**
      * Parses a {@code String description} into a {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
@@ -116,6 +117,8 @@ public class ParserUtil {
         }
         return new Amount(Double.valueOf(amount.trim()));
     }
+    // @@author
+
     /**
      * Parses a {@code String date} into a {@code Date}.
      * Leading and trailing whitespaces will be trimmed.
