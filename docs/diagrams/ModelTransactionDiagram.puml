@@ -43,26 +43,9 @@ Loan .up.|> Transaction
 Budget *--> Amount
 Budget *--> Month
 Budget *--> Year
-Expense *--> Amount
-Expense *--> Description
-Expense *--> "0..1" Date
-Expense *--> "*" Tag
-Income *--> Amount
-Income *--> Description
-Income *--> "0..1" Date
-Income *--> "*" Tag
-Debt *--> Amount
-Debt *--> Description
-Debt *--> "0..1" Date
-Debt *--> "*" Tag
-Loan *--> Amount
-Loan *--> Description
-Loan *--> "0..1" Date
-Loan *--> "*" Tag
-
-Amount -[hidden]down-> Date
-Description -[hidden]down-> Date
-Amount -[hidden]right-> Description
-Date -[hidden]down-> Tag
+Transaction *--> "1" Amount
+Transaction *--> "1" Description
+Transaction *--> "1" Date
+Transaction *--> "1" Tag
 
 @enduml

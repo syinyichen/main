@@ -111,14 +111,14 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 .Interactions Inside the Logic Component for the `delete 1` Command
 image::DeleteSequenceDiagram.png[]
 
-NOTE: The lifeline for `WalletDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+NOTE: The lifeline for `PeopleDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 //tag::model-design[]
 [[Design-Model]]
 === Model component
 
 .Structure of the Model Component
-image::ModelClassDiagram.png[width=700]
+image::ModelClassDiagram.png[width=800]
 
 ====
 The _Model_ package consists of two main packages: _Person_ and _Transaction_.
@@ -131,7 +131,7 @@ image::ModelPersonDiagram.png[width=500, left=10]
 * The diagram below shows how the _Transaction_ package is implemented:
 
 .In-depth Structure of Transaction in the Model Component
-image::ModelTransactionDiagram.png[width=500, left=10]
+image::ModelTransactionDiagram.png[width=1200]
 ====
 
 *API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
@@ -177,19 +177,19 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 
 //tag::owe[]
-=== Owe Command
+=== People Owe Command
 
-The `owe` command is implemented in the class `PeopleOweCommand`.
+The `people owe` command is implemented in the class `PeopleOweCommand`.
 
 This command can be accessed from  `Logic#execute()`. It records a `debt` of an indicated `Amount` to the
 `Person` specified by the index.
 
-The following activity diagram illustrates what happens when the user enters an `owe` command:
+The following activity diagram illustrates what happens when the user enters a `people owe` command:
 
 .Activity diagram of the recording a debt
 image::OweActivityDiagram.png[width=500]
 
-==== Implementation of `owe` command
+==== Implementation of `people owe` command
 
 . When entering the debt command, the user will specify the `Person` using the index of the `Person` in the list shown in the GUI.
 . The user should also specify the debt `Description`, `Amount` and optionally, the `Date`.
@@ -201,10 +201,10 @@ image::OweActivityDiagram.png[width=500]
 . The `filteredPersons` in the `Model` is then updated.
 . `CommandResult` is returned.
 
-The following sequence diagram summarizes what happens during the execution of a `owe` command:
+The following sequence diagram summarizes what happens during the execution of a `people owe` command:
 
 image::OweSequenceDiagram.png[]
-.Sequence diagram of the `owe` command
+.Sequence diagram of the `people owe` command
 image::GetPeopleOweCommandSequenceDiagram.png[width=500]
 
 NOTE: The lifeline for `PeopleOweCommand` should end at the destroy marker (X) but due to a limitation of PlantUML,
@@ -229,19 +229,19 @@ money.
 //end::owe[]
 
 // tag::received_implementation[]
-=== Received Command
+=== People Received Command
 
-The `received` command is implemented in the class, `PeopleReceivedCommand`.
+The `people received` command is implemented in the class, `PeopleReceivedCommand`.
 
 This command can be accessed from `Logic#execute()`. It deletes the `Loan`(s) of the indicated `Person`
 (the `Person` with the specified index in the Address Book).
 
-The following activity diagram illustrates what happens when the user executes a `received` command:
+The following activity diagram illustrates what happens when the user executes a `people received` command:
 
-.Activity diagram of the execution of `received` command
+.Activity diagram of recording the amount of money received
 image::ReceivedActivityDiagram.png[width=600]
 
-==== Implementation of `received` command
+==== Implementation of `people received` command
 
 . In `PeopleReceivedCommand` class, the list of `Persons` is obtained from the `Model` via
 `Model#getFilteredPersonList()` and the indicated person is extracted from the list.
@@ -250,10 +250,11 @@ image::ReceivedActivityDiagram.png[width=600]
 . This new `Person` replace the initial `Person` at the indicated index via `Model#setPerson()` and the `filteredPersons`
 in the `Model` is updated.
 
-The following sequence diagram summarizes what happens during the execution of a `received` command:
+The following sequence diagram summarizes what happens during the execution of a `people received` command:
 
-.Sequence diagram of the `received` command
 image::ReceivedSequenceDiagram.png[]
+.Sequence diagram of the `people received` command
+image::GetPeopleReceivedCommandSequenceDiagram.png[width = 600]
 
 NOTE: The lifeline for `PeopleReceivedCommand` should end at the destroy marker (X) but due to a limitation of PlantUML,
 the lifeline reaches the end of diagram.
@@ -286,22 +287,25 @@ image::TransactionClassDiagram.png[width=500]
 
 These commands can be accessed from  `Logic#execute()`. It records an `expense` of an indicated `Description`, `Amount`, `Date` and `Tag`.
 
-As the two commands are similar, it is sufficient to trace the `WalletExpenseCommand`. The following activity diagram illustrates what happens when the user enters an `expense` command:
+As the two commands are similar, it is sufficient to trace the `WalletExpenseCommand`. The following activity diagram illustrates what happens when the user enters a `wallet expense` command:
 
 .Activity diagram of recording an expense
 image::ExpenseActivityDiagram.png[width=500]
 
-==== Implementation of `expense` command
+==== Implementation of `wallet expense` command
 
 . When entering the expense command, the user will specify the `Description`, `Amount` and optionally, the `Date` and `Tag`.
 . The `WalletExpenseCommandParser` will create an `Expense` object based on the details provided, and return the resulting `WalletExpenseCommand`.
 . The `LogicManager` then executes the command and adds the previously created `Expense` object to the Wallet model.
 . `CommandResult` is returned.
 
-The following sequence diagram summarizes what happens during the execution of an `expense` command:
+The following sequence diagram summarizes what happens during the execution of a `wallet expense` command:
 
-.Sequence diagram of the `expense` command
+.Sequence diagram of the `wallet expense` command
 image::ExpenseSequenceDiagram.png[]
+
+NOTE: The lifeline for `WalletExpenseCommandParser` and `WalletExpenseCommand` should end at the destroy marker (X) but due to a limitation of PlantUML,
+the lifeline reaches the end of diagram.
 
 ==== Design Considerations
 
@@ -329,7 +333,7 @@ This command can be accessed from `Logic#execute()`. It edits the `transactions`
 
 The following activity diagram illustrates what happens when the user executes a `wallet edit` command:
 
-.Activity diagram of the execution of `wallet edit` command
+.Activity diagram of the editing a transaction
 image::WalletEditActivityDiagram.png[width=600]
 
 ==== Implementation of `wallet edit` command
@@ -404,95 +408,6 @@ image::WalletBudgetSequenceDiagram.png[]
 ** Cons: Requires more prefixes / suffixes to be added to `Parser` in order to parse extra arguments.
 
 // end::walletBudget_implementation[]
-
-// tag::undoredo[]
-=== [Proposed] Undo/Redo feature
-==== Proposed Implementation
-
-The undo/redo mechanism is facilitated by `VersionedAddressBook`.
-It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`.
-Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` -- Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` -- Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` -- Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-image::UndoRedoState0.png[]
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-image::UndoRedoState1.png[]
-
-Step 3. The user executes `add n/David ...` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-image::UndoRedoState2.png[]
-
-[NOTE]
-If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-image::UndoRedoState3.png[]
-
-[NOTE]
-If the `currentStatePointer` is at index 0, pointing to the initial address book state, then there are no previous address book states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
-
-The following sequence diagram shows how the undo operation works:
-
-image::UndoSequenceDiagram.png[]
-
-NOTE: The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-The `redo` command does the opposite -- it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-[NOTE]
-If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone address book states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-image::UndoRedoState4.png[]
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. We designed it this way because it no longer makes sense to redo the `add n/David ...` command. This is the behavior that most modern desktop applications follow.
-
-image::UndoRedoState5.png[]
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-image::CommitActivityDiagram.png[]
-
-==== Design Considerations
-
-===== Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-** Pros: Easy to implement.
-** Cons: May have performance issues in terms of memory usage.
-* **Alternative 2:** Individual command knows how to undo/redo by itself.
-** Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-** Cons: We must ensure that the implementation of each individual command are correct.
-
-===== Aspect: Data structure to support the undo/redo commands
-
-* **Alternative 1 (current choice):** Use a list to store the history of address book states.
-** Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.
-** Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both `HistoryManager` and `VersionedAddressBook`.
-* **Alternative 2:** Use `HistoryManager` for undo/redo
-** Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.
-** Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as `HistoryManager` now needs to do two different things.
-// end::undoredo[]
-
-// tag::dataencryption[]
-=== [Proposed] Data Encryption
-
-_{Explain here how the data encryption feature will be implemented}_
-
-// end::dataencryption[]
 
 === Logging
 
