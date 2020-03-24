@@ -1,6 +1,7 @@
 @startuml
+title Activity: Recording the amount of money received
 start
-:User executes received command;
+:User executes a received command;
 
 if () then ([User did not lend the indicated Person money])
 else ([else])

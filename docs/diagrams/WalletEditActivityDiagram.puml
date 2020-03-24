@@ -1,5 +1,7 @@
 @startuml
 start
+title Activity: Editing a transaction
+
 :User executes wallet edit command;
 
 if () then ([User did not input valid field to edit the transaction with or

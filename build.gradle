@@ -69,7 +69,8 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'Sharkie.jar'
+    archiveVersion = '1.2.1'
 
     destinationDir = file("${buildDir}/jar/")
 }

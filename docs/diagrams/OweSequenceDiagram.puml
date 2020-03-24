@@ -15,7 +15,7 @@ participant ":AddressBook" as AddressBook MODEL_COLOR
 participant ":UniquePersonList" as UniquePersonList MODEL_COLOR
 end box
 
-[-> Logic : execute()
+[-> Logic : execute("people owe 1 n/Dinner $/10")
 activate Logic
 
 ref over Logic, peopleOweCommand, debt : get PeopleOweCommand
@@ -30,7 +30,7 @@ activate Model
 
 Model --> peopleOweCommand : lastShownList
 
-peopleOweCommand -> personUserOwes : lastShownList.get(index)
+peopleOweCommand -> personUserOwes : lastShownList.get(1)
 activate personUserOwes
 
 personUserOwes --> peopleOweCommand : personUserOwes
