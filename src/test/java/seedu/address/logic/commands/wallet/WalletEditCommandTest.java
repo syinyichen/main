@@ -2,7 +2,6 @@ package seedu.address.logic.commands.wallet;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalWallet.getTypicalWallet;
@@ -17,7 +16,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.Wallet;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
-import seedu.address.model.transaction.Transaction;
 import seedu.address.testutil.EditTransactionDescriptorBuilder;
 import seedu.address.testutil.TransactionBuilder;
 
@@ -55,16 +53,7 @@ public class WalletEditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new Wallet(model.getWallet()),
                 new UserPrefs());
-        for (Transaction t : expectedModel.getFilteredTransactionList()) {
-            System.out.println(t);
-        }
-        System.out.println("---");
         expectedModel.setExpense(model.getFilteredExpenseList().get(0), editedTransaction);
-
-        for (Transaction t : expectedModel.getFilteredTransactionList()) {
-            System.out.println(t);
-        }
-        System.out.println("---");
 
         assertCommandSuccess(walletEditCommand, model, expectedMessage, expectedModel);
     }
