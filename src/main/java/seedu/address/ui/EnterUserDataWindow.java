@@ -13,6 +13,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.User;
 
 /**
  * The UI component that is responsible for receiving user' data.
@@ -183,6 +184,12 @@ public class EnterUserDataWindow extends UiPart<Stage> {
             userEmailTextField.setText("");
             userEmailTextField.setPromptText("Invalid address!");
         }
+    }
+
+    public void fillInUserDetails(User user) {
+        userNameTextField.setText(user.getName().toString());
+        userPhoneTextField.setText(user.getPhone().toString());
+        userEmailTextField.setText(user.getEmail().toString());
     }
 
     /**

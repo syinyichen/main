@@ -168,6 +168,10 @@ public class MainWindow extends UiPart<Stage> {
         openUserDataWindow();
         enterUserDataWindow.getRoot().setTitle("Edit User Data");
         enterUserDataWindow.instructionMessage.setText("Edit your details: ");
+
+        if (!logic.isUserDataNull()) {
+            enterUserDataWindow.fillInUserDetails(logic.getUserData().getUser());
+        }
     }
 
     /**
