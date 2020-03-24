@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.Month;
 import java.time.Year;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
@@ -198,6 +199,12 @@ public class Wallet implements ReadOnlyWallet {
         ObservableList<Transaction> transactions = FXCollections.observableArrayList();
         transactions.addAll(getIncomeList());
         transactions.addAll(getExpenseList());
+        FXCollections.sort(transactions, new Comparator<Transaction>() {
+            @Override
+            public int compare(Transaction o1, Transaction o2) {
+                return -o1.getDate().compareTo(o2.getDate());
+            }
+        });
         return FXCollections.unmodifiableObservableList(transactions);
     }
 

@@ -138,7 +138,13 @@ public class WalletStatisticsPanel extends UiPart<Region> {
             budgetRemainingLabel.setText(BUDGET_NOT_SET);
             budgetOverUnderLabel.setVisible(false);
         } else {
-            double totalExpenditure = wallet.getExpenseList().stream().mapToDouble(t -> t.getAmount().amount).sum();
+            double totalExpenditure =
+                    wallet.getExpenseList()
+                            .stream()
+                            .filter(t -> t.getDate().getMonth().equals(currMonth)
+                                    && t.getDate().getYear().equals(currYear))
+                            .mapToDouble(t -> t.getAmount().amount)
+                            .sum();
             double currBudgetAmount = currBudget.getAmount().amount;
 
             budgetRemainingLabel.setText(String.format("$%.2f / $%.2f", totalExpenditure, currBudgetAmount));

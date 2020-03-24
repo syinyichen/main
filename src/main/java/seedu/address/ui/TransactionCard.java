@@ -48,10 +48,10 @@ public class TransactionCard extends UiPart<Region> {
         description.setText(transaction.getDescription().description);
 
         if (transaction instanceof Expense) {
-            amount.setText("-$" + String.format("%.2f", transaction.getAmount().amount));
+            amount.setText("-$" + String.format("%s", transaction.getAmount().toString()));
             amount.getStyleClass().add(EXPENSE_CLASS);
         } else {
-            amount.setText("+$" + String.format("%.2f", transaction.getAmount().amount));
+            amount.setText("+$" + String.format("%S", transaction.getAmount().toString()));
             amount.getStyleClass().add(INCOME_CLASS);
         }
 

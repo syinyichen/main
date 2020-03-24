@@ -92,8 +92,8 @@ public class TransactionGroupCard extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                int index = getIndex() + startIndex + 1;
-                setGraphic(new TransactionCard(transaction, index).getRoot());
+                setGraphic(new TransactionCard(transaction, startIndex).getRoot());
+                startIndex += 1;
             }
         }
     }
