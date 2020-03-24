@@ -92,18 +92,22 @@ public class WalletStatisticsPanel extends UiPart<Region> {
         List<Double> totalAmountList = new ArrayList<Double>();
 
         for (Transaction t : walletTransactionList) {
-            if (!tagList.contains(t.getTag())) {
+            if (!tagList.contains(t.getTag())
+                    && t instanceof Expense
+                    && t.getDate().getMonth().equals(currDate.getMonth())
+                    && t.getDate().getYear().equals(currDate.getYear())) {
                 tagList.add(t.getTag());
             }
         }
+
         for (Tag tag : tagList) {
-            FilteredList<Transaction> tempTagList =
+            FilteredList<Transaction> tempTransactionsOfTagList =
                     walletTransactionList.filtered(t -> t instanceof Expense
                             && t.getTag().equals(tag)
                             && t.getDate().getMonth().equals(currDate.getMonth())
                             && t.getDate().getYear().equals(currDate.getYear()));
 
-            double totalAmount = tempTagList.stream().mapToDouble(t -> t.getAmount().amount).sum();
+            double totalAmount = tempTransactionsOfTagList.stream().mapToDouble(t -> t.getAmount().amount).sum();
             totalAmountList.add(totalAmount);
             String tagString = tag.toString().replaceAll("\\p{P}", "");
 

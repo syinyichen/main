@@ -35,23 +35,17 @@ public class TransactionGroupCard extends UiPart<Region> {
     @FXML
     private ListView<Transaction> transactionItemsList;
 
-
-    private ObservableList<Transaction> sortedGroupTransactionsList;
-
     private int startIndex;
 
     public TransactionGroupCard(FilteredList<Transaction> groupTransactionsList, int startIndex) {
         super(FXML);
         this.groupTransactionsList = groupTransactionsList;
         this.startIndex = startIndex;
-        this.sortedGroupTransactionsList =
-                groupTransactionsList.sorted((t1, t2) -> t1.getDescription().compareTo(t2.getDescription()));
-
 
         setGroupLabel();
         setGroupExpenditure();
 
-        transactionItemsList.setItems(sortedGroupTransactionsList);
+        transactionItemsList.setItems(groupTransactionsList);
         transactionItemsList.setCellFactory(listView -> new TransactionListViewCell());
         transactionItemsList.setPrefHeight(groupTransactionsList.size() * LIST_CELL_HEIGHT + LIST_OFFSET);
     }

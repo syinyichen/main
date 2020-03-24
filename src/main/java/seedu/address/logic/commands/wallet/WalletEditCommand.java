@@ -69,6 +69,11 @@ public class WalletEditCommand extends Command {
         requireNonNull(model);
         List<Transaction> lastShownList = model.getFilteredTransactionList();
 
+        for (Transaction t : lastShownList) {
+            System.out.println(t);
+        }
+        System.out.println("---");
+
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX);
         }
@@ -79,6 +84,11 @@ public class WalletEditCommand extends Command {
         model.setTransaction(transactionToEdit, editedTransaction);
 
         model.updateFilteredTransactionList(Model.PREDICATE_SHOW_ALL_TRANSACTIONS);
+
+        for (Transaction t : model.getFilteredTransactionList()) {
+            System.out.println(t);
+        }
+
         return new CommandResult(String.format(MESSAGE_EDIT_TRANSACTION_SUCCESS, editedTransaction));
     }
 
