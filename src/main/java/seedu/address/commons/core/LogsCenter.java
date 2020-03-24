@@ -21,7 +21,7 @@ public class LogsCenter {
     private static final String LOG_FILE = "addressbook.log";
     private static Level currentLogLevel = Level.INFO;
     private static final Logger logger = LogsCenter.getLogger(LogsCenter.class);
-    public static FileHandler fileHandler;
+    private static FileHandler fileHandler;
     private static ConsoleHandler consoleHandler;
 
     /**

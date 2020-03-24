@@ -186,6 +186,9 @@ public class EnterUserDataWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Automatically fills in the user details in respective field in enter user data window.
+     */
     public void fillInUserDetails(User user) {
         userNameTextField.setText(user.getName().toString());
         userPhoneTextField.setText(user.getPhone().toString());
