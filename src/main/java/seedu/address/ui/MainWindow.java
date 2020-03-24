@@ -26,6 +26,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    private static ResultDisplay resultDisplay;
+
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -34,7 +36,6 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private WalletListPanel walletListPanel;
-    private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private EnterUserDataWindow enterUserDataWindow;
 
@@ -185,7 +186,12 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-
+    /**
+     * Edits the text shown in ResultDisplay.
+     */
+    public static void editResultDisplay(String text) {
+        resultDisplay.setFeedbackToUser(text);
+    }
 
     void show() {
         primaryStage.show();

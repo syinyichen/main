@@ -3,7 +3,13 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.StackPane?>
 
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ProgressIndicator?>
 <StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..."/>
+    <HBox>
+        <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..."
+        HBox.hgrow="ALWAYS"/>
+        <ProgressIndicator fx:id="executionProgressIndicator" maxWidth="30" visible="false"></ProgressIndicator>
+    </HBox>
 </StackPane>
 
