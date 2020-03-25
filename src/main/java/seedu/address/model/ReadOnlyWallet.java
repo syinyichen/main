@@ -38,4 +38,9 @@ public interface ReadOnlyWallet {
      * Returns the unmodifiable budget specified for the month and year, if any.
      */
     Budget getBudget(Month month, Year year);
+
+    /**
+     * Returns the default budget set by the user.
+     */
+    Budget getDefaultBudget();
 }

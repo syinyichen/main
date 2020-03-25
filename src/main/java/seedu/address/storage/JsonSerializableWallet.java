@@ -24,6 +24,7 @@ class JsonSerializableWallet {
     private final List<JsonAdaptedExpense> expenses = new ArrayList<>();
     private final List<JsonAdaptedIncome> incomes = new ArrayList<>();
     private final List<JsonAdaptedBudget> budgets = new ArrayList<>();
+    private final JsonAdaptedBudget defaultBudget;
 
     /**
      * Constructs a {@code JsonSerializableWallet} with the given transactions and budgets.
@@ -31,10 +32,12 @@ class JsonSerializableWallet {
     @JsonCreator
     public JsonSerializableWallet(@JsonProperty("expenses") List<JsonAdaptedExpense> expenses,
             @JsonProperty("incomes") List<JsonAdaptedIncome> incomes,
-            @JsonProperty("budgets") List<JsonAdaptedBudget> budgets) {
+            @JsonProperty("budgets") List<JsonAdaptedBudget> budgets,
+            @JsonProperty("defaultbudget") JsonAdaptedBudget defaultBudget) {
         this.expenses.addAll(expenses);
         this.incomes.addAll(incomes);
         this.budgets.addAll(budgets);
+        this.defaultBudget = defaultBudget = new JsonAdaptedBudget(Budget.getDefault());
     }
 
     /**
@@ -47,6 +50,7 @@ class JsonSerializableWallet {
         expenses.addAll(source.getExpenseList().stream().map(JsonAdaptedExpense::new).collect(Collectors.toList()));
         incomes.addAll(source.getIncomeList().stream().map(JsonAdaptedIncome::new).collect(Collectors.toList()));
         budgets.addAll(source.getBudgetList().stream().map(JsonAdaptedBudget::new).collect(Collectors.toList()));
+        defaultBudget = new JsonAdaptedBudget(source.getDefaultBudget());
     }
 
     /**
@@ -68,6 +72,7 @@ class JsonSerializableWallet {
             Budget budget = jsonAdaptedBudget.toModelType();
             wallet.setBudget(budget);
         }
+        wallet.setDefaultBudget(defaultBudget.toModelType());
         return wallet;
     }
 }
