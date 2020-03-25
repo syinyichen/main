@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -244,7 +245,12 @@ public class MainWindow extends UiPart<Stage> {
                 resultDisplay.setStyleToIndicateNeutral();
             }
 
-            updateWalletPanel(commandText);
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    updateWalletPanel(commandText);
+                }
+            });
 
             return commandResult;
         } catch (CommandException | ParseException e) {

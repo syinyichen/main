@@ -2,8 +2,8 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
@@ -41,18 +41,17 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleCommandEntered() {
-        Thread t1 = new Thread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 MainWindow.editResultDisplay("Executing command...");
                 executionProgressIndicator.setVisible(true);
             }
-        });
-        t1.start();
+        }).start();
 
-        Platform.runLater(new Runnable() {
+        Task task = new Task<Void>() {
             @Override
-            public void run() {
+            public Void call() {
                 try {
                     commandExecutor.execute(commandTextField.getText());
                     commandTextField.setText("");
@@ -60,8 +59,10 @@ public class CommandBox extends UiPart<Region> {
                     setStyleToIndicateCommandFailure();
                 }
                 executionProgressIndicator.setVisible(false);
+                return null;
             }
-        });
+        };
+        new Thread(task).start();
     }
 
     /**
