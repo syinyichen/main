@@ -76,7 +76,8 @@ public class Budget {
                 || other instanceof Budget
                 && amount.equals(((Budget) other).getAmount())
                 && month.equals(((Budget) other).getMonth())
-                && year.equals(((Budget) other).getYear());
+                && year.equals(((Budget) other).getYear())
+                && isDefault == ((Budget) other).isDefault();
     }
 
     @Override
