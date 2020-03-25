@@ -174,4 +174,15 @@ public class BudgetListTest {
 
         assertNotEquals(tempBudgetListA, tempBudgetListB);
     }
+
+    @Test
+    public void equals_differentDefaultBudget_returnsFalse() {
+        BudgetList tempBudgetListA = new BudgetList();
+        tempBudgetListA.setDefaultBudget(BUDGET_APRIL_2020);
+
+        BudgetList tempBudgetListB = new BudgetList();
+        tempBudgetListA.setDefaultBudget(BUDGET_JAN_2010);
+
+        assertNotEquals(tempBudgetListA, tempBudgetListB);
+    }
 }
