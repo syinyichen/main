@@ -21,7 +21,7 @@ public class Date implements Comparable<Date> {
     public static final String MESSAGE_CONSTRAINTS = "Dates should be in form: " + DATE_FORMAT;
 
     public static final String MONTH_MESSAGE_CONSTRAINTS = "Month should be an integer (between 1 to 12)";
-    public static final String YEAR_MESSAGE_CONSTRAINTS = "Year should be an integer";
+    public static final String YEAR_MESSAGE_CONSTRAINTS = "Year should be a non-negative integer";
 
     private LocalDate date;
 
@@ -48,6 +48,30 @@ public class Date implements Comparable<Date> {
         }
 
         return true;
+    }
+
+    /**
+     * Returns true if a given String is a valid month.
+     */
+    public static boolean isValidMonth(String test) {
+        try {
+            int monthInt = Integer.parseInt(test);
+            return monthInt >= 1 && monthInt <= 12;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if a given String is a valid year.
+     */
+    public static boolean isValidYear(String test) {
+        try {
+            int yearInt = Integer.parseInt(test);
+            return yearInt >= 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     /**
