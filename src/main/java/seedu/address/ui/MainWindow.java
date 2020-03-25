@@ -35,7 +35,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
-    private WalletListPanel walletListPanel;
+    private WalletTransactionsPanel walletTransactionsPanel;
+    private WalletStatisticsPanel walletStatisticsPanel;
     private HelpWindow helpWindow;
     private EnterUserDataWindow enterUserDataWindow;
 
@@ -49,7 +50,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane transactionListPanelPlaceholder;
+    private StackPane walletTransactionsPanelPlaceholder;
+
+    @FXML
+    private StackPane walletStatisticsPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -116,8 +120,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        walletListPanel = new WalletListPanel(logic.getFilteredTransactionList());
-        transactionListPanelPlaceholder.getChildren().add(walletListPanel.getRoot());
+        walletTransactionsPanel = new WalletTransactionsPanel(logic.getFilteredTransactionList());
+        walletTransactionsPanelPlaceholder.getChildren().add(walletTransactionsPanel.getRoot());
+
+        walletStatisticsPanel = new WalletStatisticsPanel(logic.getWallet(), logic.getFilteredTransactionList());
+        walletStatisticsPanelPlaceholder.getChildren().add(walletStatisticsPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
@@ -130,11 +137,6 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-    }
-
-    private void updateWalletList() {
-        walletListPanel = new WalletListPanel(logic.getFilteredTransactionList());
-        transactionListPanelPlaceholder.getChildren().add(walletListPanel.getRoot());
     }
 
     /**
@@ -214,8 +216,8 @@ public class MainWindow extends UiPart<Stage> {
         return personListPanel;
     }
 
-    public WalletListPanel getWalletListPanel() {
-        return walletListPanel;
+    public WalletTransactionsPanel getWalletTransactionsPanel() {
+        return walletTransactionsPanel;
     }
 
     /**
@@ -225,27 +227,39 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+            resultDisplay.resetStyles();
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            updateWalletList();
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            resultDisplay.setStyleToIndicatePass();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+                resultDisplay.setStyleToIndicateNeutral();
             }
 
             if (commandResult.isExit()) {
                 handleExit();
+                resultDisplay.setStyleToIndicateNeutral();
             }
+
+            updateWalletPanel(commandText);
 
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            resultDisplay.setStyleToIndicateFailure();
             throw e;
         }
     }
+
+    private void updateWalletPanel(String commandText) {
+        walletTransactionsPanel.update(logic.getFilteredTransactionList());
+        walletStatisticsPanel.update(logic.getWallet(), logic.getFilteredTransactionList());
+    }
+
 
     /**
      * Executes the command and returns the result.

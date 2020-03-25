@@ -2,14 +2,17 @@
 
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.StackPane?>
-
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.ProgressIndicator?>
-<StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane styleClass="stack-pane" stylesheets="@css/CommandLine.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <HBox>
         <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..."
-        HBox.hgrow="ALWAYS"/>
+        HBox.hgrow="ALWAYS">
+            <font>
+                <Font name="Consolas" size="16.0" />
+            </font>
+        </TextField>
         <ProgressIndicator fx:id="executionProgressIndicator" maxWidth="30" visible="false"></ProgressIndicator>
     </HBox>
 </StackPane>
-
