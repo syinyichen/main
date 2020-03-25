@@ -28,7 +28,7 @@ public class Wallet implements ReadOnlyWallet {
 
     private final TransactionList<Income> incomes = new TransactionList<>();
     private final TransactionList<Expense> expenses = new TransactionList<>();
-    private final BudgetList budgetList = new BudgetList();
+    private final BudgetList budgets = new BudgetList();
 
     public Wallet() {
         setDefaultBudget(Budget.getDefault());
@@ -151,11 +151,11 @@ public class Wallet implements ReadOnlyWallet {
     public void setBudget(Budget budget) {
         requireNonNull(budget);
 
-        if (budgetList.containsBudgetOf(budget.getMonth(), budget.getYear())) {
-            Budget existingBudget = budgetList.get(budget.getMonth(), budget.getYear());
-            budgetList.setBudget(existingBudget, budget);
+        if (budgets.containsBudgetOf(budget.getMonth(), budget.getYear())) {
+            Budget existingBudget = budgets.get(budget.getMonth(), budget.getYear());
+            budgets.setBudget(existingBudget, budget);
         } else {
-            budgetList.add(budget);
+            budgets.add(budget);
         }
     }
 
@@ -164,7 +164,7 @@ public class Wallet implements ReadOnlyWallet {
      */
     public void setDefaultBudget(Budget budget) {
         requireNonNull(budget);
-        budgetList.setDefaultBudget(budget);
+        budgets.setDefaultBudget(budget);
     }
 
     /**
@@ -175,17 +175,21 @@ public class Wallet implements ReadOnlyWallet {
         TransactionList<Expense> filteredExpenseList = expenses.getTransactionsInMonth(month, year);
 
         Budget budgetToCompare;
-        if (budgetList.containsBudgetOf(month, year)) {
-            budgetToCompare = budgetList.get(month, year);
+        if (budgets.containsBudgetOf(month, year)) {
+            budgetToCompare = budgets.get(month, year);
         } else {
-            budgetToCompare = budgetList.getDefaultBudget();
+            budgetToCompare = budgets.getDefaultBudget();
         }
 
         return filteredExpenseList.getTotal().amount > budgetToCompare.getAmount().amount;
     }
 
     public Budget getBudget(Month month, Year year) {
-        return budgetList.get(month, year);
+        return budgets.get(month, year);
+    }
+
+    public ObservableList<Budget> getBudgetList() {
+        return budgets.asUnmodifiableObservableList();
     }
 
     // =========== Util methods =============================================================

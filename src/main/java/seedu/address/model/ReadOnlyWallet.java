@@ -30,6 +30,11 @@ public interface ReadOnlyWallet {
     ObservableList<Expense> getExpenseList();
 
     /**
+     * Returns an unmodifiable view of the list of Budgets.
+     */
+    ObservableList<Budget> getBudgetList();
+
+    /**
      * Returns the unmodifiable budget specified for the month and year, if any.
      */
     Budget getBudget(Month month, Year year);

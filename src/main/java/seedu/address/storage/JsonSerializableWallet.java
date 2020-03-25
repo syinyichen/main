@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyWallet;
 import seedu.address.model.Wallet;
+import seedu.address.model.transaction.Budget;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Income;
 
@@ -22,15 +23,18 @@ class JsonSerializableWallet {
 
     private final List<JsonAdaptedExpense> expenses = new ArrayList<>();
     private final List<JsonAdaptedIncome> incomes = new ArrayList<>();
+    private final List<JsonAdaptedBudget> budgets = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableWallet} with the given expenses and incomes.
+     * Constructs a {@code JsonSerializableWallet} with the given transactions and budgets.
      */
     @JsonCreator
     public JsonSerializableWallet(@JsonProperty("expenses") List<JsonAdaptedExpense> expenses,
-            @JsonProperty("incomes") List<JsonAdaptedIncome> incomes) {
+            @JsonProperty("incomes") List<JsonAdaptedIncome> incomes,
+            @JsonProperty("budgets") List<JsonAdaptedBudget> budgets) {
         this.expenses.addAll(expenses);
         this.incomes.addAll(incomes);
+        this.budgets.addAll(budgets);
     }
 
     /**
@@ -42,6 +46,7 @@ class JsonSerializableWallet {
     public JsonSerializableWallet(ReadOnlyWallet source) {
         expenses.addAll(source.getExpenseList().stream().map(JsonAdaptedExpense::new).collect(Collectors.toList()));
         incomes.addAll(source.getIncomeList().stream().map(JsonAdaptedIncome::new).collect(Collectors.toList()));
+        budgets.addAll(source.getBudgetList().stream().map(JsonAdaptedBudget::new).collect(Collectors.toList()));
     }
 
     /**
@@ -59,7 +64,10 @@ class JsonSerializableWallet {
             Income income = jsonAdaptedIncome.toModelType();
             wallet.addIncome(income);
         }
+        for (JsonAdaptedBudget jsonAdaptedBudget : budgets) {
+            Budget budget = jsonAdaptedBudget.toModelType();
+            wallet.setBudget(budget);
+        }
         return wallet;
     }
-
 }
