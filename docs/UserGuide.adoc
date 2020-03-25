@@ -58,7 +58,10 @@ This symbol indicates tips.
 .  Copy the file to the folder you want to use as the home folder for *Sharkie*.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-image::Ui.png[width="790"]
+
+.GUI of Sharkie
+image::Ui.png[width="820"]
+
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
@@ -88,12 +91,6 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 All data is saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
-
-// tag::dataencryption[]
-=== Encrypting data files `[coming in v2.0]`
-
-_{explain how the user can enable/disable data encryption}_
-// end::dataencryption[]
 
 //tag::debts[]
 === Debts
@@ -564,10 +561,10 @@ Expected Outcome:
 //tag::editing-user-data[]
 [[editing-user-data]]
 *Q*: How to edit user's data? +
-*A*: Click `Edit`, then `Edit user's data` on your menu bar.
+*A*: Click on kbd:[Edit], then kbd:[Edit user's data] on your menu bar.
 
 .Editing user data in Sharkie
-image::EditUserDataInstruction.png[width=500]
+image::EditUserDataInstruction.png[width=400]
 
 //end::editing-user-data[]
 
