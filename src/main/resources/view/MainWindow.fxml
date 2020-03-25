@@ -15,14 +15,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Sharkie" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="800.0" onCloseRequest="#handleExit" title="Sharkie" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/sharkie_icon.png" />
     </icons>
     <scene>
         <Scene>
 
-            <VBox>
+            <VBox maxWidth="1.7976931348623157E308">
                 <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                     <Menu mnemonicParsing="false" text="File">
                         <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -46,13 +46,13 @@
                         <Insets bottom="5" left="10" right="10" top="5" />
                     </padding>
                 </StackPane>
-                <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="pane-with-border" tabClosingPolicy="UNAVAILABLE">
+                <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="pane-with-border" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                     <tabs>
                         <Tab text="Wallet">
                             <content>
                                 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
                                     <children>
-                              <HBox fx:id="transactionList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="340.0" AnchorPane.leftAnchor="0.8" AnchorPane.rightAnchor="0.8">
+                              <HBox fx:id="transactionList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="340.0" AnchorPane.bottomAnchor="0.8" AnchorPane.leftAnchor="0.8" AnchorPane.rightAnchor="0.8" AnchorPane.topAnchor="0.8">
                                  <children>
                                     <StackPane fx:id="walletStatisticsPanelPlaceholder" maxWidth="350.0" prefWidth="350.0" HBox.hgrow="ALWAYS" />
                                                 <StackPane fx:id="walletTransactionsPanelPlaceholder" HBox.hgrow="ALWAYS" />

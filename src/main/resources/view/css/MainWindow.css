@@ -87,3 +87,7 @@
 .tab:selected .focus-indicator {
 	-fx-border-color: none;
 }
+
+#statusbarPlaceholder {
+	-fx-background-color: #DDDDDD;
+}

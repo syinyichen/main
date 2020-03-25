@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox minHeight="-Infinity" minWidth="-Infinity" stylesheets="@css/WalletTransactionPanel.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" stylesheets="@css/WalletTransactionPanel.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="CENTER_LEFT">
          <children>
@@ -32,12 +32,9 @@
             </Label>
          </children>
       </HBox>
-      <ListView fx:id="transactionGroupsListView" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+      <ListView fx:id="transactionGroupsListView" minHeight="0.0" minWidth="0.0" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets />
          </VBox.margin></ListView>
    </children>
-   <padding>
-      <Insets bottom="15.0" />
-   </padding>
 </VBox>
