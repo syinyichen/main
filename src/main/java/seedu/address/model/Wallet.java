@@ -31,14 +31,12 @@ public class Wallet implements ReadOnlyWallet {
     private final BudgetList budgets = new BudgetList();
 
     public Wallet() {
-        setDefaultBudget(Budget.getDefault());
     }
 
     /**
      * Creates an Wallet using the Transactions in the {@code toBeCopied}
      */
     public Wallet(ReadOnlyWallet toBeCopied) {
-        this();
         resetData(toBeCopied);
     }
 
@@ -65,6 +63,7 @@ public class Wallet implements ReadOnlyWallet {
         requireNonNull(newData);
         setIncomes(newData.getIncomeList());
         setExpenses(newData.getExpenseList());
+        setBudgets(newData.getBudgetList());
     }
 
     // =========== Income-related Operations =============================================================
@@ -160,6 +159,13 @@ public class Wallet implements ReadOnlyWallet {
     }
 
     /**
+     * Replaces the contents of the budget list with {@code budgets}.
+     */
+    public void setBudgets(List<Budget> budgets) {
+        this.budgets.setBudgets(budgets);
+    }
+
+    /**
      * Replaces the default budget in the Wallet with {@code budget}.
      */
     public void setDefaultBudget(Budget budget) {
@@ -186,6 +192,10 @@ public class Wallet implements ReadOnlyWallet {
 
     public Budget getBudget(Month month, Year year) {
         return budgets.get(month, year);
+    }
+
+    public Budget getDefaultBudget() {
+        return budgets.getDefaultBudget();
     }
 
     public ObservableList<Budget> getBudgetList() {
