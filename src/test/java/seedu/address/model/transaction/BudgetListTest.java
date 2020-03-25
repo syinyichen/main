@@ -117,15 +117,16 @@ public class BudgetListTest {
 
     @Test
     public void addBudget_normalBudget_budgetAddedToList() {
-        List<Budget> expectedBudgetList = List.of(BUDGET_JAN_2010);
+        BudgetList<Budget> expectedBudgetList = new BudgetList<Budget>();
+        expectedBudgetList.setBudgets(List.of(BUDGET_JAN_2010));
         BudgetList<Budget> tempBudgetList = new BudgetList<>();
         tempBudgetList.add(BUDGET_JAN_2010);
 
-        assertEquals(expectedBudgetList, tempBudgetList.internalList);
+        assertEquals(expectedBudgetList, tempBudgetList);
     }
 
     @Test
-    public void containsBudgetOf_nullArguments_throwsNullPointerExcetption() {
+    public void containsBudgetOf_nullArguments_throwsNullPointerException() {
         Budget tempBudget = Budget.getDefault();
 
         assertThrows(NullPointerException.class, () -> budgetList.containsBudgetOf(null, null));

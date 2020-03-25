@@ -85,10 +85,9 @@ public class BudgetBuilder {
      * Returns a {@code Budget} object.
      */
     public Budget buildBudget() {
-        Budget newBudget = new Budget(amount, month, year);
         if (isDefault) {
-            newBudget.setAsDefault();
+            return new Budget(amount);
         }
-        return newBudget;
+        return new Budget(amount, month, year);
     }
 }

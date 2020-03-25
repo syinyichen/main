@@ -28,7 +28,7 @@ public class Wallet implements ReadOnlyWallet {
 
     private final TransactionList<Income> incomes = new TransactionList<>();
     private final TransactionList<Expense> expenses = new TransactionList<>();
-    private BudgetList<Budget> budgetList = new BudgetList<>();
+    private final BudgetList<Budget> budgetList = new BudgetList<>();
 
     public Wallet() {
         setDefaultBudget(Budget.getDefault());
@@ -186,10 +186,6 @@ public class Wallet implements ReadOnlyWallet {
 
     public Budget getBudget(Month month, Year year) {
         return budgetList.get(month, year);
-    }
-
-    public BudgetList<Budget> getBudgetList() {
-        return budgetList;
     }
 
     // =========== Util methods =============================================================

@@ -6,6 +6,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.Month;
 import java.time.Year;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,11 +20,11 @@ import seedu.address.model.transaction.exceptions.BudgetNotFoundException;
  */
 public class BudgetList<T extends Budget> implements Iterable<T> {
 
-    final ObservableList<T> internalList = FXCollections.observableArrayList();
+    private final ObservableList<T> internalList = FXCollections.observableArrayList();
     private final ObservableList<T> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
-    private T defaultBudget;
+    private Budget defaultBudget = Budget.getDefault();
 
     public Budget getDefaultBudget() {
         return defaultBudget;
@@ -62,7 +64,7 @@ public class BudgetList<T extends Budget> implements Iterable<T> {
      * Returns a budget of the {@code month} and {@code year}. If the individual budget doesn't exist, the default
      * budget is returned.
      */
-    public T get(Month month, Year year) {
+    public Budget get(Month month, Year year) {
         requireAllNonNull(month, year);
 
         for (T b : internalList) {
@@ -90,6 +92,22 @@ public class BudgetList<T extends Budget> implements Iterable<T> {
     }
 
     /**
+     * Replaces the contents of this list with the contents of the {@code replacement}.
+     */
+    public void setBudgets(BudgetList<T> replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
+    /**
+     * Replaces the contents of this list with {@code budgets}.
+     */
+    public void setBudgets(List<T> budgets) {
+        requireAllNonNull(budgets);
+        internalList.setAll(budgets);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<T> asUnmodifiableObservableList() {
@@ -105,11 +123,12 @@ public class BudgetList<T extends Budget> implements Iterable<T> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof BudgetList<?> // instanceof handles nulls
-                && internalList.equals(((BudgetList<?>) other).internalList));
+                && internalList.equals(((BudgetList<?>) other).internalList))
+                && defaultBudget.equals(((BudgetList<?>) other).getDefaultBudget());
     }
 
     @Override
     public int hashCode() {
-        return internalList.hashCode();
+        return Objects.hash(internalList, defaultBudget);
     }
 }

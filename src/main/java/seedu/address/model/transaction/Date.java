@@ -23,7 +23,7 @@ public class Date implements Comparable<Date> {
     public static final String MONTH_MESSAGE_CONSTRAINTS = "Month should be an integer (between 1 to 12)";
     public static final String YEAR_MESSAGE_CONSTRAINTS = "Year should be a non-negative integer";
 
-    private LocalDate date;
+    private final LocalDate date;
 
     /**
      * Constructs a valid Date object.
