@@ -2,18 +2,11 @@ package seedu.address.logic.commands.wallet;
 
 import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
 
-import java.util.Optional;
-
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.transaction.Amount;
-import seedu.address.model.transaction.Date;
-import seedu.address.model.transaction.Description;
-import seedu.address.model.transaction.TransactionContainsKeywordsPredicate;
+import seedu.address.model.transaction.WalletPredicate;
 
 /**
  * Finds and lists all transactions in wallet book whose name contains any of the argument keywords.
@@ -30,9 +23,9 @@ public class WalletFindCommand extends Command {
 
     public static final String NO_PARAMETER_INPUTTED = "At least one field to find must be provided.";
 
-    private final TransactionContainsKeywordsPredicate predicate;
+    private final WalletPredicate predicate;
 
-    public WalletFindCommand(TransactionContainsKeywordsPredicate predicate) {
+    public WalletFindCommand(WalletPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -59,6 +52,7 @@ public class WalletFindCommand extends Command {
      * Stores the details to find the Transaction with. Each non-empty field value will replace the
      * corresponding field value of the transaction.
      */
+    /*
     public static class FindTransactionDescriptor {
         private Description description;
         private Amount amount;
@@ -68,10 +62,7 @@ public class WalletFindCommand extends Command {
         public FindTransactionDescriptor() {
         }
 
-        /**
-         * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
-         */
+
         public FindTransactionDescriptor(FindTransactionDescriptor toCopy) {
             setDescription(toCopy.description);
             setAmount(toCopy.amount);
@@ -79,9 +70,6 @@ public class WalletFindCommand extends Command {
             setTag(toCopy.tag);
         }
 
-        /**
-         * Returns true if at least one field is edited.
-         */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(description, amount, date, tag);
         }
@@ -110,19 +98,11 @@ public class WalletFindCommand extends Command {
             return Optional.ofNullable(date);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
+
         public void setTag(Tag tag) {
             this.tag = tag;
         }
 
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
         public Optional<Tag> getTag() {
             return Optional.ofNullable(tag);
         }
@@ -148,4 +128,5 @@ public class WalletFindCommand extends Command {
                     && getTag().equals(e.getTag());
         }
     }
+    */
 }
