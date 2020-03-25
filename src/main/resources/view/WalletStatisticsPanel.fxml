@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox minHeight="-Infinity" minWidth="-Infinity" stylesheets="@css/WalletStatisticsPanel.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label maxWidth="1.7976931348623157E308" text="Expenditure">
+         <font>
+            <Font name="Consolas" size="16.0" />
+         </font>
+      </Label>
+      <PieChart fx:id="expenditurePieChart" animated="false" legendSide="RIGHT" maxHeight="250.0" maxWidth="350.0" prefWidth="300.0" VBox.vgrow="NEVER">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets bottom="-20.0" right="72.0" />
+         </VBox.margin></PieChart>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Label fx:id="currentMonthYearLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Date">
+               <font>
+                  <Font name="Consolas" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="budgetRemainingLabel" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="spent / remaining">
+               <font>
+                  <Font name="Consolas" size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="budgetOverUnderLabel" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Label">
+               <font>
+                  <Font name="Consolas" size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</VBox>

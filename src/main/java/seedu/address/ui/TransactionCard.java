@@ -5,14 +5,17 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.transaction.Income;
+import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Transaction;
 
 /**
- * An UI component that displays information of a {@code Transaction}.
+ * A UI component that displays information of a {@code Transaction}.
  */
-public class WalletCard extends UiPart<Region> {
-    private static final String FXML = "WalletListCard.fxml";
+public class TransactionCard extends UiPart<Region> {
+    private static final String FXML = "TransactionCard.fxml";
+
+    private static final String INCOME_CLASS = "positive";
+    private static final String EXPENSE_CLASS = "negative";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -33,28 +36,26 @@ public class WalletCard extends UiPart<Region> {
     @FXML
     private Label amount;
     @FXML
-    private Label date;
-    @FXML
     private Label tag;
-    @FXML
-    private Label incomeOrExpense;
     @FXML
     private FlowPane tags;
 
-    public WalletCard(Transaction transaction, int displayedIndex) {
+    public TransactionCard(Transaction transaction, int displayedIndex) {
         super(FXML);
         this.transaction = transaction;
+
         id.setText(displayedIndex + ". ");
         description.setText(transaction.getDescription().description);
-        amount.setText("" + transaction.getAmount().amount);
-        date.setText(transaction.getDate().toString());
-        tag.setText(transaction.getTag().tagName);
 
-        if (transaction instanceof Income) {
-            incomeOrExpense.setText("Income: + $");
+        if (transaction instanceof Expense) {
+            amount.setText("-" + String.format("%s", transaction.getAmount().toString()));
+            amount.getStyleClass().add(EXPENSE_CLASS);
         } else {
-            incomeOrExpense.setText("Expense: - $");
+            amount.setText("+" + String.format("%s", transaction.getAmount().toString()));
+            amount.getStyleClass().add(INCOME_CLASS);
         }
+
+        tag.setText(transaction.getTag().toString());
     }
 
     @Override
@@ -65,12 +66,12 @@ public class WalletCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof WalletCard)) {
+        if (!(other instanceof TransactionCard)) {
             return false;
         }
 
         // state check
-        WalletCard card = (WalletCard) other;
+        TransactionCard card = (TransactionCard) other;
         return id.getText().equals(card.id.getText())
                 && transaction.equals(card.transaction);
     }

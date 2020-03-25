@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.Month;
 import java.time.Year;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -52,6 +53,7 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
     public void add(T toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
+        sort();
     }
 
     /**
@@ -67,6 +69,7 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
         }
 
         internalList.set(index, editedTransaction);
+        sort();
     }
 
     /**
@@ -78,11 +81,14 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
         if (!internalList.remove(toRemove)) {
             throw new TransactionNotFoundException();
         }
+        sort();
     }
+
 
     public void setTransactions(TransactionList<T> replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        sort();
     }
 
     /**
@@ -91,21 +97,7 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
     public void setTransactions(List<T> transactions) {
         requireAllNonNull(transactions);
         internalList.setAll(transactions);
-    }
-
-    /**
-     * Retrieves a list of transactions filtered by the {@code date} they were added.
-     */
-    public TransactionList<T> getTransactionsOnDate(Date date) {
-        TransactionList<T> filteredTransactions = new TransactionList<T>();
-
-        for (T transaction : this) {
-            if (transaction.getDate().equals(date)) {
-                filteredTransactions.add(transaction);
-            }
-        }
-
-        return filteredTransactions;
+        sort();
     }
 
     /**
@@ -121,6 +113,18 @@ public class TransactionList<T extends Transaction> implements Iterable<T> {
         }
 
         return filteredTransactions;
+    }
+
+    /**
+     * Sorts the {@code internalList} by date.
+     */
+    public void sort() {
+        FXCollections.sort(internalList, new Comparator<Transaction>() {
+            @Override
+            public int compare(Transaction o1, Transaction o2) {
+                return -o1.getDate().compareTo(o2.getDate());
+            }
+        });
     }
 
     /**
