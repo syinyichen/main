@@ -28,7 +28,7 @@ public class Wallet implements ReadOnlyWallet {
 
     private final TransactionList<Income> incomes = new TransactionList<>();
     private final TransactionList<Expense> expenses = new TransactionList<>();
-    private final BudgetList<Budget> budgetList = new BudgetList<>();
+    private final BudgetList budgetList = new BudgetList();
 
     public Wallet() {
         setDefaultBudget(Budget.getDefault());

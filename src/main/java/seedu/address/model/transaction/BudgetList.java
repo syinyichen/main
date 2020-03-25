@@ -15,13 +15,12 @@ import seedu.address.model.transaction.exceptions.BudgetNotFoundException;
 
 /**
  * A list of Budgets to record individual months' budgets.
- * <p>
  * Supports a limited set of list operations.
  */
-public class BudgetList<T extends Budget> implements Iterable<T> {
+public class BudgetList implements Iterable<Budget> {
 
-    private final ObservableList<T> internalList = FXCollections.observableArrayList();
-    private final ObservableList<T> internalUnmodifiableList =
+    private final ObservableList<Budget> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Budget> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     private Budget defaultBudget = Budget.getDefault();
@@ -30,7 +29,7 @@ public class BudgetList<T extends Budget> implements Iterable<T> {
         return defaultBudget;
     }
 
-    public void setDefaultBudget(T budget) {
+    public void setDefaultBudget(Budget budget) {
         requireNonNull(budget);
         this.defaultBudget = budget;
     }
@@ -38,7 +37,7 @@ public class BudgetList<T extends Budget> implements Iterable<T> {
     /**
      * Returns true if the list contains an equivalent budget as the given argument.
      */
-    public boolean contains(T toCheck) {
+    public boolean contains(Budget toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::equals);
     }
@@ -55,7 +54,7 @@ public class BudgetList<T extends Budget> implements Iterable<T> {
     /**
      * Adds a Budget to the list, replacing if there is a Budget that already exists.
      */
-    public void add(T toAdd) {
+    public void add(Budget toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
     }
@@ -67,7 +66,7 @@ public class BudgetList<T extends Budget> implements Iterable<T> {
     public Budget get(Month month, Year year) {
         requireAllNonNull(month, year);
 
-        for (T b : internalList) {
+        for (Budget b : internalList) {
             if (b.getMonth().equals(month) && b.getYear().equals(year)) {
                 return b;
             }
@@ -80,7 +79,7 @@ public class BudgetList<T extends Budget> implements Iterable<T> {
      * Replaces the budget {@code target} in the list with {@code editedBudget}.
      * {@code target} must exist in the list.
      */
-    public void setBudget(T target, T editedBudget) {
+    public void setBudget(Budget target, Budget editedBudget) {
         requireAllNonNull(target, editedBudget);
 
         int index = internalList.indexOf(target);
@@ -94,7 +93,7 @@ public class BudgetList<T extends Budget> implements Iterable<T> {
     /**
      * Replaces the contents of this list with the contents of the {@code replacement}.
      */
-    public void setBudgets(BudgetList<T> replacement) {
+    public void setBudgets(BudgetList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -102,7 +101,7 @@ public class BudgetList<T extends Budget> implements Iterable<T> {
     /**
      * Replaces the contents of this list with {@code budgets}.
      */
-    public void setBudgets(List<T> budgets) {
+    public void setBudgets(List<Budget> budgets) {
         requireAllNonNull(budgets);
         internalList.setAll(budgets);
     }
@@ -110,21 +109,21 @@ public class BudgetList<T extends Budget> implements Iterable<T> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<T> asUnmodifiableObservableList() {
+    public ObservableList<Budget> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<T> iterator() {
+    public Iterator<Budget> iterator() {
         return internalList.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof BudgetList<?> // instanceof handles nulls
-                && internalList.equals(((BudgetList<?>) other).internalList))
-                && defaultBudget.equals(((BudgetList<?>) other).getDefaultBudget());
+                || (other instanceof BudgetList // instanceof handles nulls
+                && internalList.equals(((BudgetList) other).internalList))
+                && defaultBudget.equals(((BudgetList) other).getDefaultBudget());
     }
 
     @Override
