@@ -79,6 +79,7 @@ public class WalletEditCommand extends Command {
         model.setTransaction(transactionToEdit, editedTransaction);
 
         model.updateFilteredTransactionList(Model.PREDICATE_SHOW_ALL_TRANSACTIONS);
+
         return new CommandResult(String.format(MESSAGE_EDIT_TRANSACTION_SUCCESS, editedTransaction));
     }
 
