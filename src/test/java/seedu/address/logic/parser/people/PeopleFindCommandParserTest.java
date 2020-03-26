@@ -9,7 +9,9 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.people.PeopleFindCommand;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PeopleEmailPredicate;
+import seedu.address.model.person.PeopleNamePredicate;
+import seedu.address.model.person.PeoplePhonePredicate;
 
 public class PeopleFindCommandParserTest {
 
@@ -22,14 +24,53 @@ public class PeopleFindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_invalidInput_throwsParseException() {
+        assertParseFailure(parser, " alex", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                PeopleFindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_prefixName_returnsFindCommand() {
         // no leading and trailing whitespaces
         PeopleFindCommand expectedPeopleFindCommand =
-                new PeopleFindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedPeopleFindCommand);
+                new PeopleFindCommand(new PeopleNamePredicate(Arrays.asList("Alice", "Bob")));
+        assertParseSuccess(parser, " n/Alice Bob", expectedPeopleFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedPeopleFindCommand);
+        assertParseSuccess(parser, " n/ \n Alice \n \t Bob  \t", expectedPeopleFindCommand);
+    }
+
+    @Test
+    public void parse_prefixPhone_returnsFindCommand() {
+        // no leading and trailing whitespaces
+        PeopleFindCommand expectedPeopleFindCommand =
+                new PeopleFindCommand(new PeoplePhonePredicate(Arrays.asList("9123", "1234")));
+        assertParseSuccess(parser, " p/9123 1234", expectedPeopleFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " p/ \n 9123 \n \t 1234  \t", expectedPeopleFindCommand);
+    }
+
+    @Test
+    public void parse_prefixEmail_returnsFindCommand() {
+        // no leading and trailing whitespaces
+        PeopleFindCommand expectedPeopleFindCommand =
+                new PeopleFindCommand(new PeopleEmailPredicate(Arrays.asList("test@example.com", "gmail")));
+        assertParseSuccess(parser, " e/test@example.com gmail", expectedPeopleFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " e/ \n test@example.com \n \t gmail  \t", expectedPeopleFindCommand);
+    }
+
+    @Test
+    public void parse_prefixTag_returnsFindCommand() {
+        // no leading and trailing whitespaces
+        PeopleFindCommand expectedPeopleFindCommand =
+                new PeopleFindCommand(new PeopleEmailPredicate(Arrays.asList("friend", "colleague")));
+        assertParseSuccess(parser, " t/friend colleague", expectedPeopleFindCommand);
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " t/ \n friend \n \t colleague  \t", expectedPeopleFindCommand);
     }
 
 }
