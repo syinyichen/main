@@ -92,7 +92,7 @@ public interface Logic {
     void setUserData(UserData userData);
 
     /**
-     * Returns true id user data is empty.
+     * Returns true if user data is empty.
      */
     boolean isUserDataNull();
 }
