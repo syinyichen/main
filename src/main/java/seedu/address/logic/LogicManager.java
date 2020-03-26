@@ -14,6 +14,7 @@ import seedu.address.logic.parser.SharkieParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.ReadOnlyWallet;
 import seedu.address.model.UserData;
 import seedu.address.model.person.Email;
@@ -102,8 +103,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ReadOnlyUserData getUserData() {
+        return model.getUserData();
+    }
+
+    @Override
     public void setUserData(UserData userData) {
         model.setUserData(userData);
+    }
+
+    @Override
+    public boolean isUserDataNull() {
+        return model.getUserData().isEmpty();
     }
 
     @Override

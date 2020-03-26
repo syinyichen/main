@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliPrefix.PEOPLE_COMMAND_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TRANSACTION_INDEX;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -102,7 +103,8 @@ public class PeopleReceivedCommand extends Command {
         Email email = personUserLends.getEmail();
         TransactionList<Debt> debts = personUserLends.getDebts();
         TransactionList<Loan> updatedLoans = new TransactionList<>();
-        Set<Tag> tags = personUserLends.getTags();
+        Set<Tag> updatedTags = new HashSet<>();
+        updatedTags.addAll(personUserLends.getTags());
 
         if (targetLoanIndex != null) {
             List<Loan> loans = personUserLends.getLoans().asUnmodifiableObservableList();
@@ -116,7 +118,11 @@ public class PeopleReceivedCommand extends Command {
             updatedLoans.remove(loanReceived);
         }
 
-        return new Person(name, phone, email, debts, updatedLoans, tags);
+        if (targetLoanIndex == null || updatedLoans.asUnmodifiableObservableList().isEmpty()) {
+            updatedTags.remove(new Tag("Loan"));
+        }
+
+        return new Person(name, phone, email, debts, updatedLoans, updatedTags);
     }
 
     @Override

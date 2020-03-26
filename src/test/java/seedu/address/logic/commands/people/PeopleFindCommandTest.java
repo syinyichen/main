@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PeopleNamePredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -29,10 +29,10 @@ public class PeopleFindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        PeopleNamePredicate firstPredicate =
+                new PeopleNamePredicate(Collections.singletonList("first"));
+        PeopleNamePredicate secondPredicate =
+                new PeopleNamePredicate(Collections.singletonList("second"));
 
         PeopleFindCommand findFirstCommand = new PeopleFindCommand(firstPredicate);
         PeopleFindCommand findSecondCommand = new PeopleFindCommand(secondPredicate);
@@ -57,7 +57,7 @@ public class PeopleFindCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        PeopleNamePredicate predicate = preparePredicate(" ");
         PeopleFindCommand command = new PeopleFindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -67,7 +67,7 @@ public class PeopleFindCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        PeopleNamePredicate predicate = preparePredicate("Kurz Elle Kunz");
         PeopleFindCommand command = new PeopleFindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -75,9 +75,9 @@ public class PeopleFindCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code PeopleNamePredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private PeopleNamePredicate preparePredicate(String userInput) {
+        return new PeopleNamePredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

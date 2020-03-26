@@ -27,7 +27,7 @@
       }],
       "tagged": [
         "owesMoney",
-        "friends"
+        "friends", "Debt", "Loan"
       ]
     },
     {
@@ -48,7 +48,7 @@
         "amount" : "22",
         "date" : "02/02/2020"
       }],
-      "tagged": []
+      "tagged": ["Debt", "Loan"]
     },
     {
       "name": "Daniel Meier",
@@ -65,7 +65,7 @@
         "date" : "18/08/2018"
       }],
       "tagged": [
-        "friends"
+        "friends", "Debt", "Loan"
       ]
     },
     {
@@ -82,7 +82,7 @@
         "amount" : "6",
         "date" : "19/09/2019"
       }],
-      "tagged": []
+      "tagged": ["Debt", "Loan"]
     },
     {
       "name": "Fiona Kunz",
@@ -98,7 +98,7 @@
         "amount" : "50",
         "date" : "20/02/2020"
       }],
-      "tagged": []
+      "tagged": ["Debt", "Loan"]
     },
     {
       "name": "George Best",
@@ -114,7 +114,7 @@
         "amount" : "120",
         "date" : "22/02/2022"
       }],
-      "tagged": []
+      "tagged": ["Debt", "Loan"]
     }
   ]
 }
