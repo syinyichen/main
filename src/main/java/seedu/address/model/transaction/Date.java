@@ -104,7 +104,7 @@ public class Date implements Comparable<Date> {
      * Returns whether the Date is in the specified month.
      */
     public boolean inMonth(Month month, Year year) {
-        return getMonth() == month && getYear() == year;
+        return getMonth().equals(month) && getYear().equals(year);
     }
 
     @Override

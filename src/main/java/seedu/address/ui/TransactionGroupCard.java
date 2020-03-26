@@ -69,10 +69,10 @@ public class TransactionGroupCard extends UiPart<Region> {
             .sum();
 
         if (groupValue < 0) {
-            groupExpenditureLabel.setText("-" + new Amount(-groupValue));
+            groupExpenditureLabel.setText("-" + new Amount(-groupValue / 100));
             groupExpenditureLabel.getStyleClass().add(NEGATIVE_CLASS);
         } else {
-            groupExpenditureLabel.setText("+" + new Amount(groupValue));
+            groupExpenditureLabel.setText("+" + new Amount(groupValue / 100));
             groupExpenditureLabel.getStyleClass().add(POSITIVE_CLASS);
         }
     }
