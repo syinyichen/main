@@ -3,7 +3,6 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
@@ -49,9 +48,9 @@ public class CommandBox extends UiPart<Region> {
             }
         }).start();
 
-        Task task = new Task<Void>() {
+        new Thread(new Runnable() {
             @Override
-            public Void call() {
+            public void run() {
                 try {
                     commandExecutor.execute(commandTextField.getText());
                     commandTextField.setText("");
@@ -59,10 +58,8 @@ public class CommandBox extends UiPart<Region> {
                     setStyleToIndicateCommandFailure();
                 }
                 executionProgressIndicator.setVisible(false);
-                return null;
             }
-        };
-        new Thread(task).start();
+        }).start();
     }
 
     /**
