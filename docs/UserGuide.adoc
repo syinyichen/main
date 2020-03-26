@@ -39,26 +39,28 @@ If you need help regarding what commands *Sharkie* has, our Features section bel
 
 Note the following symbols and formatting used in this document: +
 
+[%autowidth.stretch]
 |===
-<|[gray]#`command`#
-|A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.
+|[gray]#`command`# |A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.
 |===
 
-====
-[TIP]
-This symbol indicates tips.
-====
+NOTE: This symbol indicates information.
+
+TIP: This symbol indicates tips.
 //end::about[]
 
 //tag::quickStart[]
 == Quick Start
 
 .  Ensure you have Java `11` or above installed in your Computer.
-.  Download the latest `Sharkie.jar` link:https://github.com/AY1920S2-CS2103T-W12-3/main/releases[here] *[Jar file to be updated]*.
+.  Download the latest `Sharkie.jar` link:https://github.com/AY1920S2-CS2103T-W12-3/main/releases[here].
 .  Copy the file to the folder you want to use as the home folder for *Sharkie*.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-image::Ui.png[width="790"]
+
+.GUI of Sharkie
+image::Ui.png[width="820"]
+
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
@@ -89,23 +91,19 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 All data is saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
-// tag::dataencryption[]
-=== Encrypting data files `[coming in v2.0]`
-
-_{explain how the user can enable/disable data encryption}_
-// end::dataencryption[]
-
 //tag::debts[]
-=== Debts
+=== Debts and loans
 
-*Sharkie* allows you to take note of the debts you owe your friends and the debts your friend owes you. +
+*Sharkie* allows you to take note of the debts you owe your friends and the loans you lent your friends. +
 *Sharkie* then allow you to automatically remind your friends through email to return you the money they owe you! +
-*Sharkie* also allows you to set reminders for yourself to return your friend what you owe them!
+
+NOTE: Still confused about `debts` and `loans`? Find out more in <<debt-and-loan, the differences between debts and loans>>.
+
 //end::debts[]
 
 //tag::expenditureSummary[]
-=== Expenditure Summary `[coming in v2.0]`
-*Sharkie* displays a customisable overview of your monthly spendings and income so that you know where all your money has gone to! +
+=== Expenditure Summary
+*Sharkie* displays a customisable overview of your monthly spending and income so that you know where all your money has gone to! +
 You can view statistics such as the proportion of your spending on different items and your monthly balance.
 
 //end::expenditureSummary[]
@@ -315,6 +313,120 @@ Expected Outcome:
 
 //end::peopleadd[]
 
+// @@author cheyannesim
+// tag::owe[]
+==== Recording the money you owe: `owe`
+
+Records the amount of money that you owe a person. +
+Format: `people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
+
+****
+* Records the amount of money specified in `<amount>` you owe to the person at the specified `<index>`.
+* The index refers to the index number shown in the displayed person list.
+* The index *must be a positive integer* 1, 2, 3, ...
+* Amount *must be positive*.
+****
+
+Examples:
+
+* `people owe 4 n/food $/5.00 d/10/10/2020`
+Records that you owe the 4th person $5.00 on 10/10/2020. +
+Expected Outcome:
+
+    Increased debt to Grace by $5.00! You now owe Grace $10.00.
+
+NOTE: The amount of money recorded will be added under your friend's `Debts` section. +
+`Debts` represent the amount of money you owe your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+
+// end::owe[]
+// @@author
+
+// tag::return[]
+==== Recording the money you return: `returned`
+
+Records that a debt that you owe a person has been returned. +
+Format: `people returned <person's index> [i/<debt's index>]`
+****
+* Records that the debt at the specified <debt's index> has been returned to the person specified at <person's index>.
+* The person's index refers to the index number shown in the displayed person list.
+* The debt's index refers to the index number shown in the 'Debts' table of the person specified.
+* Both indexes *must be positive integers* 1, 2, 3, ...
+****
+
+NOTE: `Debt` represents the amount of money you owe your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+
+[TIP]
+The debt's index is optional.
+Sharkie will record all debts as returned if the debt's index is not specified.
+
+Examples:
+
+* `people returned 4 i/1`
+Records that you return the 4th person the 1st debt. +
+Expected Outcome:
+
+    Reduced debt to Grace by $5.00. You now owe Grace $5.00.
+
+// end::return[]
+
+// tag::lend[]
+==== Recording the money you lend: `lend`
+
+Records the amount of money that you lent to a person. This will increase that person's loan. +
+Format: `people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
+
+****
+* Records the amount of money specified in `<price>` you owe to the person at the specified `<index>`.
+* The index refers to the index number shown in the displayed person list.
+* The index *must be a positive integer* 1, 2, 3, ...
+* Price *must be positive*.
+****
+
+Examples:
+
+* `people lend 5 n/dinner $/5.00 d/10/10/2020`
+Records that you lend the 5th person $5.00 on 10/10/2020. +
+Expected Outcome:
+
+    Increased loan to Syin Yi by $5.00. Syin Yi now owes you $8.00.
+
+NOTE: The amount of money recorded will be added under your friend's `Loans` section. +
+`Loans` represent the amount of money you lend your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>_.
+
+// end::lend[]
+
+// tag::paid[]
+==== Recording the money your friend paid back: `received`
+
+Records that you have received the money from your friend, who you lent to. +
+Format: `people paid <person's index> [i/<loan's index>]`
+
+****
+* The <person's index> refers to the index number shown before a displayed person.
+* The <loan's index> refers to the index number shown before a loan under the specified person.
+* Both indexes *must be a positive integer* 1, 2, 3, ...
+****
+
+NOTE: `Loan` represents the amount of money you lend your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+
+[TIP]
+The loan's index is optional.
+All loans will be marked as `received` for the indicated person if the loan's index is not specified.
+
+Examples:
+
+* `people paid 2 i/1`
+Records that you have received the money for the first loan from the second person in the address book. +
+Expected Outcome:
+
+    Removed loan to Joel by $10.00. Joel now owes you $2.00.
+
+// end::paid[]
+
 //tag::peopleremind[]
 ==== Sending reminder to a friend: `remind`
 
@@ -326,6 +438,9 @@ Format: `people remind <index>`
 * The index refers to the index number shown in the displayed person list.
 * The index *must be a positive integer* 1, 2, 3, ...
 ****
+
+NOTE: `Loan` represents the amount of money you lend your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
 
 [TIP]
 To use this command, you must include your details in Sharkie. +
@@ -364,106 +479,6 @@ Expected Outcome:
     Sharkie has sent copies of the reminders to your email!
 
 //end::peopleremindall[]
-
-// @@author cheyannesim
-// tag::owe[]
-==== Recording the money you owe: `owe`
-
-Records the amount of money that you owe a person. +
-Format: `people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
-
-****
-* Records the amount of money specified in `<amount>` you owe to the person at the specified `<index>`.
-* The index refers to the index number shown in the displayed person list.
-* The index *must be a positive integer* 1, 2, 3, ...
-* Amount *must be positive*.
-****
-
-Examples:
-
-* `people owe 4 n/food $/5.00 d/10/10/2020`
-Records that you owe the 4th person $5.00 on 10/10/2020. +
-Expected Outcome:
-
-    Increased debt to Grace by $5.00! You now owe Grace $10.00.
-
-// end::owe[]
-// @@author
-
-// tag::return[]
-==== Recording the money you return: `returned`
-
-Records that a debt that you owe a person has been returned. +
-Format: `people returned <person's index> [i/<debt's index>]`
-****
-* Records that the debt at the specified <debt's index> has been returned to the person specified at <person's index>.
-* The person's index refers to the index number shown in the displayed person list.
-* The debt's index refers to the index number shown in the 'Debts' table of the person specified.
-* Both indexes *must be positive integers* 1, 2, 3, ...
-****
-
-[TIP]
-The debt's index is optional.
-Sharkie will record all debts as returned if the debt's index is not specified.
-
-Examples:
-
-* `people returned 4 i/1`
-Records that you return the 4th person the 1st debt. +
-Expected Outcome:
-
-    Reduced debt to Grace by $5.00. You now owe Grace $5.00.
-
-// end::return[]
-
-// tag::lend[]
-==== Recording the money you lend: `lend`
-
-Records the amount of money that you lent to a person. This will increase that person's loan. +
-Format: `people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
-
-****
-* Records the amount of money specified in `<price>` you owe to the person at the specified `<index>`.
-* The index refers to the index number shown in the displayed person list.
-* The index *must be a positive integer* 1, 2, 3, ...
-* Price *must be positive*.
-****
-
-Examples:
-
-* `people lend 5 n/dinner $/5.00 d/10/10/2020`
-Records that you lend the 5th person $5.00 on 10/10/2020. +
-Expected Outcome:
-
-    Increased loan to Syin Yi by $5.00. Syin Yi now owes you $8.00.
-
-// end::lend[]
-
-// tag::paid[]
-==== Recording the money your friend paid back: `received`
-
-Records that you have received the money from your friend, who you lent to. +
-Format: `people paid <person's index> [i/<loan's index>]`
-
-****
-* The <person's index> refers to the index number shown before a displayed person.
-* The <loan's index> refers to the index number shown before a loan under the specified person.
-* Both indexes *must be a positive integer* 1, 2, 3, ...
-****
-
-[TIP]
-The loan's index is optional.
-All loans will be marked as `received` for the indicated person if the loan's index is not specified.
-
-Examples:
-
-* `people paid 2 i/1`
-Records that you have received the money for the first loan from the second person in the address book. +
-Expected Outcome:
-
-    Removed loan to Joel by $10.00. Joel now owes you $2.00.
-
-// end::paid[]
 
 //tag::peoplelist[]
 ==== Listing all contacts: `list`
@@ -564,12 +579,29 @@ Expected Outcome:
 //tag::editing-user-data[]
 [[editing-user-data]]
 *Q*: How to edit user's data? +
-*A*: Click `Edit`, then `Edit user's data` on your menu bar.
+*A*: Click on kbd:[Edit], then kbd:[Edit user's data] on your menu bar.
 
 .Editing user data in Sharkie
-image::EditUserDataInstruction.png[width=500]
+image::EditUserDataInstruction.png[width=400]
 
 //end::editing-user-data[]
+
+//tag::debt-and-loan-diff[]
+[[debt-and-loan]]
+*Q*: What are the differences between `Debts` and `Loans`? +
+*A*: `Debts` is the amount of money you owe your friends and `loans` is the amount of money you lend your friends.
+
+****
+For example,
+
+* `1 | Supper | $5.00 | 3 FEB 2020` under the `Debts` section, shown in the figure below represents what you owe Syin Yi.
+* `1 | Breakfast | $3.00 | 8 AUG 2018` under the `Loans` section, shown in the figure below represents what you lent to Syin Yi.
+
+.Differences between `debts` and `loans`
+image::DebtAndLoanDifferences.png[width=800]
+****
+
+//end::debt-and-loan-diff[]
 
 //tag::commandSummary[]
 == Command Summary
