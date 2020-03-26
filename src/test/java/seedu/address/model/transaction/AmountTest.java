@@ -17,7 +17,11 @@ public class AmountTest {
         // invalid amount
         assertFalse(Amount.isValidAmount("")); // empty string
         assertFalse(Amount.isValidAmount("0.000")); // too many decimal places
+        assertFalse(Amount.isValidAmount("-1.00")); // negative amount
         assertFalse(Amount.isValidAmount("$9")); // contains non-numeric characters
+
+        // overflow
+        assertFalse(Amount.isValidAmount("" + Long.MAX_VALUE)); // overflows
 
         // valid amount
         assertTrue(Amount.isValidAmount("0"));
@@ -49,4 +53,21 @@ public class AmountTest {
         assertTrue(new Amount(5).equals(twoFifty.add(twoFifty)));
     }
 
+    @Test
+    public void add_producesMaxValueWhenOverflow() {
+        Amount largeAmount = new Amount(Long.MAX_VALUE / 100);
+        assertEquals(new Amount(Long.MAX_VALUE), largeAmount.add(largeAmount));
+    }
+
+    @Test
+    public void lessThan_comparesAmountsCorrectly() {
+        assertTrue(Amount.zero().isLessThan(new Amount(1))); // 0 is less than 1;
+        assertFalse(new Amount(1.1).isLessThan(new Amount(1))); // 1.1 is not less than 1;
+    }
+
+    @Test
+    public void difference_givesCorrectDifference() {
+        assertEquals(Amount.zero().difference(new Amount(1.5)), new Amount(1.5));
+        assertEquals(new Amount(9).difference(new Amount(199)), new Amount(190));
+    }
 }

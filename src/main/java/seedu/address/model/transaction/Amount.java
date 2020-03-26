@@ -6,7 +6,7 @@ package seedu.address.model.transaction;
  */
 public class Amount implements Comparable<Amount> {
     public static final String MESSAGE_CONSTRAINTS =
-            "Amount of money should be positive and have only up to two decimal places.";
+            "Amount of money should be non-negative and have only up to two decimal places.";
     public static final String VALIDATION_REGEX = "\\d+([.]\\d{1,2})?";
 
     // Amount is stored in cents to prevent floating point errors.
@@ -16,6 +16,7 @@ public class Amount implements Comparable<Amount> {
      * Constructs an {@code Amount}. Private constructor accepts a long.
      */
     private Amount(long amountInCents) {
+        assert amountInCents >= 0 : "Amounts should be non-negative";
         this.amountInCents = amountInCents;
     }
     /**
@@ -32,7 +33,16 @@ public class Amount implements Comparable<Amount> {
      * Returns true if a given amount (in String form) is valid.
      */
     public static boolean isValidAmount(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (!test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+        // Check for long overflow
+        try {
+            double doubleTest = Double.parseDouble(test);
+            return doubleTest * 100 <= Long.MAX_VALUE;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     /**
@@ -49,8 +59,12 @@ public class Amount implements Comparable<Amount> {
      * @return the total amount after adding.
      */
     public Amount add(Amount amountToAdd) {
-        long totalAmount = amountToAdd.amountInCents + amountInCents;
-        return new Amount(totalAmount);
+        try {
+            long totalAmount = Math.addExact(amountToAdd.amountInCents, amountInCents);
+            return new Amount(totalAmount);
+        } catch (ArithmeticException e) {
+            return new Amount(Long.MAX_VALUE);
+        }
     }
     // @@author
 

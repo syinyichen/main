@@ -66,7 +66,7 @@ public class TransactionGroupCard extends UiPart<Region> {
                     return t.getAmount().amountInCents;
                 }
             })
-            .sum();
+            .reduce(0, Math::addExact);
 
         if (groupValue < 0) {
             groupExpenditureLabel.setText("-" + new Amount(-groupValue / 100));
