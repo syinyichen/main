@@ -77,6 +77,8 @@ include::../UserGuide.adoc[tag=peoplefind]
 
 include::../UserGuide.adoc[tag=editing-user-data]
 
+include::../UserGuide.adoc[tag=debt-and-loan-diff]
+
 == Contributions to the Developer Guide
 
 |===
