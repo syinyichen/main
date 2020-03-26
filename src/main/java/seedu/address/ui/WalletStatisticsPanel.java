@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 import com.sun.javafx.charts.Legend;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -116,16 +117,10 @@ public class WalletStatisticsPanel extends UiPart<Region> {
             pieChartData.add(tempData);
         }
 
+        pieChartData.forEach(data -> data.nameProperty().bind(Bindings.concat(data.getName(),
+                String.format(" %.2f", data.getPieValue()))));
+
         expenditurePieChart.setData(pieChartData);
-
-        Legend legend = (Legend) expenditurePieChart.lookup(".chart-legend");
-        for (int i = 0; i < legend.getItems().size(); i++) {
-            Legend.LegendItem tempItem = legend.getItems().get(i);
-            Tag tag = tagList.get(i);
-            double totalAmount = totalAmountList.get(i);
-
-            tempItem.setText(String.format("%s: $%.2f", tag.toString().replaceAll("\\p{P}", ""), totalAmount));
-        }
     }
 
     /**

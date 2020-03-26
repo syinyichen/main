@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="372.0" stylesheets="@css/WalletStatisticsPanel.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@css/WalletStatisticsPanel.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label maxWidth="1.7976931348623157E308" text="Expenditure">
+      <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Expenditure">
          <font>
             <Font name="Consolas" size="16.0" />
          </font>
       </Label>
-      <PieChart fx:id="expenditurePieChart" animated="false" legendSide="RIGHT" maxHeight="250.0" maxWidth="350.0" prefWidth="300.0" VBox.vgrow="NEVER">
+      <PieChart fx:id="expenditurePieChart" animated="false" labelsVisible="false" legendSide="RIGHT" maxHeight="250.0" maxWidth="1.7976931348623157E308" prefWidth="300.0" VBox.vgrow="NEVER">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
