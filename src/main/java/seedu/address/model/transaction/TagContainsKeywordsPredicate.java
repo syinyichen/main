@@ -19,8 +19,8 @@ public class TagContainsKeywordsPredicate  extends WalletPredicate{
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AmountContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((AmountContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof TagContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((TagContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }
