@@ -113,6 +113,7 @@ public class WalletStatisticsPanel extends UiPart<Region> {
 
             PieChart.Data tempData = new PieChart.Data(tagString, totalAmount);
 
+            expenditurePieChart.layout();
             pieChartData.add(tempData);
         }
 
