@@ -47,7 +47,7 @@ public class BudgetList implements Iterable<Budget> {
      */
     public boolean containsBudgetOf(Month month, Year year) {
         requireAllNonNull(month, year);
-        Budget tempBudget = new Budget(new Amount(0), month, year);
+        Budget tempBudget = new Budget(Amount.zero(), month, year);
         return internalList.stream().anyMatch(tempBudget::dateEquals);
     }
 

@@ -10,32 +10,32 @@ import org.junit.jupiter.api.Test;
 public class AmountTest {
 
     @Test
-    public void isValidAmount_onlyAcceptsValidDoubles() {
+    public void isValidAmount_onlyAcceptsValidAmounts() {
         // null amount
         assertThrows(NullPointerException.class, () -> Amount.isValidAmount(null));
 
         // invalid amount
         assertFalse(Amount.isValidAmount("")); // empty string
-        assertFalse(Amount.isValidAmount("0.0.0")); // multiple decimal points
+        assertFalse(Amount.isValidAmount("0.000")); // too many decimal places
         assertFalse(Amount.isValidAmount("$9")); // contains non-numeric characters
 
         // valid amount
         assertTrue(Amount.isValidAmount("0"));
         assertTrue(Amount.isValidAmount("0.00"));
-        assertTrue(Amount.isValidAmount("11.12345"));
+        assertTrue(Amount.isValidAmount("11.12"));
     }
 
     @Test
     public void toString_formatsToTwoDecimalPlaces() {
-        assertEquals("$0.00", new Amount(0).toString()); // 0 dollars
+        assertEquals("$0.00", Amount.zero().toString()); // 0 dollars
         assertEquals("$1.12", new Amount(1.12345).toString()); // rounds down
         assertEquals("$9.99", new Amount(9.98765).toString()); // rounds up
     }
 
     @Test
     public void compareTo_comparesAmountsCorrectly() {
-        assertTrue(new Amount(0).compareTo(new Amount(1)) < 0); // 0 is less than 1
-        assertTrue(new Amount(0).compareTo(new Amount(0.00)) == 0); // 0 equals 0
+        assertTrue(Amount.zero().compareTo(new Amount(1)) < 0); // 0 is less than 1
+        assertTrue(Amount.zero().compareTo(new Amount(0.00)) == 0); // 0 equals 0
     }
 
     @Test

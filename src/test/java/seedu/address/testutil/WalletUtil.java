@@ -40,7 +40,7 @@ public class WalletUtil {
     public static String getTransactionDetails(Transaction transaction) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + transaction.getDescription().description + " ");
-        sb.append(PREFIX_AMOUNT + String.valueOf(transaction.getAmount().amount) + " ");
+        sb.append(PREFIX_AMOUNT + transaction.getAmount().inDollars() + " ");
         sb.append(PREFIX_DATE + transaction.getDate().getInputFormat() + " ");
         sb.append(PREFIX_TAG + transaction.getTag().tagName);
         return sb.toString();

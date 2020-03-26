@@ -41,7 +41,7 @@ public class JsonAdaptedBudget {
      * Converts a given {@code Budget} into this class for Jackson use.
      */
     public JsonAdaptedBudget(Budget budget) {
-        amount = String.valueOf(budget.getAmount().amount);
+        amount = budget.getAmount().inDollars();
         month = String.valueOf(budget.getMonth().getValue());
         year = String.valueOf(budget.getYear().getValue());
         isDefault = String.valueOf(budget.isDefault());

@@ -187,7 +187,7 @@ public class Wallet implements ReadOnlyWallet {
             budgetToCompare = budgets.getDefaultBudget();
         }
 
-        return filteredExpenseList.getTotal().amount > budgetToCompare.getAmount().amount;
+        return budgetToCompare.getAmount().isLessThan(filteredExpenseList.getTotal());
     }
 
     public Budget getBudget(Month month, Year year) {

@@ -57,7 +57,7 @@ public class Budget {
     }
 
     public static Budget getDefault() {
-        return new Budget(new Amount(0), LocalDate.now().getMonth(), Year.of(LocalDate.now().getYear()));
+        return new Budget(Amount.zero(), LocalDate.now().getMonth(), Year.of(LocalDate.now().getYear()));
     }
 
     /**

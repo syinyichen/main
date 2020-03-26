@@ -18,7 +18,7 @@ import seedu.address.model.transaction.Description;
 class JsonAdaptedLoanTest {
 
     private static final String VALID_DESC = BREAKFAST.getDescription().toString();
-    private static final String VALID_AMOUNT = String.valueOf(BREAKFAST.getAmount().amount);
+    private static final String VALID_AMOUNT = BREAKFAST.getAmount().inDollars();
     private static final String VALID_DATE = BREAKFAST.getDate().toString();
 
     @Test
