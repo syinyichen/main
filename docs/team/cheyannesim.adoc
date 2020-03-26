@@ -14,18 +14,26 @@ Sharkie is a desktop expense tracker application. The user interacts with it usi
 == Summary of contributions
 
 * *Major enhancements*: added *owe command*
-** What it does: allows the user to keep track of what they owe to other people in the addressbook.
-** Justification: This is one of the main feature of Sharkie.
-** Highlights: The implementation was quite challenging as it required an in-depth analysis of design alternatives. For instance, how to store the Transactions,
+** Added People's command, `owe`
+*** What it does: allows the user to keep track of what they owe to other people in the addressbook.
+*** Justification: This is one of the main feature of Sharkie.
+*** Highlights: The implementation was quite challenging as it required an in-depth analysis of design alternatives. For instance, how to store the Transactions,
 since a Transaction has association to Description, Amount, Date and Tag, and Date itself have different formats to consider. I have implemented the logic, model,
 storage and ui for this command.
+** Added People's command, `returned`
+*** What it does: allows the user to record that he/she has already returned the debt(s).
+** Modified People's command, `find`
+*** What it does: allows the user to find people based on their name, phone, email or tags.
+I have also added the the tags "Debt" and "Loan" to people whom the user owes and lends, so that the user
+can filter the people whom they lend or owe using the command `people find t/debt loan`.
 
 * *Other contributions*:
 ** Documentation:
 *** Updated my part of my User Guide: (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pull/43[#43])
 ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W12-3/main/pull/95[#95], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/87[#87]
-
+*** PRs reviewed (with non-trivial review comments): (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pull/95[#95],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/87[#87], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/98[#98],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/102[#102])
 ////
 * *Major enhancement*: added *the ability to undo/redo previous commands*
 ** What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.

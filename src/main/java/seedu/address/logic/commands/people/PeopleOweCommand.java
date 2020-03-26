@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -85,8 +86,10 @@ public class PeopleOweCommand extends Command {
         updatedDebts.setTransactions(personUserOwes.getDebts());
         updatedDebts.add(debt);
         TransactionList<Loan> loans = personUserOwes.getLoans();
-        Set<Tag> tags = personUserOwes.getTags();
-        return new Person(name, phone, email, updatedDebts, loans, tags);
+        Set<Tag> updatedTags = new HashSet<>();
+        updatedTags.addAll(personUserOwes.getTags());
+        updatedTags.add(new Tag("Debt"));
+        return new Person(name, phone, email, updatedDebts, loans, updatedTags);
     }
 
     @Override
