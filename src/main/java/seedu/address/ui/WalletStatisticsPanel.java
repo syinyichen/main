@@ -116,8 +116,8 @@ public class WalletStatisticsPanel extends UiPart<Region> {
             pieChartData.add(tempData);
         }
 
-        pieChartData.forEach(data -> data.nameProperty().bind(Bindings.concat(data.getName(), " $",
-                data.pieValueProperty())));
+        pieChartData.forEach(data -> data.nameProperty().bind(Bindings.concat(data.getName(),
+                String.format(" $%.2f", data.getPieValue()))));
         expenditurePieChart.setData(pieChartData);
 
     }
