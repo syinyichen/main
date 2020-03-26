@@ -5,7 +5,7 @@ package seedu.address.model.transaction;
  * Guarantees: immutable; is valid as declared in {@link #isValidAmount(String)}
  */
 public class Amount implements Comparable<Amount> {
-    public static final String MESSAGE_CONSTRAINTS = 
+    public static final String MESSAGE_CONSTRAINTS =
             "Amount of money should be positive and have only up to two decimal places.";
     public static final String VALIDATION_REGEX = "\\d+([.]\\d{1,2})?";
 
