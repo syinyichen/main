@@ -236,13 +236,21 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setStyleToIndicatePass();
 
             if (commandResult.isShowHelp()) {
-                handleHelp();
-                resultDisplay.setStyleToIndicateNeutral();
+                Platform.runLater(new Runnable() {
+                    public void run() {
+                        handleHelp();
+                        resultDisplay.setStyleToIndicateNeutral();
+                    }
+                });
             }
 
             if (commandResult.isExit()) {
-                handleExit();
-                resultDisplay.setStyleToIndicateNeutral();
+                Platform.runLater(new Runnable() {
+                    public void run() {
+                        handleExit();
+                        resultDisplay.setStyleToIndicateNeutral();
+                    }
+                });
             }
 
             Platform.runLater(new Runnable() {
