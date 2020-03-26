@@ -57,7 +57,10 @@ public class TransactionGroupCard extends UiPart<Region> {
     }
 
     private void setGroupExpenditure() {
-        long groupValue = groupTransactionsList
+        long groupValue;
+
+        try {
+            groupValue = groupTransactionsList
             .stream()
             .mapToLong(t -> {
                 if (t instanceof Expense) {
@@ -67,6 +70,10 @@ public class TransactionGroupCard extends UiPart<Region> {
                 }
             })
             .reduce(0, Math::addExact);
+        } catch (ArithmeticException e) {
+            // Overflow occurs
+            groupValue = Amount.MAX_VALUE;
+        }
 
         if (groupValue < 0) {
             groupExpenditureLabel.setText("-" + new Amount(-groupValue / 100));

@@ -9,6 +9,8 @@ public class Amount implements Comparable<Amount> {
             "Amount of money should be non-negative and have only up to two decimal places.";
     public static final String VALIDATION_REGEX = "\\d+([.]\\d{1,2})?";
 
+    public static final long MAX_VALUE = Long.MAX_VALUE;
+
     // Amount is stored in cents to prevent floating point errors.
     public final long amountInCents;
 
@@ -39,7 +41,7 @@ public class Amount implements Comparable<Amount> {
         // Check for long overflow
         try {
             double doubleTest = Double.parseDouble(test);
-            return doubleTest * 100 <= Long.MAX_VALUE;
+            return doubleTest * 100 <= MAX_VALUE;
         } catch (NumberFormatException e) {
             return false;
         }
@@ -52,18 +54,25 @@ public class Amount implements Comparable<Amount> {
         return new Amount(0);
     }
 
+    /**
+     * Returns an Amount equivalent to the maximum amount.
+     */
+    public static Amount max() {
+        return new Amount(MAX_VALUE);
+    }
+
     // @@author cheyannesim
     /**
      * Adds {@code amountToAdd} to the current amount.
      *
-     * @return the total amount after adding.
+     * @return the total amount after adding, or maximum amount if overflow occurs.
      */
     public Amount add(Amount amountToAdd) {
         try {
             long totalAmount = Math.addExact(amountToAdd.amountInCents, amountInCents);
             return new Amount(totalAmount);
         } catch (ArithmeticException e) {
-            return new Amount(Long.MAX_VALUE);
+            return Amount.max();
         }
     }
     // @@author
