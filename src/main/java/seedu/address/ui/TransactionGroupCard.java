@@ -41,12 +41,18 @@ public class TransactionGroupCard extends UiPart<Region> {
         this.groupTransactionsList = groupTransactionsList;
         this.startIndex = startIndex;
 
+        setProperties();
         setGroupLabel();
         setGroupExpenditure();
 
         transactionItemsList.setItems(groupTransactionsList);
         transactionItemsList.setCellFactory(listView -> new TransactionListViewCell());
         transactionItemsList.setPrefHeight(groupTransactionsList.size() * LIST_CELL_HEIGHT + LIST_OFFSET);
+    }
+
+    private void setProperties() {
+        transactionItemsList.setMouseTransparent(true);
+        transactionItemsList.setFocusTraversable(false);
     }
 
     private void setGroupLabel() {

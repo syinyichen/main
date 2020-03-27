@@ -21,7 +21,7 @@
             <Insets left="4.0" />
          </VBox.margin>
       </Label>
-      <ListView fx:id="transactionItemsList" focusTraversable="false">
+      <ListView fx:id="transactionItemsList" cacheShape="false" focusTraversable="false">
          <VBox.margin>
             <Insets />
          </VBox.margin></ListView>
