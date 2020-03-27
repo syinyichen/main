@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyWallet;
+import seedu.address.model.Wallet;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -17,12 +19,14 @@ import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Debt;
 import seedu.address.model.transaction.Description;
+import seedu.address.model.transaction.Expense;
+import seedu.address.model.transaction.Income;
 import seedu.address.model.transaction.Loan;
 import seedu.address.model.transaction.TransactionList;
 
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code AddressBook} and {@code Wallet} with sample data.
  */
 public class SampleDataUtil {
 
@@ -68,6 +72,48 @@ public class SampleDataUtil {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+    public static Expense[] getSampleExpenses() {
+        return new Expense[]{
+            new Expense(new Description("Laksa"), new Amount(8),
+                    new Date(LocalDate.parse("2020-03-27")), new Tag("Food")),
+            new Expense(new Description("Nikes"), new Amount(250),
+                    new Date(LocalDate.parse("2020-03-02")), new Tag("Fashion")),
+            new Expense(new Description("Top up ezlink"), new Amount(50),
+                    new Date(LocalDate.parse("2020-02-03")), new Tag("Transport")),
+            new Expense(new Description("Grab"), new Amount(30),
+                    new Date(LocalDate.parse("2020-03-27")), new Tag("Transport")),
+            new Expense(new Description("Water bill"), new Amount(170),
+                    new Date(LocalDate.parse("2020-03-01")), new Tag("Utilities")),
+            new Expense(new Description("Rental"), new Amount(50),
+                    new Date(LocalDate.parse("2020-03-30")), new Tag("Rental"))
+        };
+    }
+
+    public static Income[] getSampleIncomes() {
+        return new Income[]{
+                new Income(new Description("Tutoring"), new Amount(300),
+                        new Date(LocalDate.parse("2020-01-01")), new Tag("Job")),
+                new Income(new Description("TA"), new Amount(100),
+                        new Date(LocalDate.parse("2020-02-02")), new Tag("Job")),
+                new Income(new Description("Allowance"), new Amount(200),
+                        new Date(LocalDate.parse("2020-03-03")), new Tag("Allowance"))
+        };
+    }
+
+    public static ReadOnlyWallet getSampleWallet() {
+        Wallet sampleWallet = new Wallet();
+
+        for (Income sampleIncome : getSampleIncomes()) {
+            sampleWallet.addIncome(sampleIncome);
+        }
+
+        for (Expense sampleExpense : getSampleExpenses()) {
+            sampleWallet.addExpense(sampleExpense);
+        }
+
+        return sampleWallet;
     }
 
     // @@author cheyannesim

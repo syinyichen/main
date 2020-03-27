@@ -112,7 +112,7 @@ public class MainApp extends Application {
             if (!walletOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with an empty Wallet");
             }
-            return walletOptional.orElseGet(() -> new Wallet());
+            return walletOptional.orElseGet(SampleDataUtil::getSampleWallet);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty Wallet");
             return new Wallet();
