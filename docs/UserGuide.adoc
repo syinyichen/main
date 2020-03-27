@@ -147,7 +147,7 @@ Format: `wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<ta
 ****
 * Creates a new expense wiith the given arguments.
 * The description *cannot be empty*.
-* The amount *must be a valid number*.
+* The amount *must be a valid number* (see <<valid-amount>>).
 * If no date is given, it will default to today's date.
 ****
 
@@ -574,7 +574,6 @@ Expected Outcome:
 
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file *Sharkie* creates with the file that contains the data of your previous Address Book folder.
-//end::faq[]
 
 //tag::editing-user-data[]
 [[editing-user-data]]
@@ -600,8 +599,15 @@ For example,
 .Differences between `debts` and `loans`
 image::DebtAndLoanDifferences.png[width=800]
 ****
-
 //end::debt-and-loan-diff[]
+
+//tag::valid-amount[]
+[[valid-amount]]
+*Q*: Is there a maximum amount of money that Sharkie can handle? +
+*A*: Yes. Due to program limitations, Sharkie can only safely handle amounts of up to $92233720368547758.07 (about ninety *quadrillion* dollars!). We believe it is safe to say that the average user will not end up spending or earning that amount of money anytime soon (at time of writing, Jeff Bezos' net worth is roughly $100 billion).
+//end::valid-amount[]
+
+//end::faq[]
 
 //tag::commandSummary[]
 == Command Summary
