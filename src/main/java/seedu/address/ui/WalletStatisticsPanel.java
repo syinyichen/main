@@ -130,7 +130,7 @@ public class WalletStatisticsPanel extends UiPart<Region> {
         Month currMonth = currDate.getMonth();
         Year currYear = currDate.getYear();
 
-        Budget currBudget = wallet.getBudgetList().get(currMonth, currYear);
+        Budget currBudget = wallet.getBudget(currMonth, currYear);
 
         if (currBudget.getAmount().amount == 0) {
             budgetRemainingLabel.setText(BUDGET_NOT_SET);

@@ -90,7 +90,7 @@ public class WalletBudgetCommandParserTest {
                 new WalletBudgetCommand(validAmountAndDateBudget));
 
         // valid amount only
-        Budget validAmountOnlyBudget = new BudgetBuilder().withAmount(VALID_AMOUNT).buildBudget();
+        Budget validAmountOnlyBudget = new BudgetBuilder().withAmount(VALID_AMOUNT).setAsDefault().buildBudget();
         assertParseSuccess(parser, VALID_AMOUNT_DESC, new WalletBudgetCommand(validAmountOnlyBudget));
     }
 }

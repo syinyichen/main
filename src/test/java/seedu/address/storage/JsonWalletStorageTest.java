@@ -4,10 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalWallet.ALLOWANCE;
+import static seedu.address.testutil.TypicalWallet.BUDGET_APRIL_2020;
 import static seedu.address.testutil.TypicalWallet.DUCK_RICE;
 import static seedu.address.testutil.TypicalWallet.getTypicalWallet;
 
 import java.io.IOException;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -50,13 +52,18 @@ public class JsonWalletStorageTest {
     }
 
     @Test
-    public void readWallet_invalidPersonWallet_throwDataConversionException() {
+    public void readWallet_invalidTransactionWallet_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readWallet("invalidTransactionWallet.json"));
     }
 
     @Test
-    public void readWallet_invalidAndValidPersonWallet_throwDataConversionException() {
+    public void readWallet_invalidAndValidTransactionWallet_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readWallet("invalidAndValidTransactionWallet.json"));
+    }
+
+    @Test
+    public void readWallet_invalidBudgetWallet_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readWallet("invalidBudgetWallet.json"));
     }
 
     @Test
@@ -73,6 +80,7 @@ public class JsonWalletStorageTest {
         // Modify data, overwrite exiting file, and read back
         original.addIncome(ALLOWANCE);
         original.deleteExpense(DUCK_RICE);
+        original.setBudget(BUDGET_APRIL_2020);
         jsonWalletStorage.saveWallet(original, filePath);
         readBack = jsonWalletStorage.readWallet(filePath).get();
         assertEquals(original, new Wallet(readBack));

@@ -14,27 +14,30 @@ public class Budget {
     public static final String BUDGET_OK = "Your current expenditure is: %1$s / %2$s";
     public static final String BUDGET_EXCEEDED = "You have exceeded your budget by: %1$s / %2$s";
 
-    private Amount budget;
-    private Month month;
-    private Year year;
-    private boolean isDefault = false;
+    private final Amount amount;
+    private final Month month;
+    private final Year year;
+    private final boolean isDefault;
 
-    public Budget(Amount budget) {
-        this.budget = budget;
-        this.month = Budget.getDefault().getMonth();
-        this.year = Budget.getDefault().getYear();
-        isDefault = true;
-    }
-
-    public Budget(Amount budget, Month month, Year year) {
-        requireAllNonNull(budget, month, year);
-        this.budget = budget;
+    private Budget(Amount amount, Month month, Year year, boolean isDefault) {
+        requireAllNonNull(amount, month, year, isDefault);
+        this.amount = amount;
         this.month = month;
         this.year = year;
+        this.isDefault = isDefault;
+    }
+    /**
+     * Creates a default budget that applies to all months.
+     */
+    public Budget(Amount amount) {
+        this(amount, Budget.getDefault().getMonth(), Budget.getDefault().getYear(), true);
     }
 
-    public void setAsDefault() {
-        isDefault = true;
+    /**
+     * Creates a budget for a specified month and year.
+     */
+    public Budget(Amount amount, Month month, Year year) {
+        this(amount, month, year, false);
     }
 
     public boolean isDefault() {
@@ -42,7 +45,7 @@ public class Budget {
     }
 
     public Amount getAmount() {
-        return budget;
+        return amount;
     }
 
     public Month getMonth() {
@@ -71,13 +74,14 @@ public class Budget {
     public boolean equals(Object other) {
         return other == this
                 || other instanceof Budget
-                && budget.equals(((Budget) other).getAmount())
+                && amount.equals(((Budget) other).getAmount())
                 && month.equals(((Budget) other).getMonth())
-                && year.equals(((Budget) other).getYear());
+                && year.equals(((Budget) other).getYear())
+                && isDefault == ((Budget) other).isDefault();
     }
 
     @Override
     public String toString() {
-        return budget.toString();
+        return amount.toString();
     }
 }

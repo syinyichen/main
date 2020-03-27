@@ -52,6 +52,7 @@ public class TypicalWallet {
     public static final String VALID_BUDGET_AMOUNT_JAN_2010 = "300";
     public static final String VALID_BUDGET_MONTH_JAN_2010 = "01";
     public static final String VALID_BUDGET_YEAR_JAN_2010 = "2010";
+    public static final String VALID_BUDGET_ISDEFAULT_JAN_2010 = "false";
 
     public static final String VALID_BUDGET_AMOUNT_APR_2020 = "200";
     public static final String VALID_BUDGET_MONTH_APR_2020 = "04";
