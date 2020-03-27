@@ -38,6 +38,8 @@ Class Expense
 Class Income
 Class Debt
 Class Loan
+Class Budget
+Class BudgetList
 }
 }
 
@@ -62,6 +64,8 @@ UniquePersonList o--> "*" Person
 UserData *--> "1" User
 
 Wallet *--> "1" TransactionList
+Wallet *--> "1" BudgetList
+BudgetList o--> "*" Budget
 TransactionList o--> "*" Expense
 TransactionList o--> "*" Income
 Expense .up.|> Transaction

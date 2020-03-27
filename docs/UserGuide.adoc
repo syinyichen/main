@@ -39,26 +39,28 @@ If you need help regarding what commands *Sharkie* has, our Features section bel
 
 Note the following symbols and formatting used in this document: +
 
+[%autowidth.stretch]
 |===
-<|`command`
-|A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.
+|[gray]#`command`# |A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.
 |===
 
-====
-[TIP]
-This symbol indicates tips.
-====
+NOTE: This symbol indicates information.
+
+TIP: This symbol indicates tips.
 //end::about[]
 
 //tag::quickStart[]
 == Quick Start
 
 .  Ensure you have Java `11` or above installed in your Computer.
-.  Download the latest `Sharkie.jar` link:https://github.com/AY1920S2-CS2103T-W12-3/main/releases[here] *[Jar file to be updated]*.
+.  Download the latest `Sharkie.jar` link:https://github.com/AY1920S2-CS2103T-W12-3/main/releases[here].
 .  Copy the file to the folder you want to use as the home folder for *Sharkie*.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
-image::Ui.png[width="790"]
+
+.GUI of Sharkie
+image::Ui.png[width="820"]
+
 +
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
@@ -89,23 +91,19 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 All data is saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
-// tag::dataencryption[]
-=== Encrypting data files `[coming in v2.0]`
-
-_{explain how the user can enable/disable data encryption}_
-// end::dataencryption[]
-
 //tag::debts[]
-=== Debts
+=== Debts and loans
 
-*Sharkie* allows you to take note of the debts you owe your friends and the debts your friend owes you. +
+*Sharkie* allows you to take note of the debts you owe your friends and the loans you lent your friends. +
 *Sharkie* then allow you to automatically remind your friends through email to return you the money they owe you! +
-*Sharkie* also allows you to set reminders for yourself to return your friend what you owe them!
+
+NOTE: Still confused about `debts` and `loans`? Find out more in <<debt-and-loan, the differences between debts and loans>>.
+
 //end::debts[]
 
 //tag::expenditureSummary[]
-=== Expenditure Summary `[coming in v2.0]`
-*Sharkie* displays a customisable overview of your monthly spendings and income so that you know where all your money has gone to! +
+=== Expenditure Summary
+*Sharkie* displays a customisable overview of your monthly spending and income so that you know where all your money has gone to! +
 You can view statistics such as the proportion of your spending on different items and your monthly balance.
 
 //end::expenditureSummary[]
@@ -139,6 +137,7 @@ Exits the program. +
 Format: `exit`
 
 === Wallet Commands
+
 //tag::walletexpense[]
 ==== Adding an expense: `expense`
 
@@ -314,56 +313,6 @@ Expected Outcome:
 
 //end::peopleadd[]
 
-//tag::peopleremind[]
-==== Sending reminder to a friend: `remind`
-
-Reminds a friend, through an email to return the loans to you. +
-Format: `people remind <index>`
-
-****
-* Reminds the person at the specified `<index>` return the loans to you.
-* The index refers to the index number shown in the displayed person list.
-* The index *must be a positive integer* 1, 2, 3, ...
-****
-
-[TIP]
-To use this command, you must include your details in Sharkie. +
-You can enter or edit your details at `Edit` > `Edit user's data`.
-
-Examples:
-
-* `people remind 1`
-Sends a reminder to the 1st person in your contact list. +
-Expected Outcome:
-
-    Reminded Daniel to return $10.00!
-    Sharkie has sent a copy of the reminder to your email!
-
-//end::peopleremind[]
-
-//tag::peopleremindall[]
-==== Sending reminder to all friend: `remindall`
-
-Sends reminders through email to all the friends that have not yet paid up. +
-Format: `people remindall`
-
-[TIP]
-To use this command, you must include your details in Sharkie. +
-You can enter or edit your details at `Edit` > `Edit user's data`.
-
-Examples:
-
-* `people remindall`
-Sends a reminder to all the people who owe you money. +
-Expected Outcome:
-
-    Reminded Daniel to return $10.00!
-    Reminded Joel to return $30.75!
-    ...
-    Sharkie has sent copies of the reminders to your email!
-
-//end::peopleremindall[]
-
 // @@author cheyannesim
 // tag::owe[]
 ==== Recording the money you owe: `owe`
@@ -386,6 +335,10 @@ Expected Outcome:
 
     Increased debt to Grace by $5.00! You now owe Grace $10.00.
 
+NOTE: The amount of money recorded will be added under your friend's `Debts` section. +
+`Debts` represent the amount of money you owe your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+
 // end::owe[]
 // @@author
 
@@ -400,6 +353,9 @@ Format: `people returned <person's index> [i/<debt's index>]`
 * The debt's index refers to the index number shown in the 'Debts' table of the person specified.
 * Both indexes *must be positive integers* 1, 2, 3, ...
 ****
+
+NOTE: `Debt` represents the amount of money you owe your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
 
 [TIP]
 The debt's index is optional.
@@ -436,6 +392,10 @@ Expected Outcome:
 
     Increased loan to Syin Yi by $5.00. Syin Yi now owes you $8.00.
 
+NOTE: The amount of money recorded will be added under your friend's `Loans` section. +
+`Loans` represent the amount of money you lend your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>_.
+
 // end::lend[]
 
 // tag::paid[]
@@ -450,6 +410,9 @@ Format: `people paid <person's index> [i/<loan's index>]`
 * Both indexes *must be a positive integer* 1, 2, 3, ...
 ****
 
+NOTE: `Loan` represents the amount of money you lend your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+
 [TIP]
 The loan's index is optional.
 All loans will be marked as `received` for the indicated person if the loan's index is not specified.
@@ -463,6 +426,59 @@ Expected Outcome:
     Removed loan to Joel by $10.00. Joel now owes you $2.00.
 
 // end::paid[]
+
+//tag::peopleremind[]
+==== Sending reminder to a friend: `remind`
+
+Reminds a friend, through an email to return the loans to you. +
+Format: `people remind <index>`
+
+****
+* Reminds the person at the specified `<index>` return the loans to you.
+* The index refers to the index number shown in the displayed person list.
+* The index *must be a positive integer* 1, 2, 3, ...
+****
+
+NOTE: `Loan` represents the amount of money you lend your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+
+[TIP]
+To use this command, you must include your details in Sharkie. +
+You can enter or edit your details at <<editing-user-data, `Edit` > `Edit user's data`>>.
+
+Examples:
+
+* `people remind 1`
+Sends a reminder to the 1st person in your contact list. +
+Expected Outcome:
+
+    Reminded Daniel to return $10.00!
+    Sharkie has sent a copy of the reminder to your email!
+
+//end::peopleremind[]
+
+//tag::peopleremindall[]
+==== Sending reminder to all friend: `remindall`
+
+Sends reminders through email to all the friends that have not yet paid up. +
+Format: `people remindall`
+
+[TIP]
+To use this command, you must include your details in Sharkie. +
+You can enter or edit your details at <<editing-user-data, `Edit` > `Edit user's data`>>.
+
+Examples:
+
+* `people remindall`
+Sends a reminder to all the people who owe you money. +
+Expected Outcome:
+
+    Reminded Daniel to return $10.00!
+    Reminded Joel to return $30.75!
+    ...
+    Sharkie has sent copies of the reminders to your email!
+
+//end::peopleremindall[]
 
 //tag::peoplelist[]
 ==== Listing all contacts: `list`
@@ -559,6 +575,33 @@ Expected Outcome:
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file *Sharkie* creates with the file that contains the data of your previous Address Book folder.
 //end::faq[]
+
+//tag::editing-user-data[]
+[[editing-user-data]]
+*Q*: How to edit user's data? +
+*A*: Click on kbd:[Edit], then kbd:[Edit user's data] on your menu bar.
+
+.Editing user data in Sharkie
+image::EditUserDataInstruction.png[width=400]
+
+//end::editing-user-data[]
+
+//tag::debt-and-loan-diff[]
+[[debt-and-loan]]
+*Q*: What are the differences between `Debts` and `Loans`? +
+*A*: `Debts` is the amount of money you owe your friends and `loans` is the amount of money you lend your friends.
+
+****
+For example,
+
+* `1 | Supper | $5.00 | 3 FEB 2020` under the `Debts` section, shown in the figure below represents what you owe Syin Yi.
+* `1 | Breakfast | $3.00 | 8 AUG 2018` under the `Loans` section, shown in the figure below represents what you lent to Syin Yi.
+
+.Differences between `debts` and `loans`
+image::DebtAndLoanDifferences.png[width=800]
+****
+
+//end::debt-and-loan-diff[]
 
 //tag::commandSummary[]
 == Command Summary

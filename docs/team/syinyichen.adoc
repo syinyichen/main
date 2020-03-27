@@ -59,7 +59,11 @@ https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#115])
 
 include::../UserGuide.adoc[tag=about]
 
+== Features
+
 include::../UserGuide.adoc[tag=expenditureAndIncome]
+
+== Commands
 
 include::../UserGuide.adoc[tag=peopleadd]
 
@@ -69,13 +73,23 @@ include::../UserGuide.adoc[tag=peopleremindall]
 
 include::../UserGuide.adoc[tag=peoplefind]
 
+== FAQ
+
+include::../UserGuide.adoc[tag=editing-user-data]
+
+include::../UserGuide.adoc[tag=debt-and-loan-diff]
+
 == Contributions to the Developer Guide
 
 |===
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
+== Design
+
 include::../DeveloperGuide.adoc[tag=model-design]
+
+== Implementation
 
 include::../DeveloperGuide.adoc[tag=received_implementation]
 

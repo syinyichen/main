@@ -145,12 +145,7 @@ public class ParserUtil {
         requireNonNull(month);
         String trimmedMonth = month.trim();
 
-        try {
-            int monthInt = Integer.parseInt(trimmedMonth);
-            if (monthInt < 1 || monthInt > 12) {
-                throw new ParseException(Date.MONTH_MESSAGE_CONSTRAINTS);
-            }
-        } catch (Exception e) {
+        if (!Date.isValidMonth(trimmedMonth)) {
             throw new ParseException(Date.MONTH_MESSAGE_CONSTRAINTS);
         }
 
@@ -167,12 +162,7 @@ public class ParserUtil {
         requireNonNull(year);
         String trimmedYear = year.trim();
 
-        try {
-            int yearInt = Integer.parseInt(trimmedYear);
-            if (yearInt < 0) {
-                throw new ParseException(Date.YEAR_MESSAGE_CONSTRAINTS);
-            }
-        } catch (Exception e) {
+        if (!Date.isValidYear(trimmedYear)) {
             throw new ParseException(Date.YEAR_MESSAGE_CONSTRAINTS);
         }
 

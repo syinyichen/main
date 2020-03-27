@@ -56,7 +56,7 @@ public class ModelManager implements Model {
         this.userData = new UserData();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
 
-        //wallet
+        // wallet
         filteredExpenses = new FilteredList<Expense>(this.wallet.getExpenseList());
         filteredIncomes = new FilteredList<Income>(this.wallet.getIncomeList());
         filteredTransactions = new FilteredList<Transaction>(this.wallet.getTransactionList());

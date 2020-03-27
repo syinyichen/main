@@ -69,7 +69,7 @@ public class WalletFindCommandTest {
         WalletFindCommand command = new WalletFindCommand(predicate);
         expectedModel.updateFilteredTransactionList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TA_JOB, DUCK_RICE, MRT_CONCESSION), model.getFilteredTransactionList());
+        assertEquals(Arrays.asList(MRT_CONCESSION, DUCK_RICE, TA_JOB), model.getFilteredTransactionList());
     }
 
     /**
