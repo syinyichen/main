@@ -57,21 +57,21 @@ public class WalletStatisticsPanel extends UiPart<Region> {
     @FXML
     private VBox walletStatisticsPlaceholder;
 
+    private Budget budget;
     private ObservableList<Transaction> walletTransactionList;
 
-    private ReadOnlyWallet wallet;
-
-    public WalletStatisticsPanel(ReadOnlyWallet wallet, ObservableList<Transaction> transactionList) {
+    public WalletStatisticsPanel(Budget budget, ObservableList<Transaction> transactionList) {
         super(FXML);
-        update(wallet, transactionList);
+        this.budget = budget;
+        update(budget, transactionList);
         setProperties();
     }
 
     /**
      * Updates the statistics displayed with the modified {@code wallet} and {@code transactionList}.
      */
-    public void update(ReadOnlyWallet wallet, ObservableList<Transaction> transactionList) {
-        this.wallet = wallet;
+    public void update(Budget budget, ObservableList<Transaction> transactionList) {
+        this.budget = budget;
         this.walletTransactionList = transactionList;
 
         if (transactionList.isEmpty()) {
@@ -146,20 +146,21 @@ public class WalletStatisticsPanel extends UiPart<Region> {
         Month currMonth = currDate.getMonth();
         Year currYear = currDate.getYear();
 
-        Budget currBudget = wallet.getBudget(currMonth, currYear);
+        System.out.println(budget);
 
-        if (currBudget.getAmount().amount == 0) {
+        if (budget.getAmount().amount == 0) {
             budgetRemainingLabel.setText(BUDGET_NOT_SET);
             budgetOverUnderLabel.setVisible(false);
         } else {
             double totalExpenditure =
-                    wallet.getExpenseList()
+                    walletTransactionList
                             .stream()
-                            .filter(t -> t.getDate().getMonth().equals(currMonth)
+                            .filter(t -> t instanceof Expense
+                                    && t.getDate().getMonth().equals(currMonth)
                                     && t.getDate().getYear().equals(currYear))
                             .mapToDouble(t -> t.getAmount().amount)
                             .sum();
-            double currBudgetAmount = currBudget.getAmount().amount;
+            double currBudgetAmount = budget.getAmount().amount;
 
             budgetRemainingLabel.setText(String.format("$%.2f / $%.2f", totalExpenditure, currBudgetAmount));
 
