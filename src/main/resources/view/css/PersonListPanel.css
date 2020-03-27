@@ -3,7 +3,7 @@
 }
 
 .table-row-cell{
-	-fx-table-cell-border-color, #616161;
+	-fx-table-cell-border-color: #616161;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em; /* 0 */
 }

@@ -16,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.ReadOnlyWallet;
 import seedu.address.model.tag.Tag;
@@ -52,6 +53,12 @@ public class WalletStatisticsPanel extends UiPart<Region> {
     @FXML
     private Label budgetOverUnderLabel;
 
+    @FXML
+    private VBox walletStatisticsLayout;
+
+    @FXML
+    private VBox walletStatisticsPlaceholder;
+
     private ObservableList<Transaction> walletTransactionList;
 
     private ReadOnlyWallet wallet;
@@ -59,6 +66,7 @@ public class WalletStatisticsPanel extends UiPart<Region> {
     public WalletStatisticsPanel(ReadOnlyWallet wallet, ObservableList<Transaction> transactionList) {
         super(FXML);
         update(wallet, transactionList);
+        setProperties();
     }
 
     /**
@@ -68,10 +76,18 @@ public class WalletStatisticsPanel extends UiPart<Region> {
         this.wallet = wallet;
         this.walletTransactionList = transactionList;
 
-        resetStyles();
-        setCurrentMonthYear();
-        populatePieChart();
-        updateBudgetRemaining();
+        if (transactionList.isEmpty()) {
+            walletStatisticsLayout.setVisible(false);
+            walletStatisticsPlaceholder.setVisible(true);
+        } else {
+            resetStyles();
+            setCurrentMonthYear();
+            populatePieChart();
+            updateBudgetRemaining();
+            walletStatisticsLayout.setVisible(true);
+            walletStatisticsPlaceholder.setVisible(false);
+        }
+
     }
 
     /**
@@ -164,5 +180,10 @@ public class WalletStatisticsPanel extends UiPart<Region> {
         ObservableList<String> styleClass = budgetRemainingLabel.getStyleClass();
         styleClass.remove(OVER_BUDGET_CLASS);
         styleClass.remove(UNDER_BUDGET_CLASS);
+    }
+
+    private void setProperties() {
+        walletStatisticsPlaceholder.managedProperty().bind(walletStatisticsPlaceholder.visibleProperty());
+        walletStatisticsLayout.managedProperty().bind(walletStatisticsLayout.visibleProperty());
     }
 }
