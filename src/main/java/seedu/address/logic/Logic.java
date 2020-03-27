@@ -2,8 +2,6 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.time.Month;
-import java.time.Year;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -15,7 +13,6 @@ import seedu.address.model.ReadOnlyUserData;
 import seedu.address.model.ReadOnlyWallet;
 import seedu.address.model.UserData;
 import seedu.address.model.person.Person;
-import seedu.address.model.transaction.Budget;
 import seedu.address.model.transaction.Transaction;
 
 /**
@@ -35,7 +32,7 @@ public interface Logic {
     /**
      * Records and stores the user data.
      *
-     * @param name The user's name.
+     * @param name  The user's name.
      * @param phone The user's phone number.
      * @param email The user's email address.
      * @throws IOException If error occurs when writing the user data into the file.
@@ -63,6 +60,7 @@ public interface Logic {
      * Returns an unmodifiable view of the list of all transactions
      */
     ObservableList<Transaction> getTransactionList();
+
     /**
      * Returns the user prefs' address book file path.
      */

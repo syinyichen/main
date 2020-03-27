@@ -259,7 +259,7 @@ public class MainWindow extends UiPart<Stage> {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    updateWalletPanels(commandText);
+                    updateWalletPanels();
                 }
             });
 
@@ -272,7 +272,10 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    private void updateWalletPanels(String commandText) {
+    /**
+     * Updates the UI panels related to the wallets when a command has executed.
+     */
+    private void updateWalletPanels() {
         walletTransactionsPanel.update(logic.getFilteredTransactionList());
         walletStatisticsPanel.update(logic.getWallet().getBudget(Date.getDefault().getMonth(),
                 Date.getDefault().getYear()),

@@ -207,6 +207,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public ObservableList<Transaction> getTransactionList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void setDefaultBudget(Budget budget) {
         throw new AssertionError("This method should not be called.");
     }

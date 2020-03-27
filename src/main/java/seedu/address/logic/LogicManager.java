@@ -88,7 +88,9 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Transaction> getTransactionList() { return model.getTransactionList(); }
+    public ObservableList<Transaction> getTransactionList() {
+        return model.getTransactionList();
+    }
 
     @Override
     public Path getAddressBookFilePath() {

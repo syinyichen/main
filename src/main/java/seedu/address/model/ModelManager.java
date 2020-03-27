@@ -353,7 +353,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Transaction> getTransactionList() { return this.wallet.getTransactionList(); }
+    public ObservableList<Transaction> getTransactionList() {
+        return this.wallet.getTransactionList();
+    }
 
     @Override
     public void updateFilteredTransactionList(Predicate<Transaction> predicate) {

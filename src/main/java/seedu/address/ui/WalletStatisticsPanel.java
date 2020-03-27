@@ -16,7 +16,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.ReadOnlyWallet;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Budget;
 import seedu.address.model.transaction.Date;
