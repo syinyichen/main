@@ -6,7 +6,8 @@ package seedu.address.model.transaction;
  */
 public class Amount implements Comparable<Amount> {
     public static final String MESSAGE_CONSTRAINTS =
-            "Amount of money should be non-negative and have only up to two decimal places.";
+            "Amount of money should be non-negative, have up to two decimal places, and not be too large"
+            + " (not exceeding ninety quadrillion dollars)";
     public static final String VALIDATION_REGEX = "\\d+([.]\\d{1,2})?";
 
     public static final long MAX_VALUE = Long.MAX_VALUE;
