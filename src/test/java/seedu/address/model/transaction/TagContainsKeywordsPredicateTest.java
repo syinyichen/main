@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.TransactionBuilder;
 
 public class TagContainsKeywordsPredicateTest {
@@ -107,7 +108,7 @@ public class TagContainsKeywordsPredicateTest {
         assertTrue(predicate.test(new TransactionBuilder().withTag("Allowance").buildIncome()));
 
         // Multiple keywords
-        predicate = new TagContainsKeywordsPredicate(Arrays.asList("ance", "lary"));
+        predicate = new TagContainsKeywordsPredicate(Arrays.asList("ance", "all"));
         assertTrue(predicate.test(new TransactionBuilder().withTag("Allowance").buildIncome()));
 
         // Only one matching keyword

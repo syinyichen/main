@@ -7,6 +7,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Tests that a {@code Transaction} matches any of the keywords given.
+ */
 public class DateContainsKeywordsPredicate extends WalletPredicate {
     private static final Logger logger = LogsCenter.getLogger(DateContainsKeywordsPredicate.class);
 
@@ -27,7 +30,7 @@ public class DateContainsKeywordsPredicate extends WalletPredicate {
                         e.printStackTrace();
                     }
 
-                    return  date.toString().equals(transaction.getDate().toString());
+                    return date.toString().equals(transaction.getDate().toString());
                 });
     }
 

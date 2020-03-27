@@ -4,7 +4,10 @@ import java.util.List;
 
 import seedu.address.commons.util.StringUtil;
 
-public class TagContainsKeywordsPredicate  extends WalletPredicate{
+/**
+ * Tests that a {@code Transaction} matches any of the keywords given.
+ */
+public class TagContainsKeywordsPredicate extends WalletPredicate {
     public TagContainsKeywordsPredicate(List<String> keywords) {
         super(keywords);
     }
@@ -22,5 +25,4 @@ public class TagContainsKeywordsPredicate  extends WalletPredicate{
                 || (other instanceof TagContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((TagContainsKeywordsPredicate) other).keywords)); // state check
     }
-
 }

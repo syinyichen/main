@@ -27,8 +27,6 @@ public class WalletFindCommand extends Command {
             + WALLET_COMMAND_TYPE + " "
             + COMMAND_WORD + " t/food shopping\n";
 
-    public static final String NO_PARAMETER_INPUTTED = "At least one field to find must be provided.";
-
     public static final String WRONG_AMT = "Amount to find must be a whole integer. Doubles or decimals are not allowed"
             + "Example: $/ 5 10";
 

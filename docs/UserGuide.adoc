@@ -234,22 +234,28 @@ Expected Outcome:
 ==== Finding an income or expense: `find`
 
 Finds an income or expense in your wallet by the keyword inputted. +
-Format: `wallet find <keyword>`
+Format: `wallet find n/<keyword> [<keyword> ...]`
+or `wallet find $/<keyword> [<keyword> ...]`
+or `wallet find d/<keyword> [<keyword> ...]`
+or `wallet find t/<keyword> [<keyword> ...]`
+
 
 ****
 * Finds the expenses and income with the stated <keyword>.
 * The keyword need not be in full. For example `wallet find ri` will also display expenses or income with the keyword `rice` as well.
+* The keyword can be either of type description (n/), amount ($/), date (d/) or tag (t/)
 ****
 
 Examples:
 
-* `wallet find rice`
-Returns a list of expenses and income containing the keyword <rice> +
+* `wallet find n/rice noodles`
+Returns a list of expenses and income containing the keyword <rice> and <noodles> +
 Expected Outcome:
 
-    Listed all transactions containing <rice>:
+    3 transactions listed!:
     1. Duck Rice Date: 10/10/2010 Amount: $4.00
     2. Chicken Rice Date: 10/11/2010 Amount: $2.50
+    3. Bean Noodles Date: 10/12/2010 Amount: $3.80
     ...​
 
 //end::walletfind[]

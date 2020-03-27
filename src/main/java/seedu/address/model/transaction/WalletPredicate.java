@@ -3,6 +3,9 @@ package seedu.address.model.transaction;
 import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Transaction} matches any of the keywords given.
+ */
 public abstract class WalletPredicate implements Predicate<Transaction> {
     protected final List<String> keywords;
 

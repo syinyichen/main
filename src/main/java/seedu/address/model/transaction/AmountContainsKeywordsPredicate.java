@@ -2,6 +2,9 @@ package seedu.address.model.transaction;
 
 import java.util.List;
 
+/**
+ * Tests that a {@code Transaction} matches any of the keywords given.
+ */
 public class AmountContainsKeywordsPredicate extends WalletPredicate {
 
     public AmountContainsKeywordsPredicate(List<String> keywords) {
@@ -11,8 +14,8 @@ public class AmountContainsKeywordsPredicate extends WalletPredicate {
     @Override
     public boolean test(Transaction transaction) {
         return keywords.stream()
-                .anyMatch(keyword -> (int) Double.parseDouble(keyword) ==
-                        (int) transaction.getAmount().amount);
+                .anyMatch(keyword -> (int) Double.parseDouble(keyword)
+                        == (int) transaction.getAmount().amount);
     }
 
     @Override
