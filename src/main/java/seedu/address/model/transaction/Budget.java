@@ -3,7 +3,6 @@ package seedu.address.model.transaction;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
 import java.time.Month;
 import java.time.Year;
 
@@ -30,7 +29,7 @@ public class Budget {
      * Creates a default budget that applies to all months.
      */
     public Budget(Amount amount) {
-        this(amount, Budget.getDefault().getMonth(), Budget.getDefault().getYear(), true);
+        this(amount, Date.getDefault().getMonth(), Date.getDefault().getYear(), true);
     }
 
     /**
@@ -56,8 +55,11 @@ public class Budget {
         return year;
     }
 
+    /**
+     * Returns a default Budget of zero amount.
+     */
     public static Budget getDefault() {
-        return new Budget(Amount.zero(), LocalDate.now().getMonth(), Year.of(LocalDate.now().getYear()));
+        return new Budget(Amount.zero());
     }
 
     /**

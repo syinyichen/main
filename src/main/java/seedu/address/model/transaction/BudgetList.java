@@ -67,7 +67,7 @@ public class BudgetList implements Iterable<Budget> {
         requireAllNonNull(month, year);
 
         for (Budget b : internalList) {
-            if (b.getMonth().equals(month) && b.getYear().equals(year)) {
+            if (b.getMonth().equals(month) && b.getYear().equals(year) && !b.getAmount().isZero()) {
                 return b;
             }
         }
@@ -121,8 +121,8 @@ public class BudgetList implements Iterable<Budget> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof BudgetList // instanceof handles nulls
-                && internalList.equals(((BudgetList) other).internalList))
+                || other instanceof BudgetList // instanceof handles nulls
+                && internalList.equals(((BudgetList) other).internalList)
                 && defaultBudget.equals(((BudgetList) other).getDefaultBudget());
     }
 

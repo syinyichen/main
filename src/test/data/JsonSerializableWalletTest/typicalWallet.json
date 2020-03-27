@@ -16,5 +16,11 @@
     "date" : "10/10/2010",
     "tag" : "Job"
   } ],
-  "budgets" : [ ]
+  "budgets" : [ ],
+  "defaultBudget" : {
+    "amount" : "1000.00",
+    "month" : "3",
+    "year" : "2020",
+    "isDefault" : "true"
+  }
 }

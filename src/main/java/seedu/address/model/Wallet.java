@@ -180,12 +180,7 @@ public class Wallet implements ReadOnlyWallet {
         requireAllNonNull(month, year);
         TransactionList<Expense> filteredExpenseList = expenses.getTransactionsInMonth(month, year);
 
-        Budget budgetToCompare;
-        if (budgets.containsBudgetOf(month, year)) {
-            budgetToCompare = budgets.get(month, year);
-        } else {
-            budgetToCompare = budgets.getDefaultBudget();
-        }
+        Budget budgetToCompare = budgets.get(month, year);
 
         return budgetToCompare.getAmount().isLessThan(filteredExpenseList.getTotal());
     }
