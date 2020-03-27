@@ -91,14 +91,6 @@ public class BudgetList implements Iterable<Budget> {
     }
 
     /**
-     * Replaces the contents of this list with the contents of the {@code replacement}.
-     */
-    public void setBudgets(BudgetList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
-    }
-
-    /**
      * Replaces the contents of this list with {@code budgets}.
      */
     public void setBudgets(List<Budget> budgets) {

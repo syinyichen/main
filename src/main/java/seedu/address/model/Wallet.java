@@ -64,6 +64,7 @@ public class Wallet implements ReadOnlyWallet {
         setIncomes(newData.getIncomeList());
         setExpenses(newData.getExpenseList());
         setBudgets(newData.getBudgetList());
+        setDefaultBudget(newData.getDefaultBudget());
     }
 
     // =========== Income-related Operations =============================================================
