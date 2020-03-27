@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class DateContainsKeywordsPredicate extends WalletPredicate {
     private static final Logger logger = LogsCenter.getLogger(DateContainsKeywordsPredicate.class);
@@ -17,7 +19,16 @@ public class DateContainsKeywordsPredicate extends WalletPredicate {
         logger.info(transaction.getDate().toString());
 
         return keywords.stream()
-                .anyMatch(keyword -> keyword.equals(transaction.getDate().toString()));
+                .anyMatch(keyword -> {
+                    Date date = null;
+                    try {
+                        date = ParserUtil.parseDate(keyword);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                    return  date.toString().equals(transaction.getDate().toString());
+                });
     }
 
     @Override

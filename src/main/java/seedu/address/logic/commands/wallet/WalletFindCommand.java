@@ -17,11 +17,20 @@ public class WalletFindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all transactions with description containing "
             + "any of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: prefix/KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + WALLET_COMMAND_TYPE + " "
-            + COMMAND_WORD + " rice water chicken";
+            + COMMAND_WORD + " n/rice water chicken\n"
+            + WALLET_COMMAND_TYPE + " "
+            + COMMAND_WORD + " $/12.90 5.80\n"
+            + WALLET_COMMAND_TYPE + " "
+            + COMMAND_WORD + " d/11/11/2011 22/02/2020\n"
+            + WALLET_COMMAND_TYPE + " "
+            + COMMAND_WORD + " t/food shopping\n";
 
     public static final String NO_PARAMETER_INPUTTED = "At least one field to find must be provided.";
+
+    public static final String WRONG_AMT = "Amount to find must be a whole integer. Doubles or decimals are not allowed"
+            + "Example: $/ 5 10";
 
     private final WalletPredicate predicate;
 
@@ -47,86 +56,4 @@ public class WalletFindCommand extends Command {
                 || (other instanceof WalletFindCommand // instanceof handles nulls
                 && predicate.equals(((WalletFindCommand) other).predicate)); // state check
     }
-
-    /**
-     * Stores the details to find the Transaction with. Each non-empty field value will replace the
-     * corresponding field value of the transaction.
-     */
-    /*
-    public static class FindTransactionDescriptor {
-        private Description description;
-        private Amount amount;
-        private Date date;
-        private Tag tag;
-
-        public FindTransactionDescriptor() {
-        }
-
-
-        public FindTransactionDescriptor(FindTransactionDescriptor toCopy) {
-            setDescription(toCopy.description);
-            setAmount(toCopy.amount);
-            setDate(toCopy.date);
-            setTag(toCopy.tag);
-        }
-
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, amount, date, tag);
-        }
-
-        public void setDescription(Description description) {
-            this.description = description;
-        }
-
-        public Optional<Description> getDescription() {
-            return Optional.ofNullable(description);
-        }
-
-        public void setAmount(Amount amount) {
-            this.amount = amount;
-        }
-
-        public Optional<Amount> getAmount() {
-            return Optional.ofNullable(amount);
-        }
-
-        public void setDate(Date date) {
-            this.date = date;
-        }
-
-        public Optional<Date> getDate() {
-            return Optional.ofNullable(date);
-        }
-
-
-        public void setTag(Tag tag) {
-            this.tag = tag;
-        }
-
-        public Optional<Tag> getTag() {
-            return Optional.ofNullable(tag);
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            // short circuit if same object
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof FindTransactionDescriptor)) {
-                return false;
-            }
-
-            // state check
-            FindTransactionDescriptor e = (FindTransactionDescriptor) other;
-
-            return getDescription().equals(e.getDescription())
-                    && getAmount().equals(e.getAmount())
-                    && getDate().equals(e.getDate())
-                    && getTag().equals(e.getTag());
-        }
-    }
-    */
 }

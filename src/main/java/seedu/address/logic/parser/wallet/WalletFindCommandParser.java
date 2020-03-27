@@ -13,6 +13,7 @@ import seedu.address.logic.commands.wallet.WalletFindCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.transaction.AmountContainsKeywordsPredicate;
 import seedu.address.model.transaction.DateContainsKeywordsPredicate;
@@ -48,14 +49,28 @@ public class WalletFindCommandParser implements Parser<WalletFindCommand> {
             String[] nameKeywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
             walletFindPredicate = new DescriptionContainsKeywordsPredicate(Arrays.asList(nameKeywords));
         } else if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
-            String[] nameKeywords = argMultimap.getValue(PREFIX_AMOUNT).get().split("\\s+");
-            walletFindPredicate = new AmountContainsKeywordsPredicate(Arrays.asList(nameKeywords));
+            String[] amountKeywords = argMultimap.getValue(PREFIX_AMOUNT).get().split("\\s+");
+
+            for (String str : amountKeywords) {
+                ParserUtil.parseAmount(str);
+                if (str.contains(".")) {
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, WalletFindCommand.WRONG_AMT));
+                }
+            }
+
+            walletFindPredicate = new AmountContainsKeywordsPredicate(Arrays.asList(amountKeywords));
         } else if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            String[] nameKeywords = argMultimap.getValue(PREFIX_DATE).get().split("\\s+");
-            walletFindPredicate = new DateContainsKeywordsPredicate(Arrays.asList(nameKeywords));
+            String[] dateKeywords = argMultimap.getValue(PREFIX_DATE).get().split("\\s+");
+
+            for (String str: dateKeywords) {
+                ParserUtil.parseDate(str);
+            }
+
+            walletFindPredicate = new DateContainsKeywordsPredicate(Arrays.asList(dateKeywords));
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            String[] nameKeywords = argMultimap.getValue(PREFIX_TAG).get().split("\\s+");
-            walletFindPredicate = new TagContainsKeywordsPredicate(Arrays.asList(nameKeywords));
+            String[] tagKeywords = argMultimap.getValue(PREFIX_TAG).get().split("\\s+");
+            walletFindPredicate = new TagContainsKeywordsPredicate(Arrays.asList(tagKeywords));
         }
         else {
             throw new ParseException(
