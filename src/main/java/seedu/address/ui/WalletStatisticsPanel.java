@@ -108,6 +108,7 @@ public class WalletStatisticsPanel extends UiPart<Region> {
             Tag tag = entry.getKey();
             Amount amount = entry.getValue();
             PieChart.Data tempData = new PieChart.Data(tag.tagName, amount.amountInCents / 100);
+            expenditurePieChart.layout();
             pieChartData.add(tempData);
         }
 
