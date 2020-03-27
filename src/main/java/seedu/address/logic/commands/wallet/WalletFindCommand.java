@@ -21,7 +21,7 @@ public class WalletFindCommand extends Command {
             + "Example: " + WALLET_COMMAND_TYPE + " "
             + COMMAND_WORD + " n/rice water chicken\n"
             + WALLET_COMMAND_TYPE + " "
-            + COMMAND_WORD + " $/12.90 5.80\n"
+            + COMMAND_WORD + " $/12 5\n"
             + WALLET_COMMAND_TYPE + " "
             + COMMAND_WORD + " d/11/11/2011 22/02/2020\n"
             + WALLET_COMMAND_TYPE + " "
