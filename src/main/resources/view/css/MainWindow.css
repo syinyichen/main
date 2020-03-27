@@ -52,8 +52,12 @@
 }
 
 .tab-pane {
-	-fx-background: none;
 	-fx-tab-min-width: 96px;
+}
+
+.tab-pane:top *.tab-header-area *.tab-header-background {
+	-fx-background-color: none;
+	-fx-background: none;
 }
 
 .tab {
