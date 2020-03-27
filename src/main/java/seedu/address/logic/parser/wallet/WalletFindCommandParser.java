@@ -2,6 +2,7 @@ package seedu.address.logic.parser.wallet;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.wallet.WalletFindCommand.ONLY_ONE_PARAMETER_ALLOWED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -44,6 +45,26 @@ public class WalletFindCommandParser implements Parser<WalletFindCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_AMOUNT, PREFIX_DATE, PREFIX_TAG);
 
         WalletPredicate walletFindPredicate = null;
+
+        int numOfTokensPresent = 0;
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            numOfTokensPresent++;
+        }
+        if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
+            numOfTokensPresent++;
+        }
+        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            numOfTokensPresent++;
+        }
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            numOfTokensPresent++;
+        }
+
+        if (numOfTokensPresent > 1) {
+            throw new ParseException(
+                    String.format(ONLY_ONE_PARAMETER_ALLOWED, WalletFindCommand.WRONG_AMT));
+        }
+
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String[] nameKeywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
