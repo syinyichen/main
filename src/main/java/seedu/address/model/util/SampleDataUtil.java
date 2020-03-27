@@ -93,12 +93,12 @@ public class SampleDataUtil {
 
     public static Income[] getSampleIncomes() {
         return new Income[]{
-                new Income(new Description("Tutoring"), new Amount(300),
-                        new Date(LocalDate.parse("2020-01-01")), new Tag("Job")),
-                new Income(new Description("TA"), new Amount(100),
-                        new Date(LocalDate.parse("2020-02-02")), new Tag("Job")),
-                new Income(new Description("Allowance"), new Amount(200),
-                        new Date(LocalDate.parse("2020-03-03")), new Tag("Allowance"))
+            new Income(new Description("Tutoring"), new Amount(300),
+                    new Date(LocalDate.parse("2020-01-01")), new Tag("Job")),
+            new Income(new Description("TA"), new Amount(100),
+                    new Date(LocalDate.parse("2020-02-02")), new Tag("Job")),
+            new Income(new Description("Allowance"), new Amount(200),
+                    new Date(LocalDate.parse("2020-03-03")), new Tag("Allowance"))
         };
     }
 
