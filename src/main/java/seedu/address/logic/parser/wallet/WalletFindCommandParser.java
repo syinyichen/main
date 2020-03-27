@@ -2,6 +2,7 @@ package seedu.address.logic.parser.wallet;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_KEYWORD_NOT_FOUND;
 import static seedu.address.logic.commands.wallet.WalletFindCommand.ONLY_ONE_PARAMETER_ALLOWED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
@@ -35,10 +36,6 @@ public class WalletFindCommandParser implements Parser<WalletFindCommand> {
     public WalletFindCommand parse(String args) throws ParseException {
 
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, WalletFindCommand.MESSAGE_USAGE));
-        }
 
         requireNonNull(args);
         ArgumentMultimap argMultimap =
@@ -62,15 +59,23 @@ public class WalletFindCommandParser implements Parser<WalletFindCommand> {
 
         if (numOfTokensPresent > 1) {
             throw new ParseException(
-                    String.format(ONLY_ONE_PARAMETER_ALLOWED, WalletFindCommand.WRONG_AMT));
+                    String.format(ONLY_ONE_PARAMETER_ALLOWED, WalletFindCommand.MESSAGE_USAGE));
         }
 
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String[] nameKeywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
+            if (nameKeywords.length == 1 && nameKeywords[0].equals("")) {
+                throw new ParseException(
+                        String.format(MESSAGE_KEYWORD_NOT_FOUND, WalletFindCommand.MESSAGE_USAGE));
+            }
             walletFindPredicate = new DescriptionContainsKeywordsPredicate(Arrays.asList(nameKeywords));
         } else if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
             String[] amountKeywords = argMultimap.getValue(PREFIX_AMOUNT).get().split("\\s+");
+            if (amountKeywords.length == 1 && amountKeywords[0].equals("")) {
+                throw new ParseException(
+                        String.format(MESSAGE_KEYWORD_NOT_FOUND, WalletFindCommand.MESSAGE_USAGE));
+            }
 
             for (String str : amountKeywords) {
                 ParserUtil.parseAmount(str);
@@ -84,6 +89,11 @@ public class WalletFindCommandParser implements Parser<WalletFindCommand> {
         } else if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             String[] dateKeywords = argMultimap.getValue(PREFIX_DATE).get().split("\\s+");
 
+            if (dateKeywords.length == 1 && dateKeywords[0].equals("")) {
+                throw new ParseException(
+                        String.format(MESSAGE_KEYWORD_NOT_FOUND, WalletFindCommand.MESSAGE_USAGE));
+            }
+
             for (String str: dateKeywords) {
                 ParserUtil.parseDate(str);
             }
@@ -91,6 +101,10 @@ public class WalletFindCommandParser implements Parser<WalletFindCommand> {
             walletFindPredicate = new DateContainsKeywordsPredicate(Arrays.asList(dateKeywords));
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             String[] tagKeywords = argMultimap.getValue(PREFIX_TAG).get().split("\\s+");
+            if (tagKeywords.length == 1 && tagKeywords[0].equals("")) {
+                throw new ParseException(
+                        String.format(MESSAGE_KEYWORD_NOT_FOUND, WalletFindCommand.MESSAGE_USAGE));
+            }
             walletFindPredicate = new TagContainsKeywordsPredicate(Arrays.asList(tagKeywords));
         }
         else {
