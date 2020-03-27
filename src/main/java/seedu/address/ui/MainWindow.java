@@ -271,7 +271,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void updateWalletPanel(String commandText) {
         walletTransactionsPanel.update(logic.getFilteredTransactionList());
-        walletStatisticsPanel.update(logic.getWallet(), logic.getFilteredTransactionList());
+        walletStatisticsPanel.update(logic.getWallet(), logic.getTransactionList());
     }
 
 

@@ -243,6 +243,11 @@ public interface Model {
     ObservableList<Transaction> getFilteredTransactionList();
 
     /**
+     * Returns an unmodifiable view of the Transaction list
+     */
+    ObservableList<Transaction> getTransactionList();
+
+    /**
      * Updates the filter of the filtered transaction list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.

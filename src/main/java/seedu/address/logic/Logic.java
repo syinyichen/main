@@ -57,6 +57,11 @@ public interface Logic {
     ObservableList<Transaction> getFilteredTransactionList();
 
     /**
+     * Returns an unmodifiable view of the list of all transactions
+     */
+    ObservableList<Transaction> getTransactionList();
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getAddressBookFilePath();
