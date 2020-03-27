@@ -143,7 +143,6 @@ public interface Model {
 
     /**
      * Returns true if the user has not enter the user data.
-     * @return
      */
     boolean isUserDataNull();
 
@@ -191,6 +190,9 @@ public interface Model {
      */
     void setExpense(Expense target, Expense editedExpense);
 
+    /**
+     * Returns the total expenditure in the month of the specified date.
+     */
     Amount getTotalExpenditureInMonth(Date date);
 
     /**
@@ -203,9 +205,16 @@ public interface Model {
      */
     void setDefaultBudget(Budget budget);
 
+    /**
+     * Returns whether the budget for a specified month and year has been exceeded.
+     */
     boolean hasExceededBudget(Month month, Year year);
 
+    /**
+     * Returns the budget specified for the month and year, if any.
+     */
     Budget getBudget(Month month, Year year);
+
     /**
      * Deletes the given transaction.
      * The transaction must exist in the Wallet.

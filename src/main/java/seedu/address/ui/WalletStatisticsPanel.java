@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import com.sun.javafx.charts.Legend;
-
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -130,13 +128,14 @@ public class WalletStatisticsPanel extends UiPart<Region> {
 
             PieChart.Data tempData = new PieChart.Data(tagString, totalAmount);
 
+            expenditurePieChart.layout();
             pieChartData.add(tempData);
         }
 
         pieChartData.forEach(data -> data.nameProperty().bind(Bindings.concat(data.getName(),
-                String.format(" %.2f", data.getPieValue()))));
-
+                String.format(" $%.2f", data.getPieValue()))));
         expenditurePieChart.setData(pieChartData);
+
     }
 
     /**
@@ -147,7 +146,7 @@ public class WalletStatisticsPanel extends UiPart<Region> {
         Month currMonth = currDate.getMonth();
         Year currYear = currDate.getYear();
 
-        Budget currBudget = wallet.getBudgetList().get(currMonth, currYear);
+        Budget currBudget = wallet.getBudget(currMonth, currYear);
 
         if (currBudget.getAmount().amount == 0) {
             budgetRemainingLabel.setText(BUDGET_NOT_SET);

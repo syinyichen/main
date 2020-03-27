@@ -87,6 +87,11 @@ public class PersonBuilder {
      */
     public PersonBuilder withDebts(Debt... debts) {
         this.debts = SampleDataUtil.getDebtList(debts);
+        if (debts.length != 0) {
+            this.tags.add(new Tag("Debt"));
+        } else {
+            this.tags.remove(new Tag("Debt"));
+        }
         return this;
     }
 
@@ -95,6 +100,11 @@ public class PersonBuilder {
      */
     public PersonBuilder withLoans(Loan... loans) {
         this.loans = SampleDataUtil.getLoanList(loans);
+        if (loans.length != 0) {
+            this.tags.add(new Tag("Loan"));
+        } else {
+            this.tags.remove(new Tag("Loan"));
+        }
         return this;
     }
 

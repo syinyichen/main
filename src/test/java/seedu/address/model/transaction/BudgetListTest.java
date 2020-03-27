@@ -17,7 +17,7 @@ import seedu.address.testutil.BudgetBuilder;
 
 public class BudgetListTest {
 
-    private BudgetList<Budget> budgetList = new BudgetList<>();
+    private BudgetList budgetList = new BudgetList();
 
     @Test
     public void getBudget_nullDate_throwsNullPointerException() {
@@ -26,21 +26,21 @@ public class BudgetListTest {
 
     @Test
     public void getBudget_doesNotHaveBudget_returnsDefaultBudget() {
-        BudgetList<Budget> noDefaultBudgetList = new BudgetList<>();
+        BudgetList noDefaultBudgetList = new BudgetList();
         Budget defaultBudget = noDefaultBudgetList.getDefaultBudget();
         assertEquals(defaultBudget, noDefaultBudgetList.get(BUDGET_JAN_2010.getMonth(), BUDGET_JAN_2010.getYear()));
     }
 
     @Test
     public void getBudget_hasBudget_returnsBudget() {
-        BudgetList<Budget> tempBudgetList = new BudgetList<>();
+        BudgetList tempBudgetList = new BudgetList();
         tempBudgetList.add(BUDGET_JAN_2010);
         assertEquals(BUDGET_JAN_2010, tempBudgetList.get(BUDGET_JAN_2010.getMonth(), BUDGET_JAN_2010.getYear()));
     }
 
     @Test
     public void getBudget_hasMultipleBudgets_returnsCorrectBudget() {
-        BudgetList<Budget> tempBudgetList = new BudgetList<>();
+        BudgetList tempBudgetList = new BudgetList();
         tempBudgetList.add(BUDGET_JAN_2010);
         tempBudgetList.add(BUDGET_APRIL_2020);
         assertEquals(BUDGET_JAN_2010, tempBudgetList.get(BUDGET_JAN_2010.getMonth(), BUDGET_JAN_2010.getYear()));
@@ -48,7 +48,7 @@ public class BudgetListTest {
 
     @Test
     public void getBudget_hasMultipleBudgets_returnsDefaultBudget() {
-        BudgetList<Budget> tempBudgetList = new BudgetList<>();
+        BudgetList tempBudgetList = new BudgetList();
         tempBudgetList.add(BUDGET_JAN_2010);
         tempBudgetList.add(BUDGET_APRIL_2020);
 
@@ -71,7 +71,7 @@ public class BudgetListTest {
 
     @Test
     public void containsBudget_existingBudget_returnsTrue() {
-        BudgetList<Budget> tempBudgetList = new BudgetList<>();
+        BudgetList tempBudgetList = new BudgetList();
         tempBudgetList.add(BUDGET_JAN_2010);
         tempBudgetList.add(BUDGET_APRIL_2020);
 
@@ -81,7 +81,7 @@ public class BudgetListTest {
 
     @Test
     public void containsBudget_nonExistentBudget_returnsFalse() {
-        BudgetList<Budget> tempBudgetList = new BudgetList<>();
+        BudgetList tempBudgetList = new BudgetList();
         Budget nonExistentBudget =
                 new BudgetBuilder().withAmount("3000").withMonth("09").withYear("2069").buildBudget();
 
@@ -100,16 +100,16 @@ public class BudgetListTest {
 
     @Test
     public void setBudget_budgetNotInList_throwsBudgetNotFoundException() {
-        BudgetList<Budget> tempBudgetList = new BudgetList<>();
+        BudgetList tempBudgetList = new BudgetList();
         assertThrows(BudgetNotFoundException.class, () -> tempBudgetList.setBudget(BUDGET_JAN_2010, BUDGET_APRIL_2020));
     }
 
     @Test
     public void setBudget_budgetInList_success() {
-        BudgetList<Budget> expectedBudgetList = new BudgetList<>();
+        BudgetList expectedBudgetList = new BudgetList();
         expectedBudgetList.add(BUDGET_APRIL_2020);
 
-        BudgetList<Budget> tempBudgetList = new BudgetList<>();
+        BudgetList tempBudgetList = new BudgetList();
         tempBudgetList.add(BUDGET_JAN_2010);
         tempBudgetList.setBudget(BUDGET_JAN_2010, BUDGET_APRIL_2020);
         assertEquals(expectedBudgetList, tempBudgetList);
@@ -117,15 +117,16 @@ public class BudgetListTest {
 
     @Test
     public void addBudget_normalBudget_budgetAddedToList() {
-        List<Budget> expectedBudgetList = List.of(BUDGET_JAN_2010);
-        BudgetList<Budget> tempBudgetList = new BudgetList<>();
+        BudgetList expectedBudgetList = new BudgetList();
+        expectedBudgetList.setBudgets(List.of(BUDGET_JAN_2010));
+        BudgetList tempBudgetList = new BudgetList();
         tempBudgetList.add(BUDGET_JAN_2010);
 
-        assertEquals(expectedBudgetList, tempBudgetList.internalList);
+        assertEquals(expectedBudgetList, tempBudgetList);
     }
 
     @Test
-    public void containsBudgetOf_nullArguments_throwsNullPointerExcetption() {
+    public void containsBudgetOf_nullArguments_throwsNullPointerException() {
         Budget tempBudget = Budget.getDefault();
 
         assertThrows(NullPointerException.class, () -> budgetList.containsBudgetOf(null, null));
@@ -135,7 +136,7 @@ public class BudgetListTest {
 
     @Test
     public void containsBudgetOf_budgetNotInList_returnsFalse() {
-        BudgetList<Budget> tempBudgetList = new BudgetList<>();
+        BudgetList tempBudgetList = new BudgetList();
         tempBudgetList.add(BUDGET_APRIL_2020);
 
         assertFalse(tempBudgetList.containsBudgetOf(BUDGET_JAN_2010.getMonth(), BUDGET_JAN_2010.getYear()));
@@ -143,7 +144,7 @@ public class BudgetListTest {
 
     @Test
     public void containsBudgetOf_budgetInList_returnsTrue() {
-        BudgetList<Budget> tempBudgetList = new BudgetList<>();
+        BudgetList tempBudgetList = new BudgetList();
         tempBudgetList.add(BUDGET_JAN_2010);
         tempBudgetList.add(BUDGET_APRIL_2020);
 
@@ -153,10 +154,10 @@ public class BudgetListTest {
 
     @Test
     public void equals_sameLists_returnsTrue() {
-        BudgetList<Budget> tempBudgetListA = new BudgetList<>();
+        BudgetList tempBudgetListA = new BudgetList();
         tempBudgetListA.add(BUDGET_JAN_2010);
 
-        BudgetList<Budget> tempBudgetListB = new BudgetList<>();
+        BudgetList tempBudgetListB = new BudgetList();
         tempBudgetListB.add(BUDGET_JAN_2010);
 
         assertEquals(tempBudgetListA, tempBudgetListB);
@@ -164,12 +165,23 @@ public class BudgetListTest {
 
     @Test
     public void equals_differentLists_returnsFalse() {
-        BudgetList<Budget> tempBudgetListA = new BudgetList<>();
+        BudgetList tempBudgetListA = new BudgetList();
         tempBudgetListA.add(BUDGET_JAN_2010);
 
-        BudgetList<Budget> tempBudgetListB = new BudgetList<>();
+        BudgetList tempBudgetListB = new BudgetList();
         tempBudgetListA.add(BUDGET_JAN_2010);
         tempBudgetListB.add(BUDGET_APRIL_2020);
+
+        assertNotEquals(tempBudgetListA, tempBudgetListB);
+    }
+
+    @Test
+    public void equals_differentDefaultBudget_returnsFalse() {
+        BudgetList tempBudgetListA = new BudgetList();
+        tempBudgetListA.setDefaultBudget(BUDGET_APRIL_2020);
+
+        BudgetList tempBudgetListB = new BudgetList();
+        tempBudgetListA.setDefaultBudget(BUDGET_JAN_2010);
 
         assertNotEquals(tempBudgetListA, tempBudgetListB);
     }

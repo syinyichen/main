@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.io.IOException;
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -26,6 +27,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
 
+    private static ResultDisplay resultDisplay;
+
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -35,7 +38,6 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private WalletTransactionsPanel walletTransactionsPanel;
     private WalletStatisticsPanel walletStatisticsPanel;
-    private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private EnterUserDataWindow enterUserDataWindow;
 
@@ -170,6 +172,10 @@ public class MainWindow extends UiPart<Stage> {
         openUserDataWindow();
         enterUserDataWindow.getRoot().setTitle("Edit User Data");
         enterUserDataWindow.instructionMessage.setText("Edit your details: ");
+
+        if (!logic.isUserDataNull()) {
+            enterUserDataWindow.fillInUserDetails(logic.getUserData().getUser());
+        }
     }
 
     /**
@@ -181,6 +187,13 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             enterUserDataWindow.focus();
         }
+    }
+
+    /**
+     * Edits the text shown in ResultDisplay.
+     */
+    public static void editResultDisplay(String text) {
+        resultDisplay.setFeedbackToUser(text);
     }
 
     void show() {
@@ -223,16 +236,29 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setStyleToIndicatePass();
 
             if (commandResult.isShowHelp()) {
-                handleHelp();
-                resultDisplay.setStyleToIndicateNeutral();
+                Platform.runLater(new Runnable() {
+                    public void run() {
+                        handleHelp();
+                        resultDisplay.setStyleToIndicateNeutral();
+                    }
+                });
             }
 
             if (commandResult.isExit()) {
-                handleExit();
-                resultDisplay.setStyleToIndicateNeutral();
+                Platform.runLater(new Runnable() {
+                    public void run() {
+                        handleExit();
+                        resultDisplay.setStyleToIndicateNeutral();
+                    }
+                });
             }
 
-            updateWalletPanel(commandText);
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    updateWalletPanel(commandText);
+                }
+            });
 
             return commandResult;
         } catch (CommandException | ParseException e) {
