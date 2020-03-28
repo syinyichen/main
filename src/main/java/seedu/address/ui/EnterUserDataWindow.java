@@ -23,7 +23,8 @@ public class EnterUserDataWindow extends UiPart<Stage> {
     public static final String ERROR_STYLE_CLASS = "error";
     public static final String MISSING_DATA_MESSAGE = "Your details are missing. \nTo use Sharkie, "
             + "please enter your details: ";
-    public static final String ERROR_MESSAGE = "The details you keyed in are invalid. \nKindly re-enter your details: ";
+    public static final String ERROR_MESSAGE = "The details you keyed in are invalid. \n"
+            + "Kindly re-enter your details: \n";
 
     private static final Logger logger = LogsCenter.getLogger(EnterUserDataWindow.class);
     private static final String FXML = "EnterUserDataWindow.fxml";
@@ -34,7 +35,13 @@ public class EnterUserDataWindow extends UiPart<Stage> {
     protected Label instructionMessage;
 
     @FXML
-    private Label errorMessage;
+    private Label errorMessageName;
+
+    @FXML
+    private Label errorMessagePhone;
+
+    @FXML
+    private Label errorMessageEmail;
 
     @FXML
     private TextField userNameTextField;
@@ -105,6 +112,7 @@ public class EnterUserDataWindow extends UiPart<Stage> {
         logger.fine("Showing the window for user data input.");
         getRoot().show();
         getRoot().centerOnScreen();
+        errorMessageName.setText("");
     }
 
     /**
@@ -155,7 +163,9 @@ public class EnterUserDataWindow extends UiPart<Stage> {
      */
     public void setStyleToIndicateInputFailure() {
         instructionMessage.setText(ERROR_MESSAGE);
-        errorMessage.setText("");
+        errorMessageName.setText("");
+        errorMessagePhone.setText("");
+        errorMessageEmail.setText("");
 
         ObservableList<String> styleClassName = userNameTextField.getStyleClass();
         ObservableList<String> styleClassPhone = userPhoneTextField.getStyleClass();
@@ -163,24 +173,21 @@ public class EnterUserDataWindow extends UiPart<Stage> {
 
         if (!Name.isValidName(userNameTextField.getText())) {
             styleClassName.add(ERROR_STYLE_CLASS);
-            errorMessage.setText(errorMessage.getText()
-                    + "Your name should not be empty or start with a whitespace!\n");
+            errorMessageName.setText("Your name should not be empty or start with a whitespace!\n");
             userNameTextField.setText("");
             userNameTextField.setPromptText("Invalid name!");
         }
 
         if (!Phone.isValidPhone(userPhoneTextField.getText())) {
             styleClassPhone.add(ERROR_STYLE_CLASS);
-            errorMessage.setText(errorMessage.getText()
-                    + "Your phone number should consist of 3 or more digits!\n");
+            errorMessagePhone.setText("Your phone number should consist of 3 or more digits!\n");
             userPhoneTextField.setText("");
             userPhoneTextField.setPromptText("Invalid phone number!");
         }
 
         if (!Email.isValidEmail(userEmailTextField.getText())) {
             styleClassEmail.add(ERROR_STYLE_CLASS);
-            errorMessage.setText(errorMessage.getText()
-                    + "Your email should be a valid email!\n");
+            errorMessageEmail.setText("Your email should be a valid email!\n");
             userEmailTextField.setText("");
             userEmailTextField.setPromptText("Invalid address!");
         }

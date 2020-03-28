@@ -608,7 +608,7 @@ Expected Outcome:
 //tag::editing-user-data[]
 [[editing-user-data]]
 *Q*: How to edit user's data? +
-*A*: Click on kbd:[Edit], then kbd:[Edit user's data] on your menu bar.
+*A*: Click on `Edit`, then `Edit user's data` on your menu bar.
 
 .Editing user data in Sharkie
 image::EditUserDataInstruction.png[width=400]

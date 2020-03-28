@@ -235,8 +235,13 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
 
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            resultDisplay.setStyleToIndicatePass();
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+                    resultDisplay.setStyleToIndicatePass();
+                }
+            });
 
             if (commandResult.isShowHelp()) {
                 Platform.runLater(new Runnable() {
