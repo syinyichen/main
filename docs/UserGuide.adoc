@@ -21,7 +21,10 @@ By: `AY1920S2-CS2103T-W12-3`      Since: `Feb 2020`      Licence: `MIT`
 //tag::intro[]
 == Introduction
 
-*Sharkie* is an all-in-one desktop application for *personal finance tracking*. It manages your *incomes and expenses*, organises your *contacts* and keeps track of *debts* your friends owe you, so that your loans always come with a money-back guarantee!
+Welcome to *Sharkie*!
+
+*Sharkie* is an all-in-one desktop application for *personal finance tracking* designed for university students who would like to monitor their spending.
+It manages your *incomes and expenses*, organises your *contacts* and keeps track of *debts* your friends owe you, so that your loans always come with a money-back guarantee!
 
 *Sharkie* boasts a sleek, trendy Graphical User Interface (GUI) while being at its core a *Command Line Application* - this means that the faster you type, the faster you can get those pesky finances out of your head and into Sharkie's management system.
 
@@ -40,8 +43,11 @@ If you need help regarding what commands *Sharkie* has, our Features section bel
 Note the following symbols and formatting used in this document: +
 
 [%autowidth.stretch]
+.Symbols used in this User Guide.
 |===
+| *Symbol*  | *Meaning*
 |[gray]#`command`# |A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.
+| kbd:[Enter] |This symbol indicates the enter button on the keyboard.
 |===
 
 NOTE: This symbol indicates information.
@@ -58,6 +64,14 @@ TIP: This symbol indicates tips.
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
 
+.Opening Sharkie for the first time
+image::EnterUserData.png[width="820"]
+
++
+. If you are logging in for the first time, key in your Name, Phone and your Email, and press kbd:[Enter] or click on the `Submit` button.
+Your screen should look like _Figure 2_ this after doing so.
++
+
 .GUI of Sharkie
 image::Ui.png[width="820"]
 
@@ -68,8 +82,8 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 * **`people add`**`n/John Doe p/98765432 e/johnd@example.com` : adds a contact named `John Doe` to the Address Book.
 * **`people delete`**`3` : deletes the 3rd contact shown in the current list.
-* **`wallet find`**`rice` : returns a list of expenses or income with keyword rice.
-* *`sharkie exit`* : exits the app.
+* **`wallet find`**`n/rice` : returns a list of expenses or income with keyword rice.
+* *`exit`* : exits the app.
 
 .  Refer to <<Commands>> for details of each command.
 //end::quickStart[]
@@ -95,7 +109,7 @@ There is no need to save manually.
 === Debts and loans
 
 *Sharkie* allows you to take note of the debts you owe your friends and the loans you lent your friends. +
-*Sharkie* then allow you to automatically remind your friends through email to return you the money they owe you! +
+*Sharkie* then allows you to remind your friends through email to return you the money they owe you! +
 
 NOTE: Still confused about `debts` and `loans`? Find out more in <<debt-and-loan, the differences between debts and loans>>.
 
@@ -157,7 +171,8 @@ Examples:
 Adds an expense named Chicken Rice, costing $3.50, on 10/10/2020, tagged as food. +
 Expected Outcome:
 
-    You spent $3.50 on Chicken Rice (food) on 10/10/2020 :)
+    New expense added: Chicken Rice Description: Chicken Rice Amount: $3.50 Date: 2010-10-10 Tag: [Food]
+    Your expenditure for OCTOBER 2010 is: $3.50/$0.00
 
 //end::walletexpense[]
 
@@ -180,7 +195,7 @@ Examples:
 Adds an income named P6 Tuition, for a sum of $3000, on 10/10/2020, tagged as job. +
 Expected Outcome:
 
-    You earned $3000 from P6 Tuition (job) on 10/10/2020 :D
+    New income added: P6 Tuition Description: P6 Tuition Amount: $3000.00 Date: 2010-10-10 Tag: [Job]
 
 //end::walletincome[]
 
@@ -201,8 +216,8 @@ Returns the list of transactions. +
 Expected Outcome:
 
     Listed all transactions:
-    1. Chicken Rice (food)
-    2. Duck Rice
+    1. [Food] Chicken Rice $4.00
+    2. [Food] Duck Rice $5.00
     …
 
 //end::walletList[]
@@ -226,7 +241,7 @@ Examples:
 Returns the respective expense with the changes made. +
 Expected Outcome:
 
-    Edited Item: Duck Rice Date: 10/10/2010 Amount: $4.00
+    Edited Transaction: Duck rice Description: Duck rice Amount: $4.00 Date: 2020-03-30 Tag: [Food]
 
 //end::walletedit[]
 
@@ -253,9 +268,9 @@ Returns a list of expenses and income containing the keyword <rice> and <noodles
 Expected Outcome:
 
     3 transactions listed!:
-    1. Duck Rice Date: 10/10/2010 Amount: $4.00
-    2. Chicken Rice Date: 10/11/2010 Amount: $2.50
-    3. Bean Noodles Date: 10/12/2010 Amount: $3.80
+    1. [Food] Duck Rice $4.00
+    2. [Food] Chicken Rice $2.50
+    3. [Food] Bean Noodles $3.80
     ...​
 
 //end::walletfind[]
@@ -278,7 +293,7 @@ Examples:
 Removes the expenses relative to the index. +
 Expected Outcome:
 
-    Removed Chicken Rice from your wallet
+    Deleted Transaction: Duck rice Description: Duck rice Amount: $4.00 Date: 2020-03-30 Tag: [Food]
 
 //end::walletdelete[]
 
@@ -300,7 +315,7 @@ Examples:
 * `wallet budget $/1000` Sets a budget of $1000. +
 Expected outcome:
 
-    Budget has been set at $1000!
+    Default budget has been set at $1000.
 
 === People Commands
 //tag::peopleadd[]
@@ -339,7 +354,7 @@ Examples:
 Records that you owe the 4th person $5.00 on 10/10/2020. +
 Expected Outcome:
 
-    Increased debt to Grace by $5.00! You now owe Grace $10.00.
+    Increased debt to Grace by $5.00. You now owe Grace $10.00.
 
 NOTE: The amount of money recorded will be added under your friend's `Debts` section. +
 `Debts` represent the amount of money you owe your friends. +
@@ -405,10 +420,10 @@ _Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the
 // end::lend[]
 
 // tag::paid[]
-==== Recording the money your friend paid back: `received`
+==== Recording the money you received: `received`
 
 Records that you have received the money from your friend, who you lent to. +
-Format: `people paid <person's index> [i/<loan's index>]`
+Format: `people received <person's index> [i/<loan's index>]`
 
 ****
 * The <person's index> refers to the index number shown before a displayed person.
@@ -425,7 +440,7 @@ All loans will be marked as `received` for the indicated person if the loan's in
 
 Examples:
 
-* `people paid 2 i/1`
+* `people received 2 i/1`
 Records that you have received the money for the first loan from the second person in the address book. +
 Expected Outcome:
 
@@ -508,16 +523,25 @@ Expected Outcome:
 //tag::peoplefind[]
 ==== Finding a person: `find`
 
-Finds a person in your contact list by his or her name. +
-Format: `people find <keyword>`
+Finds a person in your contact list by the keywords given. +
+Format: `people find n/<keyword> [<keyword>...]`
+or `people find p/<keyword> [<keyword>...]`
+or `people find e/<keyword> [<keyword>...]`
+or `people find t/<keyword> [<keyword>...]`
+
+****
+* Finds the people with the stated <keyword>.
+* The keyword need not be in full. For example `people find jo` will also display the person with the keyword `Joel` as well.
+* The keyword can be either of type name (n/), phone (p/), email (e/) or tag (t/).
+****
 
 Examples:
 
-* `people find Grace`
+* `people find n/Grace`
 Returns a list of people with the name, Grace. +
 Expected Outcome:
 
-    Here is a list of your contacts with name Grace:
+    2 persons listed!:
     1. Grace Lim
     2. Grace Pan
     …
@@ -631,8 +655,10 @@ e.g. `wallet income n/P6 Tuition $/3000 d/10/10/2010 t/job`
 e.g. `tag 1 t/food`
 * *Edit* : `wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]` +
 e.g. `wallet edit 1 n/Duck rice $/4.00`
-* *Find* : `wallet find <keyword>` +
-e.g. `wallet find rice`
+* *Find* : `wallet find n/<keyword>` or `wallet find $/<keyword> [<keyword> ...]`
+or `wallet find d/<keyword> [<keyword> ...]`
+or `wallet find t/<keyword> [<keyword> ...]` +
+e.g. `wallet find n/rice`
 * *Delete* : `wallet delete <index>` +
 e.g. `wallet delete 1`
 * *Budget* : `wallet budget $/<amount> m/<month> y/<year>` +
@@ -653,8 +679,11 @@ e.g. `people lend 5 n/dinner $/5.00 d/10/10/2020`
 * *Received* : `people received <person's index> [i/<loan's index>]` +
 e.g. `people paid 1 2`
 * *List* : `people list`
-* *Find* : `people find <keyword>` +
-e.g. `people find Grace`
+* *Find* : `people find n/<keyword> [<keyword>...]`
+or `people find p/<keyword> [<keyword>...]`
+or `people find e/<keyword> [<keyword>...]`
+or `people find t/<keyword> [<keyword>...]` +
+e.g. `people find n/Grace`
 * *Delete* : `people delete <index>` +
 e.g. `people delete 3`
 * *Edit* : `people edit <index> [n/<name>] [p/<phone number>] [e/<email address>]` +
