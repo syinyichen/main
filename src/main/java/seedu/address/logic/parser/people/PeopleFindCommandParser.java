@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Arrays;
 
 import seedu.address.logic.commands.people.PeopleFindCommand;
-import seedu.address.logic.commands.wallet.WalletFindCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -41,32 +40,51 @@ public class PeopleFindCommandParser implements Parser<PeopleFindCommand> {
 
         PeoplePredicate predicate = null;
 
+        int numOfTokensPresent = 0;
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            numOfTokensPresent++;
+        }
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            numOfTokensPresent++;
+        }
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            numOfTokensPresent++;
+        }
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            numOfTokensPresent++;
+        }
+
+        if (numOfTokensPresent > 1) {
+            throw new ParseException(
+                    String.format(PeopleFindCommand.ONLY_ONE_PARAMETER_ALLOWED, PeopleFindCommand.MESSAGE_USAGE));
+        }
+
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String[] nameKeywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
             if (nameKeywords.length == 1 && nameKeywords[0].equals("")) {
                 throw new ParseException(
-                        String.format(MESSAGE_KEYWORD_NOT_FOUND, WalletFindCommand.MESSAGE_USAGE));
+                        String.format(MESSAGE_KEYWORD_NOT_FOUND, PeopleFindCommand.MESSAGE_USAGE));
             }
             predicate = new PeopleNamePredicate(Arrays.asList(nameKeywords));
         } else if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             String[] phoneKeywords = argMultimap.getValue(PREFIX_PHONE).get().split("\\s+");
             if (phoneKeywords.length == 1 && phoneKeywords[0].equals("")) {
                 throw new ParseException(
-                        String.format(MESSAGE_KEYWORD_NOT_FOUND, WalletFindCommand.MESSAGE_USAGE));
+                        String.format(MESSAGE_KEYWORD_NOT_FOUND, PeopleFindCommand.MESSAGE_USAGE));
             }
             predicate = new PeoplePhonePredicate(Arrays.asList(phoneKeywords));
         } else if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             String[] emailKeywords = argMultimap.getValue(PREFIX_EMAIL).get().split("\\s+");
             if (emailKeywords.length == 1 && emailKeywords[0].equals("")) {
                 throw new ParseException(
-                        String.format(MESSAGE_KEYWORD_NOT_FOUND, WalletFindCommand.MESSAGE_USAGE));
+                        String.format(MESSAGE_KEYWORD_NOT_FOUND, PeopleFindCommand.MESSAGE_USAGE));
             }
             predicate = new PeopleEmailPredicate(Arrays.asList(emailKeywords));
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             String[] tagKeywords = argMultimap.getValue(PREFIX_TAG).get().split("\\s+");
             if (tagKeywords.length == 1 && tagKeywords[0].equals("")) {
                 throw new ParseException(
-                        String.format(MESSAGE_KEYWORD_NOT_FOUND, WalletFindCommand.MESSAGE_USAGE));
+                        String.format(MESSAGE_KEYWORD_NOT_FOUND, PeopleFindCommand.MESSAGE_USAGE));
             }
             predicate = new PeopleTagPredicate(Arrays.asList(tagKeywords));
         } else {
