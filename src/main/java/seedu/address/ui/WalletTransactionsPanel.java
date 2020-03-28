@@ -18,7 +18,6 @@ import seedu.address.model.transaction.Transaction;
  * Panel containing the list of transactions.
  */
 public class WalletTransactionsPanel extends UiPart<Region> {
-    private static final int LIST_CELL_HEIGHT = 160;
 
     private static final String FXML = "WalletTransactionsPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(WalletTransactionsPanel.class);
@@ -98,5 +97,4 @@ public class WalletTransactionsPanel extends UiPart<Region> {
             }
         }
     }
-
 }

@@ -18,6 +18,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.transaction.Date;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -124,7 +125,9 @@ public class MainWindow extends UiPart<Stage> {
         walletTransactionsPanel = new WalletTransactionsPanel(logic.getFilteredTransactionList());
         walletTransactionsPanelPlaceholder.getChildren().add(walletTransactionsPanel.getRoot());
 
-        walletStatisticsPanel = new WalletStatisticsPanel(logic.getWallet(), logic.getFilteredTransactionList());
+        walletStatisticsPanel = new WalletStatisticsPanel(logic.getWallet().getBudget(Date.getDefault().getMonth(),
+                Date.getDefault().getYear()),
+                logic.getFilteredTransactionList());
         walletStatisticsPanelPlaceholder.getChildren().add(walletStatisticsPanel.getRoot());
 
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
@@ -256,7 +259,7 @@ public class MainWindow extends UiPart<Stage> {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    updateWalletPanel(commandText);
+                    updateWalletPanels();
                 }
             });
 
@@ -269,9 +272,14 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    private void updateWalletPanel(String commandText) {
+    /**
+     * Updates the UI panels related to the wallets when a command has executed.
+     */
+    private void updateWalletPanels() {
         walletTransactionsPanel.update(logic.getFilteredTransactionList());
-        walletStatisticsPanel.update(logic.getWallet(), logic.getFilteredTransactionList());
+        walletStatisticsPanel.update(logic.getWallet().getBudget(Date.getDefault().getMonth(),
+                Date.getDefault().getYear()),
+                logic.getTransactionList());
     }
 
 

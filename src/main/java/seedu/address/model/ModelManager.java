@@ -33,7 +33,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
-    //wallet
+    // wallet
     private final FilteredList<Expense> filteredExpenses;
     private final FilteredList<Income> filteredIncomes;
     private FilteredList<Transaction> filteredTransactions;
@@ -350,6 +350,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Transaction> getFilteredTransactionList() {
         return filteredTransactions;
+    }
+
+    @Override
+    public ObservableList<Transaction> getTransactionList() {
+        return this.wallet.getTransactionList();
     }
 
     @Override

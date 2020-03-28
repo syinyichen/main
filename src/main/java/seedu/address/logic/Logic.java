@@ -32,7 +32,7 @@ public interface Logic {
     /**
      * Records and stores the user data.
      *
-     * @param name The user's name.
+     * @param name  The user's name.
      * @param phone The user's phone number.
      * @param email The user's email address.
      * @throws IOException If error occurs when writing the user data into the file.
@@ -55,6 +55,11 @@ public interface Logic {
      * Returns an unmodifiable view of the filtered list of transactions
      */
     ObservableList<Transaction> getFilteredTransactionList();
+
+    /**
+     * Returns an unmodifiable view of the list of all transactions
+     */
+    ObservableList<Transaction> getTransactionList();
 
     /**
      * Returns the user prefs' address book file path.

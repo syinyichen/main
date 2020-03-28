@@ -15,8 +15,8 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.ReadOnlyWallet;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Budget;
@@ -52,26 +52,41 @@ public class WalletStatisticsPanel extends UiPart<Region> {
     @FXML
     private Label budgetOverUnderLabel;
 
+    @FXML
+    private VBox walletStatisticsLayout;
+
+    @FXML
+    private VBox walletStatisticsPlaceholder;
+
+    private Budget budget;
     private ObservableList<Transaction> walletTransactionList;
 
-    private ReadOnlyWallet wallet;
-
-    public WalletStatisticsPanel(ReadOnlyWallet wallet, ObservableList<Transaction> transactionList) {
+    public WalletStatisticsPanel(Budget budget, ObservableList<Transaction> transactionList) {
         super(FXML);
-        update(wallet, transactionList);
+        this.budget = budget;
+        update(budget, transactionList);
+        setProperties();
     }
 
     /**
      * Updates the statistics displayed with the modified {@code wallet} and {@code transactionList}.
      */
-    public void update(ReadOnlyWallet wallet, ObservableList<Transaction> transactionList) {
-        this.wallet = wallet;
+    public void update(Budget budget, ObservableList<Transaction> transactionList) {
+        this.budget = budget;
         this.walletTransactionList = transactionList;
 
-        resetStyles();
-        setCurrentMonthYear();
-        populatePieChart();
-        updateBudgetRemaining();
+        if (transactionList.isEmpty()) {
+            walletStatisticsLayout.setVisible(false);
+            walletStatisticsPlaceholder.setVisible(true);
+        } else {
+            resetStyles();
+            setCurrentMonthYear();
+            populatePieChart();
+            updateBudgetRemaining();
+            walletStatisticsLayout.setVisible(true);
+            walletStatisticsPlaceholder.setVisible(false);
+        }
+
     }
 
     /**
@@ -125,20 +140,18 @@ public class WalletStatisticsPanel extends UiPart<Region> {
         Month currMonth = currDate.getMonth();
         Year currYear = currDate.getYear();
 
-        Budget currBudget = wallet.getBudget(currMonth, currYear);
-
-        if (currBudget.getAmount().isZero()) {
+        if (budget.getAmount().isZero()) {
             budgetRemainingLabel.setText(BUDGET_NOT_SET);
             budgetOverUnderLabel.setVisible(false);
         } else {
             Amount totalExpenditure =
-                wallet.getExpenseList()
+                walletTransactionList
                         .stream()
-                        .filter(t -> t.getDate().inMonth(currMonth, currYear))
+                        .filter(t -> t instanceof Expense && t.getDate().inMonth(currMonth, currYear))
                         .map(Transaction::getAmount)
                         .reduce(Amount.zero(), Amount::add);
 
-            Amount currBudgetAmount = currBudget.getAmount();
+            Amount currBudgetAmount = budget.getAmount();
 
             budgetRemainingLabel.setText(totalExpenditure.toString() + " / " + currBudgetAmount.toString());
 
@@ -160,5 +173,10 @@ public class WalletStatisticsPanel extends UiPart<Region> {
         ObservableList<String> styleClass = budgetRemainingLabel.getStyleClass();
         styleClass.remove(OVER_BUDGET_CLASS);
         styleClass.remove(UNDER_BUDGET_CLASS);
+    }
+
+    private void setProperties() {
+        walletStatisticsPlaceholder.managedProperty().bind(walletStatisticsPlaceholder.visibleProperty());
+        walletStatisticsLayout.managedProperty().bind(walletStatisticsLayout.visibleProperty());
     }
 }
