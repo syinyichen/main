@@ -13,7 +13,7 @@ Sharkie is a desktop expense tracker application. The user interacts with it usi
 
 == Summary of contributions
 
-* *Major enhancements*: added *owe command*
+* *Major enhancements*:
 ** Added People's command, `owe`
 *** What it does: allows the user to keep track of what they owe to other people in the addressbook.
 *** Justification: This is one of the main feature of Sharkie.
@@ -25,11 +25,19 @@ storage and ui for this command.
 ** Modified People's command, `find`
 *** What it does: allows the user to find people based on their name, phone, email or tags.
 I have also added the the tags "Debt" and "Loan" to people whom the user owes and lends, so that the user
-can filter the people whom they lend or owe using the command `people find t/debt loan`.
+can filter the people whom they lend or owe using the commands `people find t/debt` and `people find t/loan` respectively.
+
+* *Minor enhancements*:
+** Edit existing AB3 commands
+*** Removed address field of AB3 as it is unnecessary for Sharkie.
 
 * *Other contributions*:
 ** Documentation:
-*** Updated my part of my User Guide: (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pull/43[#43])
+*** Update AboutUs page: (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pull/53[#53])
+*** Updated User Guide: (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pull/43[#43])
+*** Updated Developer Guide: (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pull/60[#60],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/120[#120], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/124[#124],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/138[#138])
 ** Community:
 *** PRs reviewed (with non-trivial review comments): (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pull/95[#95],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/87[#87], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/98[#98],
