@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -91,7 +92,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removePerson(Person key) {
-        persons.remove(key);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                persons.remove(key);
+            }
+        });
     }
 
     //// util methods

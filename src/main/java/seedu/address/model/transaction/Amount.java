@@ -25,7 +25,7 @@ public class Amount implements Comparable<Amount> {
     /**
      * Constructs an {@code Amount}. Public constructor accepts a double.
      *
-     * @param amount A valid amount of money.
+     * @param amountInDollars A valid amount of money.
      */
 
     public Amount(double amountInDollars) {

@@ -9,6 +9,7 @@ import java.time.Year;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -314,7 +315,12 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                filteredPersons.setPredicate(predicate);
+            }
+        });
     }
 
     @Override
