@@ -14,8 +14,9 @@ public class AmountContainsKeywordsPredicate extends WalletPredicate {
     @Override
     public boolean test(Transaction transaction) {
         return keywords.stream()
-                .anyMatch(keyword -> (int) Double.parseDouble(keyword)
-                        == (int) transaction.getAmount().amount);
+                .anyMatch(keyword -> keyword.equals(transaction.getAmount().inDollars().substring(0, keyword.length()))
+                        && (transaction.getAmount().inDollars().substring(keyword.length(),
+                        keyword.length() + 1)).equals("."));
     }
 
     @Override
