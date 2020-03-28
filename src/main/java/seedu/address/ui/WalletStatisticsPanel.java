@@ -140,20 +140,18 @@ public class WalletStatisticsPanel extends UiPart<Region> {
         Month currMonth = currDate.getMonth();
         Year currYear = currDate.getYear();
 
-        System.out.println(budget);
-
-        if (currBudget.getAmount().isZero()) {
+        if (budget.getAmount().isZero()) {
             budgetRemainingLabel.setText(BUDGET_NOT_SET);
             budgetOverUnderLabel.setVisible(false);
         } else {
             Amount totalExpenditure =
-                wallet.getExpenseList()
+                walletTransactionList
                         .stream()
-                        .filter(t -> t.getDate().inMonth(currMonth, currYear))
+                        .filter(t -> t instanceof Expense && t.getDate().inMonth(currMonth, currYear))
                         .map(Transaction::getAmount)
                         .reduce(Amount.zero(), Amount::add);
 
-            Amount currBudgetAmount = currBudget.getAmount();
+            Amount currBudgetAmount = budget.getAmount();
 
             budgetRemainingLabel.setText(totalExpenditure.toString() + " / " + currBudgetAmount.toString());
 
