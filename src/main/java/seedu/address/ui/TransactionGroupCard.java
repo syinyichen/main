@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Expense;
 import seedu.address.model.transaction.Transaction;
@@ -62,19 +63,29 @@ public class TransactionGroupCard extends UiPart<Region> {
     }
 
     private void setGroupExpenditure() {
-        double groupValue = groupTransactionsList.stream().mapToDouble(t -> {
-            if (t instanceof Expense) {
-                return -t.getAmount().amount;
-            } else {
-                return t.getAmount().amount;
-            }
-        }).sum();
+        long groupValue;
+
+        try {
+            groupValue = groupTransactionsList
+            .stream()
+            .mapToLong(t -> {
+                if (t instanceof Expense) {
+                    return -t.getAmount().amountInCents;
+                } else {
+                    return t.getAmount().amountInCents;
+                }
+            })
+            .reduce(0, Math::addExact);
+        } catch (ArithmeticException e) {
+            // Overflow occurs
+            groupValue = Amount.MAX_VALUE;
+        }
 
         if (groupValue < 0) {
-            groupExpenditureLabel.setText("-$" + String.format("%.2f", -groupValue));
+            groupExpenditureLabel.setText("-" + new Amount(-groupValue / 100));
             groupExpenditureLabel.getStyleClass().add(NEGATIVE_CLASS);
         } else {
-            groupExpenditureLabel.setText("+$" + String.format("%.2f", groupValue));
+            groupExpenditureLabel.setText("+" + new Amount(groupValue / 100));
             groupExpenditureLabel.getStyleClass().add(POSITIVE_CLASS);
         }
     }

@@ -21,6 +21,7 @@ import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.Budget;
 import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Expense;
+import seedu.address.model.transaction.Transaction;
 import seedu.address.testutil.ModelStub;
 
 public class WalletExpenseCommandTest {
@@ -81,11 +82,10 @@ public class WalletExpenseCommandTest {
 
         @Override
         public Amount getTotalExpenditureInMonth(Date date) {
-            double amount = 0.0;
-            for (Expense e : expensesAdded) {
-                amount += e.getAmount().amount;
-            }
-            return new Amount(amount);
+            return expensesAdded
+                .stream()
+                .map(Transaction::getAmount)
+                .reduce(Amount.zero(), Amount::add);
         }
 
         @Override

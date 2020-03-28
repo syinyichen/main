@@ -100,6 +100,13 @@ public class Date implements Comparable<Date> {
         return Year.of(date.getYear());
     }
 
+    /**
+     * Returns whether the Date is in the specified month.
+     */
+    public boolean inMonth(Month month, Year year) {
+        return getMonth().equals(month) && getYear().equals(year);
+    }
+
     @Override
     public String toString() {
         return date.toString();

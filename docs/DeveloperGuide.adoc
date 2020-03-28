@@ -311,10 +311,10 @@ the lifeline reaches the end of diagram.
 
 ===== Aspect: Storing the Amount of a Transaction.
 
-* **Alternative 1 (current implementation):** Amounts are stored in dollars as `double`.
+* **Alternative 1 (previous implementation):** Amounts are stored in dollars as `double`.
 ** Pros: Easier to implement.
-** Cons: Floats are inexact. Floating point errors may cause rounding errors or unexpected bugs (e.g. checking if an amount is equal to zero).
-* **Alternative 2 (future implementation):** Amounts are stored in cents as `long`.
+** Cons: Floats are inexact. Floating point errors may cause rounding errors or unexpected bugs(e.g. checking if an amount is equal to zero).
+* **Alternative 2 (current implementation):** Amounts are stored in cents as `long`.
 ** Pros: Arithmetic involving amounts will be exact.
 ** Cons: Conversion is needed between cents and dollars. All Sharkie programmers have to be aware of the necessary conversion else bugs may occur.
 * **Alternative 3:** Amounts are stored as the inbuilt `BigDecimal` class.

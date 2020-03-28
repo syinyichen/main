@@ -33,11 +33,11 @@ class JsonSerializableWallet {
     public JsonSerializableWallet(@JsonProperty("expenses") List<JsonAdaptedExpense> expenses,
             @JsonProperty("incomes") List<JsonAdaptedIncome> incomes,
             @JsonProperty("budgets") List<JsonAdaptedBudget> budgets,
-            @JsonProperty("defaultbudget") JsonAdaptedBudget defaultBudget) {
+            @JsonProperty("defaultBudget") JsonAdaptedBudget defaultBudget) {
         this.expenses.addAll(expenses);
         this.incomes.addAll(incomes);
         this.budgets.addAll(budgets);
-        this.defaultBudget = defaultBudget = new JsonAdaptedBudget(Budget.getDefault());
+        this.defaultBudget = defaultBudget;
     }
 
     /**
@@ -50,7 +50,12 @@ class JsonSerializableWallet {
         expenses.addAll(source.getExpenseList().stream().map(JsonAdaptedExpense::new).collect(Collectors.toList()));
         incomes.addAll(source.getIncomeList().stream().map(JsonAdaptedIncome::new).collect(Collectors.toList()));
         budgets.addAll(source.getBudgetList().stream().map(JsonAdaptedBudget::new).collect(Collectors.toList()));
-        defaultBudget = new JsonAdaptedBudget(source.getDefaultBudget());
+        Budget modelDefaultBudget = source.getDefaultBudget();
+        if (modelDefaultBudget != null) {
+            defaultBudget = new JsonAdaptedBudget(modelDefaultBudget);
+        } else {
+            defaultBudget = new JsonAdaptedBudget(Budget.getDefault());
+        }
     }
 
     /**
@@ -72,7 +77,9 @@ class JsonSerializableWallet {
             Budget budget = jsonAdaptedBudget.toModelType();
             wallet.setBudget(budget);
         }
-        wallet.setDefaultBudget(defaultBudget.toModelType());
+        if (defaultBudget != null) {
+            wallet.setDefaultBudget(defaultBudget.toModelType());
+        }
         return wallet;
     }
 }

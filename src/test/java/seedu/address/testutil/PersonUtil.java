@@ -64,7 +64,7 @@ public class PersonUtil {
     public static String getDebtDescription(Debt debt) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + debt.getDescription().description + " ");
-        sb.append(PREFIX_AMOUNT + String.valueOf(debt.getAmount().amount) + " ");
+        sb.append(PREFIX_AMOUNT + debt.getAmount().inDollars() + " ");
         sb.append(PREFIX_DATE + debt.getDate().getInputFormat());
         return sb.toString();
     }
@@ -73,7 +73,7 @@ public class PersonUtil {
     public static String getLoanDescription(Loan loan) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + loan.getDescription().description + " ");
-        sb.append(PREFIX_AMOUNT + String.valueOf(loan.getAmount().amount) + " ");
+        sb.append(PREFIX_AMOUNT + loan.getAmount().inDollars() + " ");
         sb.append(PREFIX_DATE + loan.getDate().getInputFormat());
         return sb.toString();
     }
