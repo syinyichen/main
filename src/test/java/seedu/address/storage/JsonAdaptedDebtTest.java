@@ -19,7 +19,7 @@ import seedu.address.model.transaction.Description;
 class JsonAdaptedDebtTest {
 
     private static final String VALID_DESC = SUPPER.getDescription().toString();
-    private static final String VALID_AMOUNT = String.valueOf(SUPPER.getAmount().amount);
+    private static final String VALID_AMOUNT = SUPPER.getAmount().inDollars();
     private static final String VALID_DATE = SUPPER.getDate().toString();
 
     @Test

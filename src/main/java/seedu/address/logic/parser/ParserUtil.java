@@ -112,7 +112,8 @@ public class ParserUtil {
      */
     public static Amount parseAmount(String amount) throws ParseException {
         requireNonNull(amount);
-        if (!Amount.isValidAmount(amount)) {
+        String trimmedAmount = amount.trim();
+        if (!Amount.isValidAmount(trimmedAmount)) {
             throw new ParseException(Amount.MESSAGE_CONSTRAINTS);
         }
         return new Amount(Double.valueOf(amount.trim()));

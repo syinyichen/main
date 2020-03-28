@@ -64,6 +64,7 @@ public class Wallet implements ReadOnlyWallet {
         setIncomes(newData.getIncomeList());
         setExpenses(newData.getExpenseList());
         setBudgets(newData.getBudgetList());
+        setDefaultBudget(newData.getDefaultBudget());
     }
 
     // =========== Income-related Operations =============================================================
@@ -180,14 +181,9 @@ public class Wallet implements ReadOnlyWallet {
         requireAllNonNull(month, year);
         TransactionList<Expense> filteredExpenseList = expenses.getTransactionsInMonth(month, year);
 
-        Budget budgetToCompare;
-        if (budgets.containsBudgetOf(month, year)) {
-            budgetToCompare = budgets.get(month, year);
-        } else {
-            budgetToCompare = budgets.getDefaultBudget();
-        }
+        Budget budgetToCompare = budgets.get(month, year);
 
-        return filteredExpenseList.getTotal().amount > budgetToCompare.getAmount().amount;
+        return budgetToCompare.getAmount().isLessThan(filteredExpenseList.getTotal());
     }
 
     public Budget getBudget(Month month, Year year) {

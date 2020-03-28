@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.storage.JsonAdaptedBudget.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalWallet.BUDGET_APRIL_2020;
@@ -73,5 +74,12 @@ class JsonAdaptedBudgetTest {
                 null , VALID_BUDGET_ISDEFAULT_JAN_2010);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Year.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, budget::toModelType);
+    }
+
+    @Test
+    public void toModelType_defaultBudget_returnsDefaultBudget() throws IllegalValueException {
+        JsonAdaptedBudget budget = new JsonAdaptedBudget(VALID_BUDGET_AMOUNT_JAN_2010, VALID_BUDGET_MONTH_JAN_2010,
+                VALID_BUDGET_YEAR_JAN_2010, "true");
+        assertTrue(budget.toModelType().isDefault());
     }
 }

@@ -46,7 +46,7 @@ public abstract class JsonAdaptedTransaction {
      */
     public JsonAdaptedTransaction(Transaction transaction) {
         description = transaction.getDescription().toString();
-        amount = String.valueOf(transaction.getAmount().amount);
+        amount = transaction.getAmount().inDollars();
         date = transaction.getDate().getInputFormat();
         tag = transaction.getTag().tagName;
     }
