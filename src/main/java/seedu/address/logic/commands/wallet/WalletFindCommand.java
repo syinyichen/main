@@ -28,12 +28,12 @@ public class WalletFindCommand extends Command {
             + COMMAND_WORD + " t/food shopping\n";
 
     public static final String WRONG_AMT = "Amount to find must be a whole integer. Doubles or decimals are not "
-            + "allowed.\n" + "Example: " + COMMAND_WORD + WALLET_COMMAND_TYPE + " $/5 10";
+            + "allowed.\n" + "Example: " + COMMAND_WORD + " " + WALLET_COMMAND_TYPE + " $/5 10";
 
     public static final String ONLY_ONE_PARAMETER_ALLOWED = "Only 1 parameter is allowed.\n"
-            + "Example: \n" + COMMAND_WORD + " " + WALLET_COMMAND_TYPE + " $/5 10 \n"
-            + COMMAND_WORD + " " + WALLET_COMMAND_TYPE + " n/chicken noodles\n"
-            + "This is not allowed: " + COMMAND_WORD + " " + WALLET_COMMAND_TYPE + " n/rice $/4 d/03/03/2020 t/food";
+            + "Example: \n" + WALLET_COMMAND_TYPE + " " + COMMAND_WORD + " $/5 10\n"
+            + WALLET_COMMAND_TYPE + " " + COMMAND_WORD + " n/chicken noodles\n"
+            + "This is not allowed: " + WALLET_COMMAND_TYPE + " " + COMMAND_WORD + " n/rice $/4 d/03/03/2020 t/food";
 
     private final WalletPredicate predicate;
 
