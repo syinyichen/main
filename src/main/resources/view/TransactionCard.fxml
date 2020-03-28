@@ -32,7 +32,7 @@
                               <Font name="Consolas" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="tag" alignment="CENTER_RIGHT" text="tag">
+                        <Label fx:id="tag" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" text="tag">
                            <font>
                               <Font name="Consolas" size="14.0" />
                            </font>
@@ -50,7 +50,7 @@
                   </HBox>
                   <HBox alignment="CENTER_RIGHT">
                      <children>
-                        <Label fx:id="amount" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="amount">
+                        <Label fx:id="amount" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" minWidth="-Infinity" text="amount">
                            <font>
                               <Font name="Consolas" size="14.0" />
                            </font></Label>
