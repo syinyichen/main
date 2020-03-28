@@ -6,7 +6,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.transaction.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.transaction.WalletPredicate;
 
 /**
  * Finds and lists all transactions in wallet book whose name contains any of the argument keywords.
@@ -17,13 +17,27 @@ public class WalletFindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all transactions with description containing "
             + "any of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: prefix/KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + WALLET_COMMAND_TYPE + " "
-            + COMMAND_WORD + " rice water chicken";
+            + COMMAND_WORD + " n/rice water chicken\n"
+            + WALLET_COMMAND_TYPE + " "
+            + COMMAND_WORD + " $/12 5\n"
+            + WALLET_COMMAND_TYPE + " "
+            + COMMAND_WORD + " d/11/11/2011 22/02/2020\n"
+            + WALLET_COMMAND_TYPE + " "
+            + COMMAND_WORD + " t/food shopping\n";
 
-    private final DescriptionContainsKeywordsPredicate predicate;
+    public static final String WRONG_AMT = "Amount to find must be a whole integer. Doubles or decimals are not "
+            + "allowed.\n" + "Example: " + COMMAND_WORD + WALLET_COMMAND_TYPE + " $/5 10";
 
-    public WalletFindCommand(DescriptionContainsKeywordsPredicate predicate) {
+    public static final String ONLY_ONE_PARAMETER_ALLOWED = "Only 1 parameter is allowed.\n"
+            + "Example: \n" + COMMAND_WORD + " " + WALLET_COMMAND_TYPE + " $/5 10 \n"
+            + COMMAND_WORD + " " + WALLET_COMMAND_TYPE + " n/chicken noodles\n"
+            + "This is not allowed: " + COMMAND_WORD + " " + WALLET_COMMAND_TYPE + " n/rice $/4 d/03/03/2020 t/food";
+
+    private final WalletPredicate predicate;
+
+    public WalletFindCommand(WalletPredicate predicate) {
         this.predicate = predicate;
     }
 

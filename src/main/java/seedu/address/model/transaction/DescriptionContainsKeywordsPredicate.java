@@ -1,18 +1,16 @@
 package seedu.address.model.transaction;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
 /**
  * Tests that a {@code Transaction}'s {@code Description} matches any of the keywords given.
  */
-public class DescriptionContainsKeywordsPredicate implements Predicate<Transaction> {
-    private final List<String> keywords;
+public class DescriptionContainsKeywordsPredicate extends WalletPredicate {
 
     public DescriptionContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+        super(keywords);
     }
 
     @Override
