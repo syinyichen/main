@@ -215,10 +215,7 @@ Examples:
 Returns the list of transactions. +
 Expected Outcome:
 
-    Listed all transactions:
-    1. [Food] Chicken Rice $4.00
-    2. [Food] Duck Rice $5.00
-    …
+    Listed all transactions.
 
 //end::walletList[]
 
@@ -257,6 +254,7 @@ or `wallet find t/<keyword> [<keyword> ...]`
 
 ****
 * Finds the expenses and income with the stated <keyword>.
+* The keyword is case-insensitive.
 * The keyword need not be in full. For example `wallet find ri` will also display expenses or income with the keyword `rice` as well.
 * The keyword can be either of type description (n/), amount ($/), date (d/) or tag (t/)
 ****
@@ -514,9 +512,6 @@ Returns the list of everyone in the contact book. +
 Expected Outcome:
 
     Listed all persons.
-    1. Alex Yeoh
-    2. Bernice Yu
-    …
 
 //end::peoplelist[]
 
@@ -531,8 +526,11 @@ or `people find t/<keyword> [<keyword>...]`
 
 ****
 * Finds the people with the stated <keyword>.
+* The keywords are case-insensitive
 * The keyword need not be in full. For example `people find jo` will also display the person with the keyword `Joel` as well.
 * The keyword can be either of type name (n/), phone (p/), email (e/) or tag (t/).
+* `Debt` and `Loan` (case-insensitive) are the only tags allowed to be used in `people find` command.
+`people find t/debt loan` would return a list of people with unsettled debt(s) or loan(s).
 ****
 
 Examples:
@@ -598,6 +596,22 @@ Expected Outcome:
     Deleted Person: Betsy Phone: 91234567 Email: something@email.com You owe: $0.00 You lent: $0.00 Tags:
 
 // end::delete[]
+
+// tag::peopleclear[]
+==== Clearing all contacts : `clear`
+
+Clears all the contacts from the address book. +
+Format: `people clear`
+
+Examples:
+
+* `people clear`
+Returns an empty address book. +
+Expected Outcome:
+
+    Address book has been cleared!
+
+// end::peopleclear[]
 
 //tag::faq[]
 == FAQ
@@ -667,9 +681,6 @@ e.g. `wallet budget $/1000 m/04 y/2020`
 === People Commands
 * *Add* : `people add n/<name> p/<phone number> e/<email address>` +
 e.g. `people add n/Joel p/91234567 e/joel@u.nus.edu`
-* *Remind* : `people remind <index>` +
-e.g. `people remind 1`
-* *Remind all* : `people remindall`
 * *Owe* : `people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]` +
 e.g. `people owe 4 n/lunch $/5.00 d/10/10/2020`
 * *Returned*: `people returned <person's index> [i/<debt's index>]` +
@@ -677,15 +688,19 @@ e.g. `people returned 4 i/1`
 * *Lend* : `people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]` +
 e.g. `people lend 5 n/dinner $/5.00 d/10/10/2020`
 * *Received* : `people received <person's index> [i/<loan's index>]` +
-e.g. `people paid 1 2`
+e.g. `people received 1 2`
+* *Remind* : `people remind <index>` +
+e.g. `people remind 1`
+* *Remind all* : `people remindall`
 * *List* : `people list`
 * *Find* : `people find n/<keyword> [<keyword>...]`
 or `people find p/<keyword> [<keyword>...]`
 or `people find e/<keyword> [<keyword>...]`
 or `people find t/<keyword> [<keyword>...]` +
 e.g. `people find n/Grace`
-* *Delete* : `people delete <index>` +
-e.g. `people delete 3`
 * *Edit* : `people edit <index> [n/<name>] [p/<phone number>] [e/<email address>]` +
 e.g. `people edit 1 e/johndoe@example.com` +
+* *Delete* : `people delete <index>` +
+e.g. `people delete 3`
+* *Clear* : `people clear`
 //end::commandSummary[]
