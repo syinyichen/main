@@ -166,4 +166,12 @@ public class UniquePersonListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePersonList.asUnmodifiableObservableList().remove(0));
     }
+
+    @Test
+    public void hashcode() {
+        UniquePersonList anotherUniquePersonList = new UniquePersonList();
+
+        // same values -> returns same hashcode
+        assertEquals(uniquePersonList.hashCode(), anotherUniquePersonList.hashCode());
+    }
 }
