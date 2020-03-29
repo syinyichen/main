@@ -124,9 +124,7 @@ public class Person {
                 .append(" You owe: ")
                 .append(getDebts().getTotal())
                 .append(" You lent: ")
-                .append(getLoans().getTotal())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(getLoans().getTotal());
         return builder.toString();
     }
 

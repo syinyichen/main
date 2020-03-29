@@ -3,6 +3,7 @@ package seedu.address.logic.parser.people;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.people.PeopleFindCommandParser.MESSAGE_INVALID_TAG_PREDICATE;
 
 import java.util.Arrays;
 
@@ -12,6 +13,7 @@ import seedu.address.logic.commands.people.PeopleFindCommand;
 import seedu.address.model.person.PeopleEmailPredicate;
 import seedu.address.model.person.PeopleNamePredicate;
 import seedu.address.model.person.PeoplePhonePredicate;
+import seedu.address.model.person.PeopleTagPredicate;
 
 public class PeopleFindCommandParserTest {
 
@@ -64,13 +66,20 @@ public class PeopleFindCommandParserTest {
 
     @Test
     public void parse_prefixTag_returnsFindCommand() {
-        // no leading and trailing whitespaces
+        // no leading and trailing whitespaces and correct tags (debt or loan)
         PeopleFindCommand expectedPeopleFindCommand =
-                new PeopleFindCommand(new PeopleEmailPredicate(Arrays.asList("friend", "colleague")));
-        assertParseSuccess(parser, " t/friend colleague", expectedPeopleFindCommand);
+                new PeopleFindCommand(new PeopleTagPredicate(Arrays.asList("debt", "loan")));
+        assertParseSuccess(parser, " t/debt loan", expectedPeopleFindCommand);
 
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " t/ \n friend \n \t colleague  \t", expectedPeopleFindCommand);
+        // multiple whitespaces between keywords and correct tags (debt or loan)
+        assertParseSuccess(parser, " t/ \n debt \n \t loan  \t", expectedPeopleFindCommand);
+    }
+
+    @Test
+    public void parse_invalidTag_throwsParseException() {
+        // tags that are not debt or loan
+        assertParseFailure(parser, " t/friends neighbours", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                MESSAGE_INVALID_TAG_PREDICATE));
     }
 
 }
