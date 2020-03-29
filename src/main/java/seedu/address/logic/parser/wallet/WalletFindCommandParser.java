@@ -35,8 +35,6 @@ public class WalletFindCommandParser implements Parser<WalletFindCommand> {
      */
     public WalletFindCommand parse(String args) throws ParseException {
 
-        String trimmedArgs = args.trim();
-
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_AMOUNT, PREFIX_DATE, PREFIX_TAG);
@@ -94,7 +92,7 @@ public class WalletFindCommandParser implements Parser<WalletFindCommand> {
                         String.format(MESSAGE_KEYWORD_NOT_FOUND, WalletFindCommand.MESSAGE_USAGE));
             }
 
-            for (String str: dateKeywords) {
+            for (String str : dateKeywords) {
                 ParserUtil.parseDate(str);
             }
 
@@ -106,8 +104,7 @@ public class WalletFindCommandParser implements Parser<WalletFindCommand> {
                         String.format(MESSAGE_KEYWORD_NOT_FOUND, WalletFindCommand.MESSAGE_USAGE));
             }
             walletFindPredicate = new TagContainsKeywordsPredicate(Arrays.asList(tagKeywords));
-        }
-        else {
+        } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, WalletFindCommand.MESSAGE_USAGE));
         }

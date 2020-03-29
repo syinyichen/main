@@ -33,6 +33,11 @@ public class PeopleFindCommand extends Command {
             + PEOPLE_COMMAND_TYPE + " " + COMMAND_WORD + " " + PREFIX_TAG + "debt loan (Finds people "
             + "who has either debt(s) or loan(s))";
 
+    public static final String ONLY_ONE_PARAMETER_ALLOWED = "Only 1 parameter is allowed.\n"
+            + "Example: \n" + PEOPLE_COMMAND_TYPE + " " + COMMAND_WORD + " n/Alex Sarah\n"
+            + PEOPLE_COMMAND_TYPE + " " + COMMAND_WORD + " t/Friend\n"
+            + "This is not allowed: " + PEOPLE_COMMAND_TYPE + " " + COMMAND_WORD + " n/Alex t/Friend";
+
     private final PeoplePredicate predicate;
 
     public PeopleFindCommand(PeoplePredicate predicate) {
