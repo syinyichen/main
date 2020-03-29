@@ -68,7 +68,7 @@ public class UserTest {
     @Test
     public void tostring() {
         String expectedResult = "User: Alice Pauline Phone: 94351253 Email: alice@example.com";
-        assertEquals(ALICE.toString(), expectedResult);
+        assertEquals(expectedResult, ALICE.toString());
     }
 
 }
