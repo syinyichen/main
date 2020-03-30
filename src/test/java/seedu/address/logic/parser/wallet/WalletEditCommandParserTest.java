@@ -5,8 +5,8 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_AMOUNT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TRANSACTION_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FOOD;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_SHOPPING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESC_AMY;
@@ -75,7 +75,7 @@ public class WalletEditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Transaction} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_FOOD + TAG_DESC_SHOPPING + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_TRANSACTION_DESC + INVALID_AMOUNT + VALID_DATE_AMY,

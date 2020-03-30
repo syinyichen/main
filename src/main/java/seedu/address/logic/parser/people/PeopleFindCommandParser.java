@@ -9,7 +9,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.people.PeopleFindCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -20,11 +23,17 @@ import seedu.address.model.person.PeopleNamePredicate;
 import seedu.address.model.person.PeoplePhonePredicate;
 import seedu.address.model.person.PeoplePredicate;
 import seedu.address.model.person.PeopleTagPredicate;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new PeopleFindCommand object
  */
 public class PeopleFindCommandParser implements Parser<PeopleFindCommand> {
+
+    public static final String MESSAGE_INVALID_TAG_PREDICATE = "'Debt' and 'Loan' (case-insensitive) are the only "
+            + "tags that can be used in people find command.";
+
+    private final Set<Tag> validTags = new HashSet<>();
 
     /**
      * Parses the given {@code String} of arguments in the context of the PeopleFindCommand
@@ -82,10 +91,21 @@ public class PeopleFindCommandParser implements Parser<PeopleFindCommand> {
             predicate = new PeopleEmailPredicate(Arrays.asList(emailKeywords));
         } else if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             String[] tagKeywords = argMultimap.getValue(PREFIX_TAG).get().split("\\s+");
+
             if (tagKeywords.length == 1 && tagKeywords[0].equals("")) {
                 throw new ParseException(
                         String.format(MESSAGE_KEYWORD_NOT_FOUND, PeopleFindCommand.MESSAGE_USAGE));
             }
+
+            //Can only search for debt or loan in tag
+            validTags.add(new Tag("Debt"));
+            validTags.add(new Tag("Loan"));
+            if (!validTags.stream().anyMatch(tag -> Arrays.asList(tagKeywords).stream()
+                    .anyMatch(tagKeyword -> StringUtil.containsWordIgnoreCase(tag.tagName, tagKeyword)))) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        MESSAGE_INVALID_TAG_PREDICATE));
+            }
+
             predicate = new PeopleTagPredicate(Arrays.asList(tagKeywords));
         } else {
             throw new ParseException(

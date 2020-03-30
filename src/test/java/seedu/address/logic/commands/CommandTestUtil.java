@@ -45,8 +45,9 @@ public class CommandTestUtil {
     public static final String VALID_AMOUNT_BOB = "10";
     public static final String VALID_DATE_AMY = "02/02/2020";
     public static final String VALID_TRANSACTION_INDEX_AMY = "1";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_DEBT = "Debt";
+    public static final String VALID_TAG_FOOD = "Food";
+    public static final String VALID_TAG_SHOPPING = "Shopping";
     public static final String VALID_DATE = "20/02/2020";
     public static final String VALID_AMOUNT = "1000";
     public static final String VALID_MONTH = "09";
@@ -70,8 +71,9 @@ public class CommandTestUtil {
             " " + PREFIX_TRANSACTION_INDEX + VALID_TRANSACTION_INDEX_AMY;
     public static final String LEND_DESC_BOB = " " + PREFIX_NAME + VALID_DESC_BOB + " "
             + PREFIX_AMOUNT + VALID_AMOUNT_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_DEBT = " " + PREFIX_TAG + VALID_TAG_DEBT;
+    public static final String TAG_DESC_FOOD = " " + PREFIX_TAG + VALID_TAG_FOOD;
+    public static final String TAG_DESC_SHOPPING = " " + PREFIX_TAG + VALID_TAG_SHOPPING;
 
     public static final String VALID_DATE_DESC = " " + PREFIX_DATE + VALID_DATE;
     public static final String VALID_AMOUNT_DESC = " " + PREFIX_AMOUNT + VALID_AMOUNT;
@@ -88,7 +90,7 @@ public class CommandTestUtil {
     public static final String INVALID_DATE = " " + PREFIX_DATE + "20 May 2020"; // date in wrong format
     public static final String INVALID_TRANSACTION_INDEX =
             " " + PREFIX_TRANSACTION_INDEX + "-5"; // negative index
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "food*"; // '*' not allowed in tags
     public static final String INVALID_MONTH_DESC = " " + PREFIX_MONTH + "args"; // only numbers allowed
     public static final String INVALID_YEAR_DESC = " " + PREFIX_YEAR + "interstellar"; // only numbers allowed
 
@@ -101,10 +103,9 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
     }
 
     /**

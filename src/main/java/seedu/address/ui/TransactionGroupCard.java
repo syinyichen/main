@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import javafx.application.Platform;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -98,13 +99,18 @@ public class TransactionGroupCard extends UiPart<Region> {
         protected void updateItem(Transaction transaction, boolean empty) {
             super.updateItem(transaction, empty);
 
-            if (empty || transaction == null) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new TransactionCard(transaction, startIndex).getRoot());
-                startIndex += 1;
-            }
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    if (empty || transaction == null) {
+                        setGraphic(null);
+                        setText(null);
+                    } else {
+                        setGraphic(new TransactionCard(transaction, startIndex).getRoot());
+                        startIndex += 1;
+                    }
+                }
+            });
         }
     }
 }
