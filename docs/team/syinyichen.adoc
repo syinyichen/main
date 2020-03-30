@@ -16,39 +16,48 @@ and it has a GUI created with JavaFX. It is written in Java, and has about 10 kL
 
 * *Major enhancement*:
 
-** Added `*lend*` *command* (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#87])
+** *Added* `*lend*` *command* (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#87])
 *** What it does: Allows the user to record the amount of money lent to other people in the address book.
 *** Justification: This is one of the key features of Sharkie, which records the flow of money between the user and
 the people in the address book.
-** Added `*received*` *command* (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#98])
+** *Added* `*received*` *command* (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#98])
 *** What it does: Allows the user to record that a person, which the user lent has returned the amount of money.
 *** Justification: This is an essential update, which allows the user to remove the loans recorded by the
 `lend` command.
-** Added *user data storage* (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#95])
+** *Added user data storage* (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#95])
 *** What it does: Stores user data, such as name, phone and e-mail address.
 *** Justification: The storage of user data is important, as the user details are required to use the `remind`
 and `remindall` commands.
-** Added `*remind*` and `*remindall*` *command* (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#95])
+** *Added* `*remind*` *and* `*remindall*` *command* (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#95])
 *** What it does: Allows the user to send reminders to the people, who has yet return the amount of money they lent via email.
 *** Justification: This is one of the main features of Sharkie, which allows the interaction between the user and
 the people in the address book.
 *** Credits: _javax.mail_ is used in the implementation of this feature.
 
-* *Other contributions*:
+* *Minor enhancement*:
 
+** Add progress indicator for command execution, to indicate that the application is not hanging
+during execution of commands like `people remind`. (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#148])
+
+* *Other contributions*:
+** Enhancements to existing features:
+*** Fixed JavaFX thread issues. (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#178])
+*** Improved GUI of Edit User Data Window and Help Window. (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#178])
+*** Made `people's tags` uneditable. (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#183])
 ** Project management:
+*** Managed release `v1.2.1` on Github.
 *** Finalized and tagged `v1.1` and `v1.2`.
 ** Documentation:
-*** Updated the product website's heading and navigation bar: (Pull request
+*** Updated the product website's heading and navigation bar. (Pull requests
 https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#44], https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#81])
-*** Edited various parts of the User Guide: (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#49])
-*** Added use cases and updated the Design and Implementation part of the Developer Guide:
-(Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#51],
+*** Edited various parts of the User Guide. (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#49])
+*** Added use cases and updated the Design and Implementation part of the Developer Guide.
+(Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#51],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#132], https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#134])
 ** Community:
-*** PRs reviewed (with non-trivial review comments): (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#92],
+*** PRs reviewed (with non-trivial review comments). (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#92],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#100], https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#104],
-https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#115])
+https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#115], ...)
 
 == Contributions to the User Guide
 
@@ -72,6 +81,8 @@ include::../UserGuide.adoc[tag=peopleremind]
 include::../UserGuide.adoc[tag=peopleremindall]
 
 include::../UserGuide.adoc[tag=peoplefind]
+
+include::../UserGuide.adoc[tag=peopleclear]
 
 == FAQ
 

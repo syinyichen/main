@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_KEYWORD_NOT_FOUND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.people.PeopleFindCommandParser.MESSAGE_INVALID_TAG_PREDICATE;
 
 import java.util.Arrays;
 
@@ -84,13 +85,20 @@ public class PeopleFindCommandParserTest {
 
     @Test
     public void parse_prefixTag_returnsFindCommand() {
-        // no leading and trailing whitespaces
+        // no leading and trailing whitespaces and correct tags (debt or loan)
         PeopleFindCommand expectedPeopleFindCommand =
-                new PeopleFindCommand(new PeopleTagPredicate(Arrays.asList("friend", "colleague")));
-        assertParseSuccess(parser, " t/friend colleague", expectedPeopleFindCommand);
+                new PeopleFindCommand(new PeopleTagPredicate(Arrays.asList("debt", "loan")));
+        assertParseSuccess(parser, " t/debt loan", expectedPeopleFindCommand);
 
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " t/ \n friend \n \t colleague  \t", expectedPeopleFindCommand);
+        // multiple whitespaces between keywords and correct tags (debt or loan)
+        assertParseSuccess(parser, " t/ \n debt \n \t loan  \t", expectedPeopleFindCommand);
+    }
+
+    @Test
+    public void parse_invalidTag_throwsParseException() {
+        // tags that are not debt or loan
+        assertParseFailure(parser, " t/friends neighbours", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                MESSAGE_INVALID_TAG_PREDICATE));
     }
 
 }

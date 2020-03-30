@@ -37,7 +37,6 @@
                </font>
             </Label>
             </HBox>
-            <FlowPane fx:id="tagsPane" />
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone">
             <font>
                <Font name="Consolas" size="12.0" />
