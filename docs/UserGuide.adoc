@@ -43,19 +43,21 @@ If you need help regarding what commands *Sharkie* has, our Features section bel
 
 Note the following symbols and formatting used in this document: +
 
+[cols=".^, .^"]
 [%autowidth.stretch]
 .Symbols and formats used in this User Guide.
 |===
-| *Symbol*| *Meaning*
+^|*Symbol/ +
+Format* <|*Meaning*
 ^|[gray]#`command`# |A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.
 ^| kbd:[Enter] |This symbol indicates the enter button on the keyboard.
-2+.^a| NOTE: This symbol indicates information.
-2+.^a| WARNING: This symbol indicates warnings.
-2+.^a| TIP: This symbol indicates tips.
 a|
 ====
 ====
 |This yellow box indicates the limitations of each command.
+2+.^a|  NOTE: This symbol indicates information.
+2+.^a|  WARNING: This symbol indicates warnings.
+2+.^a|  TIP: This symbol indicates tips.
 |===
 
 //end::about[]
@@ -346,6 +348,8 @@ Suppose you want to add a new person to the address book, the command you would 
 ====
 *Command Format*
 
+The following are the limitations of `people add` command, which you would need to take note:
+
 * The `<name>` you entered should only contain alphanumeric characters and spaces.
 * The `<phone number>` you entered should only contain numbers and it should be at least 3 digits long.
 * The `<email address>` you entered should be in the format of _local-part@domain_.
@@ -456,34 +460,52 @@ _Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the
 
 // end::lend[]
 
-// tag::paid[]
+// tag::peoplereceived[]
 ==== Recording the money you received: `received`
 
-Records that you have received the money from your friend, who you lent to. +
-Format: `people received <person's index> [i/<loan's index>]`
+Suppose you want to record that you have received the money for a certain loan (or for all loans) from your friend,
+the command you would enter is our `people received` command.
 
-****
-* The <person's index> refers to the index number shown before a displayed person.
-* The <loan's index> refers to the index number shown before a loan under the specified person.
-* Both indexes *must be a positive integer* 1, 2, 3, ...
-****
+*Format*: `people received <person's index> [i/<loan's index>]`
 
-NOTE: `Loan` represents the amount of money you lend your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+====
+*Command Format*
+
+The following is the limitations of `people received` command, which you would need to take note:
+
+* The `<person's index>` and `<loan's index>` you entered should be positive integers, e.g. 1, 2, 3, ...
+====
+
+NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
+specific person in the address book, who you received from. +
+_Still confused? Find out more about `person's index` at <<personIndexFAQ, What is a [blue]`person's index`>>._ +
+ +
+The `<loan's index>` above refers to the index number shown in the displayed loans list in *Sharkie*. It indicates a
+specific loan under the person, which you received from. +
+_Still confused? Find out more about `loan's index` at <<loanDebtIndexFAQ, What is a [blue]`loan's` index`>>._ +
+ +
+`Loan` represents the amount of money you lend your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._ +
 
 [TIP]
-The loan's index is optional.
-All loans will be marked as `received` for the indicated person if the loan's index is not specified.
+The `<loan's index>` is optional.
+All loans will be marked as `received` for the indicated person if the `<loan's index>` is not specified.
 
-Examples:
+*Example*:
 
-* `people received 2 i/1`
-Records that you have received the money for the first loan from the second person in the address book. +
-Expected Outcome:
+* Suppose you want to record that you have received the money from Joel, who is the second person in the address book,
+for the first loan in his loans list.
+
+** The command you would enter is `people received 2 i/1`.
+** This records that you have received the money for the first loan of Joel, the second person in the address book.
+
+*Expected Outcome*:
+
+* The first loan of Joel will be removed from his loans list and the unsettled loans of Joel will be shown.
 
     Removed loan to Joel by $10.00. Joel now owes you $2.00.
 
-// end::paid[]
+// end::peoplereceived[]
 
 //tag::peopleremind[]
 ==== Sending reminder to a friend: `remind`
@@ -491,16 +513,19 @@ Expected Outcome:
 Suppose you want to remind a friend to return the unsettled loans to you through an email,
 the command you would enter is our `people remind` command.
 
-*Format*: `people remind <index>`
+*Format*: `people remind <person's index>`
 
 ====
 *Command Format*
 
-* The `<index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
+The following is the limitations of `people remind` command, which you would need to take note:
+
+* The `<person's index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
 ====
 
-NOTE: The `<index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
+NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
 specific person in the address book, who you want to remind. +
+_Still confused? Find out more about `person's index` at <<personIndexFAQ, What is a [blue]`person's index`>>._ +
  +
 `Loan` represents the amount of money you lend your friends. +
 _Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
@@ -517,7 +542,7 @@ You can enter or edit your details at <<editing-user-data, [blue]`Edit` > [blue]
 
 *Expected Outcome*:
 
-* Daniel would receive a reminder from *Sharkie* via the email. You would also receive a copy of the email sent to Daniel:
+* Daniel will receive a reminder from *Sharkie* via the email. You will also receive a copy of the email sent to Daniel:
 
     Reminded Daniel to return $10.00!
     Sharkie has sent a copy of the reminder to your email!
@@ -544,8 +569,8 @@ You can enter or edit your details at <<editing-user-data, [blue]`Edit` > [blue]
 
 *Expected Outcome*:
 
-* All your friends who has yet paid up would receive a reminder from *Sharkie* via the email.
-You would also receive a copy of each of the emails sent to your friends:
+* All your friends who has yet paid up will receive a reminder from *Sharkie* via the email.
+You will also receive a copy of each of the emails sent to your friends:
 
     Reminded Daniel to return $10.00!
     Reminded Joel to return $30.75!
@@ -568,6 +593,8 @@ or `people find t/<keyword> [<keyword>...]`
 ====
 *Command Format*
 
+The following are the limitations of `people find` command, which you would need to take note:
+
 * You would not have to consider the case of the `<keyword>`, as it is case-insensitive.
 * The `<keyword>` you want to enter need not be in full. For example, `people find n/jo` will display the
 persons whose name contains with the keyword `jo`, such as `Joel`.
@@ -588,7 +615,7 @@ _Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the
 
 *Expected Outcome #1*:
 
-* All your friends with the name, Grace would be listed out:
+* All your friends with the name, Grace will be listed out:
 
     2 persons listed!:
     1. Grace Lim
@@ -604,7 +631,7 @@ _Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the
 
 *Expected Outcome #2*:
 
-* All your friends with unsettled debt(s) or loan(s) would be listed out:
+* All your friends with unsettled debt(s) or loan(s) will be listed out:
 
     3 persons listed!:
     1. Cheyanne Sim
@@ -698,7 +725,7 @@ the command you would enter is our `people clear` command.
 
 *Expected Outcome*:
 
-* *Sharkie* would delete all the contacts and return an empty address book.
+* *Sharkie* will delete all the contacts and return an empty address book.
 
     Address book has been cleared!
 
@@ -709,6 +736,40 @@ the command you would enter is our `people clear` command.
 
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file *Sharkie* creates with the file that contains the data of your previous Address Book folder.
+
+//tag::personIndexFAQ[]
+[[personIndexFAQ]]
+*Q*: What is a `person's index`? +
+*A*: A `person's index` is the index number shown in the displayed person list in *Sharkie*. It indicates a specific person in the address book.
+
+****
+For example,
+
+* `1` is the `person's index` of Alex Yeoh, whereas
+* `2` is the `person's index` of Bernice Yu.
+
+.What is a `person's index`?
+image::personIndexFAQ.png[width=900]
+****
+//end::personIndexFAQ[]
+
+//tag::loanDebtIndexFAQ[]
+[[loanDebtIndexFAQ]]
+*Q*: What is a `debt's index` or a `loan's index`? +
+*A*: A `debt's index` is the index number shown in a person's displayed debts list, whereas a `loan's index` is the
+index number shown in a person's displayed loans list. A `debt's index` indicates a specific debt of a person and a
+`loan's index` indicated a specific loan of a person.
+
+****
+For example,
+
+* The `debt's index` of the debt, `Dinner | $12.00 | 1 APR 2020`, under Bernice Yu is `1`.
+* The `loan's index` of the loan, `Movie | $10.00 | 2 FEB 2020`, under Bernice Yu is `1`.
+
+.What is a `debt's index` or a `loan's index`?
+image::loanDebtIndexFAQ.png[width=900]
+****
+//end::loanDebtIndexFAQ[]
 
 //tag::editing-user-data[]
 [[editing-user-data]]
