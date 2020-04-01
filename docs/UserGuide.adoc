@@ -28,6 +28,9 @@ It manages your *incomes and expenses*, organises your *contacts* and keeps trac
 
 *Sharkie* boasts a sleek, trendy Graphical User Interface (GUI) while being at its core a *Command Line Application* - this means that the faster you type, the faster you can get those pesky finances out of your head and into Sharkie's management system.
 
+.GUI of Sharkie
+image::Ui.png[width="820"]
+
 Have we reeled you in? Dive into <<Quick Start>> to get on board with Sharkie. Enjoy!
 //end::intro[]
 
@@ -69,13 +72,7 @@ image::EnterUserData.png[width="820"]
 
 +
 . If you are logging in for the first time, key in your Name, Phone and your Email, and press kbd:[Enter] or click on the `Submit` button.
-Your screen should look like _Figure 2_ this after doing so.
-+
 
-.GUI of Sharkie
-image::Ui.png[width="820"]
-
-+
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
@@ -205,18 +202,17 @@ Expected Outcome:
 //tag::walletList[]
 ==== Listing all transactions: `list`
 
-Tag an expense with respective tag. +
+Suppose you want to see the full list of transactions, the command you would enter is our `wallet list` command. +
 Format: `wallet list`
 
-****
-* List all transactions in your wallet, which includes expenses and incomes.
-****
+*Example*:
 
-Examples:
+* Suppose you want to list all the transactions out again.
 
-* `wallet list`
-Returns the list of transactions. +
-Expected Outcome:
+** The command you would enter is `wallet list`.
+** This lists out all the transactions you have in your wallet.
+
+*Expected Outcome*:
 
     Listed all transactions.
 
@@ -225,17 +221,25 @@ Expected Outcome:
 //tag::walletedit[]
 ==== Editing an income or expense: `edit`
 
-Edits the details of an income or expense in your wallet. +
+Suppose you want to edit the details of an income or expense in your wallet, the command you would enter is our `wallet edit` command. +
 Format: `wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]`
 
-****
-* Edits the details of the expense or income, specified by <index>.
-* <index> must be stated, and it must *exist* in the list of expenses or income.
+====
+*Command Format*
+
+The following are the restrictions of `people edit` command, which you would need to take note of:
+
+* The `<index>` of the transaction to be edited must be stated, and it must exist in the list of transactions.
 * The index *must be a positive integer* 1, 2, 3, ...
 * At least one of [n/<name>], [d/<date>], [$/<amount>], [t/<tag>] should be stated. Multiples are allowed as well.
-****
+====
 
-Examples:
+*Example*:
+
+* Suppose you keyed in the description and price of your transaction wrongly for transaction 1.
+
+** The command you would enter is `wallet edit`.
+** This edits the selected transaction and updates it with the new information you inputted.
 
 * `wallet edit 1 n/Duck rice $/4.00`
 Returns the respective expense with the changes made. +
@@ -247,20 +251,27 @@ Expected Outcome:
 
 //tag::walletfind[]
 ==== Finding an income or expense: `find`
+Suppose you want to find transactions with certain keywords or date within the transaction list in the wallet, the command you would enter is our `wallet find` command. +
 
-Finds an income or expense in your wallet by the keyword inputted. +
-Format: `wallet find n/<keyword> [<keyword> ...]`
-or `wallet find $/<keyword> [<keyword> ...]`
-or `wallet find d/<keyword> [<keyword> ...]`
+Format:
+
+`wallet find n/<keyword> [<keyword> ...]` +
+or `wallet find $/<keyword> [<keyword> ...]` +
+or `wallet find d/<keyword> [<keyword> ...]` +
 or `wallet find t/<keyword> [<keyword> ...]`
 
 
-****
+====
+*Command Format*
+
+The following are the restrictions of `people find` command, which you would need to take note of:
+
 * Finds the expenses and income with the stated <keyword>.
 * The keyword is case-insensitive.
-* The keyword need not be in full. For example `wallet find ri` will also display expenses or income with the keyword `rice` as well.
-* The keyword can be either of type description (n/), amount ($/), date (d/) or tag (t/)
-****
+* The keyword need not be in full. For example `"wallet find ri"` will also display expenses or income with the keyword `rice` as well.
+* The keyword can be either of type description (n/), amount ($/), date (d/) or tag (t/).
+* You cannot search for multiple types of keywords in one command.
+====
 
 Examples:
 
@@ -278,17 +289,22 @@ Expected Outcome:
 
 //tag::walletdelete[]
 ==== Deleting an income or expense: `delete`
+Suppose you want to delete a transaction, the command you would enter is our `wallet delete` command. +
 
 Deletes an income or an expense from your wallet. +
 Format: `wallet delete <index>`
 
-****
-* Deletes the income or expense specified by <index>.
-* The index *must be a positive integer* 1, 2, 3, ...
-* The index must *exist*.
-****
+====
+*Command Format*
 
-Examples:
+The following are the restrictions of `people find` command, which you would need to take note of:
+
+* The `<index>` of the transaction to be deleted must be stated, and it must exist in the list of transactions.
+* The index *must be a positive integer* 1, 2, 3, ...
+* Only 1 transaction can be deleted each time.
+====
+
+Example:
 
 * `wallet delete 1`
 Removes the expenses relative to the index. +
