@@ -140,6 +140,8 @@ You can view statistics such as the proportion of your spending on different ite
 * Parameters can be in any order e.g. if the command specifies `n/<name> p/<phone number>`, `p/<phone number> n/<name>` is also acceptable.
 ====
 //end::commandintro[]
+
+//tag::globalcommands[]
 === Global Commands
 ==== Viewing help : `help`
 Views the user guide of *Sharkie*, which is the document you are currently reading. +
@@ -149,6 +151,7 @@ Format: `help`
 
 Exits the program. +
 Format: `exit`
+//end::globalcommands[]
 
 === Wallet Commands
 
@@ -314,6 +317,8 @@ Examples:
 Expected outcome:
 
     Default budget has been set at $1000.
+
+//end::walletbudget[]
 
 === People Commands
 //tag::peopleadd[]
