@@ -348,7 +348,7 @@ Suppose you want to add a new person to the address book, the command you would 
 ====
 *Command Format*
 
-The following are the limitations of `people add` command, which you would need to take note:
+The following are the limitations of `people add` command, which you would need to take note of:
 
 * The `<name>` you entered should only contain alphanumeric characters and spaces.
 * The `<phone number>` you entered should only contain numbers and it should be at least 3 digits long.
@@ -371,7 +371,7 @@ into the address book.
 
 * Your new friend, Joel will be added into your address book:
 
-    New person added: Joel Phone: 91234567 Email: joel@example.com
+    New person added: Joel Phone: 91234567 Email: joel@example.com You owe: $0.00 You lent: $0.00
 
 //end::peopleadd[]
 
@@ -471,7 +471,7 @@ the command you would enter is our `people received` command.
 ====
 *Command Format*
 
-The following is the limitations of `people received` command, which you would need to take note:
+The following is the limitations of `people received` command, which you would need to take note of:
 
 * The `<person's index>` and `<loan's index>` you entered should be positive integers, e.g. 1, 2, 3, ...
 ====
@@ -518,7 +518,7 @@ the command you would enter is our `people remind` command.
 ====
 *Command Format*
 
-The following is the limitations of `people remind` command, which you would need to take note:
+The following is the limitations of `people remind` command, which you would need to take note of:
 
 * The `<person's index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
 ====
@@ -572,9 +572,9 @@ You can enter or edit your details at <<editing-user-data, [blue]`Edit` > [blue]
 * All your friends who has yet paid up will receive a reminder from *Sharkie* via the email.
 You will also receive a copy of each of the emails sent to your friends:
 
+    Reminded Cheyanne to return $20.00!
     Reminded Daniel to return $10.00!
     Reminded Joel to return $30.75!
-    ...
     Sharkie has sent copies of the reminders to your email!
 
 //end::peopleremindall[]
@@ -593,7 +593,7 @@ or `people find t/<keyword> [<keyword>...]`
 ====
 *Command Format*
 
-The following are the limitations of `people find` command, which you would need to take note:
+The following are the limitations of `people find` command, which you would need to take note of:
 
 * You would not have to consider the case of the `<keyword>`, as it is case-insensitive.
 * The `<keyword>` you want to enter need not be in full. For example, `people find n/jo` will display the
@@ -617,10 +617,7 @@ _Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the
 
 * All your friends with the name, Grace will be listed out:
 
-    2 persons listed!:
-    1. Grace Lim
-    2. Grace Pan
-    …
+    2 persons listed!
 
 *Example #2*:
 
@@ -633,11 +630,7 @@ _Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the
 
 * All your friends with unsettled debt(s) or loan(s) will be listed out:
 
-    3 persons listed!:
-    1. Cheyanne Sim
-    2. Grace Pan
-    3. Joel Lim
-    …
+    2 persons listed!
 
 //end::peoplefind[]
 
