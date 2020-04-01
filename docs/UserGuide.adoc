@@ -49,12 +49,12 @@ Note the following symbols and formatting used in this document: +
 |===
 ^|*Symbol/ +
 Format* <|*Meaning*
-^|[gray]#`command`# |A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.
-^| kbd:[Enter] |This symbol indicates the enter button on the keyboard.
+^|[gray]#`command`# |[gray]#A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.#
+^| kbd:[Enter] |[gray]#This symbol indicates the enter button on the keyboard.#
 a|
 ====
 ====
-|This yellow box indicates the limitations of each command.
+a|[gray]#This yellow box indicates the restrictions of each command.#
 2+.^a|  NOTE: This symbol indicates information.
 2+.^a|  WARNING: This symbol indicates warnings.
 2+.^a|  TIP: This symbol indicates tips.
@@ -159,13 +159,34 @@ You can view statistics such as the proportion of your spending on different ite
 //tag::globalcommands[]
 === Global Commands
 ==== Viewing help : `help`
-Views the user guide of *Sharkie*, which is the document you are currently reading. +
-Format: `help`
+If you need help regarding the many features of Sharkie and how to operate it, you can use the global `help` command to get a link to this user guide. +
+
+*Format*: `help`
+
+*Example*:
+
+* You start Sharkie and are unsure of what commands are available or how to use it.
+** Typing `help` will give you a link to our user guide.
+
+*Expected Outcome*:
+
+    A window will pop up, providing you with a clickable link that directs you to this user guide.
 
 ==== Exiting the program : `exit`
 
-Exits the program. +
-Format: `exit`
+If you're done with using Sharkie and wish to exit the application safely, you can use the global `exit` command to help you save your data and exit the program. +
+
+*Format*: `exit`
+
+*Example*:
+
+* You've just finished using Sharkie, and wish to close the program and save your data.
+** Typing `exit` will save your data and quit Sharkie.
+
+*Expected Outcome*:
+
+    Sharkie will save your data to a locally stored file (that can be edited using a text editor), and will help you quit the application safely.
+
 //end::globalcommands[]
 
 === Wallet Commands
@@ -348,7 +369,7 @@ Suppose you want to add a new person to the address book, the command you would 
 ====
 *Command Format*
 
-The following are the limitations of `people add` command, which you would need to take note of:
+The following are the restrictions of `people add` command, which you would need to take note of:
 
 * The `<name>` you entered should only contain alphanumeric characters and spaces.
 * The `<phone number>` you entered should only contain numbers and it should be at least 3 digits long.
@@ -471,7 +492,7 @@ the command you would enter is our `people received` command.
 ====
 *Command Format*
 
-The following is the limitations of `people received` command, which you would need to take note of:
+The following is the restrictions of `people received` command, which you would need to take note of:
 
 * The `<person's index>` and `<loan's index>` you entered should be positive integers, e.g. 1, 2, 3, ...
 ====
@@ -518,7 +539,7 @@ the command you would enter is our `people remind` command.
 ====
 *Command Format*
 
-The following is the limitations of `people remind` command, which you would need to take note of:
+The following is the restrictions of `people remind` command, which you would need to take note of:
 
 * The `<person's index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
 ====
@@ -593,7 +614,7 @@ or `people find t/<keyword> [<keyword>...]`
 ====
 *Command Format*
 
-The following are the limitations of `people find` command, which you would need to take note of:
+The following are the restrictions of `people find` command, which you would need to take note of:
 
 * You would not have to consider the case of the `<keyword>`, as it is case-insensitive.
 * The `<keyword>` you want to enter need not be in full. For example, `people find n/jo` will display the
@@ -800,56 +821,58 @@ image::DebtAndLoanDifferences.png[width=800]
 
 //tag::commandSummary[]
 == Command Summary
+If you wish to have a quick reference to the commands available in *Sharkie*, you can refer to the list below.
 
 === Global Commands
+The following are the global commands that are available in *Sharkie* for you to use! You do not need to use any prefixes to use these commands.
 
-[cols="1, 2"]
-.Summary of *Sharkie*'s global commands.
+[%autowidth, width=100%]
+.Global commands available in *Sharkie*.
 |===
-|*Command*|*Format*
-a|*Exit*|`exit`
-a|*Help*|`help`
+| *Command*  | *Format* | *Expected outcome*
+|`help` |#`help`# | Opens up a window with a link to the User Guide.
+|`exit` |#`exit`# | Saves your data and safely exits
 |===
 
 === Wallet Commands
+The following commands are wallet-related commands that are available in *Sharkie* for you to use! You will need to use the prefix `wallet` to use the commands.
 
-[%autowidth.stretch]
-.Summary of *Sharkie*'s wallet commands.
+[%autowidth, width=100%]
+.Wallet commands available in *Sharkie*.
 |===
-|*Command*|*Format*|*Example*
-a|*Budget*|`wallet budget $/<amount> m/<month> y/<year>`|`wallet budget $/1000 m/04 y/2020`
-a|*Delete*|`wallet delete <index>`|`wallet delete 1`
-a|*Edit*|`wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]`|`wallet edit 1 n/Duck rice $/4.00`
-a|*Expense*|`wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`|`wallet expense n/Chicken Rice $/3.50 d/10/10/2010 t/food`
-a|*Find*|`wallet find n/<keyword>` +
-or `wallet find $/<keyword> [<keyword> ...]` +
-or `wallet find d/<keyword> [<keyword> ...]` +
-or `wallet find t/<keyword> [<keyword> ...]` | `wallet find n/rice`
-a|*Income*|`wallet income n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`|`wallet income n/P6 Tuition $/3000 d/10/10/2010 t/job`
-a|*Tag*|`wallet tag <index> t/<tag>`|`wallet tag 1 t/food`
+| *Command*  | *Format* | *Expected outcome*
+|`budget` |#`wallet budget $/<amount> [m/<month>] [y/<year>]`# | Sets a budget for you for the month selected.
+|`delete` |#`wallet delete <index>`# | Helps you remove the transaction selected at that index from the wallet.
+|`edit` | #`wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]`# | Edits your transaction in the wallet at the index selected with your given arguments.
+|`expense` |#`wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`# | Creates an expense and adds it to your wallet.
+|`find` |#`wallet find n/<keyword>`# +
+or #`wallet find $/<keyword> [<keyword> ...]`# +
+or #`wallet find d/<keyword> [<keyword> ...]`# +
+or #`wallet find t/<keyword> [<keyword> ...]`# + | Finds your transaction(s) within your wallet using the arguments you have provided.
+|`income` |#`wallet income n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`# | Creates an income and adds it to your wallet.
+|`list` |#`wallet list`# | Lists all your transactions that have been recorded by *Sharkie* in the wallet.
 |===
 
 === People Commands
-
-[%autowidth.stretch]
-.Summary of *Sharkie*'s people commands.
+The following commands are people-related commands that are available in *Sharkie* for you to use! You will need to use the prefix `people` to use the commands.
+[%autowidth, width=100%]
+.People commands available in *Sharkie*.
 |===
-|*Command*|*Format*|*Example*
-a|*Add*|`people add n/<name> p/<phone number> e/<email address>`|`people add n/Joel p/91234567 e/joel@example.com`
-a|*Clear*|`people clear`|`people clear`
-a|*Delete*|`people delete <index>`|`people delete 3`
-a|*Edit*|`people edit <index> [n/<name>] [p/<phone number>] [e/<email address>]`|`people edit 1 e/johndoe@example.com`
-a|*Find*|`people find n/<keyword> [<keyword>...]` +
-or `people find p/<keyword> [<keyword>...]` +
-or `people find e/<keyword> [<keyword>...]` +
-or `people find t/<keyword> [<keyword>...]`|`people find n/Grace`
-a|*Lend*|`people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`|`people lend 5 n/dinner $/5.00 d/10/10/2020`
-a|*List*|`people list`|`people list`
-a|*Owe*|`people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`|`people owe 4 n/lunch $/5.00 d/10/10/2020`
-a|*Received*|`people received <person's index> [i/<loan's index>]`|`people received 1 2`
-a|*Remind*|`people remind <index>`|`people remind 1`
-a|*Remind all*|`people remindall`|`people remindall`
-a|*Returned*|`people returned <person's index> [i/<debt's index>]`|`people returned 4 i/1`
+| *Command*  | *Format* | *Expected outcome*
+|`add` |#`people add n/<name> p/<phone number> e/<email address>`# | Helps you add a contact to your address book, with the particulars that you have entered.
+|`clear`|#`people clear`# | Clears all your contacts in your address book.
+|`delete` | #`people delete <index>`# | Deletes your contact at the index you have selected.
+|`edit` | #`people edit <index> [n/<name>] [p/<phone number>] [e/<email address>]`# | Edits your contact in the address book at the index selected with the given arguments.
+|`find` | #`people find n/<keyword> [<keyword>...]`# +
+or #`people find p/<keyword> [<keyword>...]`# +
+or #`people find e/<keyword> [<keyword>...]`# +
+or #`people find t/<keyword> [<keyword>...]`# | Finds your contact(s) within your address book using the arguments you have provided.
+|`lend` | #`people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`# | Records a loan to your contact at the index selected in your address book.
+| `list` | #`people list`# | Lists all your contacts that have been recorded by *Sharkie* in the address book.
+| `owe` | #`people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`# | Records a debt to your contact at the index selected in your address book.
+| `received` | #`people received <person's index> [i/<loan's index>]`# | Removes the loan at the index selected for your contact selected.
+| `remind` | #`people remind <index>`# | Sends an email to the contact at the index you have selected, reminding them of any withstanding debts that have to be paid back to you.
+| `remindall` | #`people remindall`# |  Sends an email to all your contacts with any withstanding debts, reminding them to pay you back.
+| `returned` | #`people returned <person's index> [i/<debt's index>]`# | Removes the debt at the index selected for your contact selected.
 |===
-
 //end::commandSummary[]
