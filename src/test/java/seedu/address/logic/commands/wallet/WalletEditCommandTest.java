@@ -13,6 +13,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalWallet.VALID_DESC_TA;
 import static seedu.address.testutil.TypicalWallet.VALID_TAG_TA;
 import static seedu.address.testutil.TypicalWallet.getTypicalWallet;
 
@@ -68,6 +69,64 @@ public class WalletEditCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new Wallet(model.getWallet()),
                 new UserPrefs());
         expectedModel.setExpense(model.getFilteredExpenseList().get(0), editedTransaction);
+
+        assertCommandSuccess(walletEditCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+        Index indexLastIncome = Index.fromOneBased(model.getFilteredTransactionList().size());
+        Income lastIncome =
+                (Income) model.getFilteredTransactionList().get(indexLastIncome.getZeroBased());
+
+        TransactionBuilder incomeInList = new TransactionBuilder(lastIncome);
+        Income editedIncome =
+                incomeInList.withDescription(VALID_DESC_TA).withAmount(VALID_AMOUNT).buildIncome();
+
+        WalletEditCommand.EditTransactionDescriptor descriptor =
+                new EditTransactionDescriptorBuilder().withDescription(VALID_DESC_TA)
+                .withAmount(Double.parseDouble(VALID_AMOUNT)).build();
+        WalletEditCommand walletEditCommand = new WalletEditCommand(indexLastIncome, descriptor);
+
+        String expectedMessage = String.format(WalletEditCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedIncome);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new Wallet(model.getWallet()), new UserPrefs());
+        expectedModel.setIncome(lastIncome, editedIncome);
+
+        assertCommandSuccess(walletEditCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_noFieldSpecifiedUnfilteredList_success() {
+        WalletEditCommand walletEditCommand = new WalletEditCommand(INDEX_FIRST,
+                new WalletEditCommand.EditTransactionDescriptor());
+        Expense editedExpense = (Expense) model.getFilteredTransactionList().get(INDEX_FIRST.getZeroBased());
+
+        String expectedMessage = String.format(WalletEditCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedExpense);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new Wallet(model.getWallet()), new UserPrefs());
+
+        assertCommandSuccess(walletEditCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_filteredList_success() {
+        showTransactionAtIndex(model, INDEX_FIRST);
+
+        Expense expenseInFilteredList =
+                (Expense) model.getFilteredTransactionList().get(INDEX_FIRST.getZeroBased());
+        Expense editedExpense =
+                new TransactionBuilder(expenseInFilteredList).withDescription(VALID_DESC_AMY).buildExpense();
+        WalletEditCommand walletEditCommand = new WalletEditCommand(INDEX_FIRST,
+                new EditTransactionDescriptorBuilder().withDescription(VALID_DESC_AMY).build());
+
+        String expectedMessage = String.format(WalletEditCommand.MESSAGE_EDIT_TRANSACTION_SUCCESS, editedExpense);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
+                new Wallet(model.getWallet()), new UserPrefs());
+        expectedModel.setExpense(expenseInFilteredList, editedExpense);
 
         assertCommandSuccess(walletEditCommand, model, expectedMessage, expectedModel);
     }
