@@ -150,7 +150,7 @@ If you need help regarding the many features of Sharkie and how to operate it, y
 
 *Example*:
 
-* You start Sharkie and are unsure of what commands are available or how to use it. 
+* You start Sharkie and are unsure of what commands are available or how to use it.
 ** Typing `help` will give you a link to our user guide.
 
 *Expected Outcome*:
@@ -171,7 +171,7 @@ If you're done with using Sharkie and wish to exit the application safely, you c
 *Expected Outcome*:
 
     Sharkie will save your data to a locally stored file (that can be edited using a text editor), and will help you quit the application safely.
-    
+
 //end::globalcommands[]
 
 === Wallet Commands
@@ -705,7 +705,7 @@ The following commands are wallet-related commands that are available in *Sharki
 |`delete` |#`wallet delete <index>`# | Helps you remove the transaction selected at that index from the wallet.
 |`edit` | #`wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]`# | Edits your transaction in the wallet at the index selected with your given arguments.
 |`expense` |#`wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`# | Creates an expense and adds it to your wallet.
-|`find` |#`wallet find n/<keyword>`# + 
+|`find` |#`wallet find n/<keyword>`# +
 or #`wallet find $/<keyword> [<keyword> ...]`# +
 or #`wallet find d/<keyword> [<keyword> ...]`# +
 or #`wallet find t/<keyword> [<keyword> ...]`# + | Finds your transaction(s) within your wallet using the arguments you have provided.
