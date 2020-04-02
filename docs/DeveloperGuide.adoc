@@ -1130,7 +1130,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Click on the close button at the top right corner on the window. +
    Expected: All windows of the application is closed
-.. Enter `exit` command in the command box and press kbd:[Enter].
+.. Enter `exit` command in the command box and press kbd:[Enter]. +
    Expected: Same as previous.
 
 ==== Saving data
