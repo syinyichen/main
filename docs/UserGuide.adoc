@@ -168,9 +168,8 @@ If you need help regarding the many features of Sharkie and how to operate it, y
 * You start Sharkie and are unsure of what commands are available or how to use it.
 ** Typing `help` will give you a link to our user guide.
 
-*Expected Outcome*:
-
-    A window will pop up, providing you with a clickable link that directs you to this user guide.
+*Expected Outcome*: +
+A window will pop up, providing you with a clickable link that directs you to this user guide.
 
 ==== Exiting the program : `exit`
 
@@ -183,9 +182,8 @@ If you're done with using Sharkie and wish to exit the application safely, you c
 * You've just finished using Sharkie, and wish to close the program and save your data.
 ** Typing `exit` will save your data and quit Sharkie.
 
-*Expected Outcome*:
-
-    Sharkie will save your data to a locally stored file (that can be edited using a text editor), and will help you quit the application safely.
+*Expected Outcome*: +
+Sharkie will save your data to a locally stored file (that can be edited using a text editor), and will help you quit the application safely.
 
 //end::globalcommands[]
 
