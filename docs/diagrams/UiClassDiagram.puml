@@ -28,6 +28,7 @@ Class HiddenLogic #FFFFFF
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
 
+UiManager .[hidden]left.|> Ui
 UiManager .left.|> Ui
 UiManager -down-> MainWindow
 MainWindow --> HelpWindow

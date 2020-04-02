@@ -579,7 +579,7 @@ Use case resumes at step 2.
 *MSS*
 
 1. User requests to add an income into the wallet.
-2. Wallet adds the income and displays the income in the list of incomes.
+2. <<wallet, Wallet>> adds the income and displays the income in the list of incomes.
 +
 Use case ends.
 
@@ -590,7 +590,7 @@ Use case ends.
 +
 <<wallet-invalid-amount, Steps 1a1-1a2>> of [.underline]#recording an expense (UC1)# are repeated
 until the amount keyed in by the user is valid.
-+
+
 Use case resumes at step 2.
 
 [discrete]
