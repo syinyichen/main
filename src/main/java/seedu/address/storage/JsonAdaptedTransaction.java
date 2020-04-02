@@ -89,9 +89,7 @@ public abstract class JsonAdaptedTransaction {
         final Date modelDate;
         try {
             modelDate = ParserUtil.parseDate(date);
-        } catch (DateTimeParseException e) {
-            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
-        } catch (ParseException e) {
+        } catch (DateTimeParseException | ParseException e) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
 

@@ -185,4 +185,10 @@ public class BudgetListTest {
 
         assertNotEquals(tempBudgetListA, tempBudgetListB);
     }
+
+    @Test
+    public void hashcode() {
+        // same list -> return same hashCode
+        assertEquals(budgetList.hashCode(), budgetList.hashCode());
+    }
 }

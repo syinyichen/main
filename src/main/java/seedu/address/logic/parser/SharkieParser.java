@@ -146,6 +146,7 @@ public class SharkieParser {
         switch (commandWord) {
         case WalletBudgetCommand.COMMAND_WORD:
             return new WalletBudgetCommandParser().parse(arguments);
+
         case WalletExpenseCommand.COMMAND_WORD:
             return new WalletExpenseCommandParser().parse(arguments);
 

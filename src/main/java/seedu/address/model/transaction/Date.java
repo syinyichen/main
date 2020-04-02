@@ -41,9 +41,7 @@ public class Date implements Comparable<Date> {
     public static boolean isValidDate(String test) {
         try {
             LocalDate.parse(test, DateTimeFormatter.ofPattern(DATE_PATTERN).withResolverStyle(ResolverStyle.STRICT));
-        } catch (DateTimeParseException e) {
-            return false;
-        } catch (IllegalArgumentException e) {
+        } catch (DateTimeParseException | IllegalArgumentException e) {
             return false;
         }
 
