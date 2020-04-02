@@ -156,6 +156,8 @@ You can view statistics such as the proportion of your spending on different ite
 
 //tag::globalcommands[]
 === Global Commands
+This section contains details on how to execute two general commands, `help` and `exit`.
+
 ==== Viewing help : `help`
 Views the user guide of *Sharkie*, which is the document you are currently reading. +
 Format: `help`
@@ -167,6 +169,7 @@ Format: `exit`
 //end::globalcommands[]
 
 === Wallet Commands
+This section introduces seven commands that have effect on the `wallet` tab.
 
 //tag::walletexpense[]
 ==== Adding an expense: `expense`
@@ -334,6 +337,8 @@ Expected outcome:
 //end::walletbudget[]
 
 === People Commands
+This section introduces twelve commands that have effect on the `people` tab.
+
 //tag::peopleadd[]
 [[add-person]]
 ==== Adding a person: `add`
@@ -351,74 +356,90 @@ Expected Outcome:
 
 //end::peopleadd[]
 
-// @@author cheyannesim
 // tag::owe[]
 ==== Recording the money you owe: `owe`
 
-If you owe a person money and you want to record the debt, the command you would enter is 'people owe' command. +
+If you owe a person money and you want to record the debt, the command you would enter is the 'people owe' command. +
 
-Format: `people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
-
-This command will record the amount of money specified in `<amount>` you owe to the person at the specified `<index>`.
+*Format*: `people owe <person's index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
 
 ====
 *Command Format*
 
-The following are the restrictions of `people owe` command, which you should take note of:
+The following are the restrictions of `people owe` command, which you would need to take note of:
 
-* The `<index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
+* The `<person's index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
 * The `<amount>` you entered should be non-negative, have up to two decimal places, and not be too large
 (not exceeding ninety quadrillion dollars).
 ====
 
-NOTE: The amount of money recorded will be added under your friend's `Debts` section. +
+NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
+specific person in the address book whom you owe money to. +
+ +
+The amount of money recorded will be added under your friend's `Debts` section. +
 `Debts` represent the amount of money you owe your friends. +
 _Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._ +
  +
-The `<index>` refers to the index number shown in the displayed person list.
 
-[TIP] The `<date:dd/mm/yyyy>` is optional. If `<date:dd/mm/yyyy>` is not specified, the date that you record the debt will be used.
+[TIP]
+The `<date:dd/mm/yyyy>` is optional. If `<date:dd/mm/yyyy>` is not specified, the date that you record the debt will be used.
 
 *Example*:
 
-* Suppose you owe Grace, who is the fourth person in the person list, $5 for food on 10 October 2020.
+* Suppose you owe Grace, who is the fourth person in the address book, $5 for food on 10 October 2020.
 
 ** The command you would enter is `people owe 4 n/food $/5.00 d/10/10/2020`
-** This records that you owe Grace $5.00 on 10/10/2020. +
+** This records that you owe Grace, the fourth person in the address book, $5.00 for food on 10/10/2020. +
 
-* Expected Outcome:
+*Expected Outcome*:
 
 * Your debt to Grace will increase by $5.
 
     Increased debt to Grace by $5.00. You now owe Grace $10.00.
 
 // end::owe[]
-// @@author
 
 // tag::return[]
 ==== Recording the money you return: `returned`
 
-Records that a debt that you owe a person has been returned. +
-Format: `people returned <person's index> [i/<debt's index>]`
-****
-* Records that the debt at the specified <debt's index> has been returned to the person specified at <person's index>.
-* The person's index refers to the index number shown in the displayed person list.
-* The debt's index refers to the index number shown in the 'Debts' table of the person specified.
-* Both indexes *must be positive integers* 1, 2, 3, ...
-****
+When you have returned a person a debt, and you want to remove the debt record, the command that you would enter is
+the `people returned` command. +
 
-NOTE: `Debt` represents the amount of money you owe your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+*Format*: `people returned <person's index> [i/<debt's index>]`
+
+====
+*Command Format*
+
+The following are the restrictions of `people returned` command, which you would need to take note of:
+
+* The `<person's index>` and `<debt's index>` you entered should be positive integers, e.g. 1, 2, 3, ...
+====
+
+NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates
+a specific person in the address book whom you returned the money to. +
+_Still confused? Find out more about `person's index` at <<personIndexFAQ, What is a [blue]`person's index`>>._ +
+ +
+The `<debt's index>` above refers to the index number shown in the displayed debt list in *Sharkie*. It indicates a specific
+debt under the person whom you returned the money to. +
+_Still confused? Find out more about `debt's index` at <<loanDebtIndexFAQ, What is a [blue]`debt's index`>>._ +
+ +
+`Debt` represents the amount of money you owe your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._ +
 
 [TIP]
-The debt's index is optional.
-Sharkie will record all debts as returned if the debt's index is not specified.
+The `<debt's index>` is optional.
+Sharkie will record all debts as returned if the `<debt's index>` is not specified.
 
-Examples:
+*Example*:
 
-* `people returned 4 i/1`
-Records that you return the 4th person the 1st debt. +
-Expected Outcome:
+* Suppose that you have just returned Grace, the fourth person in the address book, the first debt in her debt list.
+
+** The command that you would enter is `people returned 4 i/1`.
+** This records that you have returned the money for the first debt of Grace, the fourth person in the address book. +
+
+*Expected Outcome*:
+
+* The first debt of Grace will be removed from her debt list and the unsettled debts to Grace will be shown.
 
     Reduced debt to Grace by $5.00. You now owe Grace $5.00.
 
@@ -427,27 +448,43 @@ Expected Outcome:
 // tag::lend[]
 ==== Recording the money you lend: `lend`
 
-Records the amount of money that you lent to a person. This will increase that person's loan. +
-Format: `people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
+If you lend a person money and you want to record the loan, the command you would enter is the 'people lend' command. +
 
-****
-* Records the amount of money specified in `<price>` you owe to the person at the specified `<index>`.
-* The index refers to the index number shown in the displayed person list.
-* The index *must be a positive integer* 1, 2, 3, ...
-* Price *must be positive*.
-****
+*Format*: `people lend <person's index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
 
-Examples:
+====
+*Command Format*
 
-* `people lend 5 n/dinner $/5.00 d/10/10/2020`
-Records that you lend the 5th person $5.00 on 10/10/2020. +
-Expected Outcome:
+The following are the restrictions of `people lend` command, which you would need to take note of:
+
+* The `<person's index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
+* The `<amount>` you entered should be non-negative, have up to two decimal places, and not be too large
+(not exceeding ninety quadrillion dollars).
+
+====
+
+NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
+specific person in the address book whom you lend money to. +
+ +
+The amount of money recorded will be added under your friend's `Loans` section. +
+`Loans` represent the amount of money you lend your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._ +
+
+[TIP]
+The `<date:dd/mm/yyyy>` is optional. If `<date:dd/mm/yyyy>` is not specified, the date that you record the loan will be used.
+
+*Example*:
+
+* Suppose you lend Syin Yi, who is the fifth person in the address book, $5 for dinner on 10 October 2020.
+
+** The command you would enter is `people lend 5 n/dinner $/5.00 d/10/10/2020`
+** This records that you owe Syin Yi, the fifth person in the address book, $5.00 for dinner on 10/10/2020. +
+
+*Expected Outcome*:
+
+* Your loan to Syin Yi will increase by $5.
 
     Increased loan to Syin Yi by $5.00. Syin Yi now owes you $8.00.
-
-NOTE: The amount of money recorded will be added under your friend's `Loans` section. +
-`Loans` represent the amount of money you lend your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>_.
 
 // end::lend[]
 
@@ -537,14 +574,21 @@ Expected Outcome:
 [[list-people]]
 ==== Listing all contacts: `list`
 
-Lists everyone in the contact book. +
-Format: `people list`
+Suppose that you have just executed the <<find-person, `people find`>> command. And now, you would like to see the
+entire list of people in your address book. Then, the command that you would enter is the `people list` command. +
 
-Examples:
+*Format*: `people list`
 
-* `people list`
-Returns the list of everyone in the contact book. +
-Expected Outcome:
+*Example*:
+
+* Suppose you want to view the entire list of people in your address book.
+
+** The command that you would enter is `people list`.
+** This will list out your entire address book.
+
+*Expected Outcome*:
+
+* The details of everyone in the address book, including their name, phone, email address, debts and loans, will be listed.
 
     Listed all persons.
 
@@ -586,20 +630,35 @@ Expected Outcome:
 [[edit-person]]
 ==== Editing a person : `edit`
 
-Edits an existing person in the address book. +
-Format: `people edit <index> [n/<name>] [p/<phone number>] [e/<email>]`
+In instances when a person has changed his contact details, and you want to update them, the command that you would enter
+is the `people edit` command. +
 
-****
-* Edits the person at the specified `<index>`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-****
+*Format*: `people edit <person's index> [n/<name>] [p/<phone number>] [e/<email>]`
 
-Examples:
+====
+*Command Format*
 
-* `people edit 1 e/johndoe@example.com` +
-Edits the email address of the 1st person to be `johndoe@example.com`. +
-Expected Outcome:
+The following are the restrictions of `people edit` command, which you would need to take note of:
+
+* The `<person's index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
+* You should provide at least one of the optional fields.
+====
+
+NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
+specific person in the address book whom you lend money to. +
+
+WARNING: Existing values will be updated to the new values that you have inputted.
+
+*Example*:
+
+* Suppose you want to update the John's email, and John is the first person in your address book.
+
+** The command you would enter is `people edit 1 e/johndoe@example.com`.
+** This edits the email address of the first person, John, to be `johndoe@example.com`. +
+
+*Expected Outcome*:
+
+* In the list of people shown, John's email will be johndoe@example.com.
 
     Edited Person: John Doe Phone: 91234568 Email: johndoe@example.com You owe: $0.00 You lent: $0.00 Tags:
 
@@ -609,27 +668,37 @@ Expected Outcome:
 [[delete-person]]
 ==== Deleting a person : `delete`
 
-Deletes the specified person from the address book. +
-Format: `people delete <index>`
+If you have no reason to keep a person in your address book anymore and would like to delete his contact details, the
+command that you would enter is the `people delete` command.
 
-****
-* Deletes the person at the specified `<index>`.
-* The index refers to the index number shown in the displayed person list.
-* The index *must be a positive integer* 1, 2, 3, ...
-****
+*Format*: `people delete <person's index>`
 
-Examples:
+====
+*Command Format*
 
-* `people delete 2` +
-Deletes the 2nd person in the address book. +
-Expected Outcome:
+The following is the restrictions of `people delete` command, which you should take note of:
 
-    Deleted Person: Joel Phone: 91234567 Email: something@email.com You owe: $0.00 You lent: $0.00 Tags:
+* The `<person's index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
+====
 
-* `people find Betsy` +
-`people delete 1` +
-Deletes the 1st person in the results of the `find` command. +
-Expected Outcome:
+
+NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
+specific person in the address book whom you would like to delete. +
+
+WARNING: Remember to check and ensure that the `<person's index>` that you have inputted corresponds to the correct person.
+
+*Example*:
+
+* Suppose you want to delete Betsy from your address book, and Betsy is somewhere deep in the list. Then, you can first
+use the <<find-person, `people find`>> command to find Betsy, followed by the `people delete` command.
+
+** The command that you would enter is `people find n/Betsy`, followed by `people delete 1`.
+** *Sharkie* will first find Betsy for you, and Betsy will be shown as the first result on the list. Then, the latter
+command will delete Betsy from the address book.
+
+*Expected Outcome*:
+
+* Betsy will no longer be shown on the list of people.
 
     Deleted Person: Betsy Phone: 91234567 Email: something@email.com You owe: $0.00 You lent: $0.00 Tags:
 
@@ -657,6 +726,36 @@ Expected Outcome:
 
 *Q*: How do I transfer my data to another Computer? +
 *A*: Install the app in the other computer and overwrite the empty data file *Sharkie* creates with the file that contains the data of your previous Address Book folder.
+
+//tag::personIndexFAQ[]
+[[personIndexFAQ]]
+*Q*: What is a `person's index`? +
+*A*: A `person's index` is the index number shown in the displayed person list in *Sharkie*. It indicates a specific person in the address book.
+
+****
+For example,
+* `1` is the `person's index` of Alex Yeoh, whereas
+* `2` is the `person's index` of Bernice Yu.
+.What is a `person's index`?
+image::personIndexFAQ.png[width=900]
+****
+//end::personIndexFAQ[]
+
+//tag::loanDebtIndexFAQ[]
+[[loanDebtIndexFAQ]]
+*Q*: What is a `debt's index` or a `loan's index`? +
+*A*: A `debt's index` is the index number shown in a person's displayed debts list, whereas a `loan's index` is the
+index number shown in a person's displayed loans list. A `debt's index` indicates a specific debt of a person and a
+`loan's index` indicated a specific loan of a person.
+
+****
+For example,
+* The `debt's index` of the debt, `Dinner | $12.00 | 1 APR 2020`, under Bernice Yu is `1`.
+* The `loan's index` of the loan, `Movie | $10.00 | 2 FEB 2020`, under Bernice Yu is `1`.
+.What is a `debt's index` or a `loan's index`?
+image::loanDebtIndexFAQ.png[width=900]
+****
+//end::loanDebtIndexFAQ[]
 
 //tag::editing-user-data[]
 [[editing-user-data]]
