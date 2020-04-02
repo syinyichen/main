@@ -1,5 +1,6 @@
 package seedu.address.model.transaction;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -35,5 +36,14 @@ public class DescriptionTest {
         assertTrue(Description.isValidDescription("P6 Tuition")); // with capital letters
         assertTrue(Description.isValidDescription("Fisherman's Friend")); // with non-alphanumeric characters
         assertTrue(Description.isValidDescription("Gift for Grace (Soft toy plushie)")); // long descriptions
+    }
+
+    @Test
+    public void compareTo() {
+        Description before = new Description("a");
+        Description after = new Description("b");
+        assertEquals(0, before.compareTo(before));
+        assertTrue(before.compareTo(after) < 0);
+        assertTrue(after.compareTo(before) > 0);
     }
 }

@@ -1,6 +1,8 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -44,4 +46,29 @@ public class UserTest {
         editedAlice = new UserBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
     }
+
+    @Test
+    public void hashcode() {
+        User aliceCopy = new UserBuilder(ALICE).build();
+
+        // same values -> returns same hashcode
+        assertEquals(ALICE.hashCode(), aliceCopy.hashCode());
+
+        // different name value -> returns different hashcode
+        assertNotEquals(ALICE.hashCode(), new UserBuilder(ALICE).withName("Bob").build().hashCode());
+
+        // different email value -> returns different hashcode
+        assertNotEquals(ALICE.hashCode(),
+                new UserBuilder(ALICE).withEmail("bob@example.com").build().hashCode());
+
+        // different phone value -> returns different hashcode
+        assertNotEquals(ALICE.hashCode(), new UserBuilder(ALICE).withPhone("91234567").build().hashCode());
+    }
+
+    @Test
+    public void tostring() {
+        String expectedResult = "User: Alice Pauline Phone: 94351253 Email: alice@example.com";
+        assertEquals(expectedResult, ALICE.toString());
+    }
+
 }

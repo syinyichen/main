@@ -1,6 +1,8 @@
 package seedu.address.model.reminder;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
@@ -43,5 +45,29 @@ public class ReminderTest {
 
         // different receiver -> returns false
         assertFalse(original.equals(new Reminder(ALICE, CARL)));
+    }
+
+    @Test
+    public void hashcode() {
+        Reminder original = new Reminder(ALICE, BENSON);
+        Reminder reminderCopy = new Reminder(ALICE, BENSON);
+        Reminder differentSender = new Reminder(BOB, BENSON);
+        Reminder differentReceiver = new Reminder(ALICE, CARL);
+
+        // same values -> returns same hashcode
+        assertEquals(original.hashCode(), reminderCopy.hashCode());
+
+        // different sender -> returns different hashcode
+        assertNotEquals(original.hashCode(), differentSender.hashCode());
+
+        // different receiver -> returns different hashcode
+        assertNotEquals(original.hashCode(), differentReceiver.hashCode());
+    }
+
+    @Test
+    public void tostring() {
+        Reminder original = new Reminder(ALICE, BENSON);
+        String expectedResult = "Sender: " + ALICE.toString() + " Receiver: " + BENSON.toString();
+        assertEquals(expectedResult, original.toString());
     }
 }
