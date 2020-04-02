@@ -159,13 +159,32 @@ You can view statistics such as the proportion of your spending on different ite
 This section contains details on how to execute two general commands, `help` and `exit`.
 
 ==== Viewing help : `help`
-Views the user guide of *Sharkie*, which is the document you are currently reading. +
-Format: `help`
+If you need help regarding the many features of Sharkie and how to operate it, you can use the global `help` command to get a link to this user guide. +
+
+*Format*: `help`
+
+*Example*:
+
+* You start Sharkie and are unsure of what commands are available or how to use it.
+** Typing `help` will give you a link to our user guide.
+
+*Expected Outcome*: +
+A window will pop up, providing you with a clickable link that directs you to this user guide.
 
 ==== Exiting the program : `exit`
 
-Exits the program. +
-Format: `exit`
+If you're done with using Sharkie and wish to exit the application safely, you can use the global `exit` command to help you save your data and exit the program. +
+
+*Format*: `exit`
+
+*Example*:
+
+* You've just finished using Sharkie, and wish to close the program and save your data.
+** Typing `exit` will save your data and quit Sharkie.
+
+*Expected Outcome*: +
+Sharkie will save your data to a locally stored file (that can be edited using a text editor), and will help you quit the application safely.
+
 //end::globalcommands[]
 
 === Wallet Commands
@@ -793,52 +812,58 @@ image::DebtAndLoanDifferences.png[width=800]
 
 //tag::commandSummary[]
 == Command Summary
+If you wish to have a quick reference to the commands available in *Sharkie*, you can refer to the list below.
 
 === Global Commands
-* *Help* : `help`
-* *Exit* : `exit`
+The following are the global commands that are available in *Sharkie* for you to use! You do not need to use any prefixes to use these commands.
+
+[%autowidth, width=100%]
+.Global commands available in *Sharkie*.
+|===
+| *Command*  | *Format* | *Expected outcome*
+|`help` |#`help`# | Opens up a window with a link to the User Guide.
+|`exit` |#`exit`# | Saves your data and safely exits
+|===
 
 === Wallet Commands
-* *Expense* : `wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]` +
-e.g. `wallet expense n/Chicken Rice $/3.50 d/10/10/2010 t/food`
-* *Income* : `wallet income n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]` +
-e.g. `wallet income n/P6 Tuition $/3000 d/10/10/2010 t/job`
-* *Tag* : `wallet tag <index> t/<tag>` +
-e.g. `tag 1 t/food`
-* *Edit* : `wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]` +
-e.g. `wallet edit 1 n/Duck rice $/4.00`
-* *Find* : `wallet find n/<keyword>` or `wallet find $/<keyword> [<keyword> ...]`
-or `wallet find d/<keyword> [<keyword> ...]`
-or `wallet find t/<keyword> [<keyword> ...]` +
-e.g. `wallet find n/rice`
-* *Delete* : `wallet delete <index>` +
-e.g. `wallet delete 1`
-* *Budget* : `wallet budget $/<amount> m/<month> y/<year>` +
-e.g. `wallet budget $/1000 m/04 y/2020`
+The following commands are wallet-related commands that are available in *Sharkie* for you to use! You will need to use the prefix `wallet` to use the commands.
+
+[%autowidth, width=100%]
+.Wallet commands available in *Sharkie*.
+|===
+| *Command*  | *Format* | *Expected outcome*
+|`budget` |#`wallet budget $/<amount> [m/<month>] [y/<year>]`# | Sets a budget for you for the month selected.
+|`delete` |#`wallet delete <index>`# | Helps you remove the transaction selected at that index from the wallet.
+|`edit` | #`wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]`# | Edits your transaction in the wallet at the index selected with your given arguments.
+|`expense` |#`wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`# | Creates an expense and adds it to your wallet.
+|`find` |#`wallet find n/<keyword>`# +
+or #`wallet find $/<keyword> [<keyword> ...]`# +
+or #`wallet find d/<keyword> [<keyword> ...]`# +
+or #`wallet find t/<keyword> [<keyword> ...]`# + | Finds your transaction(s) within your wallet using the arguments you have provided.
+|`income` |#`wallet income n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`# | Creates an income and adds it to your wallet.
+|`list` |#`wallet list`# | Lists all your transactions that have been recorded by *Sharkie* in the wallet.
+|===
 
 === People Commands
-* *Add* : `people add n/<name> p/<phone number> e/<email address>` +
-e.g. `people add n/Joel p/91234567 e/joel@u.nus.edu`
-* *Owe* : `people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]` +
-e.g. `people owe 4 n/lunch $/5.00 d/10/10/2020`
-* *Returned*: `people returned <person's index> [i/<debt's index>]` +
-e.g. `people returned 4 i/1`
-* *Lend* : `people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]` +
-e.g. `people lend 5 n/dinner $/5.00 d/10/10/2020`
-* *Received* : `people received <person's index> [i/<loan's index>]` +
-e.g. `people received 1 2`
-* *Remind* : `people remind <index>` +
-e.g. `people remind 1`
-* *Remind all* : `people remindall`
-* *List* : `people list`
-* *Find* : `people find n/<keyword> [<keyword>...]`
-or `people find p/<keyword> [<keyword>...]`
-or `people find e/<keyword> [<keyword>...]`
-or `people find t/<keyword> [<keyword>...]` +
-e.g. `people find n/Grace`
-* *Edit* : `people edit <index> [n/<name>] [p/<phone number>] [e/<email address>]` +
-e.g. `people edit 1 e/johndoe@example.com` +
-* *Delete* : `people delete <index>` +
-e.g. `people delete 3`
-* *Clear* : `people clear`
+The following commands are people-related commands that are available in *Sharkie* for you to use! You will need to use the prefix `people` to use the commands.
+[%autowidth, width=100%]
+.People commands available in *Sharkie*.
+|===
+| *Command*  | *Format* | *Expected outcome*
+|`add` |#`people add n/<name> p/<phone number> e/<email address>`# | Helps you add a contact to your address book, with the particulars that you have entered.
+|`clear`|#`people clear`# | Clears all your contacts in your address book.
+|`delete` | #`people delete <index>`# | Deletes your contact at the index you have selected.
+|`edit` | #`people edit <index> [n/<name>] [p/<phone number>] [e/<email address>]`# | Edits your contact in the address book at the index selected with the given arguments.
+|`find` | #`people find n/<keyword> [<keyword>...]`# +
+or #`people find p/<keyword> [<keyword>...]`# +
+or #`people find e/<keyword> [<keyword>...]`# +
+or #`people find t/<keyword> [<keyword>...]`# | Finds your contact(s) within your address book using the arguments you have provided.
+|`lend` | #`people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`# | Records a loan to your contact at the index selected in your address book.
+| `list` | #`people list`# | Lists all your contacts that have been recorded by *Sharkie* in the address book.
+| `owe` | #`people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`# | Records a debt to your contact at the index selected in your address book.
+| `received` | #`people received <person's index> [i/<loan's index>]`# | Removes the loan at the index selected for your contact selected.
+| `remind` | #`people remind <index>`# | Sends an email to the contact at the index you have selected, reminding them of any withstanding debts that have to be paid back to you.
+| `remindall` | #`people remindall`# |  Sends an email to all your contacts with any withstanding debts, reminding them to pay you back.
+| `returned` | #`people returned <person's index> [i/<debt's index>]`# | Removes the debt at the index selected for your contact selected.
+|===
 //end::commandSummary[]
