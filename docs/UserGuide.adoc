@@ -79,6 +79,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 * **`people add`**`n/John Doe p/98765432 e/johnd@example.com` : adds a contact named `John Doe` to the Address Book.
 * **`people delete`**`3` : deletes the 3rd contact shown in the current list.
+* **`wallet expense`**`n/Gift for friend $/88 d/12/12/2020 t/Shopping` : adds an expense with these details into the wallet.
 * **`wallet find`**`n/rice` : returns a list of expenses or income with keyword rice.
 * *`exit`* : exits the app.
 
