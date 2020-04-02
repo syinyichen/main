@@ -36,10 +36,11 @@ Have we reeled you in? Dive into <<Quick Start>> to get on board with Sharkie. E
 == About
 This user guide will help to ensure that you have all the information you need to utilise *Sharkie* to its fullest extent. *Sharkie* is a feature-filled expense tracker and all the information you need regarding his usage is available below. +
 
-If you need help starting up Sharkie, you can head on to the QuickStart guide below to set it up. +
+If you need help starting up Sharkie, you can head on to the <<quick-start, Quick Start guide>> below to set it up. +
 
-If you need help regarding what commands *Sharkie* has, our Features section below will guide you through *Sharkie’s* abilities. +
+If you want to find out more about the features provided by *Sharkie*, you can visit the <<Features, Features section>> below.
 
+If you need help regarding what commands *Sharkie* has, our <<Commands, Commands section>> below will guide you through *Sharkie’s* commands. +
 
 Note the following symbols and formatting used in this document: +
 
@@ -63,6 +64,7 @@ a|[gray]#This yellow box indicates the restrictions of each command.#
 //end::about[]
 
 //tag::quickStart[]
+[[quick-start]]
 == Quick Start
 
 .  Ensure you have Java `11` or above installed in your Computer.
