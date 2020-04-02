@@ -77,17 +77,17 @@ public class SampleDataUtil {
     public static Expense[] getSampleExpenses() {
         return new Expense[]{
             new Expense(new Description("Laksa"), new Amount(8),
-                    new Date(LocalDate.parse("2020-03-27")), new Tag("Food")),
+                    new Date(LocalDate.parse("2020-04-16")), new Tag("Food")),
             new Expense(new Description("Nikes"), new Amount(250),
-                    new Date(LocalDate.parse("2020-03-02")), new Tag("Fashion")),
+                    new Date(LocalDate.parse("2020-04-02")), new Tag("Fashion")),
             new Expense(new Description("Top up ezlink"), new Amount(50),
-                    new Date(LocalDate.parse("2020-02-03")), new Tag("Transport")),
+                    new Date(LocalDate.parse("2020-04-03")), new Tag("Transport")),
             new Expense(new Description("Grab"), new Amount(30),
-                    new Date(LocalDate.parse("2020-03-27")), new Tag("Transport")),
+                    new Date(LocalDate.parse("2020-04-15")), new Tag("Transport")),
             new Expense(new Description("Water bill"), new Amount(170),
-                    new Date(LocalDate.parse("2020-03-01")), new Tag("Utilities")),
+                    new Date(LocalDate.parse("2020-04-01")), new Tag("Utilities")),
             new Expense(new Description("Rental"), new Amount(50),
-                    new Date(LocalDate.parse("2020-03-30")), new Tag("Rental"))
+                    new Date(LocalDate.parse("2020-04-09")), new Tag("Rental"))
         };
     }
 
