@@ -588,12 +588,9 @@ Use case ends.
 [none]
 * 1a. The amount keyed in by the user is invalid.
 +
-[none]
-** 1a1. Wallet shows an error message.
-** 1a2. User re-enters the expense.
-+
-Steps 1a1-1a2 are repeated until the amount keyed in by the user is correct.
-+
+<<wallet-invalid-amount, Steps 1a1-1a2>> of [.underline]#recording an expense (UC1)# are repeated
+until the amount keyed in by the user is valid.
+
 Use case resumes at step 2.
 
 [discrete]
