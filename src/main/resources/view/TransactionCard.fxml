@@ -32,7 +32,7 @@
                               <Font name="Consolas" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="tag" alignment="CENTER_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" text="tag">
+                        <Label fx:id="tag" maxHeight="1.7976931348623157E308" maxWidth="200.0" text="tag" wrapText="true">
                            <font>
                               <Font name="Consolas" size="14.0" />
                            </font>
