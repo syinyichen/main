@@ -466,7 +466,7 @@ and it has a GUI created with JavaFX. It is written in Java, and has about 10 kL
 <div class="ulist">
 <ul>
 <li>
-<p>Added <code><strong>lend</strong></code> <strong>command</strong> (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#87</a>)</p>
+<p><strong>Added</strong> <code><strong>lend</strong></code> <strong>command</strong> (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#87</a>)</p>
 <div class="ulist">
 <ul>
 <li>
@@ -476,25 +476,33 @@ and it has a GUI created with JavaFX. It is written in Java, and has about 10 kL
 <p>Justification: This is one of the key features of Sharkie, which records the flow of money between the user and
 the people in the address book.</p>
 </li>
+<li>
+<p>Highlights: This command involves both <code>Transactions</code> and <code>Person</code> models, considerations have to made on how to
+use both of the models without changing their purposes or properties.</p>
+</li>
 </ul>
 </div>
 </li>
 <li>
-<p>Added <code><strong>received</strong></code> <strong>command</strong> (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#98</a>)</p>
+<p><strong>Added</strong> <code><strong>received</strong></code> <strong>command</strong> (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#98</a>)</p>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: Allows the user to record that a person, which the user lent has returned the amount of money.</p>
+<p>What it does: Allows the user to record that a person, who the user lent to has returned the amount of money.</p>
 </li>
 <li>
-<p>Justification: This is an essential update, which allows the user to remove the loans recorded by the
+<p>Justification: This is an essential update, which allows the user to remove the <code>loans</code> recorded by the
 <code>lend</code> command.</p>
+</li>
+<li>
+<p>Highlights: Considerations were needed during the implementation of this feature, to preserve the immutable
+property of <code>Person</code>.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Added <strong>user data storage</strong> (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#95</a>)</p>
+<p><strong>Added user data storage</strong> (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#95</a>)</p>
 <div class="ulist">
 <ul>
 <li>
@@ -504,11 +512,15 @@ the people in the address book.</p>
 <p>Justification: The storage of user data is important, as the user details are required to use the <code>remind</code>
 and <code>remindall</code> commands.</p>
 </li>
+<li>
+<p>Highlights: This update was challenging, an entire new storage need to be built to store the user data, as the
+data needed to be stored differs from those in address book.</p>
+</li>
 </ul>
 </div>
 </li>
 <li>
-<p>Added <code><strong>remind</strong></code> and <code><strong>remindall</strong></code> <strong>command</strong> (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#95</a>)</p>
+<p><strong>Added</strong> <code><strong>remind</strong></code> <strong>and</strong> <code><strong>remindall</strong></code> <strong>command</strong> (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#95</a>)</p>
 <div class="ulist">
 <ul>
 <li>
@@ -517,6 +529,10 @@ and <code>remindall</code> commands.</p>
 <li>
 <p>Justification: This is one of the main features of Sharkie, which allows the interaction between the user and
 the people in the address book.</p>
+</li>
+<li>
+<p>Highlights: The implementation of this feature was new to me, as it involves the usage of the internet and the
+connection to e-mail servers.</p>
 </li>
 <li>
 <p>Credits: <em>javax.mail</em> is used in the implementation of this feature.</p>
@@ -528,15 +544,48 @@ the people in the address book.</p>
 </div>
 </li>
 <li>
+<p><strong>Minor enhancement</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add progress indicator for command execution, to indicate that the application is not hanging
+during execution of commands, which take some time to run, such as <code>people remind</code>. (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#148</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=syinyichen&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2020-02-14&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=authorship&amp;tabAuthor=syinyichen&amp;tabRepo=AY1920S2-CS2103T-W12-3%2Fmain%5Bmaster%5D">Code</a>]</p>
+</li>
+<li>
 <p><strong>Other contributions</strong>:</p>
 <div class="ulist">
 <ul>
+<li>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed JavaFX thread issues. (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#178</a>)</p>
+</li>
+<li>
+<p>Improved GUI of Edit User Data Window and Help Window. (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#178</a>)</p>
+</li>
+<li>
+<p>Made <code>people&#8217;s tags</code> uneditable. (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#183</a>)</p>
+</li>
+</ul>
+</div>
+</li>
 <li>
 <p>Project management:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Finalized and tagged <code>v1.1</code> and <code>v1.2</code>.</p>
+<p>Finalized and tagged <code>v1.1</code> - <code>v1.3</code> (3 versions) on Github.</p>
+</li>
+<li>
+<p>Managed release of <code>v1.2.1</code> - <code>v1.3</code> (2 releases) on Github.</p>
 </li>
 </ul>
 </div>
@@ -546,15 +595,15 @@ the people in the address book.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Updated the product website&#8217;s heading and navigation bar: (Pull request
+<p>Updated the product website&#8217;s heading and navigation bar. (Pull requests
 <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#44</a>, <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#81</a>)</p>
 </li>
 <li>
-<p>Edited various parts of the User Guide: (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#49</a>)</p>
+<p>Edited About, Features, Commands and FAQ sections of the User Guide. (Pull requests <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#49</a>)</p>
 </li>
 <li>
-<p>Added use cases and updated the Design and Implementation part of the Developer Guide:
-(Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#51</a>,
+<p>Added use cases in the appendix, updated Design and Implementation sections of the Developer Guide.
+(Pull requests <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#51</a>,
 <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#132</a>, <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#134</a>)</p>
 </li>
 </ul>
@@ -565,9 +614,9 @@ the people in the address book.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments): (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#92</a>,
+<p>PRs reviewed (with non-trivial review comments). (Pull requests <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#92</a>,
 <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#100</a>, <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#104</a>,
-<a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#115</a>)</p>
+<a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#115</a>, &#8230;&#8203;)</p>
 </li>
 </ul>
 </div>
@@ -609,21 +658,39 @@ the people in the address book.</p>
 <div class="paragraph">
 <p>Note the following symbols and formatting used in this document:<br></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
+<table class="tableblock frame-all grid-all fit-content stretch">
+<caption class="title">Table 1. Symbols used in this User Guide.</caption>
 <colgroup>
-<col style="width: 100%;">
+<col>
+<col>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="gray"><code>command</code></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Symbol</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Meaning</strong></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="gray"><code>command</code></span></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">kbd:[Enter]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">This symbol indicates the enter button on the keyboard.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="exampleblock">
-<div class="content">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+This symbol indicates information.
+</td>
+</tr>
+</table>
+</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -635,8 +702,6 @@ This symbol indicates tips.
 </td>
 </tr>
 </table>
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -700,6 +765,19 @@ Format: <code>people remind &lt;index&gt;</code></p>
 </ul>
 </div>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<code>Loan</code> represents the amount of money you lend your friends.<br>
+<em>Still confused? Find out more about <code>debts</code> and <code>loans</code> at <a href="#debt-and-loan">the differences between debts and loans</a>.</em>
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -776,8 +854,35 @@ Sharkie has sent copies of the reminders to your email!</pre>
 <div class="sect3">
 <h4 id="_finding_a_person_find">Finding a person: <code>find</code></h4>
 <div class="paragraph">
-<p>Finds a person in your contact list by his or her name.<br>
-Format: <code>people find &lt;keyword&gt;</code></p>
+<p>Finds a person in your contact list by the keywords given.<br>
+Format: <code>people find n/&lt;keyword&gt; [&lt;keyword&gt;&#8230;&#8203;]</code>
+or <code>people find p/&lt;keyword&gt; [&lt;keyword&gt;&#8230;&#8203;]</code>
+or <code>people find e/&lt;keyword&gt; [&lt;keyword&gt;&#8230;&#8203;]</code>
+or <code>people find t/&lt;keyword&gt; [&lt;keyword&gt;&#8230;&#8203;]</code></p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Finds the people with the stated &lt;keyword&gt;.</p>
+</li>
+<li>
+<p>The keywords are case-insensitive</p>
+</li>
+<li>
+<p>The keyword need not be in full. For example <code>people find jo</code> will also display the person with the keyword <code>Joel</code> as well.</p>
+</li>
+<li>
+<p>The keyword can be either of type name (n/), phone (p/), email (e/) or tag (t/).</p>
+</li>
+<li>
+<p><code>Debt</code> and <code>Loan</code> (case-insensitive) are the only tags allowed to be used in <code>people find</code> command.
+<code>people find t/debt loan</code> would return a list of people with unsettled debt(s) or loan(s).</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -785,15 +890,39 @@ Format: <code>people find &lt;keyword&gt;</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>people find Grace</code>
+<p><code>people find n/Grace</code>
 Returns a list of people with the name, Grace.<br>
 Expected Outcome:</p>
 <div class="literalblock">
 <div class="content">
-<pre>Here is a list of your contacts with name Grace:
+<pre>2 persons listed!:
 1. Grace Lim
 2. Grace Pan
 …</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_clearing_all_contacts_clear">Clearing all contacts : <code>clear</code></h4>
+<div class="paragraph">
+<p>Clears all the contacts from the address book.<br>
+Format: <code>people clear</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>people clear</code>
+Returns an empty address book.<br>
+Expected Outcome:</p>
+<div class="literalblock">
+<div class="content">
+<pre>Address book has been cleared!</pre>
 </div>
 </div>
 </li>
@@ -807,13 +936,40 @@ Expected Outcome:</p>
 <div class="sectionbody">
 <div id="editing-user-data" class="paragraph">
 <p><strong>Q</strong>: How to edit user&#8217;s data?<br>
-<strong>A</strong>: Click <code>Edit</code>, then <code>Edit user&#8217;s data</code> on your menu bar.</p>
+<strong>A</strong>: Click on <code>Edit</code>, then <code>Edit user&#8217;s data</code> on your menu bar.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/EditUserDataInstruction.png" alt="EditUserDataInstruction" width="500">
+<img src="../images/EditUserDataInstruction.png" alt="EditUserDataInstruction" width="400">
 </div>
 <div class="title">Figure 1. Editing user data in Sharkie</div>
+</div>
+<div id="debt-and-loan" class="paragraph">
+<p><strong>Q</strong>: What are the differences between <code>Debts</code> and <code>Loans</code>?<br>
+<strong>A</strong>: <code>Debts</code> is the amount of money you owe your friends and <code>loans</code> is the amount of money you lend your friends.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>For example,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>1 | Supper | $5.00 | 3 FEB 2020</code> under the <code>Debts</code> section, shown in the figure below represents what you owe Syin Yi.</p>
+</li>
+<li>
+<p><code>1 | Breakfast | $3.00 | 8 AUG 2018</code> under the <code>Loans</code> section, shown in the figure below represents what you lent to Syin Yi.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DebtAndLoanDifferences.png" alt="DebtAndLoanDifferences" width="800">
+</div>
+<div class="title">Figure 2. Differences between <code>debts</code> and <code>loans</code></div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -841,7 +997,7 @@ Expected Outcome:</p>
 <div class="content">
 <img src="../images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
 </div>
-<div class="title">Figure 2. Structure of the Model Component</div>
+<div class="title">Figure 3. Structure of the Model Component</div>
 </div>
 <div class="exampleblock">
 <div class="content">
@@ -859,7 +1015,7 @@ Expected Outcome:</p>
 <div class="content">
 <img src="../images/ModelPersonDiagram.png" alt="ModelPersonDiagram" width="500">
 </div>
-<div class="title">Figure 3. In-depth Structure of Person in the Model Component</div>
+<div class="title">Figure 4. In-depth Structure of Person in the Model Component</div>
 </div>
 <div class="ulist">
 <ul>
@@ -872,7 +1028,7 @@ Expected Outcome:</p>
 <div class="content">
 <img src="../images/ModelTransactionDiagram.png" alt="ModelTransactionDiagram" width="1200">
 </div>
-<div class="title">Figure 4. In-depth Structure of Transaction in the Model Component</div>
+<div class="title">Figure 5. In-depth Structure of Transaction in the Model Component</div>
 </div>
 </div>
 </div>
@@ -928,7 +1084,7 @@ respective lists change.</p>
 <div class="content">
 <img src="../images/ReceivedActivityDiagram.png" alt="ReceivedActivityDiagram" width="600">
 </div>
-<div class="title">Figure 5. Activity diagram of recording the amount of money received</div>
+<div class="title">Figure 6. Activity diagram of recording the amount of money received</div>
 </div>
 <div class="sect3">
 <h4 id="_implementation_of_people_received_command">Implementation of <code>people received</code> command</h4>
@@ -962,7 +1118,7 @@ in the <code>Model</code> is updated.</p>
 <div class="content">
 <img src="../images/GetPeopleReceivedCommandSequenceDiagram.png" alt="GetPeopleReceivedCommandSequenceDiagram" width="600">
 </div>
-<div class="title">Figure 6. Sequence diagram of the <code>people received</code> command</div>
+<div class="title">Figure 7. Sequence diagram of the <code>people received</code> command</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1651,19 +1807,10 @@ until the details keyed in by the user is valid.</p>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_project_powerpointlabs">PROJECT: PowerPointLabs</h2>
-<div class="sectionbody">
-<hr>
-<div class="paragraph">
-<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
-</div>
-</div>
-</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-03-23 21:06:08 +0800
+Last updated 2020-03-31 19:12:30 +0800
 </div>
 </div>
 </body>

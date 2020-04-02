@@ -30,8 +30,13 @@ public class PeopleFindCommand extends Command {
             + "with phone number that contains 91234 or 8834)\n"
             + PEOPLE_COMMAND_TYPE + " " + COMMAND_WORD + " " + PREFIX_EMAIL + "gmail yahoo (Finds people "
             + "that use either gmail or yahoo emails)\n"
-            + PEOPLE_COMMAND_TYPE + " " + COMMAND_WORD + " " + PREFIX_TAG + "friend colleague (Finds people "
-            + "that has either 'friend' or 'colleague' tag)";
+            + PEOPLE_COMMAND_TYPE + " " + COMMAND_WORD + " " + PREFIX_TAG + "debt loan (Finds people "
+            + "who has either debt(s) or loan(s))";
+
+    public static final String ONLY_ONE_PARAMETER_ALLOWED = "Only 1 parameter is allowed.\n"
+            + "Example: \n" + PEOPLE_COMMAND_TYPE + " " + COMMAND_WORD + " n/Alex Sarah\n"
+            + PEOPLE_COMMAND_TYPE + " " + COMMAND_WORD + " t/Friend\n"
+            + "This is not allowed: " + PEOPLE_COMMAND_TYPE + " " + COMMAND_WORD + " n/Alex t/Friend";
 
     private final PeoplePredicate predicate;
 
