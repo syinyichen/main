@@ -501,7 +501,7 @@ _Still confused? Find out more about `person's index` at <<personIndexFAQ, What 
  +
 The `<loan's index>` above refers to the index number shown in the displayed loans list in *Sharkie*. It indicates a
 specific loan under the person, which you received from. +
-_Still confused? Find out more about `loan's index` at <<loanDebtIndexFAQ, What is a [blue]`loan's` index`>>._ +
+_Still confused? Find out more about `loan's index` at <<loanDebtIndexFAQ, What is a [blue]`loan's index`>>._ +
  +
 `Loan` represents the amount of money you lend your friends. +
 _Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._ +
