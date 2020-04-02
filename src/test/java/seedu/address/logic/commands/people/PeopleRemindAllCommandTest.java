@@ -36,14 +36,13 @@ public class PeopleRemindAllCommandTest {
 
     @Test
     public void execute_emptyUserData_failure() {
-
         PeopleRemindAllCommand peopleRemindallCommand = new PeopleRemindAllCommand();
 
         assertCommandFailure(peopleRemindallCommand, model, Messages.MESSAGE_EMPTY_USER_DATA);
     }
 
     @Test
-    public void execute_unfilteredList_success() {
+    public void execute_hasPeopleWithLoan_success() {
         model.setUserData(getTypicalUserData());
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -60,24 +59,7 @@ public class PeopleRemindAllCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
-        model.setUserData(getTypicalUserData());
-        List<Person> lastShownList = model.getFilteredPersonList();
-
-        String expectedMessage = "";
-        for (Person p: lastShownList) {
-            if (!p.getLoans().getTotal().isZero()) {
-                expectedMessage += String.format(PeopleRemindAllCommand.MESSAGE_REMINDALL_SUCCESS,
-                        p.getName(), p.getLoans().getTotal());
-            }
-        }
-        expectedMessage += MESSAGE_REMINDALL_SUCCESS_EMAIL;
-
-        assertCommandSuccess(new PeopleRemindAllCommand(), model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_allPeopleWithZeroDebt_failure() {
+    public void execute_allPeopleWithZeroLoan_failure() {
         model.setUserData(getTypicalUserData());
         Person alice = new PersonBuilder(ALICE).withLoans().build();
         Person bob = new PersonBuilder(BOB).withLoans().build();

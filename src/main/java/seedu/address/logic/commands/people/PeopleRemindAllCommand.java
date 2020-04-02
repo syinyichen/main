@@ -25,13 +25,15 @@ public class PeopleRemindAllCommand extends Command {
 
     public static final String COMMAND_WORD = "remindall";
 
+    public static final String MESSAGE_REMINDALL_EXECUTION = "Sending reminders to those who you lent to...";
     public static final String MESSAGE_REMINDALL_SUCCESS = "Reminded %1$s to return %2$s!\n";
     public static final String MESSAGE_REMINDALL_SUCCESS_EMAIL = "Sharkie has "
             + "sent copies of the reminders to your email!";
+    public static final String MESSAGE_REMINDALL_FAIL = "Failed to send reminder(s).";
 
     public static final String MESSAGE_HAS_ZERO_LOAN = "No one owes you money :(";
 
-    private static final Logger logger = LogsCenter.getLogger(PeopleRemindCommand.class);
+    private static final Logger logger = LogsCenter.getLogger(PeopleRemindAllCommand.class);
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -41,12 +43,11 @@ public class PeopleRemindAllCommand extends Command {
             throw new CommandException(Messages.MESSAGE_EMPTY_USER_DATA);
         }
 
+        logger.info(MESSAGE_REMINDALL_EXECUTION);
         List<Person> lastShownList = model.getFilteredPersonList();
         User user = model.getUserData().getUser();
         int numberOfPeopleReminded = 0;
         String feedbackToUser = "";
-
-        logger.info("Sending reminders...");
 
         try {
             for (Person person : lastShownList) {
@@ -59,6 +60,7 @@ public class PeopleRemindAllCommand extends Command {
                 }
             }
         } catch (MessagingException e) {
+            logger.info(MESSAGE_REMINDALL_FAIL);
             throw new CommandException(String.format(MESSAGE_EMAIL_ERROR, e.getMessage()));
         }
         feedbackToUser += MESSAGE_REMINDALL_SUCCESS_EMAIL;
