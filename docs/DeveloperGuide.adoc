@@ -4,9 +4,11 @@
 :toc-title:
 :toc-placement: preamble
 :sectnums:
+:icons: font
 :imagesDir: images
 :stylesDir: stylesheets
 :xrefstyle: full
+:experimental:
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
@@ -16,6 +18,37 @@ endif::[]
 
 By: `AY1920S2-CS2103T-W12-3`      Since: `Feb 2020`      Licence: `MIT`
 
+== About us
+
+=== About Sharkie
+
+*Sharkie* is an all-in-one desktop application for personal finance tracking designed for university students who
+would like to monitor their spending. It manages your incomes and expenses,
+organises your contacts and keeps track of <<debt, debts>> your friends owe you, so that your <<loan, loans>> always
+come with a money-back guarantee!
+
+=== About This Guide
+
+This developer guide is written for anyone who wish to build on our application, *Sharkie*,
+or wish to know find out more about how *Sharkie* is implemented.
+
+If you need help setting up your device to build on *Sharkie*, you find out more at the <<setting-up, Setting Up guide>> below.
+
+Note the following symbols and formatting used in this document: +
+
+[cols=".^, .^"]
+[%autowidth.stretch]
+.Symbols and formats used in this User Guide.
+|===
+^|*Symbol/ +
+Format* <|*Meaning*
+^|[gray]#`command`# |[gray]#A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.#
+^| kbd:[Enter] |[gray]#This symbol indicates the enter button on the keyboard.#
+2+.^a|  NOTE: This symbol indicates information.
+2+.^a|  TIP: This symbol indicates tips.
+|===
+
+[[setting-up]]
 == Setting up
 
 Refer to the guide <<SettingUp#, here>>.
@@ -121,7 +154,7 @@ NOTE: The lifeline for `PeopleDeleteCommandParser` should end at the destroy mar
 image::ModelClassDiagram.png[width=800]
 
 ====
-The _Model_ package consists of two main packages: _Person_ and _Transaction_.
+The _Model_ package consists of two main packages: _Person_ and <<transaction, _Transaction_>>.
 
 * The diagram below shows how the _Person_ package is implemented:
 
@@ -139,8 +172,8 @@ image::ModelTransactionDiagram.png[width=1200]
 The `Model`,
 
 * stores a `UserPref` object that represents the user's preferences.
-* stores the Address Book data.
-* stores the Wallet data.
+* stores the <<address-book, Address Book>> data.
+* stores the <<wallet, Wallet>> data.
 * stores the User data.
 * exposes an unmodifiable `ObservableList<Person>` and an unmodifiable `ObservableList<Transaction>` that can be
 'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when the data in the
@@ -555,7 +588,7 @@ _{More to be added}_
 <<MSS, *MSS*>>
 
 1.  User requests to add an expense into the wallet.
-2.  <<wallet, Wallet>> adds the expense and displays the expense in the list of expenses.
+2.  Wallet adds the expense and displays the expense in the list of expenses.
 +
 Use case ends.
 
@@ -621,7 +654,7 @@ Use case resumes at step 2.
 Use case ends.
 
 [discrete]
-==== Use case: UC4 - Deleting a <<transaction, *transaction*>>
+==== Use case: UC4 - Deleting a transaction
 
 *Preconditions:* The transaction that the user wants to delete exists in the wallet.
 
@@ -718,7 +751,7 @@ Use case ends.
 
 *MSS*
 
-1. User requests to add a person into the <<address-book, address book>>.
+1. User requests to add a person into the address book.
 2. Address book adds the person and displays the person in the list of people.
 +
 Use case ends.
@@ -949,6 +982,12 @@ Income and expense
 [[wallet]] Wallet::
 Sharkie's wallet, that holds information pertaining to the user's expenditure and income
 
+[[debt]] Debt::
+The amount of money which the user owes a person in the address book.
+
+[[loan]] Loan::
+The amount of money which the user lends to a person in the address book.
+
 //tag::productSurvey[]
 [appendix]
 == Product Survey
@@ -1048,7 +1087,9 @@ Given below are instructions to test the app manually.
 [NOTE]
 These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing.
 
-=== Launch and Shutdown
+=== Manual Testing on Global Features
+
+==== Launch and Shutdown
 
 . Initial launch
 
@@ -1062,26 +1103,111 @@ These instructions only provide a starting point for testers to work on; testers
 .. Re-launch the app by double-clicking the jar file. +
    Expected: The most recent window size and location is retained.
 
-_{ more test cases ... }_
+. Exiting the application
 
-=== Deleting a person
+.. Click on the close button at the top right corner on the window. +
+   Expected: All windows of the application is closed
+.. Enter `exit` command in the command box and press kbd:[Enter].
+   Expected: Same as previous.
 
-. Deleting a person while all persons are listed
-
-.. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-.. Test case: `delete 1` +
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-.. Test case: `delete 0` +
-   Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-.. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size) _{give more}_ +
-   Expected: Similar to previous.
-
-_{ more test cases ... }_
-
-=== Saving data
+==== Saving data
 
 . Dealing with missing/corrupted data files
 
 .. _{explain how to simulate a missing/corrupted file and the expected behavior}_
 
 _{ more test cases ... }_
+
+=== Manual Testing on Wallet Tab
+
+=== Manual Testing on People Tab
+
+==== Recording the flow of money
+
+. Recording the money you lend to a person
+
+.. Prerequisites: The person who you lend to exist in the person list.
+.. Test case: `people lend 1 n/Dinner $/12.00` +
+   Expected: A loan named _Dinner_ with _$12.00_ is added into the loan list of the first person.
+.. Test case: `people lend 1 n/Dinner $/12.00 d/02/02/2020` +
+   Expected: A loan named _Dinner_ with _$12.00_, recorded under the date _02/02/2020_ is added into the loan
+list of the first person. Total amount of money, which you lent to the first person is shown in the result display.
+.. Test case: `people lend 0 n/Dinner $/12.00` +
+   Expected: The loan is not recorded. Error details shown in the result display.
+.. Other incorrect lend commands to try:
+*** `people lend`,
+*** `people lend 1`,
+*** `people lend 1 n/Chicken Rice`,
+*** `people lend 1 $/12.00`,
+*** `people lend n/Chicken Rice $/12.00`,
+*** `people lend x n/Dinner $/12.00` (where x is larger than the person list size),
+*** `people lend x n/Dinner $/12.00` (where x is a negative number),
+*** `people lend x n/Dinner $/12.00` (where x is a non-integer),
+*** `people lend 1 n/Dinner $/x` (where x is a negative number),
+*** `people lend 1 n/Dinner $/x` (where x is greater 92233720368547758.07),
+*** `people lend 1 n/Dinner $/x` (where x has more than 2 decimal places) or
+*** `people lend 1 n/Dinner $/x` (where x is not a number). +
+   Expected: Similar to previous
+
+. Recording the money you received from a person
+
+.. Prerequisites: The person who you received from exist in the person list.
+.. Test case: `people received 1 i/1` +
+   Expected: The first loan of the first person is deleted from the loan list.
+Remaining amount of loan, which have yet settled by the first person is shown in the result display.
+.. Test case: `people received 0 i/1` +
+   Expected: No loan is deleted. Error details shown in the result display.
+.. Other incorrect lend commands to try:
+*** `people received`,
+*** `people received 1`,
+*** `people received i/1`,
+*** `people received x i/1` (where x is larger than the person list size),
+*** `people received x i/1` (where x is a negative number),
+*** `people received x i/1` (where x is a non-integer value),
+*** `people received 1 i/x` (where x is larger than the loan list size),
+*** `people received 1 i/x` (where x is a negative number or zero) or
+*** `people received 1 i/x` (where x is a non-integer value) +
+   Expected: Similar to previous
+
+==== Sending reminders
+
+. Reminding a specific person about the unsettled loan(s).
+
+.. Prerequisites: Connected to the Internet. The person who you want to remind exists in the person list. The person has at least one loan in the loan list.
+.. Test case: `people remind 1` +
+   Expected: A reminder is sent to the first person's email. A success message shown in the result display.
+.. Test case: `people remind 0` +
+   Expected: No reminder is sent. Error details shown in the result display.
+.. Other incorrect lend commands to try:
+*** `people remind`,
+*** `people remind x` (where x is larger than the person list size),
+*** `people remind x` (where x is a negative number) or
+*** `people remind x` (where x is a non-integer value) +
+   Expected: Similar to previous
+
+. Reminding all people about the unsettled loan(s).
+
+.. Prerequisites: Connected to the Internet. At least one person in the person list has at least a loan.
+.. Test case: `people remindall` +
+   Expected: A reminder is sent everyone, who has unsettled loan. A list of people reminded is shown in the result display.
+
+==== Deleting a person
+
+. Deleting a person while all persons are listed
+
+.. Prerequisites: List all persons using the `people list` command. The person who you want to delete exists in the person list.
+.. Test case: `people delete 1` +
+   Expected: First contact is deleted from the list. Details of the deleted contact shown in the result display.
+.. Test case: `people delete 0` +
+   Expected: No person is deleted. Error details shown in the result display.
+.. Other incorrect delete commands to try:
+*** `people delete`,
+*** `people delete x` (where x is larger than the person list size),
+*** `people delete x` (where x is a negative number) or
+*** `people delete x` (where x is a non-integer value) +
+   Expected: Similar to previous.
+
+[appendix]
+== Effort
+
+_{ to be added }_
