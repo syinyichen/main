@@ -90,14 +90,26 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 [[Features]]
 == Features
+This section introduces the five main features of Sharkie.
+
 //tag::expenditureAndIncome[]
 === Expenditure and income
 *Sharkie* notes down what you have spent on for the month, and also notes down your income for the month to help you properly track your money flow!
 //end::expenditureAndIncome[]
 
 //tag::contacts[]
-=== Contacts
+=== Contact Management
+If you would like to keep the contact details of a person so that you can use the <<debts-and-loans-feature, debts and loans feature>>,
+*Sharkie* can help you do so!
+
 *Sharkie* notes down and remembers contacts that you have entered in an address book, for easy reference later on!
+Should the contact details change, you can also edit them or delete them. If you need to find a particular person's contact details,
+*Sharkie* will look through all your contacts and quickly help you find the contact that you are looking for!
+
+NOTE: You may visit <<add-person, 5.3.1 Adding a person>>, <<list-people, 5.3.8 Listing all contacts>>,
+<<find-person, 5.3.9 Finding a person>>, <<edit-person, 5.3.10 Editing a person>>, <<delete-person, 5.3.11 Deleting a person>>, <<clear, 5.4.12 Clearing all contacts>>
+for more details on how you can manage your contacts with *Sharkie*.
+
 //end::contacts[]
 
 === Saving the data
@@ -105,6 +117,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 All data is saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
+[[debts-and-loans-feature]]
 //tag::debts[]
 === Debts and loans
 
@@ -125,7 +138,7 @@ You can view statistics such as the proportion of your spending on different ite
 [[Commands]]
 == Commands
 //tag::commandintro[]
-*Sharkie* uses a simple syntax to function that will be explained here. *Sharkie* is filled with many different commands that can get complicated, so we have segregated it into two parts:
+*Sharkie* uses a simple syntax to function that will be explained here. *Sharkie* is filled with many different commands that can get complicated, so we have segregated them into two parts:
 `people` commands and `wallet` commands.
 
 ====
@@ -136,7 +149,7 @@ You can view statistics such as the proportion of your spending on different ite
 * `people` commands are used when you want to do things related to the “People” tab, for instance:
 `people add n/<name> p/<phone number> e/<email address>`
 * `wallet` commands are used when you want to do things related to the “Wallet” tab, for instance:
-`wallet expense n/<item> d/<date:dd/mm/yyyy> $/<price>`
+`wallet expense n/<item> $/<price>  [d/<date:dd/mm/yyyy>] [t/<tag>]`
 * Parameters can be in any order e.g. if the command specifies `n/<name> p/<phone number>`, `p/<phone number> n/<name>` is also acceptable.
 ====
 //end::commandintro[]
@@ -322,6 +335,7 @@ Expected outcome:
 
 === People Commands
 //tag::peopleadd[]
+[[add-person]]
 ==== Adding a person: `add`
 
 Adds a person to the address book +
@@ -341,27 +355,42 @@ Expected Outcome:
 // tag::owe[]
 ==== Recording the money you owe: `owe`
 
-Records the amount of money that you owe a person. +
+If you owe a person money and you want to record the debt, the command you would enter is 'people owe' command. +
+
 Format: `people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
 
-****
-* Records the amount of money specified in `<amount>` you owe to the person at the specified `<index>`.
-* The index refers to the index number shown in the displayed person list.
-* The index *must be a positive integer* 1, 2, 3, ...
-* Amount *must be positive*.
-****
+This command will record the amount of money specified in `<amount>` you owe to the person at the specified `<index>`.
 
-Examples:
+====
+*Command Format*
 
-* `people owe 4 n/food $/5.00 d/10/10/2020`
-Records that you owe the 4th person $5.00 on 10/10/2020. +
-Expected Outcome:
+The following are the restrictions of `people owe` command, which you should take note of:
 
-    Increased debt to Grace by $5.00. You now owe Grace $10.00.
+* The `<index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
+* The `<amount>` you entered should be non-negative, have up to two decimal places, and not be too large
+(not exceeding ninety quadrillion dollars).
+====
 
 NOTE: The amount of money recorded will be added under your friend's `Debts` section. +
 `Debts` represent the amount of money you owe your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._ +
+ +
+The `<index>` refers to the index number shown in the displayed person list.
+
+[TIP] The `<date:dd/mm/yyyy>` is optional. If `<date:dd/mm/yyyy>` is not specified, the date that you record the debt will be used.
+
+*Example*:
+
+* Suppose you owe Grace, who is the fourth person in the person list, $5 for food on 10 October 2020.
+
+** The command you would enter is `people owe 4 n/food $/5.00 d/10/10/2020`
+** This records that you owe Grace $5.00 on 10/10/2020. +
+
+* Expected Outcome:
+
+* Your debt to Grace will increase by $5.
+
+    Increased debt to Grace by $5.00. You now owe Grace $10.00.
 
 // end::owe[]
 // @@author
@@ -505,6 +534,7 @@ Expected Outcome:
 //end::peopleremindall[]
 
 //tag::peoplelist[]
+[[list-people]]
 ==== Listing all contacts: `list`
 
 Lists everyone in the contact book. +
@@ -521,6 +551,7 @@ Expected Outcome:
 //end::peoplelist[]
 
 //tag::peoplefind[]
+[[find-person]]
 ==== Finding a person: `find`
 
 Finds a person in your contact list by the keywords given. +
@@ -552,6 +583,7 @@ Expected Outcome:
 //end::peoplefind[]
 
 // tag::edit[]
+[[edit-person]]
 ==== Editing a person : `edit`
 
 Edits an existing person in the address book. +
@@ -574,6 +606,7 @@ Expected Outcome:
 // end::edit[]
 
 // tag::delete[]
+[[delete-person]]
 ==== Deleting a person : `delete`
 
 Deletes the specified person from the address book. +
@@ -603,6 +636,7 @@ Expected Outcome:
 // end::delete[]
 
 // tag::peopleclear[]
+[[clear]]
 ==== Clearing all contacts : `clear`
 
 Clears all the contacts from the address book. +
