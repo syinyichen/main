@@ -10,10 +10,12 @@ Class Email
 Class Name
 Class Phone
 Class UniquePersonList
-
-Package User {
+Interface PeoplePredicate <<Interface>>
+Class PeopleNamePredicate
+Class PeoplePhonePredicate
+Class PeopleEmailPredicate
+Class PeopleTagPredicate
 Class User
-}
 }
 
 Package Transaction {
@@ -30,7 +32,7 @@ Class MM #FFFFFF
 Class UD #FFFFFF
 AB --> "1" UniquePersonList
 MM --> "1" Person  : filtered list
-UD -right-> "1" User
+UD -down-> "1" User
 
 UniquePersonList o--> "*" Person
 Person *--> Name
@@ -43,6 +45,12 @@ Person *--> "*" Tag
 User *--> Name
 User *--> Phone
 User *--> Email
+
+PeopleNamePredicate .up.|> PeoplePredicate
+PeoplePhonePredicate .up.|> PeoplePredicate
+PeopleEmailPredicate .up.|> PeoplePredicate
+PeopleTagPredicate .up.|> PeoplePredicate
+
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Email
