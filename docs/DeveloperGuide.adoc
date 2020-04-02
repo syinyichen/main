@@ -27,6 +27,10 @@ would like to monitor their spending. It manages your incomes and expenses,
 organises your contacts and keeps track of <<debt, debts>> your friends owe you, so that your <<loan, loans>> always
 come with a money-back guarantee!
 
+*Sharkie* is adapted from the https://se-education.org/addressbook-level3/[AddressBook-Level3] project created by SE-EDU
+and is further developed into a finance tracking application by our awesome <<AboutUs#, developer team>>!
+
+
 === About This Guide
 
 This developer guide is written for anyone who wish to build on our application, *Sharkie*,
@@ -151,20 +155,39 @@ NOTE: The lifeline for `PeopleDeleteCommandParser` should end at the destroy mar
 === Model component
 
 .Structure of the Model Component
-image::ModelClassDiagram.png[width=800]
+image::ModelClassDiagram.png[width=750]
+
+* The following is an in-depth view of how `ModelManager` is implemented:
+
+.In-depth structure of the Model Manager
+image::ModelManagerClassDiagram.png[width=800]
+
+NOTE: The `ModelManager` class diagram is drawn separately as it is too complicated to include all the details in the
+Model component diagram.
 
 ====
-The _Model_ package consists of two main packages: _Person_ and <<transaction, _Transaction_>>.
+The _Model_ package consists of four main packages: _Person_, <<transaction, _Transaction_>>,
+_Reminder_ and _Tag_.
 
 * The diagram below shows how the _Person_ package is implemented:
 
-.In-depth Structure of Person in the Model Component
-image::ModelPersonDiagram.png[width=500, left=10]
+.In-depth structure of Person package in the Model Component
+image::ModelPersonDiagram.png[width=1200]
 
 * The diagram below shows how the _Transaction_ package is implemented:
 
-.In-depth Structure of Transaction in the Model Component
+.In-depth structure of Transaction package in the Model Component
 image::ModelTransactionDiagram.png[width=1200]
+.Transaction class diagram
+image::ModelTransactionClassDiagram.png[width=400]
+
+* The _Reminder_ package only consist of a class, `Reminder`:
+
+.Reminder class diagram
+image::ModelReminderClassDiagram.png[width=200]
+
+* The _Tag_ package only consist of a class, `Tag` and it does not depends on other components in the Model.
+
 ====
 
 *API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
