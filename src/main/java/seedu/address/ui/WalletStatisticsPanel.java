@@ -132,7 +132,7 @@ public class WalletStatisticsPanel extends UiPart<Region> {
         for (Map.Entry<Tag, Amount> entry : tagAmounts.entrySet()) {
             Tag tag = entry.getKey();
             Amount amount = entry.getValue();
-            PieChart.Data tempData = new PieChart.Data(tag.tagName, amount.amountInCents / 100);
+            PieChart.Data tempData = new PieChart.Data(tag.tagName, (double) amount.amountInCents / 100);
             expenditurePieChart.layout();
             pieChartData.add(tempData);
         }
