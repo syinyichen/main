@@ -12,6 +12,7 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -87,6 +88,15 @@ public class WalletStatisticsPanel extends UiPart<Region> {
             walletStatisticsPlaceholder.setVisible(false);
         }
 
+
+        for (Node node : expenditurePieChart.lookupAll(".chart-legend-item")) {
+            if (node instanceof Label) {
+                Label labelNode = (Label) node;
+                labelNode.setWrapText(true);
+                labelNode.setManaged(true);
+                labelNode.setPrefWidth(100);
+            }
+        }
     }
 
     /**
@@ -145,11 +155,11 @@ public class WalletStatisticsPanel extends UiPart<Region> {
             budgetOverUnderLabel.setVisible(false);
         } else {
             Amount totalExpenditure =
-                walletTransactionList
-                        .stream()
-                        .filter(t -> t instanceof Expense && t.getDate().inMonth(currMonth, currYear))
-                        .map(Transaction::getAmount)
-                        .reduce(Amount.zero(), Amount::add);
+                    walletTransactionList
+                            .stream()
+                            .filter(t -> t instanceof Expense && t.getDate().inMonth(currMonth, currYear))
+                            .map(Transaction::getAmount)
+                            .reduce(Amount.zero(), Amount::add);
 
             Amount currBudgetAmount = budget.getAmount();
 
@@ -178,5 +188,6 @@ public class WalletStatisticsPanel extends UiPart<Region> {
     private void setProperties() {
         walletStatisticsPlaceholder.managedProperty().bind(walletStatisticsPlaceholder.visibleProperty());
         walletStatisticsLayout.managedProperty().bind(walletStatisticsLayout.visibleProperty());
+
     }
 }
