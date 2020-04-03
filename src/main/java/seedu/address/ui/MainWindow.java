@@ -305,6 +305,9 @@ public class MainWindow extends UiPart<Stage> {
                 logic.getTransactionList());
     }
 
+    /**
+     * Switches the tabs based on whether a people or wallet command was entered.
+     */
     private void switchPanels(String commandText) {
         if (commandText.contains("people")) {
             mainWindowTabPane.getSelectionModel().select(PEOPLE_TAB_INDEX);
