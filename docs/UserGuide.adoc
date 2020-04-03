@@ -581,6 +581,12 @@ the command you would enter is our `people remindall` command.
 WARNING: You would need to connect to the Internet and include your details in *Sharkie* before using this command.
 You can enter or edit your details at <<editing-user-data, [blue]`Edit` > [blue]`Edit user's data`>>.
 
+NOTE: Only your friends, who have unsettled loan(s) will be reminded. Your friends, who has zero loan will
+not receive a reminder. +
+ +
+`Loans` represent the amount of money you lend your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+
 *Example*:
 
 * Suppose you want to remind all your friends in your address book, who has yet paid up.
@@ -617,10 +623,11 @@ or `people find t/<keyword> [<keyword>...]`
 The following are the restrictions of `people find` command, which you would need to take note of:
 
 * You would not have to consider the case of the `<keyword>`, as it is case-insensitive.
-* The `<keyword>` you want to enter need not be in full. For example, `people find n/jo` will display the
+* The `<keyword>` you want to enter need not to be in full. For example, `people find n/jo` will display the
 persons whose name contains with the keyword `jo`, such as `Joel`.
 * The `<keyword>` you entered should be either of the type name (`n/`), phone (`p/`), email (`p/`) or tag (`t/`).
-** `Debt` and `Loan` (case-insensitive) are the only tags, which you are allowed to use in `people find` command.
+** You may use the tag prefix `t/` to find people with debts or loans in your address book.
+Hence, `Debt` and `Loan` (case-insensitive) are the only tags, which you are allowed to use in `people find` command.
 ====
 
 NOTE: `Loans` represent the amount of money you lend your friends and `debts` represent the amount of money you owe
