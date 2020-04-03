@@ -544,15 +544,18 @@ The following is the restrictions of `people remind` command, which you would ne
 * The `<person's index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
 ====
 
+WARNING: You would need to connect to the Internet and include your details in *Sharkie* before using this command.
+You can enter or edit your details at <<editing-user-data, [blue]`Edit` > [blue]`Edit user's data`>>.
+
 NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
 specific person in the address book, who you want to remind. +
-_Still confused? Find out more about `person's index` at <<personIndexFAQ, What is a [blue]`person's index`>>._ +
+_Still confused? Find out more about `person's index` at <<personIndexFAQ, what is a [blue]`person's index`>>._ +
  +
 `Loan` represents the amount of money you lend your friends. +
 _Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
 
-WARNING: You would need to connect to the Internet and include your details in *Sharkie* before using this command.
-You can enter or edit your details at <<editing-user-data, [blue]`Edit` > [blue]`Edit user's data`>>.
+TIP: If you receive connection error messages during the execution of `people remind` command,
+please visit <<remind-connection-error, how to resolve connection issues>>.
 
 *Example*:
 
@@ -586,6 +589,9 @@ not receive a reminder. +
  +
 `Loans` represent the amount of money you lend your friends. +
 _Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+
+TIP: If you receive connection error messages during the execution of `people remindall` command,
+please visit <<remind-connection-error, how to resolve connection issues>>.
 
 *Example*:
 
@@ -823,6 +829,34 @@ image::DebtAndLoanDifferences.png[width=800]
 *Q*: Is there a maximum amount of money that Sharkie can handle? +
 *A*: Yes. Due to program limitations, Sharkie can only safely handle amounts of up to $92233720368547758.07 (about ninety *quadrillion* dollars!). We believe it is safe to say that the average user will not end up spending or earning that amount of money anytime soon (at time of writing, Jeff Bezos' net worth is roughly $100 billion).
 //end::valid-amount[]
+
+//tag::remind-issue[]
+*Q*: Why does my `people remind` and `people remindall` commands take time to run?
+*A*: As the `people remind` and `people remindall` commands rely on the connection to the internet and e-mail server,
+time is needed for the application to send a reminder.
+
+[[remind-connection-error]]
+*Q*: How can I resolve the connection issues during the execution of `people remind` or `people remindall`? +
+*A*: You may try the suggestions below to resolve your connection issues:
+
+****
+* If you receive an error message as the following:
+
+    Error occured while sending email:
+    Couldn't connect to host, port: smtp.gmail.com, 587; timeout -1
+    Please make sure that you are connected to the internet.
+
+** Please make sure that you are connected to the internet.
+
+* If you receive an error message as the following:
+
+    Error occured while sending email:
+    Could not convert socket to TLS
+    Please make sure that you are connected to the internet.
+
+** Please make sure that your firewall or antivirus programme is not interfering *Sharkie* from connecting to the e-mail server.
+****
+//end::remind-issue[]
 
 //end::faq[]
 

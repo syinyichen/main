@@ -106,6 +106,8 @@ include::../UserGuide.adoc[tag=editing-user-data]
 
 include::../UserGuide.adoc[tag=debt-and-loan-diff]
 
+include::../UserGuide.adoc[tag=remind-issue]
+
 == Contributions to the Developer Guide
 
 |===
