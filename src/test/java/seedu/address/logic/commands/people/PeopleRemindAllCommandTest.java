@@ -2,7 +2,10 @@ package seedu.address.logic.commands.people;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.logic.commands.people.PeopleRemindAllCommand.MESSAGE_REMINDALL_SUCCESS_EMAIL;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.CARL;
@@ -42,8 +45,28 @@ public class PeopleRemindAllCommandTest {
     }
 
     @Test
-    public void execute_hasPeopleWithLoan_success() {
+    public void execute_unfiltered_success() {
         model.setUserData(getTypicalUserData());
+        List<Person> lastShownList = model.getFilteredPersonList();
+
+        String expectedMessage = "";
+        for (Person p: lastShownList) {
+            if (!p.getLoans().getTotal().isZero()) {
+                expectedMessage += String.format(PeopleRemindAllCommand.MESSAGE_REMINDALL_SUCCESS,
+                        p.getName(), p.getLoans().getTotal());
+            }
+        }
+        expectedMessage += MESSAGE_REMINDALL_SUCCESS_EMAIL;
+
+        assertCommandSuccess(new PeopleRemindAllCommand(), model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_filtered_success() {
+        model.setUserData(getTypicalUserData());
+
+        showPersonAtIndex(model, INDEX_SECOND);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         List<Person> lastShownList = model.getFilteredPersonList();
 
         String expectedMessage = "";

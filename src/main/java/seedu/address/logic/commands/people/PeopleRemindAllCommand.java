@@ -2,6 +2,7 @@ package seedu.address.logic.commands.people;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_EMAIL_ERROR;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -44,6 +45,7 @@ public class PeopleRemindAllCommand extends Command {
         }
 
         logger.info(MESSAGE_REMINDALL_EXECUTION);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         List<Person> lastShownList = model.getFilteredPersonList();
         User user = model.getUserData().getUser();
         int numberOfPeopleReminded = 0;
