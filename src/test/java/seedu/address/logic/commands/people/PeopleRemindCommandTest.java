@@ -41,7 +41,7 @@ public class PeopleRemindCommandTest {
     }
 
     @Test
-    public void execute_unfilteredList_success() {
+    public void execute_personWithLoan_success() {
         model.setUserData(getTypicalUserData());
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -56,20 +56,7 @@ public class PeopleRemindCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
-        model.setUserData(getTypicalUserData());
-        Person personUserReminds = model.getFilteredPersonList().get(INDEX_SECOND.getZeroBased());
-
-        PeopleRemindCommand peopleRemindCommand = new PeopleRemindCommand(INDEX_SECOND);
-
-        String expectedMessage = String.format(PeopleRemindCommand.MESSAGE_REMIND_SUCCESS,
-                personUserReminds.getName(), personUserReminds.getLoans().getTotal());
-
-        assertCommandSuccess(peopleRemindCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_personWithZeroDebt_failure() {
+    public void execute_personWithZeroLoan_failure() {
         List<Person> lastShownList = model.getFilteredPersonList();
         Person personUserReminds = lastShownList.get(INDEX_FIRST.getZeroBased());
 

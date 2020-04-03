@@ -64,7 +64,7 @@ public class TransactionGroupCard extends UiPart<Region> {
     }
 
     private void setGroupExpenditure() {
-        long groupValue;
+        double groupValue;
 
         try {
             groupValue = groupTransactionsList

@@ -35,11 +35,12 @@ public class PersonTablePanel<T extends Transaction> extends UiPart<Region> {
     @FXML
     private TableColumn<T, String> dateTableColumn;
 
+    private int index = -1;
+
     public PersonTablePanel(ObservableList<T> transactionList) {
         super(FXML);
         indexTableColumn.setCellValueFactory(data -> {
-            T transaction = data.getValue();
-            int index = transactionTableView.getItems().indexOf(transaction) + 1;
+            index += 1;
             return new SimpleStringProperty(Integer.toString(index));
         });
 

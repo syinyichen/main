@@ -28,9 +28,10 @@ public class PeopleRemindCommand extends Command {
 
     public static final String COMMAND_WORD = "remind";
 
+    public static final String MESSAGE_REMIND_EXECUTION = "Sending reminder to %1$s...";
     public static final String MESSAGE_REMIND_SUCCESS = "Reminded %1$s to return %2$s!\n"
             + "Sharkie has sent a copy of the reminder to your email!";
-
+    public static final String MESSAGE_REMIND_FAIL = "Failed to send reminder to %1$s.";
     public static final String MESSAGE_HAS_ZERO_LOAN = "%1$s does not owe you money :(";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Reminds a person to return you "
@@ -49,14 +50,13 @@ public class PeopleRemindCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
 
+        List<Person> lastShownList = model.getFilteredPersonList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToBeReminded = lastShownList.get(targetIndex.getZeroBased());
-
         if (personToBeReminded.getLoans().getTotal().isZero()) {
             throw new CommandException(String.format(MESSAGE_HAS_ZERO_LOAN,
                     personToBeReminded.getName()));
@@ -66,13 +66,13 @@ public class PeopleRemindCommand extends Command {
             throw new CommandException(Messages.MESSAGE_EMPTY_USER_DATA);
         }
 
+        logger.info(String.format(MESSAGE_REMIND_EXECUTION, personToBeReminded.getName()));
         User user = model.getUserData().getUser();
         Reminder reminder = new Reminder(user, personToBeReminded);
-        logger.info("Sending reminder to " + personToBeReminded.getName() + "...");
-
         try {
             reminder.sendReminder();
         } catch (MessagingException e) {
+            logger.info(String.format(MESSAGE_REMIND_FAIL, personToBeReminded.getName()));
             throw new CommandException(String.format(MESSAGE_EMAIL_ERROR, e.getMessage()));
         }
 
