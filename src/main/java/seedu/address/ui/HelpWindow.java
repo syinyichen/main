@@ -19,7 +19,9 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay1920s2-cs2103t-w12-3.github.io/main/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+
+    public static final String MESSAGE_OPEN_BROWSER_FAIL = "Error occurs while opening "
+            + "Sharkie's user guide in browser :(";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -104,7 +106,7 @@ public class HelpWindow extends UiPart<Stage> {
             hide();
         } catch (IOException | URISyntaxException e) {
             hide();
-            MainWindow.editResultDisplay("Error occurs while opening Sharkie's user guide in browser :(");
+            MainWindow.editResultDisplay(MESSAGE_OPEN_BROWSER_FAIL);
         }
     }
 }

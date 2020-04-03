@@ -10,7 +10,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -44,7 +46,10 @@ public class PeopleLendCommand extends Command {
             + PREFIX_AMOUNT + "10.00 "
             + PREFIX_DATE + "02/02/2020";
 
+    public static final String MESSAGE_LEND_EXECUTION = "Adding loan (%1$s) to person %2$s...";
     public static final String MESSAGE_LEND_SUCCESS = "Increased loan to %1$s by %2$s. %1$s now owes you %3$s.";
+
+    private static final Logger logger = LogsCenter.getLogger(PeopleLendCommand.class);
 
     private final Index targetIndex;
     private final Loan loan;
@@ -63,6 +68,7 @@ public class PeopleLendCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
+        logger.info(String.format(MESSAGE_LEND_EXECUTION, loan, targetIndex));
         Person personUserLends = lastShownList.get(targetIndex.getZeroBased());
         Person addedLoanPerson = createPersonLends(personUserLends, loan);
         model.setPerson(personUserLends, addedLoanPerson);
