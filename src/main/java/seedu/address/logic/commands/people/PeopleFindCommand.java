@@ -7,6 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -38,6 +41,9 @@ public class PeopleFindCommand extends Command {
             + PEOPLE_COMMAND_TYPE + " " + COMMAND_WORD + " t/Friend\n"
             + "This is not allowed: " + PEOPLE_COMMAND_TYPE + " " + COMMAND_WORD + " n/Alex t/Friend";
 
+    public static final String MESSAGE_FIND_EXECUTION = "Finding people with %1$s...";
+    private static final Logger logger = LogsCenter.getLogger(PeopleFindCommand.class);
+
     private final PeoplePredicate predicate;
 
     public PeopleFindCommand(PeoplePredicate predicate) {
@@ -47,6 +53,7 @@ public class PeopleFindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        logger.info(String.format(MESSAGE_FIND_EXECUTION, predicate.getClass().getSimpleName()));
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
