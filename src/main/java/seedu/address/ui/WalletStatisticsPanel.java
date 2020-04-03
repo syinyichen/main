@@ -91,9 +91,10 @@ public class WalletStatisticsPanel extends UiPart<Region> {
 
         for (Node node : expenditurePieChart.lookupAll(".chart-legend-item")) {
             if (node instanceof Label) {
-                ((Label) node).setWrapText(true);
-                ((Label) node).setManaged(true);
-                ((Label) node).setPrefWidth(100);
+                Label labelNode = (Label) node;
+                labelNode.setWrapText(true);
+                labelNode.setManaged(true);
+                labelNode.setPrefWidth(100);
             }
         }
     }
@@ -154,11 +155,11 @@ public class WalletStatisticsPanel extends UiPart<Region> {
             budgetOverUnderLabel.setVisible(false);
         } else {
             Amount totalExpenditure =
-                walletTransactionList
-                        .stream()
-                        .filter(t -> t instanceof Expense && t.getDate().inMonth(currMonth, currYear))
-                        .map(Transaction::getAmount)
-                        .reduce(Amount.zero(), Amount::add);
+                    walletTransactionList
+                            .stream()
+                            .filter(t -> t instanceof Expense && t.getDate().inMonth(currMonth, currYear))
+                            .map(Transaction::getAmount)
+                            .reduce(Amount.zero(), Amount::add);
 
             Amount currBudgetAmount = budget.getAmount();
 
