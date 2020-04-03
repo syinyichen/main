@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliPrefix.PEOPLE_COMMAND_TYPE;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -26,7 +28,10 @@ public class PeopleDeleteCommand extends Command {
             + "Example: " + PEOPLE_COMMAND_TYPE + " "
             + COMMAND_WORD + " 1";
 
+    public static final String MESSAGE_DELETE_EXECUTION = "Deleting %1$s...";
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+
+    private static final Logger logger = LogsCenter.getLogger(PeopleDeleteCommand.class);
 
     private final Index targetIndex;
 
@@ -44,6 +49,7 @@ public class PeopleDeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        logger.info(String.format(MESSAGE_DELETE_EXECUTION, personToDelete.getName()));
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
