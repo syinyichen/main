@@ -147,7 +147,7 @@ public interface Model {
     boolean isUserDataNull();
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code wallet}.
      */
     public void setWallet(ReadOnlyWallet wallet);
 
