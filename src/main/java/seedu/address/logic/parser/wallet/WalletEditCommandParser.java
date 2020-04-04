@@ -15,6 +15,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.transaction.Amount;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -48,11 +49,18 @@ public class WalletEditCommandParser implements Parser<WalletEditCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
-            editTransactionDescriptor.setAmount(ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get()));
+            Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
+            if (amount.isZero()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        WalletEditCommand.MESSAGE_USAGE));
+            }
+            editTransactionDescriptor.setAmount(amount);
         }
+
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             editTransactionDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
+
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             editTransactionDescriptor.setTag(ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()));
         }

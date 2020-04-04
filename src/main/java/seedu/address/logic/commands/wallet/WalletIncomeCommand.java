@@ -22,7 +22,7 @@ public class WalletIncomeCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an income to the wallet. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_AMOUNT + "AMOUNT "
+            + PREFIX_AMOUNT + "AMOUNT (must be positive) "
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + WALLET_COMMAND_TYPE + " "
