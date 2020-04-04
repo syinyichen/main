@@ -25,7 +25,7 @@ public class ConfirmationEmail {
     private final Email userEmail;
     private MimeMessage message;
 
-    private final int PIN;
+    private final int pin;
 
     private final String emailUsername = "noreply.loansharkie";
     private final String emailPassword = "cs2103t-w12-3";
@@ -39,7 +39,7 @@ public class ConfirmationEmail {
         this.userEmail = email;
 
         Random random = new Random();
-        this.PIN = random.nextInt((9999 - 100) + 1) + 10;
+        this.pin = random.nextInt((9999 - 100) + 1) + 10;
     }
 
     /**
@@ -75,7 +75,7 @@ public class ConfirmationEmail {
         String content = "<p>Dear " + userName + ",</p><br><p>Thank you for using&nbsp;<strong>"
                 + "Sharkie</strong>!</p><br><p>Your confirmation PIN is&nbsp;<span style=\"text-decoration: "
                 + "underline;\"><span style=\"color: #ff0000;\"><strong><span style=\"background-color: #ffff00;\">"
-                + PIN + "</span></strong></span></span><span>.</p><br><p>Have a good day and enjoy your experience "
+                + pin + "</span></strong></span></span><span>.</p><br><p>Have a good day and enjoy your experience "
                 + "at&nbsp;<strong>Sharkie</strong>! :)</p><br><p>Regards,</p><p>Sharkie.</p>";
 
         message.setFrom(new InternetAddress("noreply.loansharkie@gmail.com"));
@@ -84,6 +84,10 @@ public class ConfirmationEmail {
         message.setContent(content, "text/html; charset=utf-8");
 
         return message;
+    }
+
+    public boolean isSamePin(String pin) {
+        return this.pin == Integer.parseInt(pin);
     }
 
     public Name getName() {

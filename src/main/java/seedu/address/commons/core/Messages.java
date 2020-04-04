@@ -14,7 +14,7 @@ public class Messages {
     public static final String MESSAGE_EMPTY_USER_DATA = "Missing user data!\n"
             + "Please proceed to 'Edit > Edit user's data' to include your contact details.\n"
             + "User data has to be saved before using the following command.";
-    public static final String MESSAGE_EMAIL_ERROR = "Error occured while sending email:\n%1$s"
+    public static final String MESSAGE_EMAIL_ERROR = "Error occurs while sending email:\n%1$s"
             + "\nPlease make sure that you are connected to the internet.\n"
             + "Please make sure that your firewall or antivirus programme allow connection to SMTP port 587";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
