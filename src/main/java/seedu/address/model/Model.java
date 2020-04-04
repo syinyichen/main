@@ -147,6 +147,11 @@ public interface Model {
     boolean isUserDataNull();
 
     /**
+     * Replaces address book data with the data in {@code wallet}.
+     */
+    public void setWallet(ReadOnlyWallet wallet);
+
+    /**
      * Returns true if the given {@code income} exists in the Wallet.
      */
     boolean hasIncome(Income income);

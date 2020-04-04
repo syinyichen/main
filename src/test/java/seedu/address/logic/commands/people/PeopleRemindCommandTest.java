@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
@@ -41,7 +42,7 @@ public class PeopleRemindCommandTest {
     }
 
     @Test
-    public void execute_personWithLoan_success() {
+    public void execute_unfilteredList_success() {
         model.setUserData(getTypicalUserData());
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -49,6 +50,22 @@ public class PeopleRemindCommandTest {
 
         PeopleRemindCommand peopleRemindCommand = new PeopleRemindCommand(INDEX_SECOND);
 
+        String expectedMessage = String.format(PeopleRemindCommand.MESSAGE_REMIND_SUCCESS,
+                personUserReminds.getName(), personUserReminds.getLoans().getTotal());
+
+        assertCommandSuccess(peopleRemindCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_filteredList_success() {
+        model.setUserData(getTypicalUserData());
+
+        showPersonAtIndex(model, INDEX_SECOND);
+
+        Person personUserReminds = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
+        PeopleRemindCommand peopleRemindCommand = new PeopleRemindCommand(INDEX_FIRST);
+
+        showPersonAtIndex(expectedModel, INDEX_SECOND);
         String expectedMessage = String.format(PeopleRemindCommand.MESSAGE_REMIND_SUCCESS,
                 personUserReminds.getName(), personUserReminds.getLoans().getTotal());
 
