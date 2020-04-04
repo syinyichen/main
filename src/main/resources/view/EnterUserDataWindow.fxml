@@ -30,7 +30,7 @@
                         <Insets bottom="10.0"/>
                     </padding>
                 </HBox>
-                <HBox minHeight="30"/>
+                <HBox minHeight="10"/>
                 <HBox alignment="CENTER_LEFT">
                     <children>
                         <Label text="Name: " minWidth="60">
