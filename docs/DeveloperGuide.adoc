@@ -184,7 +184,7 @@ image::ModelTransactionClassDiagram.png[width=400]
 * The _Reminder_ package only consist of a class, `Reminder`:
 
 .Reminder class diagram
-image::ModelReminderClassDiagram.png[width=200]
+image::ModelReminderClassDiagram.png[width=400]
 
 * The _Tag_ package only consist of a class, `Tag` and it does not depends on other components in the Model.
 
@@ -1196,7 +1196,9 @@ Remaining amount of loan, which have yet settled by the first person is shown in
 
 . Reminding a specific person about the unsettled loan(s).
 
-.. Prerequisites: Connected to the Internet. The person who you want to remind exists in the person list. The person has at least one loan in the loan list.
+.. Prerequisites: Connected to the Internet. Your firewall or antivirus programme (if any) allows the connection to STMP port 587.
+The person who you want to remind exists in the person list. The person has at least one loan in the loan list.
+The email of the person to be reminded is a valid email.
 .. Test case: `people remind 1` +
    Expected: A reminder is sent to the first person's email. A success message shown in the result display.
 .. Test case: `people remind 0` +
@@ -1210,7 +1212,8 @@ Remaining amount of loan, which have yet settled by the first person is shown in
 
 . Reminding all people about the unsettled loan(s).
 
-.. Prerequisites: Connected to the Internet. At least one person in the person list has at least a loan.
+.. Prerequisites: Connected to the Internet. Your firewall or antivirus programme (if any) allows the connection to STMP port 587.
+At least one person in the list has at least one loan. The email(s) of the people to be reminded are valid email(s).
 .. Test case: `people remindall` +
    Expected: A reminder is sent everyone, who has unsettled loan. A list of people reminded is shown in the result display.
 

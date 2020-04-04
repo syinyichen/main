@@ -545,7 +545,9 @@ The following is the restrictions of `people remind` command, which you would ne
 ====
 
 WARNING: You would need to connect to the Internet and include your details in *Sharkie* before using this command.
-You can enter or edit your details at <<editing-user-data, [blue]`Edit` > [blue]`Edit user's data`>>.
+You can enter or edit your details at <<editing-user-data, [blue]`Edit` > [blue]`Edit user's data`>>. +
+ +
+Before you enter the `people remind` command, please make sure that your friend's email address is correct.
 
 NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
 specific person in the address book, who you want to remind. +
@@ -582,7 +584,9 @@ the command you would enter is our `people remindall` command.
 *Format*: `people remindall`
 
 WARNING: You would need to connect to the Internet and include your details in *Sharkie* before using this command.
-You can enter or edit your details at <<editing-user-data, [blue]`Edit` > [blue]`Edit user's data`>>.
+You can enter or edit your details at <<editing-user-data, [blue]`Edit` > [blue]`Edit user's data`>>. +
+ +
+Before you enter the `people remindall` command, please make sure that your friends' email addresses are correct.
 
 NOTE: Only your friends, who have unsettled loan(s) will be reminded. Your friends, who has zero loan will
 not receive a reminder. +

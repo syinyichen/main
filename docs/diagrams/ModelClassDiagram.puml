@@ -41,6 +41,7 @@ Class BudgetList
 
 Package Reminder {
 Class Reminder
+Class ConfirmationEmail
 }
 
 Package Tag {
