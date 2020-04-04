@@ -2,6 +2,9 @@ package seedu.address.logic.commands.wallet;
 
 import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -13,6 +16,8 @@ import seedu.address.model.transaction.WalletPredicate;
  * Keyword matching is case insensitive.
  */
 public class WalletFindCommand extends Command {
+    private static final Logger logger = LogsCenter.getLogger(WalletFindCommand.class);
+
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all transactions with description containing "
@@ -44,6 +49,9 @@ public class WalletFindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+
+        logger.info("Executing Wallet Find Command");
+
         model.updateFilteredTransactionList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_TRANSACTIONS_LISTED_OVERVIEW,

@@ -10,7 +10,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -30,6 +32,8 @@ import seedu.address.model.transaction.Transaction;
  * Edits the details of an existing income/expense in the address book.
  */
 public class WalletEditCommand extends Command {
+    private static final Logger logger = LogsCenter.getLogger(WalletEditCommand.class);
+
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the transaction identified "
@@ -67,9 +71,13 @@ public class WalletEditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        logger.info("Executing wallet edit command");
+
         List<Transaction> lastShownList = model.getFilteredTransactionList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
+            logger.info("Executing wallet edit command failed, invalid transaction index displayed");
             throw new CommandException(Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX);
         }
 
