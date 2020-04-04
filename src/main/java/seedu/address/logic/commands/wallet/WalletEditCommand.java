@@ -32,8 +32,6 @@ import seedu.address.model.transaction.Transaction;
  * Edits the details of an existing income/expense in the address book.
  */
 public class WalletEditCommand extends Command {
-    private static final Logger logger = LogsCenter.getLogger(WalletEditCommand.class);
-
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the transaction identified "
@@ -53,6 +51,8 @@ public class WalletEditCommand extends Command {
 
     public static final String MESSAGE_EDIT_TRANSACTION_SUCCESS = "Edited Transaction: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+
+    private static final Logger logger = LogsCenter.getLogger(WalletEditCommand.class);
 
     private final Index index;
     private final EditTransactionDescriptor editTransactionDescriptor;

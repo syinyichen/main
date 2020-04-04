@@ -13,19 +13,17 @@ import seedu.address.model.Model;
  * Lists all transactions in the address book to the user.
  */
 public class WalletListCommand extends Command {
-    private static final Logger logger = LogsCenter.getLogger(WalletListCommand.class);
-
+    public static final String MESSAGE_SUCCESS = "Listed all transactions";
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all transactions";
+    private static final Logger logger = LogsCenter.getLogger(WalletListCommand.class);
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        logger.info("Executing wallet list command");
-
         model.updateFilteredTransactionList(Model.PREDICATE_SHOW_ALL_TRANSACTIONS);
+        logger.info("Executing wallet list command");
 
         return new CommandResult(MESSAGE_SUCCESS);
     }

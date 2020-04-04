@@ -1,5 +1,4 @@
 package seedu.address.logic.commands.wallet;
-
 import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
 
 import java.util.logging.Logger;
@@ -16,7 +15,6 @@ import seedu.address.model.transaction.WalletPredicate;
  * Keyword matching is case insensitive.
  */
 public class WalletFindCommand extends Command {
-    private static final Logger logger = LogsCenter.getLogger(WalletFindCommand.class);
 
     public static final String COMMAND_WORD = "find";
 
@@ -40,6 +38,8 @@ public class WalletFindCommand extends Command {
             + WALLET_COMMAND_TYPE + " " + COMMAND_WORD + " n/chicken noodles\n"
             + "This is not allowed: " + WALLET_COMMAND_TYPE + " " + COMMAND_WORD + " n/rice $/4 d/03/03/2020 t/food";
 
+    private static final Logger logger = LogsCenter.getLogger(WalletFindCommand.class);
+
     private final WalletPredicate predicate;
 
     public WalletFindCommand(WalletPredicate predicate) {
@@ -50,9 +50,8 @@ public class WalletFindCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        logger.info("Executing Wallet Find Command");
-
         model.updateFilteredTransactionList(predicate);
+        logger.info("Executing Wallet Find Command");
         return new CommandResult(
                 String.format(Messages.MESSAGE_TRANSACTIONS_LISTED_OVERVIEW,
                         model.getFilteredTransactionList().size()));

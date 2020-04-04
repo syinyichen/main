@@ -19,8 +19,6 @@ import seedu.address.model.transaction.Transaction;
  * Deletes a transaction identified using it's displayed index from the wallet.
  */
 public class WalletDeleteCommand extends Command {
-    private static final Logger logger = LogsCenter.getLogger(WalletDeleteCommand.class);
-
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -30,6 +28,8 @@ public class WalletDeleteCommand extends Command {
             + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_TRANSACTION_SUCCESS = "Deleted Transaction: %1$s";
+
+    private static final Logger logger = LogsCenter.getLogger(WalletDeleteCommand.class);
 
     private final Index targetIndex;
 
