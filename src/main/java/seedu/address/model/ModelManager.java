@@ -189,6 +189,7 @@ public class ModelManager implements Model {
     @Override
     public void setWallet(ReadOnlyWallet wallet) {
         this.wallet.resetData(wallet);
+        filteredTransactions = new FilteredList<Transaction>(this.wallet.getTransactionList());
     }
 
     @Override
