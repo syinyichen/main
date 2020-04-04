@@ -187,6 +187,11 @@ public class ModelManager implements Model {
     // =========== Wallet =====================================================================================
 
     @Override
+    public void setWallet(ReadOnlyWallet wallet) {
+        this.wallet.resetData(wallet);
+    }
+
+    @Override
     public ReadOnlyWallet getWallet() {
         return wallet;
     }
