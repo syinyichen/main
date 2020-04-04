@@ -5,12 +5,12 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as Logic LOGIC_COLOR
 participant ":SharkieParser" as SharkieParser LOGIC_COLOR
 participant ":WalletExpenseCommandParser" as WalletExpenseCommandParser LOGIC_COLOR
-participant "w:WalletExpenseCommand" as WalletExpenseCommand LOGIC_COLOR
+participant "wallet:WalletExpenseCommand" as WalletExpenseCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant "e:Expense" as Expense MODEL_COLOR
+participant "expense:Expense" as Expense MODEL_COLOR
 participant ":ModelManager" as ModelManager MODEL_COLOR
 participant ":Wallet" as Wallet MODEL_COLOR
 participant ":TransactionList" as TransactionList MODEL_COLOR
@@ -40,31 +40,31 @@ create Expense
 WalletExpenseCommand -> Expense
 activate Expense
 
-Expense --> WalletExpenseCommand : e
+Expense --> WalletExpenseCommand : expense
 deactivate Expense
 
-WalletExpenseCommand --> WalletExpenseCommandParser : w
+WalletExpenseCommand --> WalletExpenseCommandParser : wallet
 deactivate WalletExpenseCommand
 
-WalletExpenseCommandParser --> SharkieParser : w
+WalletExpenseCommandParser --> SharkieParser : wallet
 deactivate WalletExpenseCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 WalletExpenseCommandParser -[hidden]-> SharkieParser
 destroy WalletExpenseCommandParser
 
-SharkieParser --> Logic : w
+SharkieParser --> Logic : wallet
 deactivate SharkieParser
 
 Logic -> WalletExpenseCommand : execute()
 activate WalletExpenseCommand
 
-WalletExpenseCommand -> ModelManager : addExpense(e)
+WalletExpenseCommand -> ModelManager : addExpense(expense)
 activate ModelManager
 
-ModelManager -> Wallet : addExpense(e)
+ModelManager -> Wallet : addExpense(expense)
 activate Wallet
 
-Wallet -> TransactionList : addTransaction(e)
+Wallet -> TransactionList : addTransaction(expense)
 activate TransactionList
 
 TransactionList --> Wallet

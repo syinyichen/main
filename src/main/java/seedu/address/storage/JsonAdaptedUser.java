@@ -70,6 +70,7 @@ class JsonAdaptedUser {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
+
         return new User(modelName, modelPhone, modelEmail);
     }
 

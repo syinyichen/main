@@ -2,7 +2,10 @@ package seedu.address.logic.commands.people;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.logic.commands.people.PeopleRemindAllCommand.MESSAGE_REMINDALL_SUCCESS_EMAIL;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.CARL;
@@ -36,14 +39,13 @@ public class PeopleRemindAllCommandTest {
 
     @Test
     public void execute_emptyUserData_failure() {
-
         PeopleRemindAllCommand peopleRemindallCommand = new PeopleRemindAllCommand();
 
         assertCommandFailure(peopleRemindallCommand, model, Messages.MESSAGE_EMPTY_USER_DATA);
     }
 
     @Test
-    public void execute_unfilteredList_success() {
+    public void execute_unfiltered_success() {
         model.setUserData(getTypicalUserData());
         List<Person> lastShownList = model.getFilteredPersonList();
 
@@ -60,8 +62,11 @@ public class PeopleRemindAllCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_filtered_success() {
         model.setUserData(getTypicalUserData());
+
+        showPersonAtIndex(model, INDEX_SECOND);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         List<Person> lastShownList = model.getFilteredPersonList();
 
         String expectedMessage = "";
@@ -77,7 +82,7 @@ public class PeopleRemindAllCommandTest {
     }
 
     @Test
-    public void execute_allPeopleWithZeroDebt_failure() {
+    public void execute_allPeopleWithZeroLoan_failure() {
         model.setUserData(getTypicalUserData());
         Person alice = new PersonBuilder(ALICE).withLoans().build();
         Person bob = new PersonBuilder(BOB).withLoans().build();

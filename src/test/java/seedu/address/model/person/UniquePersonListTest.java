@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DEBT;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -165,5 +166,17 @@ public class UniquePersonListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void hashcode() {
+        UniquePersonList anotherUniquePersonList = new UniquePersonList();
+
+        // same values -> returns same hashcode
+        assertEquals(uniquePersonList.hashCode(), anotherUniquePersonList.hashCode());
+
+        // different internalList -> returns different hashcode
+        anotherUniquePersonList.add(ALICE);
+        assertNotEquals(uniquePersonList.hashCode(), anotherUniquePersonList.hashCode());
     }
 }

@@ -206,14 +206,17 @@ public class MainApp extends Application {
             if (userDataOptional.isPresent()) {
                 logic.setUserData((UserData) userDataOptional.get());
             } else {
-                logger.info("User data file not found. Kindly enter your data. Thank you. :)");
+                logger.info("User data file not found. "
+                        + "Opening EnterUserDataWindow for user to enter the user data.");
                 ui.openEnterUserDataWindow();
             }
         } catch (DataConversionException e) {
-            logger.warning("User data file not in the correct format. Kindly re-enter your data. Thank you. :)");
+            logger.warning("User data file not in the correct format. "
+                    + "Opening EnterUserDataWindow for user to re-enter the user data.");
             ui.openEnterUserDataWindow();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Kindly re-enter your data. Thank you. :)");
+            logger.warning("Problem while reading from the file. "
+                    + "Opening EnterUserDataWindow for user to re-enter the user data.");
             ui.openEnterUserDataWindow();
         }
     }

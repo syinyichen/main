@@ -9,17 +9,20 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.testutil.TransactionBuilder;
+
 public class DateContainsKeywordsPredicateTest {
+
+    private List<String> firstPredicateKeywordList = Collections.singletonList("11/11/2011");
+    private List<String> secondPredicateKeywordList = Arrays.asList("11/11/2011", "12/12/2012");
+
+    private DateContainsKeywordsPredicate firstPredicate =
+            new DateContainsKeywordsPredicate(firstPredicateKeywordList);
+    private DateContainsKeywordsPredicate secondPredicate =
+            new DateContainsKeywordsPredicate(secondPredicateKeywordList);
+
     @Test
     public void equals() {
-        List<String> firstPredicateKeywordList = Collections.singletonList("2011-11-11");
-        List<String> secondPredicateKeywordList = Arrays.asList("2011-11-11", "2012-12-12");
-
-        DateContainsKeywordsPredicate firstPredicate =
-                new DateContainsKeywordsPredicate(firstPredicateKeywordList);
-        DateContainsKeywordsPredicate secondPredicate =
-                new DateContainsKeywordsPredicate(secondPredicateKeywordList);
-
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
@@ -37,4 +40,25 @@ public class DateContainsKeywordsPredicateTest {
         // different person -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
+
+    @Test
+    public void test_dateContainsKeywords_returnsTrue() {
+        // One keyword
+        assertTrue(firstPredicate.test(new TransactionBuilder().withDate("11/11/2011").buildExpense()));
+
+        // Only one matching keyword
+        assertTrue(secondPredicate.test(new TransactionBuilder().withDate("11/11/2011").buildExpense()));
+    }
+
+    @Test
+    public void test_dateDoesNotContainKeywordsExpense_returnsFalse() {
+        // Zero keywords
+        DateContainsKeywordsPredicate predicate =
+                new DateContainsKeywordsPredicate(Collections.emptyList());
+        assertFalse(predicate.test(new TransactionBuilder().buildExpense()));
+
+        // Non-matching keyword
+        assertFalse(firstPredicate.test(new TransactionBuilder().buildExpense()));
+    }
+
 }

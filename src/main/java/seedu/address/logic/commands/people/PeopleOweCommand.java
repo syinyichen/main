@@ -11,7 +11,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -46,7 +48,10 @@ public class PeopleOweCommand extends Command {
             + PREFIX_AMOUNT + "5.00 "
             + PREFIX_DATE + "10/10/2020";
 
+    public static final String MESSAGE_OWE_EXECUTION = "Adding debt (%1$s) to %2$s...";
     public static final String MESSAGE_OWE_SUCCESS = "Increased debt to %1$s by %2$s. You now owe %1$s %3$s.";
+
+    private static final Logger logger = LogsCenter.getLogger(PeopleOweCommand.class);
 
     private final Index targetIndex;
     private final Debt debt;
@@ -66,6 +71,7 @@ public class PeopleOweCommand extends Command {
         }
 
         Person personUserOwes = lastShownList.get(targetIndex.getZeroBased());
+        logger.info(String.format(MESSAGE_OWE_EXECUTION, debt, personUserOwes.getName()));
         Person addedDebtPerson = createPersonOwed(personUserOwes, debt);
         model.setPerson(personUserOwes, addedDebtPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
