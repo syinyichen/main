@@ -294,7 +294,7 @@ public class MainWindow extends UiPart<Stage> {
 
 
     /**
-     * Executes the command and returns the result.
+     * Stores the user data keyed in by the user.
      *
      * @see seedu.address.logic.Logic#storeUserData(String, String, String)
      */

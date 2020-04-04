@@ -7,7 +7,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -37,9 +39,12 @@ public class PeopleReturnedCommand extends Command {
             + "Example: " + PEOPLE_COMMAND_TYPE + " "
             + COMMAND_WORD + " 4 1";
 
+    public static final String MESSAGE_RETURNED_EXECUTION = "Removing debt(s) from %1$s...";
     public static final String MESSAGE_RETURNED_SUCCESS = "Reduced debt to %1$s by %2$s. You now owe %1$s "
             + "%3$s.";
     public static final String MESSAGE_NO_DEBT = "You don't owe %1$s any money :)";
+
+    private static final Logger logger = LogsCenter.getLogger(PeopleReturnedCommand.class);
 
     private final Index targetPersonIndex;
     private final Index targetDebtIndex;
@@ -64,6 +69,7 @@ public class PeopleReturnedCommand extends Command {
             throw new CommandException(String.format(MESSAGE_NO_DEBT, personUserOwes.getName()));
         }
 
+        logger.info(String.format(MESSAGE_RETURNED_EXECUTION, personUserOwes.getName()));
         Person personReducedDebt = createPersonReturned(personUserOwes, targetDebtIndex);
         Amount amountReturned = getAmountReturned(personUserOwes, targetDebtIndex);
         model.setPerson(personUserOwes, personReducedDebt);

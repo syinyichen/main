@@ -9,30 +9,30 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Package Transaction {
 Class TransactionList
-Interface Transaction <<Interface>>
+abstract Transaction <<abstract>>
 Class Expense
 Class Income
 Class Debt
 Class Loan
 Class Amount
-Class Date
-Class Description
 Class Budget
 Class BudgetList
 Class Month
 Class Year
-}
 
-Package Tag {
-Class Tag
+Interface WalletPredicate <<Interface>>
+Class AmountContainsKeywordsPredicate
+Class DateContainsKeywordsPredicate
+Class DescriptionContainsKeywordsPredicate
+Class TagContainsKeywordsPredicate
 }
 
 Class HiddenWallet #FFFFFF
-Class HiddenPerson #FFFFFF
+Class Person #FFFFFF
 HiddenWallet --> "1" TransactionList
 HiddenWallet --> "1" BudgetList
-HiddenPerson --> "*" Debt
-HiddenPerson --> "*" Loan
+Person --> "*" Debt
+Person --> "*" Loan
 BudgetList o--> "*" Budget
 TransactionList o--> "*" Expense
 TransactionList o--> "*" Income
@@ -43,9 +43,16 @@ Loan .up.|> Transaction
 Budget *--> Amount
 Budget *--> Month
 Budget *--> Year
-Transaction *--> "1" Amount
-Transaction *--> "1" Description
-Transaction *--> "1" Date
-Transaction *--> "1" Tag
+
+DescriptionContainsKeywordsPredicate .up.|> WalletPredicate
+AmountContainsKeywordsPredicate .up.|> WalletPredicate
+DateContainsKeywordsPredicate .up.|> WalletPredicate
+TagContainsKeywordsPredicate .up.|> WalletPredicate
+
+WalletPredicate -[hidden]left-> BudgetList
+DescriptionContainsKeywordsPredicate -[hidden]down-> AmountContainsKeywordsPredicate
+DescriptionContainsKeywordsPredicate -[hidden]left-> DateContainsKeywordsPredicate
+DateContainsKeywordsPredicate -[hidden]down-> TagContainsKeywordsPredicate
+AmountContainsKeywordsPredicate -[hidden]left-> TagContainsKeywordsPredicate
 
 @enduml

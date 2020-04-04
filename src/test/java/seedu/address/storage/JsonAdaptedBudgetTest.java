@@ -77,6 +77,14 @@ class JsonAdaptedBudgetTest {
     }
 
     @Test
+    public void toModelType_nullIsDefault_throwsIllegalValueException() {
+        JsonAdaptedBudget budget = new JsonAdaptedBudget(VALID_BUDGET_AMOUNT_JAN_2010, VALID_BUDGET_MONTH_JAN_2010,
+                VALID_BUDGET_YEAR_JAN_2010 , null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Boolean.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, budget::toModelType);
+    }
+
+    @Test
     public void toModelType_defaultBudget_returnsDefaultBudget() throws IllegalValueException {
         JsonAdaptedBudget budget = new JsonAdaptedBudget(VALID_BUDGET_AMOUNT_JAN_2010, VALID_BUDGET_MONTH_JAN_2010,
                 VALID_BUDGET_YEAR_JAN_2010, "true");

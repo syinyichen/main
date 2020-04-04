@@ -21,10 +21,15 @@ import seedu.address.model.person.User;
 public class EnterUserDataWindow extends UiPart<Stage> {
 
     public static final String ERROR_STYLE_CLASS = "error";
-    public static final String MISSING_DATA_MESSAGE = "Your details are missing. \nTo use Sharkie, "
+    public static final String MESSAGE_MISSING_DATA = "Your details are missing. \nTo use Sharkie, "
             + "please enter your details: ";
-    public static final String ERROR_MESSAGE = "The details you keyed in are invalid. \n"
+    public static final String MESSAGE_INVALID_DETAILS = "The details you keyed in are invalid. \n"
             + "Kindly re-enter your details: \n";
+    public static final String MESSAGE_SHOWING_WINDOW = "Showing window to enter user data.";
+    public static final String MESSAGE_STORE_DATA_SUCCESS = "User data stored.";
+    public static final String MESSAGE_INVALID_NAME = "Your name should not be empty or start with a whitespace!\n";
+    public static final String MESSAGE_INVALID_PHONE = "Your phone number should consist of 3 or more digits!\n";
+    public static final String MESSAGE_INVALID_EMAIL = "Your email should be a valid email!\n";
 
     private static final Logger logger = LogsCenter.getLogger(EnterUserDataWindow.class);
     private static final String FXML = "EnterUserDataWindow.fxml";
@@ -63,7 +68,7 @@ public class EnterUserDataWindow extends UiPart<Stage> {
     public EnterUserDataWindow(Stage root, UserDataStorageManager userDataStorageManager) {
         super(FXML, root);
         this.userDataStorageManager = userDataStorageManager;
-        instructionMessage.setText(MISSING_DATA_MESSAGE);
+        instructionMessage.setText(MESSAGE_MISSING_DATA);
 
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         userNameTextField.textProperty()
@@ -109,7 +114,7 @@ public class EnterUserDataWindow extends UiPart<Stage> {
      *                               </ul>
      */
     public void show() {
-        logger.fine("Showing the window for user data input.");
+        logger.fine(MESSAGE_SHOWING_WINDOW);
         getRoot().show();
         getRoot().centerOnScreen();
         errorMessageName.setText("");
@@ -144,6 +149,7 @@ public class EnterUserDataWindow extends UiPart<Stage> {
         try {
             userDataStorageManager.storeUserData(userNameTextField.getText(),
                     userPhoneTextField.getText(), userEmailTextField.getText());
+            logger.info(MESSAGE_STORE_DATA_SUCCESS);
             hide();
         } catch (IllegalArgumentException e) {
             show();
@@ -162,7 +168,7 @@ public class EnterUserDataWindow extends UiPart<Stage> {
      * Sets the text fields style to indicate a failed command.
      */
     public void setStyleToIndicateInputFailure() {
-        instructionMessage.setText(ERROR_MESSAGE);
+        instructionMessage.setText(MESSAGE_INVALID_DETAILS);
         errorMessageName.setText("");
         errorMessagePhone.setText("");
         errorMessageEmail.setText("");
@@ -173,21 +179,21 @@ public class EnterUserDataWindow extends UiPart<Stage> {
 
         if (!Name.isValidName(userNameTextField.getText())) {
             styleClassName.add(ERROR_STYLE_CLASS);
-            errorMessageName.setText("Your name should not be empty or start with a whitespace!\n");
+            errorMessageName.setText(MESSAGE_INVALID_NAME);
             userNameTextField.setText("");
             userNameTextField.setPromptText("Invalid name!");
         }
 
         if (!Phone.isValidPhone(userPhoneTextField.getText())) {
             styleClassPhone.add(ERROR_STYLE_CLASS);
-            errorMessagePhone.setText("Your phone number should consist of 3 or more digits!\n");
+            errorMessagePhone.setText(MESSAGE_INVALID_PHONE);
             userPhoneTextField.setText("");
             userPhoneTextField.setPromptText("Invalid phone number!");
         }
 
         if (!Email.isValidEmail(userEmailTextField.getText())) {
             styleClassEmail.add(ERROR_STYLE_CLASS);
-            errorMessageEmail.setText("Your email should be a valid email!\n");
+            errorMessageEmail.setText(MESSAGE_INVALID_EMAIL);
             userEmailTextField.setText("");
             userEmailTextField.setPromptText("Invalid address!");
         }

@@ -8,7 +8,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -39,8 +41,11 @@ public class PeopleReceivedCommand extends Command {
             + "Example: " + PEOPLE_COMMAND_TYPE + " "
             + COMMAND_WORD + " 4 i/1";
 
+    public static final String MESSAGE_RECEIVED_EXECUTION = "Removing loan(s) of person %1$s...";
     public static final String MESSAGE_RECEIVED_SUCCESS = "Removed loan to %1$s by %2$s. %1$s now owes you %3$s.";
     public static final String MESSAGE_NO_LOAN = "%1$s does not owe you money :(";
+
+    private static final Logger logger = LogsCenter.getLogger(PeopleReceivedCommand.class);
 
     private final Index targetPersonIndex;
     private final Index targetLoanIndex;
@@ -65,6 +70,7 @@ public class PeopleReceivedCommand extends Command {
             throw new CommandException(String.format(MESSAGE_NO_LOAN, personUserLends.getName()));
         }
 
+        logger.info(String.format(MESSAGE_RECEIVED_EXECUTION, targetPersonIndex));
         Person personReducedLoan = createPersonReceived(personUserLends, targetLoanIndex);
         Amount amountReceived = getAmountReceived(personUserLends, targetLoanIndex);
         model.setPerson(personUserLends, personReducedLoan);

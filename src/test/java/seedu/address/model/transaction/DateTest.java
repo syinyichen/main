@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
+
 import org.junit.jupiter.api.Test;
 
 class DateTest {
@@ -28,5 +32,19 @@ class DateTest {
         // valid date
         assertTrue(Date.isValidDate("02/02/2020"));
 
+    }
+
+    @Test
+    public void inMonth() {
+        Date date = new Date(LocalDate.parse("2020-02-02"));
+
+        // correct year and month -> returns true
+        assertTrue(date.inMonth(Month.FEBRUARY, Year.of(2020)));
+
+        // wrong month -> returns false
+        assertFalse(date.inMonth(Month.APRIL, Year.of(2020)));
+
+        // wrong year -> returns false
+        assertFalse(date.inMonth(Month.FEBRUARY, Year.of(2019)));
     }
 }
