@@ -19,9 +19,9 @@ Class Email
 Class Name
 }
 
-Reminder o--> "1" User
-Reminder o--> "1" Person
-ConfirmationEmail o--> "1" Name
-ConfirmationEmail o--> "1" Email
+Reminder *--> "1" User
+Reminder *--> "1" Person
+ConfirmationEmail *--> "1" Name
+ConfirmationEmail *--> "1" Email
 
 @enduml
