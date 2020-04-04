@@ -831,9 +831,13 @@ image::DebtAndLoanDifferences.png[width=800]
 //end::valid-amount[]
 
 //tag::remind-issue[]
-*Q*: Why does my `people remind` and `people remindall` commands take time to run?
+*Q*: Why does my `people remind` and `people remindall` commands take time to run? +
 *A*: As the `people remind` and `people remindall` commands rely on the connection to the internet and e-mail server,
 time is needed for the application to send a reminder.
+
+*Q*: Why do I not receive a confirmation e-mail from *Sharkie*? +
+*A*: You may need to check your junk mail folder, as your e-mail account may categorize *Sharkie*'s e-mails as spam.
+If you wish to receive frequent notifications from *Sharkie*, please remove *Sharkie* from your junk mail list.
 
 [[remind-connection-error]]
 *Q*: How can I resolve the connection issues during the execution of `people remind` or `people remindall`? +
@@ -854,7 +858,8 @@ time is needed for the application to send a reminder.
     Could not convert socket to TLS
     Please make sure that you are connected to the internet.
 
-** Please make sure that your firewall or antivirus programme is not interfering *Sharkie* from connecting to the e-mail server.
+** Please make sure that your firewall or antivirus programme allows *Sharkie* to connect to SMTP port 587.
+Please add an exclusion to SMTP port 587 in your firewall or antivirus programme, if you have not do so.
 ****
 //end::remind-issue[]
 
