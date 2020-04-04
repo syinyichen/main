@@ -1,6 +1,7 @@
 // @@author cheyannesim
 package seedu.address.model.transaction;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -69,5 +70,11 @@ class DebtTest {
         // different date -> returns false
         assertFalse(SUPPER.equals(debtDiffDate));
 
+    }
+
+    @Test
+    public void tostring() {
+        String expected = " Debt description: Supper Amount: $10.00 Date: 2020-01-23";
+        assertEquals(expected, SUPPER.toString());
     }
 }

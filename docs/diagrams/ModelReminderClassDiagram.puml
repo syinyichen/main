@@ -1,0 +1,22 @@
+@startuml
+!include style.puml
+skinparam padding 2
+skinparam minClassWidth 80
+skinparam arrowFontSize 10
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Reminder {
+Class Reminder
+}
+
+Package Person {
+Class User
+Class Person
+}
+
+Reminder o--> "1" User
+Reminder o--> "1" Person
+
+@enduml

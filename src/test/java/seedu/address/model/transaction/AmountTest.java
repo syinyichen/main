@@ -47,10 +47,10 @@ public class AmountTest {
         Amount twoFifty = new Amount(2.5);
         Amount tenDollars = new Amount(10);
         Amount thousandFive = new Amount(1500);
-        assertTrue(new Amount(12.5).equals(twoFifty.add(tenDollars)));
-        assertTrue(new Amount(1510).equals(tenDollars.add(thousandFive)));
-        assertTrue(new Amount(1502.5).equals(thousandFive.add(twoFifty)));
-        assertTrue(new Amount(5).equals(twoFifty.add(twoFifty)));
+        assertEquals(new Amount(12.5), twoFifty.add(tenDollars));
+        assertEquals(new Amount(1510), tenDollars.add(thousandFive));
+        assertEquals(new Amount(1502.5), thousandFive.add(twoFifty));
+        assertEquals(new Amount(5), twoFifty.add(twoFifty));
     }
 
     @Test

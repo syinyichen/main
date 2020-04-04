@@ -6,6 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -32,8 +35,12 @@ public class WalletBudgetCommand extends Command {
             + PREFIX_MONTH + "10 "
             + PREFIX_YEAR + "2020\n";
 
+    public static final String MESSAGE_ADD_DEFAULT_BUDGET_EXECUTION = "Setting default budget as %1$s...";
+    public static final String MESSAGE_ADD_BUDGET_EXECUTION = "Adding budget of %1$s for %2$s %3$s...";
     public static final String MESSAGE_SUCCESS_DEFAULT = "Default budget has been set at %1$s.";
     public static final String MESSAGE_SUCCESS = "Budget has been set at %1$s for %2$s %3$s.";
+
+    private static final Logger logger = LogsCenter.getLogger(WalletBudgetCommand.class);
 
     private final Budget budget;
 
@@ -48,9 +55,11 @@ public class WalletBudgetCommand extends Command {
 
         if (budget.isDefault()) {
             model.setDefaultBudget(budget);
+            logger.info(String.format(MESSAGE_ADD_DEFAULT_BUDGET_EXECUTION, budget));
             return new CommandResult(String.format(MESSAGE_SUCCESS_DEFAULT, budget.getAmount()));
         } else {
             model.setBudget(budget);
+            logger.info(String.format(MESSAGE_ADD_BUDGET_EXECUTION, budget, budget.getMonth(), budget.getYear()));
             return new CommandResult(String.format(MESSAGE_SUCCESS, budget.getAmount(),
                     budget.getMonth(),
                     budget.getYear()));
