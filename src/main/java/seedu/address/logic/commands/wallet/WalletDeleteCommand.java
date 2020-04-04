@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliPrefix.WALLET_COMMAND_TYPE;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -27,6 +29,8 @@ public class WalletDeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_TRANSACTION_SUCCESS = "Deleted Transaction: %1$s";
 
+    private static final Logger logger = LogsCenter.getLogger(WalletDeleteCommand.class);
+
     private final Index targetIndex;
 
     public WalletDeleteCommand(Index targetIndex) {
@@ -37,9 +41,12 @@ public class WalletDeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        logger.info("Executing Wallet Delete Command");
+
         List<Transaction> lastShownList = model.getFilteredTransactionList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            logger.info("Executing wallet delete command failed, invalid transaction index displayed");
             throw new CommandException(Messages.MESSAGE_INVALID_TRANSACTION_DISPLAYED_INDEX);
         }
 
