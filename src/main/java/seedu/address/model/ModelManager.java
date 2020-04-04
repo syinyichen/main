@@ -128,7 +128,7 @@ public class ModelManager implements Model {
     @Override
     public void setWalletFilePath(Path walletFilePath) {
         requireNonNull(walletFilePath);
-        userPrefs.setAddressBookFilePath(walletFilePath);
+        userPrefs.setWalletFilePath(walletFilePath);
     }
 
     // =========== AddressBook ================================================================================
