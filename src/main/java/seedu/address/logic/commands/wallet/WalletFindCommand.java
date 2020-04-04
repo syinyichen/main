@@ -17,7 +17,7 @@ public class WalletFindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all transactions with description containing "
             + "any of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: prefix/KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: <prefix><keywords>...\n"
             + "Example: " + WALLET_COMMAND_TYPE + " "
             + COMMAND_WORD + " n/rice water chicken\n"
             + WALLET_COMMAND_TYPE + " "
