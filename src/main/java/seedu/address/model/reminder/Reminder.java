@@ -18,7 +18,7 @@ import seedu.address.model.person.User;
 import seedu.address.model.transaction.Loan;
 
 /**
- * Represents a reminder, which reminds people on their unpaid debts through emails.
+ * Represents a reminder, which reminds people on their unpaid loans through emails.
  */
 public class Reminder {
     private User sender;
@@ -64,7 +64,7 @@ public class Reminder {
     /**
      * Constructs the content of the email.
      * @return A message to be sent.
-     * @throws MessagingException if email address of the sender or receiver is invalid.
+     * @throws MessagingException if error occurs while sending the emails.
      */
     private MimeMessage constructMessage() throws MessagingException {
         String content = "<h2><strong>[Sharkie] Reminder</strong></h2><p>Hello "
