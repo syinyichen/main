@@ -23,28 +23,17 @@ Class UserPrefs
 Class ReadOnlyUserPrefs
 
 Package Person {
-Class Person
 Class UniquePersonList
 Class User
 }
 
 Package Transaction {
-Class TransactionList
-abstract Transaction <<abstract>>
+Class "TransactionList" as TransactionListIncome
+Class "TransactionList" as TransactionListExpense
+Class BudgetList
 Class Expense
 Class Income
-Class Debt
-Class Loan
-Class Budget
-Class BudgetList
-}
-
-Package Reminder {
-Class Reminder
-}
-
-Package Tag {
-Class Tag
+abstract "{abstract}\nTransaction" as Transaction
 }
 }
 
@@ -64,38 +53,24 @@ ModelManager o--> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
 
 UserData *--> "1" User
 
-Wallet *--> "2" TransactionList
+Wallet *--> "1" TransactionListIncome
+Wallet *--> "1" TransactionListExpense
 Wallet *--> "1" BudgetList
-BudgetList o--> "*" Budget
-TransactionList o--> "*" Expense
-TransactionList o--> "*" Income
+
+TransactionListExpense o--> "*" Expense
+TransactionListIncome o--> "*" Income
+
 Expense -up-|> Transaction
 Income -up-|> Transaction
-Debt -up-|> Transaction
-Loan -up-|> Transaction
-
-Person *-[hidden]-> "*" Tag
-Transaction *-[hidden]-> "1" Tag
-
-Reminder o-up-> "1" User
-Reminder o-up-> "1" Person
 
 Person -[hidden]right-> User
 UserPrefs -[hidden]right-> Wallet
 Wallet -[hidden]right-> AddressBook
 AddressBook -[hidden]right-> UserData
 UniquePersonList -[hidden]right-> User
-Transaction -[hidden]right-> TransactionList
-Loan -[hidden]right-> Debt
-Debt -[hidden]right-> Income
-Income -[hidden]right-> Expense
-Expense -[hidden]right-> Person
-Debt -[hidden]down-> Tag
-Loan -[hidden]down-> Tag
 
 
 @enduml

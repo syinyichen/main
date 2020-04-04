@@ -10,7 +10,7 @@ Class Email
 Class Name
 Class Phone
 Class UniquePersonList
-Interface PeoplePredicate <<Interface>>
+abstract "{abstract}\nPeoplePredicate" as PeoplePredicate
 Class PeopleNamePredicate
 Class PeoplePhonePredicate
 Class PeopleEmailPredicate
@@ -21,38 +21,51 @@ Class User
 Package Transaction {
 Class Debt
 Class Loan
+Class "TransactionList" as TransactionListDebt
+Class "TransactionList" as TransactionListLoan
+abstract "{abstract}\nTransaction" as Transaction
 }
 
 Package Tag {
 Class Tag
 }
 
-Class AB #FFFFFF
-Class MM #FFFFFF
-Class UD #FFFFFF
-AB --> "1" UniquePersonList
-MM --> "1" Person  : filtered list
-UD -down-> "1" User
+Class AddressBook
+Class ModelManager
+Class UserData
+AddressBook *--> "1" UniquePersonList
+ModelManager --> "1" Person  : filtered list
+ModelManager o--> "1" AddressBook
+ModelManager o--> "1" UserData
+UserData *--> "1" User
 
 UniquePersonList o--> "*" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> "*" Debt
-Person *--> "*" Loan
+Person *--> "*" TransactionListDebt
+Person *--> "*" TransactionListLoan
+TransactionListDebt o--> "*" Debt
+TransactionListLoan o--> "*" Loan
 Person *--> "*" Tag
+
+Debt -up-|> Transaction
+Loan -up-|> Transaction
 
 User *--> Name
 User *--> Phone
 User *--> Email
 
-PeopleNamePredicate .up.|> PeoplePredicate
-PeoplePhonePredicate .up.|> PeoplePredicate
-PeopleEmailPredicate .up.|> PeoplePredicate
-PeopleTagPredicate .up.|> PeoplePredicate
+PeopleNamePredicate -up-|> PeoplePredicate
+PeoplePhonePredicate -up-|> PeoplePredicate
+PeopleEmailPredicate -up-|> PeoplePredicate
+PeopleTagPredicate -up-|> PeoplePredicate
 
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Email
+Name -[hidden]right->Email
+AddressBook -[hidden]left-> UserData
+PeoplePhonePredicate -[hidden]down-> PeopleEmailPredicate
+PeopleNamePredicate -[hidden]down-> PeopleTagPredicate
+PeopleNamePredicate -[hidden]right-> User
 
 @enduml

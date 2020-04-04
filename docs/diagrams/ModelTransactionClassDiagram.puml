@@ -8,7 +8,7 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Transaction {
-abstract Transaction <<abstract>>
+abstract "{abstract}\nTransaction" as Transaction
 Class Description
 Class Amount
 Class Date
