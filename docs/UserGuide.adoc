@@ -31,6 +31,9 @@ It manages your *incomes and expenses*, organises your *contacts* and keeps trac
 
 *Sharkie* boasts a sleek, trendy Graphical User Interface (GUI) while being at its core a *Command Line Application* - this means that the faster you type, the faster you can get those pesky finances out of your head and into Sharkie's management system.
 
+.GUI of Sharkie
+image::Ui.png[width="820"]
+
 Have we reeled you in? Dive into <<Quick Start>> to get on board with Sharkie. Enjoy!
 //end::intro[]
 
@@ -80,20 +83,21 @@ The following steps will help you get Sharkie up and running in no time on your 
 image::EnterUserData.png[width="820"]
 
 +
-. If you are logging in for the first time, key in your Name, Phone and your Email, and press kbd:[Enter] or click on the `Submit` button.
-Your screen should look like _Figure 2_ this after doing so.
+. If you are logging in for the first time, key in your Name, Phone and your Email, and and press kbd:[enter] or click on the `Submit`.
 +
 
-.GUI of Sharkie
-image::Ui.png[width="820"]
+.After inputting user information
+image::EnterPinData.png[width="820"]
 
 +
+. A confirmation pin will be sent to your email. Please key in the confirmation PIN and click on the `Confirm` button. If you did not receive a confirmation PIN after 1 minute, please click on the `Resend PIN` button to get a new PIN.
+. If you are logging in for the first time, Sharkie is already pre-loaded with sample data. You can use the <<peopleclear, `people clear`>> command and <<walletClear, `wallet clear`>> command respectively to remove the data.
 .  Type the command in the command box and press kbd:[Enter] to execute it. +
 e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 .  Some example commands you can try:
-
 * **`people add`**`n/John Doe p/98765432 e/johnd@example.com` : adds a contact named `John Doe` to the Address Book.
 * **`people delete`**`3` : deletes the 3rd contact shown in the current list.
+* **`wallet expense`**`n/Gift for friend $/88 d/12/12/2020 t/Shopping` : adds an expense with these details into the wallet.
 * **`wallet find`**`n/rice` : returns a list of expenses or income with keyword rice.
 * *`exit`* : exits the app.
 
@@ -102,7 +106,7 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 [[Features]]
 == Features
-This section elaborates on the five unique features that make up Sharkie.
+This section introduces the five main features of Sharkie.
 
 //tag::expenditureAndIncome[]
 === Expenditure and income
@@ -118,8 +122,18 @@ to find out more on how to record expenses or incomes in *Sharkie*.
 //end::expenditureAndIncome[]
 
 //tag::contacts[]
-=== Contacts
+=== Contact Management
+If you would like to keep the contact details of a person so that you can use the <<debts-and-loans-feature, debts and loans feature>>,
+*Sharkie* can help you do so!
+
 *Sharkie* notes down and remembers contacts that you have entered in an address book, for easy reference later on!
+Should the contact details change, you can also edit them or delete them. If you need to find a particular person's contact details,
+*Sharkie* will look through all your contacts and quickly help you find the contact that you are looking for!
+
+NOTE: You may visit <<add-person, 5.3.1 Adding a person>>, <<list-people, 5.3.8 Listing all contacts>>,
+<<find-person, 5.3.9 Finding a person>>, <<edit-person, 5.3.10 Editing a person>>, <<delete-person, 5.3.11 Deleting a person>>, <<peopleclear, 5.4.12 Clearing all contacts>>
+for more details on how you can manage your contacts with *Sharkie*.
+
 //end::contacts[]
 
 === Saving the data
@@ -127,6 +141,7 @@ to find out more on how to record expenses or incomes in *Sharkie*.
 All data is saved in the hard disk automatically after any command that changes the data. +
 There is no need to save manually.
 
+[[debts-and-loans-feature]]
 //tag::debts[]
 === Debts and loans
 
@@ -143,14 +158,14 @@ NOTE: Still confused about `debts` and `loans`? Find out more in <<debt-and-loan
 You can view statistics such as the proportion of your spending on different items and how close you are to reaching your self-imposed budget. +
 All statistics are automatically updated and located in the Wallet tab.
 
-NOTE: Check out <<budget-command, 5.2.7 Setting a budget>> to learn how to budget your monthly spending with Sharkie.
+NOTE: Check out <<budget-command, 5.2.8 Setting a budget>> to learn how to budget your monthly spending with Sharkie.
 
 //end::expenditureSummary[]
 
 [[Commands]]
 == Commands
 //tag::commandintro[]
-*Sharkie* uses a simple syntax to function that will be explained here. *Sharkie* is filled with many different commands that can get complicated, so we have segregated it into two parts:
+*Sharkie* uses a simple syntax to function that will be explained here. *Sharkie* is filled with many different commands that can get complicated, so we have segregated them into two parts:
 `people` commands and `wallet` commands.
 
 ====
@@ -161,14 +176,14 @@ NOTE: Check out <<budget-command, 5.2.7 Setting a budget>> to learn how to budge
 * `people` commands are used when you want to do things related to the “People” tab, for instance:
 `people add n/<name> p/<phone number> e/<email address>`
 * `wallet` commands are used when you want to do things related to the “Wallet” tab, for instance:
-`wallet expense n/<item> d/<date:dd/mm/yyyy> $/<price>`
+`wallet expense n/<item> $/<price>  [d/<date:dd/mm/yyyy>] [t/<tag>]`
 * Parameters can be in any order e.g. if the command specifies `n/<name> p/<phone number>`, `p/<phone number> n/<name>` is also acceptable.
 ====
 //end::commandintro[]
 
 //tag::globalcommands[]
 === Global Commands
-Global commands are general commands which help you to interact with Sharkie.
+This section contains details on how to execute two general commands, `help` and `exit`.
 
 ==== Viewing help : `help`
 If you need help regarding the many features of Sharkie and how to operate it, you can use the global `help` command to get a link to this user guide. +
@@ -200,7 +215,7 @@ Sharkie will save your data to a locally stored file (that can be edited using a
 //end::globalcommands[]
 
 === Wallet Commands
-Wallet commands are commands that pertain to your monetary information. If you want to record down transactions or set a monthly budget for yourself, these commands are your best friends.
+This section introduces seven commands that have effect on the `wallet` tab.
 
 [[add-expense-command]]
 //tag::walletexpense[]
@@ -274,18 +289,17 @@ The following are the restrictions of the `wallet income` command, which you wou
 //tag::walletList[]
 ==== Listing all transactions: `list`
 
-Tag an expense with respective tag. +
+Suppose you want to see the full list of transactions, the command you would enter is our `wallet list` command. +
 Format: `wallet list`
 
-****
-* List all transactions in your wallet, which includes expenses and incomes.
-****
+*Example*:
 
-Examples:
+* Suppose you want to list all the transactions out.
 
-* `wallet list`
-Returns the list of transactions. +
-Expected Outcome:
+** The command you would enter is `wallet list`.
+** This lists out all the transactions you have in your wallet.
+
+*Expected Outcome*:
 
     Listed all transactions.
 
@@ -294,78 +308,199 @@ Expected Outcome:
 //tag::walletedit[]
 ==== Editing an income or expense: `edit`
 
-Edits the details of an income or expense in your wallet. +
+Suppose you want to edit the details of an income or expense in your wallet, the command you would enter is our `wallet edit` command. +
 Format: `wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]`
 
-****
-* Edits the details of the expense or income, specified by <index>.
-* <index> must be stated, and it must *exist* in the list of expenses or income.
+====
+*Command Format*
+
+The following are the restrictions of `wallet edit` command, which you would need to take note of:
+
+* The `<index>` of the transaction to be edited must be stated, and it must exist in the list of transactions.
 * The index *must be a positive integer* 1, 2, 3, ...
 * At least one of [n/<name>], [d/<date>], [$/<amount>], [t/<tag>] should be stated. Multiples are allowed as well.
-****
+====
 
-Examples:
 
-* `wallet edit 1 n/Duck rice $/4.00`
-Returns the respective expense with the changes made. +
-Expected Outcome:
+*Example 1*:
 
-    Edited Transaction: Duck rice Description: Duck rice Amount: $4.00 Date: 2020-03-30 Tag: [Food]
+** Suppose you want to edit the first transaction, Dack rce -$4400.00, because you misspelled the name and keyed in the wrong price.
+* The command you would enter is `wallet edit 1 n/Duck rice $/4.00`.
+* This tells *Sharkie* that you want to edit the description and price of the first transaction shown in the wallet.
+
+*Expected Outcome 1*:
+
+     Edited Transaction: Duck rice Description: Duck rice Amount: $4.00 Date: 2020-03-30 Tag: [Food]
+
+*Example 2*:
+
+** Suppose you want to edit the date and tag of the first transaction, Duck rice, because you forgot to input the date and tag.
+* The command you would enter is `wallet edit 1 d/10/04/2020 t/food`.
+* This tells *Sharkie* that you want to edit the date and tag of the first transaction shown in the wallet.
+
+*Expected Outcome 2*:
+
+     Edited Transaction: Duck rice Description: Duck rice Amount: $4.00 Date: 2020-10-04 Tag: [Food]
 
 //end::walletedit[]
 
 //tag::walletfind[]
 ==== Finding an income or expense: `find`
+Suppose you want to find transactions with certain keywords or date within the transaction list in the wallet, the command you would enter is our `wallet find` command. +
 
-Finds an income or expense in your wallet by the keyword inputted. +
-Format: `wallet find n/<keyword> [<keyword> ...]`
-or `wallet find $/<keyword> [<keyword> ...]`
-or `wallet find d/<keyword> [<keyword> ...]`
+Format:
+
+`wallet find n/<keyword> [<keyword> ...]` +
+or `wallet find $/<keyword> [<keyword> ...]` +
+or `wallet find d/<keyword> [<keyword> ...]` +
 or `wallet find t/<keyword> [<keyword> ...]`
 
 
-****
+====
+*Command Format*
+
+The following are the restrictions of `wallet find` command, which you would need to take note of:
+
 * Finds the expenses and income with the stated <keyword>.
-* The keyword is case-insensitive.
-* The keyword need not be in full. For example `wallet find ri` will also display expenses or income with the keyword `rice` as well.
-* The keyword can be either of type description (n/), amount ($/), date (d/) or tag (t/)
-****
+* The keyword can be either of type [n/<description>], [d/<date>], [$/<amount>], or [t/<tag>].
+* You cannot search for multiple types of keywords in one command.
+* Finding multiple keywords of the same type are allowed.
+* At least 1 keyword must be inputted.
+* The keyword is case-insensitive for finding of description (n/) and tag (t/).
+* The keyword need not be in full for finding of description (n/) and tag (t/). For example `"wallet find n/ri"` will also display transactions with the keyword `rice`.
+* For finding of amount ($/x), the amount entered, x, must be an integer.
+* For finding of amount ($/x), x being an integer, the transactions displayed will range from from $x.00 to $x.99.
+* For finding of date (d/), the date inputted should follow `dd/mm/yyyy`.
+====
+*Example 1*:
 
-Examples:
+** Suppose you want to search for transactions with description containing keyword `rice` and `soup`.
+* The command you would enter is `wallet find n/rice soup`.
+* This tells *Sharkie* that you want to look for transactions with description `rice` and transactions with description `soup`.
 
-* `wallet find n/rice noodles`
-Returns a list of expenses and income containing the keyword <rice> and <noodles> +
-Expected Outcome:
+*Expected Outcome 1*:
 
     3 transactions listed!:
+    [6 APRIL 2020]
+    1. [Food] Duck Rice -$4.00
+    2. [Food] Chicken Rice -$2.50
+    [1 APRIL 2020]
+    3. [Food] Fish Soup -$3.80
+
+*Example 2*:
+
+** Suppose you want to search for transactions with amount ranging around `$7` and amount ranging around `$30`.
+* The command you would enter is `wallet find $/7 30`.
+* This tells *Sharkie* that you want to look for transactions with cost or income around `$7` and `$30`.
+
+*Expected Outcome 2*:
+
+    3 transactions listed!:
+    [6 APRIL 2020]
+    1. [Food] Duck Rice -$7.38
+    2. [Food] Chicken Rice -$30.50
+    [1 APRIL 2020]
+    3. [Money] April Allowance +$30.80
+
+*Example 3*:
+
+** Suppose you want to search for transactions with date `10/10/2020` and date `11/11/2020`.
+* The command you would enter is `wallet find d/10/10/2020 11/11/2020`.
+* This tells *Sharkie* that you want to look for transactions done on `10/10/2020` and transactions done on `11/11/2020`.
+
+*Expected Outcome 3*:
+
+    3 transactions listed!:
+    [10 OCTOBER 2020]
     1. [Food] Duck Rice $4.00
     2. [Food] Chicken Rice $2.50
-    3. [Food] Bean Noodles $3.80
-    ...​
+    [11 NOVEMBER 2020]
+    3. [Food] Fish Soup $3.80
+
+*Example 4*:
+
+** Suppose you want to search for transactions with tag `food` and date `shopping`.
+* The command you would enter is `wallet find t/food shopping`.
+* This tells *Sharkie* that you want to look for transactions with the tag `food` and with the tag `shopping`.
+
+*Expected Outcome 4*:
+
+    3 transactions listed!:
+    [10 OCTOBER 2020]
+    1. [Food] Duck Rice $4.00
+    2. [Food] Chicken Rice $2.50
+    [11 NOVEMBER 2020]
+    3. [Shopping] Gucci $1111.00
 
 //end::walletfind[]
 
 //tag::walletdelete[]
 ==== Deleting an income or expense: `delete`
+Suppose you want to delete a transaction, either an expense on income, the command you would enter is our `wallet delete` command. +
 
-Deletes an income or an expense from your wallet. +
 Format: `wallet delete <index>`
 
-****
-* Deletes the income or expense specified by <index>.
+====
+*Command Format*
+
+The following are the restrictions of `wallet delete` command, which you would need to take note of:
+
+* The `<index>` of the transaction to be deleted must be stated, and it must exist in the list of transactions.
 * The index *must be a positive integer* 1, 2, 3, ...
-* The index must *exist*.
-****
+* Only 1 transaction can be deleted each time. Multiple deletions in one command is not allowed.
+====
 
-Examples:
+*Example 1*:
 
-* `wallet delete 1`
-Removes the expenses relative to the index. +
-Expected Outcome:
+** Suppose you want to remove the first transaction, Duck rice, from your wallet.
+* The command you would enter is `wallet delete 1`.
+* This tells *Sharkie* that you want to delete the first transaction shown in the wallet.
 
-    Deleted Transaction: Duck rice Description: Duck rice Amount: $4.00 Date: 2020-03-30 Tag: [Food]
+*Expected Outcome 1*:
+
+     Deleted Transaction: Duck rice Description: Duck rice Amount: $4.00 Date: 2020-03-30 Tag: [Food]
+
+*Example 2*:
+
+** Suppose you used the command `wallet find n/money` to filter out all transactions with keyword money, and you want to remove the second transaction you see, Red packet money, from your wallet's filtered list of transactions.
+* The command you would enter is `wallet delete 2`.
+* This tells *Sharkie* that you want to delete the second transaction shown in the wallet, after being filtered.
+
+*Expected Outcome 2*:
+
+     Deleted Transaction: Red packet money Description: Red packet money Amount: $300.00 Date: 2020-03-30 Tag: [Income]
+
+
 
 //end::walletdelete[]
+
+// tag::walletClear[]
+[[walletClear]]
+==== Clearing all transactions : `clear`
+
+Suppose you want to clear all the data in wallet, the command you would enter is our `wallet clear` command. +
+
+Format: `wallet clear`
+
+====
+*Command Format*
+
+The following are the restrictions of `wallet clear` command, which you would need to take note of:
+
+* Data cleared, which includes the transactions and budget data, cannot be restored after using wallet clear command.
+====
+
+*Example*:
+
+** Suppose you want to clear all the preset transactions in the wallet.
+* The command you would enter is `wallet clear`.
+* This tells *Sharkie* that you want to clear all transactions in the wallet.
+
+*Expected Outcome*:
+
+    Wallet has been cleared!
+
+// end::walletClear[]
 
 [[budget-command]]
 //tag::walletbudget[]
@@ -409,9 +544,14 @@ The following are restrictions of `wallet budget` command, which you will need t
 //end::walletbudget[]
 
 === People Commands
+<<<<<<< HEAD
 People commands are commands which pertain to the social features of Sharkie. These commands help you to save your contacts and record down interpersonal transactions.
+=======
+This section introduces twelve commands that have effect on the `people` tab.
+>>>>>>> master
 
 //tag::peopleadd[]
+[[add-person]]
 ==== Adding a person: `add`
 
 Suppose you want to add a new person to the address book, the command you would enter is our `people add` command. +
@@ -448,59 +588,90 @@ into the address book.
 
 //end::peopleadd[]
 
-// @@author cheyannesim
 // tag::owe[]
 ==== Recording the money you owe: `owe`
 
-Records the amount of money that you owe a person. +
-Format: `people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
+If you owe a person money and you want to record the debt, the command you would enter is the 'people owe' command. +
 
-****
-* Records the amount of money specified in `<amount>` you owe to the person at the specified `<index>`.
-* The index refers to the index number shown in the displayed person list.
-* The index *must be a positive integer* 1, 2, 3, ...
-* Amount *must be positive*.
-****
+*Format*: `people owe <person's index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
 
-Examples:
+====
+*Command Format*
 
-* `people owe 4 n/food $/5.00 d/10/10/2020`
-Records that you owe the 4th person $5.00 on 10/10/2020. +
-Expected Outcome:
+The following are the restrictions of `people owe` command, which you would need to take note of:
+
+* The `<person's index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
+* The `<amount>` you entered should be non-negative, have up to two decimal places, and not be too large
+(not exceeding ninety quadrillion dollars).
+====
+
+NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
+specific person in the address book whom you owe money to. +
+ +
+The amount of money recorded will be added under your friend's `Debts` section. +
+`Debts` represent the amount of money you owe your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._ +
+ +
+
+[TIP]
+The `<date:dd/mm/yyyy>` is optional. If `<date:dd/mm/yyyy>` is not specified, the date that you record the debt will be used.
+
+*Example*:
+
+* Suppose you owe Grace, who is the fourth person in the address book, $5 for food on 10 October 2020.
+
+** The command you would enter is `people owe 4 n/food $/5.00 d/10/10/2020`
+** This records that you owe Grace, the fourth person in the address book, $5.00 for food on 10/10/2020. +
+
+*Expected Outcome*:
+
+* Your debt to Grace will increase by $5.
 
     Increased debt to Grace by $5.00. You now owe Grace $10.00.
 
-NOTE: The amount of money recorded will be added under your friend's `Debts` section. +
-`Debts` represent the amount of money you owe your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
-
 // end::owe[]
-// @@author
 
 // tag::return[]
 ==== Recording the money you return: `returned`
 
-Records that a debt that you owe a person has been returned. +
-Format: `people returned <person's index> [i/<debt's index>]`
-****
-* Records that the debt at the specified <debt's index> has been returned to the person specified at <person's index>.
-* The person's index refers to the index number shown in the displayed person list.
-* The debt's index refers to the index number shown in the 'Debts' table of the person specified.
-* Both indexes *must be positive integers* 1, 2, 3, ...
-****
+When you have returned a person a debt, and you want to remove the debt record, the command that you would enter is
+the `people returned` command. +
 
-NOTE: `Debt` represents the amount of money you owe your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+*Format*: `people returned <person's index> [i/<debt's index>]`
+
+====
+*Command Format*
+
+The following are the restrictions of `people returned` command, which you would need to take note of:
+
+* The `<person's index>` and `<debt's index>` you entered should be positive integers, e.g. 1, 2, 3, ...
+====
+
+NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates
+a specific person in the address book whom you returned the money to. +
+_Still confused? Find out more about `person's index` at <<personIndexFAQ, What is a [blue]`person's index`>>._ +
+ +
+The `<debt's index>` above refers to the index number shown in the displayed debt list in *Sharkie*. It indicates a specific
+debt under the person whom you returned the money to. +
+_Still confused? Find out more about `debt's index` at <<loanDebtIndexFAQ, What is a [blue]`debt's index`>>._ +
+ +
+`Debt` represents the amount of money you owe your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._ +
 
 [TIP]
-The debt's index is optional.
-Sharkie will record all debts as returned if the debt's index is not specified.
+The `<debt's index>` is optional.
+Sharkie will record all debts as returned if the `<debt's index>` is not specified.
 
-Examples:
+*Example*:
 
-* `people returned 4 i/1`
-Records that you return the 4th person the 1st debt. +
-Expected Outcome:
+* Suppose that you have just returned Grace, the fourth person in the address book, the first debt in her debt list.
+
+** The command that you would enter is `people returned 4 i/1`.
+** This records that you have returned the money for the first debt of Grace, the fourth person in the address book. +
+
+*Expected Outcome*:
+
+* The first debt of Grace will be removed from her debt list and the unsettled debts to Grace will be shown.
 
     Reduced debt to Grace by $5.00. You now owe Grace $5.00.
 
@@ -509,27 +680,43 @@ Expected Outcome:
 // tag::lend[]
 ==== Recording the money you lend: `lend`
 
-Records the amount of money that you lent to a person. This will increase that person's loan. +
-Format: `people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
+If you lend a person money and you want to record the loan, the command you would enter is the 'people lend' command. +
 
-****
-* Records the amount of money specified in `<price>` you owe to the person at the specified `<index>`.
-* The index refers to the index number shown in the displayed person list.
-* The index *must be a positive integer* 1, 2, 3, ...
-* Price *must be positive*.
-****
+*Format*: `people lend <person's index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`
 
-Examples:
+====
+*Command Format*
 
-* `people lend 5 n/dinner $/5.00 d/10/10/2020`
-Records that you lend the 5th person $5.00 on 10/10/2020. +
-Expected Outcome:
+The following are the restrictions of `people lend` command, which you would need to take note of:
+
+* The `<person's index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
+* The `<amount>` you entered should be non-negative, have up to two decimal places, and not be too large
+(not exceeding ninety quadrillion dollars).
+
+====
+
+NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
+specific person in the address book whom you lend money to. +
+ +
+The amount of money recorded will be added under your friend's `Loans` section. +
+`Loans` represent the amount of money you lend your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._ +
+
+[TIP]
+The `<date:dd/mm/yyyy>` is optional. If `<date:dd/mm/yyyy>` is not specified, the date that you record the loan will be used.
+
+*Example*:
+
+* Suppose you lend Syin Yi, who is the fifth person in the address book, $5 for dinner on 10 October 2020.
+
+** The command you would enter is `people lend 5 n/dinner $/5.00 d/10/10/2020`
+** This records that you owe Syin Yi, the fifth person in the address book, $5.00 for dinner on 10/10/2020. +
+
+*Expected Outcome*:
+
+* Your loan to Syin Yi will increase by $5.
 
     Increased loan to Syin Yi by $5.00. Syin Yi now owes you $8.00.
-
-NOTE: The amount of money recorded will be added under your friend's `Loans` section. +
-`Loans` represent the amount of money you lend your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>_.
 
 // end::lend[]
 
@@ -669,6 +856,7 @@ You will also receive a copy of each of the emails sent to your friends:
 //end::peopleremindall[]
 
 //tag::peoplefind[]
+[[find-person]]
 ==== Finding a person: `find`
 
 Suppose you want to find a person in your contact list by a specific keyword,
@@ -725,73 +913,109 @@ _Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the
 //end::peoplefind[]
 
 //tag::peoplelist[]
+[[list-people]]
 ==== Listing all contacts: `list`
 
-Lists everyone in the contact book. +
-Format: `people list`
+Suppose that you have just executed the <<find-person, `people find`>> command. And now, you would like to see the
+entire list of people in your address book. Then, the command that you would enter is the `people list` command. +
 
-Examples:
+*Format*: `people list`
 
-* `people list`
-Returns the list of everyone in the contact book. +
-Expected Outcome:
+*Example*:
+
+* Suppose you want to view the entire list of people in your address book.
+
+** The command that you would enter is `people list`.
+** This will list out your entire address book.
+
+*Expected Outcome*:
+
+* The details of everyone in the address book, including their name, phone, email address, debts and loans, will be listed.
 
     Listed all persons.
 
 //end::peoplelist[]
 
 // tag::edit[]
+[[edit-person]]
 ==== Editing a person : `edit`
 
-Edits an existing person in the address book. +
-Format: `people edit <index> [n/<name>] [p/<phone number>] [e/<email>]`
+In instances when a person has changed his contact details, and you want to update them, the command that you would enter
+is the `people edit` command. +
 
-****
-* Edits the person at the specified `<index>`. The index refers to the index number shown in the displayed person list. The index *must be a positive integer* 1, 2, 3, ...
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-****
+*Format*: `people edit <person's index> [n/<name>] [p/<phone number>] [e/<email>]`
 
-Examples:
+====
+*Command Format*
 
-* `people edit 1 e/johndoe@example.com` +
-Edits the email address of the 1st person to be `johndoe@example.com`. +
-Expected Outcome:
+The following are the restrictions of `people edit` command, which you would need to take note of:
+
+* The `<person's index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
+* You should provide at least one of the optional fields.
+====
+
+NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
+specific person in the address book whom you lend money to. +
+
+WARNING: Existing values will be updated to the new values that you have inputted.
+
+*Example*:
+
+* Suppose you want to update the John's email, and John is the first person in your address book.
+
+** The command you would enter is `people edit 1 e/johndoe@example.com`.
+** This edits the email address of the first person, John, to be `johndoe@example.com`. +
+
+*Expected Outcome*:
+
+* In the list of people shown, John's email will be johndoe@example.com.
 
     Edited Person: John Doe Phone: 91234568 Email: johndoe@example.com You owe: $0.00 You lent: $0.00 Tags:
 
 // end::edit[]
 
 // tag::delete[]
+[[delete-person]]
 ==== Deleting a person : `delete`
 
-Deletes the specified person from the address book. +
-Format: `people delete <index>`
+If you have no reason to keep a person in your address book anymore and would like to delete his contact details, the
+command that you would enter is the `people delete` command.
 
-****
-* Deletes the person at the specified `<index>`.
-* The index refers to the index number shown in the displayed person list.
-* The index *must be a positive integer* 1, 2, 3, ...
-****
+*Format*: `people delete <person's index>`
 
-Examples:
+====
+*Command Format*
 
-* `people delete 2` +
-Deletes the 2nd person in the address book. +
-Expected Outcome:
+The following is the restrictions of `people delete` command, which you should take note of:
 
-    Deleted Person: Joel Phone: 91234567 Email: something@email.com You owe: $0.00 You lent: $0.00 Tags:
+* The `<person's index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
+====
 
-* `people find Betsy` +
-`people delete 1` +
-Deletes the 1st person in the results of the `find` command. +
-Expected Outcome:
+
+NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
+specific person in the address book whom you would like to delete. +
+
+WARNING: Remember to check and ensure that the `<person's index>` that you have inputted corresponds to the correct person.
+
+*Example*:
+
+* Suppose you want to delete Betsy from your address book, and Betsy is somewhere deep in the list. Then, you can first
+use the <<find-person, `people find`>> command to find Betsy, followed by the `people delete` command.
+
+** The command that you would enter is `people find n/Betsy`, followed by `people delete 1`.
+** *Sharkie* will first find Betsy for you, and Betsy will be shown as the first result on the list. Then, the latter
+command will delete Betsy from the address book.
+
+*Expected Outcome*:
+
+* Betsy will no longer be shown on the list of people.
 
     Deleted Person: Betsy Phone: 91234567 Email: something@email.com You owe: $0.00 You lent: $0.00 Tags:
 
 // end::delete[]
 
 // tag::peopleclear[]
+[[peopleclear]]
 ==== Clearing all contacts : `clear`
 
 Suppose you want to clear all the contacts in your address book,
@@ -827,10 +1051,8 @@ the command you would enter is our `people clear` command.
 
 ****
 For example,
-
 * `1` is the `person's index` of Alex Yeoh, whereas
 * `2` is the `person's index` of Bernice Yu.
-
 .What is a `person's index`?
 image::personIndexFAQ.png[width=900]
 ****
@@ -845,10 +1067,8 @@ index number shown in a person's displayed loans list. A `debt's index` indicate
 
 ****
 For example,
-
 * The `debt's index` of the debt, `Dinner | $12.00 | 1 APR 2020`, under Bernice Yu is `1`.
 * The `loan's index` of the loan, `Movie | $10.00 | 2 FEB 2020`, under Bernice Yu is `1`.
-
 .What is a `debt's index` or a `loan's index`?
 image::loanDebtIndexFAQ.png[width=900]
 ****
@@ -928,7 +1148,7 @@ If you wish to have a quick reference to the commands available in *Sharkie*, yo
 === Global Commands
 The following are the global commands that are available in *Sharkie* for you to use! You do not need to use any prefixes to use these commands.
 
-[%autowidth, width=100%]
+[cols="10%, 45%, 45%"]
 .Global commands available in *Sharkie*.
 |===
 | *Command*  | *Format* | *Expected outcome*
@@ -939,7 +1159,7 @@ The following are the global commands that are available in *Sharkie* for you to
 === Wallet Commands
 The following commands are wallet-related commands that are available in *Sharkie* for you to use! You will need to use the prefix `wallet` to use the commands.
 
-[%autowidth, width=100%]
+[cols="10%, 45%, 45%"]
 .Wallet commands available in *Sharkie*.
 |===
 | *Command*  | *Format* | *Expected outcome*
@@ -957,7 +1177,7 @@ or #`wallet find t/<keyword> [<keyword> ...]`# + | Finds your transaction(s) wit
 
 === People Commands
 The following commands are people-related commands that are available in *Sharkie* for you to use! You will need to use the prefix `people` to use the commands.
-[%autowidth, width=100%]
+[cols="10%, 45%, 45%"]
 .People commands available in *Sharkie*.
 |===
 | *Command*  | *Format* | *Expected outcome*

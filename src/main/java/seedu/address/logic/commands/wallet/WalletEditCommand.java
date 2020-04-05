@@ -37,16 +37,16 @@ public class WalletEditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the transaction identified "
             + "by the index number used in the displayed transaction list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_AMOUNT + "AMOUNT "
-            + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Parameters: <index> (must be a positive integer) "
+            + PREFIX_NAME + "<name> "
+            + PREFIX_AMOUNT + "<amount> (must be positive) "
+            + "[" + PREFIX_DATE + "<date:dd/mm/yyyy>] "
+            + "[" + PREFIX_TAG + "<tag>]\n"
             + "Example: " + WALLET_COMMAND_TYPE + " "
             + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Duck Rice "
-            + PREFIX_AMOUNT + "3.80"
-            + PREFIX_DATE + "11/11/2020"
+            + PREFIX_AMOUNT + "3.80 "
+            + PREFIX_DATE + "11/11/2020 "
             + PREFIX_TAG + "food";
 
     public static final String MESSAGE_EDIT_TRANSACTION_SUCCESS = "Edited Transaction: %1$s";

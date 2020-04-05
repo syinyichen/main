@@ -226,7 +226,7 @@ public class SharkieParserTest {
 
     @Test
     public void parseWalletCommand_edit() throws Exception {
-        Transaction transaction = new TransactionBuilder().buildExpense();
+        Transaction transaction = new TransactionBuilder().withAmount("2").buildExpense();
         EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder(transaction).build();
         WalletEditCommand command = (WalletEditCommand) parser.parseCommand(WALLET_COMMAND_TYPE + " "
                 + WalletEditCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased() + " "

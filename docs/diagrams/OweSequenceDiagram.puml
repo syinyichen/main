@@ -29,6 +29,7 @@ peopleOweCommand -> Model : getFilteredPersonList()
 activate Model
 
 Model --> peopleOweCommand : lastShownList
+deactivate Model
 
 peopleOweCommand -> personUserOwes : lastShownList.get(1)
 activate personUserOwes
@@ -50,6 +51,7 @@ peopleOweCommand --> peopleOweCommand : addedDebtPerson
 deactivate peopleOweCommand
 
 peopleOweCommand -> Model : setPerson(\npersonUserOwes, \naddedDebtPerson)
+activate Model
 
 Model -> AddressBook : setPerson(personUserOwes, addedDebtPerson)
 activate AddressBook

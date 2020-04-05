@@ -52,10 +52,8 @@ public class PeopleOweCommandParser implements Parser<PeopleOweCommand> {
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_NAME).get());
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
 
-        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-        } else {
-            date = Date.getDefault();
+        if (amount.isZero()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleOweCommand.MESSAGE_USAGE));
         }
 
         try {
@@ -63,6 +61,12 @@ public class PeopleOweCommandParser implements Parser<PeopleOweCommand> {
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleOweCommand.MESSAGE_USAGE), pe);
+        }
+
+        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        } else {
+            date = Date.getDefault();
         }
 
         Debt debt = new Debt(description, amount, date);
