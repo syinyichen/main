@@ -63,7 +63,6 @@ public class Reminder {
 
     /**
      * Constructs the content of the email.
-     * @return A message to be sent.
      * @throws MessagingException if error occurs while sending the emails.
      */
     private void constructMessage() throws MessagingException {
