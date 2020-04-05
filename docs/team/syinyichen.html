@@ -659,27 +659,35 @@ during execution of commands, which take some time to run, such as <code>people 
 <p>Note the following symbols and formatting used in this document:<br></p>
 </div>
 <table class="tableblock frame-all grid-all fit-content stretch">
-<caption class="title">Table 1. Symbols used in this User Guide.</caption>
+<caption class="title">Table 1. Symbols and formats used in this User Guide.</caption>
 <colgroup>
 <col>
 <col>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Symbol</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Meaning</strong></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><strong>Symbol/<br>
+Format</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Meaning</strong></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="gray"><code>command</code></span></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="gray"><code>command</code></span></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">kbd:[Enter]</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">This symbol indicates the enter button on the keyboard.</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">kbd:[Enter]</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">This symbol indicates the enter button on the keyboard.</p></td>
 </tr>
-</tbody>
-</table>
-<div class="admonitionblock note">
+<tr>
+<td class="tableblock halign-left valign-middle"><div class="content"><div class="exampleblock">
+<div class="content">
+
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">This yellow box indicates the limitations of each command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle" colspan="2"><div class="content"><div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
@@ -690,8 +698,24 @@ This symbol indicates information.
 </td>
 </tr>
 </table>
-</div>
-<div class="admonitionblock tip">
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle" colspan="2"><div class="content"><div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+This symbol indicates warnings.
+</td>
+</tr>
+</table>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle" colspan="2"><div class="content"><div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
@@ -702,7 +726,10 @@ This symbol indicates tips.
 </td>
 </tr>
 </table>
-</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
@@ -711,7 +738,25 @@ This symbol indicates tips.
 <div class="sect2">
 <h3 id="_expenditure_and_income">Expenditure and income</h3>
 <div class="paragraph">
-<p><strong>Sharkie</strong> notes down what you have spent on for the month, and also notes down your income for the month to help you properly track your money flow!</p>
+<p>If you are a university student, who starts to manage your own money, but struggles to track your expenses or meet
+your saving goals, <strong>Sharkie</strong> would be a good application for you to start with.</p>
+</div>
+<div class="paragraph">
+<p><strong>Sharkie</strong> allows you to records what you have spent on for the month, and also notes down your income for the month
+to help you properly track your money flow!</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+You may visit <a href="#add-expense-command">5.2.1 Adding an expense</a> or <a href="#add-income-command">5.2.2 Adding an income</a>
+to find out more on how to record expenses or incomes in <strong>Sharkie</strong>.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -722,21 +767,76 @@ This symbol indicates tips.
 <div class="sect3">
 <h4 id="_adding_a_person_add">Adding a person: <code>add</code></h4>
 <div class="paragraph">
-<p>Adds a person to the address book<br>
-Format: <code>people add n/&lt;name&gt; p/&lt;phone number&gt; e/&lt;email address&gt;</code></p>
+<p>Suppose you want to add a new person to the address book, the command you would enter is our <code>people add</code> command.<br></p>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p><strong>Format</strong>: <code>people add n/&lt;name&gt; p/&lt;phone number&gt; e/&lt;email address&gt;</code></p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Command Format</strong></p>
+</div>
+<div class="paragraph">
+<p>The following are the limitations of <code>people add</code> command, which you would need to take note:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>people add n/Joel p/91234567 e/joel@u.nus.edu</code>
-Adds a person named Joel into your contact, along with his phone number and e-mail address<br>
-Expected Outcome:</p>
+<p>The <code>&lt;name&gt;</code> you entered should only contain alphanumeric characters and spaces.</p>
+</li>
+<li>
+<p>The <code>&lt;phone number&gt;</code> you entered should only contain numbers and it should be at least 3 digits long.</p>
+</li>
+<li>
+<p>The <code>&lt;email address&gt;</code> you entered should be in the format of <em>local-part@domain</em>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses
+(!#$%&amp;'*+/=?`{|}~^.-).</p>
+</li>
+<li>
+<p>The domain name must be at least 2 characters long, start and end with alphanumeric characters.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Example</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Suppose you want to add your new friend, Joel, along with his phone number (91234567) and email (joel@example.com)
+into the address book.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The command you would enter is <code>people add n/Joel p/91234567 e/joel@example.com</code>.</p>
+</li>
+<li>
+<p>This adds a person named Joel into your contact, along with his phone number and e-mail address</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Expected Outcome</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Your new friend, Joel will be added into your address book:</p>
 <div class="literalblock">
 <div class="content">
-<pre>New person added: Joel Phone: 91234567 Email: joel@u.nus.edu</pre>
+<pre>New person added: Joel Phone: 91234567 Email: joel@example.com</pre>
 </div>
 </div>
 </li>
@@ -744,23 +844,26 @@ Expected Outcome:</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_sending_reminder_to_a_friend_remind">Sending reminder to a friend: <code>remind</code></h4>
+<h4 id="_recording_the_money_you_received_received">Recording the money you received: <code>received</code></h4>
 <div class="paragraph">
-<p>Reminds a friend, through an email to return the loans to you.<br>
-Format: <code>people remind &lt;index&gt;</code></p>
+<p>Suppose you want to record that you have received the money for a certain loan (or for all loans) from your friend,
+the command you would enter is our <code>people received</code> command.</p>
 </div>
-<div class="sidebarblock">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>people received &lt;person&#8217;s index&gt; [i/&lt;loan&#8217;s index&gt;]</code></p>
+</div>
+<div class="exampleblock">
 <div class="content">
+<div class="paragraph">
+<p><strong>Command Format</strong></p>
+</div>
+<div class="paragraph">
+<p>The following is the limitations of <code>people received</code> command, which you would need to take note:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Reminds the person at the specified <code>&lt;index&gt;</code> return the loans to you.</p>
-</li>
-<li>
-<p>The index refers to the index number shown in the displayed person list.</p>
-</li>
-<li>
-<p>The index <strong>must be a positive integer</strong> 1, 2, 3, &#8230;&#8203;</p>
+<p>The <code>&lt;person&#8217;s index&gt;</code> and <code>&lt;loan&#8217;s index&gt;</code> you entered should be positive integers, e.g. 1, 2, 3, &#8230;&#8203;</p>
 </li>
 </ul>
 </div>
@@ -773,8 +876,16 @@ Format: <code>people remind &lt;index&gt;</code></p>
 <div class="title">Note</div>
 </td>
 <td class="content">
+The <code>&lt;person&#8217;s index&gt;</code> above refers to the index number shown in the displayed person list in <strong>Sharkie</strong>. It indicates a
+specific person in the address book, who you received from.<br>
+<em>Still confused? Find out more about <code>person&#8217;s index</code> at <a href="#personIndexFAQ">What is a <code class="blue">person&#8217;s index</code></a>.</em><br>
+<br>
+The <code>&lt;loan&#8217;s index&gt;</code> above refers to the index number shown in the displayed loans list in <strong>Sharkie</strong>. It indicates a
+specific loan under the person, which you received from.<br>
+<em>Still confused? Find out more about <code>loan&#8217;s index</code> at <a href="#loanDebtIndexFAQ">What is a <code class="blue">loan&#8217;s</code> index`</a>.</em><br>
+<br>
 <code>Loan</code> represents the amount of money you lend your friends.<br>
-<em>Still confused? Find out more about <code>debts</code> and <code>loans</code> at <a href="#debt-and-loan">the differences between debts and loans</a>.</em>
+<em>Still confused? Find out more about <code>debts</code> and <code>loans</code> at <a href="#debt-and-loan">the differences between debts and loans</a>.</em><br>
 </td>
 </tr>
 </table>
@@ -786,21 +897,132 @@ Format: <code>people remind &lt;index&gt;</code></p>
 <div class="title">Tip</div>
 </td>
 <td class="content">
-To use this command, you must include your details in Sharkie.<br>
-You can enter or edit your details at <a href="#editing-user-data"><code>Edit</code> &gt; <code>Edit user&#8217;s data</code></a>.
+The <code>&lt;loan&#8217;s index&gt;</code> is optional.
+All loans will be marked as <code>received</code> for the indicated person if the <code>&lt;loan&#8217;s index&gt;</code> is not specified.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p><strong>Example</strong>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>people remind 1</code>
-Sends a reminder to the 1st person in your contact list.<br>
-Expected Outcome:</p>
+<p>Suppose you want to record that you have received the money from Joel, who is the second person in the address book,
+for the first loan in his loans list.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The command you would enter is <code>people received 2 i/1</code>.</p>
+</li>
+<li>
+<p>This records that you have received the money for the first loan of Joel, the second person in the address book.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Expected Outcome</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The first loan of Joel will be removed from his loans list and the unsettled loans of Joel will be shown.</p>
+<div class="literalblock">
+<div class="content">
+<pre>Removed loan to Joel by $10.00. Joel now owes you $2.00.</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sending_reminder_to_a_friend_remind">Sending reminder to a friend: <code>remind</code></h4>
+<div class="paragraph">
+<p>Suppose you want to remind a friend to return the unsettled loans to you through an email,
+the command you would enter is our <code>people remind</code> command.</p>
+</div>
+<div class="paragraph">
+<p><strong>Format</strong>: <code>people remind &lt;person&#8217;s index&gt;</code></p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p><strong>Command Format</strong></p>
+</div>
+<div class="paragraph">
+<p>The following is the limitations of <code>people remind</code> command, which you would need to take note:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>&lt;person&#8217;s index&gt;</code> you entered should be a positive integer, e.g. 1, 2, 3, &#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The <code>&lt;person&#8217;s index&gt;</code> above refers to the index number shown in the displayed person list in <strong>Sharkie</strong>. It indicates a
+specific person in the address book, who you want to remind.<br>
+<em>Still confused? Find out more about <code>person&#8217;s index</code> at <a href="#personIndexFAQ">What is a <code class="blue">person&#8217;s index</code></a>.</em><br>
+<br>
+<code>Loan</code> represents the amount of money you lend your friends.<br>
+<em>Still confused? Find out more about <code>debts</code> and <code>loans</code> at <a href="#debt-and-loan">the differences between debts and loans</a>.</em>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+You would need to connect to the Internet and include your details in <strong>Sharkie</strong> before using this command.
+You can enter or edit your details at <a href="#editing-user-data"><code class="blue">Edit</code> &gt; <code class="blue">Edit user&#8217;s data</code></a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><strong>Example</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Suppose you want to remind Daniel, who is the first person in your address book to return you your money.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The command you would enter is <code>people remind 1</code>.</p>
+</li>
+<li>
+<p>This requests <strong>Sharkie</strong> to send an email to Daniel, the first person in your address book.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Expected Outcome</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Daniel will receive a reminder from <strong>Sharkie</strong> via the email. You will also receive a copy of the email sent to Daniel:</p>
 <div class="literalblock">
 <div class="content">
 <pre>Reminded Daniel to return $10.00!
@@ -812,33 +1034,55 @@ Sharkie has sent a copy of the reminder to your email!</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_sending_reminder_to_all_friend_remindall">Sending reminder to all friend: <code>remindall</code></h4>
+<h4 id="_sending_reminder_to_all_friends_remindall">Sending reminder to all friends: <code>remindall</code></h4>
 <div class="paragraph">
-<p>Sends reminders through email to all the friends that have not yet paid up.<br>
-Format: <code>people remindall</code></p>
+<p>Suppose you want to remind all your friends in your address book, who has yet paid up, to return you your money,
+the command you would enter is our <code>people remindall</code> command.</p>
 </div>
-<div class="admonitionblock tip">
+<div class="paragraph">
+<p><strong>Format</strong>: <code>people remindall</code></p>
+</div>
+<div class="admonitionblock warning">
 <table>
 <tr>
 <td class="icon">
-<div class="title">Tip</div>
+<div class="title">Warning</div>
 </td>
 <td class="content">
-To use this command, you must include your details in Sharkie.<br>
-You can enter or edit your details at <a href="#editing-user-data"><code>Edit</code> &gt; <code>Edit user&#8217;s data</code></a>.
+You would need to connect to the Internet and include your details in <strong>Sharkie</strong> before using this command.
+You can enter or edit your details at <a href="#editing-user-data"><code class="blue">Edit</code> &gt; <code class="blue">Edit user&#8217;s data</code></a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Examples:</p>
+<p><strong>Example</strong>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>people remindall</code>
-Sends a reminder to all the people who owe you money.<br>
-Expected Outcome:</p>
+<p>Suppose you want to remind all your friends in your address book, who has yet paid up.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The command you would enter is <code>people remindall</code>.</p>
+</li>
+<li>
+<p>This requests <strong>Sharkie</strong> to send an email to everyone in your address book, who has yet paid up.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Expected Outcome</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>All your friends who has yet paid up will receive a reminder from <strong>Sharkie</strong> via the email.
+You will also receive a copy of each of the emails sent to your friends:</p>
 <div class="literalblock">
 <div class="content">
 <pre>Reminded Daniel to return $10.00!
@@ -854,45 +1098,87 @@ Sharkie has sent copies of the reminders to your email!</pre>
 <div class="sect3">
 <h4 id="_finding_a_person_find">Finding a person: <code>find</code></h4>
 <div class="paragraph">
-<p>Finds a person in your contact list by the keywords given.<br>
-Format: <code>people find n/&lt;keyword&gt; [&lt;keyword&gt;&#8230;&#8203;]</code>
+<p>Suppose you want to find a person in your contact list by a specific keyword,
+the command you would enter is our <code>people find</code> command.</p>
+</div>
+<div class="paragraph">
+<p><strong>Format</strong>: <code>people find n/&lt;keyword&gt; [&lt;keyword&gt;&#8230;&#8203;]</code>
 or <code>people find p/&lt;keyword&gt; [&lt;keyword&gt;&#8230;&#8203;]</code>
 or <code>people find e/&lt;keyword&gt; [&lt;keyword&gt;&#8230;&#8203;]</code>
 or <code>people find t/&lt;keyword&gt; [&lt;keyword&gt;&#8230;&#8203;]</code></p>
 </div>
-<div class="sidebarblock">
+<div class="exampleblock">
 <div class="content">
+<div class="paragraph">
+<p><strong>Command Format</strong></p>
+</div>
+<div class="paragraph">
+<p>The following are the limitations of <code>people find</code> command, which you would need to take note:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Finds the people with the stated &lt;keyword&gt;.</p>
+<p>You would not have to consider the case of the <code>&lt;keyword&gt;</code>, as it is case-insensitive.</p>
 </li>
 <li>
-<p>The keywords are case-insensitive</p>
+<p>The <code>&lt;keyword&gt;</code> you want to enter need not be in full. For example, <code>people find n/jo</code> will display the
+persons whose name contains with the keyword <code>jo</code>, such as <code>Joel</code>.</p>
 </li>
 <li>
-<p>The keyword need not be in full. For example <code>people find jo</code> will also display the person with the keyword <code>Joel</code> as well.</p>
-</li>
+<p>The <code>&lt;keyword&gt;</code> you entered should be either of the type name (<code>n/</code>), phone (<code>p/</code>), email (<code>p/</code>) or tag (<code>t/</code>).</p>
+<div class="ulist">
+<ul>
 <li>
-<p>The keyword can be either of type name (n/), phone (p/), email (e/) or tag (t/).</p>
+<p><code>Debt</code> and <code>Loan</code> (case-insensitive) are the only tags, which you are allowed to use in <code>people find</code> command.</p>
 </li>
-<li>
-<p><code>Debt</code> and <code>Loan</code> (case-insensitive) are the only tags allowed to be used in <code>people find</code> command.
-<code>people find t/debt loan</code> would return a list of people with unsettled debt(s) or loan(s).</p>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<code>Loans</code> represent the amount of money you lend your friends and <code>debts</code> represent the amount of money you owe
+your friends.<br>
+<em>Still confused? Find out more about <code>debts</code> and <code>loans</code> at <a href="#debt-and-loan">the differences between debts and loans</a>.</em>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>Examples:</p>
+<p><strong>Example #1</strong>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>people find n/Grace</code>
-Returns a list of people with the name, Grace.<br>
-Expected Outcome:</p>
+<p>Suppose you want to find your friends, who are called Grace.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The command you would enter is <code>people find n/Grace</code>.</p>
+</li>
+<li>
+<p>This requests <strong>Sharkie</strong> to list out the people with the name, Grace.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Expected Outcome #1</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>All your friends with the name, Grace will be listed out:</p>
 <div class="literalblock">
 <div class="content">
 <pre>2 persons listed!:
@@ -904,22 +1190,82 @@ Expected Outcome:</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_clearing_all_contacts_clear">Clearing all contacts : <code>clear</code></h4>
 <div class="paragraph">
-<p>Clears all the contacts from the address book.<br>
-Format: <code>people clear</code></p>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
+<p><strong>Example #2</strong>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>people clear</code>
-Returns an empty address book.<br>
-Expected Outcome:</p>
+<p>Suppose you want to find your friends with unsettled debt(s) or loan(s).</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The command you would enter is <code>people find t/debt loan</code>.</p>
+</li>
+<li>
+<p>This requests <strong>Sharkie</strong> to list out the people with unsettled debt(s) or loan(s).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Expected Outcome #2</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>All your friends with unsettled debt(s) or loan(s) will be listed out:</p>
+<div class="literalblock">
+<div class="content">
+<pre>3 persons listed!:
+1. Cheyanne Sim
+2. Grace Pan
+3. Joel Lim
+…</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_clearing_all_contacts_clear">Clearing all contacts : <code>clear</code></h4>
+<div class="paragraph">
+<p>Suppose you want to clear all the contacts in your address book,
+the command you would enter is our <code>people clear</code> command.</p>
+</div>
+<div class="paragraph">
+<p><strong>Format</strong>: <code>people clear</code></p>
+</div>
+<div class="paragraph">
+<p><strong>Example</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Suppose you want to clear all your contacts.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The command you would enter is <code>people clear</code>.</p>
+</li>
+<li>
+<p>This requests <strong>Sharkie</strong> to deletes all the contacts in your address book.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Expected Outcome</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Sharkie</strong> will delete all the contacts and return an empty address book.</p>
 <div class="literalblock">
 <div class="content">
 <pre>Address book has been cleared!</pre>
@@ -934,6 +1280,62 @@ Expected Outcome:</p>
 <div class="sect1">
 <h2 id="_faq">FAQ</h2>
 <div class="sectionbody">
+<div id="personIndexFAQ" class="paragraph">
+<p><strong>Q</strong>: What is a <code>person&#8217;s index</code>?<br>
+<strong>A</strong>: A <code>person&#8217;s index</code> is the index number shown in the displayed person list in <strong>Sharkie</strong>. It indicates a specific person in the address book.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>For example,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>1</code> is the <code>person&#8217;s index</code> of Alex Yeoh, whereas</p>
+</li>
+<li>
+<p><code>2</code> is the <code>person&#8217;s index</code> of Bernice Yu.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/personIndexFAQ.png" alt="personIndexFAQ" width="900">
+</div>
+<div class="title">Figure 1. What is a <code>person&#8217;s index</code>?</div>
+</div>
+</div>
+</div>
+<div id="loanDebtIndexFAQ" class="paragraph">
+<p><strong>Q</strong>: What is a <code>debt&#8217;s index</code> or a <code>loan&#8217;s index</code>?<br>
+<strong>A</strong>: A <code>debt&#8217;s index</code> is the index number shown in a person&#8217;s displayed debts list, whereas a <code>loan&#8217;s index</code> is the
+index number shown in a person&#8217;s displayed loans list. A <code>debt&#8217;s index</code> indicates a specific debt of a person and a
+<code>loan&#8217;s index</code> indicated a specific loan of a person.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p>For example,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>debt&#8217;s index</code> of the debt, <code>Dinner | $12.00 | 1 APR 2020</code>, under Bernice Yu is <code>1</code>.</p>
+</li>
+<li>
+<p>The <code>loan&#8217;s index</code> of the loan, <code>Movie | $10.00 | 2 FEB 2020</code>, under Bernice Yu is <code>1</code>.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/loanDebtIndexFAQ.png" alt="loanDebtIndexFAQ" width="900">
+</div>
+<div class="title">Figure 2. What is a <code>debt&#8217;s index</code> or a <code>loan&#8217;s index</code>?</div>
+</div>
+</div>
+</div>
 <div id="editing-user-data" class="paragraph">
 <p><strong>Q</strong>: How to edit user&#8217;s data?<br>
 <strong>A</strong>: Click on <code>Edit</code>, then <code>Edit user&#8217;s data</code> on your menu bar.</p>
@@ -942,7 +1344,7 @@ Expected Outcome:</p>
 <div class="content">
 <img src="../images/EditUserDataInstruction.png" alt="EditUserDataInstruction" width="400">
 </div>
-<div class="title">Figure 1. Editing user data in Sharkie</div>
+<div class="title">Figure 3. Editing user data in Sharkie</div>
 </div>
 <div id="debt-and-loan" class="paragraph">
 <p><strong>Q</strong>: What are the differences between <code>Debts</code> and <code>Loans</code>?<br>
@@ -967,7 +1369,7 @@ Expected Outcome:</p>
 <div class="content">
 <img src="../images/DebtAndLoanDifferences.png" alt="DebtAndLoanDifferences" width="800">
 </div>
-<div class="title">Figure 2. Differences between <code>debts</code> and <code>loans</code></div>
+<div class="title">Figure 4. Differences between <code>debts</code> and <code>loans</code></div>
 </div>
 </div>
 </div>
@@ -997,7 +1399,7 @@ Expected Outcome:</p>
 <div class="content">
 <img src="../images/ModelClassDiagram.png" alt="ModelClassDiagram" width="800">
 </div>
-<div class="title">Figure 3. Structure of the Model Component</div>
+<div class="title">Figure 5. Structure of the Model Component</div>
 </div>
 <div class="exampleblock">
 <div class="content">
@@ -1015,7 +1417,7 @@ Expected Outcome:</p>
 <div class="content">
 <img src="../images/ModelPersonDiagram.png" alt="ModelPersonDiagram" width="500">
 </div>
-<div class="title">Figure 4. In-depth Structure of Person in the Model Component</div>
+<div class="title">Figure 6. In-depth Structure of Person in the Model Component</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1028,7 +1430,7 @@ Expected Outcome:</p>
 <div class="content">
 <img src="../images/ModelTransactionDiagram.png" alt="ModelTransactionDiagram" width="1200">
 </div>
-<div class="title">Figure 5. In-depth Structure of Transaction in the Model Component</div>
+<div class="title">Figure 7. In-depth Structure of Transaction in the Model Component</div>
 </div>
 </div>
 </div>
@@ -1084,7 +1486,7 @@ respective lists change.</p>
 <div class="content">
 <img src="../images/ReceivedActivityDiagram.png" alt="ReceivedActivityDiagram" width="600">
 </div>
-<div class="title">Figure 6. Activity diagram of recording the amount of money received</div>
+<div class="title">Figure 8. Activity diagram of recording the amount of money received</div>
 </div>
 <div class="sect3">
 <h4 id="_implementation_of_people_received_command">Implementation of <code>people received</code> command</h4>
@@ -1118,7 +1520,7 @@ in the <code>Model</code> is updated.</p>
 <div class="content">
 <img src="../images/GetPeopleReceivedCommandSequenceDiagram.png" alt="GetPeopleReceivedCommandSequenceDiagram" width="600">
 </div>
-<div class="title">Figure 7. Sequence diagram of the <code>people received</code> command</div>
+<div class="title">Figure 9. Sequence diagram of the <code>people received</code> command</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1810,7 +2212,7 @@ until the details keyed in by the user is valid.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-03-31 19:12:30 +0800
+Last updated 2020-04-01 10:10:17 +0800
 </div>
 </div>
 </body>

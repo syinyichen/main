@@ -25,6 +25,7 @@ import seedu.address.logic.commands.people.PeopleRemindAllCommand;
 import seedu.address.logic.commands.people.PeopleRemindCommand;
 import seedu.address.logic.commands.people.PeopleReturnedCommand;
 import seedu.address.logic.commands.wallet.WalletBudgetCommand;
+import seedu.address.logic.commands.wallet.WalletClearCommand;
 import seedu.address.logic.commands.wallet.WalletDeleteCommand;
 import seedu.address.logic.commands.wallet.WalletEditCommand;
 import seedu.address.logic.commands.wallet.WalletExpenseCommand;
@@ -158,6 +159,9 @@ public class SharkieParser {
 
         case WalletListCommand.COMMAND_WORD:
             return new WalletListCommand();
+
+        case WalletClearCommand.COMMAND_WORD:
+            return new WalletClearCommand();
 
         case WalletEditCommand.COMMAND_WORD:
             return new WalletEditCommandParser().parse(arguments);

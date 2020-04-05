@@ -157,51 +157,82 @@ NOTE: The lifeline for `PeopleDeleteCommandParser` should end at the destroy mar
 .Structure of the Model Component
 image::ModelClassDiagram.png[width=750]
 
-* The following is an in-depth view of how `ModelManager` is implemented:
-
 .In-depth structure of the Model Manager
 image::ModelManagerClassDiagram.png[width=800]
 
 NOTE: The `ModelManager` class diagram is drawn separately as it is too complicated to include all the details in the
 Model component diagram.
 
+*API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
+
+The `Model`,
+
+* stores a `UserPref` object that represents the user's preferences.
+* stores the <<wallet, Wallet>> data.
+* stores the <<address-book, Address Book>> data.
+* stores the User data.
+* exposes an unmodifiable `ObservableList<Person>` and an unmodifiable `ObservableList<<<transaction,Transaction>`>> that can be
+'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when the data in the
+respective lists change.
+* does not depend on any of the other three components.
+
+The `Wallet`,
+
+* consists of a `BudgetList`.
+* consists of a `TransactionList`, which contains `Income`(s) and a `TransactionList` which contains `Expense`(s).
+
+The `AddressBook`,
+
+* consists of a `UniquePersonList`.
+
+The `UserData`,
+
+* consists of a `User`.
+
 ====
-The _Model_ package consists of four main packages: _Person_, <<transaction, _Transaction_>>,
+The _Model_ package consists of four main packages: _Person_, _Transaction_,
 _Reminder_ and _Tag_.
 
-* The diagram below shows how the _Person_ package is implemented:
-
 .In-depth structure of Person package in the Model Component
-image::ModelPersonDiagram.png[width=1200]
+image::ModelPersonDiagram.png[width=900]
 
-* The diagram below shows how the _Transaction_ package is implemented:
+The diagram above shows how the _Person_ package is implemented:
+
+* `PeoplePredicate`: `PeopleNamePredicate`, `PeoplePhonePredicate`, `PeopleTagPredicate`, `PeopleEmailPredicate`
+are implemented for the execution of `people find` command.
+* A `User` consists of a `Name`, a `Phone` and an `Email`.
+* A `Person` consists of a `Name`, a `Phone`, an `Email`, a `TransactionList` of `Debt`(s),
+a `TransactionList` of `Loan`(s) and a set of `Tag`(s).
 
 .In-depth structure of Transaction package in the Model Component
 image::ModelTransactionDiagram.png[width=1200]
 .Transaction class diagram
 image::ModelTransactionClassDiagram.png[width=400]
 
-* The _Reminder_ package only consist of a class, `Reminder`:
+NOTE: The association between `Transaction` and `Amount` is not shown in _Figure 10_ to keep the diagram less messy.
+However, the association is shown in _Figure 11_.
+
+The diagram above shows how the _Transaction_ package is implemented:
+
+* `WalletPredicate`: `DateContainsKeywordsPredicate`, `DescriptionContainsKeywordsPredicate`, `TagContainsKeywordsPredicate`, `AmountContainsKeywordsPredicate`
+are implemented for the execution of `wallet find` command.
+* The abstract class `Transaction` is extended by `Income`, `Expense`, `Debt` and `Loan`. A `Transaction` consists of
+a `Description`, an `Amount`, a `Date` and a `Tag`.
+* A `Budget` consists of a `Year`, a `Month` and an `Amount`.
 
 .Reminder class diagram
-image::ModelReminderClassDiagram.png[width=200]
+image::ModelReminderClassDiagram.png[width=400]
 
-* The _Tag_ package only consist of a class, `Tag` and it does not depends on other components in the Model.
+The _Reminder_ package is implemented for *Sharkie*'s reminder feature.
+
+* The `Reminder` consists of a `User` (sender) and a `Person` (receiver).
+* The `ConfirmationEmail` consists of a `Name` (user's name) and an `Email` (user's email).
+** The `ConfirmationEmail` is implemented to confirm the user's email address during user's first login to *Sharkie*.
+
+The _Tag_ package only consist of a class, `Tag` and it does not depends on other components in the Model.
 
 ====
 
-*API* : link:{repoURL}/src/main/java/seedu/address/model/Model.java[`Model.java`]
-
-The `Model`,
-
-* stores a `UserPref` object that represents the user's preferences.
-* stores the <<address-book, Address Book>> data.
-* stores the <<wallet, Wallet>> data.
-* stores the User data.
-* exposes an unmodifiable `ObservableList<Person>` and an unmodifiable `ObservableList<Transaction>` that can be
-'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when the data in the
-respective lists change.
-* does not depend on any of the other three components.
 //end::model-design[]
 
 //tag::storage[]
@@ -295,7 +326,7 @@ This command can be accessed from `Logic#execute()`. It deletes the `Loan`(s) of
 The following activity diagram illustrates what happens when the user executes a `people received` command:
 
 .Activity diagram of recording the amount of money received
-image::ReceivedActivityDiagram.png[width=600]
+image::ReceivedActivityDiagram.png[width=800]
 
 ==== Implementation of `people received` command
 
@@ -1130,7 +1161,7 @@ These instructions only provide a starting point for testers to work on; testers
 
 .. Click on the close button at the top right corner on the window. +
    Expected: All windows of the application is closed
-.. Enter `exit` command in the command box and press kbd:[Enter].
+.. Enter `exit` command in the command box and press kbd:[Enter]. +
    Expected: Same as previous.
 
 ==== Saving data
@@ -1196,7 +1227,9 @@ Remaining amount of loan, which have yet settled by the first person is shown in
 
 . Reminding a specific person about the unsettled loan(s).
 
-.. Prerequisites: Connected to the Internet. The person who you want to remind exists in the person list. The person has at least one loan in the loan list.
+.. Prerequisites: Connected to the Internet. Your firewall or antivirus programme (if any) allows the connection to STMP port 587.
+The person who you want to remind exists in the person list. The person has at least one loan in the loan list.
+The email of the person to be reminded is a valid email.
 .. Test case: `people remind 1` +
    Expected: A reminder is sent to the first person's email. A success message shown in the result display.
 .. Test case: `people remind 0` +
@@ -1210,7 +1243,8 @@ Remaining amount of loan, which have yet settled by the first person is shown in
 
 . Reminding all people about the unsettled loan(s).
 
-.. Prerequisites: Connected to the Internet. At least one person in the person list has at least a loan.
+.. Prerequisites: Connected to the Internet. Your firewall or antivirus programme (if any) allows the connection to STMP port 587.
+At least one person in the list has at least one loan. The email(s) of the people to be reminded are valid email(s).
 .. Test case: `people remindall` +
    Expected: A reminder is sent everyone, who has unsettled loan. A list of people reminded is shown in the result display.
 
