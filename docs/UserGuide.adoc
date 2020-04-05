@@ -320,7 +320,7 @@ or `wallet find t/<keyword> [<keyword> ...]`
 The following are the restrictions of `wallet find` command, which you would need to take note of:
 
 * Finds the expenses and income with the stated <keyword>.
-* The keyword can be either of type description (n/), amount ($/), date (d/) or tag (t/).
+* The keyword can be either of type [n/<description>], [d/<date>], [$/<amount>], or [t/<tag>].
 * You cannot search for multiple types of keywords in one command.
 * Finding multiple keywords of the same type are allowed.
 * At least 1 keyword must be inputted.
