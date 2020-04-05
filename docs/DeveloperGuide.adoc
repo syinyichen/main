@@ -1174,6 +1174,83 @@ _{ more test cases ... }_
 
 === Manual Testing on Wallet Tab
 
+//tag::testWalletList
+==== Listing all transactions
+. Listing all the transactions in the wallet.
+
+.. Prerequisites: There must be transactions in the wallet.
+.. Test case: `wallet list` +
+   Expected: All transactions in wallet listed out.
+//end::testWalletList
+
+//tag::testWalletEdit
+==== Editing a transaction
+
+. Editing a specific transaction.
+
+.. Prerequisites: The transaction to be edited exist in the wallet.
+At least 1 field to be edited must be inputted.
+The new details provided must be different from the old details.
+.. Test case: `wallet edit 1 n/Chicken Rice` +
+   Expected: Transaction 1 is now updated with new description _Chicken Rice_. A success message shown in the result display.
+.. Test case: `wallet edit 1 n/Dinner $/12.00 d/02/02/2020 t/food` +
+   Expected: Transaction 1 is now updated with new description _Dinner_ with amount _$12.00_, recorded under the date _02/02/2020_ with tag _Food_.
+A success message shown in the result display.
+.. Test case: `wallet edit 0 n/Chicken Rice` +
+   Expected: The transaction is not edited. Error details shown in the result display.
+.. Other incorrect edit commands to try:
+*** `wallet edit`,
+*** `wallet edit 1`,
+*** `wallet edit 1 n/`,
+*** `wallet edit 1 $/`,
+*** `wallet edit 1 d/`,
+*** `wallet edit 1 t/`,
+*** `wallet edit 1 d/yyyy/mm/dd`, (where the order of day month and year is not correct)
+*** `wallet edit 1 d/x`, (where x is not a date)
+*** `wallet edit x n/Dinner $/12.00 d/02/01/2020` (where x is larger than the transaction list size),
+*** `wallet edit x $/12.00` (where x is a negative number),
+*** `wallet edit x $/12.00` (where x is a non-integer),
+*** `wallet edit 1 $/x` (where x is a negative number),
+*** `wallet edit 1 n/Dinner $/x` (where x is greater 92233720368547758.07),
+*** `wallet edit 1 n/Dinner $/x` (where x has more than 2 decimal places) or
+*** `wallet edit 1 n/Dinner $/x` (where x is not a number). +
+   Expected: Similar to previous
+//end::testWalletEdit
+
+//tag::testWalletFind
+==== Finding transactions
+
+. Editing a specific transaction.
+
+.. Prerequisites: The transaction list must not be empty. The keyword can only be either of type [n/<description>], [d/<date>], [$/<amount>], or [t/<tag>].
+At least 1 keyword to search must be inputted.
+.. Test case: `wallet find n/chicken duck` +
+   Expected: All transactions with description containing either _chicken_ or _duck_ are displayed. A success message shown in the result display.
+.. Test case: `wallet find $/3 12` +
+   Expected: All transactions with amount in the range of _$3.00 to $3.99_ or _$12.00 to $12.999_ are displayed.
+A success message shown in the result display.
+.. Test case: `wallet find $/3 12` +
+   Expected: All transactions with amount in the range of _$3.00 to $3.99_ or _$12.00 to $12.999_ are displayed.
+A success message shown in the result display.
+.. Test case: `wallet find n/Chicken d/20/12/2020` +
+   Expected: Find command do not run. Error details shown in the result display.
+.. Other incorrect edit commands to try:
+*** `wallet find`,
+*** `wallet edit 1`,
+*** `wallet edit 1 n/`,
+*** `wallet edit 1 $/`,
+*** `wallet edit 1 d/`,
+*** `wallet edit 1 t/`,
+*** `wallet edit x n/Dinner $/12.00 d/02/01/2020` (where x is larger than the transaction list size),
+*** `wallet edit x $/12.00` (where x is a negative number),
+*** `wallet edit x $/12.00` (where x is a non-integer),
+*** `wallet edit 1 $/x` (where x is a negative number),
+*** `wallet edit 1 n/Dinner $/x` (where x is greater 92233720368547758.07),
+*** `wallet edit 1 n/Dinner $/x` (where x has more than 2 decimal places) or
+*** `wallet edit 1 n/Dinner $/x` (where x is not a number). +
+   Expected: Similar to previous
+//end::testWalletFind
+
 === Manual Testing on People Tab
 
 ==== Recording the flow of money
