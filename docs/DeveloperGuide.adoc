@@ -1201,9 +1201,9 @@ _{ more test cases ... }_
 .. Test case: `wallet income n/Teaching Assistant Job $/100` +
    Expected: An expense named _Teaching Assistant Job_ with _$100.00_ with default tag _Misc_ recorded under the current date is added to the transaction list.
 .. Test case: `wallet income n/Teaching Assistant Job $/100 d/02/02/2020` +
-   Expected: An expense named _Teaching Assistant Job_ with _$100.00_ with default tag _Misc_ recorded under the date _02 FEB 2020_ is added to the transaction list. 
+   Expected: An expense named _Teaching Assistant Job_ with _$100.00_ with default tag _Misc_ recorded under the date _02 FEB 2020_ is added to the transaction list.
 .. Test case: `wallet income n/Teaching Assistant Job $/100 t/Job` +
-   Expected: An expense named _Teaching Assistant Job_ with _$100.00_ with tag _Job_ recorded under the current date is added to the transaction list. 
+   Expected: An expense named _Teaching Assistant Job_ with _$100.00_ with tag _Job_ recorded under the current date is added to the transaction list.
 .. Test case: `wallet income n/Teaching Assistant Job $/asdf`
    Expected: The income is not recorded. Error details shown in result display.
 .. Other incorrect expense commands to try:
@@ -1212,7 +1212,7 @@ _{ more test cases ... }_
 *** `wallet income $/100`,
 *** `wallet income n/Teaching Assistant Job`
 
-. Adding a budget
+. Setting a budget
 .. Prerequisites: None.
 .. Test case: `wallet budget $/800` +
    Expected: A budget of _$800_ is set as the default budget for Sharkie. The UI should update to display your total expenditure over the set budget, assuming you have no budget set for the current month.
