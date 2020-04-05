@@ -41,6 +41,10 @@ public class WalletExpenseCommandParser implements Parser<WalletExpenseCommand> 
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_NAME).get());
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
 
+        if (amount.isZero()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, WalletExpenseCommand.MESSAGE_USAGE));
+        }
+
         Date date;
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
