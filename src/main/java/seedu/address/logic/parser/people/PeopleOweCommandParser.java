@@ -56,17 +56,17 @@ public class PeopleOweCommandParser implements Parser<PeopleOweCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleOweCommand.MESSAGE_USAGE));
         }
 
-        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-        } else {
-            date = Date.getDefault();
-        }
-
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, PeopleOweCommand.MESSAGE_USAGE), pe);
+        }
+
+        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        } else {
+            date = Date.getDefault();
         }
 
         Debt debt = new Debt(description, amount, date);
