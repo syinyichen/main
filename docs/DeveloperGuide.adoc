@@ -221,13 +221,14 @@ a `Description`, an `Amount`, a `Date` and a `Tag`.
 * A `Budget` consists of a `Year`, a `Month` and an `Amount`.
 
 .Reminder class diagram
-image::ModelReminderClassDiagram.png[width=400]
+image::ModelReminderClassDiagram.png[width=250]
 
-The _Reminder_ package is implemented for *Sharkie*'s reminder feature.
+The _Reminder_ package is implemented for *Sharkie*'s reminder feature. The diagram above shows how the _Reminder_ package is implemented:
 
-* The `Reminder` consists of a `User` (sender) and a `Person` (receiver).
-* The `ConfirmationEmail` consists of a `Name` (user's name) and an `Email` (user's email).
-** The `ConfirmationEmail` is implemented to confirm the user's email address during user's first login to *Sharkie*.
+* The `Reminder` consists of a `User` (the sender) and a `Person` (the receiver).
+** A `Reminder` object is created whenever the `people remind` or `people remindall` command is executed.
+* The `ConfirmationEmail` consists of a `User`.
+** The `ConfirmationEmail` is implemented to validate the user's email address during user's first login to *Sharkie*.
 
 The _Tag_ package only consist of a class, `Tag` and it does not depends on other components in the Model.
 
@@ -628,9 +629,10 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 _{More to be added}_
 //end::userStories[]
 
-//tag::useCases[]
 [appendix]
 == Use Cases
+
+//tag::useCases[]
 
 === Wallet Tab
 
@@ -991,10 +993,9 @@ Use case ends.
 
 //end::useCases[]
 
-//tag::apendixd[]
 [appendix]
 == Non Functional Requirements
-
+//tag::apendixd[]
 .  Sharkie should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
 .  Sharkie should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 .  University students with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
@@ -1004,9 +1005,8 @@ Use case ends.
 .  The Sharkie JAR file size should be less than 100Mb.
 .  Users should be able to choose to encrypt their data for confidentiality.
 
-
-[appendix]
 //end::apendixd[]
+[appendix]
 == Glossary
 
 [[address-book]] Address book::
@@ -1167,7 +1167,7 @@ The window size may not be optimum.
 . Exiting the application
 
 .. Click on the close button at the top right corner on the window. +
-   Expected: All windows of the application is closed
+   Expected: All windows of the application is closed.
 .. Enter `exit` command in the command box and press kbd:[Enter]. +
    Expected: Same as previous.
 
@@ -1184,7 +1184,7 @@ _{ more test cases ... }_
 === Manual Testing on People Tab
 
 ==== Recording the flow of money
-
+//tag::manual-testing-owe[]
 . Recording the money you owe a person
 
 .. Prerequisites: The person whom you owe exists in the person list.
@@ -1209,7 +1209,9 @@ Expected: The loan is not recorded. Error details shown in the result display.
 *** `people owe 1 n/Breakfast $/x` (where x has more than 2 decimal places) or
 *** `people owe 1 n/Breakfast $/x` (where x is not a number). +
 Expected: Similar to previous
+//end::manual-testing-owe[]
 
+//tag::manual-testing-returned[]
 . Recording the money you returned to a person
 
 .. Prerequisites: The person whom you returned to exists in the person list.
@@ -1229,7 +1231,9 @@ Expected: No debt is deleted. Error details shown in the result display.
 *** `people returned 1 i/x` (where x is a negative number or zero) or
 *** `people returned 1 i/x` (where x is a non-integer value) +
 Expected: Similar to previous
+//end::manual-testing-returned[]
 
+//tag::manual-testing-lend[]
 . Recording the money you lend to a person
 
 .. Prerequisites: The person whom you lend to exists in the person list.
@@ -1254,7 +1258,9 @@ list of the first person. Total amount of money, which you lent to the first per
 *** `people lend 1 n/Dinner $/x` (where x has more than 2 decimal places) or
 *** `people lend 1 n/Dinner $/x` (where x is not a number). +
    Expected: Similar to previous
+//end::manual-testing-lend[]
 
+//tag::manual-testing-received[]
 . Recording the money you received from a person
 
 .. Prerequisites: The person whom you received from exists in the person list.
@@ -1274,7 +1280,9 @@ Remaining amount of loan, which have yet settled by the first person is shown in
 *** `people received 1 i/x` (where x is a negative number or zero) or
 *** `people received 1 i/x` (where x is a non-integer value) +
    Expected: Similar to previous
+//end::manual-testing-received[]
 
+//tag::manual-testing-reminder[]
 ==== Sending reminders
 
 . Reminding a specific person about the unsettled loan(s).
@@ -1283,7 +1291,7 @@ Remaining amount of loan, which have yet settled by the first person is shown in
 The person who you want to remind exists in the person list. The person has at least one loan in the loan list.
 The email of the person to be reminded is a valid email.
 .. Test case: `people remind 1` +
-   Expected: A reminder is sent to the first person's email. A success message shown in the result display.
+   Expected: A reminder is sent to the first person's email. A carbon copy (CC) of the reminder is sent to you. A success message shown in the result display.
 .. Test case: `people remind 0` +
    Expected: No reminder is sent. Error details shown in the result display.
 .. Other invalid `people remind` commands to try:
@@ -1298,10 +1306,12 @@ The email of the person to be reminded is a valid email.
 .. Prerequisites: Connected to the Internet. Your firewall or antivirus programme (if any) allows the connection to STMP port 587.
 At least one person in the list has at least one loan. The email(s) of the people to be reminded are valid email(s).
 .. Test case: `people remindall` +
-   Expected: A reminder is sent everyone, who has unsettled loan. A list of people reminded is shown in the result display.
+   Expected: A reminder is sent everyone, who has unsettled loan. A carbon copy (CC) of each of the reminder is sent to you. A list of people reminded is shown in the result display, along with the success message.
+
+//end::manual-testing-reminder[]
 
 ==== Managing contacts
-
+//tag::manual-testing-peopleadd[]
 . Adding a person
 
 .. Test case: `people add n/John Doe p/91234567 e/John@example.com` +
@@ -1319,7 +1329,9 @@ At least one person in the list has at least one loan. The email(s) of the peopl
 *** `people add p/91234567` or
 *** `people add e/John@example.com` +
     Expected: Similar to previous.
+//end::manual-testing-peopleadd[]
 
+//tag::manual-testing-peopleedit[]
 . Editing the details of a person
 
 .. Prerequisites: The person whom you want to edit exists in the person list.
@@ -1346,7 +1358,9 @@ Expected: No person is edited. Error details shown in the result display.
 *** `people edit x n/Somthing` (where x is a negative number) or
 *** `people edit x n/Something` (where x is a non-integer value) +
 Expected: Similar to (c).
+//end::manual-testing-peopleedit[]
 
+//tag::manual-testing-peoplefind[]
 . Finding a person
 
 .. Prerequisites: The person whom you want to find exists in the person list.
@@ -1372,12 +1386,16 @@ be listed since no one has _phone_ as their phone number.
 .. Other invalid `people find` commands to try:
 *** `people find d/invalidTag` +
 Expected: Similar to (d).
+//end::manual-testing-peoplefind[]
 
+//tag::manual-testing-peoplelist[]
 . Listing everyone
 
 .. Test case: `people list` +
 Expected: Everyone in the contacts will be listed.
+//end::manual-testing-peoplelist[]
 
+//tag::manual-testing-peopledelete[]
 . Deleting a person while all persons are listed
 
 .. Prerequisites: List all persons using the `people list` command. The person who you want to delete exists in the person list.
@@ -1391,7 +1409,9 @@ Expected: Everyone in the contacts will be listed.
 *** `people delete x` (where x is a negative number) or
 *** `people delete x` (where x is a non-integer value) +
    Expected: Similar to previous.
+//end::manual-testing-peopledelete[]
 
+//tag::manual-testing-peopleclear[]
 . Deleting everyone
 
 .. Test case: `people clear` +
@@ -1399,6 +1419,7 @@ Expected: The list of people will be empty.
 
 NOTE: If you have deleted everyone in the addressbook, and would like to retrieve some sample data to test *Sharkie*,
 simply delete *data/addressbook.json*.
+//end::manual-testing-peopleclear[]
 
 [appendix]
 == Effort
