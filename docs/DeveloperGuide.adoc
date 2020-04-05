@@ -221,13 +221,14 @@ a `Description`, an `Amount`, a `Date` and a `Tag`.
 * A `Budget` consists of a `Year`, a `Month` and an `Amount`.
 
 .Reminder class diagram
-image::ModelReminderClassDiagram.png[width=400]
+image::ModelReminderClassDiagram.png[width=250]
 
-The _Reminder_ package is implemented for *Sharkie*'s reminder feature.
+The _Reminder_ package is implemented for *Sharkie*'s reminder feature. The diagram above shows how the _Reminder_ package is implemented:
 
-* The `Reminder` consists of a `User` (sender) and a `Person` (receiver).
-* The `ConfirmationEmail` consists of a `Name` (user's name) and an `Email` (user's email).
-** The `ConfirmationEmail` is implemented to confirm the user's email address during user's first login to *Sharkie*.
+* The `Reminder` consists of a `User` (the sender) and a `Person` (the receiver).
+** A `Reminder` object is created whenever the `people remind` or `people remindall` command is executed.
+* The `ConfirmationEmail` consists of a `User`.
+** The `ConfirmationEmail` is implemented to validate the user's email address during user's first login to *Sharkie*.
 
 The _Tag_ package only consist of a class, `Tag` and it does not depends on other components in the Model.
 
@@ -628,9 +629,10 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 _{More to be added}_
 //end::userStories[]
 
-//tag::useCases[]
 [appendix]
 == Use Cases
+
+//tag::useCases[]
 
 === Wallet Tab
 
@@ -1160,7 +1162,7 @@ These instructions only provide a starting point for testers to work on; testers
 . Exiting the application
 
 .. Click on the close button at the top right corner on the window. +
-   Expected: All windows of the application is closed
+   Expected: All windows of the application is closed.
 .. Enter `exit` command in the command box and press kbd:[Enter]. +
    Expected: Same as previous.
 
@@ -1178,6 +1180,7 @@ _{ more test cases ... }_
 
 ==== Recording the flow of money
 
+//tag::manual-testing-lend[]
 . Recording the money you lend to a person
 
 .. Prerequisites: The person who you lend to exist in the person list.
@@ -1202,7 +1205,9 @@ list of the first person. Total amount of money, which you lent to the first per
 *** `people lend 1 n/Dinner $/x` (where x has more than 2 decimal places) or
 *** `people lend 1 n/Dinner $/x` (where x is not a number). +
    Expected: Similar to previous
+//end::manual-testing-lend[]
 
+//tag::manual-testing-received[]
 . Recording the money you received from a person
 
 .. Prerequisites: The person who you received from exist in the person list.
@@ -1222,7 +1227,9 @@ Remaining amount of loan, which have yet settled by the first person is shown in
 *** `people received 1 i/x` (where x is a negative number or zero) or
 *** `people received 1 i/x` (where x is a non-integer value) +
    Expected: Similar to previous
+//end::manual-testing-received[]
 
+//tag::manual-testing-reminder[]
 ==== Sending reminders
 
 . Reminding a specific person about the unsettled loan(s).
@@ -1247,6 +1254,8 @@ The email of the person to be reminded is a valid email.
 At least one person in the list has at least one loan. The email(s) of the people to be reminded are valid email(s).
 .. Test case: `people remindall` +
    Expected: A reminder is sent everyone, who has unsettled loan. A list of people reminded is shown in the result display.
+
+//end::manual-testing-reminder[]
 
 ==== Deleting a person
 

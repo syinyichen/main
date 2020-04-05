@@ -171,7 +171,10 @@ If you need help regarding the many features of Sharkie and how to operate it, y
 ** Typing `help` will give you a link to our user guide.
 
 *Expected Outcome*: +
-A window will pop up, providing you with a clickable link that directs you to this user guide.
+
+* A window will pop up, providing you with a clickable link that directs you to this user guide.
+
+    Opened help window.
 
 ==== Exiting the program : `exit`
 
@@ -185,7 +188,8 @@ If you're done with using Sharkie and wish to exit the application safely, you c
 ** Typing `exit` will save your data and quit Sharkie.
 
 *Expected Outcome*: +
-Sharkie will save your data to a locally stored file (that can be edited using a text editor), and will help you quit the application safely.
+
+* Sharkie will save your data to a locally stored file (that can be edited using a text editor), and will help you quit the application safely.
 
 //end::globalcommands[]
 
@@ -517,14 +521,14 @@ The following is the restrictions of `people received` command, which you would 
 
 NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
 specific person in the address book, who you received from. +
-_Still confused? Find out more about `person's index` at <<personIndexFAQ, What is a [blue]`person's index`>>._ +
+_Still confused? Find out more about <<personIndexFAQ,what is a [blue]`person's index`>>._ +
  +
 The `<loan's index>` above refers to the index number shown in the displayed loans list in *Sharkie*. It indicates a
 specific loan under the person, which you received from. +
-_Still confused? Find out more about `loan's index` at <<loanDebtIndexFAQ, What is a [blue]`loan's index`>>._ +
+_Still confused? Find out more about <<loanDebtIndexFAQ,what is a [blue]`loan's index`>>._ +
  +
 `Loan` represents the amount of money you lend your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._ +
+_Still confused? Find out more about <<debt-and-loan,the differences between debts and loans>>._ +
 
 [TIP]
 The `<loan's index>` is optional.
@@ -569,10 +573,10 @@ Before you enter the `people remind` command, please make sure that your friend'
 
 NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
 specific person in the address book, who you want to remind. +
-_Still confused? Find out more about `person's index` at <<personIndexFAQ, what is a [blue]`person's index`>>._ +
+_Still confused? Find out more about <<personIndexFAQ,what is a [blue]`person's index`>>._ +
  +
 `Loan` represents the amount of money you lend your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+_Still confused? Find out more about <<debt-and-loan,the differences between debts and loans>>._
 
 TIP: If you receive connection error messages during the execution of `people remind` command,
 please visit <<remind-connection-error, how to resolve connection issues>>.
@@ -610,7 +614,7 @@ NOTE: Only your friends, who have unsettled loan(s) will be reminded. Your frien
 not receive a reminder. +
  +
 `Loans` represent the amount of money you lend your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+_Still confused? Find out more about <<debt-and-loan,the differences between debts and loans>>._
 
 TIP: If you receive connection error messages during the execution of `people remindall` command,
 please visit <<remind-connection-error, how to resolve connection issues>>.
@@ -658,9 +662,9 @@ persons whose name contains with the keyword `jo`, such as `Joel`.
 Hence, `Debt` and `Loan` (case-insensitive) are the only tags, which you are allowed to use in `people find` command.
 ====
 
-NOTE: `Loans` represent the amount of money you lend your friends and `debts` represent the amount of money you owe
-your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+NOTE: `Debts` represent the amount of money you owe your friends and
+`loans` represent the amount of money you lend your friends.  +
+_Still confused? Find out more about <<debt-and-loan,the differences between debts and loans>>._
 
 *Example #1*:
 
