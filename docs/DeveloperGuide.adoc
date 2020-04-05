@@ -1025,8 +1025,14 @@ Command line interface
 [[cohesion]] Cohesion::
 A measure of how strongly-related and focused the responsibilities of a component are
 
+[[debt]] Debt::
+The amount of money which the user owes a person in the address book.
+
 [[extensions]] Extensions::
 "Add-on"s to MSS that describe exceptional/alternative flow of events.
+
+[[loan]] Loan::
+The amount of money which the user lends to a person in the address book.
 
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, OS-X
@@ -1042,12 +1048,6 @@ Income and expense
 
 [[wallet]] Wallet::
 Sharkie's wallet, that holds information pertaining to the user's expenditure and income
-
-[[debt]] Debt::
-The amount of money which the user owes a person in the address book.
-
-[[loan]] Loan::
-The amount of money which the user lends to a person in the address book.
 
 //tag::productSurvey[]
 [appendix]
@@ -1180,6 +1180,15 @@ These instructions only provide a starting point for testers to work on; testers
 _{ more test cases ... }_
 
 === Manual Testing on Wallet Tab
+. Recording an expense
+.. Prerequisites: None.
+.. Test case: `wallet expense n/Meal $/3.50` +
+   Expected: An expense named _Meal_ with _$3.50_ with default tag _Misc_ recorded under the current date is added to the transaction list. The statistics panel will also update with the expense entered.
+.. Test case: `wallet expense n/Meal $/3.50 d/02/02/2020` +
+   Expected: An expense named _Meal_ with _$3.50_ with default tag _Misc_ recorded under the date _02 FEB 2020_ is added to the transaction list. The statistics panel will not update with this expense.
+.. Test case: `wallet expense n/Meal $/3.50 t/Food` +
+   Expected: An expense named _Meal_ with _$3.50_ with tag _Food_ recorded under the current date is added to the transaction list. The statistic panel will also update with the expense entered, under the custom tag given.
+
 
 === Manual Testing on People Tab
 
@@ -1187,7 +1196,7 @@ _{ more test cases ... }_
 
 . Recording the money you lend to a person
 
-.. Prerequisites: The person who you lend to exist in the person list.
+.. Prerequisites: The person who you lend to exists in the person list.
 .. Test case: `people lend 1 n/Dinner $/12.00` +
    Expected: A loan named _Dinner_ with _$12.00_ is added into the loan list of the first person.
 .. Test case: `people lend 1 n/Dinner $/12.00 d/02/02/2020` +
