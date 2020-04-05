@@ -36,15 +36,17 @@ can filter the people whom they lend or owe using the commands `people find t/de
 *** Wrote additional tests for exsiting features to increase coverage from 73% to 76% (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pull/182[#182])
 ** Documentation:
 *** Update AboutUs page: (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pull/53[#53])
-*** Updated User Guide: (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pull/43[#43])
+*** Updated User Guide: (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pull/43[#43],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/196[#196])
 *** Updated Developer Guide: (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pull/60[#60],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/120[#120], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/124[#124],
-https://github.com/AY1920S2-CS2103T-W12-3/main/pull/138[#138])
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/138[#138], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/196[#196])
 ** Community:
 *** PRs reviewed (with non-trivial review comments): (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pull/95[#95],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/87[#87], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/98[#98],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/102[#102], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/117[#117],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/128[#128])
+*** Reported bugs and suggestions for other teams in the class (https://github.com/CheyanneSim/ped/issues[W17-2])
 ////
 * *Major enhancement*: added *the ability to undo/redo previous commands*
 ** What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
