@@ -13,6 +13,7 @@
 ifdef::env-github[]
 :tip-caption: :bulb:
 :note-caption: :information_source:
+:warning-caption: :warning:
 endif::[]
 :repoURL: https://github.com/AY1920S2-CS2103T-W12-3/main
 
@@ -35,27 +36,35 @@ Have we reeled you in? Dive into <<Quick Start>> to get on board with Sharkie. E
 == About
 This user guide will help to ensure that you have all the information you need to utilise *Sharkie* to its fullest extent. *Sharkie* is a feature-filled expense tracker and all the information you need regarding his usage is available below. +
 
-If you need help starting up Sharkie, you can head on to the QuickStart guide below to set it up. +
+If you need help starting up Sharkie, you can head on to the <<quick-start, Quick Start guide>> below to set it up. +
 
-If you need help regarding what commands *Sharkie* has, our Features section below will guide you through *Sharkie’s* abilities. +
+If you want to find out more about the features provided by *Sharkie*, you can visit the <<Features, Features section>> below.
 
+If you need help regarding what commands *Sharkie* has, our <<Commands, Commands section>> below will guide you through *Sharkie’s* commands. +
 
 Note the following symbols and formatting used in this document: +
 
+[cols=".^, .^"]
 [%autowidth.stretch]
-.Symbols used in this User Guide.
+.Symbols and formats used in this User Guide.
 |===
-| *Symbol*  | *Meaning*
-|[gray]#`command`# |A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.
-| kbd:[Enter] |This symbol indicates the enter button on the keyboard.
+^|*Symbol/ +
+Format* <|*Meaning*
+^|[gray]#`command`# |[gray]#A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.#
+^| kbd:[Enter] |[gray]#This symbol indicates the enter button on the keyboard.#
+a|
+====
+====
+a|[gray]#This yellow box indicates the restrictions of each command.#
+2+.^a|  NOTE: This symbol indicates information.
+2+.^a|  WARNING: This symbol indicates warnings.
+2+.^a|  TIP: This symbol indicates tips.
 |===
 
-NOTE: This symbol indicates information.
-
-TIP: This symbol indicates tips.
 //end::about[]
 
 //tag::quickStart[]
+[[quick-start]]
 == Quick Start
 
 .  Ensure you have Java `11` or above installed in your Computer.
@@ -94,7 +103,15 @@ This section introduces the five main features of Sharkie.
 
 //tag::expenditureAndIncome[]
 === Expenditure and income
-*Sharkie* notes down what you have spent on for the month, and also notes down your income for the month to help you properly track your money flow!
+If you are a university student, who starts to manage your own money, but struggles to track your expenses or meet
+your saving goals, *Sharkie* would be a good application for you to start with.
+
+*Sharkie* allows you to records what you have spent on for the month, and also notes down your income for the month
+to help you properly track your money flow!
+
+NOTE: You may visit <<add-expense-command, 5.2.1 Adding an expense>> or <<add-income-command, 5.2.2 Adding an income>>
+to find out more on how to record expenses or incomes in *Sharkie*.
+
 //end::expenditureAndIncome[]
 
 //tag::contacts[]
@@ -190,6 +207,7 @@ Sharkie will save your data to a locally stored file (that can be edited using a
 === Wallet Commands
 This section introduces seven commands that have effect on the `wallet` tab.
 
+[[add-expense-command]]
 //tag::walletexpense[]
 ==== Adding an expense: `expense`
 
@@ -214,6 +232,7 @@ Expected Outcome:
 
 //end::walletexpense[]
 
+[[add-income-command]]
 //tag::walletincome[]
 ==== Adding an income: `income`
 
@@ -335,23 +354,41 @@ Expected Outcome:
 
 //tag::walletbudget[]
 ==== Setting a budget: `budget`
-Sets a budget for you. +
-Format: `wallet budget $/amount [m/<month>] [y/<year>]`
+Suppose you want to set a budget for a certain month, or a budget in general for all months. The command that you would enter in this case is our `wallet budget` command. +
 
-****
+*Format*: `wallet budget $/amount [m/<month>] [y/<year>]`
+====
+*Command Format*
+
+The following are restrictions of `wallet budget` command, which you will need to take note of:
+
 * If no month or year is specified, the default budget is set as the amount provided.
-* Overwrites the current budget value stored at that month, if it was previously added.
-* The value of the budget must be a positive integer.
-* The value of the month must be a positive integer between 1 - 12.
-* The value of the year must be a positive integer.
-****
+* Your entry will overwrite any pre-existing budgets. This means that if you have previously set a budget for a specific month and year, and if you have indicated that month and year again, it will overwrite the budget that has been set.
+* If the budget value is set to 0, *Sharkie* will consider it as if you have not set a budget for that month.
+* The value of the budget you have set must be a non-negative integer.
+* The value of the month you have set must be a positive integer between 1 - 12.
+* The value of the year you have set must be a non-negative integer.
+====
 
-Examples:
+*Example #1*:
 
-* `wallet budget $/1000` Sets a budget of $1000. +
-Expected outcome:
+** Suppose you want to add a default budget of $1000 for all months.
+* The command you would enter is `wallet budget $/1000`.
+* This tells *Sharkie* that you want to set a default budget of $1000.
 
-    Default budget has been set at $1000.
+*Expected Outcome #1*:
+
+    Default budget has been set at $1000.00.
+
+*Example #2*:
+
+** Suppose you want to add a budget of $999 for March 2020.
+* The command you would enter is `wallet budget $/999 m/03 y/2020`.
+* This tells *Sharkie* that you want to set a budget of $999 for March 2020.
+
+*Expected Outcome #2*:
+
+    Budget has been set at $999.00 for MARCH 2020.
 
 //end::walletbudget[]
 
@@ -362,16 +399,37 @@ This section introduces twelve commands that have effect on the `people` tab.
 [[add-person]]
 ==== Adding a person: `add`
 
-Adds a person to the address book +
-Format: `people add n/<name> p/<phone number> e/<email address>`
+Suppose you want to add a new person to the address book, the command you would enter is our `people add` command. +
 
-Examples:
+*Format*: `people add n/<name> p/<phone number> e/<email address>`
 
-* `people add n/Joel p/91234567 e/joel@u.nus.edu`
-Adds a person named Joel into your contact, along with his phone number and e-mail address +
-Expected Outcome:
+====
+*Command Format*
 
-    New person added: Joel Phone: 91234567 Email: joel@u.nus.edu
+The following are the restrictions of `people add` command, which you would need to take note of:
+
+* The `<name>` you entered should only contain alphanumeric characters and spaces.
+* The `<phone number>` you entered should only contain numbers and it should be at least 3 digits long.
+* The `<email address>` you entered should be in the format of _local-part@domain_.
+
+** The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses
+(!#$%&'*+/=?`{|}~^.-).
+** The domain name must be at least 2 characters long, start and end with alphanumeric characters.
+====
+
+*Example*:
+
+* Suppose you want to add your new friend, Joel, along with his phone number (91234567) and email (\joel@example.com)
+into the address book.
+
+** The command you would enter is `people add n/Joel p/91234567 e/joel@example.com`.
+** This adds a person named Joel into your contact, along with his phone number and e-mail address
+
+*Expected Outcome*:
+
+* Your new friend, Joel will be added into your address book:
+
+    New person added: Joel Phone: 91234567 Email: joel@example.com You owe: $0.00 You lent: $0.00
 
 //end::peopleadd[]
 
@@ -507,59 +565,94 @@ The `<date:dd/mm/yyyy>` is optional. If `<date:dd/mm/yyyy>` is not specified, th
 
 // end::lend[]
 
-// tag::paid[]
+// tag::peoplereceived[]
 ==== Recording the money you received: `received`
 
-Records that you have received the money from your friend, who you lent to. +
-Format: `people received <person's index> [i/<loan's index>]`
+Suppose you want to record that you have received the money for a certain loan (or for all loans) from your friend,
+the command you would enter is our `people received` command.
 
-****
-* The <person's index> refers to the index number shown before a displayed person.
-* The <loan's index> refers to the index number shown before a loan under the specified person.
-* Both indexes *must be a positive integer* 1, 2, 3, ...
-****
+*Format*: `people received <person's index> [i/<loan's index>]`
 
-NOTE: `Loan` represents the amount of money you lend your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+====
+*Command Format*
+
+The following is the restrictions of `people received` command, which you would need to take note of:
+
+* The `<person's index>` and `<loan's index>` you entered should be positive integers, e.g. 1, 2, 3, ...
+====
+
+NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
+specific person in the address book, who you received from. +
+_Still confused? Find out more about `person's index` at <<personIndexFAQ, What is a [blue]`person's index`>>._ +
+ +
+The `<loan's index>` above refers to the index number shown in the displayed loans list in *Sharkie*. It indicates a
+specific loan under the person, which you received from. +
+_Still confused? Find out more about `loan's index` at <<loanDebtIndexFAQ, What is a [blue]`loan's index`>>._ +
+ +
+`Loan` represents the amount of money you lend your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._ +
 
 [TIP]
-The loan's index is optional.
-All loans will be marked as `received` for the indicated person if the loan's index is not specified.
+The `<loan's index>` is optional.
+All loans will be marked as `received` for the indicated person if the `<loan's index>` is not specified.
 
-Examples:
+*Example*:
 
-* `people received 2 i/1`
-Records that you have received the money for the first loan from the second person in the address book. +
-Expected Outcome:
+* Suppose you want to record that you have received the money from Joel, who is the second person in the address book,
+for the first loan in his loans list.
+
+** The command you would enter is `people received 2 i/1`.
+** This records that you have received the money for the first loan of Joel, the second person in the address book.
+
+*Expected Outcome*:
+
+* The first loan of Joel will be removed from his loans list and the unsettled loans of Joel will be shown.
 
     Removed loan to Joel by $10.00. Joel now owes you $2.00.
 
-// end::paid[]
+// end::peoplereceived[]
 
 //tag::peopleremind[]
 ==== Sending reminder to a friend: `remind`
 
-Reminds a friend, through an email to return the loans to you. +
-Format: `people remind <index>`
+Suppose you want to remind a friend to return the unsettled loans to you through an email,
+the command you would enter is our `people remind` command.
 
-****
-* Reminds the person at the specified `<index>` return the loans to you.
-* The index refers to the index number shown in the displayed person list.
-* The index *must be a positive integer* 1, 2, 3, ...
-****
+*Format*: `people remind <person's index>`
 
-NOTE: `Loan` represents the amount of money you lend your friends. +
+====
+*Command Format*
+
+The following is the restrictions of `people remind` command, which you would need to take note of:
+
+* The `<person's index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
+====
+
+WARNING: You would need to connect to the Internet and include your details in *Sharkie* before using this command.
+You can enter or edit your details at <<editing-user-data, [blue]`Edit` > [blue]`Edit user's data`>>. +
+ +
+Before you enter the `people remind` command, please make sure that your friend's email address is correct.
+
+NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
+specific person in the address book, who you want to remind. +
+_Still confused? Find out more about `person's index` at <<personIndexFAQ, what is a [blue]`person's index`>>._ +
+ +
+`Loan` represents the amount of money you lend your friends. +
 _Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
 
-[TIP]
-To use this command, you must include your details in Sharkie. +
-You can enter or edit your details at <<editing-user-data, `Edit` > `Edit user's data`>>.
+TIP: If you receive connection error messages during the execution of `people remind` command,
+please visit <<remind-connection-error, how to resolve connection issues>>.
 
-Examples:
+*Example*:
 
-* `people remind 1`
-Sends a reminder to the 1st person in your contact list. +
-Expected Outcome:
+* Suppose you want to remind Daniel, who is the first person in your address book to return you your money.
+
+** The command you would enter is `people remind 1`.
+** This requests *Sharkie* to send an email to Daniel, the first person in your address book.
+
+*Expected Outcome*:
+
+* Daniel will receive a reminder from *Sharkie* via the email. You will also receive a copy of the email sent to Daniel:
 
     Reminded Daniel to return $10.00!
     Sharkie has sent a copy of the reminder to your email!
@@ -567,27 +660,102 @@ Expected Outcome:
 //end::peopleremind[]
 
 //tag::peopleremindall[]
-==== Sending reminder to all friend: `remindall`
+==== Sending reminder to all friends: `remindall`
 
-Sends reminders through email to all the friends that have not yet paid up. +
-Format: `people remindall`
+Suppose you want to remind all your friends in your address book, who has yet paid up, to return you your money,
+the command you would enter is our `people remindall` command.
 
-[TIP]
-To use this command, you must include your details in Sharkie. +
-You can enter or edit your details at <<editing-user-data, `Edit` > `Edit user's data`>>.
+*Format*: `people remindall`
 
-Examples:
+WARNING: You would need to connect to the Internet and include your details in *Sharkie* before using this command.
+You can enter or edit your details at <<editing-user-data, [blue]`Edit` > [blue]`Edit user's data`>>. +
+ +
+Before you enter the `people remindall` command, please make sure that your friends' email addresses are correct.
 
-* `people remindall`
-Sends a reminder to all the people who owe you money. +
-Expected Outcome:
+NOTE: Only your friends, who have unsettled loan(s) will be reminded. Your friends, who has zero loan will
+not receive a reminder. +
+ +
+`Loans` represent the amount of money you lend your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
 
+TIP: If you receive connection error messages during the execution of `people remindall` command,
+please visit <<remind-connection-error, how to resolve connection issues>>.
+
+*Example*:
+
+* Suppose you want to remind all your friends in your address book, who has yet paid up.
+
+** The command you would enter is `people remindall`.
+** This requests *Sharkie* to send an email to everyone in your address book, who has yet paid up.
+
+*Expected Outcome*:
+
+* All your friends who has yet paid up will receive a reminder from *Sharkie* via the email.
+You will also receive a copy of each of the emails sent to your friends:
+
+    Reminded Cheyanne to return $20.00!
     Reminded Daniel to return $10.00!
     Reminded Joel to return $30.75!
-    ...
     Sharkie has sent copies of the reminders to your email!
 
 //end::peopleremindall[]
+
+//tag::peoplefind[]
+[[find-person]]
+==== Finding a person: `find`
+
+Suppose you want to find a person in your contact list by a specific keyword,
+the command you would enter is our `people find` command.
+
+*Format*: `people find n/<keyword> [<keyword>...]`
+or `people find p/<keyword> [<keyword>...]`
+or `people find e/<keyword> [<keyword>...]`
+or `people find t/<keyword> [<keyword>...]`
+
+====
+*Command Format*
+
+The following are the restrictions of `people find` command, which you would need to take note of:
+
+* You would not have to consider the case of the `<keyword>`, as it is case-insensitive.
+* The `<keyword>` you want to enter need not to be in full. For example, `people find n/jo` will display the
+persons whose name contains with the keyword `jo`, such as `Joel`.
+* The `<keyword>` you entered should be either of the type name (`n/`), phone (`p/`), email (`p/`) or tag (`t/`).
+** You may use the tag prefix `t/` to find people with debts or loans in your address book.
+Hence, `Debt` and `Loan` (case-insensitive) are the only tags, which you are allowed to use in `people find` command.
+====
+
+NOTE: `Loans` represent the amount of money you lend your friends and `debts` represent the amount of money you owe
+your friends. +
+_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+
+*Example #1*:
+
+* Suppose you want to find your friends, who are called Grace.
+
+** The command you would enter is `people find n/Grace`.
+** This requests *Sharkie* to list out the people with the name, Grace.
+
+*Expected Outcome #1*:
+
+* All your friends with the name, Grace will be listed out:
+
+    2 persons listed!
+
+*Example #2*:
+
+* Suppose you want to find your friends with unsettled debt(s) or loan(s).
+
+** The command you would enter is `people find t/debt loan`.
+** This requests *Sharkie* to list out the people with unsettled debt(s) or loan(s).
+
+*Expected Outcome #2*:
+
+* All your friends with unsettled debt(s) or loan(s) will be listed out:
+
+    2 persons listed!
+
+//end::peoplefind[]
 
 //tag::peoplelist[]
 [[list-people]]
@@ -612,38 +780,6 @@ entire list of people in your address book. Then, the command that you would ent
     Listed all persons.
 
 //end::peoplelist[]
-
-//tag::peoplefind[]
-[[find-person]]
-==== Finding a person: `find`
-
-Finds a person in your contact list by the keywords given. +
-Format: `people find n/<keyword> [<keyword>...]`
-or `people find p/<keyword> [<keyword>...]`
-or `people find e/<keyword> [<keyword>...]`
-or `people find t/<keyword> [<keyword>...]`
-
-****
-* Finds the people with the stated <keyword>.
-* The keywords are case-insensitive
-* The keyword need not be in full. For example `people find jo` will also display the person with the keyword `Joel` as well.
-* The keyword can be either of type name (n/), phone (p/), email (e/) or tag (t/).
-* `Debt` and `Loan` (case-insensitive) are the only tags allowed to be used in `people find` command.
-`people find t/debt loan` would return a list of people with unsettled debt(s) or loan(s).
-****
-
-Examples:
-
-* `people find n/Grace`
-Returns a list of people with the name, Grace. +
-Expected Outcome:
-
-    2 persons listed!:
-    1. Grace Lim
-    2. Grace Pan
-    …
-
-//end::peoplefind[]
 
 // tag::edit[]
 [[edit-person]]
@@ -727,14 +863,21 @@ command will delete Betsy from the address book.
 [[clear]]
 ==== Clearing all contacts : `clear`
 
-Clears all the contacts from the address book. +
-Format: `people clear`
+Suppose you want to clear all the contacts in your address book,
+the command you would enter is our `people clear` command.
 
-Examples:
+*Format*: `people clear`
 
-* `people clear`
-Returns an empty address book. +
-Expected Outcome:
+*Example*:
+
+* Suppose you want to clear all your contacts.
+
+** The command you would enter is `people clear`.
+** This requests *Sharkie* to deletes all the contacts in your address book.
+
+*Expected Outcome*:
+
+* *Sharkie* will delete all the contacts and return an empty address book.
 
     Address book has been cleared!
 
@@ -807,6 +950,39 @@ image::DebtAndLoanDifferences.png[width=800]
 *Q*: Is there a maximum amount of money that Sharkie can handle? +
 *A*: Yes. Due to program limitations, Sharkie can only safely handle amounts of up to $92233720368547758.07 (about ninety *quadrillion* dollars!). We believe it is safe to say that the average user will not end up spending or earning that amount of money anytime soon (at time of writing, Jeff Bezos' net worth is roughly $100 billion).
 //end::valid-amount[]
+
+//tag::remind-issue[]
+*Q*: Why does my `people remind` and `people remindall` commands take time to run? +
+*A*: As the `people remind` and `people remindall` commands rely on the connection to the internet and e-mail server,
+time is needed for the application to send a reminder.
+
+*Q*: Why do I not receive a confirmation e-mail from *Sharkie*? +
+*A*: You may need to check your junk mail folder, as your e-mail account may categorize *Sharkie*'s e-mails as spam.
+If you wish to receive frequent notifications from *Sharkie*, please remove *Sharkie* from your junk mail list.
+
+[[remind-connection-error]]
+*Q*: How can I resolve the connection issues during the execution of `people remind` or `people remindall`? +
+*A*: You may try the suggestions below to resolve your connection issues:
+
+****
+* If you receive an error message as the following:
+
+    Error occured while sending email:
+    Couldn't connect to host, port: smtp.gmail.com, 587; timeout -1
+    Please make sure that you are connected to the internet.
+
+** Please make sure that you are connected to the internet.
+
+* If you receive an error message as the following:
+
+    Error occured while sending email:
+    Could not convert socket to TLS
+    Please make sure that you are connected to the internet.
+
+** Please make sure that your firewall or antivirus programme allows *Sharkie* to connect to SMTP port 587.
+Please add an exclusion to SMTP port 587 in your firewall or antivirus programme, if you have not do so.
+****
+//end::remind-issue[]
 
 //end::faq[]
 

@@ -9,14 +9,19 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Package Reminder {
 Class Reminder
+Class ConfirmationEmail
 }
 
 Package Person {
 Class User
 Class Person
+Class Email
+Class Name
 }
 
-Reminder o--> "1" User
-Reminder o--> "1" Person
+Reminder *--> "1" User
+Reminder *--> "1" Person
+ConfirmationEmail *--> "1" Name
+ConfirmationEmail *--> "1" Email
 
 @enduml

@@ -3,14 +3,19 @@ title Activity: Recording the amount of money received
 start
 :User executes a received command;
 
-if () then ([User did not lend the indicated Person money])
+if () then ([Person index entered \nby the user is invalid])
+    :System throws \na CommandException \non invalid Person index;
 else ([else])
-    if () then ([User asked to edit specific Loan of the Person])
-        :System removes the specified Loan from the Person;
+    if () then ([User did not lend the \nindicated Person money])
+        :System throws a \nCommandException indicating \nthat the person has no Loan;
     else ([else])
-        :System removes all Loans from the Person;
+        if () then ([User asked to edit specific\n Loan of the Person])
+            :System removes the \nspecified Loan from the Person;
+        else ([else])
+            :System removes all \nLoans from the Person;
+        endif
+        :System updates the Model \nwith the modified Person;
     endif
-    :System updates the Address Book with the modified Person;
 endif
 stop
 @enduml
