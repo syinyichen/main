@@ -1238,7 +1238,7 @@ Remaining amount of loan, which have yet settled by the first person is shown in
 The person who you want to remind exists in the person list. The person has at least one loan in the loan list.
 The email of the person to be reminded is a valid email.
 .. Test case: `people remind 1` +
-   Expected: A reminder is sent to the first person's email. A success message shown in the result display.
+   Expected: A reminder is sent to the first person's email. A carbon copy (CC) of the reminder is sent to you. A success message shown in the result display.
 .. Test case: `people remind 0` +
    Expected: No reminder is sent. Error details shown in the result display.
 .. Other incorrect lend commands to try:
@@ -1253,7 +1253,7 @@ The email of the person to be reminded is a valid email.
 .. Prerequisites: Connected to the Internet. Your firewall or antivirus programme (if any) allows the connection to STMP port 587.
 At least one person in the list has at least one loan. The email(s) of the people to be reminded are valid email(s).
 .. Test case: `people remindall` +
-   Expected: A reminder is sent everyone, who has unsettled loan. A list of people reminded is shown in the result display.
+   Expected: A reminder is sent everyone, who has unsettled loan. A carbon copy (CC) of each of the reminder is sent to you. A list of people reminded is shown in the result display, along with the success message.
 
 //end::manual-testing-reminder[]
 
