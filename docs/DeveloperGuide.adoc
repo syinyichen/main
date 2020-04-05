@@ -1192,9 +1192,9 @@ _{ more test cases ... }_
 At least 1 field to be edited must be inputted.
 The new details provided must be different from the old details.
 .. Test case: `wallet edit 1 n/Chicken Rice` +
-   Expected: Transaction 1 is now updated with new description _Chicken Rice_. A success message shown in the result display.
+   Expected: The first transaction is now updated with new description _Chicken Rice_. A success message shown in the result display.
 .. Test case: `wallet edit 1 n/Dinner $/12.00 d/02/02/2020 t/food` +
-   Expected: Transaction 1 is now updated with new description _Dinner_ with amount _$12.00_, recorded under the date _02/02/2020_ with tag _Food_.
+   Expected: The first transaction is now updated with new description _Dinner_ with amount _$12.00_, recorded under the date _02/02/2020_ with tag _Food_.
 A success message shown in the result display.
 .. Test case: `wallet edit 0 n/Chicken Rice` +
    Expected: The transaction is not edited. Error details shown in the result display.
@@ -1248,9 +1248,37 @@ A success message shown in the result display.
 *** `wallet find $/x` (where x is a non-integer),
 *** `wallet find $/x` (where x is greater 92233720368547758.07),
 *** `wallet find d/x` (where x is not a date),
-*** `wallet find $/yyyy/mm/dd` (where date is in the wrong format) +
+*** `wallet find d/yyyy/mm/dd` (where date is in the wrong format) +
    Expected: Similar to previous
 //end::testWalletFind
+
+//tag::testWalletDelete
+==== Deleting a transaction
+
+. Deleting a transaction.
+
+.. Prerequisites: The transaction which you want to delete exists in the transactions list.
+.. Test case: `wallet delete 1` +
+   Expected: First transaction is deleted from the list. Details of the deleted contact shown in the result display.
+.. Test case: `people delete 0` +
+   Expected: No transaction is deleted. Error details shown in the result display.
+.. Other incorrect delete commands to try:
+*** `wallet delete`,
+*** `wallet delete x` (where x is larger than the person list size),
+*** `wallet delete x` (where x is a negative number) or
+*** `wallet delete x` (where x is a non-integer value) +
+   Expected: Similar to previous.
+
+//end::testWalletDelete
+
+//tag::testWalletClear
+==== Listing all transactions
+. Clear all the data in the wallet, including all income, expense and budget.
+
+.. Prerequisites: There must be transactions or budget in the wallet.
+.. Test case: `wallet clear` +
+   Expected: All transactions and budget data in wallet is deleted.
+//end::testWalletClear
 
 === Manual Testing on People Tab
 
