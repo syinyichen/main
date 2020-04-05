@@ -60,7 +60,6 @@ public class WalletFindCommandParser implements Parser<WalletFindCommand> {
                     String.format(ONLY_ONE_PARAMETER_ALLOWED, WalletFindCommand.MESSAGE_USAGE));
         }
 
-
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String[] nameKeywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
             if (nameKeywords.length == 1 && nameKeywords[0].equals("")) {
@@ -76,7 +75,12 @@ public class WalletFindCommandParser implements Parser<WalletFindCommand> {
             }
 
             for (String str : amountKeywords) {
-                ParserUtil.parseAmount(str);
+                try {
+                    ParserUtil.parseAmount(str);
+                } catch (ParseException e) {
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, WalletFindCommand.WRONG_AMT));
+                }
                 if (str.contains(".")) {
                     throw new ParseException(
                             String.format(MESSAGE_INVALID_COMMAND_FORMAT, WalletFindCommand.WRONG_AMT));
