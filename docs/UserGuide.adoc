@@ -268,7 +268,8 @@ The following are the restrictions of `wallet edit` command, which you would nee
 ** This edits the selected transaction and updates it with the new information you inputted.
 
 * `wallet edit 1 n/Duck rice $/4.00`
-Returns the respective expense with the changes made. +
+Returns the respective expense with the changes made.
+
 Expected Outcome:
 
     Edited Transaction: Duck rice Description: Duck rice Amount: $4.00 Date: 2020-03-30 Tag: [Food]
@@ -299,10 +300,11 @@ The following are the restrictions of `wallet find` command, which you would nee
 * You cannot search for multiple types of keywords in one command.
 ====
 
-Examples:
+Example:
 
 * `wallet find n/rice noodles`
-Returns a list of expenses and income containing the keyword <rice> and <noodles> +
+Returns a list of expenses and income containing the keyword <rice> and <noodles>
+
 Expected Outcome:
 
     3 transactions listed!:
@@ -333,7 +335,8 @@ The following are the restrictions of `wallet delete` command, which you would n
 Example:
 
 * `wallet delete 1`
-Removes the expenses relative to the index. +
+Removes the expenses relative to the index.
+
 Expected Outcome:
 
     Deleted Transaction: Duck rice Description: Duck rice Amount: $4.00 Date: 2020-03-30 Tag: [Food]
@@ -360,7 +363,8 @@ The following are the restrictions of `wallet clear` command, which you would ne
 Example:
 
 * `wallet clear`
-Removes all transactions in the wallet. +
+Removes all transactions in the wallet.
+
 Expected Outcome:
 
     Wallet has been cleared!
