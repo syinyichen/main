@@ -24,6 +24,8 @@ By: `AY1920S2-CS2103T-W12-3`      Since: `Feb 2020`      Licence: `MIT`
 
 Welcome to *Sharkie*!
 
+image::Ui.png[width="820"]
+
 *Sharkie* is an all-in-one desktop application for *personal finance tracking* designed for university students who would like to monitor their spending.
 It manages your *incomes and expenses*, organises your *contacts* and keeps track of *debts* your friends owe you, so that your loans always come with a money-back guarantee!
 
@@ -138,7 +140,10 @@ NOTE: Still confused about `debts` and `loans`? Find out more in <<debt-and-loan
 //tag::expenditureSummary[]
 === Expenditure Summary
 *Sharkie* displays a customisable overview of your monthly spending and income so that you know where all your money has gone to! +
-You can view statistics such as the proportion of your spending on different items and your monthly balance.
+You can view statistics such as the proportion of your spending on different items and how close you are to reaching your self-imposed budget. +
+All statistics are automatically updated and located in the Wallet tab.
+
+NOTE: Check out <<budget-command, 5.2.7 Setting a budget>> to learn how to budget your monthly spending with Sharkie.
 
 //end::expenditureSummary[]
 
@@ -201,21 +206,31 @@ Wallet commands are commands that pertain to your monetary information. If you w
 //tag::walletexpense[]
 ==== Adding an expense: `expense`
 
-Adds an expense to the wallet. +
-Format: `wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`
+If you have paid for an expense and wish to record it down in Sharkie, you may enter the `wallet expense` command to do so.
 
-****
-* Creates a new expense wiith the given arguments.
-* The description *cannot be empty*.
-* The amount *must be a valid number* (see <<valid-amount>>).
-* If no date is given, it will default to today's date.
-****
+*Format*: `wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`
 
-Examples:
+====
+*Command Format*
 
-* `wallet expense n/Chicken Rice $/3.50 d/10/10/2010 t/food`
-Adds an expense named Chicken Rice, costing $3.50, on 10/10/2020, tagged as food. +
-Expected Outcome:
+The following are the restrictions of the `wallet expense` command, which you would need to take note of:
+
+* The `<description>` should not be blank.
+* The `<amount>` should be non-negative and have only up to two decimal places.
+* If no `<date>` is specified, your expense will default to today's date.
+* If no `<tag>` is specified, your expense will be given a default tag `Misc`.
+====
+
+*Example*:
+
+* Suppose you purchased Chicken Rice for $3.50 on 10th October, 2010. You wish to record it as a food item.
+
+** The command you would enter is `wallet expense n/Chicken Rice $/3.50 d/10/10/2010 t/food`.
+** This records down an expense with the specified details.
+
+*Expected Outcome*:
+
+* A new expense will be added into your Wallet, automatically updating your Wallet's statistics.
 
     New expense added: Chicken Rice Description: Chicken Rice Amount: $3.50 Date: 2010-10-10 Tag: [Food]
     Your expenditure for OCTOBER 2010 is: $3.50/$0.00
@@ -226,21 +241,31 @@ Expected Outcome:
 //tag::walletincome[]
 ==== Adding an income: `income`
 
-Adds an income to the wallet. +
-Format: `wallet income n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`
+If you have earned an income and wish to record it down in Sharkie, you may enter the `wallet income` command to do so.
 
-****
-* Creates a new income with the given arguments.
-* The description *cannot be empty*.
-* The amount *must be a valid number*.
-* If no date is given, it will default to today's date.
-****
+*Format*: `wallet income n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`
 
-Examples:
+====
+*Command Format*
 
-* `wallet income n/P6 Tuition $/3000 d/10/10/2010 t/job`
-Adds an income named P6 Tuition, for a sum of $3000, on 10/10/2020, tagged as job. +
-Expected Outcome:
+The following are the restrictions of the `wallet income` command, which you would need to take note of:
+
+* The `<description>` should not be blank.
+* The `<amount>` should be non-negative and have only up to two decimal places.
+* If no `<date>` is specified, your expense will default to today's date.
+* If no `<tag>` is specified, your expense will be given a default tag `Misc`.
+====
+
+*Example*:
+
+* Suppose you teach P6 Tuition and have just received your paycheck for $3000 on 10th October, 2010. You wish to record it as a job item.
+
+** The command you would enter is `wallet income n/P6 Tuition $/3000 d/10/10/2010 t/job`.
+** This records down an income with the specified details.
+
+*Expected Outcome*:
+
+* A new income will be added into your Wallet, automatically updating your Wallet's statistics.
 
     New income added: P6 Tuition Description: P6 Tuition Amount: $3000.00 Date: 2010-10-10 Tag: [Job]
 
@@ -342,6 +367,7 @@ Expected Outcome:
 
 //end::walletdelete[]
 
+[[budget-command]]
 //tag::walletbudget[]
 ==== Setting a budget: `budget`
 Suppose you want to set a budget for a certain month, or a budget in general for all months. The command that you would enter in this case is our `wallet budget` command. +
