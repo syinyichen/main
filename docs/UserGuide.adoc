@@ -1117,7 +1117,7 @@ If you wish to have a quick reference to the commands available in *Sharkie*, yo
 === Global Commands
 The following are the global commands that are available in *Sharkie* for you to use! You do not need to use any prefixes to use these commands.
 
-[%autowidth, width=100%]
+[cols="10%, 45%, 45%"]
 .Global commands available in *Sharkie*.
 |===
 | *Command*  | *Format* | *Expected outcome*
@@ -1128,7 +1128,7 @@ The following are the global commands that are available in *Sharkie* for you to
 === Wallet Commands
 The following commands are wallet-related commands that are available in *Sharkie* for you to use! You will need to use the prefix `wallet` to use the commands.
 
-[%autowidth, width=100%]
+[cols="10%, 45%, 45%"]
 .Wallet commands available in *Sharkie*.
 |===
 | *Command*  | *Format* | *Expected outcome*
@@ -1146,7 +1146,7 @@ or #`wallet find t/<keyword> [<keyword> ...]`# + | Finds your transaction(s) wit
 
 === People Commands
 The following commands are people-related commands that are available in *Sharkie* for you to use! You will need to use the prefix `people` to use the commands.
-[%autowidth, width=100%]
+[cols="10%, 45%, 45%"]
 .People commands available in *Sharkie*.
 |===
 | *Command*  | *Format* | *Expected outcome*
