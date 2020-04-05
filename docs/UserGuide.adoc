@@ -124,7 +124,7 @@ Should the contact details change, you can also edit them or delete them. If you
 *Sharkie* will look through all your contacts and quickly help you find the contact that you are looking for!
 
 NOTE: You may visit <<add-person, 5.3.1 Adding a person>>, <<list-people, 5.3.8 Listing all contacts>>,
-<<find-person, 5.3.9 Finding a person>>, <<edit-person, 5.3.10 Editing a person>>, <<delete-person, 5.3.11 Deleting a person>>, <<clear, 5.4.12 Clearing all contacts>>
+<<find-person, 5.3.9 Finding a person>>, <<edit-person, 5.3.10 Editing a person>>, <<delete-person, 5.3.11 Deleting a person>>, <<peopleclear, 5.4.12 Clearing all contacts>>
 for more details on how you can manage your contacts with *Sharkie*.
 
 //end::contacts[]
@@ -860,7 +860,7 @@ command will delete Betsy from the address book.
 // end::delete[]
 
 // tag::peopleclear[]
-[[clear]]
+[[peopleclear]]
 ==== Clearing all contacts : `clear`
 
 Suppose you want to clear all the contacts in your address book,
