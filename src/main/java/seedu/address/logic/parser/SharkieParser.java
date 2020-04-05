@@ -77,7 +77,7 @@ public class SharkieParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        if (commandType == GLOBAL_COMAND_TYPE) {
+        if (commandType == GLOBAL_COMMAND_TYPE) {
             return getGlobalCommand(commandWord, arguments);
         }
 

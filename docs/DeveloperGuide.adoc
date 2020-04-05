@@ -120,9 +120,9 @@ image::UiClassDiagram.png[]
 *API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `WalletTransactionPanel`, `WalletStatisticsPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
+The `Ui` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
-The `UI` component,
+The `Ui` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
@@ -483,6 +483,7 @@ image::WalletBudgetActivityDiagram.png[width=600]
 .. If the `Budget` is not a default budget, the `BudgetList` is updated in the `Model` via `Model#setBudget()`. This adds the budget given to a list of budgets with their `Month` and `Year` specified.
 . The list of `Budget` in the `Wallet` is modified based the arguments input by the user.
 . If a `Budget` with the same arguments given already exists, it will be overwritten by the one given.
+. A `CommandResult` is returned at the end of the execution.
 
 The following sequence diagram summarizes what happens during the execution of a `wallet budget` command:
 

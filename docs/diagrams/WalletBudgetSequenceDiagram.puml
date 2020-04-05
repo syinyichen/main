@@ -2,23 +2,67 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant "WalletBudgetCommand" as WalletBudgetCommand LOGIC_COLOR
+participant ":LogicManager" as Logic LOGIC_COLOR
+participant ":SharkieParser" as SharkieParser LOGIC_COLOR
+participant ":WalletBudgetCommandParser" as WalletBudgetCommandParser LOGIC_COLOR
+participant "walletBudgetCommand:WalletBudgetCommand" as WalletBudgetCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant "budget:Budget" as givenBudget MODEL_COLOR
+participant "budget:Budget" as Budget MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 participant ":Wallet" as Wallet MODEL_COLOR
 participant "budgetList:BudgetList" as budgetList MODEL_COLOR
 end box
 
-[-> WalletBudgetCommand: execute()
+[-> Logic : execute()
+activate Logic
+
+Logic -> SharkieParser : parseCommand()
+activate SharkieParser
+
+create WalletBudgetCommandParser
+SharkieParser -> WalletBudgetCommandParser
+activate WalletBudgetCommandParser
+
+WalletBudgetCommandParser --> SharkieParser
+deactivate WalletBudgetCommandParser
+
+SharkieParser -> WalletBudgetCommandParser : parse()
+activate WalletBudgetCommandParser
+
+create Budget
+WalletBudgetCommandParser -> Budget
+activate Budget
+
+Budget --> WalletBudgetCommandParser
+deactivate Budget
+
+create WalletBudgetCommand
+WalletBudgetCommandParser -> WalletBudgetCommand : budget
 activate WalletBudgetCommand
 
-WalletBudgetCommand -> givenBudget: isDefault()
-activate givenBudget
-givenBudget -> WalletBudgetCommand: isDefault
-deactivate givenBudget
+WalletBudgetCommand --> WalletBudgetCommandParser : walletBudgetCommand
+deactivate WalletBudgetCommand
+
+WalletBudgetCommandParser --> SharkieParser : walletBudgetCommand
+deactivate WalletBudgetCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+WalletBudgetCommandParser -[hidden]-> SharkieParser
+destroy WalletBudgetCommandParser
+
+SharkieParser --> Logic : walletBudgetCommand
+deactivate SharkieParser
+
+
+Logic -> WalletBudgetCommand: execute()
+activate WalletBudgetCommand
+
+WalletBudgetCommand -> Budget: isDefault()
+activate Budget
+Budget -> WalletBudgetCommand: isDefault
+deactivate Budget
+
     alt isDefault = true
        WalletBudgetCommand -> Model: setDefaultBudget(budget)
        activate Model
@@ -59,8 +103,11 @@ deactivate givenBudget
 
     end
 
-[<--WalletBudgetCommand : result
+Logic <--WalletBudgetCommand : result
 deactivate WalletBudgetCommand
+
+[<-- Logic : result
+deactivate Logic
 
 [<-[hidden]-WalletBudgetCommand
 destroy WalletBudgetCommand
