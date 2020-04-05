@@ -118,7 +118,7 @@ The sections below give more details of each component.
 image::UiClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `WalletTransactionPanel`, `WalletStatisticsPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
@@ -138,10 +138,16 @@ image::LogicClassDiagram.png[]
 link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `SharkieParser` class to parse the user command.
+* `SharkieParser` will check the command entered against a pattern defined in `SharkieParser`.
+* It refers to `CliPrefix` to determine whether the command entered is a `people` related command, or a `wallet` related command.
+* If the command entered passes these checks, it then parses the command using the respective `XYZCommandParser` to retrieve the command to be executed.
 .  This results in a `Command` object which is executed by the `LogicManager`.
-.  The command execution can affect the `Model` (e.g. adding a person).
+* Each command has its own `XYZCommand` that inherits from `Command`, implementing different actions to be executed.
+.  The command execution can affect the `Model` (e.g. adding a person, adding a transaction, filtering a list of transactions, reminders etc.).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+* The `Ui` processes the `CommandResult` and outputs the information to the `ResultDisplay` class.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+* Other `Ui` components are also updated on the successful obtaining of a `CommandResult` by `Ui`.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("people delete 1")` API call.
 
