@@ -61,6 +61,7 @@ public class Wallet implements ReadOnlyWallet {
      */
     public void resetData(ReadOnlyWallet newData) {
         requireNonNull(newData);
+
         setIncomes(newData.getIncomeList());
         setExpenses(newData.getExpenseList());
         setBudgets(newData.getBudgetList());

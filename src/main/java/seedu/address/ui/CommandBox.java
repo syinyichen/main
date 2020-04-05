@@ -43,7 +43,8 @@ public class CommandBox extends UiPart<Region> {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                MainWindow.editResultDisplay("Executing command...");
+                MainWindow.editResultDisplay("Executing command...\n"
+                        + "This command takes some time to load, please be patient :)");
                 executionProgressIndicator.setVisible(true);
             }
         }).start();

@@ -26,6 +26,7 @@ PeopleReceivedCommand -> Model : getFilteredPersonList()
 activate Model
 
 Model --> PeopleReceivedCommand : lastShownList
+deactivate Model
 
 PeopleReceivedCommand -> indicatedPerson : lastShownList.get(1)
 activate indicatedPerson
@@ -41,6 +42,7 @@ modifiedPerson --> PeopleReceivedCommand : modifiedPerson
 deactivate modifiedPerson
 
 PeopleReceivedCommand -> Model : setPerson(\nindicatedPerson, \nmodifiedPerson)
+activate Model
 
 Model -> AddressBook : setPerson(indicatedPerson, modifiedPerson)
 activate AddressBook
@@ -55,8 +57,10 @@ AddressBook --> Model
 deactivate AddressBook
 
 Model --> PeopleReceivedCommand
+deactivate Model
 
 PeopleReceivedCommand -> Model : updateFilteredPersonList()
+activate Model
 
 Model --> PeopleReceivedCommand
 deactivate Model

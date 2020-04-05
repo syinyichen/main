@@ -86,6 +86,8 @@ include::../UserGuide.adoc[tag=expenditureAndIncome]
 
 include::../UserGuide.adoc[tag=peopleadd]
 
+include::../UserGuide.adoc[tag=peoplereceived]
+
 include::../UserGuide.adoc[tag=peopleremind]
 
 include::../UserGuide.adoc[tag=peopleremindall]
@@ -96,9 +98,15 @@ include::../UserGuide.adoc[tag=peopleclear]
 
 == FAQ
 
+include::../UserGuide.adoc[tag=personIndexFAQ]
+
+include::../UserGuide.adoc[tag=loanDebtIndexFAQ]
+
 include::../UserGuide.adoc[tag=editing-user-data]
 
 include::../UserGuide.adoc[tag=debt-and-loan-diff]
+
+include::../UserGuide.adoc[tag=remind-issue]
 
 == Contributions to the Developer Guide
 

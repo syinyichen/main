@@ -8,8 +8,11 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Transaction {
-Class TransactionList
-abstract Transaction <<abstract>>
+Class "TransactionList" as TransactionListDebt
+Class "TransactionList" as TransactionListLoan
+Class "TransactionList" as TransactionListExpense
+Class "TransactionList" as TransactionListIncome
+abstract "{abstract}\nTransaction" as Transaction
 Class Expense
 Class Income
 Class Debt
@@ -20,34 +23,38 @@ Class BudgetList
 Class Month
 Class Year
 
-Interface WalletPredicate <<Interface>>
+abstract "{abstract}\nWalletPredicate" as WalletPredicate
 Class AmountContainsKeywordsPredicate
 Class DateContainsKeywordsPredicate
 Class DescriptionContainsKeywordsPredicate
 Class TagContainsKeywordsPredicate
 }
 
-Class HiddenWallet #FFFFFF
-Class Person #FFFFFF
-HiddenWallet --> "1" TransactionList
-HiddenWallet --> "1" BudgetList
-Person --> "*" Debt
-Person --> "*" Loan
+Class Wallet
+Class Person
+
+Wallet *--> "1" BudgetList
+Wallet *--> "1" TransactionListExpense
+Wallet *--> "1" TransactionListIncome
+Person *--> "1" TransactionListDebt
+Person *--> "1" TransactionListLoan
 BudgetList o--> "*" Budget
-TransactionList o--> "*" Expense
-TransactionList o--> "*" Income
-Expense .up.|> Transaction
-Income .up.|> Transaction
-Debt .up.|> Transaction
-Loan .up.|> Transaction
+TransactionListExpense o--> "*" Expense
+TransactionListIncome o--> "*" Income
+TransactionListDebt o--> "*" Debt
+TransactionListLoan o--> "*" Loan
+Expense -up-|> Transaction
+Income -up-|> Transaction
+Debt -up-|> Transaction
+Loan -up-|> Transaction
 Budget *--> Amount
 Budget *--> Month
 Budget *--> Year
 
-DescriptionContainsKeywordsPredicate .up.|> WalletPredicate
-AmountContainsKeywordsPredicate .up.|> WalletPredicate
-DateContainsKeywordsPredicate .up.|> WalletPredicate
-TagContainsKeywordsPredicate .up.|> WalletPredicate
+DescriptionContainsKeywordsPredicate -up-|> WalletPredicate
+AmountContainsKeywordsPredicate -up-|> WalletPredicate
+DateContainsKeywordsPredicate -up-|> WalletPredicate
+TagContainsKeywordsPredicate -up-|> WalletPredicate
 
 WalletPredicate -[hidden]left-> BudgetList
 DescriptionContainsKeywordsPredicate -[hidden]down-> AmountContainsKeywordsPredicate
