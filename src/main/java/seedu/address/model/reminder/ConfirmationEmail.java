@@ -14,15 +14,13 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.User;
 
 /**
  * Represents a confirmation email, to confirm that the user email is a valid email.
  */
 public class ConfirmationEmail {
-    private final Name userName;
-    private final Email userEmail;
+    private final User user;
     private MimeMessage message;
 
     private final int pin;
@@ -33,10 +31,9 @@ public class ConfirmationEmail {
     /**
      * Constructs a ConfirmationEmail object.
      */
-    public ConfirmationEmail(Name name, Email email) {
-        requireAllNonNull(name, email);
-        this.userName = name;
-        this.userEmail = email;
+    public ConfirmationEmail(User user) {
+        requireAllNonNull(user);
+        this.user = user;
 
         Random random = new Random();
         this.pin = random.nextInt((9999 - 100) + 1) + 10;
@@ -72,14 +69,14 @@ public class ConfirmationEmail {
      * @throws MessagingException if error occurs while sending the email.
      */
     private MimeMessage constructMessage() throws MessagingException {
-        String content = "<p>Dear " + userName + ",</p><br><p>Thank you for using&nbsp;<strong>"
+        String content = "<p>Dear " + user.getName() + ",</p><br><p>Thank you for using&nbsp;<strong>"
                 + "Sharkie</strong>!</p><br><p>Your confirmation PIN is&nbsp;<span style=\"text-decoration: "
                 + "underline;\"><span style=\"color: #ff0000;\"><strong><span style=\"background-color: #ffff00;\">"
                 + pin + "</span></strong></span></span><span>.</p><br><p>Have a good day and enjoy your experience "
                 + "at&nbsp;<strong>Sharkie</strong>! :)</p><br><p>Regards,</p><p>Sharkie.</p>";
 
         message.setFrom(new InternetAddress("noreply.loansharkie@gmail.com"));
-        message.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail.toString()));
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail().toString()));
         message.setSubject("[Sharkie] Confirmation of signing into Sharkie");
         message.setContent(content, "text/html; charset=utf-8");
 
@@ -90,12 +87,8 @@ public class ConfirmationEmail {
         return this.pin == Integer.parseInt(pin);
     }
 
-    public Name getName() {
-        return this.userName;
-    }
-
-    public Email getEmail() {
-        return this.userEmail;
+    public User getUser() {
+        return this.user;
     }
 
     /**
@@ -112,13 +105,12 @@ public class ConfirmationEmail {
         }
 
         ConfirmationEmail otherConfirmationEmail = (ConfirmationEmail) other;
-        return otherConfirmationEmail.getName().equals(getName())
-                && otherConfirmationEmail.getEmail().equals(getEmail());
+        return otherConfirmationEmail.getUser().equals(getUser());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(userName, userEmail);
+        return Objects.hash(user);
     }
 }

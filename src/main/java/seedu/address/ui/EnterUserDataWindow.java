@@ -194,8 +194,9 @@ public class EnterUserDataWindow extends UiPart<Stage> {
                 @Override
                 public void run() {
                     try {
-                        confirmationEmail = new ConfirmationEmail(new Name(userNameTextField.getText()),
-                                new Email(userEmailTextField.getText()));
+                        confirmationEmail = new ConfirmationEmail(new User(new Name(userNameTextField.getText()),
+                                new Phone(userPhoneTextField.getText()),
+                                new Email(userEmailTextField.getText())));
                         confirmationEmail.sendConfirmationEmail();
                         logger.info(MESSAGE_CONFIRMATION_SENT_SUCCESS);
                     } catch (MessagingException e) {
@@ -242,6 +243,9 @@ public class EnterUserDataWindow extends UiPart<Stage> {
             @Override
             public void run() {
                 try {
+                    confirmationEmail = new ConfirmationEmail(new User(new Name(userNameTextField.getText()),
+                            new Phone(userPhoneTextField.getText()),
+                            new Email(userEmailTextField.getText())));
                     confirmationEmail.sendConfirmationEmail();
                     logger.info(MESSAGE_CONFIRMATION_SENT_SUCCESS);
                 } catch (MessagingException e) {
