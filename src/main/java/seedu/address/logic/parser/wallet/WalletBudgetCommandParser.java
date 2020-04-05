@@ -34,7 +34,9 @@ public class WalletBudgetCommandParser implements Parser<WalletBudgetCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_AMOUNT, PREFIX_MONTH, PREFIX_YEAR);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_AMOUNT)
-                || !argMultimap.getPreamble().isEmpty()) {
+                || !argMultimap.getPreamble().isEmpty()
+                || arePrefixesPresent(argMultimap, PREFIX_MONTH) && !arePrefixesPresent(argMultimap, PREFIX_YEAR)
+                || !arePrefixesPresent(argMultimap, PREFIX_MONTH) && arePrefixesPresent(argMultimap, PREFIX_YEAR)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, WalletBudgetCommand.MESSAGE_USAGE));
         }
 

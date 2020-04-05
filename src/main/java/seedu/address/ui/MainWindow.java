@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -27,6 +28,8 @@ import seedu.address.model.transaction.Date;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final int WALLET_TAB_INDEX = 0;
+    private static final int PEOPLE_TAB_INDEX = 1;
 
     private static ResultDisplay resultDisplay;
 
@@ -62,6 +65,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private TabPane mainWindowTabPane;
 
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
@@ -264,6 +270,13 @@ public class MainWindow extends UiPart<Stage> {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
+                    switchPanels(commandText);
+                }
+            });
+
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
                     updateWalletPanels();
                 }
             });
@@ -290,6 +303,17 @@ public class MainWindow extends UiPart<Stage> {
         walletStatisticsPanel.update(logic.getWallet().getBudget(Date.getDefault().getMonth(),
                 Date.getDefault().getYear()),
                 logic.getTransactionList());
+    }
+
+    /**
+     * Switches the tabs based on whether a people or wallet command was entered.
+     */
+    private void switchPanels(String commandText) {
+        if (commandText.contains("people")) {
+            mainWindowTabPane.getSelectionModel().select(PEOPLE_TAB_INDEX);
+        } else if (commandText.contains("wallet")) {
+            mainWindowTabPane.getSelectionModel().select(WALLET_TAB_INDEX);
+        }
     }
 
 
