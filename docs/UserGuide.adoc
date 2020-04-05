@@ -66,6 +66,7 @@ a|[gray]#This yellow box indicates the restrictions of each command.#
 //tag::quickStart[]
 [[quick-start]]
 == Quick Start
+The following steps will help you get Sharkie up and running in no time on your desktop.
 
 .  Ensure you have Java `11` or above installed in your Computer.
 .  Download the latest `Sharkie.jar` link:https://github.com/AY1920S2-CS2103T-W12-3/main/releases[here].
@@ -99,6 +100,8 @@ e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
 
 [[Features]]
 == Features
+This section elaborates on the five unique features that make up Sharkie.
+
 //tag::expenditureAndIncome[]
 === Expenditure and income
 If you are a university student, who starts to manage your own money, but struggles to track your expenses or meet
