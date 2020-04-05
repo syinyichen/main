@@ -85,10 +85,22 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setUserDataFilePath_validPath_setUserDataFilePath() {
+    public void setUserDataFilePath_validPath_setsUserDataFilePath() {
         Path path = Paths.get("user/data/file/path");
         modelManager.setUserDataFilePath(path);
         assertEquals(path, modelManager.getUserDataFilePath());
+    }
+
+    @Test
+    public void setWalletFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setWalletFilePath(null));
+    }
+
+    @Test
+    public void setWalletFilePath_validPath_setsWalletFilePath() {
+        Path path = Paths.get("wallet/file/path");
+        modelManager.setWalletFilePath(path);
+        assertEquals(path, modelManager.getWalletFilePath());
     }
 
     // =========== AddressBook ================================================================================

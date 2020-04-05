@@ -40,7 +40,7 @@ public class PeopleOweCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Records the amount of money that you owe a"
             + " person.\nParameters: <index> (must be a positive integer) "
             + PREFIX_NAME + "<description> "
-            + PREFIX_AMOUNT + "<amount> "
+            + PREFIX_AMOUNT + "<amount> (must be positive) "
             + "[" + PREFIX_DATE + "<date:dd/mm/yyyy>]\n"
             + "Example: " + PEOPLE_COMMAND_TYPE + " "
             + COMMAND_WORD + " 4 "

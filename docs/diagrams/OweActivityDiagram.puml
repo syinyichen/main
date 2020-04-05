@@ -5,6 +5,7 @@ start
 :Parser parses the arguments;
 
 if () then ([name, amount or index is not specified or is invalid])
+    :System throws ParseException;
 else ([else])
     if () then ([date is specified])
         :Set the date to the specified date;
@@ -14,6 +15,7 @@ else ([else])
     :Parser returns a PeopleOweCommand;
     :Logic executes the command;
     if () then ([index of person is out of bound])
+        :System throws CommandException;
     else ([else])
         :Model adds debt to the person;
         :Model updates the address book;
