@@ -1188,7 +1188,47 @@ _{ more test cases ... }_
    Expected: An expense named _Meal_ with _$3.50_ with default tag _Misc_ recorded under the date _02 FEB 2020_ is added to the transaction list. The statistics panel will not update with this expense.
 .. Test case: `wallet expense n/Meal $/3.50 t/Food` +
    Expected: An expense named _Meal_ with _$3.50_ with tag _Food_ recorded under the current date is added to the transaction list. The statistic panel will also update with the expense entered, under the custom tag given.
+.. Test case: `wallet expense n/Meal $/asdf`
+   Expected: The expense is not recorded. Error details shown in result display.
+.. Other incorrect expense commands to try:
+*** `wallet expense`,
+*** `wallet expense 1`,
+*** `wallet expense $/3.50`,
+*** `wallet expense n/Meal`
 
+. Recording an income
+.. Prerequisites: None.
+.. Test case: `wallet income n/Teaching Assistant Job $/100` +
+   Expected: An expense named _Teaching Assistant Job_ with _$100.00_ with default tag _Misc_ recorded under the current date is added to the transaction list.
+.. Test case: `wallet income n/Teaching Assistant Job $/100 d/02/02/2020` +
+   Expected: An expense named _Teaching Assistant Job_ with _$100.00_ with default tag _Misc_ recorded under the date _02 FEB 2020_ is added to the transaction list. 
+.. Test case: `wallet income n/Teaching Assistant Job $/100 t/Job` +
+   Expected: An expense named _Teaching Assistant Job_ with _$100.00_ with tag _Job_ recorded under the current date is added to the transaction list. 
+.. Test case: `wallet income n/Teaching Assistant Job $/asdf`
+   Expected: The income is not recorded. Error details shown in result display.
+.. Other incorrect expense commands to try:
+*** `wallet income`,
+*** `wallet income 1`,
+*** `wallet income $/100`,
+*** `wallet income n/Teaching Assistant Job`
+
+. Adding a budget
+.. Prerequisites: None.
+.. Test case: `wallet budget $/800` +
+   Expected: A budget of _$800_ is set as the default budget for Sharkie. The UI should update to display your total expenditure over the set budget, assuming you have no budget set for the current month.
+.. Test case: `wallet budget $/800 m/02 y/2020` +
+   Expected: A budget of _$800_ is set as the budget for FEB 2020. The UI should update to display the total expenditure over the set budget if the current date is within the month you have selected. It will override the default budget set.
+.. Test case: `wallet budget $/0` +
+   Expected: A budget of _$0_ is set as the default budget. Sharkie will assume that there is no budget set as default, and the UI will reflect this.
+.. Test case: `wallet budget $/asdf` +
+   Expected: The budget will not be set. Error details will show in the result display.
+.. Other incorrect budget commands to try:
+*** `wallet budget`,
+*** `wallet budget 1`,
+*** `wallet budget $/800 m/02`,
+*** `wallet budget $/800 y/2020`,
+*** `wallet budget $/800 m/a y/b`,
+*** `wallet budget $/-800`
 
 === Manual Testing on People Tab
 
