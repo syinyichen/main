@@ -63,11 +63,4 @@ public class ReminderTest {
         // different receiver -> returns different hashcode
         assertNotEquals(original.hashCode(), differentReceiver.hashCode());
     }
-
-    @Test
-    public void tostring() {
-        Reminder original = new Reminder(ALICE, BENSON);
-        String expectedResult = "Sender: " + ALICE.toString() + " Receiver: " + BENSON.toString();
-        assertEquals(expectedResult, original.toString());
-    }
 }
