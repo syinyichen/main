@@ -23,7 +23,7 @@ public class WalletDeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the expense/income identified by the index number used in the displayed transaction list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: <index> (must be a positive integer)\n"
             + "Example: " + WALLET_COMMAND_TYPE + " "
             + COMMAND_WORD + " 1";
 
