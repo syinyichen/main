@@ -160,6 +160,8 @@ You can view statistics such as the proportion of your spending on different ite
 
 //tag::globalcommands[]
 === Global Commands
+Global commands are general commands which help you to interact with Sharkie.
+
 ==== Viewing help : `help`
 If you need help regarding the many features of Sharkie and how to operate it, you can use the global `help` command to get a link to this user guide. +
 
@@ -190,6 +192,7 @@ Sharkie will save your data to a locally stored file (that can be edited using a
 //end::globalcommands[]
 
 === Wallet Commands
+Wallet commands are commands that pertain to your monetary information. If you want to record down transactions or set a monthly budget for yourself, these commands are your best friends.
 
 [[add-expense-command]]
 //tag::walletexpense[]
@@ -377,6 +380,8 @@ The following are restrictions of `wallet budget` command, which you will need t
 //end::walletbudget[]
 
 === People Commands
+People commands are commands which pertain to the social features of Sharkie. These commands help you to save your contacts and record down interpersonal transactions.
+
 //tag::peopleadd[]
 ==== Adding a person: `add`
 
