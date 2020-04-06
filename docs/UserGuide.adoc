@@ -298,7 +298,7 @@ The following are the restrictions of `wallet edit` command, which you would nee
 
 *Example #1*:
 
-** Suppose you want to edit the first transaction, Dack rce -$4400.00, because you misspelled the name and keyed in the wrong price.
+** Suppose you want to edit the first transaction in the transaction list, `Dack rce -$4400.00`, because you misspelled the name and wrote the wrong price.
 * The command you would enter is `wallet edit 1 n/Duck rice $/4.00`.
 * This tells *Sharkie* that you want to edit the description and price of the first transaction shown in the wallet.
 
@@ -349,9 +349,9 @@ The following are the restrictions of `wallet find` command, which you would nee
 ====
 *Example #1*:
 
-** Suppose you want to search for transactions with description containing keyword `rice` and transactions with description containing keyword `soup`.
+** Suppose you want to search for transactions with description containing keyword `rice` or `soup`.
 * The command you would enter is `wallet find n/rice soup`.
-* This tells *Sharkie* that you want to look for transactions with description `rice` and transactions with description `soup`.
+* This tells *Sharkie* that you want to look for transactions with description `rice` or `soup`.
 
 *Expected Outcome #1*:
 
@@ -359,40 +359,40 @@ The following are the restrictions of `wallet find` command, which you would nee
 
     3 transactions listed!
 
-*Example 2*:
+*Example #2*:
 
-** Suppose you want to search for transactions with amount ranging between `$7.00` to `$7.99` and amount between `$30.00` to `$30.99`.
+** Suppose you want to search for transactions with amount ranging between `$7.00` to `$7.99` or `$30.00` to `$30.99`.
 * The command you would enter is `wallet find $/7 30`.
-* This tells *Sharkie* that you want to look for transactions with cost or income from `$7.00` to `$7.99` and transactions with cost or income from `$30.00` to `$30.99`.
+* This tells *Sharkie* that you want to look for transactions with cost or income from `$7.00` to `$7.99` or `$30.00` to `$30.99`.
 
-*Expected Outcome 2*:
+*Expected Outcome #2*:
 
 * All transactions with  with amount from `$7.00` to `$7.99` and amount from `$30.00` to `$30.99` will be listed out.
 
     3 transactions listed!
 
-*Example 3*:
+*Example #3*:
 
-** Suppose you want to search for transactions with date `10/10/2020` and transactions with date `11/11/2020`.
+** Suppose you want to search for transactions with date `10/10/2020` or `11/11/2020`.
 * The command you would enter is `wallet find d/10/10/2020 11/11/2020`.
-* This tells *Sharkie* that you want to look for transactions done on `10/10/2020` and transactions done on `11/11/2020`.
+* This tells *Sharkie* that you want to look for transactions done on `10/10/2020` or `11/11/2020`.
 
-*Expected Outcome 3*:
+*Expected Outcome #3*:
 
 
-    3 transactions listed!
+    2 transactions listed!
 
-*Example 4*:
+*Example #4*:
 
-** Suppose you want to search for transactions with tag `food` and transactions with tag `shopping`.
+** Suppose you want to search for transactions with tag `food` or `shopping`.
 * The command you would enter is `wallet find t/food shopping`.
-* This tells *Sharkie* that you want to look for transactions with the tag `food` and with the tag `shopping`.
+* This tells *Sharkie* that you want to look for transactions with the tag `food` or `shopping`.
 
-*Expected Outcome 4*:
+*Expected Outcome #4*:
 
 * All transactions with tag `food` and transactions with tag `shopping` will be listed out.
 
-    3 transactions listed!
+    5 transactions listed!
 
 //end::walletfind[]
 
@@ -424,7 +424,7 @@ The following are the restrictions of `wallet delete` command, which you would n
 
 *Example #2*:
 
-** Suppose you used the command `wallet find n/money` to filter out all transactions with keyword money, and you want to remove the second transaction you see, Red packet money, from your wallet's filtered list of transactions.
+** Suppose you used the command `wallet find n/money` to filter out all transactions with keyword `money`, and you want to remove the second transaction you see, `Red packet money`, from your wallet's filtered list of transactions.
 * The command you would enter is `wallet delete 2`.
 * This tells *Sharkie* that you want to delete the second transaction shown in the wallet, after being filtered.
 
