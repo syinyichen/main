@@ -1174,23 +1174,23 @@ _{ more test cases ... }_
 
 === Manual Testing on Wallet Tab
 
-//tag::testWalletList
+//tag::testWalletList[]
 ==== Listing all transactions
 . Listing all the transactions in the wallet.
 
-.. Prerequisites: There must be transactions in the wallet.
+.. Prerequisites: The transactions list must not be empty/
 .. Test case: `wallet list` +
    Expected: All transactions in wallet listed out.
-//end::testWalletList
+//end::testWalletList[]
 
-//tag::testWalletEdit
+//tag::testWalletEdit[]
 ==== Editing a transaction
 
 . Editing a specific transaction.
 
 .. Prerequisites: The transaction to be edited exist in the wallet.
 At least 1 field to be edited must be inputted.
-The new details provided must be different from the old details.
+The new details provided to edit the transaction with must be different from the corresponding details in the old transaction.
 .. Test case: `wallet edit 1 n/Chicken Rice` +
    Expected: The first transaction is now updated with new description _Chicken Rice_. A success message shown in the result display.
 .. Test case: `wallet edit 1 n/Dinner $/12.00 d/02/02/2020 t/food` +
@@ -1210,20 +1210,19 @@ A success message shown in the result display.
 *** `wallet edit x n/Dinner $/12.00 d/02/01/2020` (where x is larger than the transaction list size),
 *** `wallet edit x $/12.00` (where x is a negative number),
 *** `wallet edit x $/12.00` (where x is a non-integer),
-*** `wallet edit 1 $/x` (where x is a negative number),
 *** `wallet edit 1 n/Dinner $/x` (where x is greater 92233720368547758.07),
 *** `wallet edit 1 n/Dinner $/x` (where x has more than 2 decimal places) or
 *** `wallet edit 1 n/Dinner $/x` (where x is not a number). +
    Expected: Similar to previous
-//end::testWalletEdit
+//end::testWalletEdit[]
 
-//tag::testWalletFind
+//tag::testWalletFind[]
 ==== Finding transactions
 
-. Editing a specific transaction.
+. Finding transactions containing the <keyword> provided.
 
 .. Prerequisites: The transaction list must not be empty. The keyword can only be either of type [n/<description>], [d/<date>], [$/<amount>], or [t/<tag>].
-At least 1 keyword to search must be inputted.
+At least 1 keyword to search with must be inputted.
 .. Test case: `wallet find n/chicken duck` +
    Expected: All transactions with description containing either _chicken_ or _duck_ are displayed. A success message shown in the result display.
 .. Test case: `wallet find $/3 12` +
@@ -1250,9 +1249,9 @@ A success message shown in the result display.
 *** `wallet find d/x` (where x is not a date),
 *** `wallet find d/yyyy/mm/dd` (where date is in the wrong format) +
    Expected: Similar to previous
-//end::testWalletFind
+//end::testWalletFind[]
 
-//tag::testWalletDelete
+//tag::testWalletDelete[]
 ==== Deleting a transaction
 
 . Deleting a transaction.
@@ -1264,21 +1263,22 @@ A success message shown in the result display.
    Expected: No transaction is deleted. Error details shown in the result display.
 .. Other incorrect delete commands to try:
 *** `wallet delete`,
+*** `wallet delete x` (where x is not a number),
 *** `wallet delete x` (where x is larger than the person list size),
 *** `wallet delete x` (where x is a negative number) or
 *** `wallet delete x` (where x is a non-integer value) +
    Expected: Similar to previous.
 
-//end::testWalletDelete
+//end::testWalletDelete[]
 
-//tag::testWalletClear
-==== Listing all transactions
-. Clear all the data in the wallet, including all income, expense and budget.
+//tag::testWalletClear[]
+==== Clearing all transactions
+. Clear all the data in the wallet, including  income, expense and budget.
 
-.. Prerequisites: There must be transactions or budget in the wallet.
+.. Prerequisites: There must be transactions or budget data in the wallet.
 .. Test case: `wallet clear` +
    Expected: All transactions and budget data in wallet is deleted.
-//end::testWalletClear
+//end::testWalletClear[]
 
 === Manual Testing on People Tab
 
