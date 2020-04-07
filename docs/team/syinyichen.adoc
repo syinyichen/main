@@ -51,7 +51,7 @@ and [https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=syinyichen&sort=
 
 * *Other contributions*:
 ** Enhancements to existing features:
-** Add progress indicator for command execution, to indicate that the application is not hanging
+*** Add progress indicator for command execution, to indicate that the application is not hanging
 during execution of commands, which take some time to run, such as `people remind`. (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#148])
 *** Improved GUI of Edit User Data Window and Help Window. (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#178])
 *** Made `people's tags` uneditable. (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pulls[#183])
