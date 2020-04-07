@@ -83,7 +83,7 @@ The following steps will help you get Sharkie up and running in no time on your 
 image::EnterUserData.png[width="820"]
 
 +
-. If you are logging in for the first time, key in your Name, Phone and your Email, and and press kbd:[enter] or click on the `Submit`.
+. If you are logging in for the first time, key in your Name, Phone and your Email, and and press kbd:[enter] or click on the `Submit` button.
 +
 
 .After inputting user information
@@ -298,7 +298,7 @@ Format: `wallet list`
 
 *Example*:
 
-* Suppose you want to list all the transactions out.
+* Suppose you have just executed the <<walletFind, `wallet find`>>  command. Now, you would like to see the full list of transactions in the wallet again.
 
 ** The command you would enter is `wallet list`.
 ** This lists out all the transactions you have in your wallet.
@@ -310,7 +310,7 @@ Format: `wallet list`
 //end::walletList[]
 
 //tag::walletedit[]
-==== Editing an income or expense: `edit`
+==== Editing a transaction: `edit`
 
 Suppose you want to edit the details of an income or expense in your wallet, the command you would enter is our `wallet edit` command. +
 Format: `wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]`
@@ -326,29 +326,30 @@ The following are the restrictions of `wallet edit` command, which you would nee
 ====
 
 
-*Example 1*:
+*Example #1*:
 
-** Suppose you want to edit the first transaction, Dack rce -$4400.00, because you misspelled the name and keyed in the wrong price.
+** Suppose you want to edit the first transaction in the transaction list, `Dack rce -$4400.00`, because you misspelled the name and wrote the wrong price.
 * The command you would enter is `wallet edit 1 n/Duck rice $/4.00`.
 * This tells *Sharkie* that you want to edit the description and price of the first transaction shown in the wallet.
 
-*Expected Outcome 1*:
+*Expected Outcome #1*:
 
      Edited Transaction: Duck rice Description: Duck rice Amount: $4.00 Date: 2020-03-30 Tag: [Food]
 
-*Example 2*:
+*Example #2*:
 
 ** Suppose you want to edit the date and tag of the first transaction, Duck rice, because you forgot to input the date and tag.
 * The command you would enter is `wallet edit 1 d/10/04/2020 t/food`.
 * This tells *Sharkie* that you want to edit the date and tag of the first transaction shown in the wallet.
 
-*Expected Outcome 2*:
+*Expected Outcome #2*:
 
      Edited Transaction: Duck rice Description: Duck rice Amount: $4.00 Date: 2020-10-04 Tag: [Food]
 
 //end::walletedit[]
 
 //tag::walletfind[]
+[[walletFind]]
 ==== Finding an income or expense: `find`
 Suppose you want to find transactions with certain keywords or date within the transaction list in the wallet, the command you would enter is our `wallet find` command. +
 
@@ -376,65 +377,52 @@ The following are the restrictions of `wallet find` command, which you would nee
 * For finding of amount ($/x), x being an integer, the transactions displayed will range from from $x.00 to $x.99.
 * For finding of date (d/), the date inputted should follow `dd/mm/yyyy`.
 ====
-*Example 1*:
+*Example #1*:
 
-** Suppose you want to search for transactions with description containing keyword `rice` and `soup`.
+** Suppose you want to search for transactions with description containing keyword `rice` or `soup`.
 * The command you would enter is `wallet find n/rice soup`.
-* This tells *Sharkie* that you want to look for transactions with description `rice` and transactions with description `soup`.
+* This tells *Sharkie* that you want to look for transactions with description `rice` or `soup`.
 
-*Expected Outcome 1*:
+*Expected Outcome #1*:
 
-    3 transactions listed!:
-    [6 APRIL 2020]
-    1. [Food] Duck Rice -$4.00
-    2. [Food] Chicken Rice -$2.50
-    [1 APRIL 2020]
-    3. [Food] Fish Soup -$3.80
+* All transactions with description containing keyword `rice` and transactions with description containing keyword `soup` will be listed out.
 
-*Example 2*:
+    3 transactions listed!
 
-** Suppose you want to search for transactions with amount ranging around `$7` and amount ranging around `$30`.
+*Example #2*:
+
+** Suppose you want to search for transactions with amount ranging between `$7.00` to `$7.99` or `$30.00` to `$30.99`.
 * The command you would enter is `wallet find $/7 30`.
-* This tells *Sharkie* that you want to look for transactions with cost or income around `$7` and `$30`.
+* This tells *Sharkie* that you want to look for transactions with cost or income from `$7.00` to `$7.99` or `$30.00` to `$30.99`.
 
-*Expected Outcome 2*:
+*Expected Outcome #2*:
 
-    3 transactions listed!:
-    [6 APRIL 2020]
-    1. [Food] Duck Rice -$7.38
-    2. [Food] Chicken Rice -$30.50
-    [1 APRIL 2020]
-    3. [Money] April Allowance +$30.80
+* All transactions with  with amount from `$7.00` to `$7.99` and amount from `$30.00` to `$30.99` will be listed out.
 
-*Example 3*:
+    3 transactions listed!
 
-** Suppose you want to search for transactions with date `10/10/2020` and date `11/11/2020`.
+*Example #3*:
+
+** Suppose you want to search for transactions with date `10/10/2020` or `11/11/2020`.
 * The command you would enter is `wallet find d/10/10/2020 11/11/2020`.
-* This tells *Sharkie* that you want to look for transactions done on `10/10/2020` and transactions done on `11/11/2020`.
+* This tells *Sharkie* that you want to look for transactions done on `10/10/2020` or `11/11/2020`.
 
-*Expected Outcome 3*:
+*Expected Outcome #3*:
 
-    3 transactions listed!:
-    [10 OCTOBER 2020]
-    1. [Food] Duck Rice $4.00
-    2. [Food] Chicken Rice $2.50
-    [11 NOVEMBER 2020]
-    3. [Food] Fish Soup $3.80
 
-*Example 4*:
+    2 transactions listed!
 
-** Suppose you want to search for transactions with tag `food` and date `shopping`.
+*Example #4*:
+
+** Suppose you want to search for transactions with tag `food` or `shopping`.
 * The command you would enter is `wallet find t/food shopping`.
-* This tells *Sharkie* that you want to look for transactions with the tag `food` and with the tag `shopping`.
+* This tells *Sharkie* that you want to look for transactions with the tag `food` or `shopping`.
 
-*Expected Outcome 4*:
+*Expected Outcome #4*:
 
-    3 transactions listed!:
-    [10 OCTOBER 2020]
-    1. [Food] Duck Rice $4.00
-    2. [Food] Chicken Rice $2.50
-    [11 NOVEMBER 2020]
-    3. [Shopping] Gucci $1111.00
+* All transactions with tag `food` and transactions with tag `shopping` will be listed out.
+
+    5 transactions listed!
 
 //end::walletfind[]
 
@@ -454,23 +442,23 @@ The following are the restrictions of `wallet delete` command, which you would n
 * Only 1 transaction can be deleted each time. Multiple deletions in one command is not allowed.
 ====
 
-*Example 1*:
+*Example #1*:
 
 ** Suppose you want to remove the first transaction, Duck rice, from your wallet.
 * The command you would enter is `wallet delete 1`.
 * This tells *Sharkie* that you want to delete the first transaction shown in the wallet.
 
-*Expected Outcome 1*:
+*Expected Outcome #1*:
 
      Deleted Transaction: Duck rice Description: Duck rice Amount: $4.00 Date: 2020-03-30 Tag: [Food]
 
-*Example 2*:
+*Example #2*:
 
-** Suppose you used the command `wallet find n/money` to filter out all transactions with keyword money, and you want to remove the second transaction you see, Red packet money, from your wallet's filtered list of transactions.
+** Suppose you used the command `wallet find n/money` to filter out all transactions with keyword `money`, and you want to remove the second transaction you see, `Red packet money`, from your wallet's filtered list of transactions.
 * The command you would enter is `wallet delete 2`.
 * This tells *Sharkie* that you want to delete the second transaction shown in the wallet, after being filtered.
 
-*Expected Outcome 2*:
+*Expected Outcome #2*:
 
      Deleted Transaction: Red packet money Description: Red packet money Amount: $300.00 Date: 2020-03-30 Tag: [Income]
 

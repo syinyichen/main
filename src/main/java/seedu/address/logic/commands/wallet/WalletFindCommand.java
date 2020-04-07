@@ -30,8 +30,9 @@ public class WalletFindCommand extends Command {
             + WALLET_COMMAND_TYPE + " "
             + COMMAND_WORD + " t/food shopping\n";
 
-    public static final String WRONG_AMT = "Amount to find must be a whole integer. Decimal places are not "
-            + "allowed.\n" + "Example: " + COMMAND_WORD + " " + WALLET_COMMAND_TYPE + " $/5 10";
+    public static final String WRONG_AMT = "Amount to find must be a positive integer and not be too large"
+            + " (not exceeding ninety quadrillion dollars)\";\n"
+            + "Example: " + COMMAND_WORD + " " + WALLET_COMMAND_TYPE + " $/5 10";
 
     public static final String ONLY_ONE_PARAMETER_ALLOWED = "Only 1 parameter is allowed.\n"
             + "Example: \n" + WALLET_COMMAND_TYPE + " " + COMMAND_WORD + " $/5 10\n"

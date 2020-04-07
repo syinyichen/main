@@ -91,6 +91,16 @@ include::../DeveloperGuide.adoc[tag=userStories]
 
 include::../DeveloperGuide.adoc[tag=walletEdit_implementation]
 
+include::../DeveloperGuide.adoc[tag=testWalletList]
+
+include::../DeveloperGuide.adoc[tag=testWalletEdit]
+
+include::../DeveloperGuide.adoc[tag=testWalletFind]
+
+include::../DeveloperGuide.adoc[tag=testWalletDelete]
+
+include::../DeveloperGuide.adoc[tag=testWalletClear]
+
 == PROJECT: PowerPointLabs
 
 ---
