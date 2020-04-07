@@ -238,6 +238,7 @@ The following are the restrictions of the `wallet expense` command, which you wo
 * The `<amount>` should be non-negative and have only up to two decimal places.
 * If no `<date>` is specified, your expense will default to today's date.
 * If no `<tag>` is specified, your expense will be given a default tag `Misc`.
+* The first letter of the `<tag>` will be converted to uppercase.
 ====
 
 *Example*:
@@ -273,6 +274,7 @@ The following are the restrictions of the `wallet income` command, which you wou
 * The `<amount>` should be non-negative and have only up to two decimal places.
 * If no `<date>` is specified, your expense will default to today's date.
 * If no `<tag>` is specified, your expense will be given a default tag `Misc`.
+* The first letter of the `<tag>` will be converted to uppercase.
 ====
 
 *Example*:
