@@ -389,7 +389,7 @@ image::ExpenseActivityDiagram.png[width=500]
 ==== Implementation of `wallet expense` command
 
 . When entering the expense command, the user will specify the `Description`, `Amount` and optionally, the `Date` and `Tag`.
-. The `WalletExpenseCommandParser` will create an `Expense` object based on the details provided, and return the resulting `WalletExpenseCommand`.
+. The `WalletExpenseCommandParser` will create an `Expense` object based on the details provided, and return the resulting `WalletExpenseCommand` that has a reference to the `Expense` created.
 . The `LogicManager` then executes the command and adds the previously created `Expense` object to the Wallet model.
 . `CommandResult` is returned.
 
@@ -403,7 +403,7 @@ the lifeline reaches the end of diagram.
 
 ==== Design Considerations
 
-===== Aspect: Storing the Amount of a Transaction.
+===== Aspect: Representing the Amount of a Transaction.
 
 * **Alternative 1 (previous implementation):** Amounts are stored in dollars as `double`.
 ** Pros: Easier to implement.

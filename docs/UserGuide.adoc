@@ -238,6 +238,7 @@ The following are the restrictions of the `wallet expense` command, which you wo
 * The `<amount>` should be non-negative and have only up to two decimal places.
 * If no `<date>` is specified, your expense will default to today's date.
 * If no `<tag>` is specified, your expense will be given a default tag `Misc`.
+* The first letter of the `<tag>` will be converted to uppercase.
 ====
 
 *Example*:
@@ -273,6 +274,7 @@ The following are the restrictions of the `wallet income` command, which you wou
 * The `<amount>` should be non-negative and have only up to two decimal places.
 * If no `<date>` is specified, your expense will default to today's date.
 * If no `<tag>` is specified, your expense will be given a default tag `Misc`.
+* The first letter of the `<tag>` will be converted to uppercase.
 ====
 
 *Example*:
@@ -536,7 +538,6 @@ The following are restrictions of `wallet budget` command, which you will need t
 //end::walletbudget[]
 
 === People Commands
-People commands are commands which pertain to the social features of Sharkie. These commands help you to save your contacts and record down interpersonal transactions.
 This section introduces twelve commands that have effect on the `people` tab.
 
 //tag::peopleadd[]
