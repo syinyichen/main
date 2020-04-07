@@ -5,6 +5,7 @@ start
 :Parser parses the arguments;
 
 if () then ([description or amount is not specified or is invalid])
+    :Ui displays an error message to the user;
 else ([else])
     if () then ([date is specified])
         :Set the date to the specified date;
