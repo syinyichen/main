@@ -550,11 +550,7 @@ The following are restrictions of `wallet budget` command, which you will need t
 //end::walletbudget[]
 
 === People Commands
-<<<<<<< HEAD
-People commands are commands which pertain to the social features of Sharkie. These commands help you to save your contacts and record down interpersonal transactions.
-=======
 This section introduces twelve commands that have effect on the `people` tab.
->>>>>>> master
 
 //tag::peopleadd[]
 [[add-person]]
