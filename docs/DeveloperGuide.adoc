@@ -118,11 +118,11 @@ The sections below give more details of each component.
 image::UiClassDiagram.png[]
 
 *API* : link:{repoURL}/src/main/java/seedu/address/ui/Ui.java[`Ui.java`]
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `WalletTransactionPanel`, `WalletStatisticsPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
+The `Ui` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the link:{repoURL}/src/main/java/seedu/address/ui/MainWindow.java[`MainWindow`] is specified in link:{repoURL}/src/main/resources/view/MainWindow.fxml[`MainWindow.fxml`]
 
-The `UI` component,
+The `Ui` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
@@ -138,10 +138,16 @@ image::LogicClassDiagram.png[]
 link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `SharkieParser` class to parse the user command.
+* `SharkieParser` will check the command entered against a pattern defined in `SharkieParser`.
+* It refers to `CliPrefix` to determine whether the command entered is a `people` related command, or a `wallet` related command.
+* If the command entered passes these checks, it then parses the command using the respective `XYZCommandParser` to retrieve the command to be executed.
 .  This results in a `Command` object which is executed by the `LogicManager`.
-.  The command execution can affect the `Model` (e.g. adding a person).
+* Each command has its own `XYZCommand` that inherits from `Command`, implementing different actions to be executed.
+.  The command execution can affect the `Model` (e.g. adding a person, adding a transaction, filtering a list of transactions, reminders etc.).
 .  The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+* The `Ui` processes the `CommandResult` and outputs the information to the `ResultDisplay` class.
 .  In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+* Other `Ui` components are also updated on the successful obtaining of a `CommandResult` by `Ui`.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("people delete 1")` API call.
 
@@ -478,6 +484,7 @@ image::WalletBudgetActivityDiagram.png[width=600]
 .. If the `Budget` is not a default budget, the `BudgetList` is updated in the `Model` via `Model#setBudget()`. This adds the budget given to a list of budgets with their `Month` and `Year` specified.
 . The list of `Budget` in the `Wallet` is modified based the arguments input by the user.
 . If a `Budget` with the same arguments given already exists, it will be overwritten by the one given.
+. A `CommandResult` is returned at the end of the execution.
 
 The following sequence diagram summarizes what happens during the execution of a `wallet budget` command:
 
@@ -555,7 +562,7 @@ Refer to the guide <<DevOps#, here>>.
 
 Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (unlikely to have) - `*`
 
-[width="59%",cols="22%,<23%,<25%,<30%",options="header",]
+[width="100%",cols="10%, 30%, 30%, 30%",options="header"]
 |=======================================================================
 |Priority |As a/an ... |I want to ... |So that ...
 |`* * *` |university student that buys a lot of stuff |keep track of my spending |I do not overspend
@@ -1018,8 +1025,14 @@ Command line interface
 [[cohesion]] Cohesion::
 A measure of how strongly-related and focused the responsibilities of a component are
 
+[[debt]] Debt::
+The amount of money which the user owes a person in the address book.
+
 [[extensions]] Extensions::
 "Add-on"s to MSS that describe exceptional/alternative flow of events.
+
+[[loan]] Loan::
+The amount of money which the user lends to a person in the address book.
 
 [[mainstream-os]] Mainstream OS::
 Windows, Linux, Unix, OS-X
@@ -1035,12 +1048,6 @@ Income and expense
 
 [[wallet]] Wallet::
 Sharkie's wallet, that holds information pertaining to the user's expenditure and income
-
-[[debt]] Debt::
-The amount of money which the user owes a person in the address book.
-
-[[loan]] Loan::
-The amount of money which the user lends to a person in the address book.
 
 //tag::productSurvey[]
 [appendix]
@@ -1180,6 +1187,55 @@ The window size may not be optimum.
 _{ more test cases ... }_
 
 === Manual Testing on Wallet Tab
+. Recording an expense
+.. Prerequisites: None.
+.. Test case: `wallet expense n/Meal $/3.50` +
+   Expected: An expense named _Meal_ with _$3.50_ with default tag _Misc_ recorded under the current date is added to the transaction list. The statistics panel will also update with the expense entered.
+.. Test case: `wallet expense n/Meal $/3.50 d/02/02/2020` +
+   Expected: An expense named _Meal_ with _$3.50_ with default tag _Misc_ recorded under the date _02 FEB 2020_ is added to the transaction list. The statistics panel will not update with this expense.
+.. Test case: `wallet expense n/Meal $/3.50 t/Food` +
+   Expected: An expense named _Meal_ with _$3.50_ with tag _Food_ recorded under the current date is added to the transaction list. The statistic panel will also update with the expense entered, under the custom tag given.
+.. Test case: `wallet expense n/Meal $/asdf`
+   Expected: The expense is not recorded. Error details shown in result display.
+.. Other incorrect expense commands to try:
+*** `wallet expense`,
+*** `wallet expense 1`,
+*** `wallet expense $/3.50`,
+*** `wallet expense n/Meal`
+
+. Recording an income
+.. Prerequisites: None.
+.. Test case: `wallet income n/Teaching Assistant Job $/100` +
+   Expected: An expense named _Teaching Assistant Job_ with _$100.00_ with default tag _Misc_ recorded under the current date is added to the transaction list.
+.. Test case: `wallet income n/Teaching Assistant Job $/100 d/02/02/2020` +
+   Expected: An expense named _Teaching Assistant Job_ with _$100.00_ with default tag _Misc_ recorded under the date _02 FEB 2020_ is added to the transaction list.
+.. Test case: `wallet income n/Teaching Assistant Job $/100 t/Job` +
+   Expected: An expense named _Teaching Assistant Job_ with _$100.00_ with tag _Job_ recorded under the current date is added to the transaction list.
+.. Test case: `wallet income n/Teaching Assistant Job $/asdf`
+   Expected: The income is not recorded. Error details shown in result display.
+.. Other incorrect expense commands to try:
+*** `wallet income`,
+*** `wallet income 1`,
+*** `wallet income $/100`,
+*** `wallet income n/Teaching Assistant Job`
+
+. Setting a budget
+.. Prerequisites: None.
+.. Test case: `wallet budget $/800` +
+   Expected: A budget of _$800_ is set as the default budget for Sharkie. The UI should update to display your total expenditure over the set budget, assuming you have no budget set for the current month.
+.. Test case: `wallet budget $/800 m/02 y/2020` +
+   Expected: A budget of _$800_ is set as the budget for FEB 2020. The UI should update to display the total expenditure over the set budget if the current date is within the month you have selected. It will override the default budget set.
+.. Test case: `wallet budget $/0` +
+   Expected: A budget of _$0_ is set as the default budget. Sharkie will assume that there is no budget set as default, and the UI will reflect this.
+.. Test case: `wallet budget $/asdf` +
+   Expected: The budget will not be set. Error details will show in the result display.
+.. Other incorrect budget commands to try:
+*** `wallet budget`,
+*** `wallet budget 1`,
+*** `wallet budget $/800 m/02`,
+*** `wallet budget $/800 y/2020`,
+*** `wallet budget $/800 m/a y/b`,
+*** `wallet budget $/-800`
 
 //tag::testWalletList[]
 ==== Listing all transactions
