@@ -1027,18 +1027,66 @@ the command you would enter is our `people clear` command.
 //tag::faq[]
 == FAQ
 
-*Q*: How do I save my data in *Sharkie*? +
-*A*: *Sharkie* automatically saves your data in the same folder Sharkie.jar is located in.
+=== How do I save my data in *Sharkie*? +
+****
+*Sharkie* automatically saves your data in the same folder Sharkie.jar is located in.
+****
 
-*Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file *Sharkie* creates with the file that contains the data of your previous address book folder.
+=== How do I transfer my data to another Computer? +
+****
+Install the app in the other computer and overwrite the empty data file *Sharkie* creates with the file that contains the data of your previous address book folder.
+****
+
+//tag::editing-user-data[]
+[[editing-user-data]]
+=== How do I edit my user data? +
+****
+Click on "Edit", then "Edit user's data" on your menu bar.
+
+.Editing user data in *Sharkie*
+image::EditUserDataInstruction.png[width=400]
+****
+//end::editing-user-data[]
+
+=== Why did I not receive a confirmation e-mail from *Sharkie*? +
+****
+You may need to check your junk mail folder, as your e-mail account may categorize *Sharkie*'s e-mails as spam.
+If you wish to receive frequent notifications from *Sharkie*, please remove *Sharkie* from your junk mail list.
+****
+
+//tag::valid-amount[]
+[[valid-amount]]
+=== What is a valid amount of money? +
+****
+A valid amount is a non-negative value up to two decimal places.
+
+NOTE: Due to program limitations, Sharkie can only safely handle amounts of up to $92233720368547758.07 (about ninety *quadrillion* dollars!). We believe it is safe to say that the average user will not end up spending or earning that amount of money anytime soon (at time of writing, Jeff Bezos' net worth is roughly $100 billion).
+****
+//end::valid-amount[]
+
+//tag::transactionIndexFAQ[]
+[[transactionIndexFAQ]]
+=== What is a transaction's index? +
+****
+A `transaction's index` is the index number shown in the displayed transaction list in *Sharkie*. It indicates a specific transaction in the address book.
+
+For example,
+
+* `1` is the `transaction's index` of "Laksa", whereas
+* `2` is the `transaction's index` of "Grab".
+
+.What is a `transaction's index`?
+
+image::transactionIndexFAQ.jpg[width=900]
+****
+//end::transactionIndexFAQ[]
 
 //tag::personIndexFAQ[]
 [[personIndexFAQ]]
-*Q*: What is a `person's index`? +
-*A*: A `person's index` is the index number shown in the displayed person list in *Sharkie*. It indicates a specific person in the address book.
-
+=== What is a person's index? +
 ****
+A `person's index` is the index number shown in the displayed person list in *Sharkie*. It indicates a specific person in the address book.
+
 For example,
 
 * `1` is the `person's index` of Alex Yeoh, whereas
@@ -1050,88 +1098,53 @@ image::personIndexFAQ.png[width=900]
 ****
 //end::personIndexFAQ[]
 
-//tag::transactionIndexFAQ[]
-[[transactionIndexFAQ]]
-*Q*: What is a `transaction's index`? +
-*A*: A `transaction's index` is the index number shown in the displayed transaction list in *Sharkie*. It indicates a specific transaction in the address book.
-
-****
-For example,
-
-* `1` is the `transaction's index` of Alex Yeoh, whereas
-* `2` is the `transaction's index` of Bernice Yu.
-
-.What is a `transaction's index`?
-
-image::personIndexFAQ.png[width=900]
-****
-//end::transactionIndexFAQ[]
-
 //tag::loanDebtIndexFAQ[]
 [[loanDebtIndexFAQ]]
-*Q*: What is a `debt's index` or a `loan's index`? +
-*A*: A `debt's index` is the index number shown in a person's displayed debts list, whereas a `loan's index` is the
+=== What is a debt's index or a loan's index? +
+****
+A `debt's index` is the index number shown in a person's displayed debts list, whereas a `loan's index` is the
 index number shown in a person's displayed loans list. A `debt's index` indicates a specific debt of a person and a
 `loan's index` indicated a specific loan of a person.
 
-****
 For example,
+
 * The `debt's index` of the debt, `Dinner | $12.00 | 1 APR 2020`, under Bernice Yu is `1`.
 * The `loan's index` of the loan, `Movie | $10.00 | 2 FEB 2020`, under Bernice Yu is `1`.
+
 .What is a `debt's index` or a `loan's index`?
 image::loanDebtIndexFAQ.png[width=900]
+
 ****
 //end::loanDebtIndexFAQ[]
 
-//tag::editing-user-data[]
-[[editing-user-data]]
-*Q*: How to edit user's data? +
-*A*: Click on `Edit`, then `Edit user's data` on your menu bar.
-
-.Editing user data in Sharkie
-image::EditUserDataInstruction.png[width=400]
-
-//end::editing-user-data[]
-
 //tag::debt-and-loan-diff[]
 [[debt-and-loan]]
-*Q*: What are the differences between `Debts` and `Loans`? +
-*A*: `Debts` is the amount of money you owe your friends and `loans` is the amount of money you lend your friends.
-
+=== What are the differences between debts and loans? +
 ****
+Debts are the amount of money you owe your friends and loans are the amount of money you lend your friends.
+
 For example,
 
-* `1 | Supper | $5.00 | 3 FEB 2020` under the `Debts` section, shown in the figure below represents what you owe Syin Yi.
-* `1 | Breakfast | $3.00 | 8 AUG 2018` under the `Loans` section, shown in the figure below represents what you lent to Syin Yi.
+* `1 | Supper | $5.00 | 3 FEB 2020` under the "Debts" section, shown in the figure below represents what you owe "Syin Yi".
+* `1 | Breakfast | $3.00 | 8 AUG 2018` under the "Loans" section, shown in the figure below represents what you lent to "Syin Yi".
 
-.Differences between `debts` and `loans`
+.Differences between debts and loans
 image::DebtAndLoanDifferences.png[width=800]
 ****
 //end::debt-and-loan-diff[]
 
-//tag::valid-amount[]
-[[valid-amount]]
-*Q*: What is a valid amount of money? +
-*A*: A valid amount is a non-negative value up to two decimal places.
-
-NOTE: Due to program limitations, Sharkie can only safely handle amounts of up to $92233720368547758.07 (about ninety *quadrillion* dollars!). We believe it is safe to say that the average user will not end up spending or earning that amount of money anytime soon (at time of writing, Jeff Bezos' net worth is roughly $100 billion).
-
-//end::valid-amount[]
-
 //tag::remind-issue[]
-*Q*: Why does my `people remind` and `people remindall` commands take time to run? +
-*A*: As the `people remind` and `people remindall` commands rely on the connection to the internet and e-mail server,
+=== Why does my `people remind` and `people remindall` commands take time to run? +
+****
+As the `people remind` and `people remindall` commands rely on the connection to the internet and e-mail server,
 time is needed for the application to send a reminder.
-
-*Q*: Why do I not receive a confirmation e-mail from *Sharkie*? +
-*A*: You may need to check your junk mail folder, as your e-mail account may categorize *Sharkie*'s e-mails as spam.
-If you wish to receive frequent notifications from *Sharkie*, please remove *Sharkie* from your junk mail list.
+****
 
 [[remind-connection-error]]
-*Q*: How can I resolve the connection issues during the execution of `people remind` or `people remindall`? +
-*A*: You may try the suggestions below to resolve your connection issues:
-
+=== How can I resolve the connection issues during the execution of `people remind` or `people remindall`? +
 ****
+You may try the suggestions below to resolve your connection issues:
+
 * If you receive an error message as the following:
 
     Error occured while sending email:
@@ -1165,8 +1178,8 @@ The following are the general commands that are available in *Sharkie* for you t
 .General commands available in *Sharkie*.
 |===
 | *Command*  | *Format* | *Expected outcome*
-|`help` |#`help`# | Opens up a window with a link to the User Guide.
-|`exit` |#`exit`# | Saves your data and safely exits
+|`help` |[gray]#`help`# | Opens up a window with a link to the User Guide.
+|`exit` |[gray]#`exit`# | Saves your data and safely exits
 |===
 
 === Wallet Commands
@@ -1176,16 +1189,16 @@ The following commands are wallet-related commands that are available in *Sharki
 .Wallet commands available in *Sharkie*.
 |===
 | *Command*  | *Format* | *Expected outcome*
-|`budget` |#`wallet budget $/<amount> [m/<month>] [y/<year>]`# | Sets a budget for you for the month selected.
-|`delete` |#`wallet delete <index>`# | Helps you remove the transaction selected at that index from the wallet.
-|`edit` | #`wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]`# | Edits your transaction in the wallet at the index selected with your given arguments.
-|`expense` |#`wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`# | Creates an expense and adds it to your wallet.
-|`find` |#`wallet find n/<keyword>`# +
-or #`wallet find $/<keyword> [<keyword> ...]`# +
-or #`wallet find d/<keyword> [<keyword> ...]`# +
-or #`wallet find t/<keyword> [<keyword> ...]`# + | Finds your transaction(s) within your wallet using the arguments you have provided.
-|`income` |#`wallet income n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`# | Creates an income and adds it to your wallet.
-|`list` |#`wallet list`# | Lists all your transactions that have been recorded by *Sharkie* in the wallet.
+|`budget` |[gray]#`wallet budget $/<amount> [m/<month>] [y/<year>]`# | Sets a budget for you for the month selected.
+|`delete` |[gray]#`wallet delete <index>`# | Helps you remove the transaction selected at that index from the wallet.
+|`edit` | [gray]#`wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]`# | Edits your transaction in the wallet at the index selected with your given arguments.
+|`expense` |[gray]#`wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`# | Creates an expense and adds it to your wallet.
+|`find` |[gray]#`wallet find n/<keyword>`# +
+or [gray]#`wallet find $/<keyword> [<keyword> ...]`# +
+or [gray]#`wallet find d/<keyword> [<keyword> ...]`# +
+or [gray]#`wallet find t/<keyword> [<keyword> ...]`# + | Finds your transaction(s) within your wallet using the arguments you have provided.
+|`income` |[gray]#`wallet income n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`# | Creates an income and adds it to your wallet.
+|`list` |[gray]#`wallet list`# | Lists all your transactions that have been recorded by *Sharkie* in the wallet.
 |===
 
 === People Commands
@@ -1194,20 +1207,20 @@ The following commands are people-related commands that are available in *Sharki
 .People commands available in *Sharkie*.
 |===
 | *Command*  | *Format* | *Expected outcome*
-|`add` |#`people add n/<name> p/<phone number> e/<email address>`# | Helps you add a contact to your address book, with the particulars that you have entered.
-|`clear`|#`people clear`# | Clears all your contacts in your address book.
-|`delete` | #`people delete <index>`# | Deletes your contact at the index you have selected.
-|`edit` | #`people edit <index> [n/<name>] [p/<phone number>] [e/<email address>]`# | Edits your contact in the address book at the index selected with the given arguments.
-|`find` | #`people find n/<keyword> [<keyword>...]`# +
-or #`people find p/<keyword> [<keyword>...]`# +
-or #`people find e/<keyword> [<keyword>...]`# +
-or #`people find t/<keyword> [<keyword>...]`# | Finds your contact(s) within your address book using the arguments you have provided.
-|`lend` | #`people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`# | Records a loan to your contact at the index selected in your address book.
-| `list` | #`people list`# | Lists all your contacts that have been recorded by *Sharkie* in the address book.
-| `owe` | #`people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`# | Records a debt to your contact at the index selected in your address book.
-| `received` | #`people received <person's index> [i/<loan's index>]`# | Removes the loan at the index selected for your contact selected.
-| `remind` | #`people remind <index>`# | Sends an email to the contact at the index you have selected, reminding them of any withstanding debts that have to be paid back to you.
-| `remindall` | #`people remindall`# |  Sends an email to all your contacts with any withstanding debts, reminding them to pay you back.
-| `returned` | #`people returned <person's index> [i/<debt's index>]`# | Removes the debt at the index selected for your contact selected.
+|`add` |[gray]#`people add n/<name> p/<phone number> e/<email address>`# | Helps you add a contact to your address book, with the particulars that you have entered.
+|`clear`|[gray]#`people clear`# | Clears all your contacts in your address book.
+|`delete` | [gray]#`people delete <index>`# | Deletes your contact at the index you have selected.
+|`edit` | [gray]#`people edit <index> [n/<name>] [p/<phone number>] [e/<email address>]`# | Edits your contact in the address book at the index selected with the given arguments.
+|`find` | [gray]#`people find n/<keyword> [<keyword>...]`# +
+or [gray]#`people find p/<keyword> [<keyword>...]`# +
+or [gray]#`people find e/<keyword> [<keyword>...]`# +
+or [gray]#`people find t/<keyword> [<keyword>...]`# | Finds your contact(s) within your address book using the arguments you have provided.
+|`lend` | [gray]#`people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`# | Records a loan to your contact at the index selected in your address book.
+| `list` | [gray]#`people list`# | Lists all your contacts that have been recorded by *Sharkie* in the address book.
+| `owe` | [gray]#`people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`# | Records a debt to your contact at the index selected in your address book.
+| `received` | [gray]#`people received <person's index> [i/<loan's index>]`# | Removes the loan at the index selected for your contact selected.
+| `remind` | [gray]#`people remind <index>`# | Sends an email to the contact at the index you have selected, reminding them of any withstanding debts that have to be paid back to you.
+| `remindall` | [gray]#`people remindall`# |  Sends an email to all your contacts with any withstanding debts, reminding them to pay you back.
+| `returned` | [gray]#`people returned <person's index> [i/<debt's index>]`# | Removes the debt at the index selected for your contact selected.
 |===
 //end::commandSummary[]
