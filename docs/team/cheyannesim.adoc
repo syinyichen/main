@@ -120,7 +120,27 @@ include::../DeveloperGuide.adoc[tag=architecture]
 
 include::../DeveloperGuide.adoc[tag=owe]
 
+== Appendix D: Non-Functional Requirements
+
 include::../DeveloperGuide.adoc[tag=apendixd]
+
+== Appendix G: Instructions for Manual Testing
+
+include::../DeveloperGuide.adoc[tag=manual-testing-owe]
+
+include::../DeveloperGuide.adoc[tag=manual-testing-returned]
+
+include::../DeveloperGuide.adoc[tag=manual-testing-peopleadd]
+
+include::../DeveloperGuide.adoc[tag=manual-testing-peopleedit]
+
+include::../DeveloperGuide.adoc[tag=manual-testing-peoplefind]
+
+include::../DeveloperGuide.adoc[tag=manual-testing-peoplelist]
+
+include::../DeveloperGuide.adoc[tag=manual-testing-peopledelete]
+
+include::../DeveloperGuide.adoc[tag=manual-testing-peopleclear]
 
 ////
 == PROJECT: PowerPointLabs

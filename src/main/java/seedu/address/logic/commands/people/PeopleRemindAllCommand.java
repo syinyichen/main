@@ -29,7 +29,7 @@ public class PeopleRemindAllCommand extends Command {
     public static final String MESSAGE_REMINDALL_EXECUTION = "Sending reminders to those who you lent to...";
     public static final String MESSAGE_REMINDALL_SUCCESS = "Reminded %1$s to return %2$s!\n";
     public static final String MESSAGE_REMINDALL_SUCCESS_EMAIL = "Sharkie has "
-            + "sent copies of the reminders to your email!";
+            + "sent carbon copies (CC) of the reminders to your email!";
     public static final String MESSAGE_REMINDALL_FAIL = "Failed to send reminder(s).";
 
     public static final String MESSAGE_HAS_ZERO_LOAN = "No one owes you money :(";

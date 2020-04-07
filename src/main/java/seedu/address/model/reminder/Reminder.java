@@ -18,7 +18,7 @@ import seedu.address.model.person.User;
 import seedu.address.model.transaction.Loan;
 
 /**
- * Represents a reminder, which reminds people on their unpaid debts through emails.
+ * Represents a reminder, which reminds people on their unpaid loans through emails.
  */
 public class Reminder {
     private User sender;
@@ -63,30 +63,26 @@ public class Reminder {
 
     /**
      * Constructs the content of the email.
-     * @return A message to be sent.
-     * @throws MessagingException if email address of the sender or receiver is invalid.
+     * @throws MessagingException if error occurs while sending the emails.
      */
-    private MimeMessage constructMessage() throws MessagingException {
+    private void constructMessage() throws MessagingException {
         String content = "<h2><strong>[Sharkie] Reminder</strong></h2><p>Hello "
-                + receiver.getName().toString() + ",</p><p>You have yet settle your debt to "
-                + "<span style=\"background-color: #ffff00;\"> " + sender.getName().toString() + "</span>.</p>"
-                + "<p>Here is the list of your debts:</p><ol>";
+                + receiver.getName() + ",</p><p>You have yet settle your debt to <span style="
+                + "\"background-color: #ffff00;\"> " + sender.getName() + "</span>.</p><p>Here is the "
+                + "list of your debts:</p><ol>";
         for (Loan loan: this.receiver.getLoans()) {
-            content += "<li>" + loan.toString() + "</li>";
+            content += "<li>" + loan + "</li>";
         }
         content += "</ol><p style=\"padding-left: 30px;\"><span style=\"color: #000000; background-color: #ffff00;\">"
-                + "Total :&nbsp;" + receiver.getLoans().getTotal().toString() + "</span></p>"
-                + "<p>For further details, contact " + sender.getName().toString() + " via "
-                + sender.getPhone().toString() + " or " + sender.getEmail().toString() + ".</p>"
+                + "Total :&nbsp;" + receiver.getLoans().getTotal() + "</span></p><p>For further details, contact "
+                + sender.getName() + " via " + sender.getPhone() + " or " + sender.getEmail() + ".</p>"
                 + "<p>Thank you.</p><p>&nbsp;</p><p>Regards,</p><p>Sharkie.</p>";
 
         message.setFrom(new InternetAddress("noreply.loansharkie@gmail.com"));
         message.addRecipient(Message.RecipientType.CC, new InternetAddress(sender.getEmail().toString()));
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(receiver.getEmail().toString()));
-        message.setSubject("[Sharkie] Reminder from " + sender.getName().toString() + " on unsettled debts!");
+        message.setSubject("[Sharkie] Reminder from " + sender.getName() + " on unsettled debts!");
         message.setContent(content, "text/html; charset=utf-8");
-
-        return message;
     }
 
     public User getSender() {
@@ -119,15 +115,5 @@ public class Reminder {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(sender, receiver);
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("Sender: ")
-                .append(getSender())
-                .append(" Receiver: ")
-                .append(getReceiver());
-        return builder.toString();
     }
 }

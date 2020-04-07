@@ -40,17 +40,16 @@ public class CommandBox extends UiPart<Region> {
      */
     @FXML
     private void handleCommandEntered() {
-        Thread t1 = new Thread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 MainWindow.editResultDisplay("Executing command...\n"
                         + "This command takes some time to load, please be patient :)");
                 executionProgressIndicator.setVisible(true);
             }
-        });
-        t1.start();
+        }).start();
 
-        Thread t2 = new Thread(new Runnable() {
+        new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
@@ -61,8 +60,7 @@ public class CommandBox extends UiPart<Region> {
                 }
                 executionProgressIndicator.setVisible(false);
             }
-        });
-        t2.start();
+        }).start();
     }
 
     /**
