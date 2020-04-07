@@ -24,6 +24,8 @@ By: `AY1920S2-CS2103T-W12-3`      Since: `Feb 2020`      Licence: `MIT`
 
 Welcome to *Sharkie*!
 
+image::Ui.png[width="820"]
+
 *Sharkie* is an all-in-one desktop application for *personal finance tracking* designed for university students who would like to monitor their spending.
 It manages your *incomes and expenses*, organises your *contacts* and keeps track of *debts* your friends owe you, so that your loans always come with a money-back guarantee!
 
@@ -69,6 +71,7 @@ a|[gray]#This yellow box indicates the restrictions of each command.#
 //tag::quickStart[]
 [[quick-start]]
 == Quick Start
+The following steps will help you get Sharkie up and running in no time on your desktop.
 
 .  Ensure you have Java `11` or above installed in your Computer.
 .  Download the latest `Sharkie.jar` link:https://github.com/AY1920S2-CS2103T-W12-3/main/releases[here].
@@ -145,14 +148,17 @@ There is no need to save manually.
 *Sharkie* allows you to take note of the debts you owe your friends and the loans you lent your friends. +
 *Sharkie* then allows you to remind your friends through email to return you the money they owe you! +
 
-NOTE: Still confused about `debts` and `loans`? Find out more in <<debt-and-loan, the differences between debts and loans>>.
+NOTE: Still confused about `debts` and `loans`? Find out more about <<debt-and-loan,the differences between debts and loans>>.
 
 //end::debts[]
 
 //tag::expenditureSummary[]
 === Expenditure Summary
 *Sharkie* displays a customisable overview of your monthly spending and income so that you know where all your money has gone to! +
-You can view statistics such as the proportion of your spending on different items and your monthly balance.
+You can view statistics such as the proportion of your spending on different items and how close you are to reaching your self-imposed budget. +
+All statistics are automatically updated and located in the Wallet tab.
+
+NOTE: Check out <<budget-command, 5.2.8 Setting a budget>> to learn how to budget your monthly spending with Sharkie.
 
 //end::expenditureSummary[]
 
@@ -190,7 +196,10 @@ If you need help regarding the many features of Sharkie and how to operate it, y
 ** Typing `help` will give you a link to our user guide.
 
 *Expected Outcome*: +
-A window will pop up, providing you with a clickable link that directs you to this user guide.
+
+* A window will pop up, providing you with a clickable link that directs you to this user guide.
+
+    Opened help window.
 
 ==== Exiting the program : `exit`
 
@@ -204,7 +213,8 @@ If you're done with using Sharkie and wish to exit the application safely, you c
 ** Typing `exit` will save your data and quit Sharkie.
 
 *Expected Outcome*: +
-Sharkie will save your data to a locally stored file (that can be edited using a text editor), and will help you quit the application safely.
+
+* Sharkie will save your data to a locally stored file (that can be edited using a text editor), and will help you quit the application safely.
 
 //end::globalcommands[]
 
@@ -215,21 +225,31 @@ This section introduces seven commands that have effect on the `wallet` tab.
 //tag::walletexpense[]
 ==== Adding an expense: `expense`
 
-Adds an expense to the wallet. +
-Format: `wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`
+If you have paid for an expense and wish to record it down in Sharkie, you may enter the `wallet expense` command to do so.
 
-****
-* Creates a new expense wiith the given arguments.
-* The description *cannot be empty*.
-* The amount *must be a valid number* (see <<valid-amount>>).
-* If no date is given, it will default to today's date.
-****
+*Format*: `wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`
 
-Examples:
+====
+*Command Format*
 
-* `wallet expense n/Chicken Rice $/3.50 d/10/10/2010 t/food`
-Adds an expense named Chicken Rice, costing $3.50, on 10/10/2020, tagged as food. +
-Expected Outcome:
+The following are the restrictions of the `wallet expense` command, which you would need to take note of:
+
+* The `<description>` should not be blank.
+* The `<amount>` should be non-negative and have only up to two decimal places.
+* If no `<date>` is specified, your expense will default to today's date.
+* If no `<tag>` is specified, your expense will be given a default tag `Misc`.
+====
+
+*Example*:
+
+* Suppose you purchased Chicken Rice for $3.50 on 10th October, 2010. You wish to record it as a food item.
+
+** The command you would enter is `wallet expense n/Chicken Rice $/3.50 d/10/10/2010 t/food`.
+** This records down an expense with the specified details.
+
+*Expected Outcome*:
+
+* A new expense will be added into your Wallet, automatically updating your Wallet's statistics.
 
     New expense added: Chicken Rice Description: Chicken Rice Amount: $3.50 Date: 2010-10-10 Tag: [Food]
     Your expenditure for OCTOBER 2010 is: $3.50/$0.00
@@ -240,21 +260,31 @@ Expected Outcome:
 //tag::walletincome[]
 ==== Adding an income: `income`
 
-Adds an income to the wallet. +
-Format: `wallet income n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`
+If you have earned an income and wish to record it down in Sharkie, you may enter the `wallet income` command to do so.
 
-****
-* Creates a new income with the given arguments.
-* The description *cannot be empty*.
-* The amount *must be a valid number*.
-* If no date is given, it will default to today's date.
-****
+*Format*: `wallet income n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`
 
-Examples:
+====
+*Command Format*
 
-* `wallet income n/P6 Tuition $/3000 d/10/10/2010 t/job`
-Adds an income named P6 Tuition, for a sum of $3000, on 10/10/2020, tagged as job. +
-Expected Outcome:
+The following are the restrictions of the `wallet income` command, which you would need to take note of:
+
+* The `<description>` should not be blank.
+* The `<amount>` should be non-negative and have only up to two decimal places.
+* If no `<date>` is specified, your expense will default to today's date.
+* If no `<tag>` is specified, your expense will be given a default tag `Misc`.
+====
+
+*Example*:
+
+* Suppose you teach P6 Tuition and have just received your paycheck for $3000 on 10th October, 2010. You wish to record it as a job item.
+
+** The command you would enter is `wallet income n/P6 Tuition $/3000 d/10/10/2010 t/job`.
+** This records down an income with the specified details.
+
+*Expected Outcome*:
+
+* A new income will be added into your Wallet, automatically updating your Wallet's statistics.
 
     New income added: P6 Tuition Description: P6 Tuition Amount: $3000.00 Date: 2010-10-10 Tag: [Job]
 
@@ -464,6 +494,7 @@ The following are the restrictions of `wallet clear` command, which you would ne
 
 // end::walletClear[]
 
+[[budget-command]]
 //tag::walletbudget[]
 ==== Setting a budget: `budget`
 Suppose you want to set a budget for a certain month, or a budget in general for all months. The command that you would enter in this case is our `wallet budget` command. +
@@ -505,7 +536,11 @@ The following are restrictions of `wallet budget` command, which you will need t
 //end::walletbudget[]
 
 === People Commands
+<<<<<<< HEAD
+People commands are commands which pertain to the social features of Sharkie. These commands help you to save your contacts and record down interpersonal transactions.
+=======
 This section introduces twelve commands that have effect on the `people` tab.
+>>>>>>> master
 
 //tag::peopleadd[]
 [[add-person]]
@@ -567,7 +602,7 @@ specific person in the address book whom you owe money to. +
  +
 The amount of money recorded will be added under your friend's `Debts` section. +
 `Debts` represent the amount of money you owe your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._ +
+_Still confused? Find out more about <<debt-and-loan,the differences between debts and loans>>._ +
  +
 
 [TIP]
@@ -606,14 +641,14 @@ The following are the restrictions of `people returned` command, which you would
 
 NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates
 a specific person in the address book whom you returned the money to. +
-_Still confused? Find out more about `person's index` at <<personIndexFAQ, What is a [blue]`person's index`>>._ +
+_Still confused? Find out more about <<personIndexFAQ, what is a [blue]`person's index`>>._ +
  +
 The `<debt's index>` above refers to the index number shown in the displayed debt list in *Sharkie*. It indicates a specific
 debt under the person whom you returned the money to. +
-_Still confused? Find out more about `debt's index` at <<loanDebtIndexFAQ, What is a [blue]`debt's index`>>._ +
+_Still confused? Find out more about <<loanDebtIndexFAQ, what is a [blue]`debt's index`>>._ +
  +
 `Debt` represents the amount of money you owe your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._ +
+_Still confused? Find out more about <<debt-and-loan,the differences between debts and loans>>._ +
 
 [TIP]
 The `<debt's index>` is optional.
@@ -657,7 +692,7 @@ specific person in the address book whom you lend money to. +
  +
 The amount of money recorded will be added under your friend's `Loans` section. +
 `Loans` represent the amount of money you lend your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._ +
+_Still confused? Find out more about <<debt-and-loan,the differences between debts and loans>>._ +
 
 [TIP]
 The `<date:dd/mm/yyyy>` is optional. If `<date:dd/mm/yyyy>` is not specified, the date that you record the loan will be used.
@@ -695,14 +730,14 @@ The following is the restrictions of `people received` command, which you would 
 
 NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
 specific person in the address book, who you received from. +
-_Still confused? Find out more about `person's index` at <<personIndexFAQ, What is a [blue]`person's index`>>._ +
+_Still confused? Find out more about <<personIndexFAQ,what is a [blue]`person's index`>>._ +
  +
 The `<loan's index>` above refers to the index number shown in the displayed loans list in *Sharkie*. It indicates a
 specific loan under the person, which you received from. +
-_Still confused? Find out more about `loan's index` at <<loanDebtIndexFAQ, What is a [blue]`loan's index`>>._ +
+_Still confused? Find out more about <<loanDebtIndexFAQ,what is a [blue]`loan's index`>>._ +
  +
 `Loan` represents the amount of money you lend your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._ +
+_Still confused? Find out more about <<debt-and-loan,the differences between debts and loans>>._ +
 
 [TIP]
 The `<loan's index>` is optional.
@@ -747,10 +782,10 @@ Before you enter the `people remind` command, please make sure that your friend'
 
 NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
 specific person in the address book, who you want to remind. +
-_Still confused? Find out more about `person's index` at <<personIndexFAQ, what is a [blue]`person's index`>>._ +
+_Still confused? Find out more about <<personIndexFAQ,what is a [blue]`person's index`>>._ +
  +
 `Loan` represents the amount of money you lend your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+_Still confused? Find out more about <<debt-and-loan,the differences between debts and loans>>._
 
 TIP: If you receive connection error messages during the execution of `people remind` command,
 please visit <<remind-connection-error, how to resolve connection issues>>.
@@ -764,10 +799,10 @@ please visit <<remind-connection-error, how to resolve connection issues>>.
 
 *Expected Outcome*:
 
-* Daniel will receive a reminder from *Sharkie* via the email. You will also receive a copy of the email sent to Daniel:
+* Daniel will receive a reminder from *Sharkie* via the email. You will also receive a carbon copy (CC) of the email sent to Daniel:
 
-    Reminded Daniel to return $10.00!
-    Sharkie has sent a copy of the reminder to your email!
+    Reminded Alex Yeoh to return $3.00!
+    Sharkie has sent a carbon copy (CC) of the reminder to your email!
 
 //end::peopleremind[]
 
@@ -788,7 +823,7 @@ NOTE: Only your friends, who have unsettled loan(s) will be reminded. Your frien
 not receive a reminder. +
  +
 `Loans` represent the amount of money you lend your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+_Still confused? Find out more about <<debt-and-loan,the differences between debts and loans>>._
 
 TIP: If you receive connection error messages during the execution of `people remindall` command,
 please visit <<remind-connection-error, how to resolve connection issues>>.
@@ -803,12 +838,12 @@ please visit <<remind-connection-error, how to resolve connection issues>>.
 *Expected Outcome*:
 
 * All your friends who has yet paid up will receive a reminder from *Sharkie* via the email.
-You will also receive a copy of each of the emails sent to your friends:
+You will also receive a carbon copy (CC) of each of the emails sent to your friends:
 
     Reminded Cheyanne to return $20.00!
     Reminded Daniel to return $10.00!
     Reminded Joel to return $30.75!
-    Sharkie has sent copies of the reminders to your email!
+    Sharkie has sent carbon copies (CC) of the reminders to your email!
 
 //end::peopleremindall[]
 
@@ -837,9 +872,9 @@ persons whose name contains with the keyword `jo`, such as `Joel`.
 Hence, `Debt` and `Loan` (case-insensitive) are the only tags, which you are allowed to use in `people find` command.
 ====
 
-NOTE: `Loans` represent the amount of money you lend your friends and `debts` represent the amount of money you owe
-your friends. +
-_Still confused? Find out more about `debts` and `loans` at <<debt-and-loan, the differences between debts and loans>>._
+NOTE: `Debts` represent the amount of money you owe your friends and
+`loans` represent the amount of money you lend your friends.  +
+_Still confused? Find out more about <<debt-and-loan,the differences between debts and loans>>._
 
 *Example #1*:
 

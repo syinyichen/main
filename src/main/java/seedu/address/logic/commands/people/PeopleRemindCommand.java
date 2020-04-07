@@ -30,7 +30,7 @@ public class PeopleRemindCommand extends Command {
 
     public static final String MESSAGE_REMIND_EXECUTION = "Sending reminder to %1$s...";
     public static final String MESSAGE_REMIND_SUCCESS = "Reminded %1$s to return %2$s!\n"
-            + "Sharkie has sent a copy of the reminder to your email!";
+            + "Sharkie has sent a carbon copy (CC) of the reminder to your email!";
     public static final String MESSAGE_REMIND_FAIL = "Failed to send reminder to %1$s.";
     public static final String MESSAGE_HAS_ZERO_LOAN = "%1$s does not owe you money :(";
 
