@@ -345,17 +345,21 @@ NOTE: The first letter of the `<tag>` will be converted to uppercase.
 
 Suppose you want to edit the details of an income or expense in your wallet, the command you would enter is our `wallet edit` command. +
 
-*Format*: `wallet edit <index> [n/<name>] [d/<date: dd/mm/yyyy>] [$/<amount>] [t/<tag>]`
+*Format*: `wallet edit <transaction's index> [n/<name>] [d/<date: dd/mm/yyyy>] [$/<amount>] [t/<tag>]`
 
 ====
 *Command Format*
 
 The following are the restrictions of `wallet edit` command, which you would need to take note of:
 
-* The `<index>` of the transaction to be edited must be stated, and it must exist in the list of transactions.
+* The `<transaction's index>` must be stated, and it must exist in the list of transactions.
 * The index must be a positive integer: 1, 2, 3, ...
 * At least one of `[n/<name>]`, `[d/<date: dd/mm/yyyy>]`, `[$/<amount>]`, `[t/<tag>]` should be stated. Multiple fields are allowed as well.
 ====
+
+NOTE: The `<transaction's index>` above refers to the index number shown in the displayed transaction list in *Sharkie*. It indicates a
+specific transaction in the wallet. +
+_Still confused? Find out more about <<transactionIndexFAQ, what is a transaction's index>>._ 
 
 
 *Example #1*:
@@ -388,17 +392,21 @@ The following are the restrictions of `wallet edit` command, which you would nee
 ==== Deleting an income or expense: `delete`
 Suppose you want to delete a transaction, either an expense or income, the command you would enter is our `wallet delete` command. +
 
-*Format*: `wallet delete <index>`
+*Format*: `wallet delete <transaction's index>`
 
 ====
 *Command Format*
 
 The following are the restrictions of `wallet delete` command, which you would need to take note of:
 
-* The `<index>` of the transaction to be deleted must be stated, and it must exist in the list of transactions.
+* The `<transaction's index>` must be stated, and it must exist in the list of transactions.
 * The index must be a positive integer: 1, 2, 3, ...
 * Only 1 transaction can be deleted each time. Multiple deletions in one command is not allowed.
 ====
+
+NOTE: The `<transaction's index>` above refers to the index number shown in the displayed transaction list in *Sharkie*. It indicates a
+specific transaction in the wallet. +
+_Still confused? Find out more about <<transactionIndexFAQ, what is a transaction's index>>._ 
 
 *Example*:
 
@@ -587,7 +595,8 @@ The following are the restrictions of `people edit` command, which you would nee
 WARNING: Existing values will be updated to the new values that you have inputted.
 
 NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
-specific person in the address book whom you lent money to. +
+specific person in the address book. +
+_Still confused? Find out more about <<personIndexFAQ, what is a person's index>>._ +
 
 *Example*:
 
@@ -624,7 +633,8 @@ The following are the restrictions of `people delete` command, which you should 
 WARNING: Remember to check and ensure that the `<person's index>` that you have inputted corresponds to the correct person.
 
 NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
-specific person in the address book whom you would like to delete. +
+specific person in the address book. +
+_Still confused? Find out more about <<personIndexFAQ, what is a person's index>>._ +
 
 *Example*:
 
@@ -660,6 +670,7 @@ The following are the restrictions of `people owe` command, which you would need
 
 NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
 specific person in the address book whom you owe money to. +
+_Still confused? Find out more about <<personIndexFAQ, what is a person's index>>._ +
  +
 The amount of money recorded will be added under your friend's "debts" section. Debts represent the amount of money you owe your friends. +
 _Still confused? Find out more about <<debt-and-loan,the differences between debts and loans>>._ +
@@ -748,6 +759,7 @@ The following are the restrictions of `people lend` command, which you would nee
 
 NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
 specific person in the address book whom you lend money to. +
+_Still confused? Find out more about <<personIndexFAQ, what is a person's index>>._ +
  +
 The amount of money recorded will be added under your friend's "loans" section. Loans represent the amount of money you lend your friends. +
 _Still confused? Find out more about <<debt-and-loan,the differences between debts and loans>>._ +
@@ -967,7 +979,7 @@ _Still confused? Find out more about <<debt-and-loan,the differences between deb
 ==== Listing all contacts: `list`
 
 Suppose that you have just executed the <<find-person, [blue]`people find`>> command. And now, you would like to see the
-entire list of people in your address book. Then, the command that you would enter is the `people list` command. +
+entire list of people in your address book. The command you would enter is our `people list` command. +
 
 *Format*: `people list`
 
@@ -1028,12 +1040,32 @@ the command you would enter is our `people clear` command.
 
 ****
 For example,
+
 * `1` is the `person's index` of Alex Yeoh, whereas
 * `2` is the `person's index` of Bernice Yu.
+
 .What is a `person's index`?
+
 image::personIndexFAQ.png[width=900]
 ****
 //end::personIndexFAQ[]
+
+//tag::transactionIndexFAQ[]
+[[transactionIndexFAQ]]
+*Q*: What is a `transaction's index`? +
+*A*: A `transaction's index` is the index number shown in the displayed transaction list in *Sharkie*. It indicates a specific transaction in the address book.
+
+****
+For example,
+
+* `1` is the `transaction's index` of Alex Yeoh, whereas
+* `2` is the `transaction's index` of Bernice Yu.
+
+.What is a `transaction's index`?
+
+image::personIndexFAQ.png[width=900]
+****
+//end::transactionIndexFAQ[]
 
 //tag::loanDebtIndexFAQ[]
 [[loanDebtIndexFAQ]]
