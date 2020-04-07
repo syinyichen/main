@@ -24,15 +24,13 @@ By: `AY1920S2-CS2103T-W12-3`      Since: `Feb 2020`      Licence: `MIT`
 
 Welcome to *Sharkie*!
 
+.GUI of Sharkie
 image::Ui.png[width="820"]
 
 *Sharkie* is an all-in-one desktop application for *personal finance tracking* designed for university students who would like to monitor their spending.
 It manages your *incomes and expenses*, organises your *contacts* and keeps track of *debts* your friends owe you, so that your loans always come with a money-back guarantee!
 
 *Sharkie* boasts a sleek, trendy Graphical User Interface (GUI) while being at its core a *Command Line Application* - this means that the faster you type, the faster you can get those pesky finances out of your head and into Sharkie's management system.
-
-.GUI of Sharkie
-image::Ui.png[width="820"]
 
 Have we reeled you in? Dive into <<Quick Start>> to get on board with Sharkie. Enjoy!
 //end::intro[]
@@ -116,7 +114,7 @@ your saving goals, *Sharkie* would be a good application for you to start with.
 *Sharkie* allows you to records what you have spent on for the month, and also notes down your income for the month
 to help you properly track your money flow!
 
-NOTE: You may visit <<add-expense-command, 5.2.1 Adding an expense>> or <<add-income-command, 5.2.2 Adding an income>>
+NOTE: You may visit <<add-expense-command, Adding an expense>> or <<add-income-command, Adding an income>>
 to find out more on how to record expenses or incomes in *Sharkie*.
 
 //end::expenditureAndIncome[]
@@ -130,8 +128,8 @@ If you would like to keep the contact details of a person so that you can use th
 Should the contact details change, you can also edit them or delete them. If you need to find a particular person's contact details,
 *Sharkie* will look through all your contacts and quickly help you find the contact that you are looking for!
 
-NOTE: You may visit <<add-person, 5.3.1 Adding a person>>, <<list-people, 5.3.8 Listing all contacts>>,
-<<find-person, 5.3.9 Finding a person>>, <<edit-person, 5.3.10 Editing a person>>, <<delete-person, 5.3.11 Deleting a person>>, <<peopleclear, 5.4.12 Clearing all contacts>>
+NOTE: You may visit <<add-person, Adding a person>>, <<list-people, Listing all contacts>>,
+<<find-person, Finding a person>>, <<edit-person, Editing a person>>, <<delete-person, Deleting a person>>, <<peopleclear, Clearing all contacts>>
 for more details on how you can manage your contacts with *Sharkie*.
 
 //end::contacts[]
@@ -158,7 +156,7 @@ NOTE: Still confused about `debts` and `loans`? Find out more about <<debt-and-l
 You can view statistics such as the proportion of your spending on different items and how close you are to reaching your self-imposed budget. +
 All statistics are automatically updated and located in the Wallet tab.
 
-NOTE: Check out <<budget-command, 5.2.8 Setting a budget>> to learn how to budget your monthly spending with Sharkie.
+NOTE: Check out <<budget-command, Setting a budget>> to learn how to budget your monthly spending with Sharkie.
 
 //end::expenditureSummary[]
 
@@ -220,6 +218,47 @@ If you're done with using Sharkie and wish to exit the application safely, you c
 
 === Wallet Commands
 This section introduces seven commands that have effect on the `wallet` tab.
+
+[[budget-command]]
+//tag::walletbudget[]
+==== Setting a budget: `budget`
+Suppose you want to set a budget for a certain month, or a budget in general for all months. The command that you would enter in this case is our `wallet budget` command. +
+
+*Format*: `wallet budget $/amount [m/<month>] [y/<year>]`
+====
+*Command Format*
+
+The following are restrictions of `wallet budget` command, which you will need to take note of:
+
+* If no month or year is specified, the default budget is set as the amount provided.
+* Your entry will overwrite any pre-existing budgets. This means that if you have previously set a budget for a specific month and year, and if you have indicated that month and year again, it will overwrite the budget that has been set.
+* If the budget value is set to 0, *Sharkie* will consider it as if you have not set a budget for that month.
+* The value of the budget you have set must be a non-negative integer.
+* The value of the month you have set must be a positive integer between 1 - 12.
+* The value of the year you have set must be a non-negative integer.
+====
+
+*Example #1*:
+
+** Suppose you want to add a default budget of $1000 for all months.
+* The command you would enter is `wallet budget $/1000`.
+* This tells *Sharkie* that you want to set a default budget of $1000.
+
+*Expected Outcome #1*:
+
+    Default budget has been set at $1000.00.
+
+*Example #2*:
+
+** Suppose you want to add a budget of $999 for March 2020.
+* The command you would enter is `wallet budget $/999 m/03 y/2020`.
+* This tells *Sharkie* that you want to set a budget of $999 for March 2020.
+
+*Expected Outcome #2*:
+
+    Budget has been set at $999.00 for MARCH 2020.
+
+//end::walletbudget[]
 
 [[add-expense-command]]
 //tag::walletexpense[]
@@ -292,25 +331,6 @@ The following are the restrictions of the `wallet income` command, which you wou
 
 //end::walletincome[]
 
-//tag::walletList[]
-==== Listing all transactions: `list`
-
-Suppose you want to see the full list of transactions, the command you would enter is our `wallet list` command. +
-Format: `wallet list`
-
-*Example*:
-
-* Suppose you have just executed the <<walletFind, `wallet find`>>  command. Now, you would like to see the full list of transactions in the wallet again.
-
-** The command you would enter is `wallet list`.
-** This lists out all the transactions you have in your wallet.
-
-*Expected Outcome*:
-
-    Listed all transactions.
-
-//end::walletList[]
-
 //tag::walletedit[]
 ==== Editing a transaction: `edit`
 
@@ -349,6 +369,46 @@ The following are the restrictions of `wallet edit` command, which you would nee
      Edited Transaction: Duck rice Description: Duck rice Amount: $4.00 Date: 2020-10-04 Tag: [Food]
 
 //end::walletedit[]
+
+//tag::walletdelete[]
+==== Deleting an income or expense: `delete`
+Suppose you want to delete a transaction, either an expense on income, the command you would enter is our `wallet delete` command. +
+
+Format: `wallet delete <index>`
+
+====
+*Command Format*
+
+The following are the restrictions of `wallet delete` command, which you would need to take note of:
+
+* The `<index>` of the transaction to be deleted must be stated, and it must exist in the list of transactions.
+* The index *must be a positive integer* 1, 2, 3, ...
+* Only 1 transaction can be deleted each time. Multiple deletions in one command is not allowed.
+====
+
+*Example #1*:
+
+** Suppose you want to remove the first transaction, Duck rice, from your wallet.
+* The command you would enter is `wallet delete 1`.
+* This tells *Sharkie* that you want to delete the first transaction shown in the wallet.
+
+*Expected Outcome #1*:
+
+     Deleted Transaction: Duck rice Description: Duck rice Amount: $4.00 Date: 2020-03-30 Tag: [Food]
+
+*Example #2*:
+
+** Suppose you used the command `wallet find n/money` to filter out all transactions with keyword `money`, and you want to remove the second transaction you see, `Red packet money`, from your wallet's filtered list of transactions.
+* The command you would enter is `wallet delete 2`.
+* This tells *Sharkie* that you want to delete the second transaction shown in the wallet, after being filtered.
+
+*Expected Outcome #2*:
+
+     Deleted Transaction: Red packet money Description: Red packet money Amount: $300.00 Date: 2020-03-30 Tag: [Income]
+
+
+
+//end::walletdelete[]
 
 //tag::walletfind[]
 [[walletFind]]
@@ -428,45 +488,25 @@ The following are the restrictions of `wallet find` command, which you would nee
 
 //end::walletfind[]
 
-//tag::walletdelete[]
-==== Deleting an income or expense: `delete`
-Suppose you want to delete a transaction, either an expense on income, the command you would enter is our `wallet delete` command. +
+//tag::walletList[]
+==== Listing all transactions: `list`
 
-Format: `wallet delete <index>`
+Suppose you want to see the full list of transactions, the command you would enter is our `wallet list` command. +
+Format: `wallet list`
 
-====
-*Command Format*
+*Example*:
 
-The following are the restrictions of `wallet delete` command, which you would need to take note of:
+* Suppose you have just executed the <<walletFind, `wallet find`>>  command. Now, you would like to see the full list of transactions in the wallet again.
 
-* The `<index>` of the transaction to be deleted must be stated, and it must exist in the list of transactions.
-* The index *must be a positive integer* 1, 2, 3, ...
-* Only 1 transaction can be deleted each time. Multiple deletions in one command is not allowed.
-====
+** The command you would enter is `wallet list`.
+** This lists out all the transactions you have in your wallet.
 
-*Example #1*:
+*Expected Outcome*:
 
-** Suppose you want to remove the first transaction, Duck rice, from your wallet.
-* The command you would enter is `wallet delete 1`.
-* This tells *Sharkie* that you want to delete the first transaction shown in the wallet.
+    Listed all transactions.
 
-*Expected Outcome #1*:
+//end::walletList[]
 
-     Deleted Transaction: Duck rice Description: Duck rice Amount: $4.00 Date: 2020-03-30 Tag: [Food]
-
-*Example #2*:
-
-** Suppose you used the command `wallet find n/money` to filter out all transactions with keyword `money`, and you want to remove the second transaction you see, `Red packet money`, from your wallet's filtered list of transactions.
-* The command you would enter is `wallet delete 2`.
-* This tells *Sharkie* that you want to delete the second transaction shown in the wallet, after being filtered.
-
-*Expected Outcome #2*:
-
-     Deleted Transaction: Red packet money Description: Red packet money Amount: $300.00 Date: 2020-03-30 Tag: [Income]
-
-
-
-//end::walletdelete[]
 
 // tag::walletClear[]
 [[walletClear]]
@@ -496,46 +536,7 @@ The following are the restrictions of `wallet clear` command, which you would ne
 
 // end::walletClear[]
 
-[[budget-command]]
-//tag::walletbudget[]
-==== Setting a budget: `budget`
-Suppose you want to set a budget for a certain month, or a budget in general for all months. The command that you would enter in this case is our `wallet budget` command. +
 
-*Format*: `wallet budget $/amount [m/<month>] [y/<year>]`
-====
-*Command Format*
-
-The following are restrictions of `wallet budget` command, which you will need to take note of:
-
-* If no month or year is specified, the default budget is set as the amount provided.
-* Your entry will overwrite any pre-existing budgets. This means that if you have previously set a budget for a specific month and year, and if you have indicated that month and year again, it will overwrite the budget that has been set.
-* If the budget value is set to 0, *Sharkie* will consider it as if you have not set a budget for that month.
-* The value of the budget you have set must be a non-negative integer.
-* The value of the month you have set must be a positive integer between 1 - 12.
-* The value of the year you have set must be a non-negative integer.
-====
-
-*Example #1*:
-
-** Suppose you want to add a default budget of $1000 for all months.
-* The command you would enter is `wallet budget $/1000`.
-* This tells *Sharkie* that you want to set a default budget of $1000.
-
-*Expected Outcome #1*:
-
-    Default budget has been set at $1000.00.
-
-*Example #2*:
-
-** Suppose you want to add a budget of $999 for March 2020.
-* The command you would enter is `wallet budget $/999 m/03 y/2020`.
-* This tells *Sharkie* that you want to set a budget of $999 for March 2020.
-
-*Expected Outcome #2*:
-
-    Budget has been set at $999.00 for MARCH 2020.
-
-//end::walletbudget[]
 
 === People Commands
 This section introduces twelve commands that have effect on the `people` tab.
@@ -577,6 +578,85 @@ into the address book.
     New person added: Joel Phone: 91234567 Email: joel@example.com You owe: $0.00 You lent: $0.00
 
 //end::peopleadd[]
+
+// tag::edit[]
+[[edit-person]]
+==== Editing a person : `edit`
+
+In instances when a person has changed his contact details, and you want to update them, the command that you would enter
+is the `people edit` command. +
+
+*Format*: `people edit <person's index> [n/<name>] [p/<phone number>] [e/<email>]`
+
+====
+*Command Format*
+
+The following are the restrictions of `people edit` command, which you would need to take note of:
+
+* The `<person's index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
+* You should provide at least one of the optional fields.
+====
+
+NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
+specific person in the address book whom you lend money to. +
+
+WARNING: Existing values will be updated to the new values that you have inputted.
+
+*Example*:
+
+* Suppose you want to update the John's email, and John is the first person in your address book.
+
+** The command you would enter is `people edit 1 e/johndoe@example.com`.
+** This edits the email address of the first person, John, to be `johndoe@example.com`. +
+
+*Expected Outcome*:
+
+* In the list of people shown, John's email will be johndoe@example.com.
+
+    Edited Person: John Doe Phone: 91234568 Email: johndoe@example.com You owe: $0.00 You lent: $0.00 Tags:
+
+// end::edit[]
+
+// tag::delete[]
+[[delete-person]]
+==== Deleting a person : `delete`
+
+If you have no reason to keep a person in your address book anymore and would like to delete his contact details, the
+command that you would enter is the `people delete` command.
+
+*Format*: `people delete <person's index>`
+
+====
+*Command Format*
+
+The following is the restrictions of `people delete` command, which you should take note of:
+
+* The `<person's index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
+====
+
+
+NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
+specific person in the address book whom you would like to delete. +
+
+WARNING: Remember to check and ensure that the `<person's index>` that you have inputted corresponds to the correct person.
+
+*Example*:
+
+* Suppose you want to delete Betsy from your address book, and Betsy is somewhere deep in the list. Then, you can first
+use the <<find-person, `people find`>> command to find Betsy, followed by the `people delete` command.
+
+** The command that you would enter is `people find n/Betsy`, followed by `people delete 1`.
+** *Sharkie* will first find Betsy for you, and Betsy will be shown as the first result on the list. Then, the latter
+command will delete Betsy from the address book.
+
+*Expected Outcome*:
+
+* Betsy will no longer be shown on the list of people.
+
+    Deleted Person: Betsy Phone: 91234567 Email: something@email.com You owe: $0.00 You lent: $0.00 Tags:
+
+// end::delete[]
+
 
 // tag::owe[]
 ==== Recording the money you owe: `owe`
@@ -926,83 +1006,7 @@ entire list of people in your address book. Then, the command that you would ent
 
 //end::peoplelist[]
 
-// tag::edit[]
-[[edit-person]]
-==== Editing a person : `edit`
 
-In instances when a person has changed his contact details, and you want to update them, the command that you would enter
-is the `people edit` command. +
-
-*Format*: `people edit <person's index> [n/<name>] [p/<phone number>] [e/<email>]`
-
-====
-*Command Format*
-
-The following are the restrictions of `people edit` command, which you would need to take note of:
-
-* The `<person's index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
-* You should provide at least one of the optional fields.
-====
-
-NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
-specific person in the address book whom you lend money to. +
-
-WARNING: Existing values will be updated to the new values that you have inputted.
-
-*Example*:
-
-* Suppose you want to update the John's email, and John is the first person in your address book.
-
-** The command you would enter is `people edit 1 e/johndoe@example.com`.
-** This edits the email address of the first person, John, to be `johndoe@example.com`. +
-
-*Expected Outcome*:
-
-* In the list of people shown, John's email will be johndoe@example.com.
-
-    Edited Person: John Doe Phone: 91234568 Email: johndoe@example.com You owe: $0.00 You lent: $0.00 Tags:
-
-// end::edit[]
-
-// tag::delete[]
-[[delete-person]]
-==== Deleting a person : `delete`
-
-If you have no reason to keep a person in your address book anymore and would like to delete his contact details, the
-command that you would enter is the `people delete` command.
-
-*Format*: `people delete <person's index>`
-
-====
-*Command Format*
-
-The following is the restrictions of `people delete` command, which you should take note of:
-
-* The `<person's index>` you entered should be a positive integer, e.g. 1, 2, 3, ...
-====
-
-
-NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
-specific person in the address book whom you would like to delete. +
-
-WARNING: Remember to check and ensure that the `<person's index>` that you have inputted corresponds to the correct person.
-
-*Example*:
-
-* Suppose you want to delete Betsy from your address book, and Betsy is somewhere deep in the list. Then, you can first
-use the <<find-person, `people find`>> command to find Betsy, followed by the `people delete` command.
-
-** The command that you would enter is `people find n/Betsy`, followed by `people delete 1`.
-** *Sharkie* will first find Betsy for you, and Betsy will be shown as the first result on the list. Then, the latter
-command will delete Betsy from the address book.
-
-*Expected Outcome*:
-
-* Betsy will no longer be shown on the list of people.
-
-    Deleted Person: Betsy Phone: 91234567 Email: something@email.com You owe: $0.00 You lent: $0.00 Tags:
-
-// end::delete[]
 
 // tag::peopleclear[]
 [[peopleclear]]
