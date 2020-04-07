@@ -25,7 +25,7 @@ By: `AY1920S2-CS2103T-W12-3`      Since: `Feb 2020`      Licence: `MIT`
 Welcome to *Sharkie*!
 
 .GUI of Sharkie
-image::Ui.png[width="820"]
+image::Ui.png[]
 
 *Sharkie* is an all-in-one desktop application for *personal finance tracking* designed for university students who would like to monitor their spending.
 It manages your *incomes and expenses*, organises your *contacts* and keeps track of *debts* your friends owe you, so that your *loans* always come with a money-back guarantee!

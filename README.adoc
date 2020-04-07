@@ -6,11 +6,17 @@ https://coveralls.io/github/AY1920S2-CS2103T-W12-3/main?branch=master[image:http
 
 
 ifdef::env-github[]
-image::docs/images/Ui.png[width="600"]
+
+.GUI of Sharkie
+image::docs/images/Ui.png[]
+
 endif::[]
 
 ifndef::env-github[]
-image::images/Ui.png[width="600"]
+
+.GUI of Sharkie
+image::images/Ui.png[]
+
 endif::[]
 
 * Sharkie is an all-in-one desktop application for those who are beginning to see the importance of tracking your money (looking at you, university students).

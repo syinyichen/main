@@ -79,12 +79,14 @@ https://github.com/syinyichen/ped/issues[#8], https://github.com/syinyichen/ped/
 
 == Contributions to the User Guide
 
-
 |===
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
 include::../UserGuide.adoc[tag=about]
+
+[[quick-start]]
+== Quick Start
 
 == Features
 
@@ -106,11 +108,11 @@ include::../UserGuide.adoc[tag=peopleclear]
 
 == FAQ
 
+include::../UserGuide.adoc[tag=editing-user-data]
+
 include::../UserGuide.adoc[tag=personIndexFAQ]
 
 include::../UserGuide.adoc[tag=loanDebtIndexFAQ]
-
-include::../UserGuide.adoc[tag=editing-user-data]
 
 include::../UserGuide.adoc[tag=debt-and-loan-diff]
 
