@@ -30,20 +30,20 @@ image::Ui.png[width="820"]
 *Sharkie* is an all-in-one desktop application for *personal finance tracking* designed for university students who would like to monitor their spending.
 It manages your *incomes and expenses*, organises your *contacts* and keeps track of *debts* your friends owe you, so that your loans always come with a money-back guarantee!
 
-*Sharkie* boasts a sleek, trendy Graphical User Interface (GUI) while being at its core a *Command Line Application* - this means that the faster you type, the faster you can get those pesky finances out of your head and into Sharkie's management system.
+*Sharkie* boasts a sleek, trendy Graphical User Interface (GUI) while being at its core a *Command Line Application* - this means that the faster you type, the faster you can get those pesky finances out of your head and into *Sharkie*'s management system.
 
-Have we reeled you in? Dive into <<Quick Start>> to get on board with Sharkie. Enjoy!
+Have we reeled you in? Dive into <<quick-start>> to get on board with *Sharkie*. Enjoy!
 //end::intro[]
 
 //tag::about[]
 == About
 This user guide will help to ensure that you have all the information you need to utilise *Sharkie* to its fullest extent. *Sharkie* is a feature-filled expense tracker and all the information you need regarding his usage is available below. +
 
-If you need help starting up Sharkie, you can head on to the <<quick-start, Quick Start guide>> below to set it up. +
+If you need help starting up *Sharkie*, you can head on to <<quick-start>> below to set it up. +
 
-If you want to find out more about the features provided by *Sharkie*, you can visit the <<Features, Features section>> below.
+If you want to find out more about the features provided by *Sharkie*, you can visit <<Features>> below.
 
-If you need help regarding what commands *Sharkie* has, our <<Commands, Commands section>> below will guide you through *Sharkie’s* commands. +
+If you need help regarding what commands *Sharkie* has, <<Commands>> below will guide you through *Sharkie’s* commands. +
 
 Note the following symbols and formatting used in this document: +
 
@@ -59,9 +59,9 @@ a|
 ====
 ====
 a|[gray]#This yellow box indicates the restrictions of each command.#
-2+.^a|  NOTE: This symbol indicates information.
-2+.^a|  WARNING: This symbol indicates warnings.
-2+.^a|  TIP: This symbol indicates tips.
+2+.^a|  NOTE: This symbol indicates information that you need to know.
+2+.^a|  WARNING: This symbol indicates warnings to take note of.
+2+.^a|  TIP: This symbol indicates tips that can help you in your use of *Sharkie*.
 |===
 
 //end::about[]
@@ -69,11 +69,14 @@ a|[gray]#This yellow box indicates the restrictions of each command.#
 //tag::quickStart[]
 [[quick-start]]
 == Quick Start
-The following steps will help you get Sharkie up and running in no time on your desktop.
+The following steps will help you get *Sharkie* up and running in no time on your desktop.
 
-.  Ensure you have Java `11` or above installed in your Computer.
-.  Download the latest `Sharkie.jar` link:https://github.com/AY1920S2-CS2103T-W12-3/main/releases[here].
+.  Ensure you have Java 11 or above installed in your Computer.
+.  Download the latest link:https://github.com/AY1920S2-CS2103T-W12-3/main/releases[Sharkie.jar].
 .  Copy the file to the folder you want to use as the home folder for *Sharkie*.
++
+WARNING: Make sure that your Sharkie.jar is in a folder that does not require administrator access. If not, it might not be able to function properly.
+
 .  Double-click the file to start the app. The GUI should appear in a few seconds.
 +
 
@@ -81,162 +84,167 @@ The following steps will help you get Sharkie up and running in no time on your 
 image::EnterUserData.png[width="820"]
 
 +
-. If you are logging in for the first time, key in your Name, Phone and your Email, and and press kbd:[enter] or click on the `Submit` button.
+. If you are logging in for the first time, key in your Name, Phone and your Email, and and press kbd:[Enter] or click on the "Submit" button.
 +
 
 .After inputting user information
 image::EnterPinData.png[width="820"]
 
 +
-. A confirmation pin will be sent to your email. Please key in the confirmation PIN and click on the `Confirm` button. If you did not receive a confirmation PIN after 1 minute, please click on the `Resend PIN` button to get a new PIN.
-. If you are logging in for the first time, Sharkie is already pre-loaded with sample data. You can use the <<peopleclear, `people clear`>> command and <<walletClear, `wallet clear`>> command respectively to remove the data.
-.  Type the command in the command box and press kbd:[Enter] to execute it. +
-e.g. typing *`help`* and pressing kbd:[Enter] will open the help window.
-.  Some example commands you can try:
-* **`people add`**`n/John Doe p/98765432 e/johnd@example.com` : adds a contact named `John Doe` to the Address Book.
-* **`people delete`**`3` : deletes the 3rd contact shown in the current list.
-* **`wallet expense`**`n/Gift for friend $/88 d/12/12/2020 t/Shopping` : adds an expense with these details into the wallet.
-* **`wallet find`**`n/rice` : returns a list of expenses or income with keyword rice.
-* *`exit`* : exits the app.
-
-.  Refer to <<Commands>> for details of each command.
+. A confirmation PIN will be sent to your email. Please key in the confirmation PIN and click on the "Confirm" button. If you did not receive a confirmation PIN after 1 minute, please click on the "Resend PIN" button to get a new PIN.
+. If you are logging in for the first time, *Sharkie* is already pre-loaded with sample data. 
++
+NOTE: If you want, you can use the <<peopleclear, [blue]`people clear`>> command and <<walletClear, [blue]`wallet clear`>> command to remove the data in the wallet and people tabs respectively.
+.  You can type a command in the command box and press kbd:[Enter] to execute it. +
+e.g. Typing *`help`* and pressing kbd:[Enter] will open the help window. 
++
+NOTE: You can check out <<Commands>> for detailed descriptions and usages of each command. +
+For a more succinct summary of the commands you can use in *Sharkie*, you can check out <<command-summary>>.
+.  Some example commands you can try to get you started:
+* **`people add`**`n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to the address book.
+* **`people delete`**`3` : Deletes the 3rd contact shown in the current list.
+* **`wallet expense`**`n/Gift for friend $/88 d/12/12/2020 t/Shopping` : Adds an expense with these details into the wallet.
+* **`wallet find`**`n/rice` : Returns a list of expenses or income with keyword rice.
+* *`exit`* : Exits the app.
 //end::quickStart[]
 
 [[Features]]
 == Features
-This section introduces the five main features of Sharkie.
+*Sharkie* contains many helpful features that you can use to enhance your financial tracking habits. This section introduces the four main features of *Sharkie*.
 
 //tag::expenditureAndIncome[]
-=== Expenditure and income
-If you are a university student, who starts to manage your own money, but struggles to track your expenses or meet
-your saving goals, *Sharkie* would be a good application for you to start with.
+=== Expenditure and Income
+If you are a university student who has started to manage your own money, but struggles to track your expenses or meet your saving goals, *Sharkie* would be a good application for you to start with.
 
-*Sharkie* allows you to records what you have spent on for the month, and also notes down your income for the month
-to help you properly track your money flow!
+*Sharkie* allows you to record what you have spent on for the month, and also helps you to note down your income for the month to help you properly track your money flow!
 
-NOTE: You may visit <<add-expense-command, Adding an expense>> or <<add-income-command, Adding an income>>
+NOTE: You may visit <<add-expense-command, Section 5.2.2, “Adding an expense”>> or <<add-income-command,  Section 5.2.3, “Adding an income”>>
 to find out more on how to record expenses or incomes in *Sharkie*.
 
 //end::expenditureAndIncome[]
 
 //tag::contacts[]
 === Contact Management
-If you would like to keep the contact details of a person so that you can use the <<debts-and-loans-feature, debts and loans feature>>,
+If you would like to keep the contact details of a person so that you can use the <<debts-and-loans-feature, debts and loans features>>,
 *Sharkie* can help you do so!
 
 *Sharkie* notes down and remembers contacts that you have entered in an address book, for easy reference later on!
-Should the contact details change, you can also edit them or delete them. If you need to find a particular person's contact details,
+Should their contact details change, you can also edit them or delete them. If you need to find a particular person's contact details,
 *Sharkie* will look through all your contacts and quickly help you find the contact that you are looking for!
 
-NOTE: You may visit <<add-person, Adding a person>>, <<list-people, Listing all contacts>>,
-<<find-person, Finding a person>>, <<edit-person, Editing a person>>, <<delete-person, Deleting a person>>, <<peopleclear, Clearing all contacts>>
+NOTE: You may visit <<add-person,  Section 5.3.1, “Adding a person”>>, <<list-people, Section 5.3.11, “Listing all contacts”>>,
+<<find-person, Section 5.3.10, “Finding a person”>>, <<edit-person, Section 5.3.2, “Editing a person”>>, <<delete-person, Section 5.3.3, “Deleting a person”>>, <<peopleclear, Section 5.3.12, “Clearing all contacts”>>
 for more details on how you can manage your contacts with *Sharkie*.
 
 //end::contacts[]
 
-=== Saving the data
-
-All data is saved in the hard disk automatically after any command that changes the data. +
-There is no need to save manually.
-
 [[debts-and-loans-feature]]
 //tag::debts[]
-=== Debts and loans
+=== Debts and Loans
+If you are forgetful and need to keep track of money owed and money lent, fret not! +
 
 *Sharkie* allows you to take note of the debts you owe your friends and the loans you lent your friends. +
-*Sharkie* then allows you to remind your friends through email to return you the money they owe you! +
 
-NOTE: Still confused about `debts` and `loans`? Find out more about <<debt-and-loan,the differences between debts and loans>>.
+*Sharkie* also allows you to remind your friends through email to return you the money they owe you! +
+
+NOTE: Are you confused about debts and loans? Find out more about <<debt-and-loan,the differences between debts and loans>>.
 
 //end::debts[]
 
 //tag::expenditureSummary[]
 === Expenditure Summary
-*Sharkie* displays a customisable overview of your monthly spending and income so that you know where all your money has gone to! +
-You can view statistics such as the proportion of your spending on different items and how close you are to reaching your self-imposed budget. +
-All statistics are automatically updated and located in the Wallet tab.
+*Sharkie* displays an overview of your monthly spending and income so that you know where all your money has gone to! +
 
-NOTE: Check out <<budget-command, Setting a budget>> to learn how to budget your monthly spending with Sharkie.
+If you are more visually inclined, you can view statistics such as the different proportions of your spending on different items and how close you are to reaching your self-imposed budget. +
+
+All statistics are automatically updated and located in the wallet tab.
+
+NOTE: Check out <<budget-command,  Section 5.2.1, “Setting a budget”>> to learn how to budget your monthly spending with Sharkie.
 
 //end::expenditureSummary[]
 
 [[Commands]]
 == Commands
 //tag::commandintro[]
-*Sharkie* uses a simple syntax to function that will be explained here. *Sharkie* is filled with many different commands that can get complicated, so we have segregated them into two parts:
-`people` commands and `wallet` commands.
+*Sharkie* is filled with a variety of commands that can help you in your financial tracking journey. +
+
+For ease of reference, we have segregated them into three parts:
+general commands, people commands and wallet commands.
 
 ====
 *Command Format*
 
 * Words in angle brackets are the parameters to be supplied by the user e.g. in `add n/<name>`, `<name>` is a parameter which can be used as `add n/John Doe`.
-* Items in square brackets are optional e.g `$/<amount> [d/<date:dd/mm/yyyy>]` can be used as `$/5 d/21/02/2020` or as `$/5`.
-* `people` commands are used when you want to do things related to the “People” tab, for instance:
+* Items in square brackets are optional e.g. `$/<amount> [d/<date:dd/mm/yyyy>]` can be used as `$/5 d/21/02/2020` or as `$/5`.
+* People commands are used when you want to do things related to the people tab, e.g.
 `people add n/<name> p/<phone number> e/<email address>`
-* `wallet` commands are used when you want to do things related to the “Wallet” tab, for instance:
+* Wallet commands are used when you want to do things related to the wallet tab, e.g.
 `wallet expense n/<item> $/<price>  [d/<date:dd/mm/yyyy>] [t/<tag>]`
 * Parameters can be in any order e.g. if the command specifies `n/<name> p/<phone number>`, `p/<phone number> n/<name>` is also acceptable.
 ====
 //end::commandintro[]
 
-//tag::globalcommands[]
-=== Global Commands
-This section contains details on how to execute two general commands, `help` and `exit`.
+//tag::generalcommands[]
+=== General Commands
+This section contains details on how you can execute two general commands, `help` and `exit`.
 
 ==== Viewing help : `help`
-If you need help regarding the many features of Sharkie and how to operate it, you can use the global `help` command to get a link to this user guide. +
+Suppose you need help regarding the many features of *Sharkie* and how to operate it, you can use the general `help` command to get a link to this user guide. +
 
 *Format*: `help`
 
 *Example*:
 
-* You start Sharkie and are unsure of what commands are available or how to use it.
-** Typing `help` will give you a link to our user guide.
+* You start *Sharkie* and are unsure of what commands are available or how to use it.
+** Typing `help` will open our user guide.
 
 *Expected Outcome*: +
 
-* A window will pop up, providing you with a clickable link that directs you to this user guide.
+* A window will pop up, providing you with a reference to our user guide.
 
     Opened help window.
 
 ==== Exiting the program : `exit`
 
-If you're done with using Sharkie and wish to exit the application safely, you can use the global `exit` command to help you save your data and exit the program. +
+Suppose you're done with using *Sharkie* and wish to exit the application safely, you can use the general `exit` command to help you save your data and exit the program. +
 
 *Format*: `exit`
 
 *Example*:
 
-* You've just finished using Sharkie, and wish to close the program and save your data.
-** Typing `exit` will save your data and quit Sharkie.
+* You've just finished using *Sharkie*, and wish to close the program and save your data.
+** Typing `exit` will save your data and quit *Sharkie*.
 
 *Expected Outcome*: +
 
-* Sharkie will save your data to a locally stored file (that can be edited using a text editor), and will help you quit the application safely.
+* *Sharkie* will save your data and quit the application safely.
 
-//end::globalcommands[]
+//end::generalcommands[]
 
 === Wallet Commands
-This section introduces seven commands that have effect on the `wallet` tab.
+This section introduces the eight commands that you can use to have effect on the wallet tab.
 
 [[budget-command]]
 //tag::walletbudget[]
 ==== Setting a budget: `budget`
 Suppose you want to set a budget for a certain month, or a budget in general for all months. The command that you would enter in this case is our `wallet budget` command. +
 
-*Format*: `wallet budget $/amount [m/<month>] [y/<year>]`
+*Format*: `wallet budget $/<amount> [m/<month: mm>] [y/<year: yyyy>]`
 ====
 *Command Format*
 
 The following are restrictions of `wallet budget` command, which you will need to take note of:
 
-* If no month or year is specified, the default budget is set as the amount provided.
-* Your entry will overwrite any pre-existing budgets. This means that if you have previously set a budget for a specific month and year, and if you have indicated that month and year again, it will overwrite the budget that has been set.
-* If the budget value is set to 0, *Sharkie* will consider it as if you have not set a budget for that month.
-* The value of the budget you have set must be a non-negative integer.
-* The value of the month you have set must be a positive integer between 1 - 12.
-* The value of the year you have set must be a non-negative integer.
+* The `<amount>` you have set must be a <<valid-amount, valid amount>>.
+* The value of the `<month: mm>` you have set must be a positive integer between 1 - 12.
+* The value of the `<year: yyyy>` you have set must be a non-negative integer.
 ====
+
+NOTE: Your budget entry will overwrite any pre-existing budgets. This means that if you have previously set a budget for a specific month and year, and if you have indicated that month and year again, it will overwrite the budget that has been set.
+
+TIP: If no month or year is specified, the default budget is set as the amount provided. +
+ +
+If the budget value is set to 0, *Sharkie* will consider it as if you have not set a budget for that month.
 
 *Example #1*:
 
@@ -263,8 +271,7 @@ The following are restrictions of `wallet budget` command, which you will need t
 [[add-expense-command]]
 //tag::walletexpense[]
 ==== Adding an expense: `expense`
-
-If you have paid for an expense and wish to record it down in Sharkie, you may enter the `wallet expense` command to do so.
+Suppose you have paid for an expense and wish to record it down in *Sharkie*, you may enter the `wallet expense` command to do so.
 
 *Format*: `wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`
 
@@ -275,10 +282,11 @@ The following are the restrictions of the `wallet expense` command, which you wo
 
 * The `<description>` should not be blank.
 * The `<amount>` should be non-negative and have only up to two decimal places.
-* If no `<date>` is specified, your expense will default to today's date.
-* If no `<tag>` is specified, your expense will be given a default tag `Misc`.
-* The first letter of the `<tag>` will be converted to uppercase.
+* If no `<date: dd/mm/yyyy>` is specified, your expense will default to today's date.
+* If no `<tag>` is specified, your expense will be given a default tag "Misc".
 ====
+
+NOTE: The first letter of the `<tag>` will be converted to uppercase.
 
 *Example*:
 
@@ -289,7 +297,7 @@ The following are the restrictions of the `wallet expense` command, which you wo
 
 *Expected Outcome*:
 
-* A new expense will be added into your Wallet, automatically updating your Wallet's statistics.
+* A new expense will be added into your wallet, automatically updating your wallet's statistics.
 
     New expense added: Chicken Rice Description: Chicken Rice Amount: $3.50 Date: 2010-10-10 Tag: [Food]
     Your expenditure for OCTOBER 2010 is: $3.50/$0.00
@@ -300,7 +308,7 @@ The following are the restrictions of the `wallet expense` command, which you wo
 //tag::walletincome[]
 ==== Adding an income: `income`
 
-If you have earned an income and wish to record it down in Sharkie, you may enter the `wallet income` command to do so.
+Suppose you have earned an income and wish to record it down in *Sharkie*, you may enter the `wallet income` command to do so.
 
 *Format*: `wallet income n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`
 
@@ -311,10 +319,11 @@ The following are the restrictions of the `wallet income` command, which you wou
 
 * The `<description>` should not be blank.
 * The `<amount>` should be non-negative and have only up to two decimal places.
-* If no `<date>` is specified, your expense will default to today's date.
-* If no `<tag>` is specified, your expense will be given a default tag `Misc`.
-* The first letter of the `<tag>` will be converted to uppercase.
+* If no `<date: dd/mm/yyyy>` is specified, your expense will default to today's date.
+* If no `<tag>` is specified, your expense will be given a default tag "Misc".
 ====
+
+NOTE: The first letter of the `<tag>` will be converted to uppercase.
 
 *Example*:
 
@@ -325,7 +334,7 @@ The following are the restrictions of the `wallet income` command, which you wou
 
 *Expected Outcome*:
 
-* A new income will be added into your Wallet, automatically updating your Wallet's statistics.
+* A new income will be added into your wallet, automatically updating your w*allet's statistics.
 
     New income added: P6 Tuition Description: P6 Tuition Amount: $3000.00 Date: 2010-10-10 Tag: [Job]
 
@@ -335,7 +344,8 @@ The following are the restrictions of the `wallet income` command, which you wou
 ==== Editing a transaction: `edit`
 
 Suppose you want to edit the details of an income or expense in your wallet, the command you would enter is our `wallet edit` command. +
-Format: `wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]`
+
+*Format*: `wallet edit <index> [n/<name>] [d/<date: dd/mm/yyyy>] [$/<amount>] [t/<tag>]`
 
 ====
 *Command Format*
@@ -343,28 +353,32 @@ Format: `wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]`
 The following are the restrictions of `wallet edit` command, which you would need to take note of:
 
 * The `<index>` of the transaction to be edited must be stated, and it must exist in the list of transactions.
-* The index *must be a positive integer* 1, 2, 3, ...
-* At least one of [n/<name>], [d/<date>], [$/<amount>], [t/<tag>] should be stated. Multiples are allowed as well.
+* The index must be a positive integer: 1, 2, 3, ...
+* At least one of `[n/<name>]`, `[d/<date: dd/mm/yyyy>]`, `[$/<amount>]`, `[t/<tag>]` should be stated. Multiple fields are allowed as well.
 ====
 
 
 *Example #1*:
 
-** Suppose you want to edit the first transaction in the transaction list, `Dack rce -$4400.00`, because you misspelled the name and wrote the wrong price.
+** Suppose you want to edit the first transaction in the transaction list, "Dack rce -$4400.00", because you misspelled the name and wrote the wrong price.
 * The command you would enter is `wallet edit 1 n/Duck rice $/4.00`.
 * This tells *Sharkie* that you want to edit the description and price of the first transaction shown in the wallet.
 
-*Expected Outcome #1*:
+*Expected Outcome #1*: 
+
+* The transaction you have selected will be modified to contain the new description and price you entered.
 
      Edited Transaction: Duck rice Description: Duck rice Amount: $4.00 Date: 2020-03-30 Tag: [Food]
 
 *Example #2*:
 
-** Suppose you want to edit the date and tag of the first transaction, Duck rice, because you forgot to input the date and tag.
+** Suppose you want to edit the date and tag of the first transaction, "Duck rice", because you forgot to input the date and tag.
 * The command you would enter is `wallet edit 1 d/10/04/2020 t/food`.
 * This tells *Sharkie* that you want to edit the date and tag of the first transaction shown in the wallet.
 
 *Expected Outcome #2*:
+
+* The transaction you have selected will be modified to contain the new date and tag you entered.
 
      Edited Transaction: Duck rice Description: Duck rice Amount: $4.00 Date: 2020-10-04 Tag: [Food]
 
@@ -372,9 +386,9 @@ The following are the restrictions of `wallet edit` command, which you would nee
 
 //tag::walletdelete[]
 ==== Deleting an income or expense: `delete`
-Suppose you want to delete a transaction, either an expense on income, the command you would enter is our `wallet delete` command. +
+Suppose you want to delete a transaction, either an expense or income, the command you would enter is our `wallet delete` command. +
 
-Format: `wallet delete <index>`
+*Format*: `wallet delete <index>`
 
 ====
 *Command Format*
@@ -382,31 +396,21 @@ Format: `wallet delete <index>`
 The following are the restrictions of `wallet delete` command, which you would need to take note of:
 
 * The `<index>` of the transaction to be deleted must be stated, and it must exist in the list of transactions.
-* The index *must be a positive integer* 1, 2, 3, ...
+* The index must be a positive integer: 1, 2, 3, ...
 * Only 1 transaction can be deleted each time. Multiple deletions in one command is not allowed.
 ====
 
-*Example #1*:
+*Example*:
 
-** Suppose you want to remove the first transaction, Duck rice, from your wallet.
+** Suppose you want to remove the first transaction, "Duck rice", from your wallet.
 * The command you would enter is `wallet delete 1`.
 * This tells *Sharkie* that you want to delete the first transaction shown in the wallet.
 
-*Expected Outcome #1*:
+*Expected Outcome*:
+
+* The transaction you have selected will be removed from the transaction list.
 
      Deleted Transaction: Duck rice Description: Duck rice Amount: $4.00 Date: 2020-03-30 Tag: [Food]
-
-*Example #2*:
-
-** Suppose you used the command `wallet find n/money` to filter out all transactions with keyword `money`, and you want to remove the second transaction you see, `Red packet money`, from your wallet's filtered list of transactions.
-* The command you would enter is `wallet delete 2`.
-* This tells *Sharkie* that you want to delete the second transaction shown in the wallet, after being filtered.
-
-*Expected Outcome #2*:
-
-     Deleted Transaction: Red packet money Description: Red packet money Amount: $300.00 Date: 2020-03-30 Tag: [Income]
-
-
 
 //end::walletdelete[]
 
@@ -415,74 +419,59 @@ The following are the restrictions of `wallet delete` command, which you would n
 ==== Finding an income or expense: `find`
 Suppose you want to find transactions with certain keywords or date within the transaction list in the wallet, the command you would enter is our `wallet find` command. +
 
-Format:
+*Format*:
 
 `wallet find n/<keyword> [<keyword> ...]` +
 or `wallet find $/<keyword> [<keyword> ...]` +
 or `wallet find d/<keyword> [<keyword> ...]` +
 or `wallet find t/<keyword> [<keyword> ...]`
 
-
 ====
 *Command Format*
 
 The following are the restrictions of `wallet find` command, which you would need to take note of:
 
-* Finds the expenses and income with the stated <keyword>.
-* The keyword can be either of type [n/<description>], [d/<date>], [$/<amount>], or [t/<tag>].
-* You cannot search for multiple types of keywords in one command.
-* Finding multiple keywords of the same type are allowed.
-* At least 1 keyword must be inputted.
-* The keyword is case-insensitive for finding of description (n/) and tag (t/).
-* The keyword need not be in full for finding of description (n/) and tag (t/). For example `"wallet find n/ri"` will also display transactions with the keyword `rice`.
-* For finding of amount ($/x), the amount entered, x, must be an integer.
-* For finding of amount ($/x), x being an integer, the transactions displayed will range from from $x.00 to $x.99.
-* For finding of date (d/), the date inputted should follow `dd/mm/yyyy`.
+* The `<keyword>` can be either of type `[n/<description>]`, `[d/<date: dd/mm/yyyy>]`, `[$/<amount>]`, or `[t/<tag>]`.
+* You cannot search for multiple prefixes in one command. However, finding multiple `<keyword>` of the same prefix is allowed.
+* At least 1 `<keyword>` must be input.
+* The `<keyword>` is case-insensitive for finding of description (`n/`) and tag (`t/`).
+* The `<keyword>` need not be in full for finding of description (`n/`) and tag (`t/`). For example `wallet find n/ri` will also display transactions with the keyword "rice".
+* For finding of amount (`$/x`), the amount entered, "x", must be an integer.
+* For finding of amount (`$/x`), "x" being an integer, the transactions displayed will range from from "$x.00" to "$x.99".
 ====
 *Example #1*:
 
-** Suppose you want to search for transactions with description containing keyword `rice` or `soup`.
+** Suppose you want to search for transactions with description containing keyword "rice" or "soup":
 * The command you would enter is `wallet find n/rice soup`.
-* This tells *Sharkie* that you want to look for transactions with description `rice` or `soup`.
+* This tells *Sharkie* that you want to look for transactions with description "rice" or "soup".
 
 *Expected Outcome #1*:
 
-* All transactions with description containing keyword `rice` and transactions with description containing keyword `soup` will be listed out.
+* All transactions with description containing keyword "rice" and transactions with description containing keyword "soup" will be listed out.
 
     3 transactions listed!
 
 *Example #2*:
 
-** Suppose you want to search for transactions with amount ranging between `$7.00` to `$7.99` or `$30.00` to `$30.99`.
+** Suppose you want to search for transactions with amount ranging between "$7.00" to "$7.99" or "$30.00" to "$30.99".
 * The command you would enter is `wallet find $/7 30`.
-* This tells *Sharkie* that you want to look for transactions with cost or income from `$7.00` to `$7.99` or `$30.00` to `$30.99`.
+* This tells *Sharkie* that you want to look for transactions with cost or income from "$7.00" to "$7.99" or "$30.00" to "$30.99".
 
 *Expected Outcome #2*:
 
-* All transactions with  with amount from `$7.00` to `$7.99` and amount from `$30.00` to `$30.99` will be listed out.
+* All transactions with  with amount from "$7.00" to "$7.99" and amount from "$30.00" to "$30.99" will be listed out.
 
     3 transactions listed!
 
 *Example #3*:
 
-** Suppose you want to search for transactions with date `10/10/2020` or `11/11/2020`.
-* The command you would enter is `wallet find d/10/10/2020 11/11/2020`.
-* This tells *Sharkie* that you want to look for transactions done on `10/10/2020` or `11/11/2020`.
+** Suppose you want to search for transactions with tag "food" or "shopping".
+* The command you would enter is `wallet find t/food shopping`.
+* This tells *Sharkie* that you want to look for transactions with the tag "food" or "shopping".
 
 *Expected Outcome #3*:
 
-
-    2 transactions listed!
-
-*Example #4*:
-
-** Suppose you want to search for transactions with tag `food` or `shopping`.
-* The command you would enter is `wallet find t/food shopping`.
-* This tells *Sharkie* that you want to look for transactions with the tag `food` or `shopping`.
-
-*Expected Outcome #4*:
-
-* All transactions with tag `food` and transactions with tag `shopping` will be listed out.
+* All transactions with tag "food" and transactions with tag "shopping" will be listed out.
 
     5 transactions listed!
 
@@ -492,16 +481,19 @@ The following are the restrictions of `wallet find` command, which you would nee
 ==== Listing all transactions: `list`
 
 Suppose you want to see the full list of transactions, the command you would enter is our `wallet list` command. +
-Format: `wallet list`
+
+*Format*: `wallet list`
 
 *Example*:
 
-* Suppose you have just executed the <<walletFind, `wallet find`>>  command. Now, you would like to see the full list of transactions in the wallet again.
+* Suppose you have just executed the <<walletFind, [blue]`wallet find`>>  command. Now, you would like to see the full list of transactions in the wallet again.
 
 ** The command you would enter is `wallet list`.
 ** This lists out all the transactions you have in your wallet.
 
 *Expected Outcome*:
+
+* *Sharkie* will list all the transactions you have entered into the wallet.
 
     Listed all transactions.
 
@@ -514,15 +506,9 @@ Format: `wallet list`
 
 Suppose you want to clear all the data in wallet, the command you would enter is our `wallet clear` command. +
 
-Format: `wallet clear`
+*Format*: `wallet clear`
 
-====
-*Command Format*
-
-The following are the restrictions of `wallet clear` command, which you would need to take note of:
-
-* Data cleared, which includes the transactions and budget data, cannot be restored after using wallet clear command.
-====
+WARNING: Data cleared, which includes the transactions and budget data, cannot be restored after using wallet clear command.
 
 *Example*:
 
@@ -531,6 +517,8 @@ The following are the restrictions of `wallet clear` command, which you would ne
 * This tells *Sharkie* that you want to clear all transactions in the wallet.
 
 *Expected Outcome*:
+
+* All the transactions you have entered into the wallet will be removed.
 
     Wallet has been cleared!
 
@@ -1035,8 +1023,11 @@ the command you would enter is our `people clear` command.
 //tag::faq[]
 == FAQ
 
+*Q*: How do I save my data in *Sharkie*? +
+*A*: *Sharkie* automatically saves your data in the same folder Sharkie.jar is located in.
+
 *Q*: How do I transfer my data to another Computer? +
-*A*: Install the app in the other computer and overwrite the empty data file *Sharkie* creates with the file that contains the data of your previous Address Book folder.
+*A*: Install the app in the other computer and overwrite the empty data file *Sharkie* creates with the file that contains the data of your previous address book folder.
 
 //tag::personIndexFAQ[]
 [[personIndexFAQ]]
@@ -1096,8 +1087,11 @@ image::DebtAndLoanDifferences.png[width=800]
 
 //tag::valid-amount[]
 [[valid-amount]]
-*Q*: Is there a maximum amount of money that Sharkie can handle? +
-*A*: Yes. Due to program limitations, Sharkie can only safely handle amounts of up to $92233720368547758.07 (about ninety *quadrillion* dollars!). We believe it is safe to say that the average user will not end up spending or earning that amount of money anytime soon (at time of writing, Jeff Bezos' net worth is roughly $100 billion).
+*Q*: What is a valid amount of money? +
+*A*: A valid amount is a non-negative value up to two decimal places.
+
+NOTE: Due to program limitations, Sharkie can only safely handle amounts of up to $92233720368547758.07 (about ninety *quadrillion* dollars!). We believe it is safe to say that the average user will not end up spending or earning that amount of money anytime soon (at time of writing, Jeff Bezos' net worth is roughly $100 billion).
+
 //end::valid-amount[]
 
 //tag::remind-issue[]
@@ -1135,15 +1129,16 @@ Please add an exclusion to SMTP port 587 in your firewall or antivirus programme
 
 //end::faq[]
 
+[[command-summary]]
 //tag::commandSummary[]
 == Command Summary
 If you wish to have a quick reference to the commands available in *Sharkie*, you can refer to the list below.
 
-=== Global Commands
-The following are the global commands that are available in *Sharkie* for you to use! You do not need to use any prefixes to use these commands.
+=== General Commands
+The following are the general commands that are available in *Sharkie* for you to use! You do not need to use any prefixes to use these commands.
 
 [cols="10%, 45%, 45%"]
-.Global commands available in *Sharkie*.
+.General commands available in *Sharkie*.
 |===
 | *Command*  | *Format* | *Expected outcome*
 |`help` |#`help`# | Opens up a window with a link to the User Guide.
