@@ -16,10 +16,10 @@ participant ":Wallet" as Wallet MODEL_COLOR
 participant ":TransactionList" as TransactionList MODEL_COLOR
 end box
 
-[-> Logic : execute()
+[-> Logic : execute("wallet \nexpense n/Rice $/2")
 activate Logic
 
-Logic -> SharkieParser : parseCommand()
+Logic -> SharkieParser : parseCommand("wallet \nexpense n/Rice $/2")
 activate SharkieParser
 
 create WalletExpenseCommandParser
@@ -29,7 +29,7 @@ activate WalletExpenseCommandParser
 WalletExpenseCommandParser --> SharkieParser
 deactivate WalletExpenseCommandParser
 
-SharkieParser -> WalletExpenseCommandParser : parse()
+SharkieParser -> WalletExpenseCommandParser : parse("n/Rice $/2")
 activate WalletExpenseCommandParser
 
 

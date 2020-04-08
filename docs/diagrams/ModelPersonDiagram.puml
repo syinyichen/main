@@ -37,14 +37,14 @@ AddressBook *--> "1" UniquePersonList
 ModelManager --> "1" Person  : filtered list
 ModelManager o--> "1" AddressBook
 ModelManager o--> "1" UserData
-UserData *--> "1" User
+UserData *-[hidden]-> "1" User
 
 UniquePersonList o--> "*" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> "*" TransactionListDebt
-Person *--> "*" TransactionListLoan
+Person *--> "1" TransactionListDebt
+Person *--> "1" TransactionListLoan
 TransactionListDebt o--> "*" Debt
 TransactionListLoan o--> "*" Loan
 Person *--> "*" Tag

@@ -15,10 +15,10 @@ participant ":Wallet" as Wallet MODEL_COLOR
 participant "budgetList:BudgetList" as budgetList MODEL_COLOR
 end box
 
-[-> Logic : execute()
+[-> Logic : execute("wallet budget $/800")
 activate Logic
 
-Logic -> SharkieParser : parseCommand()
+Logic -> SharkieParser : parseCommand("wallet \nbudget $/800")
 activate SharkieParser
 
 create WalletBudgetCommandParser
@@ -28,7 +28,7 @@ activate WalletBudgetCommandParser
 WalletBudgetCommandParser --> SharkieParser
 deactivate WalletBudgetCommandParser
 
-SharkieParser -> WalletBudgetCommandParser : parse()
+SharkieParser -> WalletBudgetCommandParser : parse("$/800")
 activate WalletBudgetCommandParser
 
 create Budget

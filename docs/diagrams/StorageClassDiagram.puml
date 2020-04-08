@@ -59,8 +59,9 @@ JsonAdaptedPerson .right.> JsonAdaptedTag
 JsonWalletStorage .left.|> WalletStorage
 JsonWalletStorage .right.> JsonSerializableWallet
 JsonSerializableWallet .down.> JsonAdaptedTransaction
+JsonAdaptedXYZ .left.|> JsonAdaptedTransaction
 JsonAdaptedTransaction .down.> JsonAdaptedTag
-JsonAdaptedXYZ .right.|> JsonAdaptedTransaction
+note left of JsonAdaptedXYZ: JsonAdaptedXYZ = \nJsonAdaptedExpense, \nJsonAdaptedIncome, \nJsonAdaptedDebt, \nJsonAdaptedLoan
 
 JsonUserDataStorage .left.|> UserDataStorage
 JsonUserDataStorage .right.> JsonAdaptedUser

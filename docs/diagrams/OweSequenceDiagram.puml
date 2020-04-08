@@ -18,7 +18,10 @@ end box
 [-> Logic : execute("people owe 1 n/Dinner $/10")
 activate Logic
 
-ref over Logic, peopleOweCommand, debt : get PeopleOweCommand
+ref over Logic, peopleOweCommand, debt
+    get PeopleOweCommand
+    Note: PeopleOweCommand object and Debt object is created here.
+end ref
 
 Logic-> peopleOweCommand : execute()
 activate peopleOweCommand
@@ -66,8 +69,10 @@ AddressBook --> Model
 deactivate AddressBook
 
 Model --> peopleOweCommand
+deactivate Model
 
 peopleOweCommand -> Model : updateFilteredPersonList()
+activate Model
 
 Model --> peopleOweCommand
 deactivate Model

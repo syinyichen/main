@@ -33,6 +33,7 @@ Class "TransactionList" as TransactionListExpense
 Class BudgetList
 Class Expense
 Class Income
+Class Budget
 abstract "{abstract}\nTransaction" as Transaction
 }
 }
@@ -62,6 +63,8 @@ Wallet *--> "1" BudgetList
 
 TransactionListExpense o--> "*" Expense
 TransactionListIncome o--> "*" Income
+
+BudgetList o--> "*" Budget
 
 Expense -up-|> Transaction
 Income -up-|> Transaction
