@@ -1194,6 +1194,7 @@ The following commands are wallet-related commands that are available in *Sharki
 |===
 | *Command*  | *Format* | *Expected outcome*
 |`budget` |[gray]#`wallet budget $/<amount> [m/<month>] [y/<year>]`# | Sets a budget for you for the month selected.
+|`clear` |[gray]#`wallet clear`# | Removes all your transactions entered in your wallet.
 |`delete` |[gray]#`wallet delete <index>`# | Helps you remove the transaction selected at that index from the wallet.
 |`edit` | [gray]#`wallet edit <index> [n/<name>] [d/<date>] [$/<amount>] [t/<tag>]`# | Edits your transaction in the wallet at the index selected with your given arguments.
 |`expense` |[gray]#`wallet expense n/<description> $/<amount> [d/<date: dd/mm/yyyy>] [t/<tag>]`# | Creates an expense and adds it to your wallet.
