@@ -33,7 +33,7 @@ public class WalletStatisticsPanel extends UiPart<Region> {
     private static final String FXML = "WalletStatisticsPanel.fxml";
 
     private static final String BUDGET_NOT_SET = "No budget set!";
-    private static final String UNDER_BUDGET = "You are %s under your budget! Good job!";
+    private static final String UNDER_BUDGET = "You are %s within your budget! Good job!";
     private static final String OVER_BUDGET = "You are %s over your budget! Oh no!";
 
     private static final String OVER_BUDGET_CLASS = "budget-over";
