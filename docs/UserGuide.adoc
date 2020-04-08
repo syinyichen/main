@@ -37,7 +37,7 @@ Have we reeled you in? Dive into <<quick-start>> to get on board with *Sharkie*.
 
 //tag::about[]
 == About
-This user guide will help to ensure that you have all the information you need to utilise *Sharkie* to its fullest extent. *Sharkie* is a feature-filled expense tracker and all the information you need regarding his usage is available below. +
+This user guide will help to ensure that you have all the information you need to utilise *Sharkie* to its fullest extent. *Sharkie* is a feature-filled expense tracker and all the information you need regarding its usage is available below. +
 
 If you need help starting up *Sharkie*, you can head on to <<quick-start>> below to set it up. +
 
@@ -101,10 +101,10 @@ e.g. Typing *`help`* and pressing kbd:[Enter] will open the help window.
 NOTE: You can check out <<Commands>> for detailed descriptions and usages of each command. +
 For a more succinct summary of the commands you can use in *Sharkie*, you can check out <<command-summary>>.
 .  Some example commands you can try to get you started:
-* **`people add`**`n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named `John Doe` to the address book.
+* **`people add`**`n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named "John Doe" to the address book.
 * **`people delete`**`3` : Deletes the 3rd contact shown in the current list.
-* **`wallet expense`**`n/Gift for friend $/88 d/12/12/2020 t/Shopping` : Adds an expense with these details into the wallet.
-* **`wallet find`**`n/rice` : Returns a list of expenses or income with keyword rice.
+* **`wallet expense`**`n/Gift for friend $/88 d/12/12/2020 t/Shopping` : Adds an expense with name "Gift for friend", with an amount "$88", with date "12/12/2020" and tag "Shopping" into the wallet.
+* **`wallet find`**`n/rice` : Returns a list of expenses or income with keyword "rice".
 * *`exit`* : Exits the app.
 //end::quickStart[]
 
@@ -118,7 +118,7 @@ If you are a university student who has started to manage your own money, but st
 
 *Sharkie* allows you to record what you have spent on for the month, and also helps you to note down your income for the month to help you properly track your money flow!
 
-NOTE: You may visit <<add-expense-command, Section 5.2.2, “Adding an expense”>> or <<add-income-command,  Section 5.2.3, “Adding an income”>>
+NOTE: You may visit <<wallet-commands>>
 to find out more on how to record expenses or incomes in *Sharkie*.
 
 //end::expenditureAndIncome[]
@@ -132,8 +132,7 @@ If you would like to keep the contact details of a person so that you can use th
 Should their contact details change, you can also edit them or delete them. If you need to find a particular person's contact details,
 *Sharkie* will look through all your contacts and quickly help you find the contact that you are looking for!
 
-NOTE: You may visit <<add-person,  Section 5.3.1, “Adding a person”>>, <<list-people, Section 5.3.11, “Listing all contacts”>>,
-<<find-person, Section 5.3.10, “Finding a person”>>, <<edit-person, Section 5.3.2, “Editing a person”>>, <<delete-person, Section 5.3.3, “Deleting a person”>>, <<peopleclear, Section 5.3.12, “Clearing all contacts”>>
+NOTE: You may visit <<people-commands>>
 for more details on how you can manage your contacts with *Sharkie*.
 
 //end::contacts[]
@@ -221,6 +220,7 @@ Suppose you're done with using *Sharkie* and wish to exit the application safely
 
 //end::generalcommands[]
 
+[[wallet-commands]]
 === Wallet Commands
 This section introduces the eight commands that you can use to have an effect on the wallet tab.
 
@@ -536,6 +536,7 @@ WARNING: Data cleared, which includes the transactions and budget data, cannot b
 
 
 
+[[people-commands]]
 === People Commands
 This section introduces the twelve commands that you can use to have an effect on the people tab.
 
