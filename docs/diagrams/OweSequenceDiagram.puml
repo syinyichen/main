@@ -20,7 +20,7 @@ activate Logic
 
 ref over Logic, peopleOweCommand, debt
     get PeopleOweCommand
-    Note: PeopleOweCommand object and Debt object is created here.
+    (Note: PeopleOweCommand object and Debt object is created here.)
 end ref
 
 Logic-> peopleOweCommand : execute()

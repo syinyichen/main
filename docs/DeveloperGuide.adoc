@@ -282,7 +282,7 @@ This command can be accessed from  `Logic#execute()`. It records a `debt` of an 
 The following activity diagram illustrates what happens when the user enters a `people owe` command:
 
 .Activity diagram of the recording a debt
-image::OweActivityDiagram.png[width=500]
+image::OweActivityDiagram.png[width=70%]
 
 ==== Implementation of `people owe` command
 
@@ -334,7 +334,7 @@ This command can be accessed from `Logic#execute()`. It deletes the `Loan`(s) of
 The following activity diagram illustrates what happens when the user executes a `people received` command:
 
 .Activity diagram of recording the amount of money received
-image::ReceivedActivityDiagram.png[width=800]
+image::ReceivedActivityDiagram.png[width=70%]
 
 ==== Implementation of `people received` command
 
@@ -349,7 +349,7 @@ The following sequence diagram summarizes what happens during the execution of a
 
 image::ReceivedSequenceDiagram.png[]
 .Sequence diagram of the `people received` command
-image::GetPeopleReceivedCommandSequenceDiagram.png[width = 600]
+image::GetPeopleReceivedCommandSequenceDiagram.png[width = 70%]
 
 NOTE: The lifeline for `PeopleReceivedCommand` and `PeopleReceivedCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML,
 the lifeline reaches the end of diagram.
@@ -385,7 +385,7 @@ These commands can be accessed from  `Logic#execute()`. It records an `expense` 
 As the two commands are similar, it is sufficient to trace the `WalletExpenseCommand`. The following activity diagram illustrates what happens when the user enters a `wallet expense` command:
 
 .Activity diagram of recording an expense
-image::ExpenseActivityDiagram.png[width=500]
+image::ExpenseActivityDiagram.png[width=70%]
 
 ==== Implementation of `wallet expense` command
 
@@ -476,7 +476,7 @@ This command can be accessed from `Logic#execute()`. It adds a budget using the 
 The following activity diagram illustrates what happens when a user executes the `wallet budget` command:
 
 .Activity diagram of the execution of `wallet budget` command
-image::WalletBudgetActivityDiagram.png[width=600]
+image::WalletBudgetActivityDiagram.png[width=70%]
 
 ==== Implementation of `wallet budget` command
 
@@ -1203,7 +1203,8 @@ your own email, you can get a temporary email from link:https://temp-mail.org/en
 *** `wallet expense`,
 *** `wallet expense 1`,
 *** `wallet expense $/x`,
-*** `wallet expense n/Meal`
+*** `wallet expense n/Meal` +
+Expected: Similar to previous.
 
 . Recording an income
 .. Prerequisites: None.
@@ -1245,7 +1246,7 @@ Expected: Similar to previous.
 ==== Listing all transactions
 . Listing all the transactions in the wallet.
 
-.. Prerequisites: The transactions list must not be empty/
+.. Prerequisites: The transactions list must not be empty.
 .. Test case: `wallet list` +
    Expected: All transactions in wallet listed out.
 //end::testWalletList[]
@@ -1592,4 +1593,31 @@ At least one person in the list has at least one loan. The email(s) of the peopl
 [appendix]
 == Effort
 
-_{ to be added }_
+*Overview* +
+Our application, Sharkie, is considerably different from what AB3 has implemented. We incorporated the address book features that were previously available in AB3, but we wanted to add expense tracking features as the main part of our project. As such, we had to expand a lot on the features that AB3 implemented and also had to create our own models and implementations. +
+
+These are based off the foundations that AB3 had already put in place, but the entire team needed to work together to expand on these features to create Sharkie.
+
+*Challenges* +
+The team encountered a few issues during the development process of Sharkie. The more notable ones are:
+
+- *Initial brainstorming and filtering of ideas* +
+At the start of the project, ideation and brainstorming came up with a bunch of features that we wanted to implement in Sharkie. We came up with many different ideas and ways to implement our commands and features, however, it was messy as we were unsure and unclear of how each of us wanted to implement our features. We sat down for a few meetings to discuss our implementation and our thought processes, ensuring that everyone was on the same page before starting the development process.
+
+- *Wallet model* +
+Since we wanted an expense tracker for Sharkie, we required some proper way of storing our data. We decided to adapt from AB3's address book system, following their saving of data and storing of user details, implementing it in our `Wallet` model.
+
+- *Commands* +
+We also adapted AB3's command system using their `XYZParser` and `XYZCommand` implementations, making our application easier to develop since we were using the same implementation as their `Logic`.
+
+- *Reminder feature* +
+One of the more prominent features that we added that was completely not part of AB3 was our reminder feature. This feature had nothing similar to it in AB3, and had to be implemented from scratch in order to make it work with our program.
+
+- *User interface* +
+We decided early on that we wanted to redo the user interface from AB3, as it would not only be more asthetically pleasing, but also tie in well to the features that we wanted to be implemented. Daniel did the main UI implementation using JavaFX and CSS, and along the way the entire team chipped in to fix the many different bugs that arose due to the UI. Threading errors, wrong values being displayed etc. were all fixed after careful testing and fixing by the team.
+
+*Conclusion* +
+The team believes that we have put in a lot of equal effort on all parts of the project, from the documentation to the coding of the project itself. We believe that our product is significantly different from AB3 and we are happy with what we have achieved across the semester with CS2103T.
+
+
+
