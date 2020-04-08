@@ -47,9 +47,9 @@ Expense -up-|> Transaction
 Income -up-|> Transaction
 Debt -up-|> Transaction
 Loan -up-|> Transaction
-Budget *--> Amount
-Budget *--> Month
-Budget *--> Year
+Budget *--> "1" Amount
+Budget *--> "1" Month
+Budget *--> "1" Year
 
 DescriptionContainsKeywordsPredicate -up-|> WalletPredicate
 AmountContainsKeywordsPredicate -up-|> WalletPredicate

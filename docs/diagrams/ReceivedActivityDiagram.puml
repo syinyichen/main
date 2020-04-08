@@ -4,17 +4,17 @@ start
 :User executes a received command;
 
 if () then ([Person index entered \nby the user is invalid])
-    :System throws \na CommandException \non invalid Person index;
+    :Display an error message;
 else ([else])
     if () then ([User did not lend the \nindicated Person money])
-        :System throws a \nCommandException indicating \nthat the person has no Loan;
+        :Display an error message;
     else ([else])
         if () then ([User asked to edit specific\n Loan of the Person])
-            :System removes the \nspecified Loan from the Person;
+            :Remove the specified \nLoan from the Person;
         else ([else])
-            :System removes all \nLoans from the Person;
+            :Remove all Loans \nfrom the Person;
         endif
-        :System updates the Model \nwith the modified Person;
+        :Update the contact list;
     endif
 endif
 stop

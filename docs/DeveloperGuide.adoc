@@ -67,6 +67,7 @@ Refer to the guide <<SettingUp#, here>>.
 image::ArchitectureDiagram.png[]
 
 The *_Architecture Diagram_* given above explains the high-level design of Sharkie. Given below is a quick overview of each component.
+*Sharkie* uses the same architecture design as Address Book 3 (AB3).
 
 [TIP]
 The `.puml` files used to create diagrams in this document can be found in the link:{repoURL}/docs/diagrams/[diagrams] folder.
@@ -301,7 +302,7 @@ image::OweSequenceDiagram.png[]
 .Sequence diagram of the `people owe` command
 image::GetPeopleOweCommandSequenceDiagram.png[width=500]
 
-NOTE: The lifeline for `PeopleOweCommand` should end at the destroy marker (X) but due to a limitation of PlantUML,
+NOTE: The lifeline for `PeopleOweCommand` and `PeopleOweCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML,
 the lifeline reaches the end of diagram.
 
 ==== Design Considerations
@@ -350,7 +351,7 @@ image::ReceivedSequenceDiagram.png[]
 .Sequence diagram of the `people received` command
 image::GetPeopleReceivedCommandSequenceDiagram.png[width = 600]
 
-NOTE: The lifeline for `PeopleReceivedCommand` should end at the destroy marker (X) but due to a limitation of PlantUML,
+NOTE: The lifeline for `PeopleReceivedCommand` and `PeopleReceivedCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML,
 the lifeline reaches the end of diagram.
 
 ==== Design Considerations
@@ -449,7 +450,7 @@ The following sequence diagram summarizes what happens during the execution of a
 .Sequence diagram of the `wallet edit` command
 image::WalletEditSequenceDiagram.png[]
 
-NOTE: The lifeline for `WalletEditCommand`, `WalletEditCommandParser` and `EditTransactorDescriptor` should end at the destroy marker (X) but due to a limitation of PlantUML,
+NOTE: The lifeline for `WalletEditCommand`, `WalletEditCommandParser` and `EditTransactionDescriptor` should end at the destroy marker (X) but due to a limitation of PlantUML,
 the lifeline reaches the end of diagram.
 
 ==== Design Considerations
@@ -490,6 +491,9 @@ The following sequence diagram summarizes what happens during the execution of a
 
 .Sequence diagram of the `wallet budget` command
 image::WalletBudgetSequenceDiagram.png[]
+
+NOTE: The lifeline for `WalletBudgetCommandParser` and `WalletBudgetCommand` should end at the destroy marker (X) but due to a limitation of PlantUML,
+the lifeline reaches the end of diagram.
 
 ==== Design Considerations
 
@@ -633,7 +637,6 @@ Priorities: High (must have) - `* * \*`, Medium (nice to have) - `* \*`, Low (un
 
 |=======================================================================
 
-_{More to be added}_
 //end::userStories[]
 
 [appendix]
@@ -1004,13 +1007,12 @@ Use case ends.
 == Non Functional Requirements
 //tag::apendixd[]
 .  Sharkie should work on any <<mainstream-os,mainstream OS>> as long as it has Java `11` or above installed.
-.  Sharkie should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+.  Sharkie should be able to hold up to 100 persons and 100 transactions without a noticeable sluggishness in performance for typical usage.
 .  University students with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 .  Sharkie should be for a single user.
 .  Sharkie needs to be developed incrementally with high <<cohesion, cohesion>> and utilising CS2103T coding standards for maintainability.
 .  The data used by Sharkie should be stored locally and should be in a human editable file.
 .  The Sharkie JAR file size should be less than 100Mb.
-.  Users should be able to choose to encrypt their data for confidentiality.
 
 //end::apendixd[]
 [appendix]
@@ -1030,6 +1032,9 @@ The amount of money which the user owes a person in the address book.
 
 [[extensions]] Extensions::
 "Add-on"s to MSS that describe exceptional/alternative flow of events.
+
+[[GUI]] GUI::
+Graphical User Interface
 
 [[loan]] Loan::
 The amount of money which the user lends to a person in the address book.
@@ -1094,10 +1099,9 @@ Sharkie's wallet, that holds information pertaining to the user's expenditure an
 
 * **NFR**
 ** Requires network
-** GUI-reliant (slow input)
+** <<GUI, GUI>>-reliant (slow input)
 ** Certain features locked behind paywall, advertisements
 
-Author: Joel +
 Link to Product: https://web.moneylover.me
 
 === Spendee
@@ -1136,7 +1140,6 @@ Link to Product: https://web.moneylover.me
 ** GUI-reliant (slow input)
 ** Certain features locked behind paywall, advertisements
 
-Author: Joel +
 Link to Product: https://app.spendee.com
 //end::productSurvey[]
 
@@ -1162,8 +1165,14 @@ returned even though both errors pertains to the wrong index provided.
 
 .. Download the jar file and copy into an empty folder
 .. Double-click the jar file +
-   Expected: Shows the GUI with a set of sample transactions (in the Wallet tab) and sample contacts (in the People tab).
-The window size may not be optimum.
+   Expected: Shows an "Enter User Data" window. The window size may not be optimum.
+
+. Entering user data
+
+.. Enter a dummy name, phone and a *valid* email. If you do not wish to use
+your own email, you can get a temporary email from link:https://temp-mail.org/en/[temp-mail.org].
+.. Retrieve and enter the PIN number sent to the email. If it is not in the inbox, please check the junk mail. +
+    Expected: Your user data is saved.
 
 . Saving window preferences
 
@@ -1178,13 +1187,6 @@ The window size may not be optimum.
 .. Enter `exit` command in the command box and press kbd:[Enter]. +
    Expected: Same as previous.
 
-==== Saving data
-
-. Dealing with missing/corrupted data files
-
-.. _{explain how to simulate a missing/corrupted file and the expected behavior}_
-
-_{ more test cases ... }_
 
 === Manual Testing on Wallet Tab
 . Recording an expense
@@ -1200,7 +1202,7 @@ _{ more test cases ... }_
 .. Other incorrect expense commands to try:
 *** `wallet expense`,
 *** `wallet expense 1`,
-*** `wallet expense $/3.50`,
+*** `wallet expense $/x`,
 *** `wallet expense n/Meal`
 
 . Recording an income
@@ -1216,8 +1218,9 @@ _{ more test cases ... }_
 .. Other incorrect expense commands to try:
 *** `wallet income`,
 *** `wallet income 1`,
-*** `wallet income $/100`,
-*** `wallet income n/Teaching Assistant Job`
+*** `wallet income $/x`,
+*** `wallet income n/Teaching Assistant Job` +
+Expected: Similar to previous.
 
 . Setting a budget
 .. Prerequisites: None.
@@ -1235,7 +1238,8 @@ _{ more test cases ... }_
 *** `wallet budget $/800 m/02`,
 *** `wallet budget $/800 y/2020`,
 *** `wallet budget $/800 m/a y/b`,
-*** `wallet budget $/-800`
+*** `wallet budget $/-800` +
+    Expected: Similar to previous.
 
 //tag::testWalletList[]
 ==== Listing all transactions
@@ -1345,6 +1349,118 @@ A success message shown in the result display.
 
 === Manual Testing on People Tab
 
+
+==== Managing contacts
+//tag::manual-testing-peopleadd[]
+. Adding a person
+
+.. Test case: `people add n/John Doe p/91234567 e/John@example.com` +
+Expected: A person named _John Doe_ with phone number _91234567_ and email _John@example.com_ is added to the contact.
+.. Test case: `people add n/John Doe p/91234567` +
+Expected: No person is added. Error details shown in the result display.
+.. Other invalid `people add` commands to try:
+*** `people add`,
+*** `people add n/Invalid! p/99999999 e/John@example.com`,
+*** `people add n/John Doe p/123 e/John@example.com`,
+*** `people add n/John Doe p/123 e/invalid`,
+*** `people add n/John Doe e/John@example.com`,
+*** `people add p/91234567 e/John@example.com`,
+*** `people add n/John Doe`,
+*** `people add p/91234567` or
+*** `people add e/John@example.com` +
+Expected: Similar to previous.
+//end::manual-testing-peopleadd[]
+
+//tag::manual-testing-peopleedit[]
+. Editing the details of a person
+
+.. Prerequisites: The person whom you want to edit exists in the person list.
+.. Test case: `people edit 1 n/John Doe p/91234567 e/John@example.com` +
+Expected: The first person name, phone number and email will be changed to _John Doe_, _91234567_ and
+_John@example.com_ respectively.
+.. Test case: `people edit 0 n/John Doe p/91234567 e/John@example.com` +
+Expected: No person is edited. Error details shown in the result display.
+.. Other valid `people edit` commands to try:
+*** `people edit 1 n/Bob p/88888888`,
+*** `people edit 1 n/Cate e/cate@example.com`,
+*** `people edit 1 p/66666666 e/cate@example.com`,
+*** `people edit 1 n/Alice`,
+*** `people edit 1 p/99999999` or
+*** `people edit 1 e/email@example.com`, +
+Expected: Similar to (b).
+.. Other invalid `people edit` commands to try:
+*** `people edit`,
+*** `people edit 1`,
+*** `people edit 1 n/Invalid!`,
+*** `people edit 1 p/123`,
+*** `people edit 1 e/invalid`,
+*** `people edit x n/Something` (where x is larger than the person list size),
+*** `people edit x n/Somthing` (where x is a negative number) or
+*** `people edit x n/Something` (where x is a non-integer value) +
+Expected: Similar to (c).
+//end::manual-testing-peopleedit[]
+
+//tag::manual-testing-peoplefind[]
+. Finding a person
+
+.. Prerequisites: The person whom you want to find exists in the person list.
+.. Test case: `people find n/Alex Bernice` +
+Expected: People who are have _Alex_ or _Bernice_ in their name (case insensitve) will be listed.
+.. Test case: `people find t/debt`
+Expected: People whom you owe money to will be listed.
+..Test case: `people find t/loan`
+Expected: People whom you lend money to will be listed.
+.. Test case: `people find n/Alex p/91234567` +
+Expected: No person found. Error details shown in the result display.
+.. Other valid `people find` commands to try:
+*** `people find p/93210283`,
+*** `people find p/9321 9927`,
+*** `people find e/@example`,
+*** `people find e/irfan@example.com`,
+*** `people find p/phone` or
+*** `people find t/debt loan` +
+Expected: Similar to (b).
++
+NOTE: `people find p/phone` is a valid command even though _phone_ is not a valid phone number. However, no person will
+be listed since no one has _phone_ as their phone number.
+.. Other invalid `people find` commands to try:
+*** `people find d/invalidTag` +
+Expected: Similar to (d).
+//end::manual-testing-peoplefind[]
+
+//tag::manual-testing-peoplelist[]
+. Listing everyone
+
+.. Test case: `people list` +
+Expected: Everyone in the contacts will be listed.
+//end::manual-testing-peoplelist[]
+
+//tag::manual-testing-peopledelete[]
+. Deleting a person while all persons are listed
+
+.. Prerequisites: List all persons using the `people list` command. The person who you want to delete exists in the person list.
+.. Test case: `people delete 1` +
+Expected: First contact is deleted from the list. Details of the deleted contact shown in the result display.
+.. Test case: `people delete 0` +
+Expected: No person is deleted. Error details shown in the result display.
+.. Other invalid `people delete` commands to try:
+*** `people delete`,
+*** `people delete x` (where x is larger than the person list size),
+*** `people delete x` (where x is a negative number) or
+*** `people delete x` (where x is a non-integer value) +
+Expected: Similar to previous.
+//end::manual-testing-peopledelete[]
+
+//tag::manual-testing-peopleclear[]
+. Deleting everyone
+
+.. Test case: `people clear` +
+Expected: The list of people will be empty.
+
+NOTE: If you have deleted everyone in the addressbook, and would like to retrieve some sample data to test *Sharkie*,
+simply delete *data/addressbook.json*.
+//end::manual-testing-peopleclear[]
+
 ==== Recording the flow of money
 //tag::manual-testing-owe[]
 . Recording the money you owe a person
@@ -1451,7 +1567,7 @@ Remaining amount of loan, which have yet settled by the first person is shown in
 
 .. Prerequisites: Connected to the Internet. Your firewall or antivirus programme (if any) allows the connection to STMP port 587.
 The person who you want to remind exists in the person list. The person has at least one loan in the loan list.
-The email of the person to be reminded is a valid email.
+The email of the person to be reminded is a valid email (You can generate an email from link:https://temp-mail.org/en/[temp-mail.org]).
 .. Test case: `people remind 1` +
    Expected: A reminder is sent to the first person's email. A carbon copy (CC) of the reminder is sent to you. A success message shown in the result display.
 .. Test case: `people remind 0` +
@@ -1466,122 +1582,12 @@ The email of the person to be reminded is a valid email.
 . Reminding all people about the unsettled loan(s).
 
 .. Prerequisites: Connected to the Internet. Your firewall or antivirus programme (if any) allows the connection to STMP port 587.
-At least one person in the list has at least one loan. The email(s) of the people to be reminded are valid email(s).
+At least one person in the list has at least one loan. The email(s) of the people to be reminded are valid email(s) (You can generate an email from link:https://temp-mail.org/en/[temp-mail.org]).
 .. Test case: `people remindall` +
    Expected: A reminder is sent everyone, who has unsettled loan. A carbon copy (CC) of each of the reminder is sent to you. A list of people reminded is shown in the result display, along with the success message.
 
 //end::manual-testing-reminder[]
 
-==== Managing contacts
-//tag::manual-testing-peopleadd[]
-. Adding a person
-
-.. Test case: `people add n/John Doe p/91234567 e/John@example.com` +
-   Expected: A person named _John Doe_ with phone number _91234567_ and email _John@example.com_ is added to the contact.
-.. Test case: `people add n/John Doe p/91234567` +
-    Expected: No person is added. Error details shown in the result display.
-.. Other invalid `people add` commands to try:
-*** `people add`,
-*** `people add n/Invalid! p/99999999 e/John@example.com`,
-*** `people add n/John Doe p/123 e/John@example.com`,
-*** `people add n/John Doe p/123 e/invalid`,
-*** `people add n/John Doe e/John@example.com`,
-*** `people add p/91234567 e/John@example.com`,
-*** `people add n/John Doe`,
-*** `people add p/91234567` or
-*** `people add e/John@example.com` +
-    Expected: Similar to previous.
-//end::manual-testing-peopleadd[]
-
-//tag::manual-testing-peopleedit[]
-. Editing the details of a person
-
-.. Prerequisites: The person whom you want to edit exists in the person list.
-.. Test case: `people edit 1 n/John Doe p/91234567 e/John@example.com` +
-Expected: The first person name, phone number and email will be changed to _John Doe_, _91234567_ and
-_John@example.com_ respectively.
-.. Test case: `people edit 0 n/John Doe p/91234567 e/John@example.com` +
-Expected: No person is edited. Error details shown in the result display.
-.. Other valid `people edit` commands to try:
-*** `people edit 1 n/Bob p/88888888`,
-*** `people edit 1 n/Cate e/cate@example.com`,
-*** `people edit 1 p/66666666 e/cate@example.com`,
-*** `people edit 1 n/Alice`,
-*** `people edit 1 p/99999999` or
-*** `people edit 1 e/email@example.com`, +
-    Expected: Similar to (b).
-.. Other invalid `people edit` commands to try:
-*** `people edit`,
-*** `people edit 1`,
-*** `people edit 1 n/Invalid!`,
-*** `people edit 1 p/123`,
-*** `people edit 1 e/invalid`,
-*** `people edit x n/Something` (where x is larger than the person list size),
-*** `people edit x n/Somthing` (where x is a negative number) or
-*** `people edit x n/Something` (where x is a non-integer value) +
-Expected: Similar to (c).
-//end::manual-testing-peopleedit[]
-
-//tag::manual-testing-peoplefind[]
-. Finding a person
-
-.. Prerequisites: The person whom you want to find exists in the person list.
-.. Test case: `people find n/Alex Bernice` +
-Expected: People who are have _Alex_ or _Bernice_ in their name (case insensitve) will be listed.
-.. Test case: `people find t/debt`
-Expected: People whom you owe money to will be listed.
-..Test case: `people find t/loan`
-Expected: People whom you lend money to will be listed.
-.. Test case: `people find n/Alex p/91234567` +
-Expected: No person found. Error details shown in the result display.
-.. Other valid `people find` commands to try:
-*** `people find p/93210283`,
-*** `people find p/9321 9927`,
-*** `people find e/@example`,
-*** `people find e/irfan@example.com`,
-*** `people find p/phone` or
-*** `people find t/debt loan` +
-Expected: Similar to (b).
-+
-NOTE: `people find p/phone` is a valid command even though _phone_ is not a valid phone number. However, no person will
-be listed since no one has _phone_ as their phone number.
-.. Other invalid `people find` commands to try:
-*** `people find d/invalidTag` +
-Expected: Similar to (d).
-//end::manual-testing-peoplefind[]
-
-//tag::manual-testing-peoplelist[]
-. Listing everyone
-
-.. Test case: `people list` +
-Expected: Everyone in the contacts will be listed.
-//end::manual-testing-peoplelist[]
-
-//tag::manual-testing-peopledelete[]
-. Deleting a person while all persons are listed
-
-.. Prerequisites: List all persons using the `people list` command. The person who you want to delete exists in the person list.
-.. Test case: `people delete 1` +
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the result display.
-.. Test case: `people delete 0` +
-   Expected: No person is deleted. Error details shown in the result display.
-.. Other invalid `people delete` commands to try:
-*** `people delete`,
-*** `people delete x` (where x is larger than the person list size),
-*** `people delete x` (where x is a negative number) or
-*** `people delete x` (where x is a non-integer value) +
-   Expected: Similar to previous.
-//end::manual-testing-peopledelete[]
-
-//tag::manual-testing-peopleclear[]
-. Deleting everyone
-
-.. Test case: `people clear` +
-Expected: The list of people will be empty.
-
-NOTE: If you have deleted everyone in the addressbook, and would like to retrieve some sample data to test *Sharkie*,
-simply delete *data/addressbook.json*.
-//end::manual-testing-peopleclear[]
 
 [appendix]
 == Effort

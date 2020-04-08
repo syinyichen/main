@@ -64,12 +64,14 @@ TransactionGroupCard --|> UiPart
 TransactionCard --|> UiPart
 
 PersonCard ..> Model
-TransactionCard ..> Model
+TransactionCard .[hidden].> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
 PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
+HelpWindow -[hidden]right- EnterUserDataWindow
+EnterUserDataWindow -[hidden]right- WalletStatisticsPanel
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
 

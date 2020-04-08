@@ -4,11 +4,16 @@ title Activity: Editing a transaction
 
 :User executes wallet edit command;
 
-if () then ([User did not input valid field to edit the transaction with or
-did not enter a valid index])
+if () then ([User did not input valid \nfield to edit the transaction with
+or did not enter a valid index])
+        :Display an error message;
 else ([else])
-        :System creates a new transaction corresponding to index, with edited values;
-        :System replaces the original transaction with edited transaction;
+    if () then ([the input values are identical\n to the original values])
+        : Display an error message;
+    else ([else])
+        :Create a new transaction corresponding\n to index, with edited values;
+        :Replace the original transaction \nwith edited transaction;
+    endif
 endif
 stop
 @enduml

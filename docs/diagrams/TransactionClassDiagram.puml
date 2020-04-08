@@ -9,7 +9,7 @@ class Description {
 }
 
 class Amount {
-   amount : double
+   amountInCents: long
 }
 
 class Date {
@@ -20,6 +20,7 @@ class Tag {
     tagName : String
 }
 
+abstract "{abstract}\nTransaction" as Transaction
 Transaction *-up-> "1" Description
 Transaction *-up-> "1" Amount
 Transaction *-up-> "1" Date
