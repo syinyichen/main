@@ -67,6 +67,7 @@ Refer to the guide <<SettingUp#, here>>.
 image::ArchitectureDiagram.png[]
 
 The *_Architecture Diagram_* given above explains the high-level design of Sharkie. Given below is a quick overview of each component.
+*Sharkie* uses the same architecture design as Address Book 3 (AB3).
 
 [TIP]
 The `.puml` files used to create diagrams in this document can be found in the link:{repoURL}/docs/diagrams/[diagrams] folder.
