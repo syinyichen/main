@@ -18,7 +18,7 @@ public class PeopleClearCommand extends Command {
     public static final String COMMAND_WORD = "clear";
 
     public static final String MESSAGE_CLEAR_EXECUTION = "Clearing contacts...";
-    public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Contact list has been cleared!";
 
     private static final Logger logger = LogsCenter.getLogger(PeopleClearCommand.class);
 
