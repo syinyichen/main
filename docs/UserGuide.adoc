@@ -101,7 +101,7 @@ e.g. Typing *`help`* and pressing kbd:[Enter] will open the help window.
 NOTE: You can check out <<Commands>> for detailed descriptions and usages of each command. +
 For a more succinct summary of the commands you can use in *Sharkie*, you can check out <<command-summary>>.
 .  Some example commands you can try to get you started:
-* **`people add`**`n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named "John Doe" to the address book.
+* **`people add`**`n/John Doe p/98765432 e/johnd@example.com` : Adds a contact named "John Doe" to the contact list.
 * **`people delete`**`3` : Deletes the 3rd contact shown in the current list.
 * **`wallet expense`**`n/Gift for friend $/88 d/12/12/2020 t/Shopping` : Adds an expense with name "Gift for friend", with an amount "$88", with date "12/12/2020" and tag "Shopping" into the wallet.
 * **`wallet find`**`n/rice` : Returns a list of expenses or income with keyword "rice".
@@ -128,7 +128,7 @@ to find out more on how to record expenses or incomes in *Sharkie*.
 If you would like to keep the contact details of a person so that you can use the <<debts-and-loans-feature, debts and loans features>>,
 *Sharkie* can help you do so!
 
-*Sharkie* notes down and remembers contacts that you have entered in an address book, for easy reference later on!
+*Sharkie* notes down and remembers contacts that you have entered in a contact list, for easy reference later on!
 Should their contact details change, you can also edit them or delete them. If you need to find a particular person's contact details,
 *Sharkie* will look through all your contacts and quickly help you find the contact that you are looking for!
 
@@ -545,7 +545,7 @@ This section introduces the twelve commands that you can use to have an effect o
 [[add-person]]
 ==== Adding a person: `add`
 
-Suppose you want to add a new person to the address book, the command you would enter is our `people add` command. +
+Suppose you want to add a new person to the contact list, the command you would enter is our `people add` command. +
 
 *Format*: `people add n/<name> p/<phone number> e/<email address>`
 
@@ -566,14 +566,14 @@ The following are the restrictions of `people add` command, which you would need
 *Example*:
 
 * Suppose you want to add your new friend, "Joel", along with his phone number "91234567" and email "\joel@example.com"
-into the address book.
+into the contact list.
 
 ** The command you would enter is `people add n/Joel p/91234567 e/joel@example.com`.
 ** This adds a person named "Joel" into your contact, along with his phone number and e-mail address.
 
 *Expected Outcome*:
 
-* Your new friend, "Joel" will be added into your address book:
+* Your new friend, "Joel" will be added into your contact list:
 
     New person added: Joel Phone: 91234567 Email: joel@example.com You owe: $0.00 You lent: $0.00
 
@@ -600,12 +600,12 @@ The following are the restrictions of `people edit` command, which you would nee
 WARNING: Existing values will be updated to the new values that you have inputted.
 
 NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
-specific person in the address book. +
+specific person in the contact list. +
 _Still confused? Find out more about <<personIndexFAQ, what is a person's index>>._ +
 
 *Example*:
 
-* Suppose you want to update John's email, and John is the first person in your address book.
+* Suppose you want to update John's email, and John is the first person in your contact list.
 
 ** The command you would enter is `people edit 1 e/johndoe@example.com`.
 ** This edits the email address of the first person, John, to be "\johndoe@example.com". +
@@ -638,15 +638,15 @@ The following are the restrictions of `people delete` command, which you should 
 WARNING: Remember to check and ensure that the `<person's index>` that you have inputted corresponds to the correct person.
 
 NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
-specific person in the address book. +
+specific person in the contact list. +
 _Still confused? Find out more about <<personIndexFAQ, what is a person's index>>._ +
 
 *Example*:
 
-* Suppose you want to delete "Betsy" from your address book, and "Betsy" is the first person in the list.
+* Suppose you want to delete "Betsy" from your contact list, and "Betsy" is the first person in the list.
 
 ** The command that you would enter is `people delete 1`.
-** *Sharkie* will delete "Betsy" from the address book.
+** *Sharkie* will delete "Betsy" from the contact list.
 
 *Expected Outcome*:
 
@@ -674,7 +674,7 @@ The following are the restrictions of `people owe` command, which you would need
 ====
 
 NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
-specific person in the address book whom you owe money to. +
+specific person in the contact list whom you owe money to. +
 _Still confused? Find out more about <<personIndexFAQ, what is a person's index>>._ +
  +
 The amount of money recorded will be added under your friend's "debts" section. Debts represent the amount of money you owe your friends. +
@@ -686,10 +686,10 @@ The `<date: dd/mm/yyyy>` is optional. If `<date: dd/mm/yyyy>` is not specified, 
 
 *Example*:
 
-* Suppose you owe "Grace", who is the fourth person in the address book, "$5" for "food" on "10 October 2020".
+* Suppose you owe "Grace", who is the fourth person in the contact list, "$5" for "food" on "10 October 2020".
 
 ** The command you would enter is `people owe 4 n/food $/5.00 d/10/10/2020`
-** This records that you owe "Grace", the fourth person in the address book, "$5.00" for "food" on "10/10/2020". +
+** This records that you owe "Grace", the fourth person in the contact list, "$5.00" for "food" on "10/10/2020". +
 
 *Expected Outcome*:
 
@@ -716,7 +716,7 @@ The following are the restrictions of `people returned` command, which you would
 ====
 
 NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates
-a specific person in the address book whom you returned the money to. +
+a specific person in the contact list whom you returned the money to. +
 _Still confused? Find out more about <<personIndexFAQ, what is a person's index>>._ +
  +
 The `<debt's index>` above refers to the index number shown in the displayed debt list in *Sharkie*. It indicates a specific
@@ -732,10 +732,10 @@ Sharkie will remove all debts for the person if the `<debt's index>` is not spec
 
 *Example*:
 
-* Suppose that you have just returned "Grace", the fourth person in the address book, the first debt in her debt list.
+* Suppose that you have just returned "Grace", the fourth person in the contact list, the first debt in her debt list.
 
 ** The command that you would enter is `people returned 4 i/1`.
-** This records that you have returned the money for the first debt of "Grace", the fourth person in the address book. +
+** This records that you have returned the money for the first debt of "Grace", the fourth person in the contact list. +
 
 *Expected Outcome*:
 
@@ -763,7 +763,7 @@ The following are the restrictions of `people lend` command, which you would nee
 ====
 
 NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
-specific person in the address book whom you lend money to. +
+specific person in the contact list whom you lend money to. +
 _Still confused? Find out more about <<personIndexFAQ, what is a person's index>>._ +
  +
 The amount of money recorded will be added under your friend's "loans" section. Loans represent the amount of money you lend your friends. +
@@ -774,10 +774,10 @@ The `<date: dd/mm/yyyy>` is optional. If `<date: dd/mm/yyyy>` is not specified, 
 
 *Example*:
 
-* Suppose you lend "Syin Yi", who is the fifth person in the address book, "$5" for "dinner" on "10 October 2020".
+* Suppose you lend "Syin Yi", who is the fifth person in the contact list, "$5" for "dinner" on "10 October 2020".
 
 ** The command you would enter is `people lend 5 n/dinner $/5.00 d/10/10/2020`
-** This records that you owe "Syin Yi", the fifth person in the address book, "$5.00" for "dinner" on "10/10/2020". +
+** This records that you owe "Syin Yi", the fifth person in the contact list, "$5.00" for "dinner" on "10/10/2020". +
 
 *Expected Outcome*:
 
@@ -804,7 +804,7 @@ The following is the restrictions of `people received` command, which you would 
 ====
 
 NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
-specific person in the address book, who you received from. +
+specific person in the contact list, who you received from. +
 _Still confused? Find out more about <<personIndexFAQ,what is a person's index>>._ +
  +
 The `<loan's index>` above refers to the index number shown in the displayed loans list in *Sharkie*. It indicates a
@@ -820,11 +820,11 @@ All loans will be removed for the indicated person if the `<loan's index>` is no
 
 *Example*:
 
-* Suppose you want to record that you have received the money from "Joel", who is the second person in the address book,
+* Suppose you want to record that you have received the money from "Joel", who is the second person in the contact list,
 for the first loan in his loans list.
 
 ** The command you would enter is `people received 2 i/1`.
-** This records that you have received the money for the first loan of "Joel", the second person in the address book.
+** This records that you have received the money for the first loan of "Joel", the second person in the contact list.
 
 *Expected Outcome*:
 
@@ -856,7 +856,7 @@ You can enter or edit your details at <<editing-user-data, "Edit" > "Edit user's
 Before you enter the `people remind` command, please make sure that your friend's email address is correct.
 
 NOTE: The `<person's index>` above refers to the index number shown in the displayed person list in *Sharkie*. It indicates a
-specific person in the address book, who you want to remind. +
+specific person in the contact list, who you want to remind. +
 _Still confused? Find out more about <<personIndexFAQ,what is a person's index>>._ +
  +
 Loans represent the amount of money you lend your friends. +
@@ -867,10 +867,10 @@ please visit <<remind-connection-error, how to resolve connection issues>>.
 
 *Example*:
 
-* Suppose you want to remind "Daniel", who is the first person in your address book to return you your money.
+* Suppose you want to remind "Daniel", who is the first person in your contact list to return you your money.
 
 ** The command you would enter is `people remind 1`.
-** This requests *Sharkie* to send an email to "Daniel", the first person in your address book.
+** This requests *Sharkie* to send an email to "Daniel", the first person in your contact list.
 
 *Expected Outcome*:
 
@@ -884,7 +884,7 @@ please visit <<remind-connection-error, how to resolve connection issues>>.
 //tag::peopleremindall[]
 ==== Sending reminder to all friends: `remindall`
 
-Suppose you want to remind all your friends in your address book to return you your money,
+Suppose you want to remind all your friends in your contact list to return you your money,
 the command you would enter is our `people remindall` command.
 
 *Format*: `people remindall`
@@ -905,10 +905,10 @@ please visit <<remind-connection-error, how to resolve connection issues>>.
 
 *Example*:
 
-* Suppose you want to remind all your friends in your address book who have yet to repay you.
+* Suppose you want to remind all your friends in your contact list who have yet to repay you.
 
 ** The command you would enter is `people remindall`.
-** This requests *Sharkie* to send an email to everyone in your address book who have yet to repay you.
+** This requests *Sharkie* to send an email to everyone in your contact list who have yet to repay you.
 
 *Expected Outcome*:
 
@@ -943,7 +943,7 @@ The following are the restrictions of `people find` command, which you would nee
 * The `<keyword>` you want to enter can be incomplete. For example, `people find n/jo` will display the
 persons whose name contains the keyword "jo", such as "Joel".
 * The `<keyword>` you entered should be one of the prefixes: name (`n/`), phone (`p/`), email (`p/`) or tag (`t/`).
-** You may use the tag prefix `t/` to find people with debts or loans in your address book.
+** You may use the tag prefix `t/` to find people with debts or loans in your contact list.
 Hence, `Debt` and `Loan` (case-insensitive) are the only tags, which you are allowed to use in `people find` command.
 ====
 
@@ -984,20 +984,20 @@ _Still confused? Find out more about <<debt-and-loan,the differences between deb
 ==== Listing all contacts: `list`
 
 Suppose that you have just executed the <<find-person, [blue]`people find`>> command. And now, you would like to see the
-entire list of people in your address book. The command you would enter is our `people list` command. +
+entire list of people in your contact list. The command you would enter is our `people list` command. +
 
 *Format*: `people list`
 
 *Example*:
 
-* Suppose you want to view the entire list of people in your address book.
+* Suppose you want to view the entire list of people in your contact list.
 
 ** The command that you would enter is `people list`.
-** This will list out your entire address book.
+** This will list out your entire contact list.
 
 *Expected Outcome*:
 
-* The details of everyone in the address book, including their name, phone, email address, debts and loans, will be listed.
+* The details of everyone in the contact list, including their name, phone, email address, debts and loans, will be listed.
 
     Listed all persons.
 
@@ -1009,7 +1009,7 @@ entire list of people in your address book. The command you would enter is our `
 [[peopleclear]]
 ==== Clearing all contacts : `clear`
 
-Suppose you want to clear all the contacts in your address book,
+Suppose you want to clear all the contacts in your contact list,
 the command you would enter is our `people clear` command.
 
 *Format*: `people clear`
@@ -1019,13 +1019,13 @@ the command you would enter is our `people clear` command.
 * Suppose you want to clear all your contacts.
 
 ** The command you would enter is `people clear`.
-** This requests *Sharkie* to deletes all the contacts in your address book.
+** This requests *Sharkie* to deletes all the contacts in your contact list.
 
 *Expected Outcome*:
 
-* *Sharkie* will delete all the contacts and return an empty address book.
+* *Sharkie* will delete all the contacts and return an empty contact list.
 
-    Address book has been cleared!
+    Contact list has been cleared!
 
 // end::peopleclear[]
 
@@ -1039,7 +1039,7 @@ the command you would enter is our `people clear` command.
 
 === How do I transfer my data to another Computer? +
 ****
-Install the app in the other computer and overwrite the empty data file *Sharkie* creates with the file that contains the data of your previous address book folder.
+Install the app in the other computer and overwrite the empty data file *Sharkie* creates with the file that contains the data of your previous contact list folder.
 ****
 
 //tag::editing-user-data[]
@@ -1073,7 +1073,7 @@ NOTE: Due to program limitations, Sharkie can only safely handle amounts of up t
 [[transactionIndexFAQ]]
 === What is a transaction's index? +
 ****
-A `transaction's index` is the index number shown in the displayed transaction list in *Sharkie*. It indicates a specific transaction in the address book.
+A `transaction's index` is the index number shown in the displayed transaction list in *Sharkie*. It indicates a specific transaction in the contact list.
 
 For example,
 
@@ -1090,7 +1090,7 @@ image::transactionIndexFAQ.jpg[width=70%]
 [[personIndexFAQ]]
 === What is a person's index? +
 ****
-A `person's index` is the index number shown in the displayed person list in *Sharkie*. It indicates a specific person in the address book.
+A `person's index` is the index number shown in the displayed person list in *Sharkie*. It indicates a specific person in the contact list.
 
 For example,
 
@@ -1213,17 +1213,17 @@ The following commands are people-related commands that are available in *Sharki
 .People commands available in *Sharkie*.
 |===
 | *Command*  | *Format* | *Expected outcome*
-|`add` |[gray]#`people add n/<name> p/<phone number> e/<email address>`# | Helps you add a contact to your address book, with the particulars that you have entered.
-|`clear`|[gray]#`people clear`# | Clears all your contacts in your address book.
+|`add` |[gray]#`people add n/<name> p/<phone number> e/<email address>`# | Helps you add a contact to your contact list, with the particulars that you have entered.
+|`clear`|[gray]#`people clear`# | Clears all your contacts in your contact list.
 |`delete` | [gray]#`people delete <index>`# | Deletes your contact at the index you have selected.
-|`edit` | [gray]#`people edit <index> [n/<name>] [p/<phone number>] [e/<email address>]`# | Edits your contact in the address book at the index selected with the given arguments.
+|`edit` | [gray]#`people edit <index> [n/<name>] [p/<phone number>] [e/<email address>]`# | Edits your contact in the contact list at the index selected with the given arguments.
 |`find` | [gray]#`people find n/<keyword> [<keyword>...]`# +
 or [gray]#`people find p/<keyword> [<keyword>...]`# +
 or [gray]#`people find e/<keyword> [<keyword>...]`# +
-or [gray]#`people find t/<keyword> [<keyword>...]`# | Finds your contact(s) within your address book using the arguments you have provided.
-|`lend` | [gray]#`people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`# | Records a loan to your contact at the index selected in your address book.
-| `list` | [gray]#`people list`# | Lists all your contacts that have been recorded by *Sharkie* in the address book.
-| `owe` | [gray]#`people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`# | Records a debt to your contact at the index selected in your address book.
+or [gray]#`people find t/<keyword> [<keyword>...]`# | Finds your contact(s) within your contact list using the arguments you have provided.
+|`lend` | [gray]#`people lend <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`# | Records a loan to your contact at the index selected in your contact list.
+| `list` | [gray]#`people list`# | Lists all your contacts that have been recorded by *Sharkie* in the contact list.
+| `owe` | [gray]#`people owe <index> n/<description> $/<amount> [d/<date:dd/mm/yyyy>]`# | Records a debt to your contact at the index selected in your contact list.
 | `received` | [gray]#`people received <person's index> [i/<loan's index>]`# | Removes the loan at the index selected for your contact selected.
 | `remind` | [gray]#`people remind <index>`# | Sends an email to the contact at the index you have selected, reminding them of any withstanding debts that have to be paid back to you.
 | `remindall` | [gray]#`people remindall`# |  Sends an email to all your contacts with any withstanding debts, reminding them to pay you back.
