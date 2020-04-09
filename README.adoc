@@ -19,9 +19,11 @@ image::images/Ui.png[]
 
 endif::[]
 
-* Sharkie is an all-in-one desktop application for those who are beginning to see the importance of tracking your money (looking at you, university students).
-* Sharkie not only tracks your incomes and expenses - it also acts as a (friendly) loan shark to help you chase down money that your friends owe you.
-* They may forget their debts, but Sharkie never will 💰🦈
+Welcome to *Sharkie*!
+
+* *Sharkie* is an all-in-one desktop application for those who are beginning to see the importance of tracking your money (looking at you, university students).
+* *Sharkie* not only tracks your incomes and expenses - it also acts as a (friendly) loan shark to help you chase down money that your friends owe you.
+* They may forget their debts, but *Sharkie* never will! 💰🦈
 
 == Site Map
 
@@ -37,4 +39,4 @@ endif::[]
 _Marco Jakob_.
 * Libraries used: https://openjfx.io/[JavaFX], https://github.com/FasterXML/jackson[Jackson], https://github.com/junit-team/junit5[JUnit5]
 
-== Licence : link:LICENSE[MIT]
+== Licence : link:https://github.com/AY1920S2-CS2103T-W12-3/main/blob/master/LICENSE[MIT]

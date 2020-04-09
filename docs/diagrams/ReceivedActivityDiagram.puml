@@ -3,16 +3,16 @@ title Activity: Recording the amount of money received
 start
 :User executes a received command;
 
-if () then ([Person index entered \nby the user is invalid])
+if () then ([Person's index entered \nby the user is invalid])
     :Display an error message;
 else ([else])
-    if () then ([User did not lend the \nindicated Person money])
+    if () then ([User did not lend the \nindicated person money])
         :Display an error message;
     else ([else])
-        if () then ([User asked to edit specific\n Loan of the Person])
-            :Remove the specified \nLoan from the Person;
+        if () then ([User asked to edit specific\n loan of the indicated person])
+            :Remove the specified \nloan from the person;
         else ([else])
-            :Remove all Loans \nfrom the Person;
+            :Remove all loans \nfrom the person;
         endif
         :Update the contact list;
     endif

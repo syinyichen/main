@@ -562,12 +562,12 @@ connection to e-mail servers.</p>
 <ul>
 <li>
 <p>Enhancements to existing features:</p>
-</li>
+<div class="ulist">
+<ul>
 <li>
 <p>Add progress indicator for command execution, to indicate that the application is not hanging
 during execution of commands, which take some time to run, such as <code>people remind</code>. (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#148</a>)</p>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p>Improved GUI of Edit User Data Window and Help Window. (Pull request <a href="https://github.com/AY1920S2-CS2103T-W12-3/main/pulls">#178</a>)</p>
 </li>
@@ -657,7 +657,7 @@ during execution of commands, which take some time to run, such as <code>people 
 <h2 id="_about">About</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This user guide will help to ensure that you have all the information you need to utilise <strong>Sharkie</strong> to its fullest extent. <strong>Sharkie</strong> is a feature-filled expense tracker and all the information you need regarding his usage is available below.<br></p>
+<p>This user guide will help to ensure that you have all the information you need to utilise <strong>Sharkie</strong> to its fullest extent. <strong>Sharkie</strong> is a feature-filled expense tracker and all the information you need regarding its usage is available below.<br></p>
 </div>
 <div class="paragraph">
 <p>If you need help starting up <strong>Sharkie</strong>, you can head on to <a href="#quick-start">Quick Start</a> below to set it up.<br></p>
@@ -685,11 +685,11 @@ Format</strong></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><span class="gray"><code>command</code></span></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><span class="gray">A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.</span></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock">kbd:[Enter]</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><span class="gray">This symbol indicates the enter button on the keyboard.</span></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">This symbol indicates the enter button on the keyboard.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><div class="content"><div class="exampleblock">
@@ -697,51 +697,25 @@ Format</strong></p></td>
 
 </div>
 </div></div></td>
-<td class="tableblock halign-left valign-middle"><div class="content"><div class="paragraph">
-<p><span class="gray">This yellow box indicates the restrictions of each command.</span></p>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">This yellow box indicates the restrictions of each command.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="../images/WarningIcon.png" alt="WarningIcon" width="40"></span></p>
 </div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">This symbol indicates warnings to take note of.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle" colspan="2"><div class="content"><div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Warning</div>
-</td>
-<td class="content">
-This symbol indicates warnings to take note of.
-</td>
-</tr>
-</table>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="../images/InformationIcon.png" alt="InformationIcon" width="40"></span></p>
 </div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">This symbol indicates information that you need to know.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle" colspan="2"><div class="content"><div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Note</div>
-</td>
-<td class="content">
-This symbol indicates information that you need to know.
-</td>
-</tr>
-</table>
+<td class="tableblock halign-center valign-middle"><div class="content"><div class="paragraph">
+<p><span class="image"><img src="../images/TipIcon.png" alt="TipIcon" width="30"></span></p>
 </div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle" colspan="2"><div class="content"><div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<div class="title">Tip</div>
-</td>
-<td class="content">
-This symbol indicates tips that can help you in your use of <strong>Sharkie</strong>.
-</td>
-</tr>
-</table>
-</div></div></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">This symbol indicates tips that can help you in your use of <strong>Sharkie</strong>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -762,7 +736,7 @@ This symbol indicates tips that can help you in your use of <strong>Sharkie</str
 <p>If you are a university student who has started to manage your own money, but struggles to track your expenses or meet your saving goals, <strong>Sharkie</strong> would be a good application for you to start with.</p>
 </div>
 <div class="paragraph">
-<p><strong>Sharkie</strong> allows you to record what you have spent on for the month, and also helps you to note down your income for the month to help you properly track your money flow!</p>
+<p><strong>Sharkie</strong> allows you to record what you have spent on for the month, and also notes down your income for the month to help you properly track your money flow!</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -771,7 +745,7 @@ This symbol indicates tips that can help you in your use of <strong>Sharkie</str
 <div class="title">Note</div>
 </td>
 <td class="content">
-You may visit <a href="#add-expense-command">Section 5.2.2, “Adding an expense”</a> or <a href="#add-income-command">Section 5.2.3, “Adding an income”</a>
+You may visit <a href="#wallet-commands">[wallet-commands]</a>
 to find out more on how to record expenses or incomes in <strong>Sharkie</strong>.
 </td>
 </tr>
@@ -786,7 +760,7 @@ to find out more on how to record expenses or incomes in <strong>Sharkie</strong
 <div class="sect3">
 <h4 id="add-person">Adding a person: <code>add</code></h4>
 <div class="paragraph">
-<p>Suppose you want to add a new person to the address book, the command you would enter is our <code>people add</code> command.<br></p>
+<p>Suppose you want to add a new person to the contact list, the command you would enter is our <code>people add</code> command.<br></p>
 </div>
 <div class="paragraph">
 <p><strong>Format</strong>: <code>people add n/&lt;name&gt; p/&lt;phone number&gt; e/&lt;email address&gt;</code></p>
@@ -832,7 +806,7 @@ to find out more on how to record expenses or incomes in <strong>Sharkie</strong
 <ul>
 <li>
 <p>Suppose you want to add your new friend, "Joel", along with his phone number "91234567" and email "joel@example.com"
-into the address book.</p>
+into the contact list.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -852,7 +826,7 @@ into the address book.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Your new friend, "Joel" will be added into your address book:</p>
+<p>Your new friend, "Joel" will be added into your contact list:</p>
 <div class="literalblock">
 <div class="content">
 <pre>New person added: Joel Phone: 91234567 Email: joel@example.com You owe: $0.00 You lent: $0.00</pre>
@@ -896,7 +870,7 @@ the command you would enter is our <code>people received</code> command.</p>
 </td>
 <td class="content">
 The <code>&lt;person&#8217;s index&gt;</code> above refers to the index number shown in the displayed person list in <strong>Sharkie</strong>. It indicates a
-specific person in the address book, who you received from.<br>
+specific person in the contact list, who you received from.<br>
 <em>Still confused? Find out more about <a href="#personIndexFAQ">what is a person&#8217;s index</a>.</em><br>
 <br>
 The <code>&lt;loan&#8217;s index&gt;</code> above refers to the index number shown in the displayed loans list in <strong>Sharkie</strong>. It indicates a
@@ -928,7 +902,7 @@ All loans will be removed for the indicated person if the <code>&lt;loan&#8217;s
 <div class="ulist">
 <ul>
 <li>
-<p>Suppose you want to record that you have received the money from "Joel", who is the second person in the address book,
+<p>Suppose you want to record that you have received the money from "Joel", who is the second person in the contact list,
 for the first loan in his loans list.</p>
 <div class="ulist">
 <ul>
@@ -936,7 +910,7 @@ for the first loan in his loans list.</p>
 <p>The command you would enter is <code>people received 2 i/1</code>.</p>
 </li>
 <li>
-<p>This records that you have received the money for the first loan of "Joel", the second person in the address book.</p>
+<p>This records that you have received the money for the first loan of "Joel", the second person in the contact list.</p>
 </li>
 </ul>
 </div>
@@ -974,7 +948,7 @@ the command you would enter is our <code>people remind</code> command.</p>
 <p><strong>Command Format</strong></p>
 </div>
 <div class="paragraph">
-<p>The following is the restrictions of <code>people remind</code> command, which you would need to take note of:</p>
+<p>The following are the restrictions of <code>people remind</code> command, which you would need to take note of:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1008,7 +982,7 @@ Before you enter the <code>people remind</code> command, please make sure that y
 </td>
 <td class="content">
 The <code>&lt;person&#8217;s index&gt;</code> above refers to the index number shown in the displayed person list in <strong>Sharkie</strong>. It indicates a
-specific person in the address book, who you want to remind.<br>
+specific person in the contact list, who you want to remind.<br>
 <em>Still confused? Find out more about <a href="#personIndexFAQ">what is a person&#8217;s index</a>.</em><br>
 <br>
 Loans represent the amount of money you lend your friends.<br>
@@ -1036,14 +1010,14 @@ please visit <a href="#remind-connection-error">how to resolve connection issues
 <div class="ulist">
 <ul>
 <li>
-<p>Suppose you want to remind "Daniel", who is the first person in your address book to return you your money.</p>
+<p>Suppose you want to remind "Daniel", who is the first person in your contact list to return you your money.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>The command you would enter is <code>people remind 1</code>.</p>
 </li>
 <li>
-<p>This requests <strong>Sharkie</strong> to send an email to "Daniel", the first person in your address book.</p>
+<p>This requests <strong>Sharkie</strong> to send an email to "Daniel", the first person in your contact list.</p>
 </li>
 </ul>
 </div>
@@ -1070,7 +1044,7 @@ Sharkie has sent a carbon copy (CC) of the reminder to your email!</pre>
 <div class="sect3">
 <h4 id="_sending_reminder_to_all_friends_remindall">Sending reminder to all friends: <code>remindall</code></h4>
 <div class="paragraph">
-<p>Suppose you want to remind all your friends in your address book to return you your money,
+<p>Suppose you want to remind all your friends in your contact list to return you your money,
 the command you would enter is our <code>people remindall</code> command.</p>
 </div>
 <div class="paragraph">
@@ -1126,14 +1100,14 @@ please visit <a href="#remind-connection-error">how to resolve connection issues
 <div class="ulist">
 <ul>
 <li>
-<p>Suppose you want to remind all your friends in your address book who have yet to repay you.</p>
+<p>Suppose you want to remind all your friends in your contact list who have yet to repay you.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>The command you would enter is <code>people remindall</code>.</p>
 </li>
 <li>
-<p>This requests <strong>Sharkie</strong> to send an email to everyone in your address book who have yet to repay you.</p>
+<p>This requests <strong>Sharkie</strong> to send an email to everyone in your contact list who have yet to repay you.</p>
 </li>
 </ul>
 </div>
@@ -1194,7 +1168,7 @@ persons whose name contains the keyword "jo", such as "Joel".</p>
 <div class="ulist">
 <ul>
 <li>
-<p>You may use the tag prefix <code>t/</code> to find people with debts or loans in your address book.
+<p>You may use the tag prefix <code>t/</code> to find people with debts or loans in your contact list.
 Hence, <code>Debt</code> and <code>Loan</code> (case-insensitive) are the only tags, which you are allowed to use in <code>people find</code> command.</p>
 </li>
 </ul>
@@ -1292,7 +1266,7 @@ loans represent the amount of money you lend your friends. <br>
 <div class="sect3">
 <h4 id="peopleclear">Clearing all contacts : <code>clear</code></h4>
 <div class="paragraph">
-<p>Suppose you want to clear all the contacts in your address book,
+<p>Suppose you want to clear all the contacts in your contact list,
 the command you would enter is our <code>people clear</code> command.</p>
 </div>
 <div class="paragraph">
@@ -1311,7 +1285,7 @@ the command you would enter is our <code>people clear</code> command.</p>
 <p>The command you would enter is <code>people clear</code>.</p>
 </li>
 <li>
-<p>This requests <strong>Sharkie</strong> to deletes all the contacts in your address book.</p>
+<p>This requests <strong>Sharkie</strong> to delete all the contacts in your contact list.</p>
 </li>
 </ul>
 </div>
@@ -1324,10 +1298,10 @@ the command you would enter is our <code>people clear</code> command.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Sharkie</strong> will delete all the contacts and return an empty address book.</p>
+<p><strong>Sharkie</strong> will delete all the contacts and return an empty contact list.</p>
 <div class="literalblock">
 <div class="content">
-<pre>Address book has been cleared!</pre>
+<pre>Contact list has been cleared!</pre>
 </div>
 </div>
 </li>
@@ -1360,7 +1334,7 @@ the command you would enter is our <code>people clear</code> command.</p>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
-<p>A <code>person&#8217;s index</code> is the index number shown in the displayed person list in <strong>Sharkie</strong>. It indicates a specific person in the address book.</p>
+<p>A <code>person&#8217;s index</code> is the index number shown in the displayed person list in <strong>Sharkie</strong>. It indicates a specific person in the contact list.</p>
 </div>
 <div class="paragraph">
 <p>For example,</p>
@@ -1445,7 +1419,7 @@ index number shown in a person&#8217;s displayed loans list. A <code>debt&#8217;
 </div>
 </div>
 <div class="sect2">
-<h3 id="_why_does_my_people_remind_and_people_remindall_commands_take_time_to_run">Why does my <code>people remind</code> and <code>people remindall</code> commands take time to run?<br></h3>
+<h3 id="_why_do_my_people_remind_and_people_remindall_commands_take_time_to_run">Why do my <code>people remind</code> and <code>people remindall</code> commands take time to run?<br></h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="paragraph">
@@ -1745,7 +1719,7 @@ a <code>Description</code>, an <code>Amount</code>, a <code>Date</code> and a <c
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/ReceivedActivityDiagram.png" alt="ReceivedActivityDiagram" width="800">
+<img src="../images/ReceivedActivityDiagram.png" alt="ReceivedActivityDiagram" width="70%">
 </div>
 <div class="title">Figure 11. Activity diagram of recording the amount of money received</div>
 </div>
@@ -1779,7 +1753,7 @@ in the <code>Model</code> is updated.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/GetPeopleReceivedCommandSequenceDiagram.png" alt="GetPeopleReceivedCommandSequenceDiagram" width="600">
+<img src="../images/GetPeopleReceivedCommandSequenceDiagram.png" alt="GetPeopleReceivedCommandSequenceDiagram" width="70%">
 </div>
 <div class="title">Figure 12. Sequence diagram of the <code>people received</code> command</div>
 </div>
@@ -1790,7 +1764,7 @@ in the <code>Model</code> is updated.</p>
 <div class="title">Note</div>
 </td>
 <td class="content">
-The lifeline for <code>PeopleReceivedCommand</code> should end at the destroy marker (X) but due to a limitation of PlantUML,
+The lifeline for <code>PeopleReceivedCommand</code> and <code>PeopleReceivedCommandParser</code> should end at the destroy marker (X) but due to a limitation of PlantUML,
 the lifeline reaches the end of diagram.
 </td>
 </tr>
@@ -2609,7 +2583,7 @@ Expected: Similar to previous</p>
 <li>
 <p>Prerequisites: Connected to the Internet. Your firewall or antivirus programme (if any) allows the connection to STMP port 587.
 The person who you want to remind exists in the person list. The person has at least one loan in the loan list.
-The email of the person to be reminded is a valid email.</p>
+The email of the person to be reminded is a valid email (You can generate an email from <a href="https://temp-mail.org/en/">temp-mail.org</a>).</p>
 </li>
 <li>
 <p>Test case: <code>people remind 1</code><br>
@@ -2648,7 +2622,7 @@ Expected: Similar to previous</p>
 <ol class="loweralpha" type="a">
 <li>
 <p>Prerequisites: Connected to the Internet. Your firewall or antivirus programme (if any) allows the connection to STMP port 587.
-At least one person in the list has at least one loan. The email(s) of the people to be reminded are valid email(s).</p>
+At least one person in the list has at least one loan. The email(s) of the people to be reminded are valid email(s) (You can generate an email from <a href="https://temp-mail.org/en/">temp-mail.org</a>).</p>
 </li>
 <li>
 <p>Test case: <code>people remindall</code><br>
@@ -2665,7 +2639,7 @@ Expected: A reminder is sent everyone, who has unsettled loan. A carbon copy (CC
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-04-08 09:22:39 +0800
+Last updated 2020-04-08 09:26:17 +0800
 </div>
 </div>
 </body>

@@ -53,15 +53,15 @@ Note the following symbols and formatting used in this document: +
 |===
 ^|*Symbol/ +
 Format* <|*Meaning*
-^|[gray]#`command`# |[gray]#A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.#
-^| kbd:[Enter] |[gray]#This symbol indicates the enter button on the keyboard.#
+^|[gray]#`command`#| A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.
+^|kbd:[Enter]| This symbol indicates the enter button on the keyboard.
 a|
 ====
 ====
-a|[gray]#This yellow box indicates the restrictions of each command.#
-2+.^a|  WARNING: This symbol indicates warnings to take note of.
-2+.^a|  NOTE: This symbol indicates information that you need to know.
-2+.^a|  TIP: This symbol indicates tips that can help you in your use of *Sharkie*.
+| This yellow box indicates the restrictions of each command.
+^.^a|image:WarningIcon.png[width="40"]|This symbol indicates warnings to take note of.
+^.^a|image:InformationIcon.png[width="40"]|This symbol indicates information that you need to know.
+^.^a|image:TipIcon.png[width="30"]|This symbol indicates tips that can help you in your use of *Sharkie*.
 |===
 
 //end::about[]

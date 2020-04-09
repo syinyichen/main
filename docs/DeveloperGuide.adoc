@@ -46,10 +46,10 @@ Note the following symbols and formatting used in this document: +
 |===
 ^|*Symbol/ +
 Format* <|*Meaning*
-^|[gray]#`command`# |[gray]#A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.#
-^| kbd:[Enter] |[gray]#This symbol indicates the enter button on the keyboard.#
-2+.^a|  NOTE: This symbol indicates information.
-2+.^a|  TIP: This symbol indicates tips.
+^|[gray]#`command`#|A grey highlight (called a mark-up) indicates that this is a command that can be typed into the command line and executed by the application.
+^|kbd:[Enter]|This symbol indicates the enter button on the keyboard.
+^.^a|image:InformationIcon.png[width="40"]|This symbol indicates information.
+^.^a|image:TipIcon.png[width="30"]|This symbol indicates tips.
 |===
 
 [[setting-up]]
