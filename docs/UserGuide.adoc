@@ -1189,7 +1189,7 @@ You may try the suggestions below to resolve your connection issues:
     Please make sure that you are connected to the internet.
 
 ** Please make sure that your firewall or antivirus programme allows *Sharkie* to connect to SMTP port 587.
-Please add an exclusion to SMTP port 587 in your firewall or antivirus programme, if you have not do so.
+Please add an exclusion to SMTP port 587 in your firewall or antivirus programme, if you have not done so.
 ****
 //end::remind-issue[]
 
