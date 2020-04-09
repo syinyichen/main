@@ -15,27 +15,27 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 == Summary of contributions
 
 * *Major enhancement*:
-. Added *the ability to list out all transactions in the wallet and the UI for it*
-*** What it does: allows the user to list out all transactions, which includes expenses and income.
-*** Justification: This feature improves the product significantly because it allows the user to view all their transactions in their wallet.
+. Added *the ability to list out all transactions in the wallet*
+*** What it does: allows the user to list out all transactions in the transactions list.
+*** Justification: This feature improves the product significantly because it allows the user to view all their transactions in their wallet, especially after filtering their list with wallet find command.
 *** Highlights: This enhancement affects existing commands and commands to be added in future.
 It required an in-depth analysis of design alternatives.
-The implementation too was challenging as it required changes to the UI, including the need to add a tab view to view the Wallet and Address Book separately.
+The implementation too was challenging as it required changes to the UI, including the need to add a tab view to view the Wallet and Contact List separately. I implemented the base structure for this, which is later edited and enhanced by my groupmate.
 . Added *the ability to edit the transactions in the wallet*
-*** What it does: allows the user to edit the transactions already in the wallet, which includes expenses and income.
+*** What it does: allows the user to edit the transactions already in the wallet.
 *** Justification: This feature improves the product significantly because it allows the user to edit the information they already keyed in, in case of any mistakes made or updates needed to the transactions.
 *** Highlights: This enhancement affects existing commands and commands to be added in future.
-It required an in-depth analysis of design alternatives.
+It required an in-depth analysis of design alternatives. Different error cases need to be considered for the implementation.
 . Added *the ability to delete the transactions in the wallet*
-*** What it does: allows the user to delete the transactions already in the wallet, which includes expenses and income.
+*** What it does: allows the user to delete the transactions already in the wallet.
 *** Justification: This feature improves the product significantly because it allows the user to delete the information they already keyed in, in case of any mistakes made.
 *** Highlights: This enhancement affects existing commands and commands to be added in future.
 It required an in-depth analysis of design alternatives.
 . Added *the ability to find transactions in the wallet*
-*** What it does: allows the user to find transactions already in the wallet, which includes expenses and income.
+*** What it does: allows the user to find transactions already in the wallet, with either the description, amount, date or tag field.
 *** Justification: This feature improves the product significantly because it allows the user to find the information they already keyed in, according to the description of the transactions.
 *** Highlights: This enhancement affects existing commands and commands to be added in future.
-It required an in-depth analysis of design alternatives.
+It required an in-depth analysis of design alternatives. It was challenging as the different areas to search with need to be considered, and the handling of error cases.
 * *Minor enhancement*:
 . Added *the ability to clear all transactions in the wallet*
 * *Code Contribured:*
@@ -87,13 +87,13 @@ include::../UserGuide.adoc[tag=walletClear]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=productScope]
-
-include::../DeveloperGuide.adoc[tag=userStories]
-
 include::../DeveloperGuide.adoc[tag=logic]
 
 include::../DeveloperGuide.adoc[tag=walletEdit_implementation]
+
+include::../DeveloperGuide.adoc[tag=productScope]
+
+include::../DeveloperGuide.adoc[tag=userStories]
 
 include::../DeveloperGuide.adoc[tag=testWalletList]
 
@@ -104,9 +104,3 @@ include::../DeveloperGuide.adoc[tag=testWalletFind]
 include::../DeveloperGuide.adoc[tag=testWalletDelete]
 
 include::../DeveloperGuide.adoc[tag=testWalletClear]
-
-== PROJECT: PowerPointLabs
-
----
-
-_{Optionally, you may include other projects in your portfolio.}_
