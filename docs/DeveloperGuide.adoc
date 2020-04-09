@@ -423,8 +423,7 @@ the lifeline reaches the end of diagram.
 
 The `edit` command is implemented in the class, `WalletEditCommand`.
 
-This command can be accessed from `Logic#execute()`. It edits the `transactions`(s), which include both `income`(s) and
-`expense`(s) of the indicated `transaction` (the `transaction` with the specified index in the Wallet).
+This command can be accessed from `Logic#execute()`. It edits the `transaction`, indicated by the index specified, with the new details supplied with the command.
 
 The following activity diagram illustrates what happens when the user executes a `wallet edit` command:
 
@@ -433,15 +432,15 @@ image::WalletEditActivityDiagram.png[width=600]
 
 ==== Implementation of `wallet edit` command
 
-. `WalletEditCommandParser` is executed first to create an `EditTransactorDescriptor` to hold the values to be edited.
+. When entering the wallet edit command, the user have to specify at least one of `Description`, `Amount`, `Date` or `Tag`. Multiples can be inputted as well.
+. `WalletEditCommandParser` is executed to create an `EditTransactorDescriptor` to hold the values to edit the transaction with.
 . `WalletEditCommandParser` then passes the `editTransactorDescriptor` to create a `WalletEditCommand`.
 . In `WalletEditCommand` class, the list of `transactions` is obtained from the `Model` via
-`Model#getFilteredTransactionsList()` and the indicated transaction is extracted from the list, as either a form of
-income or expense.
-. The `transaction` selected is extracted and modified based on the command entered by the user, which are stored in
+`Model#getFilteredTransactionsList()` and the indicated transaction is extracted from the list.
+. The `transaction` selected is modified based on the field to edit and the new details entered by the user, which are stored in
 `editTransactorDescriptor`
 . A new `transaction` modified from the `transaction` selected is created with `createEditedTransaction` method in
-`WalletEditCOmmand`
+`WalletEditCommand`
 . This new `transaction` replace the initial `transaction` at the indicated index via `Model#setTransaction()` and
 the `filteredTransactions` in the `Model` is updated.
 
@@ -457,11 +456,11 @@ the lifeline reaches the end of diagram.
 
 ===== Aspect: Choosing which `transaction` to edit from the list of transactions.
 
-* **Alternative 1 (current choice):** Get the index from the list displayed, and not original index displayed by
+* **Alternative 1 (current choice):** Get the index from the list of transactions currently displayed, and not original index in the full transactions list, which can be displayed by
 `wallet list command`.
 ** Pros: Easy to see which `transaction` is to be edited.
-** Cons: Have to keep updating the filtered list.
-* **Alternative 2:** Always edit based on original list, shown by `wallet list command`.
+** Cons: Filtered list needs to be constantly updated.
+* **Alternative 2:** Always edit based on the index from original list, which can be displayed by `wallet list command`.
 ** Pros: Index is always consistent.
 ** Cons: Harder to remember which index represents which transaction.
 
