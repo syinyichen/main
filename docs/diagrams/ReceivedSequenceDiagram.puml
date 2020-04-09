@@ -38,7 +38,7 @@ indicatedPerson --> PeopleReceivedCommand : indicatedPerson
 deactivate indicatedPerson
 
 create modifiedPerson
-PeopleReceivedCommand -> modifiedPerson : Person()
+PeopleReceivedCommand -> modifiedPerson
 activate modifiedPerson
 
 modifiedPerson --> PeopleReceivedCommand : modifiedPerson
