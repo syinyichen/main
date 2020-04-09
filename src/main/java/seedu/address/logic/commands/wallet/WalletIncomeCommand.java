@@ -7,6 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -33,6 +36,9 @@ public class WalletIncomeCommand extends Command {
             + PREFIX_TAG + "Work";
 
     public static final String MESSAGE_SUCCESS = "New income added: %1$s";
+    public static final String MESSAGE_INCOME_EXECUTION = "Adding income %1$s...";
+
+    private static final Logger logger = LogsCenter.getLogger(WalletExpenseCommand.class);
 
     private final Income toAdd;
 
@@ -48,6 +54,7 @@ public class WalletIncomeCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        logger.info(String.format(MESSAGE_INCOME_EXECUTION, toAdd));
         model.addIncome(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

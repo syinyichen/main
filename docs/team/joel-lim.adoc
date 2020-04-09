@@ -22,7 +22,11 @@ Sharkie is a desktop expense tracker application. The user interacts with it usi
 ** What it does: allows saving of monetary-related data.
 ** Credits: adapted from existing AddressBook code.
 
-// * *Minor enhancement*: added a history command that allows the user to navigate to previous commands using up/down keys.
+* *Major enhancement*: implemented commands to record transactions.
+** What it does: allows user input of monetary-related data.
+
+* *Minor enhancement*: converted money representation from double to long.
+** This was done for accuracy in calculations, preventing floating-point errors.
 
 // * *Code contributed*: [https://github.com[Functional code]] [https://github.com[Test code]] _{give links to collated code files}_
 
@@ -42,7 +46,10 @@ https://github.com/AY1920S2-CS2103T-W12-3/main/pull/92[#92],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/101[#101],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/102[#102],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/104[#104],
-https://github.com/AY1920S2-CS2103T-W12-3/main/pull/117[#117]
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/117[#117],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/118[#118],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/128[#128]
+
 
 // *** Contributed to forum discussions (examples:  https://github.com[1], https://github.com[2], https://github.com[3], https://github.com[4])
 // *** Reported bugs and suggestions for other teams in the class (examples:  https://github.com[1], https://github.com[2], https://github.com[3])
