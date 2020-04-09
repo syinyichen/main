@@ -27,10 +27,10 @@ Welcome to *Sharkie*!
 .GUI of Sharkie
 image::Ui.png[]
 
-*Sharkie* is an all-in-one desktop application for personal finance tracking designed for university students who would like to monitor their spending.
+*Sharkie* is an all-in-one personal finance tracking desktop application designed for university students, who would like to monitor their spending.
 It manages your incomes and expenses, organises your contacts and keeps track of debts your friends owe you, so that your loans always come with a money-back guarantee!
 
-*Sharkie* boasts a sleek, trendy Graphical User Interface (GUI) while being at its core a Command Line Application - this means that the faster you type, the faster you can get those pesky finances out of your head and into *Sharkie*'s management system.
+*Sharkie* boasts a sleek, trendy Graphical User Interface (GUI) while being at its core, a Command Line Application - this means that the faster you type, the faster you can get those pesky finances out of your head and into *Sharkie*'s management system.
 
 Have we reeled you in? Dive into <<quick-start>> to get on board with *Sharkie*. Enjoy!
 //end::intro[]
