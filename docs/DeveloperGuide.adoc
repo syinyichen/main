@@ -128,6 +128,7 @@ The `Ui` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+//tag::logic[]
 [[Design-Logic]]
 === Logic component
 
@@ -140,7 +141,7 @@ link:{repoURL}/src/main/java/seedu/address/logic/Logic.java[`Logic.java`]
 
 .  `Logic` uses the `SharkieParser` class to parse the user command.
 * `SharkieParser` will check the command entered against a pattern defined in `SharkieParser`.
-* It refers to `CliPrefix` to determine whether the command entered is a `people` related command, or a `wallet` related command.
+* It refers to `CliPrefix` to determine whether the command entered is a `people` related command, a `wallet` related command or a `global` command.
 * If the command entered passes these checks, it then parses the command using the respective `XYZCommandParser` to retrieve the command to be executed.
 .  This results in a `Command` object which is executed by the `LogicManager`.
 * Each command has its own `XYZCommand` that inherits from `Command`, implementing different actions to be executed.
@@ -156,6 +157,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 image::DeleteSequenceDiagram.png[]
 
 NOTE: The lifeline for `PeopleDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+//end::logic[]
 
 //tag::model-design[]
 [[Design-Model]]
@@ -423,8 +425,7 @@ the lifeline reaches the end of diagram.
 
 The `edit` command is implemented in the class, `WalletEditCommand`.
 
-This command can be accessed from `Logic#execute()`. It edits the `transactions`(s), which include both `income`(s) and
-`expense`(s) of the indicated `transaction` (the `transaction` with the specified index in the Wallet).
+This command can be accessed from `Logic#execute()`. It edits the `transaction`, indicated by the index specified, with the new details supplied by the command.
 
 The following activity diagram illustrates what happens when the user executes a `wallet edit` command:
 
@@ -433,15 +434,15 @@ image::WalletEditActivityDiagram.png[width=600]
 
 ==== Implementation of `wallet edit` command
 
-. `WalletEditCommandParser` is executed first to create an `EditTransactorDescriptor` to hold the values to be edited.
+. When entering the wallet edit command, the user have to specify at least one of `Description`, `Amount`, `Date` or `Tag`. Multiples can be inputted as well.
+. `WalletEditCommandParser` is executed to create an `EditTransactorDescriptor` to hold the values to edit the transaction with.
 . `WalletEditCommandParser` then passes the `editTransactorDescriptor` to create a `WalletEditCommand`.
 . In `WalletEditCommand` class, the list of `transactions` is obtained from the `Model` via
-`Model#getFilteredTransactionsList()` and the indicated transaction is extracted from the list, as either a form of
-income or expense.
-. The `transaction` selected is extracted and modified based on the command entered by the user, which are stored in
+`Model#getFilteredTransactionsList()` and the indicated transaction is extracted from the list.
+. The `transaction` selected is modified based on the field to edit and the new details entered by the user, which are stored in
 `editTransactorDescriptor`
 . A new `transaction` modified from the `transaction` selected is created with `createEditedTransaction` method in
-`WalletEditCOmmand`
+`WalletEditCommand`
 . This new `transaction` replace the initial `transaction` at the indicated index via `Model#setTransaction()` and
 the `filteredTransactions` in the `Model` is updated.
 
@@ -457,11 +458,11 @@ the lifeline reaches the end of diagram.
 
 ===== Aspect: Choosing which `transaction` to edit from the list of transactions.
 
-* **Alternative 1 (current choice):** Get the index from the list displayed, and not original index displayed by
+* **Alternative 1 (current choice):** Get the index from the list of transactions currently displayed, and not original index in the full transactions list, which can be displayed by
 `wallet list command`.
 ** Pros: Easy to see which `transaction` is to be edited.
-** Cons: Have to keep updating the filtered list.
-* **Alternative 2:** Always edit based on original list, shown by `wallet list command`.
+** Cons: Filtered list needs to be constantly updated.
+* **Alternative 2:** Always edit based on the index from original list, which can be displayed by `wallet list command`.
 ** Pros: Index is always consistent.
 ** Cons: Harder to remember which index represents which transaction.
 
@@ -548,10 +549,10 @@ Refer to the guide <<DevOps#, here>>.
 
 * has a need to record expenses and income
 * has a need to keep to a certain budget every month
-* has a need to record debts
+* has a need to record debts and loans
 * want to be reminded of his/her own debts
 * wants to remind his/her friends to pay back their debts
-* has a lot of friends to keep track in address/debt book
+* has a lot of friends to keep track of in contact book
 * prefer desktop apps over other types
 * can type fast
 * prefers typing over mouse input
