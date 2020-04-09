@@ -137,6 +137,8 @@ include::../DeveloperGuide.adoc[tag=useCases]
 
 == Appendix G: Instructions for Manual Testing
 
+==== Recording the flow of money
+
 include::../DeveloperGuide.adoc[tag=manual-testing-lend]
 
 include::../DeveloperGuide.adoc[tag=manual-testing-received]
