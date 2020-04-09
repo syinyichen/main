@@ -9,7 +9,7 @@ else ([else])
     if () then ([User did not lend the \nindicated person money])
         :Display an error message;
     else ([else])
-        if () then ([User asked to edit specific\n loan of the indicated person])
+        if () then ([User asked to remove specific\n loan of the indicated person])
             :Remove the specified \nloan from the person;
         else ([else])
             :Remove all loans \nfrom the person;
