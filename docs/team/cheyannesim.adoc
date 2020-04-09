@@ -39,9 +39,17 @@ can filter the people whom they lend or owe using the commands `people find t/de
 *** Bug fixing. (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pull/247[#247])
 ** Documentation:
 *** Update AboutUs page: (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pull/53[#53])
-*** Updated User Guide: (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pull/43[#43],
+*** Updated User Guide: Summary of my contributions:
+**** Features: Contact Management
+**** People Commands: edit, delete, owe, returned, lend, list.
+**** (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pull/43[#43],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/196[#196])
-*** Updated Developer Guide: (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pull/60[#60],
+*** Updated Developer Guide:  Summary of my contributions:
+**** Architecture section
+**** Implementation: People Owe Command
+**** Appendix D – Non-Functional Requirements
+**** Appendix G – Instructions for Manual Testing for People Commands: add, edit, find, list, delete, clear, owe, returned.
+**** (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pull/60[#60],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/120[#120], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/124[#124],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/138[#138], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/196[#196],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/256[#256])
@@ -74,6 +82,10 @@ include::../UserGuide.adoc[tag=contacts]
 
 include::../UserGuide.adoc[tag=commandintro]
 
+include::../UserGuide.adoc[tag=edit]
+
+include::../UserGuide.adoc[tag=delete]
+
 include::../UserGuide.adoc[tag=owe]
 
 include::../UserGuide.adoc[tag=return]
@@ -81,10 +93,6 @@ include::../UserGuide.adoc[tag=return]
 include::../UserGuide.adoc[tag=lend]
 
 include::../UserGuide.adoc[tag=peoplelist]
-
-include::../UserGuide.adoc[tag=edit]
-
-include::../UserGuide.adoc[tag=delete]
 
 
 == Contributions to the Developer Guide
@@ -107,10 +115,6 @@ include::../DeveloperGuide.adoc[tag=apendixd]
 
 == Appendix G: Instructions for Manual Testing
 
-include::../DeveloperGuide.adoc[tag=manual-testing-owe]
-
-include::../DeveloperGuide.adoc[tag=manual-testing-returned]
-
 include::../DeveloperGuide.adoc[tag=manual-testing-peopleadd]
 
 include::../DeveloperGuide.adoc[tag=manual-testing-peopleedit]
@@ -122,3 +126,8 @@ include::../DeveloperGuide.adoc[tag=manual-testing-peoplelist]
 include::../DeveloperGuide.adoc[tag=manual-testing-peopledelete]
 
 include::../DeveloperGuide.adoc[tag=manual-testing-peopleclear]
+
+include::../DeveloperGuide.adoc[tag=manual-testing-owe]
+
+include::../DeveloperGuide.adoc[tag=manual-testing-returned]
+
