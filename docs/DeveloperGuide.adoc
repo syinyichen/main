@@ -1371,7 +1371,7 @@ Expected: No person is added. Error details shown in the result display.
 *** `people add e/John@example.com` +
 Expected: Similar to previous.
 //end::manual-testing-peopleadd[]
-
++
 //tag::manual-testing-peopleedit[]
 . Editing the details of a person
 
@@ -1400,7 +1400,7 @@ Expected: Similar to (b).
 *** `people edit x n/Something` (where x is a non-integer value) +
 Expected: Similar to (c).
 //end::manual-testing-peopleedit[]
-
++
 //tag::manual-testing-peoplefind[]
 . Finding a person
 
@@ -1428,14 +1428,14 @@ be listed since no one has _phone_ as their phone number.
 *** `people find d/invalidTag` +
 Expected: Similar to (d).
 //end::manual-testing-peoplefind[]
-
++
 //tag::manual-testing-peoplelist[]
 . Listing everyone
 
 .. Test case: `people list` +
 Expected: Everyone in the contacts will be listed.
 //end::manual-testing-peoplelist[]
-
++
 //tag::manual-testing-peopledelete[]
 . Deleting a person while all persons are listed
 
@@ -1451,7 +1451,7 @@ Expected: No person is deleted. Error details shown in the result display.
 *** `people delete x` (where x is a non-integer value) +
 Expected: Similar to previous.
 //end::manual-testing-peopledelete[]
-
++
 //tag::manual-testing-peopleclear[]
 . Deleting everyone
 
@@ -1489,7 +1489,7 @@ Expected: The loan is not recorded. Error details shown in the result display.
 *** `people owe 1 n/Breakfast $/x` (where x is not a number). +
 Expected: Similar to previous
 //end::manual-testing-owe[]
-
++
 //tag::manual-testing-returned[]
 . Recording the money you returned to a person
 
@@ -1511,7 +1511,7 @@ Expected: No debt is deleted. Error details shown in the result display.
 *** `people returned 1 i/x` (where x is a non-integer value) +
 Expected: Similar to previous
 //end::manual-testing-returned[]
-
++
 //tag::manual-testing-lend[]
 . Recording the money you lend to a person
 
@@ -1538,7 +1538,7 @@ list of the first person. Total amount of money, which you lent to the first per
 *** `people lend 1 n/Dinner $/x` (where x is not a number). +
    Expected: Similar to previous
 //end::manual-testing-lend[]
-
++
 //tag::manual-testing-received[]
 . Recording the money you received from a person
 
