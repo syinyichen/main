@@ -12,7 +12,7 @@
 *Sharkie* is a desktop expense tracker application.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
-== Summary of contributions *[To be updated]*
+== Summary of contributions
 
 * *Major enhancement*:
 . Added *the ability to list out all transactions in the wallet and the UI for it*
@@ -38,6 +38,8 @@ It required an in-depth analysis of design alternatives.
 It required an in-depth analysis of design alternatives.
 * *Minor enhancement*:
 . Added *the ability to clear all transactions in the wallet*
+* *Code Contribured:*
+** https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#search=grace&sort=totalCommits%20dsc&sortWithin=title&since=2020-02-14&timeframe=commit&mergegroup=false&groupSelect=groupByRepos&breakdown=false[[Functional codes & Test codes]]
 
 * *Other contributions*:
 
@@ -46,8 +48,8 @@ It required an in-depth analysis of design alternatives.
 ** Enhancements to features:
 ***  (Pull requests https://github.com/AY1920S2-CS2103T-W12-3/main/pull/52[#52],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/54[#54], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/61[#61],
-https://github.com/AY1920S2-CS2103T-W12-3/main/pull/66[#66], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/102[#102], ,
-https://github.com/AY1920S2-CS2103T-W12-3/main/pull/110[110], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/115[#115], ,
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/66[#66], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/102[#102],
+https://github.com/AY1920S2-CS2103T-W12-3/main/pull/110[110], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/115[#115],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/117[#117], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/121[#121],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/122[#122], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/127[#127],
 https://github.com/AY1920S2-CS2103T-W12-3/main/pull/128[#128], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/174[#174],
@@ -55,11 +57,11 @@ https://github.com/AY1920S2-CS2103T-W12-3/main/pull/245[#245], https://github.co
 ** Documentation:
 *** Updated the User Guide to include more commands, updated Quick Start, and Updated ContactUs: https://github.com/AY1920S2-CS2103T-W12-3/main/pull/52[#52]
 *** Did cosmetic tweaks to existing contents of the User Guide and Quick Start: https://github.com/AY1920S2-CS2103T-W12-3/main/pull/54[#54]
-*** Fixed errors in Developer Guide: https://github.com/AY1920S2-CS2103T-W12-3/main/pull/184[#184]
+*** Added wallet edit command implementation and UML diagrams to Developer Guide: https://github.com/AY1920S2-CS2103T-W12-3/main/pull/135[#135]
+*** Updated Developer Guide according to feedback given: https://github.com/AY1920S2-CS2103T-W12-3/main/pull/184[#184]
 ** Community:
 *** PRs reviewed (with non-trivial review comments) : https://github.com/AY1920S2-CS2103T-W12-3/main/pull/71[#71], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/95[#95], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/101[#101], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/118[#118],  https://github.com/AY1920S2-CS2103T-W12-3/main/pull/140[#140]
-*** Contributed to forum discussions (examples:  https://github.com/nus-cs2103-AY1920S2/forum/issues/25[#25])
-*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com/AY1920S2-CS2103T-W16-3/main/issues/123[DG Suggestions])
+*** Reported bugs and suggestions for other teams in the class (examples:  https://github.com/AY1920S2-CS2103T-W16-3/main/issues/123[DG Suggestions], https://github.com/gracegrape/ped/issues[Mock Practical])
 
 == Contributions to the User Guide
 
@@ -88,6 +90,8 @@ include::../UserGuide.adoc[tag=walletClear]
 include::../DeveloperGuide.adoc[tag=productScope]
 
 include::../DeveloperGuide.adoc[tag=userStories]
+
+include::../DeveloperGuide.adoc[tag=logic]
 
 include::../DeveloperGuide.adoc[tag=walletEdit_implementation]
 
