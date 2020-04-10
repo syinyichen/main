@@ -1,7 +1,9 @@
 = Daniel Hoe - Project Portfolio
 :site-section: AboutUs
+:icons: font
 :imagesDir: ../images
 :stylesDir: ../stylesheets
+:xrefstyle: full
 
 == PROJECT: Sharkie
 
@@ -10,6 +12,7 @@
 Sharkie is a desktop expense tracker application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 
 == Summary of contributions
+* *Code contributed*: https://nus-cs2103-ay1920s2.github.io/tp-dashboard/#=undefined&search=jumpcutfindo
 
 * *Major enhancement*: Adapted Sharkie from AB-3 such that *it can take in more prefixes as commands*.
 ** What it does: allows the user to use `people` and `wallet` as prefixes
@@ -30,6 +33,16 @@ Sharkie is a desktop expense tracker application. The user interacts with it usi
 
 * *Other contributions*:
 
+** User guide contribution:
+*** Added "Global Commands" section to user guide
+*** Added `wallet budget` command guide to user guide
+*** Added "Command Summary" section to user guide
+*** Did proof-reading and checking along with the team for user guide
+
+** Developer guide contribution:
+*** Added `wallet budget` command to developer guide
+*** Did proof-reading and checking along with the team for developer guide
+
 ** Project management:
 *** Team lead of the project, ensured team is up to date and on the same page for the project.
 *** Ensured that itinerary of each meeting is discussed and goals of each team meeting is achieved in the meeting.
@@ -37,8 +50,8 @@ Sharkie is a desktop expense tracker application. The user interacts with it usi
 ** Community:
 *** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W12-3/main/pull/40[#40], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/41[#41], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/71[#71], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/92[#92], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/95[#95], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/100[#100], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/101[#101], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/110[#110], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/118[#118], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/128[#128], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/161[#161], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/178[#178], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/183[#183]
 ** Tools:
-*** Used <<https://figma.com, Figma>> to design a mockup for the application
-*** Used PlantUML to draw diagrams for the developer guide.
+*** Used *Figma* to design a mockup for the application
+*** Used *PlantUML* to draw diagrams for the developer guide.
 
 == Contributions to the User Guide
 
@@ -48,8 +61,7 @@ Sharkie is a desktop expense tracker application. The user interacts with it usi
 
 include::../UserGuide.adoc[tag=globalcommands]
 include::../UserGuide.adoc[tag=walletbudget]
-include::../UserGuide.adoc[tag=faq]
-
+include::../UserGuide.adoc[tag=commandSummary]
 == Contributions to the Developer Guide
 
 |===
