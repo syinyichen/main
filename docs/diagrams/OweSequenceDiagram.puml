@@ -9,11 +9,12 @@ end box
 box Model MODEL_COLOR_T1
 participant "debt:Debt" as debt MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
-participant "personUserOwes:Person" as personUserOwes MODEL_COLOR
 participant "addedDebtPerson:Person" as addedDebtPerson MODEL_COLOR
 participant ":AddressBook" as AddressBook MODEL_COLOR
 participant ":UniquePersonList" as UniquePersonList MODEL_COLOR
 end box
+
+participant "lastShownList:List" as List #6C3483
 
 [-> Logic : execute("people owe 1 n/Dinner $/10")
 activate Logic
@@ -34,11 +35,11 @@ activate Model
 Model --> peopleOweCommand : lastShownList
 deactivate Model
 
-peopleOweCommand -> personUserOwes : lastShownList.get(1)
-activate personUserOwes
+peopleOweCommand -> List : lastShownList.get(1)
+activate List
 
-personUserOwes --> peopleOweCommand : personUserOwes
-deactivate personUserOwes
+List --> peopleOweCommand : personUserOwes
+deactivate List
 
 peopleOweCommand -> peopleOweCommand : createPersonOwed(\npersonUserOwes, debt)
 activate peopleOweCommand

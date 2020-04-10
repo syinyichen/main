@@ -14,6 +14,8 @@ participant ":AddressBook" as AddressBook MODEL_COLOR
 participant ":UniquePersonList" as UniquePersonList MODEL_COLOR
 end box
 
+participant "lastShownList:List" as List #6C3483
+
 [-> LogicManager : execute("people received 1")
 activate LogicManager
 
@@ -31,11 +33,11 @@ activate Model
 Model --> PeopleReceivedCommand : lastShownList
 deactivate Model
 
-PeopleReceivedCommand -> indicatedPerson : lastShownList.get(1)
-activate indicatedPerson
+PeopleReceivedCommand -> List : lastShownList.get(1)
+activate List
 
-indicatedPerson --> PeopleReceivedCommand : indicatedPerson
-deactivate indicatedPerson
+List --> PeopleReceivedCommand : indicatedPerson
+deactivate List
 
 create modifiedPerson
 PeopleReceivedCommand -> modifiedPerson
