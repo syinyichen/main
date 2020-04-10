@@ -30,7 +30,7 @@ use both of the models without changing their purposes or properties.
 property of `Person`.
 ** *Added user data storage* (Pull request https://github.com/AY1920S2-CS2103T-W12-3/main/pull/95[#95])
 *** What it does: Stores user data, such as name, phone and e-mail address.
-*** Justification: The storage of user data is important, as the user details are required to use the `remind`
+*** Justification: The storage of user data is important, as the user details are required during the use of `remind`
 and `remindall` commands.
 *** Highlights: This update was challenging, an entire new storage need to be built to store the user data, as the
 data needed to be stored differs from those in the address book.

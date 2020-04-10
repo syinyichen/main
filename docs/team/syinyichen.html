@@ -509,7 +509,7 @@ property of <code>Person</code>.</p>
 <p>What it does: Stores user data, such as name, phone and e-mail address.</p>
 </li>
 <li>
-<p>Justification: The storage of user data is important, as the user details are required to use the <code>remind</code>
+<p>Justification: The storage of user data is important, as the user details are required during the use of <code>remind</code>
 and <code>remindall</code> commands.</p>
 </li>
 <li>
@@ -1618,13 +1618,13 @@ a <code>TransactionList</code> of <code>Loan</code>(s) and a set of <code>Tag</c
 </li>
 </ul>
 </div>
-<div class="imageblock">
+<div id="TransactionPackage" class="imageblock">
 <div class="content">
 <img src="../images/ModelTransactionDiagram.png" alt="ModelTransactionDiagram" width="1200">
 </div>
 <div class="title">Figure 8. In-depth structure of Transaction package in the Model Component</div>
 </div>
-<div class="imageblock">
+<div id="TransactionClass" class="imageblock">
 <div class="content">
 <img src="../images/ModelTransactionClassDiagram.png" alt="ModelTransactionClassDiagram" width="400">
 </div>
@@ -1637,8 +1637,8 @@ a <code>TransactionList</code> of <code>Loan</code>(s) and a set of <code>Tag</c
 <div class="title">Note</div>
 </td>
 <td class="content">
-The association between <code>Transaction</code> and <code>Amount</code> is not shown in <em>Figure 10</em> to keep the diagram less messy.
-However, the association is shown in <em>Figure 11</em>.
+The association between <code>Transaction</code> and <code>Amount</code> is not shown in <em><a href="#TransactionPackage">In-depth structure of Transaction package in the Model Component</a></em> to keep the diagram less messy.
+However, the association is shown in <em><a href="#TransactionClass">Transaction class diagram</a></em>.
 </td>
 </tr>
 </table>
@@ -1695,7 +1695,7 @@ a <code>Description</code>, an <code>Amount</code>, a <code>Date</code> and a <c
 </ul>
 </div>
 <div class="paragraph">
-<p>The <em>Tag</em> package only consist of a class, <code>Tag</code> and it does not depends on other components in the Model.</p>
+<p>The <em>Tag</em> package only consist of a class, <code>Tag</code> and it does not depend on other components in the Model.</p>
 </div>
 </div>
 </div>
@@ -2642,7 +2642,7 @@ Expected: A reminder is sent everyone, who has unsettled loan. A carbon copy (CC
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-04-09 23:25:46 +0800
+Last updated 2020-04-10 11:19:50 +0800
 </div>
 </div>
 </body>

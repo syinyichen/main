@@ -213,13 +213,13 @@ are implemented for the execution of `people find` command.
 * A `Person` consists of a `Name`, a `Phone`, an `Email`, a `TransactionList` of `Debt`(s),
 a `TransactionList` of `Loan`(s) and a set of `Tag`(s).
 
-.In-depth structure of Transaction package in the Model Component
+[#TransactionPackage, title='In-depth structure of Transaction package in the Model Component']
 image::ModelTransactionDiagram.png[width=1200]
-.Transaction class diagram
+[#TransactionClass, title='Transaction class diagram']
 image::ModelTransactionClassDiagram.png[width=400]
 
-NOTE: The association between `Transaction` and `Amount` is not shown in _Figure 10_ to keep the diagram less messy.
-However, the association is shown in _Figure 11_.
+NOTE: The association between `Transaction` and `Amount` is not shown in _<<TransactionPackage>>_ to keep the diagram less messy.
+However, the association is shown in _<<TransactionClass>>_.
 
 The diagram above shows how the _Transaction_ package is implemented:
 
@@ -239,7 +239,7 @@ The _Reminder_ package is implemented for *Sharkie*'s reminder feature. The diag
 * The `ConfirmationEmail` consists of a `User`.
 ** The `ConfirmationEmail` is implemented to validate the user's email address during user's first login to *Sharkie*.
 
-The _Tag_ package only consist of a class, `Tag` and it does not depends on other components in the Model.
+The _Tag_ package only consist of a class, `Tag` and it does not depend on other components in the Model.
 
 ====
 
