@@ -303,7 +303,7 @@ The following sequence diagram summarizes what happens during the execution of a
 
 image::OweSequenceDiagram.png[]
 .Sequence diagram of the `people owe` command
-image::GetPeopleOweCommandSequenceDiagram.png[width=500]
+image::GetPeopleOweCommandSequenceDiagram.png[width=700]
 
 NOTE: The lifeline for `PeopleOweCommand` and `PeopleOweCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML,
 the lifeline reaches the end of diagram.
