@@ -284,7 +284,7 @@ This command can be accessed from  `Logic#execute()`. It records a `debt` of an 
 
 The following activity diagram illustrates what happens when the user enters a `people owe` command:
 
-.Activity diagram of the recording a debt
+.Activity diagram of the activity of recording a debt
 image::OweActivityDiagram.png[width=70%]
 
 ==== Implementation of `people owe` command
