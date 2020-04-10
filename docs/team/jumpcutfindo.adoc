@@ -1,7 +1,17 @@
 = Daniel Hoe - Project Portfolio
-:site-section: AboutUs
+:site-section: UserGuide
+:toc:
+:toclevels: 5
+:toc-title:
+:toc-placement: preamble
+:sectnums:
+:icons: font
 :imagesDir: ../images
-:stylesDir: ../stylesheets
+:stylesDir: stylesheets
+:xrefstyle: full
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:warning-caption: :warning:
 
 == PROJECT: Sharkie
 
@@ -9,7 +19,7 @@
 
 == Overview
 
-Sharkie is a desktop expense tracker application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Sharkie is a desktop expense tracker application. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
 
 == Summary of contributions
 
@@ -22,7 +32,7 @@ Sharkie is a desktop expense tracker application. The user interacts with it usi
 ** What it does: allows the user to add a budget for their finances.
 ** Justification: This feature was implemented to help the user keep track of their finances and prevent them from overspending.
 
-* *Major enhancement*: Upgraded the user interface to make Sharkie more visually appealing and display relevant information.
+* *Major enhancement*: Upgraded the user interface to *make Sharkie more visually appealing* and *display relevant information*.
 ** What it does: allows the user to easily see information related to their transactions and their address book.
 ** Justification: This feature was implemented to allow people to easily see their data entered and statistics.
 
@@ -30,11 +40,13 @@ Sharkie is a desktop expense tracker application. The user interacts with it usi
 
 ** Project management:
 *** Team lead of the project, ensured team is up to date and on the same page for the project.
+*** Ensured that itinerary of each meeting is discussed and goals of each team meeting is achieved in the meeting.
 
 ** Community:
-*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W12-3/main/pull/40[#40], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/41[#41], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/71[#71], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/92[#92], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/95[#95], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/100[#100], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/101[#101], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/110[#110], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/118[#118], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/128[#128], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/154[#154], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/161[#161], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/178[#178], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/183[#183]
+*** PRs reviewed (with non-trivial review comments): https://github.com/AY1920S2-CS2103T-W12-3/main/pull/40[#40], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/41[#41], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/71[#71], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/92[#92], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/95[#95], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/100[#100], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/101[#101], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/110[#110], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/118[#118], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/128[#128], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/161[#161], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/178[#178], https://github.com/AY1920S2-CS2103T-W12-3/main/pull/183[#183]
 ** Tools:
-*** Used Figma to design a mockup for the application
+*** Used <<https://figma.com, Figma>> to design a mockup for the application
+*** Used PlantUML to draw diagrams for the developer guide.
 
 == Contributions to the User Guide
 
