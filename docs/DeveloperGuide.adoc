@@ -550,6 +550,7 @@ Refer to the guide <<DevOps#, here>>.
 
 * has a need to record expenses and income
 * has a need to keep to a certain budget every month
+* wants to view statistic of spending
 * has a need to record debts and loans
 * want to be reminded of his/her own debts
 * wants to remind his/her friends to pay back their debts
@@ -559,7 +560,10 @@ Refer to the guide <<DevOps#, here>>.
 * prefers typing over mouse input
 * is reasonably comfortable using <<CLI, CLI>> apps
 
-*Value proposition*: records expenses/debts faster than a typical mouse/GUI driven app
+*Value proposition*:
+
+* records expenses/debts faster than a typical mouse/GUI driven app
+* visual display of data with diagrams instead of just text
 //end::productScope[]
 
 [appendix]
@@ -1165,8 +1169,9 @@ returned even though both errors pertains to the wrong index provided.
 
 . Initial launch
 
-.. Download the jar file and copy into an empty folder
-.. Double-click the jar file +
+.. Download the jar file and put the jar file in an empty folder.
+.. Open a command window. Run the java -version command to ensure you are using Java 11.
+.. Launch the jar file using the java -jar command (do not use double-clicking). +
    Expected: Shows an "Enter User Data" window. The window size may not be optimum.
 
 . Entering user data
@@ -1179,7 +1184,7 @@ your own email, you can get a temporary email from link:https://temp-mail.org/en
 . Saving window preferences
 
 .. Resize the window to an optimum size. Move the window to a different location. Close the window.
-.. Re-launch the app by double-clicking the jar file. +
+.. Re-launch the app using the java -jar command (do not use double-clicking). +
    Expected: The most recent window size and location is retained.
 
 . Exiting the application
@@ -1195,11 +1200,12 @@ your own email, you can get a temporary email from link:https://temp-mail.org/en
 .. Prerequisites: None.
 .. Test case: `wallet expense n/Meal $/3.50` +
    Expected: An expense named _Meal_ with _$3.50_ with default tag _Misc_ recorded under the current date is added to the transaction list. The statistics panel will also update with the expense entered.
+
 .. Test case: `wallet expense n/Meal $/3.50 d/02/02/2020` +
    Expected: An expense named _Meal_ with _$3.50_ with default tag _Misc_ recorded under the date _02 FEB 2020_ is added to the transaction list. The statistics panel will not update with this expense.
 .. Test case: `wallet expense n/Meal $/3.50 t/Food` +
    Expected: An expense named _Meal_ with _$3.50_ with tag _Food_ recorded under the current date is added to the transaction list. The statistic panel will also update with the expense entered, under the custom tag given.
-.. Test case: `wallet expense n/Meal $/asdf`
+.. Test case: `wallet expense n/Meal $/asdf` +
    Expected: The expense is not recorded. Error details shown in result display.
 .. Other incorrect expense commands to try:
 *** `wallet expense`,
@@ -1329,7 +1335,7 @@ A success message shown in the result display.
 .. Prerequisites: The transaction which you want to delete exists in the transactions list.
 .. Test case: `wallet delete 1` +
    Expected: First transaction is deleted from the list. Details of the deleted contact shown in the result display.
-.. Test case: `people delete 0` +
+.. Test case: `wallet delete 0` +
    Expected: No transaction is deleted. Error details shown in the result display.
 .. Other incorrect delete commands to try:
 *** `wallet delete`,
@@ -1378,9 +1384,9 @@ Expected: Similar to previous.
 . Editing the details of a person
 
 .. Prerequisites: The person whom you want to edit exists in the person list.
-.. Test case: `people edit 1 n/John Doe p/91234567 e/John@example.com` +
-Expected: The first person name, phone number and email will be changed to _John Doe_, _91234567_ and
-_John@example.com_ respectively.
+.. Test case: `people edit 1 n/April Tan p/91234567 e/April@example.com` +
+Expected: The first person name, phone number and email will be changed to _April Tan_, _91234567_ and
+_April@example.com_ respectively.
 .. Test case: `people edit 0 n/John Doe p/91234567 e/John@example.com` +
 Expected: No person is edited. Error details shown in the result display.
 .. Other valid `people edit` commands to try:
@@ -1408,10 +1414,10 @@ Expected: Similar to (c).
 
 .. Prerequisites: The person whom you want to find exists in the person list.
 .. Test case: `people find n/Alex Bernice` +
-Expected: People who are have _Alex_ or _Bernice_ in their name (case insensitve) will be listed.
-.. Test case: `people find t/debt`
-Expected: People whom you owe money to will be listed.
-..Test case: `people find t/loan`
+Expected: People who `are have _Alex_ or _Bernice_ in their name (case insensitve) will be listed.
+.. Test case: `people find t/debt` +
+Expected: People whom you owe money to will be listed. +
+.. Test case: `people find t/loan` +
 Expected: People whom you lend money to will be listed.
 .. Test case: `people find n/Alex p/91234567` +
 Expected: No person found. Error details shown in the result display.
