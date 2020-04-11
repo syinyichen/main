@@ -59,7 +59,7 @@ Sharkie is a desktop expense tracker application. The user interacts with it usi
 |_Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users._
 |===
 
-include::../UserGuide.adoc[tag=globalcommands]
+include::../UserGuide.adoc[tag=generalcommands]
 include::../UserGuide.adoc[tag=walletbudget]
 include::../UserGuide.adoc[tag=commandSummary]
 == Contributions to the Developer Guide
@@ -68,6 +68,5 @@ include::../UserGuide.adoc[tag=commandSummary]
 |_Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project._
 |===
 
-include::../DeveloperGuide.adoc[tag=model-design]
 include::../DeveloperGuide.adoc[tag=walletBudget_implementation]
 ---
